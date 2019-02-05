@@ -1,27 +1,28 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6730 64-bit) (preloaded format=pdflatex 2018.8.30)  5 FEB 2019 17:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2019.2.5)  5 FEB 2019 17:55
 entering extended mode
 **./Iteration1.tex
 (Iteration1.tex
-LaTeX2e <2018-04-01> patch level 5
+LaTeX2e <2017-04-15>
+Babel <3.15> and hyphenation patterns for 76 language(s) loaded.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\size10.clo"
 File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
-\c@part=\count80
-\c@section=\count81
-\c@subsection=\count82
-\c@subsubsection=\count83
-\c@paragraph=\count84
-\c@subparagraph=\count85
-\c@figure=\count86
-\c@table=\count87
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
 \abovecaptionskip=\skip41
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\glossaries\base\glossaries.sty"
-Package: glossaries 2019/01/06 v4.42 (NLCT)
+Package: glossaries 2017/11/14 v4.35 (NLCT)
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\ifthen.sty"
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
@@ -35,15 +36,15 @@ Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
 \XKV@tempa@toks=\toks15
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\xkeyval\keyval.tex"))
-\XKV@depth=\count88
+\XKV@depth=\count87
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
 ("C:\Program Files\MiKTeX 2.9\tex\latex\mfirstuc\mfirstuc.sty"
 Package: mfirstuc 2017/11/14 v2.06 (NLCT)
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\etoolbox\etoolbox.sty"
-Package: etoolbox 2018/08/19 v2.5f e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count89
+Package: etoolbox 2017/11/22 v2.5 e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count88
 )
 \@glsmfirst=\toks16
 \@glsmrest=\toks17
@@ -55,7 +56,7 @@ Package: textcase 2004/10/07 v0.07 Text only upper/lower case changing (DPC)
 Package: xfor 2009/02/05 v1.05 (NLCT)
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\datatool\datatool-base.sty"
-Package: datatool-base 2018/12/07 v2.31 (NLCT)
+Package: datatool-base 2017/11/12 v2.29 (NLCT)
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty"
 Package: amsmath 2017/09/02 v2.17a AMS math features
@@ -77,13 +78,13 @@ Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsopn.sty"
 Package: amsopn 2016/03/08 v2.02 operator names
 )
-\inf@bad=\count90
+\inf@bad=\count89
 LaTeX Info: Redefining \frac on input line 213.
-\uproot@=\count91
-\leftroot@=\count92
+\uproot@=\count90
+\leftroot@=\count91
 LaTeX Info: Redefining \overline on input line 375.
-\classnum@=\count93
-\DOTSCASE@=\count94
+\classnum@=\count92
+\DOTSCASE@=\count93
 LaTeX Info: Redefining \ldots on input line 472.
 LaTeX Info: Redefining \dots on input line 475.
 LaTeX Info: Redefining \cdots on input line 596.
@@ -92,15 +93,15 @@ LaTeX Info: Redefining \cdots on input line 596.
 \big@size=\dimen105
 LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
-\macc@depth=\count95
-\c@MaxMatrixCols=\count96
+\macc@depth=\count94
+\c@MaxMatrixCols=\count95
 \dotsspace@=\muskip10
-\c@parentequation=\count97
-\dspbrk@lvl=\count98
+\c@parentequation=\count96
+\dspbrk@lvl=\count97
 \tag@help=\toks19
-\row@=\count99
-\column@=\count100
-\maxfields@=\count101
+\row@=\count98
+\column@=\count99
+\maxfields@=\count100
 \andhelp@=\toks20
 \eqnshift@=\dimen106
 \alignsep@=\dimen107
@@ -117,10 +118,10 @@ LaTeX Info: Redefining \] on input line 2818.
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\substr\substr.sty"
 Package: substr 2009/10/20 v1.2 Handle substrings
-\c@su@anzahl=\count102
+\c@su@anzahl=\count101
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\datatool\datatool-fp.sty"
-Package: datatool-fp 2018/12/07 v2.31 (NLCT)
+Package: datatool-fp 2017/11/12 v2.29 (NLCT)
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp.sty"
 Package: fp 1995/04/02
@@ -128,19 +129,19 @@ Package: fp 1995/04/02
 `Fixed Point Package', Version 0.8, April 2, 1995 (C) Michael Mehlich
 ("C:\Program Files\MiKTeX 2.9\tex\latex\fp\defpattern.sty"
 Package: defpattern 1994/10/12
-\actioncount=\count103
+\actioncount=\count102
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-basic.sty"
 Package: fp-basic 1996/05/13
-\FP@xs=\count104
-\FP@xia=\count105
-\FP@xib=\count106
-\FP@xfa=\count107
-\FP@xfb=\count108
-\FP@rega=\count109
-\FP@regb=\count110
-\FP@regs=\count111
-\FP@times=\count112
+\FP@xs=\count103
+\FP@xia=\count104
+\FP@xib=\count105
+\FP@xfa=\count106
+\FP@xfb=\count107
+\FP@rega=\count108
+\FP@regb=\count109
+\FP@regs=\count110
+\FP@times=\count111
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-addons.sty"
 Package: fp-addons 1995/03/15
@@ -159,7 +160,7 @@ Package: fp-pas 1994/08/29
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-random.sty"
 Package: fp-random 1995/02/23
-\FPseed=\count113
+\FPseed=\count112
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-eqn.sty"
 Package: fp-eqn 1995/04/03
@@ -171,20 +172,20 @@ Package: fp-upn 1996/10/21
 Package: fp-eval 1995/04/03
 )))
 \@dtl@toks=\toks23
-\@dtl@tmpcount=\count114
+\@dtl@tmpcount=\count113
 \dtl@tmplength=\skip46
-\dtl@sortresult=\count115
-\@dtl@numgrpsepcount=\count116
-\@dtl@datatype=\count117
-\dtl@codeA=\count118
-\dtl@codeB=\count119
-\@dtl@foreach@level=\count120
+\dtl@sortresult=\count114
+\@dtl@numgrpsepcount=\count115
+\@dtl@datatype=\count116
+\dtl@codeA=\count117
+\dtl@codeB=\count118
+\@dtl@foreach@level=\count119
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\glossaries\base\glossaries-compatible-3
 07.sty"
-Package: glossaries-compatible-307 2019/01/06 v4.42 (NLCT)
+Package: glossaries-compatible-307 2017/11/14 v4.35 (NLCT)
 )
-\gls@level=\count121
+\gls@level=\count120
 \@gls@tmpb=\toks24
 \gls@tmplen=\skip47
 \glskeylisttok=\toks25
@@ -194,12 +195,12 @@ Package: glossaries-compatible-307 2019/01/06 v4.42 (NLCT)
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\glossaries\styles\glossary-hypernav.sty
 "
-Package: glossary-hypernav 2019/01/06 v4.42 (NLCT)
+Package: glossary-hypernav 2017/11/14 v4.35 (NLCT)
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\glossaries\styles\glossary-list.sty"
-Package: glossary-list 2019/01/06 v4.42 (NLCT)
+Package: glossary-list 2017/11/14 v4.35 (NLCT)
 \glslistdottedwidth=\skip48
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\glossaries\styles\glossary-long.sty"
-Package: glossary-long 2019/01/06 v4.42 (NLCT)
+Package: glossary-long 2017/11/14 v4.35 (NLCT)
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\tools\longtable.sty"
 Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
@@ -207,27 +208,27 @@ Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
 \LTright=\skip50
 \LTpre=\skip51
 \LTpost=\skip52
-\LTchunksize=\count122
+\LTchunksize=\count121
 \LTcapwidth=\dimen112
 \LT@head=\box28
 \LT@firsthead=\box29
 \LT@foot=\box30
 \LT@lastfoot=\box31
-\LT@cols=\count123
-\LT@rows=\count124
-\c@LT@tables=\count125
-\c@LT@chunks=\count126
+\LT@cols=\count122
+\LT@rows=\count123
+\c@LT@tables=\count124
+\c@LT@chunks=\count125
 \LT@p@ftn=\toks29
 )
 \glsdescwidth=\skip53
 \glspagelistwidth=\skip54
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\glossaries\styles\glossary-super.sty"
-Package: glossary-super 2019/01/06 v4.42 (NLCT)
+Package: glossary-super 2017/11/14 v4.35 (NLCT)
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\supertabular\supertabular.sty"
 Package: supertabular 2004/02/20 v4.1e the supertabular environment
-\c@tracingst=\count127
+\c@tracingst=\count126
 \ST@wd=\dimen113
 \ST@rightskip=\skip55
 \ST@leftskip=\skip56
@@ -245,7 +246,7 @@ Package: supertabular 2004/02/20 v4.1e the supertabular environment
 \ST@pbox=\box32
 ))
 ("C:\Program Files\MiKTeX 2.9\tex\latex\glossaries\styles\glossary-tree.sty"
-Package: glossary-tree 2019/01/06 v4.42 (NLCT)
+Package: glossary-tree 2017/11/14 v4.35 (NLCT)
 \glstreeindent=\skip58
 ))
 (usecases.sty ("C:\Program Files\MiKTeX 2.9\tex\latex\booktabs\booktabs.sty"
@@ -260,23 +261,23 @@ Package: booktabs 2005/04/14 v1.61803 publication quality tables
 \cmidrulesep=\dimen131
 \cmidrulekern=\dimen132
 \defaultaddspace=\dimen133
-\@cmidla=\count128
-\@cmidlb=\count129
+\@cmidla=\count127
+\@cmidlb=\count128
 \@aboverulesep=\dimen134
 \@belowrulesep=\dimen135
-\@thisruleclass=\count130
-\@lastruleclass=\count131
+\@thisruleclass=\count129
+\@lastruleclass=\count130
 \@thisrulewidth=\dimen136
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\multirow\multirow.sty"
 Package: multirow 2016/11/25 v2.2 Span multiple rows of a table
 \multirow@colwidth=\skip59
-\multirow@cntb=\count132
+\multirow@cntb=\count131
 \multirow@dima=\skip60
 \bigstrutjot=\dimen137
 ))
 ("C:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.sty"
-Package: geometry 2018/04/16 v5.8 Page Geometry
+Package: geometry 2010/09/12 v5.6 Page Geometry
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty"
 Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
@@ -288,9 +289,9 @@ Package ifvtex Info: VTeX not detected.
 ("C:\Program Files\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty"
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
-\Gm@cnth=\count133
-\Gm@cntv=\count134
-\c@Gm@tempcnt=\count135
+\Gm@cnth=\count132
+\Gm@cntv=\count133
+\c@Gm@tempcnt=\count134
 \Gm@bindingoffset=\dimen138
 \Gm@wd@mp=\dimen139
 \Gm@odd@mp=\dimen140
@@ -354,46 +355,38 @@ LaTeX Font Info:    ... okay on input line 28.
 
 [1
 
-{C:/Users/colin/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
-Underfull \hbox (badness 2951) in paragraph at lines 69--69
+{C:/Users/BEGGS/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
+Underfull \hbox (badness 2951) in paragraph at lines 70--70
 []\OT1/cmr/m/it/10 Stakeholders and In-
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 69.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 70.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 69.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 70.
 
 Underfull \vbox (badness 10000) detected at line 104
  []
 
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 1 on input line 122.
-
-[3]
-
-Package longtable Warning: Table widths have changed. Rerun LaTeX.
-
-[4] [5] (Iteration1.aux) ) 
+[3] [4] [5] (Iteration1.aux) ) 
 Here is how much of TeX's memory you used:
- 5424 strings out of 492973
- 79239 string characters out of 3135932
- 218476 words of memory out of 3000000
- 9207 multiletter control sequences out of 15000+200000
+ 5373 strings out of 493308
+ 78115 string characters out of 3138769
+ 210386 words of memory out of 3000000
+ 8834 multiletter control sequences out of 15000+200000
  8915 words of font info for 32 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  45i,8n,26p,1999b,320s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfo
-nts/cm/cmbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
-mbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb
-><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Prog
-ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files
-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 
-2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on Iteration1.pdf (5 pages, 103528 bytes).
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/a
+msfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/
+cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10
+.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/
+Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program F
+iles/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiK
+TeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on Iteration1.pdf (5 pages, 102956 bytes).
 PDF statistics:
  46 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
