@@ -120,7 +120,50 @@ Be My Player 2 is an interactive, gaming centric social media created to connect
 \subsection{Block Usernames / Report User}
 \subsection{Messaging}
 \subsection{Contact Us / Customer Support}
-\subsection{View Matches}
+\newpage\subsection{View Matches}\begin{usecase}
+	\addtitle{Use Case 001}{Make Account} 
+	\addfield{Scope:}{User Database}
+	\addfield{Level:}{User goal}
+	\addfield{Primary Actor:}{User}
+	\additemizedfield{Stakeholders and Interests:}{
+		\item User: Wants to create new Account
+		\item Company: Wants to accurately register new users and record the user's account information.}
+	\additemizedfield{Preconditions:}{
+		\item User does not have an account.
+		\item User is on the Login page.
+	} 
+	\additemizedfield{Postconditions:}{
+		\item User account is registered in the User Database.
+		\item User can log in to the System and access the System features with their account credentials.
+	}
+	\addscenario{Main Success Scenario:}{
+		\item User selects the option to create a new account.
+		\item The System sends a registration form to the User.
+		\item The User fills out the registration form.
+		\item The User selects the option to submit the form.
+		\item The System adds the User to the User Database.
+		\item The User is logged in and sent to the main page.
+	}
+	\addscenario{Extensions:}{
+		\item[*a] If at any time, the System fails:
+		\begin{enumerate}
+			\item[1.] User restarts System and returns to step 1.
+		\end{enumerate}
+		\item[*b] If at any time, User wishes to return to the Login page:
+		\begin{enumerate}
+			\item[1.] User selects option to return to the Login page.
+			\item[2.] System returns to the Login page.
+		\end{enumerate}
+		\item[4.*] If the User submits an incomplete form:
+		\begin{enumerate}
+			\item[1.] System signals an error in the incomplete field(s) and rejects submission.
+			\item[2.] User adjusts fields with errors.
+			\item[3.] User completes all fields with errors.
+			\item[4.] Return to step 4.
+		\end{enumerate}
+	}
+%	\additemizedfield{Special Requirements:}{none}
+\end{usecase}
 \subsection{Cancel Pro Account}
 \subsection{Find Matches (Friendship)}
 \subsection{Find Matches (Romantic)}
