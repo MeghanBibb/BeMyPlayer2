@@ -58,7 +58,7 @@ Be My Player 2 is an interactive, gaming centric social media created to connect
 % For each use case:
 % 		-> Use Case text
 % 		-> Use Case SSD
-\subsection*{Tracability Matrix}
+\subsection*{Traceability Matrix}
 
 \newpage\subsection{Make Account}\begin{usecase}
 \addtitle{Use Case 001}{Make Account} 
@@ -66,8 +66,9 @@ Be My Player 2 is an interactive, gaming centric social media created to connect
 \addfield{Level:}{User goal}
 \addfield{Primary Actor:}{User}
 \additemizedfield{Stakeholders and Interests:}{
-	\item User: Wants to create new Account
-	\item Company: Wants to accurately register new users and record the user's account information.}
+	\item User: Wants to create new Account.
+	\item Company: Wants to accurately register new users and record the user's account information.
+}
 \additemizedfield{Preconditions:}{
 	\item User does not have an account.
 	\item User is on the Login page.
@@ -110,10 +111,153 @@ Be My Player 2 is an interactive, gaming centric social media created to connect
 \end{usecase}
 \subsection{Update Account Information}
 \subsection{Delete Account}
-\subsection{Login to Account}
-\subsection{Logout of Account}
+\newpage\subsection{Login to Account}\begin{usecase}
+\addtitle{Use Case 004}{Login} 
+\addfield{Scope:}{Be My Player 2 Application}
+\addfield{Level:}{User Goal}
+\addfield{Primary Actor:}{Registered User}
+\additemizedfield{Stakeholders and Interests:}{
+	\item User: Wants accurate and quick entry into the application after entering their correct account information
+	along with the correct account password in, while also being secure.
+	\item Company: Wants a simple and quick process to allow users to gain access to their account.
+}
+\additemizedfield{Preconditions:}{
+	\item The User must have a Be My Player 2 account. 
+	\item They must have a valid username and password. 
+	\item The account is not a formerly deleted account.
+	\item The User must be on the Log-In page.
+} 
+\additemizedfield{Postconditions:}{
+	\item The User is logged into the system and is taken to the Home Page.
+}
+\addscenario{Main Success Scenario:}{
+	\item User opens Be My Player 2 Application and is presented with the Log-In Page.
+	\item User enters their username and password.
+	\item User clicks the Log-In button.
+	\item System finds the recognized account and sets their state to logged in.
+	\item User is taken from Log-In Page to the Home Page.
+}
+\addscenario{Extensions:}{
+	\item[3.a] User attempts to Log-In with one or more empty fields.
+	\begin{enumerate}
+		\item System does not check for an account with missing information.
+		\item The User is prompted that information is missing and needs to be filled out completely.
+	\end{enumerate}
+	\item[4.a] System could not find an account with given username
+	\begin{enumerate}
+		\item The User is prompted that no account is registered under that username.
+		\item The User is prompted to re-enter their information.
+	\end{enumerate}
+	\item[4.b] The User entered an invalid password for the given username.
+	\begin{enumerate}
+		\item The User is prompted that an incorrect password has been given
+		\item The User is prompted to re-enter their information.
+	\end{enumerate}
+}
+%	\additemizedfield{Special Requirements:}{none}
+\end{usecase}
+\newpage\subsection{Logout of Account}\begin{usecase}
+\addtitle{Use Case 005}{Logout} 
+\addfield{Scope:}{Be My Player 2 Application}
+\addfield{Level:}{User Goal}
+\addfield{Primary Actor:}{Registered User}
+\additemizedfield{Stakeholders and Interests:}{
+	\item Registered User: Wants to swiftly, securely and completely log out of system when finished using application.
+	\item Company: Wants to remove User from system quickly so that more users can log in. Wants to completely remove loaded information of User so that there will be no conflicting information upon other user login.
+}
+\additemizedfield{Preconditions:}{
+	\item The User must be logged in. 
+	\item The User must be on the home page.
+} 
+\additemizedfield{Postconditions:}{
+	\item The User is logged out of the system and taken back the Log-In page. 
+	\item The User’s information is no longer loaded onto the application.
+}
+\addscenario{Main Success Scenario:}{
+	\item The User is viewing the home page.
+	\item The User clicks the Sign-Out button.
+	\item The System unloads all of the Users information from the application.
+	\item The User is taken back to the Log-In page.
+}
+\addscenario{Extensions:}{
+	\item[3.a] The System is unable to unload all information.
+	\begin{enumerate}
+		\item The System does not attempt to unload any information.
+		\item The User is prompted that there was an error when logging out and to try again.
+	\end{enumerate}
+}
+\end{usecase}
 \subsection{Change Password}
-\subsection{Pro Account}
+\newpage\subsection{Pro Account}\begin{usecase}
+\addtitle{Use Case 006}{Login} 
+\addfield{Scope:}{Be My Player 2 Application}
+\addfield{Level:}{User Goal}
+\addfield{Primary Actor:}{Registered User}
+\additemizedfield{Stakeholders and Interests:}{
+	\item User: Wants to gain access to pro account features. Wants to pay using credit card in a secure manor.
+	\item Company: Wants the User to access the pro version for profit. Wants to ensure User gains pro account features. 
+	Wants the payment information to remain secure.
+}
+\additemizedfield{Preconditions:}{
+	\item The User must not already have a pro-account.
+\additemizedfield{Postconditions:}{
+	\item The User now has a pro-account. 
+	\item The User has their payment info stored on the System. 
+	\item The User now has higher matching priority on other User’s accounts.
+}
+\addscenario{Main Success Scenario:}{
+	\item The User is viewing the Edit Account Settings Page.
+	\item The User clicks on the “Upgrade Account” button.
+	\item The User is asked to enter his/her password to validate changes.
+	\item The User inserts credit card number, expiration date, and cvv number.
+	\item The User clicks the “Submit Payment Information” Button.
+	\item The System changes the users account from Default to Pro.
+	\item The User is taken back to their Account page.
+}
+\addscenario{Extensions:}{
+	\item[*a] At any time, System fails:
+	\begin{enumerate}
+		\item User restarts System, logs back into their account, and selects option to Upgrade Account again.
+	\end{enumerate}
+	\item[*b] At any time, User wishes to return to the Account Settings Page:
+	\begin{enumerate}
+		\item The User selects the option to return to Account Settings Page.
+		\item System clears all currently filled information and does not save any input.
+		\item The User returns to the Account Settings Page.
+	\end{enumerate}
+	\item[3.a] The User enters an invalid password
+	\begin{enumerate}
+		\item The System prompts the user of an incorrect password.
+		\item The User is taken back to the Account Settings page.
+	\end{enumerate}
+	\item[5.a] One or more of the required fields has been left blank.
+	\begin{enumerate}
+		\item The System prompts the User that one or more fields have been left blank, and to try again.
+	\end{enumerate}
+	\item[5.b] The entered credit card number is not a 12 digit number.
+	\begin{enumerate}
+		\item The System prompts the User that an invalid credit card number has been entered, and to try again.
+	\end{enumerate}
+	\item[5.c] The entered expiration date month is not between 1 and 12.
+	\begin{enumerate}
+		\item The System prompts the User than an invalid month has been entered, and to try again.
+	\end{enumerate}
+	\item[5.d] The entered expiration date year is not a 2 digit number
+	\begin{enumerate}
+		\item The System prompts the User than an invalid year has been entered, and to try again.
+	\end{enumerate}
+	\item[5.e] The entered expiration date is past expiration.
+	\begin{enumerate}
+		\item The System prompts the User than an expired credit card has been entered.
+		\item The User is taken back to the Account Settings page.
+	\end{enumerate}
+	\item[5.f] The entered cvv number is not a 3 digit number.
+	\begin{enumerate}
+		\item The System prompts the User than an invalid cvv number has been entered, and to try again.
+	\end{enumerate}
+}
+%	\additemizedfield{Special Requirements:}{none}
+\end{usecase}
 \subsection{Explore Profiles}
 \subsection{Swipe Right}
 \subsection{Swipe Left}
