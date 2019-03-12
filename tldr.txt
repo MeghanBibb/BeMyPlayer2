@@ -1,0 +1,13 @@
+Information expert has the account and graphics controller
+
+graphics controller gets passed teh account and sets that to its on member 
+and populates that with variables from the various mvc.
+graphics controller also has the only jframe we should have. pass it to each mvc so we can easily switch between screens without having a million pop ups
+
+each model has data for the view ie buttons and text fields we might want to
+access data from later
+
+each controller has a model and a panel with action listeners
+for the view
+
+each view adds stuff to the panel ie buttons 
