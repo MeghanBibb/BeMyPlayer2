@@ -99,7 +99,7 @@ public class CreateAccountPageView {
 			secQA.setText(capController.getCreateAccountPageModel().getSecQA().getText());
 		}
 		else {
-			secQA.setText("enter answer");
+			secQA.setText("");
 		}
 		secQA.setBounds(275, 205, 128, 32);
 		capController.getCreateAccountPageModel().setSecQA(secQA);
@@ -191,6 +191,12 @@ public class CreateAccountPageView {
 		userFieldPrmptLoc.setFont(new Font("Monospaced",Font.BOLD,12));
 		userFieldPrmptLoc.setBounds(45,65,128,32);
 		capController.getCreateAccountPanel().add(userFieldPrmptLoc);
+		
+		JLabel answerPrompt = new JLabel("Answer:");
+		answerPrompt.setForeground(yellow);
+		answerPrompt.setFont(new Font("Monospaced",Font.BOLD,12));
+		answerPrompt.setBounds(220,205,128,32);
+		capController.getCreateAccountPanel().add(answerPrompt);
 		
 		//	set attributes, pack and set visible 
 		mainFrame.pack();

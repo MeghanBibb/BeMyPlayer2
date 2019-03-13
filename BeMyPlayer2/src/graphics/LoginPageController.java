@@ -16,6 +16,7 @@ public class LoginPageController implements ActionListener{
 	public static final String LOGIN="login";
 	public static final String CREATE_ACCOUNT="create_account";
 	public static final String FORGOT_PASSWORD = "forgot_password";
+	public static final String EXIT = "exit";
 	
 	//	table model, db pull, table model, jtable, jframe
 	private LoginPageModel loginPageModel = null;
@@ -55,6 +56,8 @@ public class LoginPageController implements ActionListener{
 		}
 		else if(e.getActionCommand() == FORGOT_PASSWORD) {
 			System.out.println("launch forgot Password");
+		} else if(e.getActionCommand() == EXIT) {
+			System.exit(0);
 		}
 	}
 	public LoginPageModel getLoginPageModel() {

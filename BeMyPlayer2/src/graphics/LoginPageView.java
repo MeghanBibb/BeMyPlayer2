@@ -60,22 +60,28 @@ public class LoginPageView {
 		btnForgotPassword.addActionListener(loginController);
 		loginController.getLoginPageModel().setBtnForgotPassword(btnForgotPassword);
 		
+		JButton btnExit = new JButton("Exit");
+		btnExit.setBackground(yellow);
+		btnExit.setBounds(275,350,175,40);
+		btnExit.setActionCommand(LoginPageController.EXIT);
+		btnExit.addActionListener(loginController);
+		loginController.getLoginPageModel().setBtnExit(btnExit);
+		
 		loginController.getLoginPanel().add(loginController.getLoginPageModel().getBtnForgotPassword());
 		loginController.getLoginPanel().add(loginController.getLoginPageModel().getBtnLogin());
 		loginController.getLoginPanel().add(loginController.getLoginPageModel().getBtnCreateNewAccount());
+		loginController.getLoginPanel().add(loginController.getLoginPageModel().getBtnExit());
 		
 		
 		//	init fields and listeners 
 		loginController.getLoginPageModel().setPwdEnterPass(new JPasswordField());
 		loginController.getLoginPageModel().getPwdEnterPass().setHorizontalAlignment(SwingConstants.CENTER);
-		loginController.getLoginPageModel().getPwdEnterPass().setText("password");
-		loginController.getLoginPageModel().getPwdEnterPass().setBounds(275, 186, 128, 32);
+		loginController.getLoginPageModel().getPwdEnterPass().setBounds(300, 186, 128, 32);
 		loginController.getLoginPanel().add(loginController.getLoginPageModel().getPwdEnterPass());
 		
 		JFormattedTextField frmtdtxtfldEnterUsername = new JFormattedTextField();
 		frmtdtxtfldEnterUsername.setHorizontalAlignment(SwingConstants.CENTER);
-		frmtdtxtfldEnterUsername.setText("enter username");
-		frmtdtxtfldEnterUsername.setBounds(275, 145, 128, 30);
+		frmtdtxtfldEnterUsername.setBounds(300, 145, 128, 30);
 		loginController.getLoginPageModel().setFrmtdtxtfldEnterUsername(frmtdtxtfldEnterUsername);
 		loginController.getLoginPanel().add(loginController.getLoginPageModel().getFrmtdtxtfldEnterUsername());
 		
@@ -95,6 +101,18 @@ public class LoginPageView {
 		lblBeMyPlayer.setBounds(24, 44, 204, 69);
 		loginController.getLoginPageModel().setLblBeMyPlayer(lblBeMyPlayer);
 		loginController.getLoginPanel().add(loginController.getLoginPageModel().getLblBeMyPlayer());
+		
+		JLabel usernameLabel = new JLabel("Username:");
+		usernameLabel.setBounds(230, 120, 128, 82);
+		usernameLabel.setForeground(yellow);
+		loginController.getLoginPageModel().setLblUsername(usernameLabel);
+		loginController.getLoginPanel().add(loginController.getLoginPageModel().getLblUsername());
+		
+		JLabel passwordLabel = new JLabel("Password:");
+		passwordLabel.setBounds(230,160,128,82);
+		passwordLabel.setForeground(yellow);
+		loginController.getLoginPageModel().setLblPassword(passwordLabel);
+		loginController.getLoginPanel().add(loginController.getLoginPageModel().getLblPassword());
 		
 		//	set attributes, pack and set visible 
 		mainFrame.pack();

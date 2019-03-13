@@ -20,12 +20,19 @@ public class LoginPageModel {
 	
 	private String defaultImage = null;
 	
+	//  init login fields
+	private JLabel lblUsername;
+	
+	private JLabel lblPassword;
+	
 	//	init buttons
 	private JButton btnLogin;
 	
 	private JButton btnCreateNewAccount;
 	
 	private JButton btnForgotPassword;
+	
+	private JButton btnExit;
 	
 	//	init fields and listeners 
 	private JPasswordField pwdEnterPass;
@@ -60,6 +67,14 @@ public class LoginPageModel {
 	public void setBtnCreateNewAccount(JButton btnCreateNewAccount) {
 		this.btnCreateNewAccount = btnCreateNewAccount;
 	}
+	
+	public JButton getBtnExit() {
+		return this.btnExit;
+	}
+	
+	public void setBtnExit(JButton exitButton) {
+		this.btnExit = exitButton;
+	}
 
 	public JPasswordField getPwdEnterPass() {
 		return pwdEnterPass;
@@ -75,6 +90,22 @@ public class LoginPageModel {
 
 	public void setFrmtdtxtfldEnterUsername(JFormattedTextField frmtdtxtfldEnterUsername) {
 		this.frmtdtxtfldEnterUsername = frmtdtxtfldEnterUsername;
+	}
+	
+	public JLabel getLblUsername() {
+		return lblUsername;
+	}
+	
+	public void setLblUsername(JLabel label) {
+		this.lblUsername = label;
+	}
+	
+	public JLabel getLblPassword() {
+		return lblPassword;
+	}
+	
+	public void setLblPassword(JLabel label) {
+		this.lblPassword = label;
 	}
 
 	public JLabel getLblNewLabel() {
