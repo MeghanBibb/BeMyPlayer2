@@ -37,6 +37,7 @@ public class CreateAccountPageController implements ActionListener{
 		// TODO Auto-generated method stub
 		if(e.getActionCommand() == NEXT) {
 			pageNum++;
+			System.out.println("page number " + pageNum);
 			switch(pageNum) {
 			case 1: if(validateCreatePage1()) {
 						this.createAccountPanel.removeAll();
@@ -56,6 +57,7 @@ public class CreateAccountPageController implements ActionListener{
 		}
 		else if (e.getActionCommand() == BACK) {
 			pageNum--;
+			System.out.println("page number " + pageNum);
 			switch(pageNum) {
 			case -1: visitedP1 = false;
 					 visitedP2 = false;
@@ -91,7 +93,7 @@ public class CreateAccountPageController implements ActionListener{
 		 * 
 		 * age > 0  && less than 100
 		 * 
-		 */
+		 *//*
 		System.out.println("gamer tag " + this.createAccountPageModel.getFrmtdtxtfldEnterUsername().getText());
 		
 		System.out.println("password " + this.createAccountPageModel.getPwdEnterPass().getText());
@@ -103,7 +105,7 @@ public class CreateAccountPageController implements ActionListener{
 		System.out.println("security question " + this.createAccountPageModel.getSecurityQuestions());
 		System.out.println("security qA " + this.createAccountPageModel.getSecQA().getText());
 		System.out.println("age " + this.createAccountPageModel.getAge().getText());
-		
+		*/
 		return valid;
 	}
 	public boolean validateCreatePage2() {

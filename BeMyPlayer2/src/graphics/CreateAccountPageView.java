@@ -250,6 +250,9 @@ public class CreateAccountPageView {
 		Image img1;
 		if(visited == true) {
 			img1 = capController.getCreateAccountPageModel().getProfileImg();
+			if(img1 == null) {
+				img1 = new ImageIcon(capController.getClass().getResource("/defaultIcon.png")).getImage();
+			}
 		}
 		else {
 			img1 = new ImageIcon(capController.getClass().getResource("/defaultIcon.png")).getImage();
