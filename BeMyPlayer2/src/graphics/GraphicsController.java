@@ -17,25 +17,7 @@ public class GraphicsController {
 			this.mainFrame.getContentPane().setLayout(null);
 			this.mainFrame.setResizable(false);
 			
-			this.launchLoginPage();
-			/*
-			LoginPageController controller = new LoginPageController();
-			controller.launchLoginPage(mainFrame);
-			/*
-			HomePageController homeController = new HomePageController();
-			homeController.launchHomePage(this.mainFrame);
-			/*
-			this.mainFrame.removeAll();
-			
-			
-			CreateAccountPageController createPageController = new CreateAccountPageController();
-			createPageController.launchCreateAccountPage(this.mainFrame,a);
-			/*
-			 * 
-			 * frame.getContentPane().removeAll();
-				frame.getContentPane().add(mainPanel);
-				frame.revalidate();
-			 */
+			this.launchProfilePage();
 	}
 	public static void launchLoginPage() {
 		LoginPageController controller = new LoginPageController();
@@ -48,6 +30,10 @@ public class GraphicsController {
 	public static void launchHomePage() {
 		HomePageController homeController = new HomePageController();
 		homeController.launchHomePage(mainFrame);
+	}
+	public static void launchProfilePage() {
+		ProfilePageController profileController = new ProfilePageController();
+		profileController.launchProfilePage(mainFrame);
 	}
 	public static void main(String[] args) {
 		Account a = new Account();
