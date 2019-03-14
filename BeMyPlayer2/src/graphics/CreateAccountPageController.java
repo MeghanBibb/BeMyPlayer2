@@ -2,6 +2,7 @@ package graphics;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -48,10 +49,12 @@ public class CreateAccountPageController implements ActionListener{
 						pageNum--;
 					}
 				break;
-			case 2: this.createAccountPanel.removeAll();
-					GraphicsController.getMainFrame().repaint();
-					visitedP2= true;
-					CreateAccountPageView.startProfileForm(this, GraphicsController.getMainFrame(),visitedP3);
+			case 2: if(validateCreatePage2()) {
+						this.createAccountPanel.removeAll();
+						GraphicsController.getMainFrame().repaint();
+						visitedP2= true;
+						CreateAccountPageView.startProfileForm(this, GraphicsController.getMainFrame(),visitedP3);
+					}
 				break;
 			}
 		}
@@ -75,7 +78,7 @@ public class CreateAccountPageController implements ActionListener{
 			}
 		}
 		else if (e.getActionCommand() == SUBMIT) {
-			if(validateCreatePage2()) {
+			if(validateCreatePage3()) {
 				System.out.println("submit");
 			}
 			
@@ -95,26 +98,70 @@ public class CreateAccountPageController implements ActionListener{
 		 * age > 0  && less than 100
 		 * 
 		 *//*
-		System.out.println("gamer tag " + this.createAccountPageModel.getFrmtdtxtfldEnterUsername().getText());
+		 */
+		//	VALIDATIONS
+		/*
+		if(this.createAccountPageModel.getFrmtdtxtfldEnterUsername().getText().equalsIgnoreCase("")) {
+			valid = false;
+		}
 		
-		System.out.println("password " + this.createAccountPageModel.getPwdEnterPass().getText());
+		if(this.createAccountPageModel.getPwdEnterPass().getText().equalsIgnoreCase("")) {
+			valid = false;
+		}
 		
-		System.out.println("validated password " + this.createAccountPageModel.getPwdValidatePass().getText());
-
-		System.out.println("gender " + this.createAccountPageModel.getGender());
-	
-		System.out.println("security question " + this.createAccountPageModel.getSecurityQuestions());
-		System.out.println("security qA " + this.createAccountPageModel.getSecQA().getText());
-		System.out.println("age " + this.createAccountPageModel.getAge().getText());
+		if(this.createAccountPageModel.getPwdValidatePass().getText().equalsIgnoreCase("")) {
+			valid = false;
+		}
+		if(this.createAccountPageModel.getSecQA().getText().equalsIgnoreCase("")) {
+			valid = false;
+		}
+		
+		if(this.createAccountPageModel.getAge().getText().equalsIgnoreCase("")) {
+			valid = false;
+		}
+		try{  
+			//	must have valid age
+			int i = Integer.parseInt(this.createAccountPageModel.getAge().getText().toString());
+			if(i > 100 || i < 18) {
+				valid = false;
+			}
+		}  catch(NumberFormatException nfe)  {  
+			  valid = false;  
+		}  
 		*/
 		return valid;
 	}
 	public boolean validateCreatePage2() {
 		boolean valid = true;
+		int countPlat = 0;
+		int countGenre = 0;
+		this.createAccountPageModel.setCheckLister(new ArrayList<>());
+		for(int i = 0; i < this.createAccountPageModel.getCheckList().size(); i++) {
+			this.createAccountPageModel.getCheckLister().add(this.createAccountPageModel.getCheckList().get(i).isSelected());
+		}
+		for(int i = 0; i < 6; i++) {
+			if(this.createAccountPageModel.getCheckLister().get(i).booleanValue() == true) {
+				countPlat++;
+			}
+		}
+		for(int i = 6; i < this.getCreateAccountPageModel().getCheckList().size(); i++) {
+			if(this.createAccountPageModel.getCheckLister().get(i).booleanValue() == true) {
+				countGenre++;
+			}
+		}
+		if(countPlat == 0 || countGenre == 0) {
+			valid = false;
+		}
+		
+		return valid;
+	}
+	public boolean validateCreatePage3() {
+		boolean valid = true;
 		//	need to store profile pic in new location to pull from
 		System.out.println("Profile pic "+ this.getCreateAccountPageModel().getImagePath());
 		System.out.println("description " + this.getCreateAccountPageModel().getCharDescription().getText());
 		
+		//	send to temp account and populate db
 		return valid;
 	}
 	public CreateAccountPageModel getCreateAccountPageModel() {		
