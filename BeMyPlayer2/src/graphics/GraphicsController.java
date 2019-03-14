@@ -18,7 +18,7 @@ public class GraphicsController {
 			this.mainFrame.getContentPane().setLayout(null);
 			this.mainFrame.setResizable(false);
 			
-			this.launchProfilePage();
+			this.launchLoginPage();
 	}
 	public static void launchLoginPage() {
 		LoginPageController controller = new LoginPageController();

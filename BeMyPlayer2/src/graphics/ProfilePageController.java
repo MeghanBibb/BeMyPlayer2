@@ -27,6 +27,7 @@ public class ProfilePageController implements ActionListener {
 		switch(e.getActionCommand()) {
 			case BACK:
 				System.out.println("back");
+				GraphicsController.launchHomePage();
 				break;
 			case EDIT_ACCOUNT:
 				System.out.println("edit");

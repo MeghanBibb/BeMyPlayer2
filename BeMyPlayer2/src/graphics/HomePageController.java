@@ -29,6 +29,7 @@ public class HomePageController implements ActionListener{
 		switch(e.getActionCommand()) {
 			case ACCOUNT: 
 				System.out.println("Account");
+				GraphicsController.launchProfilePage();
 				break;
 			case SUPPORT: 
 				System.out.println("Support");
