@@ -2,6 +2,9 @@ package graphics;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,7 +84,21 @@ public class CreateAccountPageController implements ActionListener{
 			}
 		}
 		else if (e.getActionCommand() == SUBMIT) {
+			
 			if(validateCreatePage3()) {
+				
+				//	CATCH FILE DUPLICATE
+				File temp = new File(this.createAccountPageModel.getImagePath());
+				
+				File t2 = new File("bin\\dskfjlslkdjf");
+				
+				try {
+					Files.copy(temp.toPath(), new File(t2.getParent()+ "\\..\\img\\"+temp.getName() ).toPath());
+					this.createAccountPageModel.setImagePath(t2.getParent()+ "\\..\\img\\"+temp.getName() );
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				GraphicsController.launchHomePage();
 			}
 			
