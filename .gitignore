@@ -1,4 +1,7 @@
 .metadata/
-/bemyplayer2/bin/
-/bemyplayer2/target/
-/bemyplayer2/.settings
+BeMyPlayer2/bin/
+BeMyPlayer2/target/
+BeMyPlayer2/.*
+bemyplayer2/bin/
+bemyplayer2/target/
+bemyplayer2/.*
