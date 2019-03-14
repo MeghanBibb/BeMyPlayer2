@@ -44,6 +44,7 @@ public class HomePageController implements ActionListener{
 				break;
 			case LOGOUT: 
 				System.out.println("Logout");
+				GraphicsController.launchLoginPage();
 				break;
 		}
 	}

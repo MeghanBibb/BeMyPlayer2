@@ -33,7 +33,7 @@ public class LoginPageController implements ActionListener{
 	//	validate login (should check db)
 	public static boolean validateLogin(String user,String pass) {
 		boolean valid = true;
-		if(user.equalsIgnoreCase("enter username") || pass.equalsIgnoreCase("password")) {
+		if(user.equalsIgnoreCase("") || pass.equalsIgnoreCase("")) {
 			valid = false;
 		}
 		
@@ -47,9 +47,7 @@ public class LoginPageController implements ActionListener{
 		else if(e.getActionCommand() == LOGIN) {
 			if(validateLogin(this.getLoginPageModel().getFrmtdtxtfldEnterUsername().getText(),
 					this.getLoginPageModel().getPwdEnterPass().getText()) == true){
-				System.out.println("Login");
-				System.out.println(this.getLoginPageModel().getFrmtdtxtfldEnterUsername().getText());
-				System.out.println(this.getLoginPageModel().getPwdEnterPass().getText());
+				GraphicsController.launchHomePage();
 				
 			}
 			

@@ -55,6 +55,9 @@ public class CreateAccountPageController implements ActionListener{
 						visitedP2= true;
 						CreateAccountPageView.startProfileForm(this, GraphicsController.getMainFrame(),visitedP3);
 					}
+					else {
+						pageNum--;
+					}
 				break;
 			}
 		}
@@ -79,7 +82,7 @@ public class CreateAccountPageController implements ActionListener{
 		}
 		else if (e.getActionCommand() == SUBMIT) {
 			if(validateCreatePage3()) {
-				System.out.println("submit");
+				GraphicsController.launchHomePage();
 			}
 			
 		}
@@ -133,6 +136,7 @@ public class CreateAccountPageController implements ActionListener{
 	}
 	public boolean validateCreatePage2() {
 		boolean valid = true;
+		/*
 		int countPlat = 0;
 		int countGenre = 0;
 		this.createAccountPageModel.setCheckLister(new ArrayList<>());
@@ -152,7 +156,7 @@ public class CreateAccountPageController implements ActionListener{
 		if(countPlat == 0 || countGenre == 0) {
 			valid = false;
 		}
-		
+		*/
 		return valid;
 	}
 	public boolean validateCreatePage3() {
