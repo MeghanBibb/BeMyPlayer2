@@ -30,7 +30,7 @@ public class LoginPageController implements ActionListener{
 		
 		LoginPageView.startLoginPage(this,j);
 	}
-	//	check command 
+	//	validate login (should check db)
 	public static boolean validateLogin(String user,String pass) {
 		boolean valid = true;
 		if(user.equalsIgnoreCase("enter username") || pass.equalsIgnoreCase("password")) {

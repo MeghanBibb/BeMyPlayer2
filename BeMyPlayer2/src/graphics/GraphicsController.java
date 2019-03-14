@@ -19,7 +19,8 @@ public class GraphicsController {
 			
 			
 			LoginPageController controller = new LoginPageController();
-			controller.launchLoginPage(this.mainFrame);
+			HomePageController homeController = new HomePageController();
+			homeController.launchHomePage(this.mainFrame);
 			/*
 			this.mainFrame.removeAll();
 			

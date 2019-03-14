@@ -131,9 +131,4 @@ public class LoginPageModel {
 	public void setBtnForgotPassword(JButton btnForgotPassword) {
 		this.btnForgotPassword = btnForgotPassword;
 	}
-	
-	
-	
-	//	set text
-	
 }
