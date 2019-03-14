@@ -59,5 +59,4 @@ public class ProfilePageController implements ActionListener {
 	}
 
 	
-	
 }

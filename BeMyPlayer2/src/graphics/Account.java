@@ -16,5 +16,7 @@ public class Account {
 	private List<Boolean> platforms;
 	private List<Boolean> genres;
 	
+	
+	
 }
 	
