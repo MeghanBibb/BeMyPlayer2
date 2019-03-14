@@ -28,8 +28,8 @@ public class LoginPageView {
 		loginController.setLoginPageModel(new LoginPageModel());
 		
 		//	init colors
-		Color red = new Color(128,0,0);
-		Color yellow = new Color(255,215,0);
+		Color red = GraphicUtil.DEFAULT_RED;
+		Color yellow = GraphicUtil.DEFAULT_YELLOW;
 		
 		
 		//	init panel 

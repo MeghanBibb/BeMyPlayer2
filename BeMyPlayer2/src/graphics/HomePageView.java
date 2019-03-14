@@ -18,9 +18,9 @@ public class HomePageView {
 		homeController.setHomePageModel(new HomePageModel());
 		
 		//init colors
-		Color red = new Color(128,0,0);
-		Color yellow = new Color(255,215,0);
-		
+		Color red = GraphicUtil.DEFAULT_RED;
+		Color yellow = GraphicUtil.DEFAULT_YELLOW;
+				
 		//init panel
 		homeController.setHomePanel(new JPanel(null));
 		homeController.getHomePanel().setBorder(new EmptyBorder(5, 5, 5, 5));

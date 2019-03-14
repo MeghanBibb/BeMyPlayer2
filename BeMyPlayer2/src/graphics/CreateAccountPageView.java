@@ -26,14 +26,13 @@ import javax.swing.border.EmptyBorder;
 
 public class CreateAccountPageView {
 	public static void startCreateAccountPage(CreateAccountPageController capController,JFrame mainFrame, boolean visited) {
-		
 		if(visited == false) {
 			CreateAccountPageModel temp = new CreateAccountPageModel();
 			capController.setCreateAccountPageModel(temp);
 		}
 
-		Color red = new Color(128,0,0);
-		Color yellow = new Color(255,215,0);
+		Color red = GraphicUtil.DEFAULT_RED;
+		Color yellow = GraphicUtil.DEFAULT_YELLOW;
 		//	init panal
 		capController.setCreateAccountPanel(new JPanel(null));
 		capController.getCreateAccountPanel().setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -89,6 +88,7 @@ public class CreateAccountPageView {
 		if(visited == true) {
 			frmtdtxtfldEnterUsername.setText(capController.getCreateAccountPageModel().getFrmtdtxtfldEnterUsername().getText());
 		}
+		
 		//frmtdtxtfldEnterUsername.setText("enter gamertag");
 		frmtdtxtfldEnterUsername.setBounds(45, 95, 128, 32);
 		capController.getCreateAccountPageModel().setFrmtdtxtfldEnterUsername(frmtdtxtfldEnterUsername);
@@ -102,6 +102,7 @@ public class CreateAccountPageView {
 		else {
 			secQA.setText("");
 		}
+		
 		secQA.setBounds(275, 205, 128, 32);
 		capController.getCreateAccountPageModel().setSecQA(secQA);
 		capController.getCreateAccountPanel().add(capController.getCreateAccountPageModel().getSecQA());
@@ -111,6 +112,7 @@ public class CreateAccountPageView {
 		if(visited == true) {
 			age.setText(capController.getCreateAccountPageModel().getAge().getText());
 		}
+		
 		//age.setText("enter age");
 		age.setBounds(275, 95, 128, 32);
 		capController.getCreateAccountPageModel().setAge(age);
@@ -205,7 +207,6 @@ public class CreateAccountPageView {
 		//set attributes in loginController:
 		
 	}
-	
 	public static void startQuestionaire(CreateAccountPageController capController,JFrame mainFrame,boolean visited) {
 		//	load questionare 
 		Color red = new Color(128,0,0);
