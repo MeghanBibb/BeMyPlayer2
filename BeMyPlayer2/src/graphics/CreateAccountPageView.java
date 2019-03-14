@@ -561,21 +561,25 @@ public class CreateAccountPageView {
 				fc.addChoosableFileFilter(imageFilter);
 				fc.setAcceptAllFileFilterUsed(false);
 				fc.setCurrentDirectory(new java.io.File("."));
-				
+				Image img1 = null;
 				//	force file chooser
 				File f = null;
-				while(f == null) {
-					int returnValue = fc.showOpenDialog(null);
-					if(returnValue == JFileChooser.APPROVE_OPTION) {
-						f = fc.getSelectedFile();
-					}
+				int returnValue = fc.showOpenDialog(null);
+				if(returnValue == JFileChooser.APPROVE_OPTION) {
+					f = fc.getSelectedFile();
 				}
 				
 //				set images
 				JLabel lblNewLabel = new JLabel("");
 				lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-				Image img1 = new ImageIcon(f.getAbsolutePath()).getImage();
-				capController.getCreateAccountPageModel().setImagePath(f.getAbsolutePath());
+				if(f != null) {
+					img1 = new ImageIcon(f.getAbsolutePath()).getImage();
+					capController.getCreateAccountPageModel().setImagePath(f.getAbsolutePath());
+				}
+				else if(f == null){
+					img1 = new ImageIcon(capController.getClass().getResource("/defaultIcon.png")).getImage();
+					capController.getCreateAccountPageModel().setImagePath(img1.toString());
+				}
 				setIcon.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
 				//setIcon.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
 				setIcon.setBounds(125, 25, 150, 150);
