@@ -12,6 +12,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -25,6 +26,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class CreateAccountPageView {
 	public static void startCreateAccountPage(CreateAccountPageController capController,JFrame mainFrame, boolean visited) {
@@ -551,16 +554,23 @@ public class CreateAccountPageView {
             }
 
 			private void addActionPerformed() {
-//				load images
+				//				load images
 				JFileChooser fc = new JFileChooser();
+				FileFilter imageFilter = new FileNameExtensionFilter(
+					    "Image files", ImageIO.getReaderFileSuffixes());
+				fc.addChoosableFileFilter(imageFilter);
+				fc.setAcceptAllFileFilterUsed(false);
 				fc.setCurrentDirectory(new java.io.File("."));
-				//fc.setAcceptAllFileFilterUsed(false);
-				//fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+				
+				//	force file chooser
 				File f = null;
-				int returnValue = fc.showOpenDialog(null);
-				if(returnValue == JFileChooser.APPROVE_OPTION) {
-					f = fc.getSelectedFile();
+				while(f == null) {
+					int returnValue = fc.showOpenDialog(null);
+					if(returnValue == JFileChooser.APPROVE_OPTION) {
+						f = fc.getSelectedFile();
+					}
 				}
+				
 //				set images
 				JLabel lblNewLabel = new JLabel("");
 				lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
