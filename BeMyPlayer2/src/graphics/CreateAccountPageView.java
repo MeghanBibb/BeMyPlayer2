@@ -9,11 +9,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFormattedTextField;
@@ -218,6 +220,265 @@ public class CreateAccountPageView {
 		mainFrame.setContentPane(capController.getCreateAccountPanel());
 		mainFrame.getContentPane().setBackground(red);
 
+		//	Checkboxes
+		if(visited == false) {
+			capController.getCreateAccountPageModel().setCheckList(new ArrayList<>());
+		}
+		JCheckBox xboxBtn = new JCheckBox("Xbox");
+		xboxBtn.setBackground(red);
+		xboxBtn.setForeground(yellow);
+		xboxBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		xboxBtn.setBounds(45, 80, 75, 25);
+		if(visited == true) {
+			xboxBtn.setSelected(capController.getCreateAccountPageModel().getCheckList().get(0).isSelected());
+		}
+		else {
+			capController.getCreateAccountPageModel().getCheckList().add(xboxBtn);
+		}
+		capController.getCreateAccountPanel().add(xboxBtn);
+		
+
+		JCheckBox psBtn = new JCheckBox("Playstation");
+		psBtn.setBackground(red);
+		psBtn.setForeground(yellow);
+		psBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		psBtn.setBounds(45, 105, 120, 25);
+		if(visited == true) {
+			psBtn.setSelected(capController.getCreateAccountPageModel().getCheckList().get(1).isSelected());
+		}
+		else {
+			capController.getCreateAccountPageModel().getCheckList().add(psBtn);
+		}
+		capController.getCreateAccountPanel().add(psBtn);
+		
+		
+		JCheckBox nintendoBtn = new JCheckBox("Nintendo");
+		nintendoBtn.setBackground(red);
+		nintendoBtn.setForeground(yellow);
+		nintendoBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		nintendoBtn.setBounds(45, 130, 120, 25);
+		if(visited == true) {
+			nintendoBtn.setSelected(capController.getCreateAccountPageModel().getCheckList().get(2).isSelected());
+		}
+		else {
+			capController.getCreateAccountPageModel().getCheckList().add(nintendoBtn);
+		}
+		capController.getCreateAccountPanel().add(nintendoBtn);
+		
+		
+		JCheckBox pcBtn = new JCheckBox("PC");
+		pcBtn.setBackground(red);
+		pcBtn.setForeground(yellow);
+		pcBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		pcBtn.setBounds(45, 155, 75, 25);
+		
+		if(visited == true) {
+			pcBtn.setSelected(capController.getCreateAccountPageModel().getCheckList().get(3).isSelected());
+		}
+		else {
+			capController.getCreateAccountPageModel().getCheckList().add(pcBtn);
+		}
+		capController.getCreateAccountPanel().add(pcBtn);
+		
+		
+		JCheckBox vrBtn = new JCheckBox("VR");
+		vrBtn.setBackground(red);
+		vrBtn.setForeground(yellow);
+		vrBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		vrBtn.setBounds(45, 180, 75, 25);
+		if(visited == true) {
+			vrBtn.setSelected(capController.getCreateAccountPageModel().getCheckList().get(4).isSelected());
+		}
+		else {
+			capController.getCreateAccountPageModel().getCheckList().add(vrBtn);
+		}
+		capController.getCreateAccountPanel().add(vrBtn);
+		
+		
+		JCheckBox RetroBtn = new JCheckBox("Retro");
+		RetroBtn.setBackground(red);
+		RetroBtn.setForeground(yellow);
+		RetroBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		RetroBtn.setBounds(45, 205, 75, 25);
+		if(visited == true) {
+			RetroBtn.setSelected(capController.getCreateAccountPageModel().getCheckList().get(5).isSelected());
+		}
+		else{
+			capController.getCreateAccountPageModel().getCheckList().add(RetroBtn);
+		}
+		capController.getCreateAccountPanel().add(RetroBtn);
+		
+		
+		//	action adventure fps mmo moba puzzle platformer rythem rpg rts strategy sandbox 
+		//	genres
+		JCheckBox actionBtn = new JCheckBox("Action");
+		actionBtn.setBackground(red);
+		actionBtn.setForeground(yellow);
+		actionBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		actionBtn.setBounds(245, 80, 75, 25);
+		if(visited == true) {
+			actionBtn.setSelected(capController.getCreateAccountPageModel().getCheckList().get(6).isSelected());
+		}
+		else {
+			capController.getCreateAccountPageModel().getCheckList().add(actionBtn);
+		}
+		capController.getCreateAccountPanel().add(actionBtn);
+		
+		
+		JCheckBox advBtn = new JCheckBox("Adventure");
+		advBtn.setBackground(red);
+		advBtn.setForeground(yellow);
+		advBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		advBtn.setBounds(245, 105, 120, 25);
+		if(visited == true) {
+			advBtn.setSelected(capController.getCreateAccountPageModel().getCheckList().get(7).isSelected());
+		}
+		else {
+			capController.getCreateAccountPageModel().getCheckList().add(advBtn);
+		}
+		capController.getCreateAccountPanel().add(advBtn);
+		
+		
+		JCheckBox FPSBtn = new JCheckBox("FPS");
+		FPSBtn.setBackground(red);
+		FPSBtn.setForeground(yellow);
+		FPSBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		FPSBtn.setBounds(245, 130, 120, 25);
+		if(visited == true) {
+			FPSBtn.setSelected(capController.getCreateAccountPageModel().getCheckList().get(8).isSelected());
+		}
+		else{
+			capController.getCreateAccountPageModel().getCheckList().add(FPSBtn);
+		}
+		capController.getCreateAccountPanel().add(FPSBtn);
+		
+		
+		JCheckBox MMOBtn = new JCheckBox("MMO");
+		MMOBtn.setBackground(red);
+		MMOBtn.setForeground(yellow);
+		MMOBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		MMOBtn.setBounds(245, 155, 75, 25);
+		if(visited == true) {
+			MMOBtn.setSelected(capController.getCreateAccountPageModel().getCheckList().get(9).isSelected());
+		}
+		else {
+			capController.getCreateAccountPageModel().getCheckList().add(MMOBtn);
+		}
+		capController.getCreateAccountPanel().add(MMOBtn);
+		
+		
+		JCheckBox MOBABtn = new JCheckBox("MOBA");
+		MOBABtn.setBackground(red);
+		MOBABtn.setForeground(yellow);
+		MOBABtn.setFont(new Font("Monospace",Font.BOLD,14));
+		MOBABtn.setBounds(245, 180, 75, 25);
+		if(visited == true) {
+			MOBABtn.setSelected(capController.getCreateAccountPageModel().getCheckList().get(10).isSelected());
+		}
+		else {
+			capController.getCreateAccountPageModel().getCheckList().add(MOBABtn);
+		}
+		capController.getCreateAccountPanel().add(MOBABtn);
+		
+		
+		JCheckBox pzlBtn = new JCheckBox("Puzzle");
+		pzlBtn.setBackground(red);
+		pzlBtn.setForeground(yellow);
+		pzlBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		pzlBtn.setBounds(245, 205, 125, 25);
+		if(visited == true) {
+			pzlBtn.setSelected(capController.getCreateAccountPageModel().getCheckList().get(11).isSelected());
+		}
+		else {
+			capController.getCreateAccountPageModel().getCheckList().add(pzlBtn);
+		}
+		capController.getCreateAccountPanel().add(pzlBtn);
+		
+		
+		JCheckBox rythBtn = new JCheckBox("Rythm");
+		rythBtn.setBackground(red);
+		rythBtn.setForeground(yellow);
+		rythBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		rythBtn.setBounds(365, 80, 75, 25);
+		if(visited == true) {
+			rythBtn.setSelected(capController.getCreateAccountPageModel().getCheckList().get(12).isSelected());
+		}
+		else{
+			capController.getCreateAccountPageModel().getCheckList().add(rythBtn);
+		}
+		capController.getCreateAccountPanel().add(rythBtn);
+		
+		
+		JCheckBox platBtn = new JCheckBox("Platformer");
+		platBtn.setBackground(red);
+		platBtn.setForeground(yellow);
+		platBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		platBtn.setBounds(365, 105, 125, 25);
+		if(visited == true) {
+			platBtn.setSelected(capController.getCreateAccountPageModel().getCheckList().get(13).isSelected());
+		}
+		else {
+			capController.getCreateAccountPageModel().getCheckList().add(platBtn);
+		}
+		capController.getCreateAccountPanel().add(platBtn);
+		
+		
+		JCheckBox RTSBtn = new JCheckBox("RTS");
+		RTSBtn.setBackground(red);
+		RTSBtn.setForeground(yellow);
+		RTSBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		RTSBtn.setBounds(365, 130, 75, 25);
+		if(visited == true) {
+			RTSBtn.setSelected(capController.getCreateAccountPageModel().getCheckList().get(14).isSelected());
+		}
+		else{
+			capController.getCreateAccountPageModel().getCheckList().add(RTSBtn);
+		}
+		capController.getCreateAccountPanel().add(RTSBtn);
+		
+		
+		JCheckBox RPGBtn = new JCheckBox("RPG");
+		RPGBtn.setBackground(red);
+		RPGBtn.setForeground(yellow);
+		RPGBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		RPGBtn.setBounds(365, 155, 75, 25);
+		if(visited == true) {
+			RPGBtn.setSelected(capController.getCreateAccountPageModel().getCheckList().get(15).isSelected());
+		}
+		else {
+			capController.getCreateAccountPageModel().getCheckList().add(RPGBtn);
+		}
+		capController.getCreateAccountPanel().add(RPGBtn);
+		
+		
+		JCheckBox stratBtn = new JCheckBox("Strategy");
+		stratBtn.setBackground(red);
+		stratBtn.setForeground(yellow);
+		stratBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		stratBtn.setBounds(365, 180, 125, 25);
+		if(visited == true) {
+			stratBtn.setSelected(capController.getCreateAccountPageModel().getCheckList().get(16).isSelected());
+		}
+		else {
+			capController.getCreateAccountPageModel().getCheckList().add(stratBtn);
+		}
+		capController.getCreateAccountPanel().add(stratBtn);
+		
+		JCheckBox sandBtn = new JCheckBox("Sandbox");
+		sandBtn.setBackground(red);
+		sandBtn.setForeground(yellow);
+		sandBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		sandBtn.setBounds(365, 205, 125, 25);
+		if(visited == true) {
+			sandBtn.setSelected(capController.getCreateAccountPageModel().getCheckList().get(17).isSelected());
+		}
+		else {
+			capController.getCreateAccountPageModel().getCheckList().add(sandBtn);
+			
+		}
+		capController.getCreateAccountPanel().add(sandBtn);
+		
+		
 		//		init buttons and add to panel
 		JButton backbtn = new JButton("Back");
 		backbtn.setBounds(45, 345, 90, 40);
@@ -236,6 +497,20 @@ public class CreateAccountPageView {
 		capController.getCreateAccountPageModel().setNext(nextbtn);
 		capController.getCreateAccountPanel().add(capController.getCreateAccountPageModel().getNext());
 	
+		
+		//	Labels 
+		JLabel choosePlatPrmpt = new JLabel("Gaming platforms");
+		choosePlatPrmpt.setForeground(yellow);
+		choosePlatPrmpt.setFont(new Font("Monospaced", Font.BOLD, 18));
+		choosePlatPrmpt.setBounds(25, 0, 300, 69);
+		capController.getCreateAccountPanel().add(choosePlatPrmpt);
+		
+		JLabel chooseGenrePrmpt = new JLabel("Favorite genres");
+		chooseGenrePrmpt.setForeground(yellow);
+		chooseGenrePrmpt.setFont(new Font("Monospaced", Font.BOLD, 16));
+		chooseGenrePrmpt.setBounds(245, 0, 250, 69);
+		capController.getCreateAccountPanel().add(chooseGenrePrmpt);
+		
 		mainFrame.pack();
 		mainFrame.setVisible(true);
 	}

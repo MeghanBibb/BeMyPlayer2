@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
@@ -34,6 +35,9 @@ public class CreateAccountPageModel {
 	private JComboBox genderBox;
 	private JComboBox securityQ;
 	private Image profileImg;
+	
+	private List<JCheckBox> checkList;
+	private List<Boolean> checkLister;
 	
 	private String imagePath;
 	
@@ -132,6 +136,18 @@ public class CreateAccountPageModel {
 	}
 	public void setProfileImg(Image profileImg) {
 		this.profileImg = profileImg;
+	}
+	public List<JCheckBox> getCheckList() {
+		return checkList;
+	}
+	public void setCheckList(List<JCheckBox> checkList) {
+		this.checkList = checkList;
+	}
+	public List<Boolean> getCheckLister() {
+		return checkLister;
+	}
+	public void setCheckLister(List<Boolean> checkLister) {
+		this.checkLister = checkLister;
 	}
 	
 	

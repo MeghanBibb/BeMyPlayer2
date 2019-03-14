@@ -50,7 +50,7 @@ public class CreateAccountPageController implements ActionListener{
 				break;
 			case 2: this.createAccountPanel.removeAll();
 					GraphicsController.getMainFrame().repaint();
-					visitedP2 = true;
+					visitedP2= true;
 					CreateAccountPageView.startProfileForm(this, GraphicsController.getMainFrame(),visitedP3);
 				break;
 			}
@@ -65,6 +65,7 @@ public class CreateAccountPageController implements ActionListener{
 					GraphicsController.launchLoginPage();
 					break;
 			case 0: this.createAccountPanel.removeAll();
+					visitedP2 = true;
 					CreateAccountPageView.startCreateAccountPage(this,copyFrame,visitedP1);
 				break;
 			case 1: visitedP3 = true;
