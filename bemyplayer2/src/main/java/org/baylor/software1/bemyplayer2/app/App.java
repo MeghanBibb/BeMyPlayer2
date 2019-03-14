@@ -4,10 +4,6 @@ import javax.swing.JFrame;
 
 import org.baylor.software1.bemyplayer2.controller.MainWindowController;
 
-/**
- * Hello world!
- *
- */
 public class App 
 {
 	public static final String APPLICATION_NAME = "App Name";
