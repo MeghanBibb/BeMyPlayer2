@@ -40,6 +40,10 @@ public class GraphicsController {
 		PaymentPageController paymentController = new PaymentPageController();
 		paymentController.launchPaymentPage(mainFrame);
 	}
+	public static void launchViewMatches() {
+		ViewMatchesController viewMatchController = new ViewMatchesController();
+		viewMatchController.launchViewMatches(mainFrame, temp);
+	}
 	public static void main(String[] args) {
 		Account a = new Account();
 		GraphicsController g = new GraphicsController(a);

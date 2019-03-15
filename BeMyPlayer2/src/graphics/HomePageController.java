@@ -42,6 +42,7 @@ public class HomePageController implements ActionListener{
 				break;
 			case VIEW_MATCHES: 
 				System.out.println("View Matches");
+				GraphicsController.launchViewMatches();
 				break;
 			case LOGOUT: 
 				System.out.println("Logout");
