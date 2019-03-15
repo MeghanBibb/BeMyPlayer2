@@ -36,6 +36,10 @@ public class GraphicsController {
 		ProfilePageController profileController = new ProfilePageController();
 		profileController.launchProfilePage(mainFrame);
 	}
+	public static void launchPaymentPage() {
+		PaymentPageController paymentController = new PaymentPageController();
+		paymentController.launchPaymentPage(mainFrame);
+	}
 	public static void main(String[] args) {
 		Account a = new Account();
 		GraphicsController g = new GraphicsController(a);

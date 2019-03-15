@@ -21,7 +21,7 @@ public class HomePageController implements ActionListener{
 	private JPanel homePanel = null;
 	
 	public void launchHomePage(JFrame j) {
-		HomePageView.startHomePage(this,j);
+		HomePageView.launchHomePage(this,j);
 	}
 
 	@Override

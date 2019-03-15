@@ -38,7 +38,7 @@ public class CreateAccountPageView {
 
 		Color red = new Color(128,0,0);
 		Color yellow = new Color(255,215,0);
-		//	init panal
+		//	init panel
 		capController.setCreateAccountPanel(new JPanel(null));
 		capController.getCreateAccountPanel().setBorder(new EmptyBorder(5, 5, 5, 5));
 		capController.getCreateAccountPanel().setPreferredSize(new Dimension(500,400));
@@ -57,7 +57,7 @@ public class CreateAccountPageView {
 		
 		capController.getCreateAccountPanel().add(capController.getCreateAccountPageModel().getBack());
 		
-		JButton nextbtn = new JButton("next");
+		JButton nextbtn = new JButton("Next");
 		nextbtn.setBounds(345, 345, 90, 40);
 		nextbtn.setBackground(yellow);
 		nextbtn.setActionCommand(CreateAccountPageController.NEXT);
@@ -492,7 +492,7 @@ public class CreateAccountPageView {
 		
 		capController.getCreateAccountPanel().add(capController.getCreateAccountPageModel().getBack());
 		
-		JButton nextbtn = new JButton("next");
+		JButton nextbtn = new JButton("Next");
 		nextbtn.setBounds(345, 345, 90, 40);
 		nextbtn.setBackground(yellow);
 		nextbtn.setActionCommand(CreateAccountPageController.NEXT);

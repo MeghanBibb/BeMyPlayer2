@@ -13,7 +13,7 @@ import javax.swing.border.EmptyBorder;
 
 public class HomePageView {
 	
-	public static void startHomePage(HomePageController homeController, JFrame mainFrame) {
+	public static void launchHomePage(HomePageController homeController, JFrame mainFrame) {
 		//init model
 		homeController.setHomePageModel(new HomePageModel());
 		
