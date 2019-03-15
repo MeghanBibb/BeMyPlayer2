@@ -26,6 +26,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -232,12 +234,22 @@ public class CreateAccountPageView {
 		xboxBtn.setForeground(yellow);
 		xboxBtn.setFont(new Font("Monospace",Font.BOLD,14));
 		xboxBtn.setBounds(45, 80, 75, 25);
+		
 		if(visited == true) {
 			xboxBtn.setSelected(capController.getCreateAccountPageModel().getCheckList().get(0).isSelected());
 		}
 		else {
 			capController.getCreateAccountPageModel().getCheckList().add(xboxBtn);
 		}
+		xboxBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				capController.getCreateAccountPageModel().getCheckList().get(0).setSelected(xboxBtn.isSelected());
+			}
+			
+		});
 		capController.getCreateAccountPanel().add(xboxBtn);
 		
 
@@ -252,6 +264,15 @@ public class CreateAccountPageView {
 		else {
 			capController.getCreateAccountPageModel().getCheckList().add(psBtn);
 		}
+		psBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				capController.getCreateAccountPageModel().getCheckList().get(1).setSelected(psBtn.isSelected());
+			}
+			
+		});
 		capController.getCreateAccountPanel().add(psBtn);
 		
 		
@@ -266,6 +287,15 @@ public class CreateAccountPageView {
 		else {
 			capController.getCreateAccountPageModel().getCheckList().add(nintendoBtn);
 		}
+		nintendoBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				capController.getCreateAccountPageModel().getCheckList().get(2).setSelected(nintendoBtn.isSelected());
+			}
+			
+		});
 		capController.getCreateAccountPanel().add(nintendoBtn);
 		
 		
@@ -281,6 +311,15 @@ public class CreateAccountPageView {
 		else {
 			capController.getCreateAccountPageModel().getCheckList().add(pcBtn);
 		}
+		pcBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				capController.getCreateAccountPageModel().getCheckList().get(3).setSelected(pcBtn.isSelected());
+			}
+			
+		});
 		capController.getCreateAccountPanel().add(pcBtn);
 		
 		
@@ -295,6 +334,15 @@ public class CreateAccountPageView {
 		else {
 			capController.getCreateAccountPageModel().getCheckList().add(vrBtn);
 		}
+		vrBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				capController.getCreateAccountPageModel().getCheckList().get(4).setSelected(vrBtn.isSelected());
+			}
+			
+		});
 		capController.getCreateAccountPanel().add(vrBtn);
 		
 		
@@ -309,6 +357,15 @@ public class CreateAccountPageView {
 		else{
 			capController.getCreateAccountPageModel().getCheckList().add(RetroBtn);
 		}
+		RetroBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				capController.getCreateAccountPageModel().getCheckList().get(5).setSelected(RetroBtn.isSelected());
+			}
+			
+		});
 		capController.getCreateAccountPanel().add(RetroBtn);
 		
 		
@@ -325,6 +382,15 @@ public class CreateAccountPageView {
 		else {
 			capController.getCreateAccountPageModel().getCheckList().add(actionBtn);
 		}
+		actionBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				capController.getCreateAccountPageModel().getCheckList().get(6).setSelected(actionBtn.isSelected());
+			}
+			
+		});
 		capController.getCreateAccountPanel().add(actionBtn);
 		
 		
@@ -339,6 +405,15 @@ public class CreateAccountPageView {
 		else {
 			capController.getCreateAccountPageModel().getCheckList().add(advBtn);
 		}
+		advBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				capController.getCreateAccountPageModel().getCheckList().get(7).setSelected(advBtn.isSelected());
+			}
+			
+		});
 		capController.getCreateAccountPanel().add(advBtn);
 		
 		
@@ -353,6 +428,15 @@ public class CreateAccountPageView {
 		else{
 			capController.getCreateAccountPageModel().getCheckList().add(FPSBtn);
 		}
+		FPSBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				capController.getCreateAccountPageModel().getCheckList().get(8).setSelected(FPSBtn.isSelected());
+			}
+			
+		});
 		capController.getCreateAccountPanel().add(FPSBtn);
 		
 		
@@ -367,6 +451,15 @@ public class CreateAccountPageView {
 		else {
 			capController.getCreateAccountPageModel().getCheckList().add(MMOBtn);
 		}
+		MMOBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				capController.getCreateAccountPageModel().getCheckList().get(9).setSelected(MMOBtn.isSelected());
+			}
+			
+		});
 		capController.getCreateAccountPanel().add(MMOBtn);
 		
 		
@@ -381,6 +474,15 @@ public class CreateAccountPageView {
 		else {
 			capController.getCreateAccountPageModel().getCheckList().add(MOBABtn);
 		}
+		MOBABtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				capController.getCreateAccountPageModel().getCheckList().get(10).setSelected(MOBABtn.isSelected());
+			}
+			
+		});
 		capController.getCreateAccountPanel().add(MOBABtn);
 		
 		
@@ -395,6 +497,15 @@ public class CreateAccountPageView {
 		else {
 			capController.getCreateAccountPageModel().getCheckList().add(pzlBtn);
 		}
+		pzlBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				capController.getCreateAccountPageModel().getCheckList().get(11).setSelected(pzlBtn.isSelected());
+			}
+			
+		});
 		capController.getCreateAccountPanel().add(pzlBtn);
 		
 		
@@ -409,6 +520,15 @@ public class CreateAccountPageView {
 		else{
 			capController.getCreateAccountPageModel().getCheckList().add(rythBtn);
 		}
+		rythBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				capController.getCreateAccountPageModel().getCheckList().get(12).setSelected(rythBtn.isSelected());
+			}
+			
+		});
 		capController.getCreateAccountPanel().add(rythBtn);
 		
 		
@@ -423,6 +543,15 @@ public class CreateAccountPageView {
 		else {
 			capController.getCreateAccountPageModel().getCheckList().add(platBtn);
 		}
+		platBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				capController.getCreateAccountPageModel().getCheckList().get(13).setSelected(platBtn.isSelected());
+			}
+			
+		});
 		capController.getCreateAccountPanel().add(platBtn);
 		
 		
@@ -437,6 +566,15 @@ public class CreateAccountPageView {
 		else{
 			capController.getCreateAccountPageModel().getCheckList().add(RTSBtn);
 		}
+		RTSBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				capController.getCreateAccountPageModel().getCheckList().get(14).setSelected(RTSBtn.isSelected());
+			}
+			
+		});
 		capController.getCreateAccountPanel().add(RTSBtn);
 		
 		
@@ -451,6 +589,15 @@ public class CreateAccountPageView {
 		else {
 			capController.getCreateAccountPageModel().getCheckList().add(RPGBtn);
 		}
+		RPGBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				capController.getCreateAccountPageModel().getCheckList().get(15).setSelected(RPGBtn.isSelected());
+			}
+			
+		});
 		capController.getCreateAccountPanel().add(RPGBtn);
 		
 		
@@ -465,6 +612,15 @@ public class CreateAccountPageView {
 		else {
 			capController.getCreateAccountPageModel().getCheckList().add(stratBtn);
 		}
+		stratBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				capController.getCreateAccountPageModel().getCheckList().get(16).setSelected(stratBtn.isSelected());
+			}
+			
+		});
 		capController.getCreateAccountPanel().add(stratBtn);
 		
 		JCheckBox sandBtn = new JCheckBox("Sandbox");
@@ -479,6 +635,15 @@ public class CreateAccountPageView {
 			capController.getCreateAccountPageModel().getCheckList().add(sandBtn);
 			
 		}
+		sandBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				capController.getCreateAccountPageModel().getCheckList().get(17).setSelected(sandBtn.isSelected());
+			}
+			
+		});
 		capController.getCreateAccountPanel().add(sandBtn);
 		
 		
