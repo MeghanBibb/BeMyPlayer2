@@ -32,7 +32,7 @@ public class PaymentPageView {
 		mainFrame.getContentPane().setBackground(red);
 		
 		//init buttons
-		JButton btnBack = new JButton("Back");
+		JButton btnBack = new JButton("Cancel");
 		btnBack.setBounds(10,10,90,40);
 		btnBack.setActionCommand(paymentController.BACK);
 		btnBack.setBackground(yellow);

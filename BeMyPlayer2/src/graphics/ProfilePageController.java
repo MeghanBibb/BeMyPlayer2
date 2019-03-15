@@ -30,7 +30,7 @@ public class ProfilePageController implements ActionListener {
 				GraphicsController.launchHomePage();
 				break;
 			case EDIT_ACCOUNT:
-				System.out.println("edit");
+				GraphicsController.launchEditPage();
 				break;
 			case BLOCK:
 				System.out.println("block");

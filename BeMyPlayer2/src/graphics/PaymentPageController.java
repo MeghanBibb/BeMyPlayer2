@@ -49,9 +49,11 @@ public class PaymentPageController implements ActionListener{
 		switch(e.getActionCommand()) {
 			case BACK:
 				System.out.println("back");
+				GraphicsController.launchEditPage();
 				break;
 			case SUBMIT:
 				System.out.println("Submit");
+				GraphicsController.launchEditPage();
 				break;
 		}
 		
