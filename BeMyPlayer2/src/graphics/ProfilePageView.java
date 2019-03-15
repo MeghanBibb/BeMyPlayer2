@@ -37,7 +37,7 @@ public class ProfilePageView {
 		
 		//init image (ideally load this from user)
 		JLabel imgLabel = new JLabel("");
-		Image img = new ImageIcon(profileController.getClass().getResource("/cerny.png")).getImage();
+		Image img = new ImageIcon(profileController.getClass().getResource("/defaultIcon.png")).getImage();
 		imgLabel.setIcon(new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
 		imgLabel.setBounds(10, 60, 100, 100);
 		profileController.getProfileModel().setProfileImage(imgLabel);
