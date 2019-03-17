@@ -36,6 +36,7 @@ public class HomePageController implements ActionListener{
 				break;
 			case FIND_FRIENDS: 
 				System.out.println("Find Friends");
+				SwipePageView.launchSwipePage();
 				break;
 			case FIND_LOVE: 
 				System.out.println("Find Love");

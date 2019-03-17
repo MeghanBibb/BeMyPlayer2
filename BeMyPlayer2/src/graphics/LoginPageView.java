@@ -88,9 +88,11 @@ public class LoginPageView {
 		//	set images
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		Image img1 = new ImageIcon(loginController.getClass().getResource("/hearts.png")).getImage();
-		lblNewLabel.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
-		lblNewLabel.setBounds(275, 31, 128, 82);
+		try {
+			Image img1 = new ImageIcon(loginController.getClass().getResource("/hearts.png")).getImage();
+			lblNewLabel.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
+			lblNewLabel.setBounds(275, 31, 128, 82);
+		}catch(RuntimeException e) {}
 		loginController.getLoginPageModel().setLblNewLabel(lblNewLabel);
 		loginController.getLoginPanel().add(loginController.getLoginPageModel().getLblNewLabel());
 		
