@@ -17,14 +17,10 @@ public class PaymentPageController implements ActionListener{
 	public void launchPaymentPage(JFrame j) {
 		PaymentPageView.launchPaymentPage(this,j);
 	}
-
-	
 	
 	public PaymentPageModel getPaymentModel() {
 		return paymentModel;
 	}
-
-
 
 	public void setPaymentModel(PaymentPageModel paymentModel) {
 		this.paymentModel = paymentModel;

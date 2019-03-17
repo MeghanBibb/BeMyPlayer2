@@ -24,6 +24,12 @@ public class GraphicsController {
 		LoginPageController controller = new LoginPageController();
 		controller.launchLoginPage(mainFrame);
 	}
+	
+	public static void launchForgotPasswordPage() {
+		ForgotPassPageController forgotController = new ForgotPassPageController();
+		forgotController.launchForgotPasswordPage(mainFrame);
+	}
+	
 	public static void launchCreateAccountPage() {
 		CreateAccountPageController createPageController = new CreateAccountPageController();
 		createPageController.launchCreateAccountPage(mainFrame,temp);

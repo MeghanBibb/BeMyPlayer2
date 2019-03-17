@@ -53,7 +53,7 @@ public class LoginPageController implements ActionListener{
 			
 		}
 		else if(e.getActionCommand() == FORGOT_PASSWORD) {
-			System.out.println("launch forgot Password");
+			GraphicsController.launchForgotPasswordPage();
 		} else if(e.getActionCommand() == EXIT) {
 			System.exit(0);
 		}
