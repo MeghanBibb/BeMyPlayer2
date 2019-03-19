@@ -23,9 +23,11 @@ public class ForgotPassPageController implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		switch(e.getActionCommand()) {
 			case SUBMIT: 
-				System.out.println("Submit");
-				//	logic for updating information here
-				GraphicsController.launchLoginPage();
+				if(validateInfo()) {
+					System.out.println("Submit");
+					//	logic for updating information here
+					GraphicsController.launchLoginPage();
+				}
 				break;
 			case BACK:
 				System.out.println("Back");
@@ -33,7 +35,14 @@ public class ForgotPassPageController implements ActionListener {
 		}
 	}
 
-	
+	public boolean validateInfo() {
+		boolean valid = true;
+		
+		//	CHECK FIELDS ARE NOT EMPTY OR SQL COMMANDS TO DELETE OUR TABLES
+		//	VALIDATION FROM CREATE ACCOUNT PAGE + DATABASE VALIDATION
+		
+		return valid;
+	}
 	public ForgotPassPageModel getForgotPasswordPageModel() {
 		return forgotPasswordModel;
 	}
