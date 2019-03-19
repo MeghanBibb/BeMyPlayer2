@@ -36,12 +36,21 @@ public class ForgotPassPageView {
 		//init panel
 		forgotPasswordController.setForgotPasswordPanel(new JPanel(null));
 		forgotPasswordController.getForgotPasswordPanel().setBorder(new EmptyBorder(5, 5, 5, 5));
-		forgotPasswordController.getForgotPasswordPanel().setPreferredSize(new Dimension(500,300));
+		forgotPasswordController.getForgotPasswordPanel().setPreferredSize(new Dimension(500,400));
 		forgotPasswordController.getForgotPasswordPanel().setMaximumSize(new Dimension(500,400));
 		mainFrame.setContentPane(forgotPasswordController.getForgotPasswordPanel());
 		mainFrame.getContentPane().setBackground(red);
 		
 		//init buttons
+		JButton backbtn = new JButton("Back");
+		backbtn.setBounds(45, 225, 90, 40);
+		backbtn.setBackground(white);
+		backbtn.setActionCommand(CreateAccountPageController.BACK);
+		backbtn.addActionListener(forgotPasswordController);
+		forgotPasswordController.getForgotPasswordPageModel().setBack(backbtn);
+		
+		forgotPasswordController.getForgotPasswordPanel().add(forgotPasswordController.getForgotPasswordPageModel().getBack());
+		
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.setBounds(338,225,90,40);
 		btnSubmit.setActionCommand(forgotPasswordController.SUBMIT);
