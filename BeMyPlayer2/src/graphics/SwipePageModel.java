@@ -1,50 +1,44 @@
 package graphics;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 
-public class SwipePageModel extends JFrame {
+public class SwipePageModel {
 	
-	private Dimension pageSize;
-	private Color background;
 	SwipeButton left;
 	SwipeButton right;
-	GridBagConstraints constraints = new GridBagConstraints();
-	GridBagLayout layout = new GridBagLayout();
+	BorderLayout layout = new BorderLayout();
+	JFrame frame = null;
+	JButton backButton = new JButton("Back");
 	
-	public SwipePageModel(){
+	public SwipePageModel(JFrame t_frame){
 		
-		super();
+		this.frame = t_frame;
+
+		frame.getContentPane().removeAll();
+		frame.getContentPane().revalidate();
+		frame.getContentPane().repaint();
+		frame.getContentPane().setLayout(layout);
 		
-		this.pageSize = new Dimension(700, 400);
-		this.background = new Color(128,0,0);
+		backButton.addActionListener(new ActionListener() {
+	    	@Override
+	    	public void actionPerformed(ActionEvent e) {
+	    			System.out.println("back");
+	    			GraphicsController.launchHomePage();
+	    	}
+	    });
+		
 		this.left = new SwipeButton(new SwipeLeftController());
 		this.right = new SwipeButton(new SwipeRightController());
-		
-		this.setLayout(layout);
-		this.setMinimumSize(pageSize);
-		
-		constraints.fill = GridBagConstraints.WEST;
-		constraints.weightx = 5.0;
-		constraints.weighty = 5.0;
-		constraints.ipadx = 40;
-		constraints.ipady = 50;
-		layout.setConstraints(this.left, constraints);
-		this.add(this.left);
-		
-		constraints.fill = GridBagConstraints.EAST;
-		constraints.weightx = 5.0;
-		constraints.weighty = 5.0;
-		constraints.ipadx = 40;
-		constraints.ipady = 50;
-		layout.setConstraints(this.right, constraints);
-		this.add(this.right);
-		
-		this.setTitle("Start Swiping");
-		this.getContentPane().setBackground(background);
-		
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+		frame.getContentPane().add(this.left, BorderLayout.LINE_START);
+		frame.getContentPane().add(this.right, BorderLayout.LINE_END);
+		frame.getContentPane().add(this.backButton, BorderLayout.PAGE_END);
+
 	}
 	
 }

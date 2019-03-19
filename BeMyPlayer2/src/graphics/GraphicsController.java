@@ -60,5 +60,8 @@ public class GraphicsController {
 		this.mainFrame = mainFrame;
 	}
 	
+	public static void launchSwipePage() {
+		SwipePageView.launchSwipePage(mainFrame);
+	}
 	
 }
