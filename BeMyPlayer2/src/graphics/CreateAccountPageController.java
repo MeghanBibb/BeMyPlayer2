@@ -13,7 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class CreateAccountPageController implements ActionListener{
-
+	
 	//	action commands 	
 	public static final String NEXT = "next";
 	public static final String BACK="back";
