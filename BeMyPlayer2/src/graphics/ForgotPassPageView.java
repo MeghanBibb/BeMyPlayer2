@@ -25,7 +25,7 @@ import javax.swing.border.EmptyBorder;
 
 public class ForgotPassPageView {
 	
-	public static void startForgotPasswordPage(ForgotPassPageController forgotPasswordController, JFrame mainFrame) {
+	public static void startForgotPasswordPage(final ForgotPassPageController forgotPasswordController, JFrame mainFrame) {
 		//init Model
 		forgotPasswordController.setForgotPasswordPageModel(new ForgotPassPageModel());
 		

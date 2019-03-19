@@ -101,7 +101,7 @@ public class EditAccountPageView {
 		
 	}
 	
-	public static void launchEditAccountPage(EditAccountPageController editController, JFrame mainFrame) {
+	public static void launchEditAccountPage(final EditAccountPageController editController, JFrame mainFrame) {
 	
 		//get mdoel
 		editController.setEditAccountModel(new EditAccountPageModel());
@@ -280,7 +280,7 @@ public class EditAccountPageView {
 		mainFrame.getContentPane().setBackground(red);
 
 		//Checkboxes
-		editController.getEditAccountModel().setCheckList(new ArrayList<>());
+		editController.getEditAccountModel().setCheckList(new ArrayList<JCheckBox>());
 		
 		JCheckBox xboxBtn = new JCheckBox("Xbox");
 		xboxBtn.setBackground(red);
@@ -482,7 +482,7 @@ public class EditAccountPageView {
 		mainFrame.setVisible(true);
 	}
 	
-	public static void launchEditProfilePage(EditAccountPageController editController, JFrame mainFrame) {
+	public static void launchEditProfilePage(final EditAccountPageController editController, JFrame mainFrame) {
 		
 		//init colors
 		Color red = new Color(128,0,0);

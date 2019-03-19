@@ -112,7 +112,7 @@ public class ProfilePageView {
 		profileController.getProfileModel().setTxtField(description);
 		
 		//checkbox
-		profileController.getProfileModel().setCheckList(new ArrayList<>());
+		profileController.getProfileModel().setCheckList(new ArrayList<JCheckBox>());
 		JCheckBox xboxBtn = new JCheckBox("Xbox");
 		xboxBtn.setEnabled(false);
 		xboxBtn.setBackground(red);

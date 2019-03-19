@@ -32,7 +32,7 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class CreateAccountPageView {
-	public static void startCreateAccountPage(CreateAccountPageController capController,JFrame mainFrame, boolean visited) {
+	public static void startCreateAccountPage(final CreateAccountPageController capController,JFrame mainFrame, boolean visited) {
 		if(visited == false) {
 			CreateAccountPageModel temp = new CreateAccountPageModel();
 			capController.setCreateAccountPageModel(temp);
@@ -211,7 +211,7 @@ public class CreateAccountPageView {
 		//set attributes in loginController:
 		
 	}
-	public static void startQuestionaire(CreateAccountPageController capController,JFrame mainFrame,boolean visited) {
+	public static void startQuestionaire(final CreateAccountPageController capController,JFrame mainFrame,boolean visited) {
 		//	load questionare 
 		Color red = new Color(128,0,0);
 		Color yellow = new Color(255,215,0);
@@ -227,9 +227,9 @@ public class CreateAccountPageView {
 
 		//	Checkboxes
 		if(visited == false) {
-			capController.getCreateAccountPageModel().setCheckList(new ArrayList<>());
+			capController.getCreateAccountPageModel().setCheckList(new ArrayList<JCheckBox>());
 		}
-		JCheckBox xboxBtn = new JCheckBox("Xbox");
+		final JCheckBox xboxBtn = new JCheckBox("Xbox");
 		xboxBtn.setBackground(red);
 		xboxBtn.setForeground(yellow);
 		xboxBtn.setFont(new Font("Monospace",Font.BOLD,14));
@@ -253,7 +253,7 @@ public class CreateAccountPageView {
 		capController.getCreateAccountPanel().add(xboxBtn);
 		
 
-		JCheckBox psBtn = new JCheckBox("Playstation");
+		final JCheckBox psBtn = new JCheckBox("Playstation");
 		psBtn.setBackground(red);
 		psBtn.setForeground(yellow);
 		psBtn.setFont(new Font("Monospace",Font.BOLD,14));
@@ -276,7 +276,7 @@ public class CreateAccountPageView {
 		capController.getCreateAccountPanel().add(psBtn);
 		
 		
-		JCheckBox nintendoBtn = new JCheckBox("Nintendo");
+		final JCheckBox nintendoBtn = new JCheckBox("Nintendo");
 		nintendoBtn.setBackground(red);
 		nintendoBtn.setForeground(yellow);
 		nintendoBtn.setFont(new Font("Monospace",Font.BOLD,14));
@@ -299,7 +299,7 @@ public class CreateAccountPageView {
 		capController.getCreateAccountPanel().add(nintendoBtn);
 		
 		
-		JCheckBox pcBtn = new JCheckBox("PC");
+		final JCheckBox pcBtn = new JCheckBox("PC");
 		pcBtn.setBackground(red);
 		pcBtn.setForeground(yellow);
 		pcBtn.setFont(new Font("Monospace",Font.BOLD,14));
@@ -323,7 +323,7 @@ public class CreateAccountPageView {
 		capController.getCreateAccountPanel().add(pcBtn);
 		
 		
-		JCheckBox vrBtn = new JCheckBox("VR");
+		final JCheckBox vrBtn = new JCheckBox("VR");
 		vrBtn.setBackground(red);
 		vrBtn.setForeground(yellow);
 		vrBtn.setFont(new Font("Monospace",Font.BOLD,14));
@@ -346,7 +346,7 @@ public class CreateAccountPageView {
 		capController.getCreateAccountPanel().add(vrBtn);
 		
 		
-		JCheckBox RetroBtn = new JCheckBox("Retro");
+		final JCheckBox RetroBtn = new JCheckBox("Retro");
 		RetroBtn.setBackground(red);
 		RetroBtn.setForeground(yellow);
 		RetroBtn.setFont(new Font("Monospace",Font.BOLD,14));
@@ -371,7 +371,7 @@ public class CreateAccountPageView {
 		
 		//	action adventure fps mmo moba puzzle platformer rythem rpg rts strategy sandbox 
 		//	genres
-		JCheckBox actionBtn = new JCheckBox("Action");
+		final JCheckBox actionBtn = new JCheckBox("Action");
 		actionBtn.setBackground(red);
 		actionBtn.setForeground(yellow);
 		actionBtn.setFont(new Font("Monospace",Font.BOLD,14));
@@ -394,7 +394,7 @@ public class CreateAccountPageView {
 		capController.getCreateAccountPanel().add(actionBtn);
 		
 		
-		JCheckBox advBtn = new JCheckBox("Adventure");
+		final JCheckBox advBtn = new JCheckBox("Adventure");
 		advBtn.setBackground(red);
 		advBtn.setForeground(yellow);
 		advBtn.setFont(new Font("Monospace",Font.BOLD,14));
@@ -417,7 +417,7 @@ public class CreateAccountPageView {
 		capController.getCreateAccountPanel().add(advBtn);
 		
 		
-		JCheckBox FPSBtn = new JCheckBox("FPS");
+		final JCheckBox FPSBtn = new JCheckBox("FPS");
 		FPSBtn.setBackground(red);
 		FPSBtn.setForeground(yellow);
 		FPSBtn.setFont(new Font("Monospace",Font.BOLD,14));
@@ -440,7 +440,7 @@ public class CreateAccountPageView {
 		capController.getCreateAccountPanel().add(FPSBtn);
 		
 		
-		JCheckBox MMOBtn = new JCheckBox("MMO");
+		final JCheckBox MMOBtn = new JCheckBox("MMO");
 		MMOBtn.setBackground(red);
 		MMOBtn.setForeground(yellow);
 		MMOBtn.setFont(new Font("Monospace",Font.BOLD,14));
@@ -463,7 +463,7 @@ public class CreateAccountPageView {
 		capController.getCreateAccountPanel().add(MMOBtn);
 		
 		
-		JCheckBox MOBABtn = new JCheckBox("MOBA");
+		final JCheckBox MOBABtn = new JCheckBox("MOBA");
 		MOBABtn.setBackground(red);
 		MOBABtn.setForeground(yellow);
 		MOBABtn.setFont(new Font("Monospace",Font.BOLD,14));
@@ -486,7 +486,7 @@ public class CreateAccountPageView {
 		capController.getCreateAccountPanel().add(MOBABtn);
 		
 		
-		JCheckBox pzlBtn = new JCheckBox("Puzzle");
+		final JCheckBox pzlBtn = new JCheckBox("Puzzle");
 		pzlBtn.setBackground(red);
 		pzlBtn.setForeground(yellow);
 		pzlBtn.setFont(new Font("Monospace",Font.BOLD,14));
@@ -509,7 +509,7 @@ public class CreateAccountPageView {
 		capController.getCreateAccountPanel().add(pzlBtn);
 		
 		
-		JCheckBox rythBtn = new JCheckBox("Rythm");
+		final JCheckBox rythBtn = new JCheckBox("Rythm");
 		rythBtn.setBackground(red);
 		rythBtn.setForeground(yellow);
 		rythBtn.setFont(new Font("Monospace",Font.BOLD,14));
@@ -532,7 +532,7 @@ public class CreateAccountPageView {
 		capController.getCreateAccountPanel().add(rythBtn);
 		
 		
-		JCheckBox platBtn = new JCheckBox("Platformer");
+		final JCheckBox platBtn = new JCheckBox("Platformer");
 		platBtn.setBackground(red);
 		platBtn.setForeground(yellow);
 		platBtn.setFont(new Font("Monospace",Font.BOLD,14));
@@ -555,7 +555,7 @@ public class CreateAccountPageView {
 		capController.getCreateAccountPanel().add(platBtn);
 		
 		
-		JCheckBox RTSBtn = new JCheckBox("RTS");
+		final JCheckBox RTSBtn = new JCheckBox("RTS");
 		RTSBtn.setBackground(red);
 		RTSBtn.setForeground(yellow);
 		RTSBtn.setFont(new Font("Monospace",Font.BOLD,14));
@@ -578,7 +578,7 @@ public class CreateAccountPageView {
 		capController.getCreateAccountPanel().add(RTSBtn);
 		
 		
-		JCheckBox RPGBtn = new JCheckBox("RPG");
+		final JCheckBox RPGBtn = new JCheckBox("RPG");
 		RPGBtn.setBackground(red);
 		RPGBtn.setForeground(yellow);
 		RPGBtn.setFont(new Font("Monospace",Font.BOLD,14));
@@ -601,7 +601,7 @@ public class CreateAccountPageView {
 		capController.getCreateAccountPanel().add(RPGBtn);
 		
 		
-		JCheckBox stratBtn = new JCheckBox("Strategy");
+		final JCheckBox stratBtn = new JCheckBox("Strategy");
 		stratBtn.setBackground(red);
 		stratBtn.setForeground(yellow);
 		stratBtn.setFont(new Font("Monospace",Font.BOLD,14));
@@ -623,7 +623,7 @@ public class CreateAccountPageView {
 		});
 		capController.getCreateAccountPanel().add(stratBtn);
 		
-		JCheckBox sandBtn = new JCheckBox("Sandbox");
+		final JCheckBox sandBtn = new JCheckBox("Sandbox");
 		sandBtn.setBackground(red);
 		sandBtn.setForeground(yellow);
 		sandBtn.setFont(new Font("Monospace",Font.BOLD,14));
@@ -682,7 +682,7 @@ public class CreateAccountPageView {
 		mainFrame.pack();
 		mainFrame.setVisible(true);
 	}
-	public static void startProfileForm(CreateAccountPageController capController,JFrame mainFrame, boolean visited) {
+	public static void startProfileForm(final CreateAccountPageController capController,JFrame mainFrame, boolean visited) {
 		Color red = new Color(128,0,0);
 		Color yellow = new Color(255,215,0);
 		
@@ -766,6 +766,7 @@ public class CreateAccountPageView {
 		if(visited == true) {
 			description.setText(capController.getCreateAccountPageModel().getCharDescription().getText());
 		}
+		
 		description.setBounds(125, 230, 250, 150);
 		capController.getCreateAccountPageModel().setCharDescription(description);
 		capController.getCreateAccountPanel().add(capController.getCreateAccountPageModel().getCharDescription());
