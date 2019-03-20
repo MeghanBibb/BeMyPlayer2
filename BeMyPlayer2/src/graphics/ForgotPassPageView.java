@@ -30,8 +30,8 @@ public class ForgotPassPageView {
 		forgotPasswordController.setForgotPasswordPageModel(new ForgotPassPageModel());
 		
 		//init colors
-		Color red = new Color(127,4,42);
-		Color white = new Color(255,255,255);
+		Color red = new Color(134,48,111);
+		Color white = new Color(254,195,123);
 		
 		//init panel
 		forgotPasswordController.setForgotPasswordPanel(new JPanel(null));

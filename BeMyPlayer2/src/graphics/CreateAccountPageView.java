@@ -38,8 +38,8 @@ public class CreateAccountPageView {
 			capController.setCreateAccountPageModel(temp);
 		}
 
-		Color red = new Color(128,0,0);
-		Color yellow = new Color(255,215,0);
+		Color red = new Color(134, 48, 111);
+		Color yellow = new Color(254, 195, 123);
 		//	init panel
 		capController.setCreateAccountPanel(new JPanel(null));
 		capController.getCreateAccountPanel().setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -213,8 +213,8 @@ public class CreateAccountPageView {
 	}
 	public static void startQuestionaire(final CreateAccountPageController capController,JFrame mainFrame,boolean visited) {
 		//	load questionare 
-		Color red = new Color(128,0,0);
-		Color yellow = new Color(255,215,0);
+		Color red = new Color(134, 48, 111);
+		Color yellow = new Color(254, 195, 123);
 		
 		//	 set up panel
 
@@ -683,8 +683,8 @@ public class CreateAccountPageView {
 		mainFrame.setVisible(true);
 	}
 	public static void startProfileForm(final CreateAccountPageController capController,JFrame mainFrame, boolean visited) {
-		Color red = new Color(128,0,0);
-		Color yellow = new Color(255,215,0);
+		Color red = new Color(134,48,111);
+		Color yellow = new Color(254, 195, 123);
 		
 		//	 set up panel
 

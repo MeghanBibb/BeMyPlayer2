@@ -16,8 +16,8 @@ import javax.swing.border.EmptyBorder;
 public class ViewMatchesView {
 	public static void startViewMatches(ViewMatchesController viewMatchController, JFrame mainFrame,Account a) {
 		
-		Color red = new Color(128,0,0);
-		Color yellow = new Color(255,215,0);
+		Color red = new Color(134,48,111);
+		Color yellow = new Color(254, 195, 123);
 		//	init panel
 		viewMatchController.setViewMatchesPanel(new JPanel(null));
 		viewMatchController.getViewMatchesPanel().setBorder(new EmptyBorder(5, 5, 5, 5));

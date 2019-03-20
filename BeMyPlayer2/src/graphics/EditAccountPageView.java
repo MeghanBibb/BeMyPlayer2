@@ -34,8 +34,8 @@ public class EditAccountPageView {
 		//set model
 		editController.setEditAccountModel(new EditAccountPageModel());
 		//init colors
-		Color red = new Color(128,0,0);
-		Color yellow = new Color(255,215,0);
+		Color red = new Color(134, 48, 111);
+		Color yellow = new Color(254, 195, 123);
 		//	init panel
 		editController.setEditAccountPanel(new JPanel(null));
 		editController.getEditAccountPanel().setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -107,8 +107,8 @@ public class EditAccountPageView {
 		editController.setEditAccountModel(new EditAccountPageModel());
 
 		//init colors
-		Color red = new Color(128,0,0);
-		Color yellow = new Color(255,215,0);
+		Color red = new Color(134, 48, 111);
+		Color yellow = new Color(254, 195, 123);
 		
 		//	init panel
 		editController.setEditAccountPanel(new JPanel(null));
@@ -267,8 +267,8 @@ public class EditAccountPageView {
 	public static void launchEditQuestionnairePage(EditAccountPageController editController, JFrame mainFrame) {
 		
 		//init colors
-		Color red = new Color(128,0,0);
-		Color yellow = new Color(255,215,0);
+		Color red = new Color(134, 48, 111);
+		Color yellow = new Color(254, 195, 123);
 		
 		//	 set up panel
 
@@ -485,8 +485,8 @@ public class EditAccountPageView {
 	public static void launchEditProfilePage(final EditAccountPageController editController, JFrame mainFrame) {
 		
 		//init colors
-		Color red = new Color(128,0,0);
-		Color yellow = new Color(255,215,0);
+		Color red = new Color(134,48,111);
+		Color yellow = new Color(254, 195, 123);
 		
 		//	 set up panel
 		editController.setEditAccountPanel(new JPanel(null));
