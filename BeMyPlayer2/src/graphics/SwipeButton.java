@@ -9,7 +9,7 @@ import javax.swing.JButton;
 public class SwipeButton extends JButton{
 	SwipeButtonController controller;
 	Dimension size = new Dimension(50, 50);
-	Color background = new Color(255,215,0);
+	Color background = new Color(254,195,123);
 	public SwipeButton(SwipeButtonController controller) {
 		super();
 		this.controller = controller;

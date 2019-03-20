@@ -23,7 +23,8 @@ public class SwipePageModel {
 		frame.getContentPane().revalidate();
 		frame.getContentPane().repaint();
 		frame.getContentPane().setLayout(layout);
-		
+		Color yellow = new Color(254, 195, 123);
+		backButton.setBackground(yellow);
 		backButton.addActionListener(new ActionListener() {
 	    	@Override
 	    	public void actionPerformed(ActionEvent e) {
