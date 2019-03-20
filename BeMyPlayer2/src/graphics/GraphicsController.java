@@ -57,13 +57,6 @@ public class GraphicsController {
 		viewMatchController.launchViewMatches(mainFrame, temp);
 	}
 	public static void main(String[] args) {
-		try {
-			 System.setProperty("os.name", "Windows");
-			 System.setProperty("os.version", "5.1");
-			 UIManager.setLookAndFeel(
-			   "com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-			 } 
-			catch (Exception ex) {}
 		Account a = new Account();
 		GraphicsController g = new GraphicsController(a);
 	}
