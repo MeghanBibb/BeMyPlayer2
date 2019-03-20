@@ -26,13 +26,6 @@ public class SwipePageModel {
 		frame.getContentPane().setLayout(layout);
 		Color yellow = new Color(254, 195, 123);
 		backButton.setBackground(yellow);
-		backButton.addActionListener(new ActionListener() {
-	    	@Override
-	    	public void actionPerformed(ActionEvent e) {
-	    			System.out.println("back");
-	    			GraphicsController.launchHomePage();
-	    	}
-	    });
 		
 		this.left = new SwipeButton(new SwipeLeftController());
 		this.right = new SwipeButton(new SwipeRightController());
