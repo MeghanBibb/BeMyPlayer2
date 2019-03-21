@@ -4,7 +4,6 @@
     <list default="true" id="ad0b93e3-fe65-4dbe-8fc3-d23ba426e185" name="Default" comment="">
       <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/SupportController.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/SupportModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/SupportView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/Account.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/ForgotPassPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/ForgotPassPageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/GraphicsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/GraphicsController.java" afterDir="false" />
@@ -96,8 +95,8 @@
       <file leaf-file-name="SupportView.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/SupportView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
+            <state relative-caret-position="639">
+              <caret line="61" column="65" lean-forward="true" selection-start-line="61" selection-start-column="65" selection-end-line="61" selection-end-column="65" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -268,7 +267,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -279,7 +277,7 @@
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" />
       <window_info anchor="bottom" id="Version Control" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32987747" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32987747" />
       <window_info anchor="bottom" id="Terminal" />
       <window_info id="Capture Tool" />
       <window_info id="Designer" />
@@ -422,8 +420,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/SupportView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
+        <state relative-caret-position="639">
+          <caret line="61" column="65" lean-forward="true" selection-start-line="61" selection-start-column="65" selection-end-line="61" selection-end-column="65" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -56,7 +56,7 @@ public class SupportView {
         issueSelection.setVisible(true);
         supportController.getSupportModel().setProbArea(issueSelection);
 
-        JFormattedTextField desc = new JFormattedTextField();
+        JFormattedTextField desc = new JFormattedTextField("Tell us about the issue");
         desc.setBounds(35, 100, 400, 200);
         desc.setVisible(true);
         supportController.getSupportModel().setDescription(desc);

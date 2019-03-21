@@ -1,9 +1,6 @@
 package graphics;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
+import java.awt.*;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -82,6 +79,7 @@ public class HomePageView {
 		lblBeMyPlayer.setForeground(yellow);
 		lblBeMyPlayer.setBounds(160,0,204,69);
 		homeController.getHomePageModel().setLblBeMyPlayer(lblBeMyPlayer);
+		//mainFrame.setIconImage(Toolkit.getDefaultToolkit().getImage("filepath"));
 		
 		
 		//add to frame
