@@ -54,6 +54,10 @@ public class GraphicsController {
 		ViewMatchesController viewMatchController = new ViewMatchesController();
 		viewMatchController.launchViewMatches(mainFrame, temp);
 	}
+	public static void launchSupportPage(){
+		SupportController supportController = new SupportController();
+		supportController.launchSupportPage(mainFrame);
+	}
 	public static void main(String[] args) {
 		Account a = new Account();
 		GraphicsController g = new GraphicsController(a);

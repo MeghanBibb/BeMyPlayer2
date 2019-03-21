@@ -33,6 +33,7 @@ public class HomePageController implements ActionListener{
 				break;
 			case SUPPORT: 
 				System.out.println("Support");
+				GraphicsController.launchSupportPage();
 				break;
 			case FIND_FRIENDS: 
 				System.out.println("Find Friends");

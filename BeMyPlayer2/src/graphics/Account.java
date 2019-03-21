@@ -15,6 +15,8 @@ public class Account {
 	private Image profile;
 	private List<Boolean> platforms;
 	private List<Boolean> genres;
+
+
 	
 }
 	

@@ -43,6 +43,7 @@ public class ForgotPassPageController implements ActionListener {
 		
 		return valid;
 	}
+
 	public ForgotPassPageModel getForgotPasswordPageModel() {
 		return forgotPasswordModel;
 	}
