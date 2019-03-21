@@ -64,7 +64,7 @@ public class GraphicsController {
 		supportController.launchSupportPage(mainFrame);
 	}
 	public static void main(String[] args) {
-		/*
+		
 		try {
 			 System.setProperty("os.name", "Windows");
 			 System.setProperty("os.version", "5.1");
@@ -72,7 +72,7 @@ public class GraphicsController {
 			   "com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 			 } 
 			catch (Exception ex) {}
-		*/
+		
 		Account a = new Account();
 		GraphicsController g = new GraphicsController(a);
 	}
