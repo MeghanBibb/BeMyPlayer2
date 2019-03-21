@@ -16,5 +16,20 @@ public class Account {
 	private List<Boolean> platforms;
 	private List<Boolean> genres;
 	
+	private List<String> loveMatches;
+	private List<String> friendMatches;
+	public List<String> getLoveMatches() {
+		return loveMatches;
+	}
+	public void setLoveMatches(List<String> loveMatches) {
+		this.loveMatches = loveMatches;
+	}
+	public List<String> getFriendMatches() {
+		return friendMatches;
+	}
+	public void setFriendMatches(List<String> friendMatches) {
+		this.friendMatches = friendMatches;
+	}
+	
 }
 	

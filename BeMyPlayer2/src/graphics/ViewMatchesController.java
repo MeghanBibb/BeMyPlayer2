@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -15,7 +16,7 @@ public class ViewMatchesController implements ActionListener{
 	public static final String NEXT = "next";
 	public static final String BACK="back";
 	public static final String SUBMIT = "submit";
-	
+	public static final String PROFILE = "profileclick";
 	private ViewMatchesModel viewMatchesModel;
 	private JPanel viewMatchesPanel;
 	private int pageNum;
@@ -33,6 +34,11 @@ public class ViewMatchesController implements ActionListener{
 			System.out.println("back");
 			GraphicsController.launchHomePage();
 		}
+		else if(e.getActionCommand() == PROFILE) {
+			String text = ((JButton) e.getSource()).getName();
+			System.out.println("launch profile brief for: " + text);
+			//	generate profile brief for given name
+		}
 	}
 	public JPanel getViewMatchesPanel() {
 		return viewMatchesPanel;
@@ -46,4 +52,5 @@ public class ViewMatchesController implements ActionListener{
 	public void setViewMatchesModel(ViewMatchesModel viewMatchesModel) {
 		this.viewMatchesModel = viewMatchesModel;
 	}
+	
 }
