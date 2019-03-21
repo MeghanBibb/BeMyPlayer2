@@ -56,6 +56,13 @@ public class GraphicsController {
 		ViewMatchesController viewMatchController = new ViewMatchesController();
 		viewMatchController.launchViewMatches(mainFrame, temp);
 	}
+	public static void launchSwipePage() {
+		SwipePageView.launchSwipePage(mainFrame);
+	}
+	public static void launchSupportPage() {
+		SupportController supportController = new SupportController();
+		supportController.launchSupportPage(mainFrame);
+	}
 	public static void main(String[] args) {
 		/*
 		try {
@@ -76,8 +83,6 @@ public class GraphicsController {
 	public void setMainFrame(JFrame mainFrame) {
 		this.mainFrame = mainFrame;
 	}
-	public static void launchSwipePage() {
-		SwipePageView.launchSwipePage(mainFrame);
-	}
+	
 	
 }
