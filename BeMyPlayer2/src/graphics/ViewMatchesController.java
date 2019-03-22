@@ -1,5 +1,6 @@
 package graphics;
 
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -21,10 +22,11 @@ public class ViewMatchesController implements ActionListener{
 	private JPanel viewMatchesPanel;
 	private int pageNum;
 	private Account a;
-	//private JFrame copyFrame;
-	
+	private JFrame copyFrame;
+	private ProfileBriefModel brief = null;
 	public void launchViewMatches(JFrame j,Account a) {
 		this.a = a;
+		this.copyFrame = j;
 		ViewMatchesView.startViewMatches(this,j,a);
 	}
 	//	check command 
@@ -37,7 +39,15 @@ public class ViewMatchesController implements ActionListener{
 		else if(e.getActionCommand() == PROFILE) {
 			String text = ((JButton) e.getSource()).getName();
 			System.out.println("launch profile brief for: " + text);
-			//	generate profile brief for given name
+			if(brief == null) {
+				brief = new ProfileBriefModel(text,new Rectangle(250,120,215,245));
+			}
+			else {
+				this.copyFrame.remove(brief);
+				brief = new ProfileBriefModel(text,new Rectangle(250,120,215,245));
+			}
+			this.copyFrame.add(brief);
+			this.copyFrame.repaint();
 		}
 	}
 	public JPanel getViewMatchesPanel() {

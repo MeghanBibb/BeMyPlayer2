@@ -63,7 +63,17 @@ public class ViewMatchesView {
 		lblBeMyPlayer.setBounds(160,0,204,69);
 		viewMatchController.getViewMatchesPanel().add(lblBeMyPlayer);
 		
+		//	pull from match adapter giving the temp account
+		GridLayout gridLayout = new GridLayout(0,2,5,5);
+		JPanel profilePicPanel = new JPanel();
+		profilePicPanel.setBackground(yellow);
+		profilePicPanel.setLayout(gridLayout);
+		profilePicPanel.setPreferredSize(new Dimension(100,245));
+		profilePicPanel.setSize(100, 245);
+		
+		Image img1 = new ImageIcon(viewMatchController.getClass().getResource("/defaultIcon.png")).getImage();
 		JComboBox matchtype = new JComboBox();
+		
 		matchtype.addItemListener(new ItemListener() {
         	public void itemStateChanged(ItemEvent e) {
         		System.out.println("updated");
@@ -71,14 +81,74 @@ public class ViewMatchesView {
         		///viewMatchController.getViewMatchesModel().setMatchtype(matchtype);
         		//	generate new match request pull 
         		if(viewMatchController.getViewMatchesModel().getMatchtype().getSelectedItem().toString().equalsIgnoreCase("Love Matches")) {
+        			profilePicPanel.removeAll();
         			//a.getLoveMatches();
-        			
+        			/////	FOR DEMO PURPOSES
+        			final JButton setIcon = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
+        			setIcon.setLayout(new BorderLayout());
+        			setIcon.setName("bob");
+        			setIcon.add(new JLabel("bob"),BorderLayout.PAGE_END);
+        			final JButton setIcon2 = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
+        			setIcon2.setLayout(new BorderLayout());
+        			setIcon2.setName("jane");
+        			setIcon2.add(new JLabel("jane"),BorderLayout.PAGE_END);
+        			final JButton setIcon3 = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
+        			setIcon3.setLayout(new BorderLayout());
+        			setIcon3.setName("alex");
+        			setIcon3.add(new JLabel("alex"),BorderLayout.PAGE_END);
+        			setIcon.setActionCommand("profileclick");
+        			setIcon.addActionListener(viewMatchController);
+        			setIcon2.setActionCommand("profileclick");
+        			setIcon2.addActionListener(viewMatchController);
+        			setIcon3.setActionCommand("profileclick");
+        			setIcon3.addActionListener(viewMatchController);
+        			profilePicPanel.add(setIcon);
+        			profilePicPanel.add(setIcon2);
+        			profilePicPanel.add(setIcon3);
+        			profilePicPanel.validate();
+        			///	ACTUAL SOLUTION
+        			/*
+        			List<JButton> pics = ProfilePicGenerator.getLoveList(a,viewMatchController);
+        			for(JButton icon: pics) {
+        				profilePicPanel.add(icon);
+        			}
+        			profilePicPanel.validate();*/
         		}
         		else {
-        			//a.getFriendMatches();
+        			profilePicPanel.removeAll();
+        			///	FOR DEMO PURPOSES
+        			final JButton setIcon = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
+        			setIcon.setLayout(new BorderLayout());
+        			setIcon.setName("jane");
+        			setIcon.add(new JLabel("jane"),BorderLayout.PAGE_END);
+        			final JButton setIcon2 = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
+        			setIcon2.setLayout(new BorderLayout());
+        			setIcon2.setName("kam");
+        			setIcon2.add(new JLabel("kam"),BorderLayout.PAGE_END);
+        			final JButton setIcon3 = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
+        			setIcon3.setLayout(new BorderLayout());
+        			setIcon3.setName("sad");
+        			setIcon3.add(new JLabel("sad"),BorderLayout.PAGE_END);
+        			setIcon.setActionCommand("profileclick");
+        			setIcon.addActionListener(viewMatchController);
+        			setIcon2.setActionCommand("profileclick");
+        			setIcon2.addActionListener(viewMatchController);
+        			setIcon3.setActionCommand("profileclick");
+        			setIcon3.addActionListener(viewMatchController);
+        			profilePicPanel.add(setIcon);
+        			profilePicPanel.add(setIcon2);
+        			profilePicPanel.add(setIcon3);
+        			///	ACTUAL SOLUTION
+        			/*
+        			List<JButton> pics = ProfilePicGenerator.getFriendList(a,viewMatchController);
+        			for(JButton icon: pics) {
+        				profilePicPanel.add(icon);
+        			}*/
+        			profilePicPanel.validate();
         		}
         	}
         });
+		
 		matchtype.setToolTipText("Match type");
 		matchtype.setModel(new DefaultComboBoxModel(new String[] {"Love Matches", "Friend Matches"}));
 		matchtype.setBounds(45, 85, 150, 25);
@@ -91,49 +161,28 @@ public class ViewMatchesView {
 		//	load temp profile on the right side - > megan's file
 		//	245,75,
 		
-		//	dyamically load 
-		//	pull from match adapter giving the temp account
-		GridLayout gridLayout = new GridLayout(0,2,5,5);
-		JPanel profilePicPanel = new JPanel();
-		profilePicPanel.setBackground(yellow);
-		profilePicPanel.setLayout(gridLayout);
-		profilePicPanel.setPreferredSize(new Dimension(100,245));
-		profilePicPanel.setSize(100, 245);
-		
-		//////// DEMO PURPOSES ONLY
-		Image img1 = new ImageIcon(viewMatchController.getClass().getResource("/defaultIcon.png")).getImage();
+		////////DEMO PURPOSES ONLY
 		final JButton setIcon = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
 		setIcon.setLayout(new BorderLayout());
 		setIcon.setName("bob");
 		setIcon.add(new JLabel("bob"),BorderLayout.PAGE_END);
+		setIcon.setActionCommand("profileclick");
+		setIcon.addActionListener(viewMatchController);
 		final JButton setIcon2 = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
 		setIcon2.setLayout(new BorderLayout());
 		setIcon2.setName("jane");
 		setIcon2.add(new JLabel("jane"),BorderLayout.PAGE_END);
+		setIcon2.setActionCommand("profileclick");
+		setIcon2.addActionListener(viewMatchController);
 		final JButton setIcon3 = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
 		setIcon3.setLayout(new BorderLayout());
 		setIcon3.setName("alex");
 		setIcon3.add(new JLabel("alex"),BorderLayout.PAGE_END);
-		final JButton setIcon4 = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
-		setIcon4.setLayout(new BorderLayout());
-		setIcon4.setName("dan");
-		setIcon4.add(new JLabel("alex"),BorderLayout.PAGE_END);
-		final JButton setIcon5 = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
-		setIcon5.setLayout(new BorderLayout());
-		setIcon5.setName("cal");
-		setIcon5.add(new JLabel("cal"),BorderLayout.PAGE_END);
-		final JButton setIcon6 = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
-		setIcon6.setLayout(new BorderLayout());
-		setIcon6.setName("max");
-		setIcon6.add(new JLabel("max"),BorderLayout.PAGE_END);
+		setIcon3.setActionCommand("profileclick");
+		setIcon3.addActionListener(viewMatchController);
 		profilePicPanel.add(setIcon);
 		profilePicPanel.add(setIcon2);
 		profilePicPanel.add(setIcon3);
-		profilePicPanel.add(setIcon4);
-		profilePicPanel.add(setIcon5);
-		profilePicPanel.add(setIcon6);
-		setIcon.setActionCommand("profileclick");
-		setIcon.addActionListener(viewMatchController);
 		
 		////	real implementation
 		/*
@@ -144,8 +193,9 @@ public class ViewMatchesView {
 		
 		//	SCROLLPANE
 	    JScrollPane scrollPane = new JScrollPane(profilePicPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-	    scrollPane.setBounds(new Rectangle(45, 120, 215, 245));
+	    scrollPane.setBounds(new Rectangle(25, 120, 215, 245));
 	    Color black = new Color(0,0,0);
+	    
 	    //	if empty
 	    /*
 	    JLabel noMatchlbl1 = new JLabel("Your princess is in another castle");

@@ -17,7 +17,7 @@ public class SwipePageModel {
 	JButton backButton = new JButton("Back");
 	
 	public SwipePageModel(JFrame t_frame){
-		
+		Rectangle briefSize = new Rectangle(150,100,150,200);
 		this.frame = t_frame;
 
 		frame.getContentPane().removeAll();
@@ -41,7 +41,7 @@ public class SwipePageModel {
 		frame.getContentPane().add(this.left, BorderLayout.LINE_START);
 		frame.getContentPane().add(this.right, BorderLayout.LINE_END);
 		frame.getContentPane().add(this.backButton, BorderLayout.PAGE_END);
-		frame.getContentPane().add(new ProfileBriefModel(), BorderLayout.CENTER);
+		frame.getContentPane().add(new ProfileBriefModel("username",briefSize), BorderLayout.CENTER);
 	}
 	
 }

@@ -4,6 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -14,7 +17,8 @@ import javax.swing.JScrollPane;
 
 public class ProfileBriefModel extends JPanel{
 	ViewMatchesController viewMatchController = new ViewMatchesController();
-	ProfileBriefModel(){
+	
+	ProfileBriefModel(String s,Rectangle r){
 		//Color yellow = new Color(254, 195, 123);
 		Color black = new Color(204, 255, 255);
 		Color yellow = new Color(254, 195, 123);
@@ -23,18 +27,27 @@ public class ProfileBriefModel extends JPanel{
 		
 		Image img1 = new ImageIcon(viewMatchController.getClass().getResource("/defaultIcon.png")).getImage();
 		JButton setIcon = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
-		JLabel username = new JLabel("Username");
+		JLabel username = new JLabel(s);
 		JLabel age = new JLabel("Age");
 		JLabel gender = new JLabel("Gender");
 		JButton viewProfile = new JButton("View Profile");
-		
+		this.setBounds(r);
 		this.setLayout(null);
 		this.setBackground(yellow);
 		
 		viewProfile.setBackground(red);
 		viewProfile.setBounds(40, 140, 150, 60);
 		viewProfile.setForeground(white);
-		
+		viewProfile.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				//	replace with launch given username for iteration 3
+				GraphicsController.launchProfilePage();
+			}
+			
+		});
 		username.setFont(new Font("Monospaced", Font.BOLD, 20));
 		username.setForeground(red);
 		username.setBounds(105,7,150,69);
@@ -53,6 +66,7 @@ public class ProfileBriefModel extends JPanel{
 		this.add(viewProfile);
 		setIcon.setBounds(17, 17, 75, 75);
 		this.add(setIcon);
+		this.setVisible(true);
 	}
 
 }
