@@ -13,18 +13,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.imageio.ImageIO;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
-import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -761,8 +750,7 @@ public class CreateAccountPageView {
 		capController.getCreateAccountPanel().add(lblAccInfo);
 		
 		//	description box
-		JFormattedTextField description = new JFormattedTextField();
-		description.setHorizontalAlignment(SwingConstants.CENTER);
+		JTextArea description = new JTextArea();
 		if(visited == true) {
 			description.setText(capController.getCreateAccountPageModel().getCharDescription().getText());
 		}
