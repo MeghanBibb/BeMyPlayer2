@@ -1,4 +1,5 @@
 package model;
+
 import java.awt.Image;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +15,7 @@ public class Account implements TextSerializable{
 							   SECURITY_Q1A = "securityQ1A",
 							   Security_Q2A = "securityQ2A";
 	
-	private String userId;
+	private String userId = "";
 	
 	private String email; // (for now we will treat this like a username)
 	private String passwordHash;
@@ -24,8 +25,14 @@ public class Account implements TextSerializable{
 	private String securityQ2;
 	private String securityQ2AnsHash;
 	
+	private List<String> loveMatches = null;
+	private List<String> friendMatches = null;
+	
 	Profile accountProfile = null;
 	
+	public Account() {
+		//Initialize default values (this is for testing purposes)
+	}
 	
 	
 	public Account(String userId, String email, String pHash, String sq1, String sqa1, String sq2, String sqa2) {
@@ -83,6 +90,19 @@ public class Account implements TextSerializable{
 	}
 	public String getPasswordHash() {
 		return passwordHash;
+	}
+	
+	public List<String> getLoveMatches() {
+		return loveMatches;
+	}
+	public void setLoveMatches(List<String> loveMatches) {
+		this.loveMatches = loveMatches;
+	}
+	public List<String> getFriendMatches() {
+		return friendMatches;
+	}
+	public void setFriendMatches(List<String> friendMatches) {
+		this.friendMatches = friendMatches;
 	}
 
 	@Override

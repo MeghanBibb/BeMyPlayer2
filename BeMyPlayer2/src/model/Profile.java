@@ -18,6 +18,7 @@ public class Profile {
 	
 	private Image profilePicture = null;
 	
+	
 	public Profile(String userId, String username, Date dateOB, String gender, String description,
 				   List<Boolean> platforms, List<Boolean> genres) {
 		this.userId = userId;

@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.io.IOException;
 
 import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import model.Account;
 
@@ -45,7 +47,7 @@ public class GraphicsController {
 	}
 	public static void launchProfilePage() {
 		ProfilePageController profileController = new ProfilePageController();
-		profileController.launchProfilePage(mainFrame);
+		profileController.launchProfilePage(mainFrame,temp);
 	}
 	public static void launchEditPage() {
 		EditAccountPageController editController = new EditAccountPageController();
@@ -60,10 +62,13 @@ public class GraphicsController {
 		viewMatchController.launchViewMatches(mainFrame, temp);
 	}
 	
-	public static void main(String[] args) {
-		
-		/* Initialize account during login */
-		GraphicsController g = new GraphicsController(null);
+	public static void launchSwipePage() {
+		SwipePageView.launchSwipePage(mainFrame);
+	}
+	
+	public static void launchSupportPage() {
+		SupportController supportController = new SupportController();
+		supportController.launchSupportPage(mainFrame);
 	}
 	
 	public static JFrame getMainFrame() {
@@ -74,5 +79,22 @@ public class GraphicsController {
 		this.mainFrame = mainFrame;
 	}
 	
+	
+	/*    MAIN METHOD   */
+	
+	public static void main(String[] args) {
+		/*
+		try {
+			 System.setProperty("os.name", "Windows");
+			 System.setProperty("os.version", "5.1");
+			 UIManager.setLookAndFeel(
+			   "com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+			 } 
+			catch (Exception ex) {}*/
+		
+		// See the updated Account object in the model package...
+		Account a = new Account();
+		GraphicsController g = new GraphicsController(a);
+	}
 	
 }

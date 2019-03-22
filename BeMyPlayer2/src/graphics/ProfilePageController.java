@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import model.Account;
+
 public class ProfilePageController implements ActionListener {
 	
 	//init command constants
@@ -17,8 +19,9 @@ public class ProfilePageController implements ActionListener {
 	// get view and jframe
 	private ProfilePageModel profileModel = null;
 	private JPanel profilePanel = null;
-	
-	public void launchProfilePage(JFrame j) {
+	private Account a;
+	public void launchProfilePage(JFrame j,Account a) {
+		this.a = a;
 		ProfilePageView.startProfilePage(this,j);
 	}
 

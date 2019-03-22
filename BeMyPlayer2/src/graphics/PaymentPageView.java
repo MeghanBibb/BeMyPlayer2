@@ -20,8 +20,8 @@ public class PaymentPageView {
 		paymentController.setPaymentModel(new PaymentPageModel());
 		
 		//init colors
-		Color red = new Color(128,0,0);
-		Color yellow = new Color(255,215,0);
+		Color red = new Color(134,48,111);
+		Color yellow = new Color(254, 195, 123);
 		
 		//init panel
 		paymentController.setPaymentPanel(new JPanel(null));
