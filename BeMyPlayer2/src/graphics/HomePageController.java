@@ -37,6 +37,7 @@ public class HomePageController implements ActionListener{
 				break;
 			case FIND_FRIENDS: 
 				System.out.println("Find Friends");
+				GraphicsController.launchMessagePage();
 				break;
 			case FIND_LOVE: 
 				System.out.println("Find Love");

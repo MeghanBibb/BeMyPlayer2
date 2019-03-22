@@ -58,6 +58,10 @@ public class GraphicsController {
 		SupportController supportController = new SupportController();
 		supportController.launchSupportPage(mainFrame);
 	}
+	public static void launchMessagePage(){
+		MessageController messageController = new MessageController();
+		messageController.launchMessagePage(mainFrame);
+	}
 	public static void main(String[] args) {
 		Account a = new Account();
 		GraphicsController g = new GraphicsController(a);
