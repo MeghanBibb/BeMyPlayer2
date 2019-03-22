@@ -10,6 +10,8 @@ import java.nio.file.Files;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import model.Account;
+
 public class ViewMatchesController implements ActionListener{
 //	action commands 	
 	public static final String NEXT = "next";

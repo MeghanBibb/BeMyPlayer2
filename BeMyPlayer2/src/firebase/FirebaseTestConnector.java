@@ -17,7 +17,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.UserRecord.CreateRequest;
 import com.google.firebase.cloud.FirestoreClient;
 import com.google.cloud.Service;
-import com.google.firebase.*;
 
 public class FirebaseTestConnector {
 	
@@ -25,9 +24,15 @@ public class FirebaseTestConnector {
 	//initialize app connector
 	public static void main(String[] args) {
 		
+		
+		FireBaseAdapter adapter = new FireBaseAdapter();
+		adapter.initializeDBConnection();
+		System.out.println("CONNECTED");
+		/*
 		try {
 			
 			// Note: this is a reference to a private key- I cannot put this on the repo!
+			
 			FileInputStream serviceAccount = new FileInputStream("C:/Users/colin/firebase/ServiceAccountKey/bemyplayer2-e65fc-dca2d3903ee3.json");
 			
 			FirebaseOptions options = new FirebaseOptions.Builder()
@@ -39,6 +44,7 @@ public class FirebaseTestConnector {
 			System.out.println("Connection initialized.\nQuerying db...");
 			
 			Firestore db = FirestoreClient.getFirestore();
+			
 			
 			// asynchronously retrieve all users
 			ApiFuture<QuerySnapshot> query = db.collection("users").get();
@@ -56,26 +62,26 @@ public class FirebaseTestConnector {
 				  }
 			}
 			
-			/*
 			System.out.println("Creating new user...");
 			
 			FirebaseAuth auth = FirebaseAuth.getInstance();
 			
+			
 			CreateRequest newReq = new CreateRequest();
 			
-			newReq.setEmail("myEmail@someDomain.com");
+			newReq.setEmail("myNewEmail@someDomain.com");
 			newReq.setPassword("password");
 			newReq.setDisplayName("user_123");
 			
 			auth.createUser(newReq);
-			*/
 			
-			System.out.println("DONE!");
+			
+			
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		*/
 	}
 }

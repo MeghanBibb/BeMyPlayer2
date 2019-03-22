@@ -5,12 +5,17 @@ import java.io.IOException;
 
 import javax.swing.JFrame;
 
+import model.Account;
+
 public class GraphicsController {
+	
 	private static JFrame mainFrame;
 	private static Account temp;
+	
+	
 	GraphicsController(Account a) {
 //			init default jframe as base frame
-			temp = a;
+			//temp = a;
 			this.mainFrame = (new JFrame("BeMyPlayer2"));
 			this.mainFrame.setSize(400, 300);
 			this.mainFrame.setMaximumSize(new Dimension(500,400));
@@ -54,10 +59,13 @@ public class GraphicsController {
 		ViewMatchesController viewMatchController = new ViewMatchesController();
 		viewMatchController.launchViewMatches(mainFrame, temp);
 	}
+	
 	public static void main(String[] args) {
-		Account a = new Account();
-		GraphicsController g = new GraphicsController(a);
+		
+		/* Initialize account during login */
+		GraphicsController g = new GraphicsController(null);
 	}
+	
 	public static JFrame getMainFrame() {
 		return mainFrame;
 	}
