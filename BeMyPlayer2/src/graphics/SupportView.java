@@ -68,7 +68,7 @@ public class SupportView {
         descript.setBounds(35,100,204,50);
 		supportController.getSupportPanel().add(descript);
 		
-        JFormattedTextField desc = new JFormattedTextField();
+        JTextArea desc = new JTextArea();
         desc.setBounds(35, 150, 400, 150);
         desc.setVisible(true);
         supportController.getSupportModel().setDescription(desc);
