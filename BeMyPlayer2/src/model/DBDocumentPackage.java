@@ -5,11 +5,12 @@ import java.util.Map;
 
 public class DBDocumentPackage {
 	
-	private String primaryKey;
+	private String primaryKey = null;
 	private Map<String, Object> values;
 	
 	
 	public DBDocumentPackage(){
+		this.primaryKey = null;
 		this.values = new HashMap<String, Object>();
 	}
 	

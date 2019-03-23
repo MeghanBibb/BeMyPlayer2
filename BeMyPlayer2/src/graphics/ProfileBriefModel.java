@@ -17,15 +17,29 @@ import javax.swing.JScrollPane;
 
 public class ProfileBriefModel extends JPanel{
 	ViewMatchesController viewMatchController = new ViewMatchesController();
-	
 	ProfileBriefModel(String s,Rectangle r){
 		//Color yellow = new Color(254, 195, 123);
 		Color black = new Color(204, 255, 255);
 		Color yellow = new Color(254, 195, 123);
 		Color red = new Color(134,48,111);
 		Color white = new Color(255, 255, 255);
-		
-		Image img1 = new ImageIcon(viewMatchController.getClass().getResource("/defaultIcon.png")).getImage();
+		//	TEMPORARY FOR PROFILE IMAGE SWAPPING
+		String temploc = null;
+		switch(s) {
+		case "Dr.Booth": temploc = "/booth1.jpg";
+			break;
+		case "Dr.Cerny": temploc = "/cerny1.png";
+			break;
+		case "Dr.Fendt": temploc = "/fendt.jpg";
+			break;
+		case "Dr.Hammerly": temploc = "/hammerly1.jpg";
+		break;
+		case "Dr.Fry": temploc = "/fry1.jpg";
+			break;
+		case "Prof.Aars":temploc = "/maars1.jpg";	
+			break;
+		}
+		Image img1 = new ImageIcon(viewMatchController.getClass().getResource(temploc)).getImage();
 		JButton setIcon = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
 		JLabel username = new JLabel(s);
 		JLabel age = new JLabel("Age");

@@ -16,6 +16,9 @@ import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.UserRecord.CreateRequest;
 import com.google.firebase.cloud.FirestoreClient;
+
+import model.Account;
+
 import com.google.cloud.Service;
 
 public class FirebaseTestConnector {
@@ -28,6 +31,11 @@ public class FirebaseTestConnector {
 		FireBaseAdapter adapter = new FireBaseAdapter();
 		adapter.initializeDBConnection();
 		System.out.println("CONNECTED");
+		Account acc = new Account("myEmail@myDomain.org",
+								  "12345",
+								  "Q1","A1",
+								  "Q2","A2");
+		adapter.addNewAccount(acc);
 		/*
 		try {
 			

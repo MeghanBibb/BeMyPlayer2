@@ -17,7 +17,7 @@ public class Account implements TextSerializable{
 							   _LOVE_MATCHES = "loveMatches",
 							   _FRIEND_MATCHES = "friendMatches";
 	
-	private String userId;
+	private String userId = null;
 	
 	private String email; // (for now we will treat this like a username)
 	private String passwordHash;
@@ -30,12 +30,21 @@ public class Account implements TextSerializable{
 	private List<String> loveMatches = null;
 	private List<String> friendMatches = null;
 	
-	Profile accountProfile = null;
+	Profile accountProfile = null; // This composition is optional
 	
 	public Account() {
 		//Initialize default values (this is for testing purposes)
 	}
 	
+	public Account(String email, String pHash, String sq1, String sqa1, String sq2, String sqa2) {
+		this.userId = null;
+		this.email = email;
+		this.passwordHash = pHash;
+		this.securityQ1 = sq1;
+		this.securityQ1AnsHash = sqa1;
+		this.securityQ2 = sq2;
+		this.securityQ2AnsHash = sqa2;
+	}
 	
 	public Account(String userId, String email, String pHash, String sq1, String sqa1, String sq2, String sqa2) {
 		this.userId = userId;
@@ -116,8 +125,21 @@ public class Account implements TextSerializable{
 	
 	@Override
 	public DBDocumentPackage attributeKeySet() {
-		// TODO construct package from attributes:
-		return null;
+		
+		DBDocumentPackage p = new DBDocumentPackage();
+		if(this.userId != null) {
+			p.setPrimaryKey(userId);
+		}
+		
+		//NOTE: Profile must be serialized separately!
+		p.addValue(_EMAIL, this.email);
+		p.addValue(_PASSWORD_HASH, this.passwordHash);
+		p.addValue(_SECURITY_Q1, this.securityQ1);
+		p.addValue(_SECURITY_Q2, this.securityQ2);
+		p.addValue(_SECURITY_Q1A, this.securityQ1AnsHash);
+		p.addValue(_SECURITY_Q2A, this.securityQ2AnsHash);
+		
+		return p;
 	}
 	
 	
