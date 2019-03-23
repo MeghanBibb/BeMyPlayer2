@@ -11,6 +11,8 @@ import java.util.concurrent.ExecutionException;
 
 import com.google.api.core.ApiFuture;
 import com.google.auth.oauth2.GoogleCredentials;
+import com.google.cloud.firestore.DocumentChange;
+import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
@@ -56,19 +58,22 @@ public class FireBaseAdapter {
 		return true;
 	}
 	
-	public void addNewAccount(Account a) {
+	public void addNewAccount(Account account) {
 		if(this.db == null) {
 			System.err.println("Error- no database connection.");
 			return;
 		}
 		
-		DBDocumentPackage p = a.toDBPackage();
+		DBDocumentPackage p = account.toDBPackage();
 		// asynchronously retrieve all users
-		ApiFuture<QuerySnapshot> update = db.collection("users").get();
-		this.db.collection("users").add(package);
+		ApiFuture<QuerySnapshot> update = db.collection(FireBaseSchema.ACCOUNTS_TABLE).get();
+		this.db.collection("users").add(p.getValues());
 		
 		try {
 			QuerySnapshot updateRef = update.get();
+			DocumentSnapshot newUserDoc = updateRef.getDocumentChanges().get(0).getDocument();
+			account.setUserId(newUserDoc.getId());
+			System.out.println("ADDED USER WITH ID: " + account.getUserId());
 		} catch (InterruptedException e1) {
 			System.err.println("Error- update query interrupted.");
 		} catch (ExecutionException e1) {
