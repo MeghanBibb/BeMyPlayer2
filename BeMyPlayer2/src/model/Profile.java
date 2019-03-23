@@ -6,6 +6,16 @@ import java.util.List;
 
 public class Profile {
 
+	// These cannot be modified, as they provide the basis of the 
+	// field names for the current database schema.
+	public static final String _USERNAME = "username",
+							   _DATE_OF_BIRTH = "dateOfBirth",
+							   _GENDER = "gender",
+							   _DESCRIPTION = "description",
+							   _PLATFORMS = "platforms",
+							   _GENRES = "genres";
+		
+	
 	private String userId;
 	
 	private String username;

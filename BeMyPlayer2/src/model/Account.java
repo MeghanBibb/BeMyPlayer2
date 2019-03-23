@@ -7,15 +7,17 @@ import java.util.Map;
 public class Account implements TextSerializable{
 	
 	// These cannot be modified, as they provide the basis of the 
-	// current database schema.
-	public static final String EMAIL = "email",
-							   PASSWORD_HASH = "password",
-							   SECURITY_Q1 = "securityQ1",
-							   SECURITY_Q2 = "securityQ2",
-							   SECURITY_Q1A = "securityQ1A",
-							   Security_Q2A = "securityQ2A";
+	// field names for the current database schema.
+	public static final String _EMAIL = "email",
+							   _PASSWORD_HASH = "password",
+							   _SECURITY_Q1 = "securityQ1",
+							   _SECURITY_Q2 = "securityQ2",
+							   _SECURITY_Q1A = "securityQ1A",
+							   _SECURITY_Q2A = "securityQ2A",
+							   _LOVE_MATCHES = "loveMatches",
+							   _FRIEND_MATCHES = "friendMatches";
 	
-	private String userId = "";
+	private String userId;
 	
 	private String email; // (for now we will treat this like a username)
 	private String passwordHash;
@@ -54,7 +56,7 @@ public class Account implements TextSerializable{
 		this.accountProfile = accountProfile;
 	}
 	
-	
+
 	public String getEmail() {
 		return email;
 	}
@@ -88,6 +90,9 @@ public class Account implements TextSerializable{
 	public String getUserId() {
 		return userId;
 	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 	public String getPasswordHash() {
 		return passwordHash;
 	}
@@ -95,6 +100,9 @@ public class Account implements TextSerializable{
 	public List<String> getLoveMatches() {
 		return loveMatches;
 	}
+	
+	//TODO: Add/Remove matches functionality
+	
 	public void setLoveMatches(List<String> loveMatches) {
 		this.loveMatches = loveMatches;
 	}
@@ -105,9 +113,10 @@ public class Account implements TextSerializable{
 		this.friendMatches = friendMatches;
 	}
 
+	
 	@Override
-	public Map<String, String> attributeKeySet() {
-		// TODO Auto-generated method stub
+	public DBDocumentPackage attributeKeySet() {
+		// TODO construct package from attributes:
 		return null;
 	}
 	
