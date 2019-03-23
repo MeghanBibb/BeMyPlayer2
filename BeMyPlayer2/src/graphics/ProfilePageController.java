@@ -40,6 +40,7 @@ public class ProfilePageController implements ActionListener {
 				break;
 			case MESSAGE:
 				System.out.println("message");
+				GraphicsController.launchMessagePage();
 				break;
 		}
 		
