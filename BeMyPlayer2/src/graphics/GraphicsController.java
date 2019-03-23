@@ -4,13 +4,21 @@ import java.awt.Dimension;
 import java.io.IOException;
 
 import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
+import model.Account;
 
 public class GraphicsController {
+	
 	private static JFrame mainFrame;
 	private static Account temp;
+	
+	
+	
 	GraphicsController(Account a) {
 //			init default jframe as base frame
-			temp = a;
+			//temp = a;
 			this.mainFrame = (new JFrame("BeMyPlayer2"));
 			this.mainFrame.setSize(400, 300);
 			this.mainFrame.setMaximumSize(new Dimension(500,400));
@@ -40,7 +48,7 @@ public class GraphicsController {
 	}
 	public static void launchProfilePage() {
 		ProfilePageController profileController = new ProfilePageController();
-		profileController.launchProfilePage(mainFrame);
+		profileController.launchProfilePage(mainFrame,temp);
 	}
 	public static void launchEditPage() {
 		EditAccountPageController editController = new EditAccountPageController();
@@ -54,21 +62,44 @@ public class GraphicsController {
 		ViewMatchesController viewMatchController = new ViewMatchesController();
 		viewMatchController.launchViewMatches(mainFrame, temp);
 	}
-	public static void launchSupportPage(){
+	
+	public static void launchSwipePage() {
+		SwipePageView.launchSwipePage(mainFrame);
+	}
+	
+	public static void launchSupportPage() {
 		SupportController supportController = new SupportController();
 		supportController.launchSupportPage(mainFrame);
 	}
-	public static void main(String[] args) {
-		Account a = new Account();
-		GraphicsController g = new GraphicsController(a);
+	public static void launchMessagePage(){
+		MessageController messageController = new MessageController();
+		messageController.launchMessagePage(mainFrame);
+
 	}
 	public static JFrame getMainFrame() {
 		return mainFrame;
 	}
-
+	
 	public void setMainFrame(JFrame mainFrame) {
 		this.mainFrame = mainFrame;
 	}
 	
+	
+	/*    MAIN METHOD   */
+	
+	public static void main(String[] args) {
+		/*
+		try {
+			 System.setProperty("os.name", "Windows");
+			 System.setProperty("os.version", "5.1");
+			 UIManager.setLookAndFeel(
+			   "com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+			 } 
+			catch (Exception ex) {}*/
+		
+		// See the updated Account object in the model package...
+		Account a = new Account();
+		GraphicsController g = new GraphicsController(a);
+	}
 	
 }

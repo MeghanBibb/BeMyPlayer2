@@ -24,8 +24,8 @@ public class ProfilePageView {
 		profileController.setProfileModel(new ProfilePageModel());
 		
 		//init colors
-		Color red = new Color(128,0,0);
-		Color yellow = new Color(255,215,0);
+		Color red = new Color(134,48,111);
+		Color yellow = new Color(254, 195, 123);
 		
 		//init panel
 		profileController.setProfilePanel(new JPanel(null));
@@ -112,7 +112,7 @@ public class ProfilePageView {
 		profileController.getProfileModel().setTxtField(description);
 		
 		//checkbox
-		profileController.getProfileModel().setCheckList(new ArrayList<>());
+		profileController.getProfileModel().setCheckList(new ArrayList<JCheckBox>());
 		JCheckBox xboxBtn = new JCheckBox("Xbox");
 		xboxBtn.setEnabled(false);
 		xboxBtn.setBackground(red);

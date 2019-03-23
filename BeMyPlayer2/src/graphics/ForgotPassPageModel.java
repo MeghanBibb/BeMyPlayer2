@@ -8,7 +8,8 @@ import javax.swing.JPasswordField;
 
 public class ForgotPassPageModel {
 	private JButton btnSubmit;
-	private JButton back;
+	private JButton btnBack;
+	
 	//init text
 	private JLabel lblSecurityQuestion;
 	private JLabel lblAnswer;
@@ -109,12 +110,12 @@ public class ForgotPassPageModel {
 		this.btnSubmit = btnSubmit;
 	}
 
-	public JButton getBack() {
-		return back;
+	public JButton getBtnBack() {
+		return btnBack;
 	}
 
-	public void setBack(JButton back) {
-		this.back = back;
+	public void setBtnBack(JButton btnBack) {
+		this.btnBack = btnBack;
 	}
 	
 }

@@ -13,8 +13,8 @@ public class SupportView {
         supportController.setSupportModel(new SupportModel());
 
         //init colors
-        Color red = new Color(127,4,42);
-        Color white = new Color(255,255,255);
+        Color red = new Color(134,48,111);
+		Color white = new Color(254, 195, 123);//	aka peach
 
         //init panel
         supportController.setSupportPanel(new JPanel(null));
@@ -40,7 +40,13 @@ public class SupportView {
         btnSubmit.setBackground(white);
         btnSubmit.addActionListener(supportController);
         supportController.getSupportModel().setBtnSubmit(btnSubmit);
-
+   
+        //	probably replaced with header in iteration 3
+        JLabel lblBeMyPlayer = new JLabel("Be My Player 2");
+		lblBeMyPlayer.setFont(new Font("Monospaced", Font.BOLD, 20));
+		lblBeMyPlayer.setForeground(white);
+		lblBeMyPlayer.setBounds(160,0,204,69);
+		supportController.getSupportPanel().add(lblBeMyPlayer);
         //	init fields and listeners
 
 
@@ -51,13 +57,20 @@ public class SupportView {
             }
         });
         issueSelection.setToolTipText("What kind of issue are you having?");
-        issueSelection.setModel(new DefaultComboBoxModel(new String[] {"Select what kind of issue it is","type1", "type2", "type3"}));
+        issueSelection.setModel(new DefaultComboBoxModel(new String[] {"Select issue type","type1", "type2", "type3"}));
         issueSelection.setBounds(35, 70, 400, 22);
         issueSelection.setVisible(true);
         supportController.getSupportModel().setProbArea(issueSelection);
+		
+        JLabel descript = new JLabel("Enter description:");
+        descript.setForeground(white);
+        descript.setFont(new Font("Monospaced", Font.BOLD, 16));
+        descript.setBounds(35,100,204,50);
+		supportController.getSupportPanel().add(descript);
+		
+        JTextArea desc = new JTextArea();
+        desc.setBounds(35, 150, 400, 150);
 
-        JFormattedTextField desc = new JFormattedTextField();
-        desc.setBounds(35, 100, 400, 200);
         desc.setVisible(true);
         supportController.getSupportModel().setDescription(desc);
 
@@ -75,3 +88,4 @@ public class SupportView {
 
     }
 }
+

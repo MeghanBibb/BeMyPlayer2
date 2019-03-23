@@ -12,18 +12,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
-import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -34,8 +23,8 @@ public class EditAccountPageView {
 		//set model
 		editController.setEditAccountModel(new EditAccountPageModel());
 		//init colors
-		Color red = new Color(128,0,0);
-		Color yellow = new Color(255,215,0);
+		Color red = new Color(134, 48, 111);
+		Color yellow = new Color(254, 195, 123);
 		//	init panel
 		editController.setEditAccountPanel(new JPanel(null));
 		editController.getEditAccountPanel().setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -101,14 +90,14 @@ public class EditAccountPageView {
 		
 	}
 	
-	public static void launchEditAccountPage(EditAccountPageController editController, JFrame mainFrame) {
+	public static void launchEditAccountPage(final EditAccountPageController editController, JFrame mainFrame) {
 	
 		//get mdoel
 		editController.setEditAccountModel(new EditAccountPageModel());
 
 		//init colors
-		Color red = new Color(128,0,0);
-		Color yellow = new Color(255,215,0);
+		Color red = new Color(134, 48, 111);
+		Color yellow = new Color(254, 195, 123);
 		
 		//	init panel
 		editController.setEditAccountPanel(new JPanel(null));
@@ -267,8 +256,8 @@ public class EditAccountPageView {
 	public static void launchEditQuestionnairePage(EditAccountPageController editController, JFrame mainFrame) {
 		
 		//init colors
-		Color red = new Color(128,0,0);
-		Color yellow = new Color(255,215,0);
+		Color red = new Color(134, 48, 111);
+		Color yellow = new Color(254, 195, 123);
 		
 		//	 set up panel
 
@@ -280,7 +269,7 @@ public class EditAccountPageView {
 		mainFrame.getContentPane().setBackground(red);
 
 		//Checkboxes
-		editController.getEditAccountModel().setCheckList(new ArrayList<>());
+		editController.getEditAccountModel().setCheckList(new ArrayList<JCheckBox>());
 		
 		JCheckBox xboxBtn = new JCheckBox("Xbox");
 		xboxBtn.setBackground(red);
@@ -482,11 +471,11 @@ public class EditAccountPageView {
 		mainFrame.setVisible(true);
 	}
 	
-	public static void launchEditProfilePage(EditAccountPageController editController, JFrame mainFrame) {
+	public static void launchEditProfilePage(final EditAccountPageController editController, JFrame mainFrame) {
 		
 		//init colors
-		Color red = new Color(128,0,0);
-		Color yellow = new Color(255,215,0);
+		Color red = new Color(134,48,111);
+		Color yellow = new Color(254, 195, 123);
 		
 		//	 set up panel
 		editController.setEditAccountPanel(new JPanel(null));
@@ -556,8 +545,7 @@ public class EditAccountPageView {
 		editController.getEditAccountPanel().add(lblAccInfo);
 		
 		//	description box
-		JFormattedTextField description = new JFormattedTextField();
-		description.setHorizontalAlignment(SwingConstants.CENTER);
+		JTextArea description = new JTextArea();
 
 		description.setBounds(125, 230, 250, 150);
 		editController.getEditAccountModel().setCharDescription(description);

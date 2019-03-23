@@ -11,7 +11,7 @@ public class ForgotPassPageController implements ActionListener {
 	// set constant actions
 	public static final String SUBMIT = "submit";
 	public static final String BACK = "back";
-	
+
 	private ForgotPassPageModel forgotPasswordModel = null;
 	private JPanel forgotPasswordPanel = null;
 
@@ -23,11 +23,8 @@ public class ForgotPassPageController implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		switch(e.getActionCommand()) {
 			case SUBMIT: 
-				if(validateInfo()) {
-					System.out.println("Submit");
-					//	logic for updating information here
-					GraphicsController.launchLoginPage();
-				}
+				System.out.println("Submit");
+				GraphicsController.launchLoginPage();
 				break;
 			case BACK:
 				System.out.println("Back");

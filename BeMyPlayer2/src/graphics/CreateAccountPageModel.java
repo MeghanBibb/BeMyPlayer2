@@ -6,16 +6,7 @@ import java.awt.event.ItemListener;
 import java.net.URL;
 import java.util.List;
 
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 
 public class CreateAccountPageModel {
 	
@@ -41,7 +32,7 @@ public class CreateAccountPageModel {
 	
 	private String imagePath;
 	
-	private JFormattedTextField charDescription;
+	private JTextArea charDescription;
 	private JLabel profilePicLabel;
 	
 	public JButton getBack() {
@@ -95,10 +86,10 @@ public class CreateAccountPageModel {
 	public void setSecurityQuestions(String securityQuestions) {
 		this.securityQuestions = securityQuestions;
 	}
-	public JFormattedTextField getCharDescription() {
+	public JTextArea getCharDescription() {
 		return this.charDescription;
 	}
-	public void setCharDescription(JFormattedTextField charDescription) {
+	public void setCharDescription(JTextArea charDescription) {
 		this.charDescription = charDescription;
 	}
 	public JLabel getProfilePicLabel() {

@@ -12,6 +12,8 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import model.Account;
+
 public class CreateAccountPageController implements ActionListener{
 
 	//	action commands 	

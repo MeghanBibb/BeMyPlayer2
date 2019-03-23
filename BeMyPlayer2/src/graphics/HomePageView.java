@@ -18,8 +18,8 @@ public class HomePageView {
 		homeController.setHomePageModel(new HomePageModel());
 		
 		//init colors
-		Color red = new Color(128,0,0);
-		Color yellow = new Color(255,215,0);
+		Color red = new Color(134,48,111);
+		Color yellow = new Color(254, 195, 123);
 		
 		//init panel
 		homeController.setHomePanel(new JPanel(null));

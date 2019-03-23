@@ -1,0 +1,9 @@
+{
+  "database": {
+    "rules": "BeMyPlayer2/db/firebase_rules"
+  },
+  "firestore": {
+    "rules": "BeMyPlayer2/db/firestore_rules",
+    "indexes": "BeMyPlayer2/db/firestore_indexes"
+  }
+}
