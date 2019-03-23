@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import model.Account;
+import model.DBDocumentPackage;
 
 import com.google.cloud.Service;
 import com.google.cloud.firestore.Firestore;
@@ -61,15 +62,10 @@ public class FireBaseAdapter {
 			return;
 		}
 		
-		
-		
+		DBDocumentPackage p = a.toDBPackage();
 		// asynchronously retrieve all users
 		ApiFuture<QuerySnapshot> update = db.collection("users").get();
-		
-
-		Map<String, String> newUser = new HashMap<String, String>();
-		
-		this.db.collection("users").add(newUser);
+		this.db.collection("users").add(package);
 		
 		try {
 			QuerySnapshot updateRef = update.get();
@@ -81,9 +77,7 @@ public class FireBaseAdapter {
 		
 	}
 	
-	
-	
-	public boolean AuthenticateUserAccount(String user, String password) {
+	public boolean AuthenticateUserAccount(String user, String passwordHash) {
 		
 		return true;
 	}

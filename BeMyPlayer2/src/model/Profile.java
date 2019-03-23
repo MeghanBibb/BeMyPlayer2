@@ -4,7 +4,7 @@ import java.awt.Image;
 import java.util.Date;
 import java.util.List;
 
-public class Profile implements TextSerializable{
+public class Profile implements DBSerializable{
 	
 	// These cannot be modified, as they provide the basis of the 
 	// field names for the current database schema.
@@ -88,7 +88,7 @@ public class Profile implements TextSerializable{
 	}
 
 	@Override
-	public DBDocumentPackage attributeKeySet() {
+	public DBDocumentPackage toDBPackage() {
 		DBDocumentPackage p = new DBDocumentPackage();
 		if(this.userId != null) {
 			p.setPrimaryKey(userId);

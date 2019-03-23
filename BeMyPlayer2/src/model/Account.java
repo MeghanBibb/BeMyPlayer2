@@ -4,7 +4,7 @@ import java.awt.Image;
 import java.util.List;
 import java.util.Map;
 
-public class Account implements TextSerializable{
+public class Account implements DBSerializable{
 	
 	// These cannot be modified, as they provide the basis of the 
 	// field names for the current database schema.
@@ -124,7 +124,7 @@ public class Account implements TextSerializable{
 
 	
 	@Override
-	public DBDocumentPackage attributeKeySet() {
+	public DBDocumentPackage toDBPackage(){
 		
 		DBDocumentPackage p = new DBDocumentPackage();
 		if(this.userId != null) {

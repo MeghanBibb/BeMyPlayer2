@@ -2,9 +2,9 @@ package model;
 
 import java.util.Map;
 
-public interface TextSerializable {
+public interface DBSerializable {
 	
 	// Must be serializable in plaintext format
-	public DBDocumentPackage attributeKeySet();
+	public DBDocumentPackage toDBPackage();
 	
 }
