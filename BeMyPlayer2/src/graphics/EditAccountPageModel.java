@@ -3,12 +3,7 @@ package graphics;
 import java.awt.Image;
 import java.util.List;
 
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
-import javax.swing.JLabel;
-import javax.swing.JPasswordField;
+import javax.swing.*;
 
 public class EditAccountPageModel {
 	
@@ -42,7 +37,7 @@ public class EditAccountPageModel {
 	//init profile fields
 	private Image profileImg;
 	private String imagePath;
-	private JFormattedTextField charDescription;
+	private JTextArea charDescription;
 	private JLabel profilePicLabel;
 	
 	
@@ -172,10 +167,10 @@ public class EditAccountPageModel {
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
-	public JFormattedTextField getCharDescription() {
+	public JTextArea getCharDescription() {
 		return charDescription;
 	}
-	public void setCharDescription(JFormattedTextField charDescription) {
+	public void setCharDescription(JTextArea charDescription) {
 		this.charDescription = charDescription;
 	}
 	public JLabel getProfilePicLabel() {
