@@ -87,3 +87,4 @@ public class MessageView {
         mainFrame.setVisible(true);
     }
 }
+

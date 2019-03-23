@@ -88,3 +88,4 @@ public class MessageModel {
         this.sendBox = sendBox;
     }
 }
+
