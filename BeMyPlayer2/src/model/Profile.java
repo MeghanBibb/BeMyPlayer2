@@ -1,6 +1,8 @@
 package model;
 
 import java.awt.Image;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -15,6 +17,8 @@ public class Profile implements DBSerializable{
 							   _PLATFORMS = "platforms",
 							   _GENRES = "genres";
 	
+	public static final SimpleDateFormat DOB_FORMAT = new SimpleDateFormat("dd/MM/yyyy"); 
+	
 	private String userId;
 	private String username;
 	private Date dateOB;
@@ -26,6 +30,26 @@ public class Profile implements DBSerializable{
 	
 	private Image profilePicture = null;
 	
+	public Profile(String username, Date dateOB, String gender, String description) {
+		this.userId = null;
+		this.username = username;
+		this.dateOB = dateOB;
+		this.gender = gender;
+		this.description = description;
+		this.platforms = new ArrayList<Boolean>();
+		this.genres = new ArrayList<Boolean>();
+	}
+	
+	public Profile(String username, Date dateOB, String gender, String description,
+			   List<Boolean> platforms, List<Boolean> genres) {
+		this.userId = null;
+		this.username = username;
+		this.dateOB = dateOB;
+		this.gender = gender;
+		this.description = description;
+		this.platforms = platforms;
+		this.genres = genres;
+	}
 	
 	public Profile(String userId, String username, Date dateOB, String gender, String description,
 				   List<Boolean> platforms, List<Boolean> genres) {
@@ -105,8 +129,8 @@ public class Profile implements DBSerializable{
 		for(Boolean b : this.platforms) { pls += b? "Y":"N"; };
 		for(Boolean b : this.genres) { gs += b? "Y":"N"; };
 		
-		p.addValue(_PLATFORMS, this.platforms);
-		p.addValue(_GENRES, this.genres);
+		p.addValue(_PLATFORMS, pls);
+		p.addValue(_GENRES, gs);
 		
 		return p;
 	}
