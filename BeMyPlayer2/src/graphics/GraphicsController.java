@@ -77,7 +77,7 @@ public class GraphicsController {
 	public static JFrame getMainFrame() {
 		return mainFrame;
 	}
-
+	
 	public void setMainFrame(JFrame mainFrame) {
 		this.mainFrame = mainFrame;
 	}
