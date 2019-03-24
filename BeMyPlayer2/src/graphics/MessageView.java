@@ -62,13 +62,13 @@ public class MessageView {
         messageController.getMessageModel().setBtnSend(btnSend);
 
         //	init fields and listeners
-        JTextField thread = new JTextField();
-        thread.setBounds(35, 365, 310, 20);
+        JTextArea thread = new JTextArea();
+        thread.setBounds(35, 165, 400, 200);
         thread.setVisible(true);
         messageController.getMessageModel().setThread(thread);
 
-        JTextArea sendBox = new JTextArea();
-        sendBox.setBounds(35, 165, 400, 200);
+        JTextField sendBox = new JTextField();
+        sendBox.setBounds(35, 365, 310, 20);
         sendBox.setVisible(true);
         messageController.getMessageModel().setSendBox(sendBox);
 

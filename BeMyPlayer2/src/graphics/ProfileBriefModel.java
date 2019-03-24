@@ -34,7 +34,7 @@ public class ProfileBriefModel extends JPanel{
 			break;
 		case "Dr.Hammerly": temploc = "/hammerly1.jpg";
 		break;
-		case "Dr.Fry": temploc = "/fry1.jpg";
+		case "Prof.Fry": temploc = "/fry1.jpg";
 			break;
 		case "Prof.Aars":temploc = "/maars1.jpg";	
 			break;

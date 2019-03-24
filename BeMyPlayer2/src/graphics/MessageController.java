@@ -19,6 +19,22 @@ public class MessageController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         switch(e.getActionCommand()) {
             case SEND:
+            	/* 
+            	 * FOR DEMO PRESENTATION
+            	 */
+            	String t = messageModel.getThread().getText();
+            	if(t.isBlank()) {
+            		if(!messageModel.getSendBox().getText().isBlank()) {
+                		t="Me: ";
+            			t += messageModel.getSendBox().getText();
+            		}
+            	} else {
+            		t+="\nMe: ";
+            		t+=messageModel.getSendBox().getText();
+            	}
+            	messageModel.getThread().setText(t);
+            	messageModel.getSendBox().setText("");
+            	
                 /*
                 Message Sending logic with database adapter
                  */
