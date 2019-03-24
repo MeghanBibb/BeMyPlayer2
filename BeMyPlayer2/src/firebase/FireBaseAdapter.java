@@ -122,7 +122,7 @@ public class FireBaseAdapter {
 	}
 	
 	public boolean AuthenticateUserAccount(String user, String passwordHash) {
-		
+	
 		return true;
 	}
 	
