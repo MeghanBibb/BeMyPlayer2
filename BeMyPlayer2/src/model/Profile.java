@@ -134,6 +134,41 @@ public class Profile implements DBSerializable{
 		
 		return p;
 	}
+
+	@Override
+	public void initializeFromPackage(DBDocumentPackage pkg) {
+		for(String s : pkg.getValues().keySet()) {
+			String arrStr;
+			switch(s) {
+				case _USERNAME:
+					this.username = (String) pkg.getValues().get(s);
+					break;
+				case _DATE_OF_BIRTH:
+					this.dateOB = (Date) pkg.getValues().get(s);
+					break;
+				case _GENDER:
+					this.gender = (String) pkg.getValues().get(s);
+					break;
+				case _DESCRIPTION:
+					this.description = (String) pkg.getValues().get(s);
+					break;
+				case _PLATFORMS:
+					arrStr = ((String) pkg.getValues().get(s)).toUpperCase();
+					this.platforms = new ArrayList<Boolean>();
+					for(int i =0 ; i < arrStr.length(); ++i) {
+						this.platforms.add(arrStr.charAt(i) == 'Y');
+					}
+					break;
+				case _GENRES:
+					arrStr = ((String) pkg.getValues().get(s)).toUpperCase();
+					this.genres = new ArrayList<Boolean>();
+					for(int i =0 ; i < arrStr.length(); ++i) {
+						this.genres.add(arrStr.charAt(i) == 'Y');
+					}
+					break;
+			}
+		}
+	}
 	
 	
 }
