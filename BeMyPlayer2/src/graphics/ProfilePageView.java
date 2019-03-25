@@ -17,9 +17,11 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
+import model.Account;
+
 public class ProfilePageView {
 
-	public static void startProfilePage(ProfilePageController profileController, JFrame mainFrame) {
+	public static void startProfilePage(ProfilePageController profileController, JFrame mainFrame,Account a) {
 		//init Model
 		profileController.setProfileModel(new ProfilePageModel());
 		
@@ -51,6 +53,17 @@ public class ProfilePageView {
 		btnBack.addActionListener(profileController);
 		profileController.getProfileModel().setBtnBack(btnBack);
 		
+		//	verify a == Information Expert's active account
+		/*
+		 * if(a.equals(InformationExpert.account)){
+		 * 		//	add edit profile options
+		 * }
+		 * else{
+		 * 		//	add message and block buttons 
+		 * }
+		 */
+		
+		//	pull information for fields from account passed 
 		JButton btnEdit = new JButton("Edit Profile");
 		btnEdit.setBounds(390,10,100,40);
 		btnEdit.setActionCommand(profileController.EDIT_ACCOUNT);
