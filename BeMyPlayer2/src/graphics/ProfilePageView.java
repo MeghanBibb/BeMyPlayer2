@@ -21,7 +21,7 @@ import model.Account;
 
 public class ProfilePageView {
 
-	public static void startProfilePage(ProfilePageController profileController, JFrame mainFrame,Account a) {
+	public static void startProfilePage(ProfilePageController profileController, JFrame mainFrame) {
 		//init Model
 		profileController.setProfileModel(new ProfilePageModel());
 		

@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class ForgotPassPageController implements ActionListener {
+public class ForgotPassPageController extends PageController {
 	
 	// set constant actions
 	public static final String SUBMIT = "submit";
@@ -15,8 +15,11 @@ public class ForgotPassPageController implements ActionListener {
 	private ForgotPassPageModel forgotPasswordModel = null;
 	private JPanel forgotPasswordPanel = null;
 
-	public void launchForgotPasswordPage(JFrame j) {
-		ForgotPassPageView.startForgotPasswordPage(this,j);
+	public void launchPage(JFrame mainFrame, String back) {
+		if(back != null) {
+			backPage = back;
+		}
+		ForgotPassPageView.startForgotPasswordPage(this,mainFrame);
 	}
 	
 	@Override
@@ -24,11 +27,11 @@ public class ForgotPassPageController implements ActionListener {
 		switch(e.getActionCommand()) {
 			case SUBMIT: 
 				System.out.println("Submit");
-				GraphicsController.launchLoginPage();
+				GraphicsController.processPage(PageCreator.LOGIN_PAGE,backPage);
 				break;
 			case BACK:
 				System.out.println("Back");
-				GraphicsController.launchLoginPage();
+				GraphicsController.processPage(PageCreator.LOGIN_PAGE,backPage);
 		}
 	}
 

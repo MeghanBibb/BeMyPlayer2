@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class HomePageController implements ActionListener{
+public class HomePageController extends PageController{
 	
 	// set constant actions
 	public static final String ACCOUNT = "account";
@@ -20,8 +20,11 @@ public class HomePageController implements ActionListener{
 	private HomePageModel homePageModel = null;
 	private JPanel homePanel = null;
 	
-	public void launchHomePage(JFrame j) {
-		HomePageView.launchHomePage(this,j);
+	public void launchPage(JFrame mainFrame, String back) {
+		if(back != null) {
+			backPage = back;
+		}
+		HomePageView.launchHomePage(this,mainFrame);
 	}
 
 	@Override
@@ -29,27 +32,27 @@ public class HomePageController implements ActionListener{
 		switch(e.getActionCommand()) {
 			case ACCOUNT: 
 				System.out.println("Account");
-				GraphicsController.launchProfilePage();
+				GraphicsController.processPage(PageCreator.PROFILE_PAGE,PageCreator.HOME_PAGE);
 				break;
 			case SUPPORT: 
 				System.out.println("Support");
-				GraphicsController.launchSupportPage();
+				GraphicsController.processPage(PageCreator.SUPPORT_PAGE,backPage);
 				break;
 			case FIND_FRIENDS: 
 				System.out.println("Find Friends");
-				GraphicsController.launchSwipePage();
+				GraphicsController.processPage(PageCreator.SWIPE_PAGE,backPage);
 				break;
 			case FIND_LOVE: 
 				System.out.println("Find Love");
-				GraphicsController.launchSwipePage();
+				GraphicsController.processPage(PageCreator.SWIPE_PAGE,backPage);
 				break;
 			case VIEW_MATCHES: 
 				System.out.println("View Matches");
-				GraphicsController.launchViewMatches();
+				GraphicsController.processPage(PageCreator.MATCHES_PAGE,backPage);
 				break;
 			case LOGOUT: 
 				System.out.println("Logout");
-				GraphicsController.launchLoginPage();
+				GraphicsController.processPage(PageCreator.LOGIN_PAGE,backPage);
 				break;
 		}
 	}

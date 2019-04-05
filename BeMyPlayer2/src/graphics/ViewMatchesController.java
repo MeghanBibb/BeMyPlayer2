@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 
 import model.Account;
 
-public class ViewMatchesController implements ActionListener{
+public class ViewMatchesController extends PageController{
 //	action commands 	
 	public static final String NEXT = "next";
 	public static final String BACK="back";
@@ -26,27 +26,32 @@ public class ViewMatchesController implements ActionListener{
 	private Account a;
 	private JFrame copyFrame;
 	private ProfileBriefModel brief = null;
-	public void launchViewMatches(JFrame j,Account a) {
-		this.a = a;
-		this.copyFrame = j;
-		ViewMatchesView.startViewMatches(this,j,a);
+	
+	
+	public void launchPage(JFrame mainFrame, String back) {
+		if(back != null) {
+			backPage = back;
+		}
+		this.a = new Account();
+		this.copyFrame = mainFrame;
+		ViewMatchesView.startViewMatches(this,mainFrame,a);
 	}
 	//	check command 
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getActionCommand() == BACK) {
 			System.out.println("back");
-			GraphicsController.launchHomePage();
+			GraphicsController.processPage(PageCreator.HOME_PAGE, backPage);
 		}
 		else if(e.getActionCommand() == PROFILE) {
 			String text = ((JButton) e.getSource()).getName();
 			System.out.println("launch profile brief for: " + text);
 			if(brief == null) {
-				brief = new ProfileBriefModel(text,new Rectangle(250,120,215,245));
+				brief = new ProfileBriefModel(text,new Rectangle(250,120,215,245),PageCreator.MATCHES_PAGE);
 			}
 			else {
 				this.copyFrame.remove(brief);
-				brief = new ProfileBriefModel(text,new Rectangle(250,120,215,245));
+				brief = new ProfileBriefModel(text,new Rectangle(250,120,215,245),PageCreator.MATCHES_PAGE);
 			}
 			this.copyFrame.add(brief);
 			this.copyFrame.repaint();

@@ -4,15 +4,18 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class SupportController implements ActionListener {
+public class SupportController extends PageController{
     public static final String SUBMIT = "submit";
     public static final String BACK = "back";
 
     private SupportModel supportModel = null;
     private JPanel supportPanel = null;
 
-    public void launchSupportPage(JFrame j) {
-        SupportView.startSupportPage(this,j);
+    public void launchPage(JFrame mainFrame, String back) {
+    	if(back != null) {
+        	backPage = back;
+    	}
+        SupportView.startSupportPage(this,mainFrame);
     }
 
     @Override
@@ -22,12 +25,12 @@ public class SupportController implements ActionListener {
                 if(validateSupInfo()) {
                     System.out.println("Submit");
                     //	logic for updating information here
-                    GraphicsController.launchHomePage();
+                    GraphicsController.processPage(PageCreator.HOME_PAGE,backPage);
                 }
                 break;
             case BACK:
                 System.out.println("Back");
-                GraphicsController.launchHomePage();
+                GraphicsController.processPage(PageCreator.HOME_PAGE,backPage);
         }
     }
 

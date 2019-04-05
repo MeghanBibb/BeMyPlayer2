@@ -48,7 +48,7 @@ public class MessageView {
         JButton backbtn = new JButton("Back");
         backbtn.setBounds(10,10,90,40);
         backbtn.setBackground(yellow);
-        backbtn.setActionCommand(SupportController.BACK);
+        backbtn.setActionCommand(MessageController.BACK);
         backbtn.addActionListener(messageController);
         messageController.getMessageModel().setBack(backbtn);
 
@@ -56,7 +56,7 @@ public class MessageView {
 
         JButton btnSend = new JButton("Send");
         btnSend.setBounds(345,365,90,20);
-        btnSend.setActionCommand(messageController.SEND);
+        btnSend.setActionCommand(MessageController.SEND);
         btnSend.setBackground(white);
         btnSend.addActionListener(messageController);
         messageController.getMessageModel().setBtnSend(btnSend);

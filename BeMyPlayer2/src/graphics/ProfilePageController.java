@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 import model.Account;
 
-public class ProfilePageController implements ActionListener {
+public class ProfilePageController extends PageController {
 	
 	//init command constants
 	public static final String BACK = "back";
@@ -19,10 +19,11 @@ public class ProfilePageController implements ActionListener {
 	// get view and jframe
 	private ProfilePageModel profileModel = null;
 	private JPanel profilePanel = null;
-	private Account a;
-	public void launchProfilePage(JFrame j,Account a) {
-		this.a = a;
-		ProfilePageView.startProfilePage(this,j,this.a);
+	public void launchPage(JFrame mainFrame, String back) {
+		if(back != null) {
+			backPage = back;
+		}
+		ProfilePageView.startProfilePage(this,mainFrame);
 	}
 
 	@Override
@@ -30,17 +31,17 @@ public class ProfilePageController implements ActionListener {
 		switch(e.getActionCommand()) {
 			case BACK:
 				System.out.println("back");
-				GraphicsController.launchHomePage();
+				GraphicsController.processPage(PageCreator.HOME_PAGE,backPage);
 				break;
 			case EDIT_ACCOUNT:
-				GraphicsController.launchEditPage();
+				GraphicsController.processPage(PageCreator.EDIT_ACCOUNT_PAGE,backPage);
 				break;
 			case BLOCK:
 				System.out.println("block");
 				break;
 			case MESSAGE:
 				System.out.println("message");
-				GraphicsController.launchMessagePage();
+				GraphicsController.processPage(PageCreator.MESSAGE_PAGE,backPage);
 				break;
 		}
 		

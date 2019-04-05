@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class LoginPageController implements ActionListener{
+public class LoginPageController extends PageController{
 
 	//	default frame size
 	//public static final int APP_WINDOW_WIDTH = 300;
@@ -26,9 +26,12 @@ public class LoginPageController implements ActionListener{
 	//	init controller 
 	
 	//	launch 
-	public void launchLoginPage(JFrame j) {
+	public void launchPage(JFrame mainFrame, String back) {
+		if(back != null) {
+			backPage = back;
+		}
 		
-		LoginPageView.startLoginPage(this,j);
+		LoginPageView.startLoginPage(this,mainFrame);
 	}
 	//	validate login (should check db)
 	public static boolean validateLogin(String user,String pass) {
@@ -42,18 +45,18 @@ public class LoginPageController implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getActionCommand() == CREATE_ACCOUNT) {
-			GraphicsController.launchCreateAccountPage();
+			GraphicsController.processPage(PageCreator.CREATE_ACCOUNT_PAGE,backPage);
 		}
 		else if(e.getActionCommand() == LOGIN) {
 			if(validateLogin(this.getLoginPageModel().getFrmtdtxtfldEnterUsername().getText(),
 					this.getLoginPageModel().getPwdEnterPass().getText()) == true){
-				GraphicsController.launchHomePage();
+				GraphicsController.processPage(PageCreator.HOME_PAGE, backPage);
 				
 			}
 			
 		}
 		else if(e.getActionCommand() == FORGOT_PASSWORD) {
-			GraphicsController.launchForgotPasswordPage();
+			GraphicsController.processPage(PageCreator.FORGOT_PASSWORD_PAGE,backPage);
 		} else if(e.getActionCommand() == EXIT) {
 			System.exit(0);
 		}

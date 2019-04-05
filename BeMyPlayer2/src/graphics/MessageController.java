@@ -4,15 +4,18 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MessageController implements ActionListener {
+public class MessageController extends PageController {
     public static final String SEND = "send";
     public static final String BACK = "back";
 
     private MessageModel messageModel = null;
     private JPanel messagePanel = null;
 
-    public void launchMessagePage(JFrame j) {
-        MessageView.startMessagePage(this,j);
+    public void launchPage(JFrame mainFrame, String back) {
+    	if(back != null) {
+    		backPage = back;
+    	}
+        MessageView.startMessagePage(this,mainFrame);
     }
 
     @Override
@@ -41,7 +44,7 @@ public class MessageController implements ActionListener {
                 break;
             case BACK:
                 System.out.println("Back");
-                GraphicsController.launchProfilePage();
+                GraphicsController.processPage(PageCreator.PROFILE_PAGE,backPage);
         }
     }
 
