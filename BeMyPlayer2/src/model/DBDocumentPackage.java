@@ -19,6 +19,11 @@ public class DBDocumentPackage {
 		this.values = new HashMap<String, Object>();
 	}
 	
+	public DBDocumentPackage(String key, Map<String, Object> values) {
+		this.primaryKey = key;
+		this.values = values;
+	}
+	
 	public void addValue(String type, Object value) {
 		this.values.put(type, value);
 	}

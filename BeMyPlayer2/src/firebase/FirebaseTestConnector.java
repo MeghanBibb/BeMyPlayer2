@@ -55,6 +55,24 @@ public class FirebaseTestConnector {
 				System.out.println("ADDED ACCOUNT");
 			}else {
 				System.out.println("ACCOUNT EXISTS");
+				System.out.println("Authenticating/Fetching UID...");
+				String uid = adapter.authenticateUserAccount("myOtherEmail@myDomain.org","12345");
+				System.out.println("UID: " + uid);
+				
+				System.out.println("Fetching account...");
+				Account newacc = adapter.getUserAccountNoProfile(uid);
+				System.out.println(newacc.getSecurityQ2());
+				
+				System.out.println("Fetching full account...");
+				Account fullacc = adapter.getUserAccountWithProfile(uid);
+				System.out.println(fullacc.getSecurityQ2());
+				System.out.println(fullacc.getAccountProfile().getDescription());
+				
+				fullacc.setSecurityQ1("IS THIS A NEW SECURITY QUESTION?");
+				fullacc.getAccountProfile().setDescription("This is a modified account description");
+				System.out.println("Updating account with changes...");
+				adapter.updateUserAccount(fullacc);
+				System.out.println("Done!");
 			}
 		} catch (DBFailureException e) {
 			// TODO Auto-generated catch block

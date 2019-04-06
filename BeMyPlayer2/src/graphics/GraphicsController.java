@@ -14,8 +14,6 @@ public class GraphicsController {
 	private static JFrame mainFrame;
 	private static Account temp;
 	
-	
-	
 	GraphicsController(Account a) {
 //			init default jframe as base frame
 			//temp = a;
@@ -28,6 +26,7 @@ public class GraphicsController {
 			
 			this.launchLoginPage();
 	}
+	
 	public static void launchLoginPage() {
 		LoginPageController controller = new LoginPageController();
 		controller.launchLoginPage(mainFrame);
@@ -58,6 +57,7 @@ public class GraphicsController {
 		PaymentPageController paymentController = new PaymentPageController();
 		paymentController.launchPaymentPage(mainFrame);
 	}
+	
 	public static void launchViewMatches() {
 		ViewMatchesController viewMatchController = new ViewMatchesController();
 		viewMatchController.launchViewMatches(mainFrame, temp);
@@ -71,10 +71,12 @@ public class GraphicsController {
 		SupportController supportController = new SupportController();
 		supportController.launchSupportPage(mainFrame);
 	}
+	
 	public static void launchMessagePage(){
 		MessageController messageController = new MessageController();
 		messageController.launchMessagePage(mainFrame);
 	}
+	
 	public static JFrame getMainFrame() {
 		return mainFrame;
 	}

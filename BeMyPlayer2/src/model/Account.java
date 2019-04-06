@@ -34,7 +34,7 @@ public class Account implements DBSerializable{
 	Profile accountProfile = null; // This composition is optional
 	
 	public Account() {
-		//Initialize default values (this is for testing purposes)
+		//Initialize to default values
 	}
 	
 	public Account(String email, String pHash, String sq1, String sqa1, String sq2, String sqa2) {
@@ -145,10 +145,12 @@ public class Account implements DBSerializable{
 
 	@Override
 	public void initializeFromPackage(DBDocumentPackage pkg) {
+		
+		this.userId = pkg.getPrimaryKey();
 		for(String s : pkg.getValues().keySet()) {
 			switch(s) {
 				case _EMAIL:
-				this.email = (String) pkg.getValues().get(s);
+					this.email = (String) pkg.getValues().get(s);
 					break;
 				case _PASSWORD_HASH:
 					this.passwordHash = (String) pkg.getValues().get(s);

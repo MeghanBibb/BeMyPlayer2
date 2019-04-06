@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import firebase.FireBaseSchema;
+
 public class Profile implements DBSerializable{
 	
 	// These cannot be modified, as they provide the basis of the 
@@ -29,6 +31,10 @@ public class Profile implements DBSerializable{
 	private List<Boolean> genres;
 	
 	private Image profilePicture = null;
+	
+	public Profile() {
+		// Initialize to default values
+	}
 	
 	public Profile(String username, Date dateOB, String gender, String description) {
 		this.userId = null;
@@ -137,6 +143,9 @@ public class Profile implements DBSerializable{
 
 	@Override
 	public void initializeFromPackage(DBDocumentPackage pkg) {
+		
+		this.userId = pkg.getPrimaryKey();
+		
 		for(String s : pkg.getValues().keySet()) {
 			String arrStr;
 			switch(s) {
@@ -144,7 +153,7 @@ public class Profile implements DBSerializable{
 					this.username = (String) pkg.getValues().get(s);
 					break;
 				case _DATE_OF_BIRTH:
-					this.dateOB = (Date) pkg.getValues().get(s);
+					this.dateOB = FireBaseSchema.parseDate(pkg.getValues().get(s));
 					break;
 				case _GENDER:
 					this.gender = (String) pkg.getValues().get(s);
