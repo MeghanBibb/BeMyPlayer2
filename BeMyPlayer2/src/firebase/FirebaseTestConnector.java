@@ -29,7 +29,6 @@ public class FirebaseTestConnector {
 	//initialize app connector
 	public static void main(String[] args) {
 		
-		
 		FireBaseAdapter adapter = new FireBaseAdapter();
 		adapter.initializeDBConnection();
 		
