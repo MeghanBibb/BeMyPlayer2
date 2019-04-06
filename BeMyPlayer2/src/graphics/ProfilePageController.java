@@ -10,6 +10,7 @@ import model.Account;
 
 public class ProfilePageController extends PageController {
 	
+	
 	//init command constants
 	public static final String BACK = "back";
 	public static final String EDIT_ACCOUNT = "edit";
@@ -19,11 +20,23 @@ public class ProfilePageController extends PageController {
 	// get view and jframe
 	private ProfilePageModel profileModel = null;
 	private JPanel profilePanel = null;
+	private Account a;
+	
 	public void launchPage(JFrame mainFrame, String back) {
 		if(back != null) {
 			backPage = back;
 		}
+
+		a = GraphicsController.getProfileAccount();
 		ProfilePageView.startProfilePage(this,mainFrame);
+	}
+	
+	public boolean isActiveAccount() {
+		return GraphicsController.isActiveAccount(a);
+	}
+	
+	public Account getAccount() {
+		return a;
 	}
 
 	@Override

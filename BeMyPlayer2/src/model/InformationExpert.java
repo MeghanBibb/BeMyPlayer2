@@ -18,6 +18,22 @@ public class InformationExpert {
 		if(!databaseAdapter.initializeDBConnection()){
 			//error, could not initialize database
 		}
+		
+		//should database dump these, also other account should be null until needed
+		activeUserAccount = new Account();
+		try {
+			activeUserAccount = getUserAccount("4WlKcGHoFUfuyxqQCB7y");
+		} catch (DBFailureException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		otherAccount = new Account();
+		try {
+			otherAccount = getUserAccount("86DV4wIRNJ393akBJbmA");
+		} catch (DBFailureException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public static boolean attemptAddNewAccount(Account a) throws DBFailureException {
@@ -44,7 +60,10 @@ public class InformationExpert {
 		return otherAccount;
 	}
 	
-	
-	
-
+	public static boolean isActiveUser(Account a) {
+		if(a == activeUserAccount) {
+			return true;
+		}
+		return false;
+	}
 }

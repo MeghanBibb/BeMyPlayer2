@@ -59,7 +59,8 @@ public class ProfileBriefModel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				//	replace with launch given username for iteration 3
+				// set the other account to selected account
+				GraphicsController.setProfileAccountOther();
 				GraphicsController.processPage(PageCreator.PROFILE_PAGE, backPage);
 			}
 			

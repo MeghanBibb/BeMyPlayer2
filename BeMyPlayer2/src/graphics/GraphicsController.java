@@ -9,13 +9,15 @@ import model.Account;
 import model.InformationExpert;
 
 public class GraphicsController {
+
+	private static final String ACTIVE_ACCOUNT = "active account";
+	private static final String OTHER_ACCOUNT = "other account";
 	
 	private static JFrame mainFrame;
-	private static Account temp;
+	private static String profileAccount;
 	
 	GraphicsController() {
 //			init default jframe as base frame
-			//temp = a;
 			mainFrame = (new JFrame("BeMyPlayer2"));
 			mainFrame.setSize(400, 300);
 			mainFrame.setMaximumSize(new Dimension(500,400));
@@ -32,6 +34,22 @@ public class GraphicsController {
 		newPage.launchPage(mainFrame, backPage);
 	}
 	
+
+	public static Account getProfileAccount() {
+		if(profileAccount == ACTIVE_ACCOUNT) {
+			return getActiveAccount();
+		} else {
+			return getOtherAccount();
+		}
+	}
+	
+	public static void setProfileAccountActive() {
+		profileAccount = ACTIVE_ACCOUNT;
+	}
+	
+	public static void setProfileAccountOther() {
+		profileAccount = OTHER_ACCOUNT;
+	}
 	
 	public static JFrame getMainFrame() {
 		return mainFrame;
@@ -40,6 +58,7 @@ public class GraphicsController {
 	public void setMainFrame(JFrame frame) {
 		mainFrame = frame;
 	}
+	
 	
 	/* Info Expert Calls */
 	public static boolean attemptAddNewAccount(Account a) throws DBFailureException {
@@ -64,6 +83,10 @@ public class GraphicsController {
 	
 	public static Account getOtherAccount() {
 		return InformationExpert.getOtherAccount();
+	}
+	
+	public static boolean isActiveAccount(Account a) {
+		return InformationExpert.isActiveUser(a);
 	}
 	
 	

@@ -32,6 +32,7 @@ public class HomePageController extends PageController{
 		switch(e.getActionCommand()) {
 			case ACCOUNT: 
 				System.out.println("Account");
+				GraphicsController.setProfileAccountActive();
 				GraphicsController.processPage(PageCreator.PROFILE_PAGE,PageCreator.HOME_PAGE);
 				break;
 			case SUPPORT: 
