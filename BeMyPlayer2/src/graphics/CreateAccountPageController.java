@@ -144,6 +144,7 @@ public class CreateAccountPageController extends PageController{
 				
 				try {
 					GraphicsController.attemptAddNewAccount(a);
+					InformationExpert.setActiveAccount(a);
 				} catch (DBFailureException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
