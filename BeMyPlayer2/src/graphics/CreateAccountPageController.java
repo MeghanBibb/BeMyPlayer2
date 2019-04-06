@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 
 import firebase.DBFailureException;
 import firebase.FireBaseAdapter;
+import firebase.Hasher;
 import model.Account;
 import model.Profile;
 
@@ -154,7 +155,7 @@ public class CreateAccountPageController extends PageController{
 		 *//*
 		 */
 		//	VALIDATIONS
-		/*
+		
 		if(this.createAccountPageModel.getFrmtdtxtfldEnterUsername().getText().equalsIgnoreCase("")) {
 			valid = false;
 		}
@@ -164,6 +165,12 @@ public class CreateAccountPageController extends PageController{
 		}
 		
 		if(this.createAccountPageModel.getPwdValidatePass().getText().equalsIgnoreCase("")) {
+			valid = false;
+		}
+		this.createAccountPageModel.getPwdEnterPass().setText(Hasher.hashString(this.createAccountPageModel.getPwdEnterPass().getText()));
+		this.createAccountPageModel.getPwdValidatePass().setText(Hasher.hashString(this.createAccountPageModel.getPwdValidatePass().getText()));
+		
+		if(!this.createAccountPageModel.getPwdEnterPass().getText().equals(this.createAccountPageModel.getPwdValidatePass().getText())) {
 			valid = false;
 		}
 		if(this.createAccountPageModel.getSecQA().getText().equalsIgnoreCase("")) {
@@ -182,7 +189,7 @@ public class CreateAccountPageController extends PageController{
 		}  catch(NumberFormatException nfe)  {  
 			  valid = false;  
 		}  
-		*/
+		
 		return valid;
 	}
 	public boolean validateCreatePage2() {
