@@ -97,6 +97,7 @@ public class CreateAccountPageController extends PageController{
 			
 			if(validateCreatePage3()) {
 				//	CATCH FILE DUPLICATE
+				/*
 				File temp = new File(this.createAccountPageModel.getImagePath());
 				
 				File t2 = new File("bin\\dskfjlslkdjf");
@@ -115,7 +116,7 @@ public class CreateAccountPageController extends PageController{
 				catch(IOException e1) {
 					
 				}
-				
+				*/
 				a = new Account();
 				a.setEmail(this.getCreateAccountPageModel().getEnterEmail().getText());
 				a.setPasswordHash(this.getCreateAccountPageModel().getPwdEnterPass().getText());
@@ -202,7 +203,7 @@ public class CreateAccountPageController extends PageController{
 	}
 	public boolean validateCreatePage2() {
 		boolean valid = true;
-		/*
+		
 		int countPlat = 0;
 		int countGenre = 0;
 		this.createAccountPageModel.setCheckLister(new ArrayList<>());
@@ -222,7 +223,7 @@ public class CreateAccountPageController extends PageController{
 		if(countPlat == 0 || countGenre == 0) {
 			valid = false;
 		}
-		*/
+		
 		return valid;
 	}
 	public boolean validateCreatePage3() {
