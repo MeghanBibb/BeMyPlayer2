@@ -39,7 +39,7 @@ public class FireBaseAdapter {
 	
 	public final static Logger LOGGER = Logger.getLogger(FireBaseAdapter.class.getName());
 	
-	private static final String FIREBASE_TOKEN_PATH = "C:/Users/colin/firebase/ServiceAccountKey/bemyplayer2-e65fc-dca2d3903ee3.json";
+	private static final String FIREBASE_TOKEN_PATH = "db/bemyplayer2-e65fc-dca2d3903ee3.json";
 	private static final String DB_URL = "https://bemyplayer2-e65fc.firebaseio.com";
 	private Firestore db = null;
 	
@@ -284,19 +284,60 @@ public class FireBaseAdapter {
 					LOGGER.log(Level.WARNING,"Error- Account does not have corresponding profile");
 					LOGGER.log(Level.WARNING,"Creating Profile...");
 					
-				}else {
-					DBDocumentPackage profWrite = account.getAccountProfile().toDBPackage();
-					ApiFuture<WriteResult> profUpdateResult = profRef.set(profWrite.getValues());
-					profUpdateResult.get();
 				}
+				DBDocumentPackage profWrite = account.getAccountProfile().toDBPackage();
+				ApiFuture<WriteResult> profUpdateResult = profRef.set(profWrite.getValues());
+				profUpdateResult.get();
 			}
 			accUpdateResult.get();
 				
 		} catch (InterruptedException e) {
-			LOGGER.log(Level.SEVERE,"Error- new Account update query interrupted.");
+			LOGGER.log(Level.SEVERE,"Error- Account update query interrupted.");
 			throw new DBFailureException();
 		} catch (ExecutionException e) {
 			LOGGER.log(Level.SEVERE,"Error- Execution Exception thrown while updating Account.");
+			throw new DBFailureException();
+		}
+		LOGGER.log(Level.FINE,"Updated an Account.");
+		return true;
+	}
+	
+	public boolean updateProfile(Profile profile) throws DBFailureException {
+		if(this.db == null) {
+			LOGGER.log(Level.WARNING, "Error- no database connection");
+			throw new DBFailureException();
+		}
+		
+		ApiFuture<DocumentSnapshot> profileExists = 
+				db.collection(FireBaseSchema.PROFILES_TABLE)
+				.document(profile.getUserId())
+				.get();
+		DocumentReference profRef = db.collection(FireBaseSchema.PROFILES_TABLE)
+				.document(profile.getUserId());
+		Profile userProf = null;
+		
+		if(profile == null || profile.getUserId() == null) {
+			LOGGER.log(Level.WARNING,"Profile has no initialized userId; cannot update");
+			throw new DBFailureException();
+		}
+		
+		
+		try {
+			DocumentSnapshot profSnapshot = profileExists.get();
+			if(!profSnapshot.exists()) {
+				LOGGER.log(Level.WARNING,"Error- Profile does not exist in database.");
+				
+			}else {
+				DBDocumentPackage profWrite = profile.toDBPackage();
+				ApiFuture<WriteResult> profUpdateResult = profRef.set(profWrite.getValues());
+				profUpdateResult.get();
+			}
+			
+		} catch (InterruptedException e) {
+			LOGGER.log(Level.SEVERE,"Error- Profile update query interrupted.");
+			throw new DBFailureException();
+		} catch (ExecutionException e) {
+			LOGGER.log(Level.SEVERE,"Error- Execution Exception thrown while updating Profile.");
 			throw new DBFailureException();
 		}
 		LOGGER.log(Level.FINE,"Updated an Account.");

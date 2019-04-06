@@ -69,11 +69,16 @@ public class FirebaseTestConnector {
 				System.out.println(fullacc.getAccountProfile().getDescription());
 				
 				fullacc.setSecurityQ1("IS THIS A NEW SECURITY QUESTION?");
-				fullacc.getAccountProfile().setDescription("This is a modified account description");
+				fullacc.getAccountProfile().setDescription("This is an account description modified again.");
 				System.out.println("Updating account with changes...");
 				adapter.updateUserAccount(fullacc);
+				
+				System.out.println("Updating Profile to have new description...");
+				fullacc.getAccountProfile().setDescription("THIS IS A TOTALLY NEW DESCRIPTION!");
+				adapter.updateProfile(fullacc.getAccountProfile());
 				System.out.println("Done!");
 			}
+			
 		} catch (DBFailureException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
