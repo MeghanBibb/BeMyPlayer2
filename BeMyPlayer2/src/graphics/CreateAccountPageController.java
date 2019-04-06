@@ -110,6 +110,8 @@ public class CreateAccountPageController extends PageController{
 				catch(IOException e1) {
 					
 				}
+				
+				
 				GraphicsController.processPage(PageCreator.HOME_PAGE,backPage);
 			}
 			

@@ -11,8 +11,6 @@ public class GraphicsController {
 	private static JFrame mainFrame;
 	private static Account temp;
 	
-	
-	
 	GraphicsController(Account a) {
 //			init default jframe as base frame
 			//temp = a;
