@@ -3,6 +3,9 @@ package graphics;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 import firebase.DBFailureException;
 import model.Account;
@@ -93,14 +96,15 @@ public class GraphicsController {
 	/*    MAIN METHOD   */
 	
 	public static void main(String[] args) {
-		/*
 		try {
-			 System.setProperty("os.name", "Windows");
-			 System.setProperty("os.version", "5.1");
-			 UIManager.setLookAndFeel(
-			   "com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+		        if ("Nimbus".equals(info.getName())) {
+		            UIManager.setLookAndFeel(info.getClassName());
+		            break;
+		        }
+		    }
 			 } 
-			catch (Exception ex) {}*/
+			catch (Exception ex) {ex.printStackTrace();}
 		
 		// See the updated Account object in the model package...
 		InformationExpert.initializeAdapter();

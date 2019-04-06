@@ -1,9 +1,23 @@
 package model;
 
+import java.io.FileInputStream;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
+
+import com.google.api.core.ApiFuture;
+import com.google.auth.oauth2.GoogleCredentials;
+import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.DocumentSnapshot;
+import com.google.cloud.firestore.QuerySnapshot;
+import com.google.cloud.firestore.WriteResult;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
+import com.google.firebase.cloud.FirestoreClient;
 
 import firebase.DBFailureException;
 import firebase.FireBaseAdapter;
+import firebase.FireBaseSchema;
 
 public class InformationExpert {
 	
@@ -20,20 +34,21 @@ public class InformationExpert {
 		}
 		
 		//should database dump these, also other account should be null until needed
-		activeUserAccount = new Account();
+		activeUserAccount = new Account();/*
 		try {
 			activeUserAccount = getUserAccount("21R6vA3D6LtA7ilWsprZ");
 		} catch (DBFailureException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		otherAccount = new Account();
+		
 		try {
 			otherAccount = getUserAccount("86DV4wIRNJ393akBJbmA");
 		} catch (DBFailureException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
+		otherAccount = new Account();
 	}
 	
 	public static boolean attemptAddNewAccount(Account a) throws DBFailureException {
@@ -55,7 +70,10 @@ public class InformationExpert {
 	public static Account getActiveAccount() {
 		return activeUserAccount;
 	}
-	
+	public static void setActiveAccount(Account a) {
+		System.out.println("setting active account " + a.getEmail());
+		activeUserAccount = a;
+	}
 	public static Account getOtherAccount() {
 		return otherAccount;
 	}
@@ -66,4 +84,17 @@ public class InformationExpert {
 		}
 		return false;
 	}
+	
+	public static String authenticateUserAccount(String userEmail, String passwordHash) throws DBFailureException {
+		return databaseAdapter.authenticateUserAccount(userEmail, passwordHash);
+	}
+	
+	public static Account getUserAccountNoProfile(String userId) throws DBFailureException{
+		return databaseAdapter.getUserAccountNoProfile(userId);
+	}
+	
+	public static Account getUserAccountWithProfile(String userId) throws DBFailureException{
+		return databaseAdapter.getUserAccountWithProfile(userId);
+	}
+	
 }

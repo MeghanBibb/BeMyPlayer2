@@ -66,7 +66,6 @@ public class Account implements DBSerializable{
 		this.accountProfile = accountProfile;
 	}
 	
-
 	public String getEmail() {
 		return email;
 	}

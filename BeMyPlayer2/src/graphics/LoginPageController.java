@@ -7,6 +7,11 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import firebase.DBFailureException;
+import firebase.Hasher;
+import model.Account;
+import model.InformationExpert;
+
 public class LoginPageController extends PageController{
 
 	//	default frame size
@@ -38,8 +43,17 @@ public class LoginPageController extends PageController{
 		boolean valid = true;
 		if(user.equalsIgnoreCase("") || pass.equalsIgnoreCase("")) {
 			valid = false;
+		}else {
+			try {
+				String userHash = InformationExpert.authenticateUserAccount(user, Hasher.hashString(pass));
+				
+				InformationExpert.setActiveAccount(InformationExpert.getUserAccountWithProfile(userHash));
+				
+			} catch (DBFailureException e) {
+				// TODO Auto-generated catch block
+				valid = false;
+			}
 		}
-		
 		return valid;
 	}
 	public void actionPerformed(ActionEvent e) {
