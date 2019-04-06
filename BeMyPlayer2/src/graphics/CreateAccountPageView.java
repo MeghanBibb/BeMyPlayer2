@@ -116,7 +116,7 @@ public class CreateAccountPageView {
 		if(visited == true) {
 			age.setText(capController.getCreateAccountPageModel().getAge().getText());
 		}
-		//age.setText("enter age");
+		age.setText("dd/mm/yyyy");
 		age.setBounds(275, 95, 128, 32);
 		capController.getCreateAccountPageModel().setAge(age);
 		capController.getCreateAccountPanel().add(capController.getCreateAccountPageModel().getAge());
