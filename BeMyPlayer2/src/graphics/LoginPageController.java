@@ -60,11 +60,11 @@ public class LoginPageController extends PageController{
 			GraphicsController.processPage(PageCreator.CREATE_ACCOUNT_PAGE,backPage);
 		}
 		else if(e.getActionCommand() == LOGIN) {
-			if(validateLogin(this.getLoginPageModel().getFrmtdtxtfldEnterUsername().getText(),
-					this.getLoginPageModel().getPwdEnterPass().getText()) == true){
+		//	if(validateLogin(this.getLoginPageModel().getFrmtdtxtfldEnterUsername().getText(),
+			//		this.getLoginPageModel().getPwdEnterPass().getText()) == true){
 				GraphicsController.processPage(PageCreator.HOME_PAGE, backPage);
 				
-			}
+		//	}
 			
 		}
 		else if(e.getActionCommand() == FORGOT_PASSWORD) {
