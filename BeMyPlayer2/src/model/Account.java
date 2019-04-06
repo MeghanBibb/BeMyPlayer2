@@ -106,7 +106,9 @@ public class Account implements DBSerializable{
 	public String getPasswordHash() {
 		return passwordHash;
 	}
-	
+	public void setPasswordHash(String p) {
+		this.passwordHash = p;
+	}
 	public List<String> getLoveMatches() {
 		return loveMatches;
 	}

@@ -200,15 +200,7 @@ public class CreateAccountPageController extends PageController{
 		if(this.createAccountPageModel.getAge().getText().equalsIgnoreCase("")) {
 			valid = false;
 		}
-		try{  
-			//	must have valid age
-			int i = Integer.parseInt(this.createAccountPageModel.getAge().getText().toString());
-			if(i > 100 || i < 18) {
-				valid = false;
-			}
-		}  catch(NumberFormatException nfe)  {  
-			  valid = false;  
-		}  
+		
 		
 		return valid;
 	}
