@@ -184,8 +184,8 @@ public class EditAccountPageModel {
 	}
 	
 	public Date getDob() throws ParseException {
-		SimpleDateFormat tf = new SimpleDateFormat("dd/MM/YYYY");
-		this.dob = (Date)tf.parse(this.age.getText());
+		SimpleDateFormat tf = new SimpleDateFormat("dd/MM/yyyy");
+		this.dob = tf.parse(this.age.getText().strip());
 		return dob;
 	}
 	public void setDob(Date dob) {
