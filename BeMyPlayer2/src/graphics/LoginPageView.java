@@ -104,7 +104,7 @@ public class LoginPageView {
 		loginController.getLoginPageModel().setLblBeMyPlayer(lblBeMyPlayer);
 		loginController.getLoginPanel().add(loginController.getLoginPageModel().getLblBeMyPlayer());
 		
-		JLabel usernameLabel = new JLabel("Username:");
+		JLabel usernameLabel = new JLabel("Email:");
 		usernameLabel.setBounds(230, 120, 128, 82);
 		usernameLabel.setForeground(yellow);
 		loginController.getLoginPageModel().setLblUsername(usernameLabel);
