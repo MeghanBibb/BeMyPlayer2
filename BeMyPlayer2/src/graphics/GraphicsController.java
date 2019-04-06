@@ -4,14 +4,16 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
+import firebase.DBFailureException;
 import model.Account;
+import model.InformationExpert;
 
 public class GraphicsController {
 	
 	private static JFrame mainFrame;
 	private static Account temp;
 	
-	GraphicsController(Account a) {
+	GraphicsController() {
 //			init default jframe as base frame
 			//temp = a;
 			mainFrame = (new JFrame("BeMyPlayer2"));
@@ -30,12 +32,38 @@ public class GraphicsController {
 		newPage.launchPage(mainFrame, backPage);
 	}
 	
+	
 	public static JFrame getMainFrame() {
 		return mainFrame;
 	}
 	
 	public void setMainFrame(JFrame frame) {
 		mainFrame = frame;
+	}
+	
+	/* Info Expert Calls */
+	public static boolean attemptAddNewAccount(Account a) throws DBFailureException {
+		return InformationExpert.attemptAddNewAccount(a);
+	}
+	
+	public static Account getUserAccount(String userId) throws DBFailureException {
+		return InformationExpert.getUserAccount(userId);
+	}
+	
+	public static boolean updateUserAccount(Account a) throws DBFailureException {
+		return InformationExpert.updateUserAccount(a);
+	}
+	
+	public static boolean updateUserProfile(Account a) throws DBFailureException {
+		return InformationExpert.updateUserProfile(a);
+	}
+	
+	public static Account getActiveAccount() {
+		return InformationExpert.getActiveAccount();
+	}
+	
+	public static Account getOtherAccount() {
+		return InformationExpert.getOtherAccount();
 	}
 	
 	
@@ -52,8 +80,7 @@ public class GraphicsController {
 			catch (Exception ex) {}*/
 		
 		// See the updated Account object in the model package...
-		Account a = new Account();
-		GraphicsController g = new GraphicsController(a);
+		GraphicsController g = new GraphicsController();
 	}
 	
 }
