@@ -16,6 +16,7 @@ import firebase.DBFailureException;
 import firebase.FireBaseAdapter;
 import firebase.Hasher;
 import model.Account;
+import model.InformationExpert;
 import model.Profile;
 
 public class CreateAccountPageController extends PageController{
@@ -113,27 +114,34 @@ public class CreateAccountPageController extends PageController{
 				}
 				catch(IOException e1) {
 					
-				}/*
+				}
+				
 				a = new Account();
-				a.setEmail(this.getCreateAccountPageModel().get);
+				a.setEmail(this.getCreateAccountPageModel().getEnterEmail().getText());
+				a.setPasswordHash(this.getCreateAccountPageModel().getPwdEnterPass().getText());
+				a.setSecurityQ1(this.getCreateAccountPageModel().getSecurityQuestions());
+				a.setSecurityQ1AnsHash(Hasher.hashString(this.getCreateAccountPageModel().getSecQA().getText()));
+				
 				//	set account fields
 				//	set profile fields
 				Profile p = new Profile();
+				p.setUsername(this.getCreateAccountPageModel().getFrmtdtxtfldEnterUsername().getText());
+				p.setDescription(this.getCreateAccountPageModel().getCharDescription().getText());
+				p.setGender(this.getCreateAccountPageModel().getGender());
+				
+				p.setPlatforms(this.getCreateAccountPageModel().getPlatforms());
+				p.setGenres(this.getCreateAccountPageModel().getGenres());
+				p.setProfilePicture(this.getCreateAccountPageModel().getProfileImg());
 				a.setAccountProfile(p);
 				
-				FireBaseAdapter fd = new FireBaseAdapter();
 				
-				fd.initializeDBConnection();	//	t/f 
 				try {
-					if(fd.attemptAddNewAccount(a) == true) {
-						//	account added
-						
-					}
+					GraphicsController.attemptAddNewAccount(a);
 				} catch (DBFailureException e1) {
 					// TODO Auto-generated catch block
-					//	log error and launch notification
 					e1.printStackTrace();
-				}*/
+					//	must be a connection issue
+				}
 				GraphicsController.processPage(PageCreator.HOME_PAGE,backPage);
 			}
 			

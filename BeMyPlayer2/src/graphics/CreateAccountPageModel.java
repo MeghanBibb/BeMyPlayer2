@@ -137,6 +137,12 @@ public class CreateAccountPageModel {
 	public List<Boolean> getCheckLister() {
 		return checkLister;
 	}
+	public List<Boolean> getPlatforms(){
+		return checkLister.subList(0, 6);
+	}
+	public List<Boolean> getGenres(){
+		return checkLister.subList(6, checkList.size());
+	}
 	public void setCheckLister(List<Boolean> checkLister) {
 		this.checkLister = checkLister;
 	}
