@@ -3,11 +3,16 @@ package graphics;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.RoundRectangle2D;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -20,6 +25,7 @@ public class ProfileBriefModel extends JPanel{
 	private String backPage;
 	ProfileBriefModel(String s,Rectangle r, String page){
 		this.backPage = page;
+
 		//Color yellow = new Color(254, 195, 123);
 		Color black = new Color(204, 255, 255);
 		Color yellow = new Color(254, 195, 123);
@@ -52,7 +58,7 @@ public class ProfileBriefModel extends JPanel{
 		this.setBackground(yellow);
 		
 		viewProfile.setBackground(red);
-		viewProfile.setBounds(40, 140, 150, 60);
+		viewProfile.setBounds(50, 140, 150, 60);
 		viewProfile.setForeground(white);
 		viewProfile.addActionListener(new ActionListener() {
 
@@ -85,5 +91,24 @@ public class ProfileBriefModel extends JPanel{
 		this.add(setIcon);
 		this.setVisible(true);
 	}
-
+	@Override
+	  protected void paintComponent(Graphics g) {
+		RoundRectangle2D r = new RoundRectangle2D.Float(this.getAlignmentX(), this.getAlignmentY(), this.getWidth(), this.getHeight(), 7, 7);
+		g.setClip(r);
+	    super.paintComponent(g);
+	  ////
+		Image backgroundImage;
+		try {
+			
+			backgroundImage = ImageIO.read(new File("profile_brief_background.png"));
+			g.drawImage(backgroundImage.getScaledInstance(this.getWidth()+20, this.getHeight(), Image.SCALE_SMOOTH), 0, 0, null);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		////
+	}
 }
