@@ -4,7 +4,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.BorderFactory;
@@ -15,7 +19,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 import model.Account;
@@ -109,11 +112,23 @@ public class ProfilePageView {
 		lblUsername.setBounds(120,35,90,90);
 		profileController.getProfileModel().setLblUsername(lblUsername);
 		
+
+		/*Age stuff*/
 		JLabel lblAge = new JLabel();
-		Date s = profileController.getAccount().getAccountProfile().getDateOB();
+		LocalDate now = LocalDate.now();
+		Date nowDate = java.sql.Date.valueOf(now);
+		Calendar cnow = Calendar.getInstance();
+		cnow.setTime(nowDate);
+		Date bday = profileController.getAccount().getAccountProfile().getDateOB();
+		Calendar cbday = Calendar.getInstance();
+		cbday.setTime(bday);
+		int diff = cnow.get(Calendar.YEAR) - cbday.get(Calendar.YEAR);
+		if(cnow.get(Calendar.MONTH) == cbday.get(Calendar.MONTH) && cnow.get(Calendar.DATE) > cbday.get(Calendar.DATE) ) {
+			diff--;
+		}
+		lblAge.setText(Integer.toString(diff) + " years old");
 		lblAge.setForeground(yellow);
-		lblAge.setText("age");
-		lblAge.setBounds(120,65,90,90);
+		lblAge.setBounds(120,65,150,90);
 		profileController.getProfileModel().setLblAge(lblAge);
 		
 		JLabel lblGender = new JLabel();
