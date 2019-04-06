@@ -17,7 +17,9 @@ import javax.swing.JScrollPane;
 
 public class ProfileBriefModel extends JPanel{
 	ViewMatchesController viewMatchController = new ViewMatchesController();
-	ProfileBriefModel(String s,Rectangle r){
+	private String backPage;
+	ProfileBriefModel(String s,Rectangle r, String page){
+		this.backPage = page;
 		//Color yellow = new Color(254, 195, 123);
 		Color black = new Color(204, 255, 255);
 		Color yellow = new Color(254, 195, 123);
@@ -58,7 +60,7 @@ public class ProfileBriefModel extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				//	replace with launch given username for iteration 3
-				GraphicsController.launchProfilePage();
+				GraphicsController.processPage(PageCreator.PROFILE_PAGE, backPage);
 			}
 			
 		});

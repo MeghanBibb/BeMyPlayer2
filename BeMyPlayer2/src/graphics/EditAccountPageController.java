@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class EditAccountPageController implements ActionListener{
+public class EditAccountPageController extends PageController{
 	
 	public static final String BACK = "back";
 	public static final String CANCEL = "cancel";
@@ -20,9 +20,12 @@ public class EditAccountPageController implements ActionListener{
 	private EditAccountPageModel editAccountModel = null;
 	private JPanel editAccountPanel = null;
 	
-	public void launchEditPage(JFrame j) {
-		this.copyFrame = j;
-		EditAccountPageView.launchEditPage(this,j);
+	public void launchPage(JFrame mainFrame, String back) {
+		if(back != null) {
+			backPage = back;
+		}
+		this.copyFrame = mainFrame;
+		EditAccountPageView.launchEditPage(this,mainFrame);
 	}
 
 	@Override
@@ -30,14 +33,14 @@ public class EditAccountPageController implements ActionListener{
 		switch(e.getActionCommand()) {
 			case BACK:	//go back to profile page
 				this.editAccountPanel.removeAll();
-				GraphicsController.launchProfilePage();
+				GraphicsController.processPage(PageCreator.PROFILE_PAGE, backPage);
 				break;
 			case CANCEL://go back to edit page
-				GraphicsController.launchEditPage();
+				GraphicsController.processPage(PageCreator.EDIT_ACCOUNT_PAGE, backPage);
 				break;
 			case SUBMIT: //save info and go back to edit page
 				System.out.println("Submit");
-				GraphicsController.launchEditPage();
+				GraphicsController.processPage(PageCreator.EDIT_ACCOUNT_PAGE, backPage);
 				break;
 			case PROFILE://go to edit profile page
 				this.editAccountPanel.removeAll();
@@ -56,7 +59,7 @@ public class EditAccountPageController implements ActionListener{
 				EditAccountPageView.launchEditQuestionnairePage(this, copyFrame);
 				break;
 			case UPGRADE:		//go to upgrade account page
-				GraphicsController.launchPaymentPage();
+				GraphicsController.processPage(PageCreator.PAYMENT_PAGE,backPage);
 				break;
 		}
 		

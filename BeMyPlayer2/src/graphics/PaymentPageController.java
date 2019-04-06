@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class PaymentPageController implements ActionListener{
+public class PaymentPageController extends PageController{
 	
 	public static final String BACK = "back";
 	public static final String SUBMIT = "submit";
@@ -14,8 +14,11 @@ public class PaymentPageController implements ActionListener{
 	private PaymentPageModel paymentModel = null;
 	private JPanel paymentPanel = null;
 	
-	public void launchPaymentPage(JFrame j) {
-		PaymentPageView.launchPaymentPage(this,j);
+	public void launchPage(JFrame mainFrame, String back) {
+		if(back != backPage) {
+			backPage = back;
+		}
+		PaymentPageView.launchPaymentPage(this,mainFrame);
 	}
 	
 	public PaymentPageModel getPaymentModel() {
@@ -45,11 +48,11 @@ public class PaymentPageController implements ActionListener{
 		switch(e.getActionCommand()) {
 			case BACK:
 				System.out.println("back");
-				GraphicsController.launchEditPage();
+				GraphicsController.processPage(PageCreator.EDIT_ACCOUNT_PAGE,backPage);
 				break;
 			case SUBMIT:
 				System.out.println("Submit");
-				GraphicsController.launchEditPage();
+				GraphicsController.processPage(PageCreator.EDIT_ACCOUNT_PAGE,backPage);
 				break;
 		}
 		

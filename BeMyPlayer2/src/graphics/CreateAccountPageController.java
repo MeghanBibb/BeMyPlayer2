@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 
 import model.Account;
 
-public class CreateAccountPageController implements ActionListener{
+public class CreateAccountPageController extends PageController{
 
 	//	action commands 	
 	public static final String NEXT = "next";
@@ -30,14 +30,16 @@ public class CreateAccountPageController implements ActionListener{
 	private boolean visitedP2;
 	private boolean visitedP3;
 	
-	public void launchCreateAccountPage(JFrame j,Account a) {
-		this.a = a;
+	public void launchPage(JFrame mainFrame, String back) {
+		if(back != null) {
+			backPage = back;
+		}
 		this.pageNum = 0;
-		this.copyFrame = j;
+		this.copyFrame = mainFrame;
 		visitedP1 = true;
 		visitedP2 = false;
 		visitedP3 = false;
-		CreateAccountPageView.startCreateAccountPage(this,j,false);
+		CreateAccountPageView.startCreateAccountPage(this,mainFrame,false);
 	}
 	//	check command 
 	public void actionPerformed(ActionEvent e) {
@@ -74,7 +76,7 @@ public class CreateAccountPageController implements ActionListener{
 			case -1: visitedP1 = false;
 					 visitedP2 = false;
 					 visitedP3 = false;
-					GraphicsController.launchLoginPage();
+					GraphicsController.processPage(PageCreator.LOGIN_PAGE,backPage);
 					break;
 			case 0: this.createAccountPanel.removeAll();
 					visitedP2 = true;
@@ -108,7 +110,7 @@ public class CreateAccountPageController implements ActionListener{
 				catch(IOException e1) {
 					
 				}
-				GraphicsController.launchHomePage();
+				GraphicsController.processPage(PageCreator.HOME_PAGE,backPage);
 			}
 			
 		}

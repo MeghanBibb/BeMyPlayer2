@@ -41,7 +41,7 @@ public class SwipePageModel {
 		frame.getContentPane().add(this.left, BorderLayout.LINE_START);
 		frame.getContentPane().add(this.right, BorderLayout.LINE_END);
 		frame.getContentPane().add(this.backButton, BorderLayout.PAGE_END);
-		frame.getContentPane().add(new ProfileBriefModel("Dr.Booth",briefSize), BorderLayout.CENTER);
+		frame.getContentPane().add(new ProfileBriefModel("Dr.Booth",briefSize,PageCreator.SWIPE_PAGE), BorderLayout.CENTER);
 	}
 	
 }
