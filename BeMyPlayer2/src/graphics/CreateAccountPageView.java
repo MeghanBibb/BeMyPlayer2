@@ -56,39 +56,49 @@ public class CreateAccountPageView {
 		capController.getCreateAccountPageModel().setNext(nextbtn);
 		capController.getCreateAccountPanel().add(capController.getCreateAccountPageModel().getNext());
 		
-		
-		//	init fields and listeners 
-		JPasswordField pwdEnterPass = new JPasswordField();
-		pwdEnterPass.setHorizontalAlignment(SwingConstants.CENTER);
-		if(visited == true) {
-			pwdEnterPass.setText(capController.getCreateAccountPageModel().getPwdEnterPass().getText());
-		}
-		//pwdEnterPass.setText("enter password");
-		pwdEnterPass.setBounds(45, 165, 128, 32);
-		capController.getCreateAccountPageModel().setPwdEnterPass(pwdEnterPass);
-		capController.getCreateAccountPanel().add(capController.getCreateAccountPageModel().getPwdEnterPass());
-		
-		
-		JPasswordField pwdValidatePass= new JPasswordField();
-		pwdValidatePass.setHorizontalAlignment(SwingConstants.CENTER);
-		if(visited == true) {
-			pwdValidatePass.setText(capController.getCreateAccountPageModel().getPwdValidatePass().getText());
-		}
-		//pwdValidatePass.setText("re-enter password");
-		pwdValidatePass.setBounds(45, 240, 128, 32);
-		capController.getCreateAccountPageModel().setPwdValidatePass(pwdValidatePass);
-		capController.getCreateAccountPanel().add(capController.getCreateAccountPageModel().getPwdValidatePass());
-		
+		//	enter user name
 		JFormattedTextField frmtdtxtfldEnterUsername = new JFormattedTextField();
 		frmtdtxtfldEnterUsername.setHorizontalAlignment(SwingConstants.CENTER);
 		if(visited == true) {
 			frmtdtxtfldEnterUsername.setText(capController.getCreateAccountPageModel().getFrmtdtxtfldEnterUsername().getText());
 		}
-		//frmtdtxtfldEnterUsername.setText("enter gamertag");
 		frmtdtxtfldEnterUsername.setBounds(45, 95, 128, 32);
 		capController.getCreateAccountPageModel().setFrmtdtxtfldEnterUsername(frmtdtxtfldEnterUsername);
 		capController.getCreateAccountPanel().add(capController.getCreateAccountPageModel().getFrmtdtxtfldEnterUsername());
+			
+		//	enter email
+		JFormattedTextField enterEmail = new JFormattedTextField();
+		enterEmail.setHorizontalAlignment(SwingConstants.CENTER);
+		if(visited == true) {
+			enterEmail.setText(capController.getCreateAccountPageModel().getEnterEmail().getText());
+		}
+		enterEmail.setBounds(45, 165, 128, 32);
+		capController.getCreateAccountPageModel().setEnterEmail(enterEmail);
+		capController.getCreateAccountPanel().add(capController.getCreateAccountPageModel().getEnterEmail());
 		
+		
+		//	init fields and listeners 
+		//	password
+		JPasswordField pwdEnterPass = new JPasswordField();
+		pwdEnterPass.setHorizontalAlignment(SwingConstants.CENTER);
+		if(visited == true) {
+			pwdEnterPass.setText(capController.getCreateAccountPageModel().getPwdEnterPass().getText());
+		}
+		pwdEnterPass.setBounds(45, 240, 128, 32);
+		capController.getCreateAccountPageModel().setPwdEnterPass(pwdEnterPass);
+		capController.getCreateAccountPanel().add(capController.getCreateAccountPageModel().getPwdEnterPass());
+		
+		//	reenter password
+		JPasswordField pwdValidatePass= new JPasswordField();
+		pwdValidatePass.setHorizontalAlignment(SwingConstants.CENTER);
+		if(visited == true) {
+			pwdValidatePass.setText(capController.getCreateAccountPageModel().getPwdValidatePass().getText());
+		}
+		pwdValidatePass.setBounds(45, 300, 128, 32);
+		capController.getCreateAccountPageModel().setPwdValidatePass(pwdValidatePass);
+		capController.getCreateAccountPanel().add(capController.getCreateAccountPageModel().getPwdValidatePass());
+		
+			
 		JFormattedTextField secQA = new JFormattedTextField();
 		secQA.setHorizontalAlignment(SwingConstants.CENTER);
 		if(visited == true) {
@@ -170,23 +180,30 @@ public class CreateAccountPageView {
 		lblSecQ.setBounds(275, 110, 204, 69);
 		capController.getCreateAccountPanel().add(lblSecQ);
 	
-		JLabel pwdField1Prmpt = new JLabel("Enter Password:");
-		pwdField1Prmpt.setForeground(yellow);
-		pwdField1Prmpt.setFont(new Font("Monospaced",Font.BOLD,12));
-		pwdField1Prmpt.setBounds(45, 135, 128, 32);
-		capController.getCreateAccountPanel().add(pwdField1Prmpt);
-		
-		JLabel pwdfield2PrmptLoc = new JLabel("Re-enter Password:");
-		pwdfield2PrmptLoc.setForeground(yellow);
-		pwdfield2PrmptLoc.setFont(new Font("Monospaced",Font.BOLD,12));
-		pwdfield2PrmptLoc.setBounds(45,205,155,32);
-		capController.getCreateAccountPanel().add(pwdfield2PrmptLoc);
-		
 		JLabel userFieldPrmptLoc = new JLabel("Enter Username:");
 		userFieldPrmptLoc.setForeground(yellow);
 		userFieldPrmptLoc.setFont(new Font("Monospaced",Font.BOLD,12));
 		userFieldPrmptLoc.setBounds(45,65,128,32);
 		capController.getCreateAccountPanel().add(userFieldPrmptLoc);
+		
+		JLabel emailPrmpt = new JLabel("Enter Email:");
+		emailPrmpt.setForeground(yellow);
+		emailPrmpt.setFont(new Font("Monospaced",Font.BOLD,12));
+		emailPrmpt.setBounds(45,135,128,32);
+		capController.getCreateAccountPanel().add(emailPrmpt);
+		
+		JLabel pwdField1Prmpt = new JLabel("Enter Password:");
+		pwdField1Prmpt.setForeground(yellow);
+		pwdField1Prmpt.setFont(new Font("Monospaced",Font.BOLD,12));
+		pwdField1Prmpt.setBounds(45, 205, 128, 32);
+		capController.getCreateAccountPanel().add(pwdField1Prmpt);
+		
+		JLabel pwdfield2PrmptLoc = new JLabel("Re-enter Password:");
+		pwdfield2PrmptLoc.setForeground(yellow);
+		pwdfield2PrmptLoc.setFont(new Font("Monospaced",Font.BOLD,12));
+		pwdfield2PrmptLoc.setBounds(45,275,155,32);
+		capController.getCreateAccountPanel().add(pwdfield2PrmptLoc);
+
 		
 		JLabel answerPrompt = new JLabel("Answer:");
 		answerPrompt.setForeground(yellow);

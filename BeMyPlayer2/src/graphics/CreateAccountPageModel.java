@@ -26,7 +26,7 @@ public class CreateAccountPageModel {
 	private JComboBox genderBox;
 	private JComboBox securityQ;
 	private Image profileImg;
-	
+	private JFormattedTextField enterEmail;
 	private List<JCheckBox> checkList;
 	private List<Boolean> checkLister;
 	
@@ -139,6 +139,12 @@ public class CreateAccountPageModel {
 	}
 	public void setCheckLister(List<Boolean> checkLister) {
 		this.checkLister = checkLister;
+	}
+	public JFormattedTextField getEnterEmail() {
+		return enterEmail;
+	}
+	public void setEnterEmail(JFormattedTextField enterEmail) {
+		this.enterEmail = enterEmail;
 	}
 	
 	

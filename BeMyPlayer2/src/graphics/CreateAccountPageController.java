@@ -12,7 +12,10 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import firebase.DBFailureException;
+import firebase.FireBaseAdapter;
 import model.Account;
+import model.Profile;
 
 public class CreateAccountPageController extends PageController{
 
@@ -109,9 +112,27 @@ public class CreateAccountPageController extends PageController{
 				}
 				catch(IOException e1) {
 					
-				}
+				}/*
+				a = new Account();
+				a.setEmail(this.getCreateAccountPageModel().get);
+				//	set account fields
+				//	set profile fields
+				Profile p = new Profile();
+				a.setAccountProfile(p);
 				
+				FireBaseAdapter fd = new FireBaseAdapter();
 				
+				fd.initializeDBConnection();	//	t/f 
+				try {
+					if(fd.attemptAddNewAccount(a) == true) {
+						//	account added
+						
+					}
+				} catch (DBFailureException e1) {
+					// TODO Auto-generated catch block
+					//	log error and launch notification
+					e1.printStackTrace();
+				}*/
 				GraphicsController.processPage(PageCreator.HOME_PAGE,backPage);
 			}
 			
