@@ -56,3 +56,4 @@ public class SupportController implements ActionListener {
         this.supportPanel = supportPanel;
     }
 }
+

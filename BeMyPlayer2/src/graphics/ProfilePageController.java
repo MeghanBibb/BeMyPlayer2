@@ -22,7 +22,7 @@ public class ProfilePageController implements ActionListener {
 	private Account a;
 	public void launchProfilePage(JFrame j,Account a) {
 		this.a = a;
-		ProfilePageView.startProfilePage(this,j);
+		ProfilePageView.startProfilePage(this,j,this.a);
 	}
 
 	@Override

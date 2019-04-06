@@ -118,6 +118,4 @@ public class ForgotPassPageModel {
 		this.btnBack = btnBack;
 	}
 	
-	
-	
 }

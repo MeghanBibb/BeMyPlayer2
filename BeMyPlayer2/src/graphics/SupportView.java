@@ -70,6 +70,7 @@ public class SupportView {
 		
         JTextArea desc = new JTextArea();
         desc.setBounds(35, 150, 400, 150);
+
         desc.setVisible(true);
         supportController.getSupportModel().setDescription(desc);
 
@@ -87,3 +88,4 @@ public class SupportView {
 
     }
 }
+

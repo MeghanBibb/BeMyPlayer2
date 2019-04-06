@@ -42,19 +42,21 @@ public class ForgotPassPageView {
 		mainFrame.getContentPane().setBackground(red);
 		
 		//init buttons
+		JButton backbtn = new JButton("Back");
+		backbtn.setBounds(45, 225, 90, 40);
+		backbtn.setBackground(white);
+		backbtn.setActionCommand(CreateAccountPageController.BACK);
+		backbtn.addActionListener(forgotPasswordController);
+		forgotPasswordController.getForgotPasswordPageModel().setBtnBack(backbtn);
+		
+		forgotPasswordController.getForgotPasswordPanel().add(forgotPasswordController.getForgotPasswordPageModel().getBtnBack());
+		
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.setBounds(340,225,90,40);
 		btnSubmit.setActionCommand(forgotPasswordController.SUBMIT);
 		btnSubmit.setBackground(white);
 		btnSubmit.addActionListener(forgotPasswordController);
 		forgotPasswordController.getForgotPasswordPageModel().setBtnSubmit(btnSubmit);
-		
-		JButton btnBack = new JButton("Back");
-		btnBack.setBounds(50,225,90,40);
-		btnBack.setActionCommand(forgotPasswordController.BACK);
-		btnBack.setBackground(white);
-		btnBack.addActionListener(forgotPasswordController);
-		forgotPasswordController.getForgotPasswordPageModel().setBtnBack(btnBack);
 		
 		//	init fields and listeners 
 		forgotPasswordController.getForgotPasswordPageModel().setFrmtdtextfldEnterEmail(new JFormattedTextField("Enter Email"));

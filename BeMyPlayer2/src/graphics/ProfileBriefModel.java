@@ -34,13 +34,13 @@ public class ProfileBriefModel extends JPanel{
 			break;
 		case "Dr.Hammerly": temploc = "/hammerly1.jpg";
 		break;
-		case "Dr.Fry": temploc = "/fry1.jpg";
+		case "Prof.Fry": temploc = "/fry1.jpg";
 			break;
 		case "Prof.Aars":temploc = "/maars1.jpg";	
 			break;
 		}
 		Image img1 = new ImageIcon(viewMatchController.getClass().getResource(temploc)).getImage();
-		JButton setIcon = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
+		JLabel setIcon = new JLabel(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
 		JLabel username = new JLabel(s);
 		JLabel age = new JLabel("Age");
 		JLabel gender = new JLabel("Gender");

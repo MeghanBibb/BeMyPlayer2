@@ -75,6 +75,7 @@ public class GraphicsController {
 	public static void launchMessagePage(){
 		MessageController messageController = new MessageController();
 		messageController.launchMessagePage(mainFrame);
+
 	}
 	
 	public static JFrame getMainFrame() {

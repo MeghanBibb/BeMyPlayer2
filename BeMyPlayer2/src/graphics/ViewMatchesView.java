@@ -97,8 +97,8 @@ public class ViewMatchesView {
         			setIcon.add(new JLabel("Dr.Booth"),BorderLayout.PAGE_END);
         			final JButton setIcon2 = new JButton(new ImageIcon(new ImageIcon(img2).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
         			setIcon2.setLayout(new BorderLayout());
-        			setIcon2.setName("Dr.Fry");
-        			setIcon2.add(new JLabel("Dr.Fry"),BorderLayout.PAGE_END);
+        			setIcon2.setName("Prof.Fry");
+        			setIcon2.add(new JLabel("Prof.Fry"),BorderLayout.PAGE_END);
         			final JButton setIcon3 = new JButton(new ImageIcon(new ImageIcon(img3).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
         			setIcon3.setLayout(new BorderLayout());
         			setIcon3.setName("Dr.Cerny");
@@ -177,8 +177,8 @@ public class ViewMatchesView {
 		setIcon.addActionListener(viewMatchController);
 		final JButton setIcon2 = new JButton(new ImageIcon(new ImageIcon(img2).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
 		setIcon2.setLayout(new BorderLayout());
-		setIcon2.setName("Dr.Fry");
-		setIcon2.add(new JLabel("Dr.Fry"),BorderLayout.PAGE_END);
+		setIcon2.setName("Prof.Fry");
+		setIcon2.add(new JLabel("Prof.Fry"),BorderLayout.PAGE_END);
 		setIcon2.setActionCommand("profileclick");
 		setIcon2.addActionListener(viewMatchController);
 		final JButton setIcon3 = new JButton(new ImageIcon(new ImageIcon(img3).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
