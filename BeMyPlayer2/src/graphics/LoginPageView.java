@@ -72,7 +72,6 @@ public class LoginPageView {
 		loginController.getLoginPanel().add(loginController.getLoginPageModel().getBtnCreateNewAccount());
 		loginController.getLoginPanel().add(loginController.getLoginPageModel().getBtnExit());
 		
-		
 		//	init fields and listeners 
 		loginController.getLoginPageModel().setPwdEnterPass(new JPasswordField());
 		loginController.getLoginPageModel().getPwdEnterPass().setHorizontalAlignment(SwingConstants.CENTER);
