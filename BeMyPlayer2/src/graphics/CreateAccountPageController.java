@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -129,7 +130,12 @@ public class CreateAccountPageController extends PageController{
 				p.setUsername(this.getCreateAccountPageModel().getFrmtdtxtfldEnterUsername().getText());
 				p.setDescription(this.getCreateAccountPageModel().getCharDescription().getText());
 				p.setGender(this.getCreateAccountPageModel().getGender());
-				
+				try {
+					p.setDateOB(this.getCreateAccountPageModel().getDob());
+				} catch (ParseException e2) {
+					// TODO Auto-generated catch block
+					//	error
+				}
 				p.setPlatforms(this.getCreateAccountPageModel().getPlatforms());
 				p.setGenres(this.getCreateAccountPageModel().getGenres());
 				p.setProfilePicture(this.getCreateAccountPageModel().getProfileImg());
@@ -185,7 +191,12 @@ public class CreateAccountPageController extends PageController{
 		if(this.createAccountPageModel.getSecQA().getText().equalsIgnoreCase("")) {
 			valid = false;
 		}
-		
+		try {
+			this.createAccountPageModel.getDob();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			valid = false;
+		}
 		if(this.createAccountPageModel.getAge().getText().equalsIgnoreCase("")) {
 			valid = false;
 		}

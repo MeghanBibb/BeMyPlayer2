@@ -4,6 +4,9 @@ import java.awt.Image;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.*;
@@ -29,7 +32,7 @@ public class CreateAccountPageModel {
 	private JFormattedTextField enterEmail;
 	private List<JCheckBox> checkList;
 	private List<Boolean> checkLister;
-	
+	private Date dob;
 	private String imagePath;
 	
 	private JTextArea charDescription;
@@ -151,6 +154,15 @@ public class CreateAccountPageModel {
 	}
 	public void setEnterEmail(JFormattedTextField enterEmail) {
 		this.enterEmail = enterEmail;
+	}
+	public Date getDob() throws ParseException {
+		SimpleDateFormat tf = new SimpleDateFormat("dd/MM/YYYY");
+		this.dob = (Date)tf.parse(this.age.getText());
+		
+		return dob;
+	}
+	public void setDob(Date dob) {
+		this.dob = dob;
 	}
 	
 	
