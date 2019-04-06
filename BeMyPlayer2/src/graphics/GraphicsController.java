@@ -80,7 +80,9 @@ public class GraphicsController {
 			catch (Exception ex) {}*/
 		
 		// See the updated Account object in the model package...
+		InformationExpert.initializeAdapter();
 		GraphicsController g = new GraphicsController();
+		
 	}
 	
 }
