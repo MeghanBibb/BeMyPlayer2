@@ -12,6 +12,14 @@ public class InformationExpert {
 	private static List<Match> potentialMatches = null;
 	private static FireBaseAdapter databaseAdapter = null;
 	
+	public static void initializeAdapter() {
+		databaseAdapter = new FireBaseAdapter();
+		
+		if(!databaseAdapter.initializeDBConnection()){
+			//error, could not initialize database
+		}
+	}
+	
 	public static boolean attemptAddNewAccount(Account a) throws DBFailureException {
 		return databaseAdapter.attemptAddNewAccount(a);
 	}
