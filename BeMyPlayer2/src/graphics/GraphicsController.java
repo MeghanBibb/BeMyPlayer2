@@ -22,6 +22,7 @@ public class GraphicsController {
 			mainFrame.setResizable(false);
 			
 			processPage(PageCreator.LOGIN_PAGE, null);
+			
 	}
 	
 	public static void processPage(String page, String backPage) {

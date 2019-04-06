@@ -1,8 +1,12 @@
 package model;
 
 import java.awt.Image;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import firebase.FireBaseSchema;
 
 public class Profile implements DBSerializable{
 	
@@ -15,6 +19,8 @@ public class Profile implements DBSerializable{
 							   _PLATFORMS = "platforms",
 							   _GENRES = "genres";
 	
+	public static final SimpleDateFormat DOB_FORMAT = new SimpleDateFormat("dd/MM/yyyy"); 
+	
 	private String userId;
 	private String username;
 	private Date dateOB;
@@ -26,6 +32,30 @@ public class Profile implements DBSerializable{
 	
 	private Image profilePicture = null;
 	
+	public Profile() {
+		// Initialize to default values
+	}
+	
+	public Profile(String username, Date dateOB, String gender, String description) {
+		this.userId = null;
+		this.username = username;
+		this.dateOB = dateOB;
+		this.gender = gender;
+		this.description = description;
+		this.platforms = new ArrayList<Boolean>();
+		this.genres = new ArrayList<Boolean>();
+	}
+	
+	public Profile(String username, Date dateOB, String gender, String description,
+			   List<Boolean> platforms, List<Boolean> genres) {
+		this.userId = null;
+		this.username = username;
+		this.dateOB = dateOB;
+		this.gender = gender;
+		this.description = description;
+		this.platforms = platforms;
+		this.genres = genres;
+	}
 	
 	public Profile(String userId, String username, Date dateOB, String gender, String description,
 				   List<Boolean> platforms, List<Boolean> genres) {
@@ -105,10 +135,48 @@ public class Profile implements DBSerializable{
 		for(Boolean b : this.platforms) { pls += b? "Y":"N"; };
 		for(Boolean b : this.genres) { gs += b? "Y":"N"; };
 		
-		p.addValue(_PLATFORMS, this.platforms);
-		p.addValue(_GENRES, this.genres);
+		p.addValue(_PLATFORMS, pls);
+		p.addValue(_GENRES, gs);
 		
 		return p;
+	}
+
+	@Override
+	public void initializeFromPackage(DBDocumentPackage pkg) {
+		
+		this.userId = pkg.getPrimaryKey();
+		
+		for(String s : pkg.getValues().keySet()) {
+			String arrStr;
+			switch(s) {
+				case _USERNAME:
+					this.username = (String) pkg.getValues().get(s);
+					break;
+				case _DATE_OF_BIRTH:
+					this.dateOB = FireBaseSchema.parseDate(pkg.getValues().get(s));
+					break;
+				case _GENDER:
+					this.gender = (String) pkg.getValues().get(s);
+					break;
+				case _DESCRIPTION:
+					this.description = (String) pkg.getValues().get(s);
+					break;
+				case _PLATFORMS:
+					arrStr = ((String) pkg.getValues().get(s)).toUpperCase();
+					this.platforms = new ArrayList<Boolean>();
+					for(int i =0 ; i < arrStr.length(); ++i) {
+						this.platforms.add(arrStr.charAt(i) == 'Y');
+					}
+					break;
+				case _GENRES:
+					arrStr = ((String) pkg.getValues().get(s)).toUpperCase();
+					this.genres = new ArrayList<Boolean>();
+					for(int i =0 ; i < arrStr.length(); ++i) {
+						this.genres.add(arrStr.charAt(i) == 'Y');
+					}
+					break;
+			}
+		}
 	}
 	
 	

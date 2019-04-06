@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Image;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -33,7 +34,7 @@ public class Account implements DBSerializable{
 	Profile accountProfile = null; // This composition is optional
 	
 	public Account() {
-		//Initialize default values (this is for testing purposes)
+		//Initialize to default values
 	}
 	
 	public Account(String email, String pHash, String sq1, String sqa1, String sq2, String sqa2) {
@@ -140,6 +141,42 @@ public class Account implements DBSerializable{
 		p.addValue(_SECURITY_Q2A, this.securityQ2AnsHash);
 		
 		return p;
+	}
+
+	@Override
+	public void initializeFromPackage(DBDocumentPackage pkg) {
+		
+		this.userId = pkg.getPrimaryKey();
+		for(String s : pkg.getValues().keySet()) {
+			switch(s) {
+				case _EMAIL:
+					this.email = (String) pkg.getValues().get(s);
+					break;
+				case _PASSWORD_HASH:
+					this.passwordHash = (String) pkg.getValues().get(s);
+					break;
+				case _SECURITY_Q1:
+					this.securityQ1 = (String) pkg.getValues().get(s);
+					break;
+				case _SECURITY_Q2:
+					this.securityQ2 = (String) pkg.getValues().get(s);
+					break;
+				case _SECURITY_Q1A:
+					this.securityQ1AnsHash = (String) pkg.getValues().get(s);
+					break;
+				case _SECURITY_Q2A:
+					this.securityQ2AnsHash = (String) pkg.getValues().get(s);
+					break;
+				case _LOVE_MATCHES:
+					if(pkg.getValues().get(s) instanceof List<?>) {
+						this.loveMatches = (List<String>) pkg.getValues().get(s);
+					}
+				case _FRIEND_MATCHES:
+					if(pkg.getValues().get(s) instanceof List<?>) {
+						this.friendMatches = (List<String>) pkg.getValues().get(s);
+					}
+			}
+		}
 	}
 	
 	
