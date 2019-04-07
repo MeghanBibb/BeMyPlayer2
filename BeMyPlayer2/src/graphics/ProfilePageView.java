@@ -34,7 +34,7 @@ public class ProfilePageView {
 		Color yellow = new Color(254, 195, 123);
 		
 		//init panel
-		profileController.setProfilePanel(new JPanel(null));
+		profileController.setProfilePanel(new BackgroundPanel(null));
 		profileController.getProfilePanel().setBorder(new EmptyBorder(5, 5, 5, 5));
 		profileController.getProfilePanel().setPreferredSize(new Dimension(500,400));
 		profileController.getProfilePanel().setMaximumSize(new Dimension(500,400));

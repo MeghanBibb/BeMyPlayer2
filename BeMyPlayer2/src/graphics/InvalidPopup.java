@@ -8,7 +8,11 @@ import javax.swing.JPanel;
 
 public class InvalidPopup {
 	public InvalidPopup(JPanel p,List<String> warnings) {
-		JOptionPane.showConfirmDialog(p, warnings, title, optionType, messageType)
+		StringBuilder warning = new StringBuilder();
+		for(String s : warnings) {
+			warning.append(s);
+		}
+		JOptionPane.showConfirmDialog(p, warning, "Invalid input", JOptionPane.DEFAULT_OPTION);
 	}
 	
 }

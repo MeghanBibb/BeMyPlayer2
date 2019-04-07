@@ -34,7 +34,7 @@ public class ForgotPassPageView {
 		Color white = new Color(254,195,123);
 		
 		//init panel
-		forgotPasswordController.setForgotPasswordPanel(new JPanel(null));
+		forgotPasswordController.setForgotPasswordPanel(new BackgroundPanel(null));
 		forgotPasswordController.getForgotPasswordPanel().setBorder(new EmptyBorder(5, 5, 5, 5));
 		forgotPasswordController.getForgotPasswordPanel().setPreferredSize(new Dimension(500,400));
 		forgotPasswordController.getForgotPasswordPanel().setMaximumSize(new Dimension(500,400));

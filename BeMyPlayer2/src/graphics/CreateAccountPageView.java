@@ -33,7 +33,7 @@ public class CreateAccountPageView {
 		Color red = new Color(134, 48, 111);
 		Color yellow = new Color(254, 195, 123);
 		//	init panel
-		capController.setCreateAccountPanel(new JPanel(null));
+		capController.setCreateAccountPanel(new BackgroundPanel(null));
 		capController.getCreateAccountPanel().setBorder(new EmptyBorder(5, 5, 5, 5));
 		capController.getCreateAccountPanel().setPreferredSize(new Dimension(500,400));
 		capController.getCreateAccountPanel().setMaximumSize(new Dimension(500,400));
@@ -729,7 +729,6 @@ public class CreateAccountPageView {
 		//lblNewLabel.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
 		//lblNewLabel.setBounds(75, 25, 150, 150);
 		capController.getCreateAccountPageModel().setImagePath(img1.toString());
-		//final JButton setIcon = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
 		final JButton setIcon = new JButton();
 		setIcon.setMargin(new Insets(0,0,0,0));
 		setIcon.setContentAreaFilled(false);

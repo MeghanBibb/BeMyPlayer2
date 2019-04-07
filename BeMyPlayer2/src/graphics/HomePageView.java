@@ -22,7 +22,7 @@ public class HomePageView {
 		Color yellow = new Color(254, 195, 123);
 		
 		//init panel
-		homeController.setHomePanel(new JPanel(null));
+		homeController.setHomePanel(new BackgroundPanel(null));
 		homeController.getHomePanel().setBorder(new EmptyBorder(5, 5, 5, 5));
 		homeController.getHomePanel().setPreferredSize(new Dimension(500,400));
 		homeController.getHomePanel().setMaximumSize(new Dimension(500,400));
