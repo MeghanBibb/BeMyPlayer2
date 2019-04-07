@@ -4,11 +4,14 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.image.BufferedImage;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,6 +22,8 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -43,7 +48,7 @@ public class CreateAccountPageView {
 		//	init buttons and add to panel
 		JButton backbtn = new JButton("Back");
 		backbtn.setBounds(45, 345, 90, 40);
-		backbtn.setBackground(yellow);
+		backbtn.setBackground(Colors.Yellow);
 		backbtn.setActionCommand(CreateAccountPageController.BACK);
 		backbtn.addActionListener(capController);
 		capController.getCreateAccountPageModel().setBack(backbtn);
@@ -83,9 +88,6 @@ public class CreateAccountPageView {
 		//	password
 		JPasswordField pwdEnterPass = new JPasswordField();
 		pwdEnterPass.setHorizontalAlignment(SwingConstants.CENTER);
-		if(visited == true) {
-			pwdEnterPass.setText(capController.getCreateAccountPageModel().getPwdEnterPass().getText());
-		}
 		pwdEnterPass.setBounds(45, 240, 128, 32);
 		capController.getCreateAccountPageModel().setPwdEnterPass(pwdEnterPass);
 		capController.getCreateAccountPanel().add(capController.getCreateAccountPageModel().getPwdEnterPass());
@@ -93,9 +95,6 @@ public class CreateAccountPageView {
 		//	reenter password
 		JPasswordField pwdValidatePass= new JPasswordField();
 		pwdValidatePass.setHorizontalAlignment(SwingConstants.CENTER);
-		if(visited == true) {
-			pwdValidatePass.setText(capController.getCreateAccountPageModel().getPwdValidatePass().getText());
-		}
 		pwdValidatePass.setBounds(45, 300, 128, 32);
 		capController.getCreateAccountPageModel().setPwdValidatePass(pwdValidatePass);
 		capController.getCreateAccountPanel().add(capController.getCreateAccountPageModel().getPwdValidatePass());
@@ -226,7 +225,7 @@ public class CreateAccountPageView {
 		
 		//	 set up panel
 
-		capController.setCreateAccountPanel(new JPanel(null));
+		capController.setCreateAccountPanel(new BackgroundPanel(null));
 		capController.getCreateAccountPanel().setBorder(new EmptyBorder(5, 5, 5, 5));
 		capController.getCreateAccountPanel().setPreferredSize(new Dimension(500,400));
 		capController.getCreateAccountPanel().setMaximumSize(new Dimension(500,400));
@@ -696,7 +695,7 @@ public class CreateAccountPageView {
 		
 		//	 set up panel
 
-		capController.setCreateAccountPanel(new JPanel(null));
+		capController.setCreateAccountPanel(new BackgroundPanel(null));
 		capController.getCreateAccountPanel().setBorder(new EmptyBorder(5, 5, 5, 5));
 		capController.getCreateAccountPanel().setPreferredSize(new Dimension(500,400));
 		capController.getCreateAccountPanel().setMaximumSize(new Dimension(500,400));
@@ -728,10 +727,12 @@ public class CreateAccountPageView {
 		//lblNewLabel.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
 		//lblNewLabel.setBounds(75, 25, 150, 150);
 		capController.getCreateAccountPageModel().setImagePath(img1.toString());
-		final JButton setIcon = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
-		setIcon.setBounds(125,25,150,150);
-		setIcon.setOpaque(false);
+		final JButton setIcon = new JButton();
+		setIcon.setMargin(new Insets(0,0,0,0));
+		setIcon.setContentAreaFilled(false);
+		setIcon.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
 		setIcon.setBackground(red);
+		setIcon.setBounds(125,25,150,150);
 		setIcon.addActionListener(new ActionListener(){
 
             public void actionPerformed(ActionEvent e) {
@@ -758,7 +759,12 @@ public class CreateAccountPageView {
 				JLabel lblNewLabel = new JLabel("");
 				lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 				if(f != null) {
-					img1 = (BufferedImage) new ImageIcon(f.getAbsolutePath()).getImage();
+					try {
+						img1 = ImageIO.read(new File(f.getAbsolutePath()));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					capController.getCreateAccountPageModel().setImagePath(f.getAbsolutePath());
 				}
 				else if(f == null){
@@ -785,15 +791,50 @@ public class CreateAccountPageView {
 		lblAccInfo.setBounds(300, 0, 215, 115);
 		capController.getCreateAccountPanel().add(lblAccInfo);
 		
+		//	char count on description
+		JLabel charCount = new JLabel();
+		charCount.setFont(new Font("Monospaced",Font.BOLD,12));
+		charCount.setBounds(125, 350, 190, 50);
+		charCount.setText("250 characters remaining");
+		capController.getCreateAccountPageModel().setCharcount(charCount);
+		capController.getCreateAccountPanel().add(charCount);
 		//	description box
 		JTextArea description = new JTextArea();
 		if(visited == true) {
 			description.setText(capController.getCreateAccountPageModel().getCharDescription().getText());
+			capController.getCreateAccountPageModel().getCharcount().setText(
+					250 - description.getText().length() + " characters remaining");
+			capController.getCreateAccountPanel().revalidate();
 		}
 		
-		description.setBounds(125, 230, 250, 150);
+		description.setBounds(125, 230, 250, 140);
+		description.getDocument().addDocumentListener(new DocumentListener() {
+			public void update() {
+				capController.getCreateAccountPageModel().getCharcount().setText( 
+						250 - description.getText().length() + " characters remaining");
+			}
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				update();
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				update();
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				update();
+			}
+
+		});
 		capController.getCreateAccountPageModel().setCharDescription(description);
 		capController.getCreateAccountPanel().add(capController.getCreateAccountPageModel().getCharDescription());
+		
 		
 		//	load submit button
 		JButton btnSubmit = new JButton("Submit");

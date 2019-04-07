@@ -22,7 +22,8 @@ import model.Profile;
 
 public class CreateAccountPageController extends PageController{
 
-	//	action commands 	
+	//	action commands
+	public static final int MAXLENGTH = 250;
 	public static final String NEXT = "next";
 	public static final String BACK="back";
 	public static final String SUBMIT = "submit";
@@ -159,6 +160,7 @@ public class CreateAccountPageController extends PageController{
 				try {
 					GraphicsController.attemptAddNewAccount(a);
 					InformationExpert.setActiveAccount(a);
+					GraphicsController.uploadProfileImage(p.getProfilePicture(), GraphicsController.getActiveID());
 				} catch (DBFailureException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -200,8 +202,6 @@ public class CreateAccountPageController extends PageController{
 			valid = false;
 			warnings.add("Password confirmation cannot be empty\n");
 		}
-		this.createAccountPageModel.getPwdEnterPass().setText(Hasher.hashString(this.createAccountPageModel.getPwdEnterPass().getText()));
-		this.createAccountPageModel.getPwdValidatePass().setText(Hasher.hashString(this.createAccountPageModel.getPwdValidatePass().getText()));
 		
 		if(!this.createAccountPageModel.getPwdEnterPass().getText().equals(this.createAccountPageModel.getPwdValidatePass().getText())) {
 			valid = false;
@@ -265,8 +265,19 @@ public class CreateAccountPageController extends PageController{
 	public boolean validateCreatePage3() {
 		boolean valid = true;
 		//	need to store profile pic in new location to pull from
-		System.out.println("Profile pic "+ this.getCreateAccountPageModel().getImagePath());
-		System.out.println("description " + this.getCreateAccountPageModel().getCharDescription().getText());
+		List<String >warnings = new ArrayList<>();
+		
+		if(this.getCreateAccountPageModel().getCharDescription().getText().equals("")) {
+			valid = false;
+			warnings.add("Please enter a description\n");
+		}
+		if(this.getCreateAccountPageModel().getCharDescription().getText().length() > MAXLENGTH) {
+			valid = false;
+			warnings.add("Character limit exceeded\n");
+		}
+		if(valid == false) {
+			InvalidPopup p = new InvalidPopup(this.getCreateAccountPanel(),warnings);
+		}
 		
 		//	send to temp account and populate db
 		return valid;
