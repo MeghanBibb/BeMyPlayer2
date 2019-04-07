@@ -23,7 +23,6 @@ public class MessageView {
         messageController.getMessagePanel().setPreferredSize(new Dimension(500,400));
         messageController.getMessagePanel().setMaximumSize(new Dimension(500,400));
         mainFrame.setContentPane(messageController.getMessagePanel());
-        mainFrame.getContentPane().setBackground(red);
 
         JLabel imgLabel = new JLabel("");
         Image img = new ImageIcon(messageController.getClass().getResource("/defaultIcon.png")).getImage();

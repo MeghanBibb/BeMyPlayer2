@@ -39,7 +39,10 @@ public class SupportController extends PageController{
 
         //	CHECK FIELDS ARE NOT EMPTY OR SQL COMMANDS TO DELETE OUR TABLES
         //	VALIDATION FROM CREATE ACCOUNT PAGE + DATABASE VALIDATION
-
+        if(this.supportModel.getDescription().getText().equals("")) {
+        	valid = false;
+        	InvalidPopup p = new InvalidPopup(this.supportPanel,"Please enter a description\n");
+        }
         return valid;
     }
 

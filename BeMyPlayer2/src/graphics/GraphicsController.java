@@ -2,6 +2,10 @@ package graphics;
 
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import javax.swing.JFrame;
 import javax.swing.UIManager;
@@ -19,7 +23,18 @@ public class GraphicsController {
 	
 	private static JFrame mainFrame;
 	private static String profileAccount;
-	
+	private static Logger logger = Logger.getLogger(GraphicsController.class.getName());	
+	static {
+		try {
+			InputStream configFile = GraphicsController.class.getClassLoader().getResourceAsStream("logger.properties");
+			LogManager.getLogManager().readConfiguration(configFile);
+			configFile.close();
+		} catch (IOException ex) {
+			System.out.println("WARNING: Could not open configuration file");
+		    System.out.println("WARNING: Logging not configured (console output only)");
+		}
+		logger.info("running graphic controller");
+	}
 	GraphicsController() {
 		
 //			init default jframe as base frame
@@ -94,6 +109,14 @@ public class GraphicsController {
 	
 	public static void uploadProfileImage(BufferedImage pic, String userID) throws DBFailureException {
 		InformationExpert.addProfileImage(pic, userID);
+	}
+	
+	public static void updateAccount(Account a) throws DBFailureException {
+		InformationExpert.updateAccount(a);
+	}
+	
+	public static void updateProfile(Account a) throws DBFailureException {
+		InformationExpert.updateProfile(a.getAccountProfile());
 	}
 	
 	/*    MAIN METHOD   */

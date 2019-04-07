@@ -24,6 +24,7 @@ import javax.swing.border.EmptyBorder;
 
 import firebase.DBFailureException;
 import model.Account;
+import model.InformationExpert;
 
 public class ProfilePageView {
 
@@ -41,7 +42,6 @@ public class ProfilePageView {
 		profileController.getProfilePanel().setPreferredSize(new Dimension(500,400));
 		profileController.getProfilePanel().setMaximumSize(new Dimension(500,400));
 		mainFrame.setContentPane(profileController.getProfilePanel());
-		mainFrame.getContentPane().setBackground(red);
 		
 		//init image (ideally load this from user)
 		
@@ -51,7 +51,8 @@ public class ProfilePageView {
 		JLabel imgLabel = new JLabel("");
 		BufferedImage img = null;
 		try {
-			img = GraphicsController.getProfileImage(profileController.getAccount().getUserId());
+			img = InformationExpert.getProfileImage(InformationExpert.getActiveUserID());
+			
 		} catch (DBFailureException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -154,7 +155,7 @@ public class ProfilePageView {
 		JLabel description = new JLabel();
 		//description.setText("<HTML>This is a sample description.<br> Very nice.</HTML>");
 		description.setText(profileController.getAccount().getAccountProfile().getDescription());
-		description.setBounds(10, 170, 250, 150);
+		description.setBounds(10, 170, 250, 140);
 		description.setOpaque(false);
 		description.setForeground(yellow);
 		description.setHorizontalAlignment(JTextField.LEFT);

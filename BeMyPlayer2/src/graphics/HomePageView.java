@@ -27,7 +27,6 @@ public class HomePageView {
 		homeController.getHomePanel().setPreferredSize(new Dimension(500,400));
 		homeController.getHomePanel().setMaximumSize(new Dimension(500,400));
 		mainFrame.setContentPane(homeController.getHomePanel());
-		mainFrame.getContentPane().setBackground(red);
 
 		//init buttons
 		JButton btnLogout = new JButton("Logout");
