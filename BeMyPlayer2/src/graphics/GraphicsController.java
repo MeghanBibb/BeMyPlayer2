@@ -1,6 +1,7 @@
 package graphics;
 
 import java.awt.Dimension;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 import javax.swing.UIManager;
@@ -90,6 +91,22 @@ public class GraphicsController {
 	
 	public static boolean isActiveAccount(Account a) {
 		return InformationExpert.isActiveUser(a);
+	}
+	
+	public static String getActiveID() {
+		return InformationExpert.getActiveUserID();
+	}
+	
+	public static String getOtherID() {
+		return InformationExpert.getOtherUserID();
+	}
+	
+	public static BufferedImage getProfileImage(String userID) throws DBFailureException {
+		return InformationExpert.getProfileImage(userID);
+	}
+	
+	public static void uploadProfileImage(BufferedImage pic, String userID) throws DBFailureException {
+		InformationExpert.addProfileImage(pic, userID);
 	}
 	
 	
