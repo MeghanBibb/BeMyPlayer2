@@ -76,7 +76,8 @@ public class FirebaseTestConnector {
 				fullacc.getAccountProfile().setDescription("THIS IS A TOTALLY NEW DESCRIPTION!");
 				adapter.updateProfile(fullacc.getAccountProfile());
 				System.out.println("Done!");
-			}
+				
+				}
 			
 		} catch (DBFailureException e) {
 			// TODO Auto-generated catch block
