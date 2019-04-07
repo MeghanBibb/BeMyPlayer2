@@ -181,6 +181,56 @@ public class FireBaseAdapter {
 		}
 	}
 	
+	public boolean resetUserAccountPassword(String userEmail, int securityQ, String ansHash, String passwordHash) throws DBFailureException {
+		if(this.db == null) {
+			LOGGER.log(Level.WARNING, "Error- no database connection");
+			throw new DBFailureException();
+		}
+		String securityQName;
+		String ansName;
+		if(securityQ == 1) {
+			securityQName = Account._SECURITY_Q1;
+			ansName = Account._SECURITY_Q1A;
+		}else if(securityQ == 2) {
+			securityQName = Account._SECURITY_Q2;
+			ansName = Account._SECURITY_Q2A;
+		}else {
+			//invalid security Q number:
+			throw new DBFailureException();
+		}
+		
+		//query if user account exists:
+		ApiFuture<QuerySnapshot> fetchUser = 
+				db.collection(FireBaseSchema.ACCOUNTS_TABLE)
+				.whereEqualTo(Account._EMAIL, userEmail)
+				.whereEqualTo(securityQName, ansHash)
+				.get();
+		
+		try {
+			QuerySnapshot authUser = fetchUser.get();
+			if(authUser.isEmpty()) {
+				LOGGER.log(Level.WARNING, "[FIREBASE] Error- query returned duplicate users for user email: " + userEmail);
+				return false;
+			}else if(authUser.size() > 1) {
+				LOGGER.log(Level.FINE, "Error- Query returned empty for user: " + userEmail);
+				return false;
+			}else {
+				//reset password:
+				DocumentReference accRef = db.collection(FireBaseSchema.ACCOUNTS_TABLE)
+												.document(authUser.getDocuments().get(0).getId());
+				
+				ApiFuture<WriteResult> updatePasswordRes = accRef.update(Account._PASSWORD_HASH, passwordHash);
+				updatePasswordRes.get();
+				return true;
+			}
+			
+		} catch (InterruptedException | ExecutionException e) {
+			LOGGER.log(Level.SEVERE,"Error- Account password reset failed.");
+			throw new DBFailureException();
+		}
+		
+	}
+	
 	public Account getUserAccountNoProfile(String userId) throws DBFailureException{
 		if(this.db == null) {
 			LOGGER.log(Level.WARNING, "Error- no database connection");
@@ -532,6 +582,7 @@ public class FireBaseAdapter {
 	}
 	
 	public void addProfileImage(BufferedImage pic, String userId) throws DBFailureException {
+		
 		if(this.db == null) {
 			LOGGER.log(Level.WARNING, "Error- no database connection");
 			throw new DBFailureException();
@@ -601,4 +652,5 @@ public class FireBaseAdapter {
 			throw new DBFailureException();
 		}
 	}
+
 }

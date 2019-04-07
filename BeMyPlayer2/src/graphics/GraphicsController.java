@@ -20,6 +20,7 @@ public class GraphicsController {
 	private static String profileAccount;
 	
 	GraphicsController() {
+		
 //			init default jframe as base frame
 			mainFrame = (new JFrame("BeMyPlayer2"));
 			mainFrame.setSize(400, 300);
@@ -37,7 +38,6 @@ public class GraphicsController {
 		newPage.launchPage(mainFrame, backPage);
 	}
 	
-
 	public static Account getProfileAccount() {
 		if(profileAccount == ACTIVE_ACCOUNT) {
 			return getActiveAccount();
