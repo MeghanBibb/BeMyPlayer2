@@ -47,7 +47,6 @@ public class ViewMatchesView {
 		viewMatchController.getViewMatchesPanel().setPreferredSize(new Dimension(500,400));
 		viewMatchController.getViewMatchesPanel().setMaximumSize(new Dimension(500,400));
 		mainFrame.setContentPane(viewMatchController.getViewMatchesPanel());
-		mainFrame.getContentPane().setBackground(red);
 		
 		
 		//	init buttons and add to panel

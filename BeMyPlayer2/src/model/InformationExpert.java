@@ -35,21 +35,8 @@ public class InformationExpert {
 		}
 		
 		//should database dump these, also other account should be null until needed
-		activeUserAccount = new Account();/*
-		try {
-			activeUserAccount = getUserAccount("21R6vA3D6LtA7ilWsprZ");
-		} catch (DBFailureException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		try {
-			otherAccount = getUserAccount("86DV4wIRNJ393akBJbmA");
-		} catch (DBFailureException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-		otherAccount = new Account();
+		activeUserAccount = new Account();
+		otherAccount = null;
 	}
 	
 	public static boolean attemptAddNewAccount(Account a) throws DBFailureException {

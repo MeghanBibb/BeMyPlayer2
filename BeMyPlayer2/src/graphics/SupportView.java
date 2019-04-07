@@ -22,7 +22,6 @@ public class SupportView {
         supportController.getSupportPanel().setPreferredSize(new Dimension(500,400));
         supportController.getSupportPanel().setMaximumSize(new Dimension(500,400));
         mainFrame.setContentPane(supportController.getSupportPanel());
-        mainFrame.getContentPane().setBackground(red);
 
         //init buttons
         JButton backbtn = new JButton("Back");
