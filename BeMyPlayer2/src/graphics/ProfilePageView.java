@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -21,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import firebase.DBFailureException;
 import model.Account;
 
 public class ProfilePageView {
@@ -47,7 +49,13 @@ public class ProfilePageView {
 		 * TO DO: load image from user/database
 		 */
 		JLabel imgLabel = new JLabel("");
-		Image img = new ImageIcon(profileController.getClass().getResource("/defaultIcon.png")).getImage();
+		BufferedImage img = null;
+		try {
+			img = GraphicsController.getProfileImage(profileController.getAccount().getUserId());
+		} catch (DBFailureException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		imgLabel.setIcon(new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
 		imgLabel.setBounds(10, 60, 100, 100);
 		profileController.getProfileModel().setProfileImage(imgLabel);

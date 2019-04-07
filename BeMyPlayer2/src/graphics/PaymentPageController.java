@@ -2,6 +2,8 @@ package graphics;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigInteger;
+import java.time.LocalDate;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -43,6 +45,50 @@ public class PaymentPageController extends PageController{
 	public void setPaymentPanel(JPanel paymentPanel) {
 		this.paymentPanel = paymentPanel;
 	}
+	
+	private boolean verifyPayment() {
+		int month;
+		int year;
+		int cvc;
+		BigInteger num;
+		boolean isValid = true;
+		try {
+			month = Integer.parseInt(paymentModel.getCardMonth().getText());
+			if(month <= 0 && month >= 13) {
+				isValid = false;
+			}
+			year = Integer.parseInt(paymentModel.getCardYear().getText());
+			LocalDate now = LocalDate.now();
+			int currentYear = now.getYear();
+			if(currentYear > year) {
+				isValid = false;
+			} else if(currentYear == year && now.getMonthValue() > month) {
+				isValid = false;
+			}
+		} catch(NumberFormatException e) {
+			isValid = false;
+		}
+		
+		try {
+			cvc = Integer.parseInt(paymentModel.getCardCVC().getText());
+			if (cvc % 1000 != cvc) {
+				isValid = false;
+			}
+		} catch(NumberFormatException e) {
+			isValid = false;
+		}
+		
+		try {
+			num = new BigInteger(paymentModel.getCardNumber().getText());
+			if(paymentModel.getCardNumber().getText().length() != 16) {
+				isValid = false;
+			}
+		} catch(NumberFormatException e) {
+			isValid = false;
+		}
+		
+		return isValid;
+	}
 
 
 
@@ -54,8 +100,12 @@ public class PaymentPageController extends PageController{
 				GraphicsController.processPage(PageCreator.EDIT_ACCOUNT_PAGE,backPage);
 				break;
 			case SUBMIT:
-				System.out.println("Submit");
-				GraphicsController.processPage(PageCreator.EDIT_ACCOUNT_PAGE,backPage);
+				if(verifyPayment()) {
+					System.out.println("Submit");
+					GraphicsController.processPage(PageCreator.EDIT_ACCOUNT_PAGE,backPage);
+				} else {
+					System.out.println("not good data");
+				}
 				break;
 		}
 		
