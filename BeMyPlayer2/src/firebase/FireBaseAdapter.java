@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.awt.image.WritableRaster;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.logging.*;
@@ -166,10 +167,10 @@ public class FireBaseAdapter {
 		try {
 			QuerySnapshot authUser = fetchUser.get();
 			if(authUser.isEmpty()) {
-				LOGGER.log(Level.WARNING, "[FIREBASE] Error- query returned duplicate users for user email: " + userEmail);
+				LOGGER.log(Level.FINE, "Error- Query returned empty for user: " + userEmail);
 				return null;
 			}else if(authUser.size() > 1) {
-				LOGGER.log(Level.FINE, "Error- Query returned empty for user: " + userEmail);
+				LOGGER.log(Level.WARNING, "[FIREBASE] Error- query returned duplicate users for user email: " + userEmail);
 				return null;
 			}else {
 				return authUser.getDocuments().get(0).getId();
@@ -589,11 +590,12 @@ public class FireBaseAdapter {
 		}
 		
 		Bucket defaultBucket = StorageClient.getInstance().bucket(DB_BUCKET_NAME);
-		WritableRaster raster = pic.getRaster();
-		DataBufferByte data   = (DataBufferByte) raster.getDataBuffer();
-		byte[] binData = data.getData();
 		
 		try {
+			
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			ImageIO.write(pic, "jpg", baos);
+			byte[] binData = baos.toByteArray();
 			Blob writtenPic = defaultBucket.create(FireBaseSchema.toProfileImageIndex(userId), 
 											binData, Bucket.BlobTargetOption.doesNotExist());
 			LOGGER.log(Level.FINE, "Added a Profile Image.");
@@ -611,12 +613,13 @@ public class FireBaseAdapter {
 		}
 		
 		Storage storage = StorageOptions.getDefaultInstance().getService();
-		Bucket defaultBucket = StorageClient.getInstance().bucket(DB_BUCKET_NAME);
-		WritableRaster raster = pic.getRaster();
-		DataBufferByte data   = (DataBufferByte) raster.getDataBuffer();
-		byte[] binData = data.getData();
 		
 		try {
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			ImageIO.write(pic, "jpg", baos);
+			byte[] binData = baos.toByteArray();
+			
+			Bucket defaultBucket = StorageClient.getInstance().bucket(DB_BUCKET_NAME);
 			BlobId blobId = BlobId.of(DB_BUCKET_NAME, FireBaseSchema.toProfileImageIndex(userId));
 			if(storage.delete(blobId)) {
 				LOGGER.log(Level.FINE, "Deleted old Profile Image.");
@@ -625,7 +628,7 @@ public class FireBaseAdapter {
 				throw new DBFailureException();
 			}
 			
-			Blob writtenPic = defaultBucket.create(userId, binData, Bucket.BlobTargetOption.doesNotExist());
+			Blob writtenPic = defaultBucket.create(FireBaseSchema.toProfileImageIndex(userId), binData, Bucket.BlobTargetOption.doesNotExist());
 			LOGGER.log(Level.FINE, "Updated Profile Image to new Image.");
 			
 		}catch(Exception exc) {
@@ -641,9 +644,8 @@ public class FireBaseAdapter {
 		}
 		
 		try {
-			Storage storage = StorageOptions.getDefaultInstance().getService();
-			BlobId imgBlobId = BlobId.of(DB_BUCKET_NAME, FireBaseSchema.toProfileImageIndex(userId));
-			Blob imgBlob = storage.get(imgBlobId);
+			Bucket defaultBucket = StorageClient.getInstance().bucket(DB_BUCKET_NAME);
+			Blob imgBlob = defaultBucket.get(FireBaseSchema.toProfileImageIndex(userId));
 			byte [] bytes = imgBlob.getContent(BlobSourceOption.generationMatch());
 			BufferedImage img = ImageIO.read(new ByteArrayInputStream(bytes));
 			return img;

@@ -104,9 +104,6 @@ public class InformationExpert {
 		return activeUserAccount.getUserId();
 	}
 	
-	public static String getOtherUserID() {
-		return otherAccount.getUserId();
-	}
 	
 	public static BufferedImage getProfileImage(String userID) throws DBFailureException {
 		return databaseAdapter.getProfileImage(userID);

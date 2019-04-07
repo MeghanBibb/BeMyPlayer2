@@ -19,7 +19,7 @@ public class MessageController extends PageController {
     	if(back != null) {
     		backPage = back;
     	}
-    	account = GraphicsController.getOtherAccount();
+    	account = GraphicsController.getActiveAccount();
         MessageView.startMessagePage(this,mainFrame);
     }
     
