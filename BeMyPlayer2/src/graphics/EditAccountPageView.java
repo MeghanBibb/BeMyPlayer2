@@ -124,7 +124,7 @@ public class EditAccountPageView {
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.setBounds(345,345,90,40);
 		btnSubmit.setBackground(yellow);
-		btnSubmit.setActionCommand(editController.SUBMIT);
+		btnSubmit.setActionCommand(editController.SUBMITEDITACCOUNT);
 		btnSubmit.addActionListener(editController);
 		editController.getEditAccountModel().setBtnSubmit(btnSubmit);
 		editController.getEditAccountPanel().add(editController.getEditAccountModel().getBtnSubmit());
@@ -474,7 +474,7 @@ public class EditAccountPageView {
 		JButton nextbtn = new JButton("Submit");
 		nextbtn.setBounds(345, 345, 90, 40);
 		nextbtn.setBackground(yellow);
-		nextbtn.setActionCommand(EditAccountPageController.SUBMIT);
+		nextbtn.setActionCommand(EditAccountPageController.SUBMITEDITQUESTIONAIRE);
 		nextbtn.addActionListener(editController);
 		editController.getEditAccountModel().setBtnSubmit(nextbtn);
 		editController.getEditAccountPanel().add(nextbtn);
@@ -619,7 +619,7 @@ public class EditAccountPageView {
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.setBounds(385, 345, 90, 40);
 		btnSubmit.setBackground(yellow);
-		btnSubmit.setActionCommand(EditAccountPageController.SUBMIT);
+		btnSubmit.setActionCommand(EditAccountPageController.SUBMITEDITPROFILE);
 		btnSubmit.addActionListener(editController);
 		editController.getEditAccountModel().setBtnSubmit(btnSubmit);
 		editController.getEditAccountPanel().add(btnSubmit);
