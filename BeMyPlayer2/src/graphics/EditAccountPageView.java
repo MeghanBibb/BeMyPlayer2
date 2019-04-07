@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -545,7 +547,42 @@ public class EditAccountPageView {
 		editController.getEditAccountPanel().add(lblAccInfo);
 		
 		//	description box
-		JTextArea description = new JTextArea();
+		
+//		char count on description
+			JLabel charCount = new JLabel();
+			charCount.setFont(new Font("Monospaced",Font.BOLD,12));
+			charCount.setBounds(125, 350, 190, 50);
+			charCount.setText("250 characters remaining");
+			editController.getEditAccountModel().setCharcount(charCount);
+			editController.getEditAccountPanel().add(charCount);
+			//	description box
+			JTextArea description = new JTextArea();
+			
+			description.setBounds(125, 230, 250, 140);
+			description.getDocument().addDocumentListener(new DocumentListener() {
+				public void update() {
+					editController.getEditAccountModel().getCharcount().setText( 
+							250 - description.getText().length() + " characters remaining");
+				}
+				@Override
+				public void insertUpdate(DocumentEvent e) {
+					// TODO Auto-generated method stub
+					update();
+				}
+
+				@Override
+				public void removeUpdate(DocumentEvent e) {
+					// TODO Auto-generated method stub
+					update();
+				}
+
+				@Override
+				public void changedUpdate(DocumentEvent e) {
+					// TODO Auto-generated method stub
+					update();
+				}
+
+			});
 
 		description.setBounds(125, 230, 250, 150);
 		editController.getEditAccountModel().setCharDescription(description);
