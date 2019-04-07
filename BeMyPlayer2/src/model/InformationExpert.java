@@ -100,4 +100,12 @@ public class InformationExpert {
 	public static void addProfileImage(BufferedImage pic, String userID) throws DBFailureException {
 		databaseAdapter.addProfileImage(pic, userID);
 	}
+	
+	public static void updateAccount(Account a) throws DBFailureException {
+		databaseAdapter.updateUserAccount(a);
+	}
+	
+	public static void updateProfile(Profile p) throws DBFailureException {
+		databaseAdapter.updateProfile(p);
+	}
 }
