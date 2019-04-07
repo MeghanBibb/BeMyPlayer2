@@ -3,10 +3,15 @@ package firebase;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.logging.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 import com.google.api.core.ApiFuture;
@@ -29,6 +34,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import model.Account;
 import model.DBDocumentPackage;
+import model.Match;
+import model.MatchStatus;
 import model.Profile;
 
 import com.google.cloud.Service;
@@ -41,6 +48,8 @@ public class FireBaseAdapter {
 	
 	private static final String FIREBASE_TOKEN_PATH = "db/bemyplayer2-e65fc-dca2d3903ee3.json";
 	private static final String DB_URL = "https://bemyplayer2-e65fc.firebaseio.com";
+	private static final int MAX_NUM_PROFILES_RETRIEVED = 10;
+	
 	private Firestore db = null;
 	
 	public boolean initializeDBConnection() {
@@ -209,7 +218,6 @@ public class FireBaseAdapter {
 		Account userAccount = new Account();
 		
 		try {
-			
 			DocumentSnapshot accResult = fetchAccount.get();
 			if(!accResult.exists()) {
 				LOGGER.log(Level.FINE,"Could not find account with given user id");
@@ -344,4 +352,151 @@ public class FireBaseAdapter {
 		return true;
 	}
 	
+	public List<Profile> getUnmatchedProfiles(String userId) throws DBFailureException{
+		return getUnmatchedProfiles(userId, 1);
+	}
+	
+	public List<Profile> getUnmatchedProfiles(String userId, int iterationNumber) throws DBFailureException {
+		if(this.db == null) {
+			LOGGER.log(Level.WARNING, "Error- no database connection");
+			throw new DBFailureException();
+		}
+		
+		List<Profile> batch = null;
+		
+		ApiFuture<QuerySnapshot> getAllClientMatches = 
+				db.collection(FireBaseSchema.MATCHES_TABLE)
+					.document(userId)	
+					.collection(FireBaseSchema.MATCHES_TABLE_COLLECTION)
+					.whereEqualTo(Match._BLOCK_STATUS, Boolean.FALSE)
+					.whereEqualTo(Match._CLIENT_MATCH_STATUS, MatchStatus._STATUS_SWIPE_RIGHT)
+					.get();
+		
+		ApiFuture<QuerySnapshot> getBatchProfiles = 
+				db.collection(FireBaseSchema.PROFILES_TABLE)
+					.offset(iterationNumber * MAX_NUM_PROFILES_RETRIEVED)
+					.limit(MAX_NUM_PROFILES_RETRIEVED)
+					.get();
+					
+		try {
+			QuerySnapshot clientMatches = getAllClientMatches.get();
+			Set<String> clientMatchIds = clientMatches
+				.getDocuments().stream()
+				.map(m -> m.getId())
+				.collect(Collectors.toCollection(HashSet::new));
+					
+			
+			QuerySnapshot profileBatch = getBatchProfiles.get();
+			if(profileBatch.isEmpty()) {
+				LOGGER.log(Level.FINE, "Query for new Profiles returned empty.");
+				return new ArrayList<Profile>();
+			}else {
+				
+				//parallelize package conversion to lift of profiles:
+				batch = profileBatch.getDocuments().parallelStream()
+					.filter(p -> !clientMatchIds.contains(p.getId()))
+					.map(p -> {
+							Profile newProf = new Profile();
+							newProf.initializeFromPackage(new DBDocumentPackage(p.getId(), p.getData()));
+							return newProf;
+						})
+					.collect(Collectors.toList());
+			}
+			
+		} catch (InterruptedException e) {
+			LOGGER.log(Level.SEVERE,"Error- Profile batch retrieval query interrupted.");
+			throw new DBFailureException();
+		} catch (ExecutionException e) {
+			LOGGER.log(Level.SEVERE,"Error- Profile batch retrieval query failed.");
+			throw new DBFailureException();
+		}
+		
+		return batch;
+	}
+	
+	public Match getMatch(Profile clientProfile, Profile otherProfile) throws DBFailureException {
+		ApiFuture<DocumentSnapshot> getClientMatch = 
+				db.collection(FireBaseSchema.MATCHES_TABLE)
+					.document(clientProfile.getUserId())	
+					.collection(FireBaseSchema.MATCHES_TABLE_COLLECTION)
+					.document(otherProfile.getUserId())
+					.get();
+		
+		DocumentSnapshot clientMatch;
+		try {
+			
+			clientMatch = getClientMatch.get();
+			if(!clientMatch.exists()) {
+				return null;
+			}
+			
+			DBDocumentPackage pkg = new DBDocumentPackage(clientMatch.getId(), clientMatch.getData());
+			Match newMatch = new Match(clientProfile, otherProfile);
+			newMatch.initializeFromPackage(pkg);
+			return newMatch;
+			
+		} catch (InterruptedException e) {
+			LOGGER.log(Level.SEVERE,"Error- Match query interrupted.");
+			throw new DBFailureException();
+		} catch (ExecutionException e) {
+			LOGGER.log(Level.SEVERE,"Error- Match query failed.");
+			throw new DBFailureException();
+		}
+	}
+	
+	public void addMatch(Match match) throws DBFailureException {
+		DocumentReference clientMatchRef = db.collection(FireBaseSchema.MATCHES_TABLE)
+				.document(match.getClientProfile().getUserId())
+				.collection(FireBaseSchema.MATCHES_TABLE_COLLECTION)
+				.document(match.getOtherProfile().getUserId());
+			
+		DocumentReference otherMatchRef = db.collection(FireBaseSchema.MATCHES_TABLE)
+				.document(match.getOtherProfile().getUserId())
+				.collection(FireBaseSchema.MATCHES_TABLE_COLLECTION)
+				.document(match.getClientProfile().getUserId());
+
+		DBDocumentPackage clientPackage = match.toDBPackage();
+		DBDocumentPackage othPackage = match.converseMatchToDBPackage();
+		ApiFuture<WriteResult> clientResult = clientMatchRef.set(clientPackage.getValues());
+		ApiFuture<WriteResult> otherResult = otherMatchRef.set(othPackage.getValues());
+		
+		try {
+			clientResult.get();
+			otherResult.get();
+		} catch (InterruptedException e) {
+			LOGGER.log(Level.SEVERE,"Error- Match addition query interrupted.");
+			throw new DBFailureException();
+		} catch (ExecutionException e) {
+			LOGGER.log(Level.SEVERE,"Error- Match addition query failed.");
+			throw new DBFailureException();
+		}
+	}
+	
+	public void updateMatch(Match match) throws DBFailureException {
+		DocumentReference clientMatchRef = db.collection(FireBaseSchema.MATCHES_TABLE)
+											.document(match.getClientProfile().getUserId())
+											.collection(FireBaseSchema.MATCHES_TABLE_COLLECTION)
+											.document(match.getOtherProfile().getUserId());
+		
+		DocumentReference otherMatchRef = db.collection(FireBaseSchema.MATCHES_TABLE)
+											.document(match.getOtherProfile().getUserId())
+											.collection(FireBaseSchema.MATCHES_TABLE_COLLECTION)
+											.document(match.getClientProfile().getUserId());
+		
+		DBDocumentPackage clientPackage = match.toDBPackage();
+		DBDocumentPackage othPackage = match.converseMatchToDBPackage();
+		ApiFuture<WriteResult> clientResult = clientMatchRef.update(clientPackage.getValues());
+		ApiFuture<WriteResult> otherResult = otherMatchRef.update(othPackage.getValues());
+		
+		try {
+			clientResult.get();
+			otherResult.get();
+		} catch (InterruptedException e) {
+			LOGGER.log(Level.SEVERE,"Error- Match update query interrupted.");
+			throw new DBFailureException();
+		} catch (ExecutionException e) {
+			LOGGER.log(Level.SEVERE,"Error- Match update query failed.");
+			throw new DBFailureException();
+		}
+	}
 }

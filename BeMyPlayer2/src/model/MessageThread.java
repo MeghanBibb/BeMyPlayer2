@@ -4,7 +4,7 @@ import java.util.List;
 
 public class MessageThread {
 	
-	//other variable go here...
+	//other variables go here...
 	private List<Message> messages;
 	
 	
