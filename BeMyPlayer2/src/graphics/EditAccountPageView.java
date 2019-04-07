@@ -478,7 +478,7 @@ public class EditAccountPageView {
 		Color yellow = new Color(254, 195, 123);
 		
 		//	 set up panel
-		editController.setEditAccountPanel(new JPanel(null));
+		editController.setEditAccountPanel(new BackgroundPanel(null));
 		editController.getEditAccountPanel().setBorder(new EmptyBorder(5, 5, 5, 5));
 		editController.getEditAccountPanel().setPreferredSize(new Dimension(500,400));
 		editController.getEditAccountPanel().setMaximumSize(new Dimension(500,400));

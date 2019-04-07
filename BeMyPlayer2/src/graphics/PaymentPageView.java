@@ -24,7 +24,7 @@ public class PaymentPageView {
 		Color yellow = new Color(254, 195, 123);
 		
 		//init panel
-		paymentController.setPaymentPanel(new JPanel(null));
+		paymentController.setPaymentPanel(new BackgroundPanel(null));
 		paymentController.getPaymentPanel().setBorder(new EmptyBorder(5, 5, 5, 5));
 		paymentController.getPaymentPanel().setPreferredSize(new Dimension(500,400));
 		paymentController.getPaymentPanel().setMaximumSize(new Dimension(500,400));

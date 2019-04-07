@@ -17,7 +17,7 @@ public class SupportView {
 		Color white = new Color(254, 195, 123);//	aka peach
 
         //init panel
-        supportController.setSupportPanel(new JPanel(null));
+        supportController.setSupportPanel(new BackgroundPanel(null));
         supportController.getSupportPanel().setBorder(new EmptyBorder(5, 5, 5, 5));
         supportController.getSupportPanel().setPreferredSize(new Dimension(500,400));
         supportController.getSupportPanel().setMaximumSize(new Dimension(500,400));

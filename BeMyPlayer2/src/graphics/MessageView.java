@@ -18,7 +18,7 @@ public class MessageView {
         Color white = new Color(255,255,255);
 
         //init panel
-        messageController.setMessagePanel(new JPanel(null));
+        messageController.setMessagePanel(new BackgroundPanel(null));
         messageController.getMessagePanel().setBorder(new EmptyBorder(5, 5, 5, 5));
         messageController.getMessagePanel().setPreferredSize(new Dimension(500,400));
         messageController.getMessagePanel().setMaximumSize(new Dimension(500,400));
