@@ -78,9 +78,7 @@ public class InformationExpert {
 		System.out.println("setting active account " + a.getEmail());
 		activeUserAccount = a;
 	}
-	public static Account getOtherAccount() {
-		return otherAccount;
-	}
+	
 	
 	public static boolean isActiveUser(Account a) {
 		if(a == activeUserAccount) {

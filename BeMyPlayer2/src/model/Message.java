@@ -46,7 +46,7 @@ public final class Message implements DBSerializable{
 	@Override
 	public DBDocumentPackage toDBPackage() {
 		
-		DBDocumentPackage newPackage = new DBDocumentPackage(this.matchId);
+		DBDocumentPackage newPackage = new DBDocumentPackage();
 		newPackage.addValue(_MESSAGE, this.message);
 		newPackage.addValue(_TIMESTAMP, this.timestamp);
 		newPackage.addValue(_SENDER_ID, this.senderId);
@@ -55,7 +55,6 @@ public final class Message implements DBSerializable{
 	
 	@Override
 	public void initializeFromPackage(DBDocumentPackage pkg) {
-		this.matchId = pkg.getPrimaryKey();
 		for(String s : pkg.getValues().keySet()) {
 			switch(s) {
 				case _MESSAGE:
