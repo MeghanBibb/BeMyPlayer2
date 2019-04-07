@@ -185,37 +185,46 @@ public class CreateAccountPageController extends PageController{
 		 *//*
 		 */
 		//	VALIDATIONS
-		
+		List<String> warnings = new ArrayList<>();
 		if(this.createAccountPageModel.getFrmtdtxtfldEnterUsername().getText().equalsIgnoreCase("")) {
 			valid = false;
+			warnings.add("Invalid username\n");
 		}
 		
 		if(this.createAccountPageModel.getPwdEnterPass().getText().equalsIgnoreCase("")) {
 			valid = false;
+			warnings.add("Password cannot be empty\n");
 		}
 		
 		if(this.createAccountPageModel.getPwdValidatePass().getText().equalsIgnoreCase("")) {
 			valid = false;
+			warnings.add("Password confirmation cannot be empty\n");
 		}
 		this.createAccountPageModel.getPwdEnterPass().setText(Hasher.hashString(this.createAccountPageModel.getPwdEnterPass().getText()));
 		this.createAccountPageModel.getPwdValidatePass().setText(Hasher.hashString(this.createAccountPageModel.getPwdValidatePass().getText()));
 		
 		if(!this.createAccountPageModel.getPwdEnterPass().getText().equals(this.createAccountPageModel.getPwdValidatePass().getText())) {
 			valid = false;
+			warnings.add("Passwords must be identical\n");
 		}
 		if(this.createAccountPageModel.getSecQA().getText().equalsIgnoreCase("")) {
 			valid = false;
+			warnings.add("Please provide answer to a security question\n");
 		}
 		try {
 			this.createAccountPageModel.getDob();
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			valid = false;
+			warnings.add("invalid date: please enter dd/mm/yyyy\n");
 		}
 		if(this.createAccountPageModel.getAge().getText().equalsIgnoreCase("")) {
 			valid = false;
+			warnings.add("invalid date:\n");
 		}
-		
+		if(valid == false) {
+			InvalidPopup p  = new InvalidPopup(this.getCreateAccountPanel(),warnings);
+		}
 		
 		return valid;
 	}

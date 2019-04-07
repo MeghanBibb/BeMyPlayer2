@@ -3,6 +3,7 @@ package graphics;
 import java.awt.Image;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,7 +29,7 @@ public class CreateAccountPageModel {
 	private String securityQuestions;
 	private JComboBox genderBox;
 	private JComboBox securityQ;
-	private Image profileImg;
+	private BufferedImage profileImg;
 	private JFormattedTextField enterEmail;
 	private List<JCheckBox> checkList;
 	private List<Boolean> checkLister;
@@ -125,10 +126,10 @@ public class CreateAccountPageModel {
 	public void setImagePath(String string) {
 		this.imagePath = string;
 	}
-	public Image getProfileImg() {
+	public BufferedImage getProfileImg() {
 		return profileImg;
 	}
-	public void setProfileImg(Image profileImg) {
+	public void setProfileImg(BufferedImage profileImg) {
 		this.profileImg = profileImg;
 	}
 	public List<JCheckBox> getCheckList() {

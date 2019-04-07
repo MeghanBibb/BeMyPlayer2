@@ -8,7 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -702,15 +704,25 @@ public class CreateAccountPageView {
 		mainFrame.getContentPane().setBackground(red);
 		
 		//	default icon
-		Image img1;
+		BufferedImage img1 = null;
 		if(visited == true) {
 			img1 = capController.getCreateAccountPageModel().getProfileImg();
 			if(img1 == null) {
-				img1 = new ImageIcon(capController.getClass().getResource("/defaultIcon.png")).getImage();
+				try {
+					img1 = ImageIO.read(capController.getClass().getResource("/defaultIcon.png"));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		}
 		else {
-			img1 = new ImageIcon(capController.getClass().getResource("/defaultIcon.png")).getImage();
+			try {
+				img1 = ImageIO.read(capController.getClass().getResource("/defaultIcon.png"));
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 		
 		//lblNewLabel.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
@@ -718,6 +730,8 @@ public class CreateAccountPageView {
 		capController.getCreateAccountPageModel().setImagePath(img1.toString());
 		final JButton setIcon = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
 		setIcon.setBounds(125,25,150,150);
+		setIcon.setOpaque(false);
+		setIcon.setBackground(red);
 		setIcon.addActionListener(new ActionListener(){
 
             public void actionPerformed(ActionEvent e) {
@@ -732,7 +746,7 @@ public class CreateAccountPageView {
 				fc.addChoosableFileFilter(imageFilter);
 				fc.setAcceptAllFileFilterUsed(false);
 				fc.setCurrentDirectory(new java.io.File("."));
-				Image img1 = null;
+				BufferedImage img1 = null;
 				//	force file chooser
 				File f = null;
 				int returnValue = fc.showOpenDialog(null);
@@ -744,11 +758,16 @@ public class CreateAccountPageView {
 				JLabel lblNewLabel = new JLabel("");
 				lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 				if(f != null) {
-					img1 = new ImageIcon(f.getAbsolutePath()).getImage();
+					img1 = (BufferedImage) new ImageIcon(f.getAbsolutePath()).getImage();
 					capController.getCreateAccountPageModel().setImagePath(f.getAbsolutePath());
 				}
 				else if(f == null){
-					img1 = new ImageIcon(capController.getClass().getResource("/defaultIcon.png")).getImage();
+					try {
+						img1 = ImageIO.read(capController.getClass().getResource("/defaultIcon.png"));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					capController.getCreateAccountPageModel().setImagePath(img1.toString());
 				}
 				setIcon.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));

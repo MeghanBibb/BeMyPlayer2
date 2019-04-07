@@ -25,7 +25,7 @@ public class LoginPageController extends PageController{
 	
 	//	table model, db pull, table model, jtable, jframe
 	private LoginPageModel loginPageModel = null;
-	private JPanel loginPanel = null;
+	private BackgroundPanel loginPanel = null;
 	
 	//private JFrame loginFrame = null;
 	//	init controller 
@@ -84,7 +84,7 @@ public class LoginPageController extends PageController{
 	public JPanel getLoginPanel() {
 		return loginPanel;
 	}
-	public void setLoginPanel(JPanel loginPanel) {
+	public void setLoginPanel(BackgroundPanel loginPanel) {
 		this.loginPanel = loginPanel;
 	}
 	
