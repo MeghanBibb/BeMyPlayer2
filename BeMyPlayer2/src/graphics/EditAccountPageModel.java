@@ -32,7 +32,7 @@ public class EditAccountPageModel {
 	private String securityQuestions;
 	private JComboBox genderBox;
 	private JComboBox securityQ;
-	
+	private JLabel charcount;
 	//init questionnaire fields
 	private List<JCheckBox> checkList;
 	private List<Boolean> checkLister;
@@ -191,5 +191,10 @@ public class EditAccountPageModel {
 	public void setDob(Date dob) {
 		this.dob = dob;
 	}
-
+	public JLabel getCharcount() {
+		return charcount;
+	}
+	public void setCharcount(JLabel charcount) {
+		this.charcount = charcount;
+	}
 }

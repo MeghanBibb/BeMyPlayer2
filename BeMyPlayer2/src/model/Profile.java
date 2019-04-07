@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,7 +31,7 @@ public class Profile implements DBSerializable{
 	private List<Boolean> platforms;
 	private List<Boolean> genres;
 	
-	private Image profilePicture = null;
+	private BufferedImage profilePicture = null;
 	
 	public Profile() {
 		// Initialize to default values
@@ -98,10 +99,10 @@ public class Profile implements DBSerializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Image getProfilePicture() {
+	public BufferedImage getProfilePicture() {
 		return profilePicture;
 	}
-	public void setProfilePicture(Image profilePicture) {
+	public void setProfilePicture(BufferedImage profilePicture) {
 		this.profilePicture = profilePicture;
 	}
 	public List<Boolean> getPlatforms() {
