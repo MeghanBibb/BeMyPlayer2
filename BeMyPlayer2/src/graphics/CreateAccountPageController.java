@@ -160,6 +160,7 @@ public class CreateAccountPageController extends PageController{
 				try {
 					GraphicsController.attemptAddNewAccount(a);
 					InformationExpert.setActiveAccount(a);
+					GraphicsController.uploadProfileImage(p.getProfilePicture(), GraphicsController.getActiveID());
 				} catch (DBFailureException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

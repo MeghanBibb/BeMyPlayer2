@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -97,4 +98,19 @@ public class InformationExpert {
 		return databaseAdapter.getUserAccountWithProfile(userId);
 	}
 	
+	public static String getActiveUserID() {
+		return activeUserAccount.getUserId();
+	}
+	
+	public static String getOtherUserID() {
+		return otherAccount.getUserId();
+	}
+	
+	public static BufferedImage getProfileImage(String userID) throws DBFailureException {
+		return databaseAdapter.getProfileImage(userID);
+	}
+	
+	public static void addProfileImage(BufferedImage pic, String userID) throws DBFailureException {
+		databaseAdapter.addProfileImage(pic, userID);
+	}
 }
