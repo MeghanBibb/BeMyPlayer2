@@ -247,8 +247,17 @@ public class CreateAccountPageController extends PageController{
 				countGenre++;
 			}
 		}
-		if(countPlat == 0 || countGenre == 0) {
+		List<String> warnings = new ArrayList<>();
+		if(countPlat == 0) {
 			valid = false;
+			warnings.add("Please select a favorite platform\n");
+		}
+		if(countGenre == 0) {
+			valid = false;
+			warnings.add("Please select some of your favorite genres\n");
+		}
+		if(valid == false) {
+			InvalidPopup p = new InvalidPopup(this.getCreateAccountPanel(),warnings);
 		}
 		
 		return valid;
