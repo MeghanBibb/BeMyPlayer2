@@ -1,10 +1,18 @@
 package firebase;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
+import java.awt.image.WritableRaster;
+import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.logging.*;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
+
+import javax.imageio.ImageIO;
+
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,11 +32,18 @@ import com.google.cloud.firestore.Query;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
 import com.google.cloud.firestore.WriteResult;
+import com.google.cloud.storage.Blob;
+import com.google.cloud.storage.Blob.BlobSourceOption;
+import com.google.cloud.storage.BlobId;
+import com.google.cloud.storage.Bucket;
+import com.google.cloud.storage.Storage;
+import com.google.cloud.storage.StorageOptions;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.UserRecord.CreateRequest;
 import com.google.firebase.cloud.FirestoreClient;
+import com.google.firebase.cloud.StorageClient;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -48,6 +63,7 @@ public class FireBaseAdapter {
 	
 	private static final String FIREBASE_TOKEN_PATH = "db/bemyplayer2-e65fc-dca2d3903ee3.json";
 	private static final String DB_URL = "https://bemyplayer2-e65fc.firebaseio.com";
+	private static final String DB_BUCKET_NAME = "bemyplayer2-e65fc.appspot.com";
 	private static final int MAX_NUM_PROFILES_RETRIEVED = 10;
 	
 	private Firestore db = null;
@@ -415,6 +431,11 @@ public class FireBaseAdapter {
 	}
 	
 	public Match getMatch(Profile clientProfile, Profile otherProfile) throws DBFailureException {
+		if(this.db == null) {
+			LOGGER.log(Level.WARNING, "Error- no database connection");
+			throw new DBFailureException();
+		}
+		
 		ApiFuture<DocumentSnapshot> getClientMatch = 
 				db.collection(FireBaseSchema.MATCHES_TABLE)
 					.document(clientProfile.getUserId())	
@@ -445,6 +466,11 @@ public class FireBaseAdapter {
 	}
 	
 	public void addMatch(Match match) throws DBFailureException {
+		if(this.db == null) {
+			LOGGER.log(Level.WARNING, "Error- no database connection");
+			throw new DBFailureException();
+		}
+		
 		DocumentReference clientMatchRef = db.collection(FireBaseSchema.MATCHES_TABLE)
 				.document(match.getClientProfile().getUserId())
 				.collection(FireBaseSchema.MATCHES_TABLE_COLLECTION)
@@ -473,6 +499,11 @@ public class FireBaseAdapter {
 	}
 	
 	public void updateMatch(Match match) throws DBFailureException {
+		if(this.db == null) {
+			LOGGER.log(Level.WARNING, "Error- no database connection");
+			throw new DBFailureException();
+		}
+		
 		DocumentReference clientMatchRef = db.collection(FireBaseSchema.MATCHES_TABLE)
 											.document(match.getClientProfile().getUserId())
 											.collection(FireBaseSchema.MATCHES_TABLE_COLLECTION)
@@ -500,4 +531,74 @@ public class FireBaseAdapter {
 		}
 	}
 	
+	public void addProfileImage(BufferedImage pic, String userId) throws DBFailureException {
+		if(this.db == null) {
+			LOGGER.log(Level.WARNING, "Error- no database connection");
+			throw new DBFailureException();
+		}
+		
+		Bucket defaultBucket = StorageClient.getInstance().bucket(DB_BUCKET_NAME);
+		WritableRaster raster = pic.getRaster();
+		DataBufferByte data   = (DataBufferByte) raster.getDataBuffer();
+		byte[] binData = data.getData();
+		
+		try {
+			Blob writtenPic = defaultBucket.create(FireBaseSchema.toProfileImageIndex(userId), 
+											binData, Bucket.BlobTargetOption.doesNotExist());
+			LOGGER.log(Level.FINE, "Added a Profile Image.");
+		}catch(Exception exc) {
+			
+			LOGGER.log(Level.SEVERE, "Error- Image upload failed!");
+			throw new DBFailureException();
+		}
+	}
+
+	public void updateProfileImage(BufferedImage pic, String userId) throws DBFailureException {
+		if(this.db == null) {
+			LOGGER.log(Level.WARNING, "Error- no database connection");
+			throw new DBFailureException();
+		}
+		
+		Storage storage = StorageOptions.getDefaultInstance().getService();
+		Bucket defaultBucket = StorageClient.getInstance().bucket(DB_BUCKET_NAME);
+		WritableRaster raster = pic.getRaster();
+		DataBufferByte data   = (DataBufferByte) raster.getDataBuffer();
+		byte[] binData = data.getData();
+		
+		try {
+			BlobId blobId = BlobId.of(DB_BUCKET_NAME, FireBaseSchema.toProfileImageIndex(userId));
+			if(storage.delete(blobId)) {
+				LOGGER.log(Level.FINE, "Deleted old Profile Image.");
+			}else {
+				LOGGER.log(Level.SEVERE, "Error- Profile image for given userID does not exist.");
+				throw new DBFailureException();
+			}
+			
+			Blob writtenPic = defaultBucket.create(userId, binData, Bucket.BlobTargetOption.doesNotExist());
+			LOGGER.log(Level.FINE, "Updated Profile Image to new Image.");
+			
+		}catch(Exception exc) {
+			LOGGER.log(Level.SEVERE, "Error- Image upload failed-- Profile picture may have been lost!");
+			throw new DBFailureException();
+		}
+	}
+
+	public BufferedImage getProfileImage(String userId) throws DBFailureException {
+		if(this.db == null) {
+			LOGGER.log(Level.WARNING, "Error- no database connection");
+			throw new DBFailureException();
+		}
+		
+		try {
+			Storage storage = StorageOptions.getDefaultInstance().getService();
+			BlobId imgBlobId = BlobId.of(DB_BUCKET_NAME, FireBaseSchema.toProfileImageIndex(userId));
+			Blob imgBlob = storage.get(imgBlobId);
+			byte [] bytes = imgBlob.getContent(BlobSourceOption.generationMatch());
+			BufferedImage img = ImageIO.read(new ByteArrayInputStream(bytes));
+			return img;
+		}catch(Exception exc){
+			LOGGER.log(Level.SEVERE, "Error- Image retrieval failed.");
+			throw new DBFailureException();
+		}
+	}
 }

@@ -12,6 +12,8 @@ public class FireBaseSchema {
 							   MATCHES_TABLE_COLLECTION = "userMatches",
 							   MESSAGE_THREADS_TABLE = "MessageThreads";
 	
+	public static final String PROFILE_IMAGE_PREFIX = "p_img-";
+	
 	public static Date parseDate(Object obj) {
 		//perform additional formatting on Date object as needed:
 		if(obj instanceof Timestamp) {
@@ -21,6 +23,10 @@ public class FireBaseSchema {
 		}
 		
 		return null;
+	}
+	
+	public static String toProfileImageIndex(String userId) {
+		return PROFILE_IMAGE_PREFIX + userId;
 	}
 	//Handle any additional Schema based logic here...
 }
