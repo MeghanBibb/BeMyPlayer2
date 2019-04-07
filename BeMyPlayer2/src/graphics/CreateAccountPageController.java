@@ -201,8 +201,6 @@ public class CreateAccountPageController extends PageController{
 			valid = false;
 			warnings.add("Password confirmation cannot be empty\n");
 		}
-		this.createAccountPageModel.getPwdEnterPass().setText(Hasher.hashString(this.createAccountPageModel.getPwdEnterPass().getText()));
-		this.createAccountPageModel.getPwdValidatePass().setText(Hasher.hashString(this.createAccountPageModel.getPwdValidatePass().getText()));
 		
 		if(!this.createAccountPageModel.getPwdEnterPass().getText().equals(this.createAccountPageModel.getPwdValidatePass().getText())) {
 			valid = false;
@@ -274,7 +272,7 @@ public class CreateAccountPageController extends PageController{
 		}
 		if(this.getCreateAccountPageModel().getCharDescription().getText().length() > MAXLENGTH) {
 			valid = false;
-			warnings.add("Character limit 250 exceeded\n");
+			warnings.add("Character limit exceeded\n");
 		}
 		if(valid == false) {
 			InvalidPopup p = new InvalidPopup(this.getCreateAccountPanel(),warnings);
