@@ -38,7 +38,7 @@ public class CreateAccountPageModel {
 	
 	private JTextArea charDescription;
 	private JLabel profilePicLabel;
-	
+	private JLabel charcount;
 	public JButton getBack() {
 		return back;
 	}
@@ -164,6 +164,12 @@ public class CreateAccountPageModel {
 	}
 	public void setDob(Date dob) {
 		this.dob = dob;
+	}
+	public JLabel getCharcount() {
+		return charcount;
+	}
+	public void setCharcount(JLabel charcount) {
+		this.charcount = charcount;
 	}
 	
 	
