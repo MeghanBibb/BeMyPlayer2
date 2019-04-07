@@ -124,6 +124,14 @@ public class GraphicsController {
 		InformationExpert.addProfileImage(pic, userID);
 	}
 	
+	public static void updateAccount(Account a) throws DBFailureException {
+		InformationExpert.updateAccount(a);
+	}
+	
+	public static void updateProfile(Account a) throws DBFailureException {
+		InformationExpert.updateProfile(a.getAccountProfile());
+	}
+	
 	
 	/*    MAIN METHOD   */
 	
