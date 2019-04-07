@@ -15,7 +15,7 @@ public class InvalidPopup {
 		JOptionPane.showConfirmDialog(p, warning, "Invalid input", JOptionPane.DEFAULT_OPTION);
 	}
 	public InvalidPopup(JPanel p, String dbError) {
-		JOptionPane.showConfirmDialog(p, dbError,JOptionPane.DEFAULT_OPTION);
+		JOptionPane.showConfirmDialog(p, dbError,"Database error",JOptionPane.DEFAULT_OPTION);
 	}
 	
 }
