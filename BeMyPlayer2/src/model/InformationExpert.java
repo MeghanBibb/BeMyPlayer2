@@ -22,9 +22,11 @@ import firebase.FireBaseSchema;
 public class InformationExpert {
 	
 	private static Account activeUserAccount = null;
-	private static Account otherAccount = null;
-	private static List<Match> potentialMatches = null;
+	private static List<Profile> allProfiles = null;
+	private static List<Match> allMatches = null;
 	private static FireBaseAdapter databaseAdapter = null;
+	
+	
 	
 	public static void initializeAdapter() {
 		databaseAdapter = new FireBaseAdapter();
@@ -48,8 +50,9 @@ public class InformationExpert {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}*/
-		otherAccount = new Account();
 	}
+	
+	
 	
 	public static boolean attemptAddNewAccount(Account a) throws DBFailureException {
 		return databaseAdapter.attemptAddNewAccount(a);
@@ -70,6 +73,7 @@ public class InformationExpert {
 	public static Account getActiveAccount() {
 		return activeUserAccount;
 	}
+	
 	public static void setActiveAccount(Account a) {
 		System.out.println("setting active account " + a.getEmail());
 		activeUserAccount = a;

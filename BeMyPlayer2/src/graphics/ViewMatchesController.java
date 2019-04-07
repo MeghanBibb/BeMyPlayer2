@@ -27,7 +27,6 @@ public class ViewMatchesController extends PageController{
 	private JFrame copyFrame;
 	private ProfileBriefModel brief = null;
 	
-	
 	public void launchPage(JFrame mainFrame, String back) {
 		if(back != null) {
 			backPage = back;
