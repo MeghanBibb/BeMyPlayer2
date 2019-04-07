@@ -3,17 +3,24 @@ package graphics;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
+import firebase.DBFailureException;
 import model.Account;
+import model.InformationExpert;
 
 public class GraphicsController {
+
+	private static final String ACTIVE_ACCOUNT = "active account";
+	private static final String OTHER_ACCOUNT = "other account";
 	
 	private static JFrame mainFrame;
-	private static Account temp;
+	private static String profileAccount;
 	
-	GraphicsController(Account a) {
+	GraphicsController() {
 //			init default jframe as base frame
-			//temp = a;
 			mainFrame = (new JFrame("BeMyPlayer2"));
 			mainFrame.setSize(400, 300);
 			mainFrame.setMaximumSize(new Dimension(500,400));
@@ -30,6 +37,23 @@ public class GraphicsController {
 		newPage.launchPage(mainFrame, backPage);
 	}
 	
+
+	public static Account getProfileAccount() {
+		if(profileAccount == ACTIVE_ACCOUNT) {
+			return getActiveAccount();
+		} else {
+			return getOtherAccount();
+		}
+	}
+	
+	public static void setProfileAccountActive() {
+		profileAccount = ACTIVE_ACCOUNT;
+	}
+	
+	public static void setProfileAccountOther() {
+		profileAccount = OTHER_ACCOUNT;
+	}
+	
 	public static JFrame getMainFrame() {
 		return mainFrame;
 	}
@@ -39,21 +63,53 @@ public class GraphicsController {
 	}
 	
 	
+	/* Info Expert Calls */
+	public static boolean attemptAddNewAccount(Account a) throws DBFailureException {
+		return InformationExpert.attemptAddNewAccount(a);
+	}
+	
+	public static Account getUserAccount(String userId) throws DBFailureException {
+		return InformationExpert.getUserAccount(userId);
+	}
+	
+	public static boolean updateUserAccount(Account a) throws DBFailureException {
+		return InformationExpert.updateUserAccount(a);
+	}
+	
+	public static boolean updateUserProfile(Account a) throws DBFailureException {
+		return InformationExpert.updateUserProfile(a);
+	}
+	
+	public static Account getActiveAccount() {
+		return InformationExpert.getActiveAccount();
+	}
+	
+	public static Account getOtherAccount() {
+		return InformationExpert.getOtherAccount();
+	}
+	
+	public static boolean isActiveAccount(Account a) {
+		return InformationExpert.isActiveUser(a);
+	}
+	
+	
 	/*    MAIN METHOD   */
 	
 	public static void main(String[] args) {
-		/*
 		try {
-			 System.setProperty("os.name", "Windows");
-			 System.setProperty("os.version", "5.1");
-			 UIManager.setLookAndFeel(
-			   "com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+		        if ("Nimbus".equals(info.getName())) {
+		            UIManager.setLookAndFeel(info.getClassName());
+		            break;
+		        }
+		    }
 			 } 
-			catch (Exception ex) {}*/
+			catch (Exception ex) {ex.printStackTrace();}
 		
 		// See the updated Account object in the model package...
-		Account a = new Account();
-		GraphicsController g = new GraphicsController(a);
+		InformationExpert.initializeAdapter();
+		GraphicsController g = new GraphicsController();
+		
 	}
 	
 }

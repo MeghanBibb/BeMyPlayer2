@@ -3,7 +3,11 @@ package graphics;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,12 +24,27 @@ public class SwipePageModel {
 		Rectangle briefSize = new Rectangle(150,100,150,200);
 		this.frame = t_frame;
 
+		////
+		Image backgroundImage;
+		try {
+			backgroundImage = ImageIO.read(new File("background.png"));
+			ImageIcon background=new ImageIcon(backgroundImage.getScaledInstance(500, 400, Image.SCALE_SMOOTH));
+		    JLabel back=new JLabel(background);
+		    this.frame.setContentPane(back);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		////
+		
 		frame.getContentPane().removeAll();
 		frame.getContentPane().revalidate();
 		frame.getContentPane().repaint();
 		frame.getContentPane().setLayout(layout);
 		Color yellow = new Color(254, 195, 123);
 		backButton.setBackground(yellow);
+		
 		
 		this.left = new SwipeButton(new SwipeLeftController());
 		this.right = new SwipeButton(new SwipeRightController());

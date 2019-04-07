@@ -159,7 +159,7 @@ public class EditAccountPageView {
 		JFormattedTextField age = new JFormattedTextField();
 		age.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		//age.setText("enter age");
+		age.setText("dd/mm/yyyy");
 		age.setBounds(275, 95, 128, 32);
 		editController.getEditAccountModel().setAge(age);
 		editController.getEditAccountPanel().add(age);

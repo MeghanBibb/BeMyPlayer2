@@ -44,7 +44,7 @@ public class ProfileBriefModel extends JPanel{
 		Image img1 = new ImageIcon(viewMatchController.getClass().getResource(temploc)).getImage();
 		JLabel setIcon = new JLabel(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
 		JLabel username = new JLabel(s);
-		JLabel age = new JLabel("Age");
+		JLabel age = new JLabel();
 		JLabel gender = new JLabel("Gender");
 		JButton viewProfile = new JButton("View Profile");
 		this.setBounds(r);
@@ -59,7 +59,8 @@ public class ProfileBriefModel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				//	replace with launch given username for iteration 3
+				// set the other account to selected account
+				GraphicsController.setProfileAccountOther();
 				GraphicsController.processPage(PageCreator.PROFILE_PAGE, backPage);
 			}
 			
@@ -75,6 +76,7 @@ public class ProfileBriefModel extends JPanel{
 		gender.setFont(new Font("Monospaced", Font.BOLD, 20));
 		gender.setForeground(red);
 		gender.setBounds(105,47,150,69);
+		
 		
 		this.add(username);
 		this.add(age);

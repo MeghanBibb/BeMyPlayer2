@@ -1,6 +1,9 @@
 package graphics;
 
 import java.awt.Image;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.*;
@@ -39,7 +42,7 @@ public class EditAccountPageModel {
 	private String imagePath;
 	private JTextArea charDescription;
 	private JLabel profilePicLabel;
-	
+	private Date dob;
 	
 	public JLabel getLblBeMyPlayer() {
 		return lblBeMyPlayer;
@@ -180,6 +183,13 @@ public class EditAccountPageModel {
 		this.profilePicLabel = profilePicLabel;
 	}
 	
-	
+	public Date getDob() throws ParseException {
+		SimpleDateFormat tf = new SimpleDateFormat("dd/MM/yyyy");
+		this.dob = tf.parse(this.age.getText().strip());
+		return dob;
+	}
+	public void setDob(Date dob) {
+		this.dob = dob;
+	}
 
 }

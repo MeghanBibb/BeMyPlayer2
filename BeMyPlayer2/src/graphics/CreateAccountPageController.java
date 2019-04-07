@@ -6,13 +6,19 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import firebase.DBFailureException;
+import firebase.FireBaseAdapter;
+import firebase.Hasher;
 import model.Account;
+import model.InformationExpert;
+import model.Profile;
 
 public class CreateAccountPageController extends PageController{
 
@@ -92,6 +98,7 @@ public class CreateAccountPageController extends PageController{
 			
 			if(validateCreatePage3()) {
 				//	CATCH FILE DUPLICATE
+				/*
 				File temp = new File(this.createAccountPageModel.getImagePath());
 				
 				File t2 = new File("bin\\dskfjlslkdjf");
@@ -109,6 +116,53 @@ public class CreateAccountPageController extends PageController{
 				}
 				catch(IOException e1) {
 					
+				}
+				*/
+				a = new Account();
+				a.setEmail(this.getCreateAccountPageModel().getEnterEmail().getText());
+				a.setPasswordHash(this.getCreateAccountPageModel().getPwdEnterPass().getText());
+				a.setSecurityQ1(this.getCreateAccountPageModel().getSecurityQuestions());
+				a.setSecurityQ1AnsHash(Hasher.hashString(this.getCreateAccountPageModel().getSecQA().getText()));
+				
+				//	set account fields
+				//	set profile fields
+				Profile p = new Profile();
+				p.setUsername(this.getCreateAccountPageModel().getFrmtdtxtfldEnterUsername().getText());
+				String htmlDescription = "<HTML>";
+				htmlDescription += this.getCreateAccountPageModel().getCharDescription().getText();
+				
+				htmlDescription = htmlDescription.replace("\n", "<br>");
+				for(char c : htmlDescription.toCharArray()) {
+					if(c == '\n') {
+						System.out.println("FOUND \\n!!!");
+					} else if (c == '\r') {
+						System.out.println("FOUND \\r!!!");
+					}
+				}
+				htmlDescription += "</HTML>";
+				System.out.println(htmlDescription);
+				
+				p.setDescription(htmlDescription);
+				p.setGender(this.getCreateAccountPageModel().getGender());
+				try {
+					p.setDateOB(this.getCreateAccountPageModel().getDob());
+				} catch (ParseException e2) {
+					// TODO Auto-generated catch block
+					//	error
+				}
+				p.setPlatforms(this.getCreateAccountPageModel().getPlatforms());
+				p.setGenres(this.getCreateAccountPageModel().getGenres());
+				p.setProfilePicture(this.getCreateAccountPageModel().getProfileImg());
+				a.setAccountProfile(p);
+				
+				
+				try {
+					GraphicsController.attemptAddNewAccount(a);
+					InformationExpert.setActiveAccount(a);
+				} catch (DBFailureException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					//	must be a connection issue
 				}
 				GraphicsController.processPage(PageCreator.HOME_PAGE,backPage);
 			}
@@ -131,7 +185,7 @@ public class CreateAccountPageController extends PageController{
 		 *//*
 		 */
 		//	VALIDATIONS
-		/*
+		
 		if(this.createAccountPageModel.getFrmtdtxtfldEnterUsername().getText().equalsIgnoreCase("")) {
 			valid = false;
 		}
@@ -143,28 +197,31 @@ public class CreateAccountPageController extends PageController{
 		if(this.createAccountPageModel.getPwdValidatePass().getText().equalsIgnoreCase("")) {
 			valid = false;
 		}
+		this.createAccountPageModel.getPwdEnterPass().setText(Hasher.hashString(this.createAccountPageModel.getPwdEnterPass().getText()));
+		this.createAccountPageModel.getPwdValidatePass().setText(Hasher.hashString(this.createAccountPageModel.getPwdValidatePass().getText()));
+		
+		if(!this.createAccountPageModel.getPwdEnterPass().getText().equals(this.createAccountPageModel.getPwdValidatePass().getText())) {
+			valid = false;
+		}
 		if(this.createAccountPageModel.getSecQA().getText().equalsIgnoreCase("")) {
 			valid = false;
 		}
-		
+		try {
+			this.createAccountPageModel.getDob();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			valid = false;
+		}
 		if(this.createAccountPageModel.getAge().getText().equalsIgnoreCase("")) {
 			valid = false;
 		}
-		try{  
-			//	must have valid age
-			int i = Integer.parseInt(this.createAccountPageModel.getAge().getText().toString());
-			if(i > 100 || i < 18) {
-				valid = false;
-			}
-		}  catch(NumberFormatException nfe)  {  
-			  valid = false;  
-		}  
-		*/
+		
+		
 		return valid;
 	}
 	public boolean validateCreatePage2() {
 		boolean valid = true;
-		/*
+		
 		int countPlat = 0;
 		int countGenre = 0;
 		this.createAccountPageModel.setCheckLister(new ArrayList<>());
@@ -184,7 +241,7 @@ public class CreateAccountPageController extends PageController{
 		if(countPlat == 0 || countGenre == 0) {
 			valid = false;
 		}
-		*/
+		
 		return valid;
 	}
 	public boolean validateCreatePage3() {

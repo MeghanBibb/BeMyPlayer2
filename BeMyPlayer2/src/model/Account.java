@@ -66,7 +66,6 @@ public class Account implements DBSerializable{
 		this.accountProfile = accountProfile;
 	}
 	
-
 	public String getEmail() {
 		return email;
 	}
@@ -106,7 +105,9 @@ public class Account implements DBSerializable{
 	public String getPasswordHash() {
 		return passwordHash;
 	}
-	
+	public void setPasswordHash(String p) {
+		this.passwordHash = p;
+	}
 	public List<String> getLoveMatches() {
 		return loveMatches;
 	}

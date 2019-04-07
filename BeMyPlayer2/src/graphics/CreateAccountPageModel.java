@@ -4,6 +4,9 @@ import java.awt.Image;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.*;
@@ -26,10 +29,10 @@ public class CreateAccountPageModel {
 	private JComboBox genderBox;
 	private JComboBox securityQ;
 	private Image profileImg;
-	
+	private JFormattedTextField enterEmail;
 	private List<JCheckBox> checkList;
 	private List<Boolean> checkLister;
-	
+	private Date dob;
 	private String imagePath;
 	
 	private JTextArea charDescription;
@@ -137,8 +140,29 @@ public class CreateAccountPageModel {
 	public List<Boolean> getCheckLister() {
 		return checkLister;
 	}
+	public List<Boolean> getPlatforms(){
+		return checkLister.subList(0, 6);
+	}
+	public List<Boolean> getGenres(){
+		return checkLister.subList(6, checkList.size());
+	}
 	public void setCheckLister(List<Boolean> checkLister) {
 		this.checkLister = checkLister;
+	}
+	public JFormattedTextField getEnterEmail() {
+		return enterEmail;
+	}
+	public void setEnterEmail(JFormattedTextField enterEmail) {
+		this.enterEmail = enterEmail;
+	}
+	public Date getDob() throws ParseException {
+		SimpleDateFormat tf = new SimpleDateFormat("dd/MM/yyyy");
+		this.dob = (Date)tf.parse(this.age.getText());
+		System.out.println(this.dob);
+		return dob;
+	}
+	public void setDob(Date dob) {
+		this.dob = dob;
 	}
 	
 	

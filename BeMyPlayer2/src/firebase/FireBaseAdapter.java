@@ -499,4 +499,5 @@ public class FireBaseAdapter {
 			throw new DBFailureException();
 		}
 	}
+	
 }

@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import model.Account;
+
 public class PaymentPageController extends PageController{
 	
 	public static final String BACK = "back";
@@ -18,6 +20,7 @@ public class PaymentPageController extends PageController{
 		if(back != backPage) {
 			backPage = back;
 		}
+		
 		PaymentPageView.launchPaymentPage(this,mainFrame);
 	}
 	

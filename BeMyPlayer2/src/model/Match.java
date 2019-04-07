@@ -103,7 +103,5 @@ public class Match implements DBSerializable{
 	public void setOtherMatchStatus(MatchStatus otherMatchStatus) {
 		this.otherMatchStatus = otherMatchStatus;
 	}
-	
-	
-	
+
 }
