@@ -48,16 +48,22 @@ public class LoginPageView {
 		loginController.getLoginPageModel().setBtnLogin(new JButton("Login")); 
 		loginController.getLoginPageModel().getBtnLogin().setBounds(65, 145, 90, 40);
 		loginController.getLoginPageModel().getBtnLogin().setBackground(yellow);
+		loginController.getLoginPageModel().getBtnLogin().setFont(Fonts.getFont((float) 12));
+		loginController.getLoginPageModel().getBtnLogin().setForeground(Colors.Red);
 		loginController.getLoginPageModel().getBtnLogin().setActionCommand(LoginPageController.LOGIN);
 		loginController.getLoginPageModel().getBtnLogin().addActionListener(loginController);
 		
 		loginController.getLoginPageModel().setBtnCreateNewAccount(new JButton("Create New Account"));
 		loginController.getLoginPageModel().getBtnCreateNewAccount().setBackground(yellow);
+		loginController.getLoginPageModel().getBtnCreateNewAccount().setFont(Fonts.getFont((float) 12));
+		loginController.getLoginPageModel().getBtnCreateNewAccount().setForeground(Colors.Red);
 		loginController.getLoginPageModel().getBtnCreateNewAccount().setBounds(24, 196, 175, 40);
 		loginController.getLoginPageModel().getBtnCreateNewAccount().setActionCommand(LoginPageController.CREATE_ACCOUNT);
 		loginController.getLoginPageModel().getBtnCreateNewAccount().addActionListener(loginController);
 		
 		JButton btnForgotPassword = new JButton("Forgot Password");
+		btnForgotPassword.setFont(Fonts.getFont((float) 12));
+		btnForgotPassword.setForeground(Colors.Red);
 		btnForgotPassword.setBackground(yellow);
 		btnForgotPassword.setBounds(24, 245, 175, 40);
 		btnForgotPassword.setActionCommand(LoginPageController.FORGOT_PASSWORD);
@@ -65,6 +71,8 @@ public class LoginPageView {
 		loginController.getLoginPageModel().setBtnForgotPassword(btnForgotPassword);
 		
 		JButton btnExit = new JButton("Exit");
+		btnExit.setFont(Fonts.getFont((float) 12));
+		btnExit.setForeground(Colors.Red);
 		btnExit.setBackground(yellow);
 		btnExit.setBounds(275,350,175,40);
 		btnExit.setActionCommand(LoginPageController.EXIT);
@@ -103,7 +111,7 @@ public class LoginPageView {
 		//	set text
 		JLabel lblBeMyPlayer = new JLabel("Be My Player 2");
 		lblBeMyPlayer.setForeground(yellow);
-		lblBeMyPlayer.setFont(new Font("Monospaced", Font.BOLD, 20));
+		lblBeMyPlayer.setFont(Fonts.getFont((float) 20));
 		lblBeMyPlayer.setBounds(24, 44, 204, 69);
 		loginController.getLoginPageModel().setLblBeMyPlayer(lblBeMyPlayer);
 		loginController.getLoginPanel().add(loginController.getLoginPageModel().getLblBeMyPlayer());
@@ -111,12 +119,14 @@ public class LoginPageView {
 		JLabel usernameLabel = new JLabel("Email:");
 		usernameLabel.setBounds(230, 120, 128, 82);
 		usernameLabel.setForeground(yellow);
+		usernameLabel.setFont(Fonts.getFont((float) 12));
 		loginController.getLoginPageModel().setLblUsername(usernameLabel);
 		loginController.getLoginPanel().add(loginController.getLoginPageModel().getLblUsername());
 		
 		JLabel passwordLabel = new JLabel("Password:");
 		passwordLabel.setBounds(230,160,128,82);
 		passwordLabel.setForeground(yellow);
+		passwordLabel.setFont(Fonts.getFont((float) 12));
 		loginController.getLoginPageModel().setLblPassword(passwordLabel);
 		loginController.getLoginPanel().add(loginController.getLoginPageModel().getLblPassword());
 		
