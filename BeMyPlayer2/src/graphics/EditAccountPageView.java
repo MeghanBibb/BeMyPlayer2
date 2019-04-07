@@ -9,7 +9,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -145,23 +147,24 @@ public class EditAccountPageView {
 		
 		JFormattedTextField frmtdtxtfldEnterUsername = new JFormattedTextField();
 		frmtdtxtfldEnterUsername.setHorizontalAlignment(SwingConstants.CENTER);
-		
+		frmtdtxtfldEnterUsername.setText(GraphicsController.getActiveAccount().getAccountProfile().getUsername());
 		frmtdtxtfldEnterUsername.setBounds(45, 95, 128, 32);
 		editController.getEditAccountModel().setFrmtdtxtfldEnterUsername(frmtdtxtfldEnterUsername);
 		editController.getEditAccountPanel().add(editController.getEditAccountModel().getFrmtdtxtfldEnterUsername());
 		
 		JFormattedTextField secQA = new JFormattedTextField();
 		secQA.setHorizontalAlignment(SwingConstants.CENTER);
-		secQA.setText("");
-		
+		secQA.setText(GraphicsController.getActiveAccount().getSecurityQ1AnsHash());
 		secQA.setBounds(275, 205, 128, 32);
 		editController.getEditAccountModel().setSecQA(secQA);
 		editController.getEditAccountPanel().add(editController.getEditAccountModel().getSecQA());
 		
 		JFormattedTextField age = new JFormattedTextField();
 		age.setHorizontalAlignment(SwingConstants.CENTER);
+		Date date = GraphicsController.getActiveAccount().getAccountProfile().getDateOB();
+		SimpleDateFormat tf = new SimpleDateFormat("dd/MM/yyyy");
 		
-		age.setText("dd/mm/yyyy");
+		age.setText(tf.format(date));
 		age.setBounds(275, 95, 128, 32);
 		editController.getEditAccountModel().setAge(age);
 		editController.getEditAccountPanel().add(age);
@@ -176,6 +179,11 @@ public class EditAccountPageView {
         });
 		gender.setToolTipText("Gender");
 		gender.setModel(new DefaultComboBoxModel(new String[] {"Male", "Female"}));
+		if(GraphicsController.getActiveAccount().getAccountProfile().getGender().equals("Male")) {
+			gender.setSelectedIndex(0);
+		} else {
+			gender.setSelectedIndex(1);
+		}
 		gender.setBounds(275, 275, 94, 22);
 		gender.setVisible(true);
 		
@@ -276,6 +284,7 @@ public class EditAccountPageView {
 		JCheckBox xboxBtn = new JCheckBox("Xbox");
 		xboxBtn.setBackground(red);
 		xboxBtn.setForeground(yellow);
+		xboxBtn.setSelected(GraphicsController.getActiveAccount().getAccountProfile().getPlatforms().get(0));
 		xboxBtn.setFont(new Font("Monospace",Font.BOLD,14));
 		xboxBtn.setBounds(45, 80, 75, 25);
 		editController.getEditAccountModel().getCheckList().add(xboxBtn);
@@ -285,6 +294,7 @@ public class EditAccountPageView {
 		JCheckBox psBtn = new JCheckBox("Playstation");
 		psBtn.setBackground(red);
 		psBtn.setForeground(yellow);
+		psBtn.setSelected(GraphicsController.getActiveAccount().getAccountProfile().getPlatforms().get(1));
 		psBtn.setFont(new Font("Monospace",Font.BOLD,14));
 		psBtn.setBounds(45, 105, 120, 25);
 		editController.getEditAccountModel().getCheckList().add(psBtn);
@@ -294,6 +304,7 @@ public class EditAccountPageView {
 		JCheckBox nintendoBtn = new JCheckBox("Nintendo");
 		nintendoBtn.setBackground(red);
 		nintendoBtn.setForeground(yellow);
+		nintendoBtn.setSelected(GraphicsController.getActiveAccount().getAccountProfile().getPlatforms().get(2));
 		nintendoBtn.setFont(new Font("Monospace",Font.BOLD,14));
 		nintendoBtn.setBounds(45, 130, 120, 25);
 		editController.getEditAccountModel().getCheckList().add(nintendoBtn);
@@ -303,6 +314,7 @@ public class EditAccountPageView {
 		JCheckBox pcBtn = new JCheckBox("PC");
 		pcBtn.setBackground(red);
 		pcBtn.setForeground(yellow);
+		pcBtn.setSelected(GraphicsController.getActiveAccount().getAccountProfile().getPlatforms().get(3));
 		pcBtn.setFont(new Font("Monospace",Font.BOLD,14));
 		pcBtn.setBounds(45, 155, 75, 25);
 		editController.getEditAccountModel().getCheckList().add(pcBtn);
@@ -312,6 +324,7 @@ public class EditAccountPageView {
 		JCheckBox vrBtn = new JCheckBox("VR");
 		vrBtn.setBackground(red);
 		vrBtn.setForeground(yellow);
+		vrBtn.setSelected(GraphicsController.getActiveAccount().getAccountProfile().getPlatforms().get(4));
 		vrBtn.setFont(new Font("Monospace",Font.BOLD,14));
 		vrBtn.setBounds(45, 180, 75, 25);
 		editController.getEditAccountModel().getCheckList().add(vrBtn);
@@ -321,6 +334,7 @@ public class EditAccountPageView {
 		JCheckBox RetroBtn = new JCheckBox("Retro");
 		RetroBtn.setBackground(red);
 		RetroBtn.setForeground(yellow);
+		RetroBtn.setSelected(GraphicsController.getActiveAccount().getAccountProfile().getPlatforms().get(5));
 		RetroBtn.setFont(new Font("Monospace",Font.BOLD,14));
 		RetroBtn.setBounds(45, 205, 75, 25);
 		editController.getEditAccountModel().getCheckList().add(RetroBtn);
@@ -332,6 +346,7 @@ public class EditAccountPageView {
 		JCheckBox actionBtn = new JCheckBox("Action");
 		actionBtn.setBackground(red);
 		actionBtn.setForeground(yellow);
+		actionBtn.setSelected(GraphicsController.getActiveAccount().getAccountProfile().getGenres().get(0));
 		actionBtn.setFont(new Font("Monospace",Font.BOLD,14));
 		actionBtn.setBounds(245, 80, 75, 25);
 		editController.getEditAccountModel().getCheckList().add(actionBtn);
@@ -341,6 +356,7 @@ public class EditAccountPageView {
 		JCheckBox advBtn = new JCheckBox("Adventure");
 		advBtn.setBackground(red);
 		advBtn.setForeground(yellow);
+		advBtn.setSelected(GraphicsController.getActiveAccount().getAccountProfile().getGenres().get(1));
 		advBtn.setFont(new Font("Monospace",Font.BOLD,14));
 		advBtn.setBounds(245, 105, 120, 25);
 		editController.getEditAccountModel().getCheckList().add(advBtn);
@@ -350,6 +366,7 @@ public class EditAccountPageView {
 		JCheckBox FPSBtn = new JCheckBox("FPS");
 		FPSBtn.setBackground(red);
 		FPSBtn.setForeground(yellow);
+		FPSBtn.setSelected(GraphicsController.getActiveAccount().getAccountProfile().getGenres().get(2));
 		FPSBtn.setFont(new Font("Monospace",Font.BOLD,14));
 		FPSBtn.setBounds(245, 130, 120, 25);
 		editController.getEditAccountModel().getCheckList().add(FPSBtn);
@@ -359,6 +376,7 @@ public class EditAccountPageView {
 		JCheckBox MMOBtn = new JCheckBox("MMO");
 		MMOBtn.setBackground(red);
 		MMOBtn.setForeground(yellow);
+		MMOBtn.setSelected(GraphicsController.getActiveAccount().getAccountProfile().getGenres().get(3));
 		MMOBtn.setFont(new Font("Monospace",Font.BOLD,14));
 		MMOBtn.setBounds(245, 155, 75, 25);
 		editController.getEditAccountModel().getCheckList().add(MMOBtn);
@@ -368,6 +386,7 @@ public class EditAccountPageView {
 		JCheckBox MOBABtn = new JCheckBox("MOBA");
 		MOBABtn.setBackground(red);
 		MOBABtn.setForeground(yellow);
+		MOBABtn.setSelected(GraphicsController.getActiveAccount().getAccountProfile().getGenres().get(4));
 		MOBABtn.setFont(new Font("Monospace",Font.BOLD,14));
 		MOBABtn.setBounds(245, 180, 75, 25);
 		editController.getEditAccountModel().getCheckList().add(MOBABtn);
@@ -377,6 +396,7 @@ public class EditAccountPageView {
 		JCheckBox pzlBtn = new JCheckBox("Puzzle");
 		pzlBtn.setBackground(red);
 		pzlBtn.setForeground(yellow);
+		pzlBtn.setSelected(GraphicsController.getActiveAccount().getAccountProfile().getGenres().get(5));
 		pzlBtn.setFont(new Font("Monospace",Font.BOLD,14));
 		pzlBtn.setBounds(245, 205, 125, 25);
 		editController.getEditAccountModel().getCheckList().add(pzlBtn);
@@ -386,6 +406,7 @@ public class EditAccountPageView {
 		JCheckBox rythBtn = new JCheckBox("Rythm");
 		rythBtn.setBackground(red);
 		rythBtn.setForeground(yellow);
+		rythBtn.setSelected(GraphicsController.getActiveAccount().getAccountProfile().getGenres().get(6));
 		rythBtn.setFont(new Font("Monospace",Font.BOLD,14));
 		rythBtn.setBounds(365, 80, 75, 25);
 		editController.getEditAccountModel().getCheckList().add(RetroBtn);
@@ -395,6 +416,7 @@ public class EditAccountPageView {
 		JCheckBox platBtn = new JCheckBox("Platformer");
 		platBtn.setBackground(red);
 		platBtn.setForeground(yellow);
+		platBtn.setSelected(GraphicsController.getActiveAccount().getAccountProfile().getGenres().get(7));
 		platBtn.setFont(new Font("Monospace",Font.BOLD,14));
 		platBtn.setBounds(365, 105, 125, 25);
 		editController.getEditAccountModel().getCheckList().add(platBtn);
@@ -404,6 +426,7 @@ public class EditAccountPageView {
 		JCheckBox RTSBtn = new JCheckBox("RTS");
 		RTSBtn.setBackground(red);
 		RTSBtn.setForeground(yellow);
+		RTSBtn.setSelected(GraphicsController.getActiveAccount().getAccountProfile().getGenres().get(8));
 		RTSBtn.setFont(new Font("Monospace",Font.BOLD,14));
 		RTSBtn.setBounds(365, 130, 75, 25);
 		editController.getEditAccountModel().getCheckList().add(RTSBtn);
@@ -413,6 +436,7 @@ public class EditAccountPageView {
 		JCheckBox RPGBtn = new JCheckBox("RPG");
 		RPGBtn.setBackground(red);
 		RPGBtn.setForeground(yellow);
+		RPGBtn.setSelected(GraphicsController.getActiveAccount().getAccountProfile().getGenres().get(9));
 		RPGBtn.setFont(new Font("Monospace",Font.BOLD,14));
 		RPGBtn.setBounds(365, 155, 75, 25);
 		editController.getEditAccountModel().getCheckList().add(RPGBtn);
@@ -422,6 +446,7 @@ public class EditAccountPageView {
 		JCheckBox stratBtn = new JCheckBox("Strategy");
 		stratBtn.setBackground(red);
 		stratBtn.setForeground(yellow);
+		stratBtn.setSelected(GraphicsController.getActiveAccount().getAccountProfile().getGenres().get(10));
 		stratBtn.setFont(new Font("Monospace",Font.BOLD,14));
 		stratBtn.setBounds(365, 180, 125, 25);
 		editController.getEditAccountModel().getCheckList().add(stratBtn);
@@ -430,6 +455,7 @@ public class EditAccountPageView {
 		JCheckBox sandBtn = new JCheckBox("Sandbox");
 		sandBtn.setBackground(red);
 		sandBtn.setForeground(yellow);
+		sandBtn.setSelected(GraphicsController.getActiveAccount().getAccountProfile().getGenres().get(11));
 		sandBtn.setFont(new Font("Monospace",Font.BOLD,14));
 		sandBtn.setBounds(365, 205, 125, 25);
 		editController.getEditAccountModel().getCheckList().add(sandBtn);
@@ -557,6 +583,7 @@ public class EditAccountPageView {
 			editController.getEditAccountPanel().add(charCount);
 			//	description box
 			JTextArea description = new JTextArea();
+			description.setText(GraphicsController.getActiveAccount().getAccountProfile().getDescription());
 			
 			description.setBounds(125, 230, 250, 140);
 			description.getDocument().addDocumentListener(new DocumentListener() {
@@ -584,7 +611,7 @@ public class EditAccountPageView {
 
 			});
 
-		description.setBounds(125, 230, 250, 150);
+		description.setBounds(125, 230, 250, 140);
 		editController.getEditAccountModel().setCharDescription(description);
 		editController.getEditAccountPanel().add(editController.getEditAccountModel().getCharDescription());
 		

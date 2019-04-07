@@ -159,7 +159,6 @@ public class CreateAccountPageModel {
 	public Date getDob() throws ParseException {
 		SimpleDateFormat tf = new SimpleDateFormat("dd/MM/yyyy");
 		this.dob = (Date)tf.parse(this.age.getText());
-		System.out.println(this.dob);
 		return dob;
 	}
 	public void setDob(Date dob) {

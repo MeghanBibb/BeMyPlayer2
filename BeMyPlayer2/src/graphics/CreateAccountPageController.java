@@ -133,15 +133,7 @@ public class CreateAccountPageController extends PageController{
 				htmlDescription += this.getCreateAccountPageModel().getCharDescription().getText();
 				
 				htmlDescription = htmlDescription.replace("\n", "<br>");
-				for(char c : htmlDescription.toCharArray()) {
-					if(c == '\n') {
-						System.out.println("FOUND \\n!!!");
-					} else if (c == '\r') {
-						System.out.println("FOUND \\r!!!");
-					}
-				}
 				htmlDescription += "</HTML>";
-				System.out.println(htmlDescription);
 				
 				p.setDescription(htmlDescription);
 				p.setGender(this.getCreateAccountPageModel().getGender());

@@ -48,10 +48,11 @@ public class ProfilePageView {
 		/**
 		 * TO DO: load image from user/database
 		 */
-		JLabel imgLabel = new JLabel("");
+		/*JLabel imgLabel = new JLabel("");
 		BufferedImage img = null;
 		try {
-			img = GraphicsController.getProfileImage(profileController.getAccount().getUserId());
+			img = 
+			
 		} catch (DBFailureException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -59,7 +60,7 @@ public class ProfilePageView {
 		imgLabel.setIcon(new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
 		imgLabel.setBounds(10, 60, 100, 100);
 		profileController.getProfileModel().setProfileImage(imgLabel);
-		
+		*/
 		
 		//init buttons
 		JButton btnBack = new JButton("Back");
@@ -154,7 +155,7 @@ public class ProfilePageView {
 		JLabel description = new JLabel();
 		//description.setText("<HTML>This is a sample description.<br> Very nice.</HTML>");
 		description.setText(profileController.getAccount().getAccountProfile().getDescription());
-		description.setBounds(10, 170, 250, 150);
+		description.setBounds(10, 170, 250, 140);
 		description.setOpaque(false);
 		description.setForeground(yellow);
 		description.setHorizontalAlignment(JTextField.LEFT);
@@ -248,7 +249,7 @@ public class ProfilePageView {
 		profileController.getProfilePanel().add(profileController.getProfileModel().getLblAge());
 		profileController.getProfilePanel().add(profileController.getProfileModel().getLblGender());
 		profileController.getProfilePanel().add(profileController.getProfileModel().getLblConsoles());
-		profileController.getProfilePanel().add(profileController.getProfileModel().getProfileImage());
+		//profileController.getProfilePanel().add(profileController.getProfileModel().getProfileImage());
 		profileController.getProfilePanel().add(profileController.getProfileModel().getTxtField());
 		
 		
