@@ -44,7 +44,7 @@ public class CreateAccountPageView {
 		//	init buttons and add to panel
 		JButton backbtn = new JButton("Back");
 		backbtn.setBounds(45, 345, 90, 40);
-		backbtn.setBackground(yellow);
+		backbtn.setBackground(Colors.Yellow);
 		backbtn.setActionCommand(CreateAccountPageController.BACK);
 		backbtn.addActionListener(capController);
 		capController.getCreateAccountPageModel().setBack(backbtn);
