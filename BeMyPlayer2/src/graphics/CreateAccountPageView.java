@@ -84,9 +84,6 @@ public class CreateAccountPageView {
 		//	password
 		JPasswordField pwdEnterPass = new JPasswordField();
 		pwdEnterPass.setHorizontalAlignment(SwingConstants.CENTER);
-		if(visited == true) {
-			pwdEnterPass.setText(capController.getCreateAccountPageModel().getPwdEnterPass().getText());
-		}
 		pwdEnterPass.setBounds(45, 240, 128, 32);
 		capController.getCreateAccountPageModel().setPwdEnterPass(pwdEnterPass);
 		capController.getCreateAccountPanel().add(capController.getCreateAccountPageModel().getPwdEnterPass());
@@ -94,9 +91,6 @@ public class CreateAccountPageView {
 		//	reenter password
 		JPasswordField pwdValidatePass= new JPasswordField();
 		pwdValidatePass.setHorizontalAlignment(SwingConstants.CENTER);
-		if(visited == true) {
-			pwdValidatePass.setText(capController.getCreateAccountPageModel().getPwdValidatePass().getText());
-		}
 		pwdValidatePass.setBounds(45, 300, 128, 32);
 		capController.getCreateAccountPageModel().setPwdValidatePass(pwdValidatePass);
 		capController.getCreateAccountPanel().add(capController.getCreateAccountPageModel().getPwdValidatePass());
