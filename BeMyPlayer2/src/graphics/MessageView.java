@@ -3,6 +3,9 @@ package graphics;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
 
 public class MessageView {
     public static void startMessagePage(MessageController messageController, JFrame mainFrame){
@@ -28,18 +31,34 @@ public class MessageView {
         imgLabel.setBounds(35, 60, 100, 100);
         messageController.getMessageModel().setProfileImage(imgLabel);
 
-        JLabel lblUsername = new JLabel("Username");
+        JLabel lblUsername = new JLabel();
+        lblUsername.setText(messageController.getAccount().getAccountProfile().getUsername());
         lblUsername.setFont(new Font("Impact", Font.PLAIN,15));
         lblUsername.setForeground(yellow);
         lblUsername.setBounds(150,35,90,90);
         messageController.getMessageModel().setLblUsername(lblUsername);
 
-        JLabel lblAge = new JLabel("[age] years old");
+        
+        /*age stuff*/
+        JLabel lblAge = new JLabel();
+        LocalDate now = LocalDate.now();
+		Date nowDate = java.sql.Date.valueOf(now);
+		Calendar cnow = Calendar.getInstance();
+		cnow.setTime(nowDate);
+		Date bday = messageController.getAccount().getAccountProfile().getDateOB();
+		Calendar cbday = Calendar.getInstance();
+		cbday.setTime(bday);
+		int diff = cnow.get(Calendar.YEAR) - cbday.get(Calendar.YEAR);
+		if(cnow.get(Calendar.MONTH) == cbday.get(Calendar.MONTH) && cnow.get(Calendar.DATE) > cbday.get(Calendar.DATE) ) {
+			diff--;
+		}
+		lblAge.setText(Integer.toString(diff) + " years old");
         lblAge.setForeground(yellow);
-        lblAge.setBounds(150,60,90,90);
+        lblAge.setBounds(150,60,200,90);
         messageController.getMessageModel().setLblAge(lblAge);
 
-        JLabel lblGender = new JLabel("Gender");
+        JLabel lblGender = new JLabel();
+        lblGender.setText(messageController.getAccount().getAccountProfile().getGender());
         lblGender.setForeground(yellow);
         lblGender.setBounds(150,85,90,90);
         messageController.getMessageModel().setLblGender(lblGender);

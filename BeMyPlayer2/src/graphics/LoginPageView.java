@@ -31,7 +31,6 @@ public class LoginPageView {
 		Color red = new Color(134,48,111);
 		Color yellow = new Color(254, 195, 123);
 		
-		
 		//	init panel 
 		loginController.setLoginPanel(new JPanel(null));
 		loginController.getLoginPanel().setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -72,7 +71,6 @@ public class LoginPageView {
 		loginController.getLoginPanel().add(loginController.getLoginPageModel().getBtnCreateNewAccount());
 		loginController.getLoginPanel().add(loginController.getLoginPageModel().getBtnExit());
 		
-		
 		//	init fields and listeners 
 		loginController.getLoginPageModel().setPwdEnterPass(new JPasswordField());
 		loginController.getLoginPageModel().getPwdEnterPass().setHorizontalAlignment(SwingConstants.CENTER);
@@ -89,6 +87,7 @@ public class LoginPageView {
 	
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
 		Image img1 = new ImageIcon(loginController.getClass().getResource("/hearts.png")).getImage();
 		//img1 = new ImageIcon("C:\\Backup of student files\\Spring 2019\\BeMyPlayer2\\BeMyPlayer2\\BeMyPlayer2\\img\\hearts.png").getImage();
 		lblNewLabel.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));

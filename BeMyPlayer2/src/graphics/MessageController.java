@@ -1,6 +1,9 @@
 package graphics;
 
 import javax.swing.*;
+
+import model.Account;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,12 +13,18 @@ public class MessageController extends PageController {
 
     private MessageModel messageModel = null;
     private JPanel messagePanel = null;
+    private Account account;
 
     public void launchPage(JFrame mainFrame, String back) {
     	if(back != null) {
     		backPage = back;
     	}
+    	account = GraphicsController.getOtherAccount();
         MessageView.startMessagePage(this,mainFrame);
+    }
+    
+    public Account getAccount() {
+    	return account;
     }
 
     @Override

@@ -128,7 +128,21 @@ public class CreateAccountPageController extends PageController{
 				//	set profile fields
 				Profile p = new Profile();
 				p.setUsername(this.getCreateAccountPageModel().getFrmtdtxtfldEnterUsername().getText());
-				p.setDescription(this.getCreateAccountPageModel().getCharDescription().getText());
+				String htmlDescription = "<HTML>";
+				htmlDescription += this.getCreateAccountPageModel().getCharDescription().getText();
+				
+				htmlDescription = htmlDescription.replace("\n", "<br>");
+				for(char c : htmlDescription.toCharArray()) {
+					if(c == '\n') {
+						System.out.println("FOUND \\n!!!");
+					} else if (c == '\r') {
+						System.out.println("FOUND \\r!!!");
+					}
+				}
+				htmlDescription += "</HTML>";
+				System.out.println(htmlDescription);
+				
+				p.setDescription(htmlDescription);
 				p.setGender(this.getCreateAccountPageModel().getGender());
 				try {
 					p.setDateOB(this.getCreateAccountPageModel().getDob());
@@ -144,6 +158,7 @@ public class CreateAccountPageController extends PageController{
 				
 				try {
 					GraphicsController.attemptAddNewAccount(a);
+					InformationExpert.setActiveAccount(a);
 				} catch (DBFailureException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

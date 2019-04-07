@@ -1,11 +1,15 @@
 package firebase;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
 import java.sql.Date;
 import java.text.ParseException;
 import java.util.List;
+
+import javax.imageio.ImageIO;
 
 import com.google.api.core.ApiFuture;
 import com.google.auth.oauth2.GoogleCredentials;
@@ -28,7 +32,6 @@ public class FirebaseTestConnector {
 	
 	//initialize app connector
 	public static void main(String[] args) {
-		
 		
 		FireBaseAdapter adapter = new FireBaseAdapter();
 		adapter.initializeDBConnection();
@@ -77,6 +80,15 @@ public class FirebaseTestConnector {
 				fullacc.getAccountProfile().setDescription("THIS IS A TOTALLY NEW DESCRIPTION!");
 				adapter.updateProfile(fullacc.getAccountProfile());
 				System.out.println("Done!");
+				
+				System.out.println("Uploading picture...");
+				try {
+					BufferedImage testImage = ImageIO.read(new File("img/booth1.jpg"));
+					adapter.addProfileImage(testImage, uid);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			
 		} catch (DBFailureException e) {

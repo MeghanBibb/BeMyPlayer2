@@ -34,20 +34,21 @@ public class InformationExpert {
 		}
 		
 		//should database dump these, also other account should be null until needed
-		activeUserAccount = new Account();
+		activeUserAccount = new Account();/*
 		try {
-			activeUserAccount = getUserAccount("4WlKcGHoFUfuyxqQCB7y");
+			activeUserAccount = getUserAccount("21R6vA3D6LtA7ilWsprZ");
 		} catch (DBFailureException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		otherAccount = new Account();
+		
 		try {
 			otherAccount = getUserAccount("86DV4wIRNJ393akBJbmA");
 		} catch (DBFailureException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
+		otherAccount = new Account();
 	}
 	
 	public static boolean attemptAddNewAccount(Account a) throws DBFailureException {
@@ -70,6 +71,7 @@ public class InformationExpert {
 		return activeUserAccount;
 	}
 	public static void setActiveAccount(Account a) {
+		System.out.println("setting active account " + a.getEmail());
 		activeUserAccount = a;
 	}
 	public static Account getOtherAccount() {

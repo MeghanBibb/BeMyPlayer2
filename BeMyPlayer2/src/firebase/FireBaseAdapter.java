@@ -1,12 +1,25 @@
 package firebase;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
+import java.awt.image.WritableRaster;
+import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.logging.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
+import javax.imageio.ImageIO;
+
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 import com.google.api.core.ApiFuture;
@@ -19,16 +32,25 @@ import com.google.cloud.firestore.Query;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
 import com.google.cloud.firestore.WriteResult;
+import com.google.cloud.storage.Blob;
+import com.google.cloud.storage.Blob.BlobSourceOption;
+import com.google.cloud.storage.BlobId;
+import com.google.cloud.storage.Bucket;
+import com.google.cloud.storage.Storage;
+import com.google.cloud.storage.StorageOptions;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.UserRecord.CreateRequest;
 import com.google.firebase.cloud.FirestoreClient;
+import com.google.firebase.cloud.StorageClient;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import model.Account;
 import model.DBDocumentPackage;
+import model.Match;
+import model.MatchStatus;
 import model.Profile;
 
 import com.google.cloud.Service;
@@ -41,6 +63,9 @@ public class FireBaseAdapter {
 	
 	private static final String FIREBASE_TOKEN_PATH = "db/bemyplayer2-e65fc-dca2d3903ee3.json";
 	private static final String DB_URL = "https://bemyplayer2-e65fc.firebaseio.com";
+	private static final String DB_BUCKET_NAME = "bemyplayer2-e65fc.appspot.com";
+	private static final int MAX_NUM_PROFILES_RETRIEVED = 10;
+	
 	private Firestore db = null;
 	
 	public boolean initializeDBConnection() {
@@ -209,7 +234,6 @@ public class FireBaseAdapter {
 		Account userAccount = new Account();
 		
 		try {
-			
 			DocumentSnapshot accResult = fetchAccount.get();
 			if(!accResult.exists()) {
 				LOGGER.log(Level.FINE,"Could not find account with given user id");
@@ -344,4 +368,237 @@ public class FireBaseAdapter {
 		return true;
 	}
 	
+	public List<Profile> getUnmatchedProfiles(String userId) throws DBFailureException{
+		return getUnmatchedProfiles(userId, 1);
+	}
+	
+	public List<Profile> getUnmatchedProfiles(String userId, int iterationNumber) throws DBFailureException {
+		if(this.db == null) {
+			LOGGER.log(Level.WARNING, "Error- no database connection");
+			throw new DBFailureException();
+		}
+		
+		List<Profile> batch = null;
+		
+		ApiFuture<QuerySnapshot> getAllClientMatches = 
+				db.collection(FireBaseSchema.MATCHES_TABLE)
+					.document(userId)	
+					.collection(FireBaseSchema.MATCHES_TABLE_COLLECTION)
+					.whereEqualTo(Match._BLOCK_STATUS, Boolean.FALSE)
+					.whereEqualTo(Match._CLIENT_MATCH_STATUS, MatchStatus._STATUS_SWIPE_RIGHT)
+					.get();
+		
+		ApiFuture<QuerySnapshot> getBatchProfiles = 
+				db.collection(FireBaseSchema.PROFILES_TABLE)
+					.offset(iterationNumber * MAX_NUM_PROFILES_RETRIEVED)
+					.limit(MAX_NUM_PROFILES_RETRIEVED)
+					.get();
+					
+		try {
+			QuerySnapshot clientMatches = getAllClientMatches.get();
+			Set<String> clientMatchIds = clientMatches
+				.getDocuments().stream()
+				.map(m -> m.getId())
+				.collect(Collectors.toCollection(HashSet::new));
+					
+			
+			QuerySnapshot profileBatch = getBatchProfiles.get();
+			if(profileBatch.isEmpty()) {
+				LOGGER.log(Level.FINE, "Query for new Profiles returned empty.");
+				return new ArrayList<Profile>();
+			}else {
+				
+				//parallelize package conversion to lift of profiles:
+				batch = profileBatch.getDocuments().parallelStream()
+					.filter(p -> !clientMatchIds.contains(p.getId()))
+					.map(p -> {
+							Profile newProf = new Profile();
+							newProf.initializeFromPackage(new DBDocumentPackage(p.getId(), p.getData()));
+							return newProf;
+						})
+					.collect(Collectors.toList());
+			}
+			
+		} catch (InterruptedException e) {
+			LOGGER.log(Level.SEVERE,"Error- Profile batch retrieval query interrupted.");
+			throw new DBFailureException();
+		} catch (ExecutionException e) {
+			LOGGER.log(Level.SEVERE,"Error- Profile batch retrieval query failed.");
+			throw new DBFailureException();
+		}
+		
+		return batch;
+	}
+	
+	public Match getMatch(Profile clientProfile, Profile otherProfile) throws DBFailureException {
+		if(this.db == null) {
+			LOGGER.log(Level.WARNING, "Error- no database connection");
+			throw new DBFailureException();
+		}
+		
+		ApiFuture<DocumentSnapshot> getClientMatch = 
+				db.collection(FireBaseSchema.MATCHES_TABLE)
+					.document(clientProfile.getUserId())	
+					.collection(FireBaseSchema.MATCHES_TABLE_COLLECTION)
+					.document(otherProfile.getUserId())
+					.get();
+		
+		DocumentSnapshot clientMatch;
+		try {
+			
+			clientMatch = getClientMatch.get();
+			if(!clientMatch.exists()) {
+				return null;
+			}
+			
+			DBDocumentPackage pkg = new DBDocumentPackage(clientMatch.getId(), clientMatch.getData());
+			Match newMatch = new Match(clientProfile, otherProfile);
+			newMatch.initializeFromPackage(pkg);
+			return newMatch;
+			
+		} catch (InterruptedException e) {
+			LOGGER.log(Level.SEVERE,"Error- Match query interrupted.");
+			throw new DBFailureException();
+		} catch (ExecutionException e) {
+			LOGGER.log(Level.SEVERE,"Error- Match query failed.");
+			throw new DBFailureException();
+		}
+	}
+	
+	public void addMatch(Match match) throws DBFailureException {
+		if(this.db == null) {
+			LOGGER.log(Level.WARNING, "Error- no database connection");
+			throw new DBFailureException();
+		}
+		
+		DocumentReference clientMatchRef = db.collection(FireBaseSchema.MATCHES_TABLE)
+				.document(match.getClientProfile().getUserId())
+				.collection(FireBaseSchema.MATCHES_TABLE_COLLECTION)
+				.document(match.getOtherProfile().getUserId());
+			
+		DocumentReference otherMatchRef = db.collection(FireBaseSchema.MATCHES_TABLE)
+				.document(match.getOtherProfile().getUserId())
+				.collection(FireBaseSchema.MATCHES_TABLE_COLLECTION)
+				.document(match.getClientProfile().getUserId());
+
+		DBDocumentPackage clientPackage = match.toDBPackage();
+		DBDocumentPackage othPackage = match.converseMatchToDBPackage();
+		ApiFuture<WriteResult> clientResult = clientMatchRef.set(clientPackage.getValues());
+		ApiFuture<WriteResult> otherResult = otherMatchRef.set(othPackage.getValues());
+		
+		try {
+			clientResult.get();
+			otherResult.get();
+		} catch (InterruptedException e) {
+			LOGGER.log(Level.SEVERE,"Error- Match addition query interrupted.");
+			throw new DBFailureException();
+		} catch (ExecutionException e) {
+			LOGGER.log(Level.SEVERE,"Error- Match addition query failed.");
+			throw new DBFailureException();
+		}
+	}
+	
+	public void updateMatch(Match match) throws DBFailureException {
+		if(this.db == null) {
+			LOGGER.log(Level.WARNING, "Error- no database connection");
+			throw new DBFailureException();
+		}
+		
+		DocumentReference clientMatchRef = db.collection(FireBaseSchema.MATCHES_TABLE)
+											.document(match.getClientProfile().getUserId())
+											.collection(FireBaseSchema.MATCHES_TABLE_COLLECTION)
+											.document(match.getOtherProfile().getUserId());
+		
+		DocumentReference otherMatchRef = db.collection(FireBaseSchema.MATCHES_TABLE)
+											.document(match.getOtherProfile().getUserId())
+											.collection(FireBaseSchema.MATCHES_TABLE_COLLECTION)
+											.document(match.getClientProfile().getUserId());
+		
+		DBDocumentPackage clientPackage = match.toDBPackage();
+		DBDocumentPackage othPackage = match.converseMatchToDBPackage();
+		ApiFuture<WriteResult> clientResult = clientMatchRef.update(clientPackage.getValues());
+		ApiFuture<WriteResult> otherResult = otherMatchRef.update(othPackage.getValues());
+		
+		try {
+			clientResult.get();
+			otherResult.get();
+		} catch (InterruptedException e) {
+			LOGGER.log(Level.SEVERE,"Error- Match update query interrupted.");
+			throw new DBFailureException();
+		} catch (ExecutionException e) {
+			LOGGER.log(Level.SEVERE,"Error- Match update query failed.");
+			throw new DBFailureException();
+		}
+	}
+	
+	public void addProfileImage(BufferedImage pic, String userId) throws DBFailureException {
+		if(this.db == null) {
+			LOGGER.log(Level.WARNING, "Error- no database connection");
+			throw new DBFailureException();
+		}
+		
+		Bucket defaultBucket = StorageClient.getInstance().bucket(DB_BUCKET_NAME);
+		WritableRaster raster = pic.getRaster();
+		DataBufferByte data   = (DataBufferByte) raster.getDataBuffer();
+		byte[] binData = data.getData();
+		
+		try {
+			Blob writtenPic = defaultBucket.create(FireBaseSchema.toProfileImageIndex(userId), 
+											binData, Bucket.BlobTargetOption.doesNotExist());
+			LOGGER.log(Level.FINE, "Added a Profile Image.");
+		}catch(Exception exc) {
+			
+			LOGGER.log(Level.SEVERE, "Error- Image upload failed!");
+			throw new DBFailureException();
+		}
+	}
+
+	public void updateProfileImage(BufferedImage pic, String userId) throws DBFailureException {
+		if(this.db == null) {
+			LOGGER.log(Level.WARNING, "Error- no database connection");
+			throw new DBFailureException();
+		}
+		
+		Storage storage = StorageOptions.getDefaultInstance().getService();
+		Bucket defaultBucket = StorageClient.getInstance().bucket(DB_BUCKET_NAME);
+		WritableRaster raster = pic.getRaster();
+		DataBufferByte data   = (DataBufferByte) raster.getDataBuffer();
+		byte[] binData = data.getData();
+		
+		try {
+			BlobId blobId = BlobId.of(DB_BUCKET_NAME, FireBaseSchema.toProfileImageIndex(userId));
+			if(storage.delete(blobId)) {
+				LOGGER.log(Level.FINE, "Deleted old Profile Image.");
+			}else {
+				LOGGER.log(Level.SEVERE, "Error- Profile image for given userID does not exist.");
+				throw new DBFailureException();
+			}
+			
+			Blob writtenPic = defaultBucket.create(userId, binData, Bucket.BlobTargetOption.doesNotExist());
+			LOGGER.log(Level.FINE, "Updated Profile Image to new Image.");
+			
+		}catch(Exception exc) {
+			LOGGER.log(Level.SEVERE, "Error- Image upload failed-- Profile picture may have been lost!");
+			throw new DBFailureException();
+		}
+	}
+
+	public BufferedImage getProfileImage(String userId) throws DBFailureException {
+		if(this.db == null) {
+			LOGGER.log(Level.WARNING, "Error- no database connection");
+			throw new DBFailureException();
+		}
+		
+		try {
+			Storage storage = StorageOptions.getDefaultInstance().getService();
+			BlobId imgBlobId = BlobId.of(DB_BUCKET_NAME, FireBaseSchema.toProfileImageIndex(userId));
+			Blob imgBlob = storage.get(imgBlobId);
+			byte [] bytes = imgBlob.getContent(BlobSourceOption.generationMatch());
+			BufferedImage img = ImageIO.read(new ByteArrayInputStream(bytes));
+			return img;
+		}catch(Exception exc){
+			LOGGER.log(Level.SEVERE, "Error- Image retrieval failed.");
+			throw new DBFailureException();
+		}
+	}
 }
