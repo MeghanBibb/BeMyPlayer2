@@ -591,7 +591,12 @@ public class EditAccountPageView {
 			editController.getEditAccountPanel().add(charCount);
 			//	description box
 			JTextArea description = new JTextArea();
-			description.setText(GraphicsController.getActiveAccount().getAccountProfile().getDescription());
+			String desc;
+			desc = GraphicsController.getActiveAccount().getAccountProfile().getDescription();
+			desc = desc.replace("<HTML>","");
+			desc = desc.replace("</HTML>", "");
+			desc = desc.replace("<br>", "\n");
+			description.setText(desc);
 
 			charCount.setText((250-description.getText().length()) + " characters remaining");
 			description.setBounds(125, 230, 250, 140);
