@@ -41,7 +41,6 @@ public class ProfilePageView {
 		profileController.getProfilePanel().setPreferredSize(new Dimension(500,400));
 		profileController.getProfilePanel().setMaximumSize(new Dimension(500,400));
 		mainFrame.setContentPane(profileController.getProfilePanel());
-		mainFrame.getContentPane().setBackground(red);
 		
 		//init image (ideally load this from user)
 		

@@ -30,12 +30,11 @@ public class EditAccountPageView {
 		Color red = new Color(134, 48, 111);
 		Color yellow = new Color(254, 195, 123);
 		//	init panel
-		editController.setEditAccountPanel(new JPanel(null));
+		editController.setEditAccountPanel(new BackgroundPanel(null));
 		editController.getEditAccountPanel().setBorder(new EmptyBorder(5, 5, 5, 5));
 		editController.getEditAccountPanel().setPreferredSize(new Dimension(500,400));
 		editController.getEditAccountPanel().setMaximumSize(new Dimension(500,400));
 		mainFrame.setContentPane(editController.getEditAccountPanel());
-		mainFrame.getContentPane().setBackground(red);
 		
 		//init bemyplayer2 label
 		JLabel lblBeMyPlayer = new JLabel("Be My Player 2");
@@ -104,12 +103,11 @@ public class EditAccountPageView {
 		Color yellow = new Color(254, 195, 123);
 		
 		//	init panel
-		editController.setEditAccountPanel(new JPanel(null));
+		editController.setEditAccountPanel(new BackgroundPanel(null));
 		editController.getEditAccountPanel().setBorder(new EmptyBorder(5, 5, 5, 5));
 		editController.getEditAccountPanel().setPreferredSize(new Dimension(500,400));
 		editController.getEditAccountPanel().setMaximumSize(new Dimension(500,400));
 		mainFrame.setContentPane(editController.getEditAccountPanel());
-		mainFrame.getContentPane().setBackground(red);
 		
 		
 		//	init buttons and add to panel
@@ -271,12 +269,11 @@ public class EditAccountPageView {
 		
 		//	 set up panel
 
-		editController.setEditAccountPanel(new JPanel(null));
+		editController.setEditAccountPanel(new BackgroundPanel(null));
 		editController.getEditAccountPanel().setBorder(new EmptyBorder(5, 5, 5, 5));
 		editController.getEditAccountPanel().setPreferredSize(new Dimension(500,400));
 		editController.getEditAccountPanel().setMaximumSize(new Dimension(500,400));
 		mainFrame.setContentPane(editController.getEditAccountPanel());
-		mainFrame.getContentPane().setBackground(red);
 
 		//Checkboxes
 		editController.getEditAccountModel().setCheckList(new ArrayList<JCheckBox>());
@@ -511,7 +508,6 @@ public class EditAccountPageView {
 		editController.getEditAccountPanel().setPreferredSize(new Dimension(500,400));
 		editController.getEditAccountPanel().setMaximumSize(new Dimension(500,400));
 		mainFrame.setContentPane(editController.getEditAccountPanel());
-		mainFrame.getContentPane().setBackground(red);
 		
 		//	default icon
 		Image img1;

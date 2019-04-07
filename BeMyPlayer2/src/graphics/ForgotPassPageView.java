@@ -39,7 +39,6 @@ public class ForgotPassPageView {
 		forgotPasswordController.getForgotPasswordPanel().setPreferredSize(new Dimension(500,400));
 		forgotPasswordController.getForgotPasswordPanel().setMaximumSize(new Dimension(500,400));
 		mainFrame.setContentPane(forgotPasswordController.getForgotPasswordPanel());
-		mainFrame.getContentPane().setBackground(red);
 		
 		//init buttons
 		JButton backbtn = new JButton("Back");

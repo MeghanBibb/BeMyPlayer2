@@ -29,7 +29,6 @@ public class PaymentPageView {
 		paymentController.getPaymentPanel().setPreferredSize(new Dimension(500,400));
 		paymentController.getPaymentPanel().setMaximumSize(new Dimension(500,400));
 		mainFrame.setContentPane(paymentController.getPaymentPanel());
-		mainFrame.getContentPane().setBackground(red);
 		
 		//init buttons
 		JButton btnBack = new JButton("Cancel");
