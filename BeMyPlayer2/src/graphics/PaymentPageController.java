@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigInteger;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -52,41 +54,52 @@ public class PaymentPageController extends PageController{
 		int cvc;
 		BigInteger num;
 		boolean isValid = true;
+		List<String> warnings = new ArrayList<>();
 		try {
 			month = Integer.parseInt(paymentModel.getCardMonth().getText());
 			if(month <= 0 && month >= 13) {
 				isValid = false;
+				warnings.add("Invalid month\n");
 			}
 			year = Integer.parseInt(paymentModel.getCardYear().getText());
 			LocalDate now = LocalDate.now();
 			int currentYear = now.getYear();
 			if(currentYear > year) {
 				isValid = false;
+				warnings.add("Invalid year\n");
 			} else if(currentYear == year && now.getMonthValue() > month) {
 				isValid = false;
+				warnings.add("Invalid card. Cannot be expired\n");
 			}
 		} catch(NumberFormatException e) {
 			isValid = false;
+			warnings.add("Invalid expiration date digits\n");
 		}
 		
 		try {
 			cvc = Integer.parseInt(paymentModel.getCardCVC().getText());
 			if (cvc % 1000 != cvc) {
 				isValid = false;
+				warnings.add("Invalid cvc length\n");
 			}
 		} catch(NumberFormatException e) {
 			isValid = false;
+			warnings.add("Invalid cvc digits\n");
 		}
 		
 		try {
 			num = new BigInteger(paymentModel.getCardNumber().getText());
 			if(paymentModel.getCardNumber().getText().length() != 16) {
 				isValid = false;
+				warnings.add("Invalid card number length\n");
 			}
 		} catch(NumberFormatException e) {
 			isValid = false;
+			warnings.add("Invalid card number digits\n");
 		}
-		
+		if(isValid == false) {
+			InvalidPopup p = new InvalidPopup(this.getPaymentPanel(),warnings);
+		}
 		return isValid;
 	}
 

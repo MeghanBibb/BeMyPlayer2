@@ -1,6 +1,7 @@
 package graphics;
 
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -32,13 +33,13 @@ public class EditAccountPageModel {
 	private String securityQuestions;
 	private JComboBox genderBox;
 	private JComboBox securityQ;
-	
+	private JLabel charcount;
 	//init questionnaire fields
 	private List<JCheckBox> checkList;
 	private List<Boolean> checkLister;
 	
 	//init profile fields
-	private Image profileImg;
+	private BufferedImage profileImg;
 	private String imagePath;
 	private JTextArea charDescription;
 	private JLabel profilePicLabel;
@@ -158,10 +159,16 @@ public class EditAccountPageModel {
 	public void setCheckLister(List<Boolean> checkLister) {
 		this.checkLister = checkLister;
 	}
-	public Image getProfileImg() {
+	public List<Boolean> getPlatforms(){
+		return checkLister.subList(0, 6);
+	}
+	public List<Boolean> getGenres(){
+		return checkLister.subList(6, checkList.size());
+	}
+	public BufferedImage getProfileImg() {
 		return profileImg;
 	}
-	public void setProfileImg(Image profileImg) {
+	public void setProfileImg(BufferedImage profileImg) {
 		this.profileImg = profileImg;
 	}
 	public String getImagePath() {
@@ -191,5 +198,10 @@ public class EditAccountPageModel {
 	public void setDob(Date dob) {
 		this.dob = dob;
 	}
-
+	public JLabel getCharcount() {
+		return charcount;
+	}
+	public void setCharcount(JLabel charcount) {
+		this.charcount = charcount;
+	}
 }

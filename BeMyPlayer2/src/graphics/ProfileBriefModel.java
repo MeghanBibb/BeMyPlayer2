@@ -58,8 +58,9 @@ public class ProfileBriefModel extends JPanel{
 		this.setBackground(yellow);
 		
 		viewProfile.setBackground(red);
-		viewProfile.setBounds(50, 140, 150, 60);
-		viewProfile.setForeground(white);
+		viewProfile.setBounds(42, 140, 150, 60);
+		viewProfile.setForeground(Colors.Yellow);
+		viewProfile.setFont(Fonts.getFont((float) 12));
 		viewProfile.addActionListener(new ActionListener() {
 
 			@Override
@@ -71,16 +72,16 @@ public class ProfileBriefModel extends JPanel{
 			}
 			
 		});
-		username.setFont(new Font("Monospaced", Font.BOLD, 20));
-		username.setForeground(red);
+		username.setFont(Fonts.getFont((float) 20));
+		username.setForeground(Colors.Red);
 		username.setBounds(105,7,150,69);
 		
-		age.setFont(new Font("Monospaced", Font.BOLD, 20));
-		age.setForeground(red);
+		age.setFont(Fonts.getFont((float) 20));
+		age.setForeground(Colors.Red);
 		age.setBounds(105,27,150,69);
 		
-		gender.setFont(new Font("Monospaced", Font.BOLD, 20));
-		gender.setForeground(red);
+		gender.setFont(Fonts.getFont((float) 20));
+		gender.setForeground(Colors.Red);
 		gender.setBounds(105,47,150,69);
 		
 		
