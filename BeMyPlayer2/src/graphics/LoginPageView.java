@@ -32,7 +32,7 @@ public class LoginPageView {
 		
 		//	init colors
 		Color red = new Color(134,48,111);
-		Color yellow = new Color(253,168,120);
+		Color yellow = new Color(254, 195, 123);
 		
 		
 		
