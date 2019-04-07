@@ -730,7 +730,7 @@ public class CreateAccountPageView {
 		capController.getCreateAccountPageModel().setImagePath(img1.toString());
 		final JButton setIcon = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
 		setIcon.setBounds(125,25,150,150);
-		setIcon.setOpaque(true);
+		setIcon.setOpaque(false);
 		setIcon.setBackground(red);
 		setIcon.addActionListener(new ActionListener(){
 
