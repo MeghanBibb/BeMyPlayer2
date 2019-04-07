@@ -8,7 +8,10 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
@@ -29,15 +32,17 @@ public class LoginPageView {
 		
 		//	init colors
 		Color red = new Color(134,48,111);
-		Color yellow = new Color(254, 195, 123);
+		Color yellow = new Color(253,168,120);
+		
+		
 		
 		//	init panel 
-		loginController.setLoginPanel(new JPanel(null));
+		loginController.setLoginPanel(new BackgroundPanel(null));
 		loginController.getLoginPanel().setBorder(new EmptyBorder(5, 5, 5, 5));
 		loginController.getLoginPanel().setPreferredSize(new Dimension(500,400));
 		loginController.getLoginPanel().setMaximumSize(new Dimension(500,400));
 		mainFrame.setContentPane(loginController.getLoginPanel());
-		mainFrame.getContentPane().setBackground(red);
+		//mainFrame.getContentPane().setBackground(red);
 		
 		//	init buttons
 		loginController.getLoginPageModel().setBtnLogin(new JButton("Login")); 
@@ -114,6 +119,8 @@ public class LoginPageView {
 		passwordLabel.setForeground(yellow);
 		loginController.getLoginPageModel().setLblPassword(passwordLabel);
 		loginController.getLoginPanel().add(loginController.getLoginPageModel().getLblPassword());
+		
+		
 		
 		//	set attributes, pack and set visible 
 		mainFrame.pack();
