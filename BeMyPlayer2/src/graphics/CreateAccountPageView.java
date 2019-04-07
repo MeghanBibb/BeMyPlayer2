@@ -32,7 +32,7 @@ public class CreateAccountPageView {
 		Color red = new Color(134, 48, 111);
 		Color yellow = new Color(254, 195, 123);
 		//	init panel
-		capController.setCreateAccountPanel(new JPanel(null));
+		capController.setCreateAccountPanel(new BackgroundPanel(null));
 		capController.getCreateAccountPanel().setBorder(new EmptyBorder(5, 5, 5, 5));
 		capController.getCreateAccountPanel().setPreferredSize(new Dimension(500,400));
 		capController.getCreateAccountPanel().setMaximumSize(new Dimension(500,400));

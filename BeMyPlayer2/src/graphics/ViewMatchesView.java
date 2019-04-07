@@ -42,7 +42,7 @@ public class ViewMatchesView {
 		Color yellow = new Color(254, 195, 123);
 		viewMatchController.setViewMatchesModel(new ViewMatchesModel());
 		//	init panel
-		viewMatchController.setViewMatchesPanel(new JPanel(null));
+		viewMatchController.setViewMatchesPanel(new BackgroundPanel(null));
 		viewMatchController.getViewMatchesPanel().setBorder(new EmptyBorder(5, 5, 5, 5));
 		viewMatchController.getViewMatchesPanel().setPreferredSize(new Dimension(500,400));
 		viewMatchController.getViewMatchesPanel().setMaximumSize(new Dimension(500,400));
