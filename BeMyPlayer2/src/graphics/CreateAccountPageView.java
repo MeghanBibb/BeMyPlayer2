@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -728,10 +729,13 @@ public class CreateAccountPageView {
 		//lblNewLabel.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
 		//lblNewLabel.setBounds(75, 25, 150, 150);
 		capController.getCreateAccountPageModel().setImagePath(img1.toString());
-		final JButton setIcon = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
-		setIcon.setBounds(125,25,150,150);
-		setIcon.setOpaque(true);
+		//final JButton setIcon = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
+		final JButton setIcon = new JButton();
+		setIcon.setMargin(new Insets(0,0,0,0));
+		setIcon.setContentAreaFilled(false);
+		setIcon.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
 		setIcon.setBackground(red);
+		setIcon.setBounds(125,25,150,150);
 		setIcon.addActionListener(new ActionListener(){
 
             public void actionPerformed(ActionEvent e) {
@@ -758,7 +762,12 @@ public class CreateAccountPageView {
 				JLabel lblNewLabel = new JLabel("");
 				lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 				if(f != null) {
-					img1 = (BufferedImage) new ImageIcon(f.getAbsolutePath()).getImage();
+					try {
+						img1 = ImageIO.read(new File(f.getAbsolutePath()));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					capController.getCreateAccountPageModel().setImagePath(f.getAbsolutePath());
 				}
 				else if(f == null){
