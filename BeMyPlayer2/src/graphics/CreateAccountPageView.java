@@ -57,7 +57,7 @@ public class CreateAccountPageView {
 		
 		JButton nextbtn = new JButton("Next");
 		nextbtn.setBounds(345, 345, 90, 40);
-		nextbtn.setBackground(yellow);
+		nextbtn.setBackground(Colors.Yellow);
 		nextbtn.setActionCommand(CreateAccountPageController.NEXT);
 		nextbtn.addActionListener(capController);
 		capController.getCreateAccountPageModel().setNext(nextbtn);
@@ -158,7 +158,7 @@ public class CreateAccountPageView {
 		
 		//	set text
 		JLabel lblAccInfo = new JLabel("Account Info");
-		lblAccInfo.setForeground(yellow);
+		lblAccInfo.setForeground(Colors.Yellow);
 		lblAccInfo.setFont(new Font("Monospaced", Font.BOLD, 20));
 		lblAccInfo.setBounds(45, 0, 204, 69);
 		capController.getCreateAccountPanel().add(lblAccInfo);
@@ -170,7 +170,7 @@ public class CreateAccountPageView {
 		capController.getCreateAccountPanel().add(lbldob);
 		
 		JLabel lblGender = new JLabel("Gender");
-		lblGender.setForeground(yellow);
+		lblGender.setForeground(Colors.Yellow);
 		lblGender.setFont(new Font("Monospaced", Font.BOLD, 12));
 		lblGender.setBounds(275, 245, 204, 32);	
 		capController.getCreateAccountPanel().add(lblGender);
@@ -182,32 +182,32 @@ public class CreateAccountPageView {
 		capController.getCreateAccountPanel().add(lblSecQ);
 	
 		JLabel userFieldPrmptLoc = new JLabel("Enter Username:");
-		userFieldPrmptLoc.setForeground(yellow);
+		userFieldPrmptLoc.setForeground(Colors.Yellow);
 		userFieldPrmptLoc.setFont(new Font("Monospaced",Font.BOLD,12));
 		userFieldPrmptLoc.setBounds(45,65,128,32);
 		capController.getCreateAccountPanel().add(userFieldPrmptLoc);
 		
 		JLabel emailPrmpt = new JLabel("Enter Email:");
-		emailPrmpt.setForeground(yellow);
+		emailPrmpt.setForeground(Colors.Yellow);
 		emailPrmpt.setFont(new Font("Monospaced",Font.BOLD,12));
 		emailPrmpt.setBounds(45,135,128,32);
 		capController.getCreateAccountPanel().add(emailPrmpt);
 		
 		JLabel pwdField1Prmpt = new JLabel("Enter Password:");
-		pwdField1Prmpt.setForeground(yellow);
+		pwdField1Prmpt.setForeground(Colors.Yellow);
 		pwdField1Prmpt.setFont(new Font("Monospaced",Font.BOLD,12));
 		pwdField1Prmpt.setBounds(45, 205, 128, 32);
 		capController.getCreateAccountPanel().add(pwdField1Prmpt);
 		
 		JLabel pwdfield2PrmptLoc = new JLabel("Re-enter Password:");
-		pwdfield2PrmptLoc.setForeground(yellow);
+		pwdfield2PrmptLoc.setForeground(Colors.Yellow);
 		pwdfield2PrmptLoc.setFont(new Font("Monospaced",Font.BOLD,12));
 		pwdfield2PrmptLoc.setBounds(45,275,155,32);
 		capController.getCreateAccountPanel().add(pwdfield2PrmptLoc);
 
 		
 		JLabel answerPrompt = new JLabel("Answer:");
-		answerPrompt.setForeground(yellow);
+		answerPrompt.setForeground(Colors.Yellow);
 		answerPrompt.setFont(new Font("Monospaced",Font.BOLD,12));
 		answerPrompt.setBounds(220,205,128,32);
 		capController.getCreateAccountPanel().add(answerPrompt);
@@ -238,7 +238,7 @@ public class CreateAccountPageView {
 		}
 		final JCheckBox xboxBtn = new JCheckBox("Xbox");
 		xboxBtn.setBackground(red);
-		xboxBtn.setForeground(yellow);
+		xboxBtn.setForeground(Colors.Yellow);
 		xboxBtn.setFont(new Font("Monospace",Font.BOLD,14));
 		xboxBtn.setBounds(45, 80, 75, 25);
 		
@@ -262,7 +262,7 @@ public class CreateAccountPageView {
 
 		final JCheckBox psBtn = new JCheckBox("Playstation");
 		psBtn.setBackground(red);
-		psBtn.setForeground(yellow);
+		psBtn.setForeground(Colors.Yellow);
 		psBtn.setFont(new Font("Monospace",Font.BOLD,14));
 		psBtn.setBounds(45, 105, 120, 25);
 		if(visited == true) {
@@ -285,7 +285,7 @@ public class CreateAccountPageView {
 		
 		final JCheckBox nintendoBtn = new JCheckBox("Nintendo");
 		nintendoBtn.setBackground(red);
-		nintendoBtn.setForeground(yellow);
+		nintendoBtn.setForeground(Colors.Yellow);
 		nintendoBtn.setFont(new Font("Monospace",Font.BOLD,14));
 		nintendoBtn.setBounds(45, 130, 120, 25);
 		if(visited == true) {
@@ -308,7 +308,7 @@ public class CreateAccountPageView {
 		
 		final JCheckBox pcBtn = new JCheckBox("PC");
 		pcBtn.setBackground(red);
-		pcBtn.setForeground(yellow);
+		pcBtn.setForeground(Colors.Yellow);
 		pcBtn.setFont(new Font("Monospace",Font.BOLD,14));
 		pcBtn.setBounds(45, 155, 75, 25);
 		
@@ -332,7 +332,7 @@ public class CreateAccountPageView {
 		
 		final JCheckBox vrBtn = new JCheckBox("VR");
 		vrBtn.setBackground(red);
-		vrBtn.setForeground(yellow);
+		vrBtn.setForeground(Colors.Yellow);
 		vrBtn.setFont(new Font("Monospace",Font.BOLD,14));
 		vrBtn.setBounds(45, 180, 75, 25);
 		if(visited == true) {
@@ -355,7 +355,7 @@ public class CreateAccountPageView {
 		
 		final JCheckBox RetroBtn = new JCheckBox("Retro");
 		RetroBtn.setBackground(red);
-		RetroBtn.setForeground(yellow);
+		RetroBtn.setForeground(Colors.Yellow);
 		RetroBtn.setFont(new Font("Monospace",Font.BOLD,14));
 		RetroBtn.setBounds(45, 205, 75, 25);
 		if(visited == true) {
@@ -380,7 +380,7 @@ public class CreateAccountPageView {
 		//	genres
 		final JCheckBox actionBtn = new JCheckBox("Action");
 		actionBtn.setBackground(red);
-		actionBtn.setForeground(yellow);
+		actionBtn.setForeground(Colors.Yellow);
 		actionBtn.setFont(new Font("Monospace",Font.BOLD,14));
 		actionBtn.setBounds(245, 80, 75, 25);
 		if(visited == true) {
@@ -403,7 +403,7 @@ public class CreateAccountPageView {
 		
 		final JCheckBox advBtn = new JCheckBox("Adventure");
 		advBtn.setBackground(red);
-		advBtn.setForeground(yellow);
+		advBtn.setForeground(Colors.Yellow);
 		advBtn.setFont(new Font("Monospace",Font.BOLD,14));
 		advBtn.setBounds(245, 105, 120, 25);
 		if(visited == true) {
@@ -426,7 +426,7 @@ public class CreateAccountPageView {
 		
 		final JCheckBox FPSBtn = new JCheckBox("FPS");
 		FPSBtn.setBackground(red);
-		FPSBtn.setForeground(yellow);
+		FPSBtn.setForeground(Colors.Yellow);
 		FPSBtn.setFont(new Font("Monospace",Font.BOLD,14));
 		FPSBtn.setBounds(245, 130, 120, 25);
 		if(visited == true) {
@@ -449,7 +449,7 @@ public class CreateAccountPageView {
 		
 		final JCheckBox MMOBtn = new JCheckBox("MMO");
 		MMOBtn.setBackground(red);
-		MMOBtn.setForeground(yellow);
+		MMOBtn.setForeground(Colors.Yellow);
 		MMOBtn.setFont(new Font("Monospace",Font.BOLD,14));
 		MMOBtn.setBounds(245, 155, 75, 25);
 		if(visited == true) {
@@ -472,7 +472,7 @@ public class CreateAccountPageView {
 		
 		final JCheckBox MOBABtn = new JCheckBox("MOBA");
 		MOBABtn.setBackground(red);
-		MOBABtn.setForeground(yellow);
+		MOBABtn.setForeground(Colors.Yellow);
 		MOBABtn.setFont(new Font("Monospace",Font.BOLD,14));
 		MOBABtn.setBounds(245, 180, 75, 25);
 		if(visited == true) {
@@ -495,7 +495,7 @@ public class CreateAccountPageView {
 		
 		final JCheckBox pzlBtn = new JCheckBox("Puzzle");
 		pzlBtn.setBackground(red);
-		pzlBtn.setForeground(yellow);
+		pzlBtn.setForeground(Colors.Yellow);
 		pzlBtn.setFont(new Font("Monospace",Font.BOLD,14));
 		pzlBtn.setBounds(245, 205, 125, 25);
 		if(visited == true) {
@@ -518,7 +518,7 @@ public class CreateAccountPageView {
 		
 		final JCheckBox rythBtn = new JCheckBox("Rythm");
 		rythBtn.setBackground(red);
-		rythBtn.setForeground(yellow);
+		rythBtn.setForeground(Colors.Yellow);
 		rythBtn.setFont(new Font("Monospace",Font.BOLD,14));
 		rythBtn.setBounds(365, 80, 75, 25);
 		if(visited == true) {
@@ -541,7 +541,7 @@ public class CreateAccountPageView {
 		
 		final JCheckBox platBtn = new JCheckBox("Platformer");
 		platBtn.setBackground(red);
-		platBtn.setForeground(yellow);
+		platBtn.setForeground(Colors.Yellow);
 		platBtn.setFont(new Font("Monospace",Font.BOLD,14));
 		platBtn.setBounds(365, 105, 125, 25);
 		if(visited == true) {
@@ -564,7 +564,7 @@ public class CreateAccountPageView {
 		
 		final JCheckBox RTSBtn = new JCheckBox("RTS");
 		RTSBtn.setBackground(red);
-		RTSBtn.setForeground(yellow);
+		RTSBtn.setForeground(Colors.Yellow);
 		RTSBtn.setFont(new Font("Monospace",Font.BOLD,14));
 		RTSBtn.setBounds(365, 130, 75, 25);
 		if(visited == true) {
@@ -587,7 +587,7 @@ public class CreateAccountPageView {
 		
 		final JCheckBox RPGBtn = new JCheckBox("RPG");
 		RPGBtn.setBackground(red);
-		RPGBtn.setForeground(yellow);
+		RPGBtn.setForeground(Colors.Yellow);
 		RPGBtn.setFont(new Font("Monospace",Font.BOLD,14));
 		RPGBtn.setBounds(365, 155, 75, 25);
 		if(visited == true) {
@@ -610,7 +610,7 @@ public class CreateAccountPageView {
 		
 		final JCheckBox stratBtn = new JCheckBox("Strategy");
 		stratBtn.setBackground(red);
-		stratBtn.setForeground(yellow);
+		stratBtn.setForeground(Colors.Yellow);
 		stratBtn.setFont(new Font("Monospace",Font.BOLD,14));
 		stratBtn.setBounds(365, 180, 125, 25);
 		if(visited == true) {
@@ -632,7 +632,7 @@ public class CreateAccountPageView {
 		
 		final JCheckBox sandBtn = new JCheckBox("Sandbox");
 		sandBtn.setBackground(red);
-		sandBtn.setForeground(yellow);
+		sandBtn.setForeground(Colors.Yellow);
 		sandBtn.setFont(new Font("Monospace",Font.BOLD,14));
 		sandBtn.setBounds(365, 205, 125, 25);
 		if(visited == true) {
@@ -657,7 +657,7 @@ public class CreateAccountPageView {
 		//		init buttons and add to panel
 		JButton backbtn = new JButton("Back");
 		backbtn.setBounds(45, 345, 90, 40);
-		backbtn.setBackground(yellow);
+		backbtn.setBackground(Colors.Yellow);
 		backbtn.setActionCommand(CreateAccountPageController.BACK);
 		backbtn.addActionListener(capController);
 		capController.getCreateAccountPageModel().setBack(backbtn);
@@ -666,7 +666,7 @@ public class CreateAccountPageView {
 		
 		JButton nextbtn = new JButton("Next");
 		nextbtn.setBounds(345, 345, 90, 40);
-		nextbtn.setBackground(yellow);
+		nextbtn.setBackground(Colors.Yellow);
 		nextbtn.setActionCommand(CreateAccountPageController.NEXT);
 		nextbtn.addActionListener(capController);
 		capController.getCreateAccountPageModel().setNext(nextbtn);
@@ -675,13 +675,13 @@ public class CreateAccountPageView {
 		
 		//	Labels 
 		JLabel choosePlatPrmpt = new JLabel("Gaming platforms");
-		choosePlatPrmpt.setForeground(yellow);
+		choosePlatPrmpt.setForeground(Colors.Yellow);
 		choosePlatPrmpt.setFont(new Font("Monospaced", Font.BOLD, 18));
 		choosePlatPrmpt.setBounds(25, 0, 300, 69);
 		capController.getCreateAccountPanel().add(choosePlatPrmpt);
 		
 		JLabel chooseGenrePrmpt = new JLabel("Favorite genres");
-		chooseGenrePrmpt.setForeground(yellow);
+		chooseGenrePrmpt.setForeground(Colors.Yellow);
 		chooseGenrePrmpt.setFont(new Font("Monospaced", Font.BOLD, 16));
 		chooseGenrePrmpt.setBounds(245, 0, 250, 69);
 		capController.getCreateAccountPanel().add(chooseGenrePrmpt);
@@ -786,7 +786,7 @@ public class CreateAccountPageView {
 		
 		//	text field
 		JLabel lblAccInfo = new JLabel("<--- Set Avatar");
-		lblAccInfo.setForeground(yellow);
+		lblAccInfo.setForeground(Colors.Yellow);
 		lblAccInfo.setFont(new Font("Monospaced", Font.BOLD, 20));
 		lblAccInfo.setBounds(300, 0, 215, 115);
 		capController.getCreateAccountPanel().add(lblAccInfo);
@@ -839,7 +839,7 @@ public class CreateAccountPageView {
 		//	load submit button
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.setBounds(385, 345, 90, 40);
-		btnSubmit.setBackground(yellow);
+		btnSubmit.setBackground(Colors.Yellow);
 		btnSubmit.setActionCommand(CreateAccountPageController.SUBMIT);
 		btnSubmit.addActionListener(capController);
 		capController.getCreateAccountPanel().add(btnSubmit);
@@ -847,14 +847,14 @@ public class CreateAccountPageView {
 		//	load back button
 		JButton backbtn = new JButton("Back");
 		backbtn.setBounds(25, 345, 90, 40);
-		backbtn.setBackground(yellow);
+		backbtn.setBackground(Colors.Yellow);
 		backbtn.setActionCommand(CreateAccountPageController.BACK);
 		backbtn.addActionListener(capController);
 		capController.getCreateAccountPageModel().setBack(backbtn);
 		capController.getCreateAccountPanel().add(capController.getCreateAccountPageModel().getBack());
 		
 		JLabel descritionPrmpt = new JLabel("Describe yourself:");
-		descritionPrmpt.setForeground(yellow);
+		descritionPrmpt.setForeground(Colors.Yellow);
 		descritionPrmpt.setFont(new Font("Monospaced",Font.BOLD,20));
 		descritionPrmpt.setBounds(125,190,265,32);
 		capController.getCreateAccountPanel().add(descritionPrmpt);
