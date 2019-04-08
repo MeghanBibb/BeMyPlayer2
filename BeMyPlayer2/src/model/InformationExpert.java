@@ -23,9 +23,11 @@ import firebase.FireBaseSchema;
 public class InformationExpert {
 	
 	private static Account activeUserAccount = null;
-	private static Account otherAccount = null;
-	private static List<Match> potentialMatches = null;
+	private static List<Profile> allProfiles = null;
+	private static List<Match> allMatches = null;
 	private static FireBaseAdapter databaseAdapter = null;
+	
+	
 	
 	public static void initializeAdapter() {
 		databaseAdapter = new FireBaseAdapter();
@@ -35,9 +37,12 @@ public class InformationExpert {
 		}
 		
 		//should database dump these, also other account should be null until needed
+
 		activeUserAccount = new Account();
-		otherAccount = null;
+		//otherAccount = null;
 	}
+	
+	
 	
 	public static boolean attemptAddNewAccount(Account a) throws DBFailureException {
 		return databaseAdapter.attemptAddNewAccount(a);
@@ -58,13 +63,12 @@ public class InformationExpert {
 	public static Account getActiveAccount() {
 		return activeUserAccount;
 	}
+	
 	public static void setActiveAccount(Account a) {
 		System.out.println("setting active account " + a.getEmail());
 		activeUserAccount = a;
 	}
-	public static Account getOtherAccount() {
-		return otherAccount;
-	}
+	
 	
 	public static boolean isActiveUser(Account a) {
 		if(a == activeUserAccount) {
@@ -89,9 +93,6 @@ public class InformationExpert {
 		return activeUserAccount.getUserId();
 	}
 	
-	public static String getOtherUserID() {
-		return otherAccount.getUserId();
-	}
 	
 	public static BufferedImage getProfileImage(String userID) throws DBFailureException {
 		return databaseAdapter.getProfileImage(userID);

@@ -24,6 +24,7 @@ import javax.swing.border.EmptyBorder;
 
 import firebase.DBFailureException;
 import model.Account;
+import model.InformationExpert;
 
 public class ProfilePageView {
 
@@ -47,10 +48,10 @@ public class ProfilePageView {
 		/**
 		 * TO DO: load image from user/database
 		 */
-		/*JLabel imgLabel = new JLabel("");
+		JLabel imgLabel = new JLabel("");
 		BufferedImage img = null;
 		try {
-			img = 
+			img = InformationExpert.getProfileImage(InformationExpert.getActiveUserID());
 			
 		} catch (DBFailureException e) {
 			// TODO Auto-generated catch block
@@ -59,7 +60,7 @@ public class ProfilePageView {
 		imgLabel.setIcon(new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
 		imgLabel.setBounds(10, 60, 100, 100);
 		profileController.getProfileModel().setProfileImage(imgLabel);
-		*/
+		
 		
 		//init buttons
 		JButton btnBack = new JButton("Back");
@@ -248,7 +249,7 @@ public class ProfilePageView {
 		profileController.getProfilePanel().add(profileController.getProfileModel().getLblAge());
 		profileController.getProfilePanel().add(profileController.getProfileModel().getLblGender());
 		profileController.getProfilePanel().add(profileController.getProfileModel().getLblConsoles());
-		//profileController.getProfilePanel().add(profileController.getProfileModel().getProfileImage());
+		profileController.getProfilePanel().add(profileController.getProfileModel().getProfileImage());
 		profileController.getProfilePanel().add(profileController.getProfileModel().getTxtField());
 		
 		

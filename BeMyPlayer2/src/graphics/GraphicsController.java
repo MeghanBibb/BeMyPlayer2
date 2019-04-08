@@ -36,6 +36,7 @@ public class GraphicsController {
 		logger.info("running graphic controller");
 	}
 	GraphicsController() {
+		
 //			init default jframe as base frame
 			mainFrame = (new JFrame("BeMyPlayer2"));
 			mainFrame.setSize(400, 300);
@@ -53,14 +54,6 @@ public class GraphicsController {
 		newPage.launchPage(mainFrame, backPage);
 	}
 	
-
-	public static Account getProfileAccount() {
-		if(profileAccount == ACTIVE_ACCOUNT) {
-			return getActiveAccount();
-		} else {
-			return getOtherAccount();
-		}
-	}
 	
 	public static void setProfileAccountActive() {
 		profileAccount = ACTIVE_ACCOUNT;
@@ -100,9 +93,6 @@ public class GraphicsController {
 		return InformationExpert.getActiveAccount();
 	}
 	
-	public static Account getOtherAccount() {
-		return InformationExpert.getOtherAccount();
-	}
 	
 	public static boolean isActiveAccount(Account a) {
 		return InformationExpert.isActiveUser(a);
@@ -112,9 +102,6 @@ public class GraphicsController {
 		return InformationExpert.getActiveUserID();
 	}
 	
-	public static String getOtherID() {
-		return InformationExpert.getOtherUserID();
-	}
 	
 	public static BufferedImage getProfileImage(String userID) throws DBFailureException {
 		return InformationExpert.getProfileImage(userID);
@@ -131,7 +118,6 @@ public class GraphicsController {
 	public static void updateProfile(Account a) throws DBFailureException {
 		InformationExpert.updateProfile(a.getAccountProfile());
 	}
-	
 	
 	/*    MAIN METHOD   */
 	

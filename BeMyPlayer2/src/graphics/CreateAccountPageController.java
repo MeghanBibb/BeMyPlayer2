@@ -123,7 +123,7 @@ public class CreateAccountPageController extends PageController{
 				*/
 				a = new Account();
 				a.setEmail(this.getCreateAccountPageModel().getEnterEmail().getText());
-				a.setPasswordHash(this.getCreateAccountPageModel().getPwdEnterPass().getText());
+				a.setPasswordHash(Hasher.hashString(this.getCreateAccountPageModel().getPwdEnterPass().getText()));
 				a.setSecurityQ1(this.getCreateAccountPageModel().getSecurityQuestions());
 				a.setSecurityQ1AnsHash(Hasher.hashString(this.getCreateAccountPageModel().getSecQA().getText()));
 				
@@ -154,7 +154,7 @@ public class CreateAccountPageController extends PageController{
 				try {
 					GraphicsController.attemptAddNewAccount(a);
 					InformationExpert.setActiveAccount(a);
-					GraphicsController.uploadProfileImage(p.getProfilePicture(), GraphicsController.getActiveID());
+					GraphicsController.uploadProfileImage(p.getProfilePicture(), a.getUserId());
 				} catch (DBFailureException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

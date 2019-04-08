@@ -9,6 +9,7 @@ public class MatchMaker{
 		return unfilteredProfiles;
 	}
 	
-	//(Additional matchmaking logic/ helper functions here)
+	// (Additional matchmaking logic/ helper functions here)
+	
 	
 }

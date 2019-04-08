@@ -33,6 +33,8 @@ public class HomePageView {
 		btnLogout.setBounds(10, 10, 90, 40);
 		btnLogout.setActionCommand(homeController.LOGOUT);
 		btnLogout.setBackground(yellow);
+		btnLogout.setFont(Fonts.getFont((float) 12));
+		btnLogout.setForeground(Colors.Red);
 		btnLogout.addActionListener(homeController);
 		homeController.getHomePageModel().setBtnLogout(btnLogout);
 		
@@ -40,6 +42,8 @@ public class HomePageView {
 		btnAccount.setBounds(390,10,100,40);
 		btnAccount.setActionCommand(homeController.ACCOUNT);
 		btnAccount.setBackground(yellow);
+		btnAccount.setFont(Fonts.getFont((float) 12));
+		btnAccount.setForeground(Colors.Red);
 		btnAccount.addActionListener(homeController);
 		homeController.getHomePageModel().setBtnProfile(btnAccount);
 		
@@ -47,6 +51,8 @@ public class HomePageView {
 		btnLove.setBounds(30,100,200,140);
 		btnLove.setActionCommand(homeController.FIND_LOVE);
 		btnLove.setBackground(yellow);
+		btnLove.setFont(Fonts.getFont((float) 12));
+		btnLove.setForeground(Colors.Red);
 		btnLove.addActionListener(homeController);
 		homeController.getHomePageModel().setBtnFindLove(btnLove);
 		
@@ -54,6 +60,8 @@ public class HomePageView {
 		btnFriends.setBounds(270,100,200,140);
 		btnFriends.setActionCommand(homeController.FIND_FRIENDS);
 		btnFriends.setBackground(yellow);
+		btnFriends.setFont(Fonts.getFont((float) 12));
+		btnFriends.setForeground(Colors.Red);
 		btnFriends.addActionListener(homeController);
 		homeController.getHomePageModel().setBtnFindFriends(btnFriends);
 		
@@ -63,7 +71,8 @@ public class HomePageView {
 		btnSupport.setOpaque(true);
 		btnSupport.setContentAreaFilled(false);
 		btnSupport.setBorderPainted(false);
-		btnSupport.setForeground(yellow);
+		btnSupport.setForeground(Colors.Yellow);
+		btnSupport.setFont(Fonts.getFont((float) 12));
 		
 		btnSupport.addActionListener(homeController);
 		homeController.getHomePageModel().setBtnSupport(btnSupport);
@@ -72,13 +81,15 @@ public class HomePageView {
 		btnMatches.setBounds(60,270,360,90);
 		btnMatches.setActionCommand(homeController.VIEW_MATCHES);
 		btnMatches.setBackground(yellow);
+		btnMatches.setFont(Fonts.getFont((float) 12));
+		btnMatches.setForeground(Colors.Red);
 		btnMatches.addActionListener(homeController);
 		homeController.getHomePageModel().setBtnViewMatches(btnMatches);
 		
 		//init Label
 		JLabel lblBeMyPlayer = new JLabel("Be My Player 2");
-		lblBeMyPlayer.setFont(new Font("Monospaced", Font.BOLD, 20));
-		lblBeMyPlayer.setForeground(yellow);
+		lblBeMyPlayer.setFont(Fonts.getFont((float) 20));
+		lblBeMyPlayer.setForeground(Colors.Yellow);
 		lblBeMyPlayer.setBounds(160,0,204,69);
 		homeController.getHomePageModel().setLblBeMyPlayer(lblBeMyPlayer);
 		

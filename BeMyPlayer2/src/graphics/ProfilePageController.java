@@ -28,7 +28,7 @@ public class ProfilePageController extends PageController {
 			backPage = back;
 		}
 		
-		a = GraphicsController.getProfileAccount();
+		a = GraphicsController.getActiveAccount();
 		ProfilePageView.startProfilePage(this,mainFrame);
 	}
 	
