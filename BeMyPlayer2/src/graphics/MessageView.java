@@ -13,9 +13,6 @@ public class MessageView {
         messageController.setMessageModel(new MessageModel());
 
         //init colors
-        Color red = new Color(134,48,111);
-		Color yellow = new Color(254, 195, 123);
-        Color white = new Color(255,255,255);
 
         //init panel
         messageController.setMessagePanel(new BackgroundPanel(null));
@@ -33,7 +30,7 @@ public class MessageView {
         JLabel lblUsername = new JLabel();
         lblUsername.setText(messageController.getAccount().getAccountProfile().getUsername());
         lblUsername.setFont(new Font("Impact", Font.PLAIN,15));
-        lblUsername.setForeground(yellow);
+        lblUsername.setForeground(Colors.Yellow);
         lblUsername.setBounds(150,35,90,90);
         messageController.getMessageModel().setLblUsername(lblUsername);
 
@@ -52,20 +49,20 @@ public class MessageView {
 			diff--;
 		}
 		lblAge.setText(Integer.toString(diff) + " years old");
-        lblAge.setForeground(yellow);
+        lblAge.setForeground(Colors.Yellow);
         lblAge.setBounds(150,60,200,90);
         messageController.getMessageModel().setLblAge(lblAge);
 
         JLabel lblGender = new JLabel();
         lblGender.setText(messageController.getAccount().getAccountProfile().getGender());
-        lblGender.setForeground(yellow);
+        lblGender.setForeground(Colors.Yellow);
         lblGender.setBounds(150,85,90,90);
         messageController.getMessageModel().setLblGender(lblGender);
 
         //init buttons
         JButton backbtn = new JButton("Back");
         backbtn.setBounds(10,10,90,40);
-        backbtn.setBackground(yellow);
+        backbtn.setBackground(Colors.Yellow);
         backbtn.setActionCommand(MessageController.BACK);
         backbtn.addActionListener(messageController);
         messageController.getMessageModel().setBack(backbtn);
@@ -75,7 +72,7 @@ public class MessageView {
         JButton btnSend = new JButton("Send");
         btnSend.setBounds(345,365,90,20);
         btnSend.setActionCommand(MessageController.SEND);
-        btnSend.setBackground(white);
+        btnSend.setBackground(Colors.White);
         btnSend.addActionListener(messageController);
         messageController.getMessageModel().setBtnSend(btnSend);
 
