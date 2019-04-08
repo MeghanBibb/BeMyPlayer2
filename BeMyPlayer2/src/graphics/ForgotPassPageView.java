@@ -30,8 +30,6 @@ public class ForgotPassPageView {
 		forgotPasswordController.setForgotPasswordPageModel(new ForgotPassPageModel());
 		
 		//init colors
-		Color red = new Color(134,48,111);
-		Color white = new Color(254,195,123);
 		
 		//init panel
 		forgotPasswordController.setForgotPasswordPanel(new BackgroundPanel(null));
@@ -43,7 +41,7 @@ public class ForgotPassPageView {
 		//init buttons
 		JButton backbtn = new JButton("Back");
 		backbtn.setBounds(45, 225, 90, 40);
-		backbtn.setBackground(white);
+		backbtn.setBackground(Colors.Yellow);
 		backbtn.setActionCommand(CreateAccountPageController.BACK);
 		backbtn.addActionListener(forgotPasswordController);
 		forgotPasswordController.getForgotPasswordPageModel().setBtnBack(backbtn);
@@ -53,7 +51,7 @@ public class ForgotPassPageView {
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.setBounds(340,225,90,40);
 		btnSubmit.setActionCommand(forgotPasswordController.SUBMIT);
-		btnSubmit.setBackground(white);
+		btnSubmit.setBackground(Colors.Yellow);
 		btnSubmit.addActionListener(forgotPasswordController);
 		forgotPasswordController.getForgotPasswordPageModel().setBtnSubmit(btnSubmit);
 		
