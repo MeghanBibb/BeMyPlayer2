@@ -52,7 +52,9 @@ public class ViewMatchesView {
 		//	init buttons and add to panel
 		JButton backbtn = new JButton("Back");
 		backbtn.setBounds(25, 25, 90, 40);
-		backbtn.setBackground(yellow);
+		backbtn.setBackground(Colors.Yellow);
+		backbtn.setForeground(Colors.Red);
+		backbtn.setFont(Fonts.getFont((float) 12));
 		backbtn.setActionCommand(CreateAccountPageController.BACK);
 		backbtn.addActionListener(viewMatchController);
 		viewMatchController.getViewMatchesPanel().add(backbtn);
@@ -60,14 +62,15 @@ public class ViewMatchesView {
 		//	label
 		JLabel lblBeMyPlayer = new JLabel("Be My Player 2");
 		lblBeMyPlayer.setFont(new Font("Monospaced", Font.BOLD, 20));
-		lblBeMyPlayer.setForeground(yellow);
+		lblBeMyPlayer.setFont(Fonts.getFont((float) 20));
+		lblBeMyPlayer.setForeground(Colors.Yellow);
 		lblBeMyPlayer.setBounds(160,0,204,69);
 		viewMatchController.getViewMatchesPanel().add(lblBeMyPlayer);
 		
 		//	pull from match adapter giving the temp account
 		GridLayout gridLayout = new GridLayout(0,2,5,5);
 		JPanel profilePicPanel = new JPanel();
-		profilePicPanel.setBackground(yellow);
+		profilePicPanel.setBackground(Colors.Yellow);
 		profilePicPanel.setLayout(gridLayout);
 		profilePicPanel.setPreferredSize(new Dimension(100,245));
 		profilePicPanel.setSize(100, 245);

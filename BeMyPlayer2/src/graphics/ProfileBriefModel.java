@@ -4,11 +4,15 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.Area;
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.RoundRectangle2D;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -49,6 +53,8 @@ public class ProfileBriefModel extends JPanel{
 		}
 		Image img1 = new ImageIcon(viewMatchController.getClass().getResource(temploc)).getImage();
 		JLabel setIcon = new JLabel(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
+
+		
 		JLabel username = new JLabel(s);
 		JLabel age = new JLabel();
 		JLabel gender = new JLabel("Gender");
@@ -58,7 +64,7 @@ public class ProfileBriefModel extends JPanel{
 		this.setBackground(yellow);
 		
 		viewProfile.setBackground(red);
-		viewProfile.setBounds(42, 140, 150, 60);
+		viewProfile.setBounds((int)this.getAlignmentX(),150, this.getWidth(), 75);
 		viewProfile.setForeground(Colors.Yellow);
 		viewProfile.setFont(Fonts.getFont((float) 12));
 		viewProfile.addActionListener(new ActionListener() {
