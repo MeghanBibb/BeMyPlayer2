@@ -5,14 +5,10 @@ import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import firebase.DBFailureException;
-import firebase.Hasher;
-import model.Account;
-import model.Profile;
 
 public class EditAccountPageController extends PageController{
 	
@@ -30,7 +26,7 @@ public class EditAccountPageController extends PageController{
 	private JFrame copyFrame = null;
 	private EditAccountPageModel editAccountModel = null;
 	private JPanel editAccountPanel = null;
-	
+	private static Logger logger = Logger.getLogger(EditAccountPageController.class.getName());
 	public void launchPage(JFrame mainFrame, String back) {
 		if(back != null) {
 			backPage = back;
@@ -50,89 +46,24 @@ public class EditAccountPageController extends PageController{
 				GraphicsController.processPage(PageCreator.EDIT_ACCOUNT_PAGE, backPage);
 				break;
 			case SUBMIT: //save info and go back to edit page
-				System.out.println("Submit");
+				logger.info("Submit");
 				GraphicsController.processPage(PageCreator.EDIT_ACCOUNT_PAGE, backPage);
 				break;
 			case SUBMITEDITACCOUNT:
 				if(validateCreatePage1() == true) {
-					Account a = GraphicsController.getActiveAccount();
-					a.setPasswordHash(editAccountModel.getPwdEnterPass().getText());
-					a.setSecurityQ1(editAccountModel.getSecurityQuestions());
-					a.setSecurityQ1AnsHash(Hasher.hashString(editAccountModel.getSecQA().getText()));
-					
-					Profile p = GraphicsController.getActiveAccount().getAccountProfile();
-					
-					p.setUsername(editAccountModel.getFrmtdtxtfldEnterUsername().getText());
-					p.setGender(editAccountModel.getGender());
-					try {
-						p.setDateOB(editAccountModel.getDob());
-					} catch (ParseException e2) {
-						// TODO Auto-generated catch block
-						//	error
-					}
-					
-					a.setAccountProfile(p);
-					
-					try {
-						GraphicsController.updateAccount(a);
-					} catch (DBFailureException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					
-					System.out.println("Submit");
+					logger.info("Submit");
 					GraphicsController.processPage(PageCreator.EDIT_ACCOUNT_PAGE, backPage);
 				}
 				break;
 			case SUBMITEDITQUESTIONAIRE:
 				if(validateCreatePage2() == true) {
-					
-					Account a = GraphicsController.getActiveAccount();
-
-					Profile p = GraphicsController.getActiveAccount().getAccountProfile();
-					p.setPlatforms(editAccountModel.getPlatforms());
-					p.setGenres(editAccountModel.getGenres());
-					
-					a.setAccountProfile(p);
-					
-					try {
-						GraphicsController.updateProfile(a);
-					} catch (DBFailureException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					
-					System.out.println("Submit");
+					logger.info("Submit");
 					GraphicsController.processPage(PageCreator.EDIT_ACCOUNT_PAGE, backPage);
 				}
 				break;
 			case SUBMITEDITPROFILE:
 				if(validateCreatePage3() == true) {
-					
-					Account a = GraphicsController.getActiveAccount();
-					
-					Profile p = GraphicsController.getActiveAccount().getAccountProfile();
-
-					String htmlDescription = "<HTML>";
-					htmlDescription += editAccountModel.getCharDescription().getText();
-					
-					htmlDescription = htmlDescription.replace("\n", "<br>");
-					htmlDescription += "</HTML>";
-					
-					p.setDescription(htmlDescription);
-					
-
-					p.setProfilePicture(editAccountModel.getProfileImg());
-					a.setAccountProfile(p);
-					
-					try {
-						GraphicsController.updateAccount(a);
-					} catch (DBFailureException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					
-					System.out.println("Submit");
+					logger.info("Submit");
 					GraphicsController.processPage(PageCreator.EDIT_ACCOUNT_PAGE, backPage);
 				}
 				break;

@@ -2,12 +2,13 @@ package graphics;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Logger;
 
 import javax.swing.JFrame;
 
 public class SwipePageController extends PageController {
 	SwipePageModel model;
-
+	private static Logger logger = Logger.getLogger(SwipePageController.class.getName());
 	public SwipePageController() {
 	}
 
@@ -21,7 +22,7 @@ public class SwipePageController extends PageController {
 		model.backButton.addActionListener(new ActionListener() {
 	    	@Override
 	    	public void actionPerformed(ActionEvent e) {
-	    			System.out.println("back");
+	    			logger.info("back");
 	    			GraphicsController.processPage(PageCreator.HOME_PAGE,backPage);
 	    	}
 	    });

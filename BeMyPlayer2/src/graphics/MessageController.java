@@ -6,6 +6,7 @@ import model.Account;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Logger;
 
 public class MessageController extends PageController {
     public static final String SEND = "send";
@@ -14,7 +15,7 @@ public class MessageController extends PageController {
     private MessageModel messageModel = null;
     private JPanel messagePanel = null;
     private Account account;
-
+    private static Logger logger = Logger.getLogger(MessageController.class.getName());
     public void launchPage(JFrame mainFrame, String back) {
     	if(back != null) {
     		backPage = back;
@@ -52,7 +53,7 @@ public class MessageController extends PageController {
                  */
                 break;
             case BACK:
-                System.out.println("Back");
+                logger.info("Back");
                 GraphicsController.processPage(PageCreator.PROFILE_PAGE,backPage);
         }
     }

@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
+import java.util.logging.Logger;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -26,7 +27,7 @@ public class ViewMatchesController extends PageController{
 	private Account a;
 	private JFrame copyFrame;
 	private ProfileBriefModel brief = null;
-	
+	private static Logger logger = Logger.getLogger(ViewMatchesController.class.getName());
 	
 	public void launchPage(JFrame mainFrame, String back) {
 		if(back != null) {
@@ -40,12 +41,12 @@ public class ViewMatchesController extends PageController{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getActionCommand() == BACK) {
-			System.out.println("back");
+			logger.info("back");
 			GraphicsController.processPage(PageCreator.HOME_PAGE, backPage);
 		}
 		else if(e.getActionCommand() == PROFILE) {
 			String text = ((JButton) e.getSource()).getName();
-			System.out.println("launch profile brief for: " + text);
+			logger.info("launch profile brief for: " + text);
 			if(brief == null) {
 				brief = new ProfileBriefModel(text,new Rectangle(250,120,215,245),PageCreator.MATCHES_PAGE);
 			}

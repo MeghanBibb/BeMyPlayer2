@@ -3,6 +3,7 @@ package graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -26,7 +27,7 @@ public class LoginPageController extends PageController{
 	//	table model, db pull, table model, jtable, jframe
 	private LoginPageModel loginPageModel = null;
 	private BackgroundPanel loginPanel = null;
-	
+	private static Logger logger = Logger.getLogger(LoginPageController.class.getName());
 	//private JFrame loginFrame = null;
 	//	init controller 
 	

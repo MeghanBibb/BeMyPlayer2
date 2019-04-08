@@ -6,6 +6,7 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -19,6 +20,7 @@ public class PaymentPageController extends PageController{
 	
 	private PaymentPageModel paymentModel = null;
 	private JPanel paymentPanel = null;
+	private static Logger logger = Logger.getLogger(PaymentPageController.class.getName());
 	
 	public void launchPage(JFrame mainFrame, String back) {
 		if(back != backPage) {

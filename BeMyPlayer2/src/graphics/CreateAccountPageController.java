@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 import javax.swing.JFrame;
@@ -37,7 +38,7 @@ public class CreateAccountPageController extends PageController{
 	private boolean visitedP1;
 	private boolean visitedP2;
 	private boolean visitedP3;
-	
+	private static Logger logger = Logger.getLogger(CreateAccountPageController.class.getName());
 	public void launchPage(JFrame mainFrame, String back) {
 		if(back != null) {
 			backPage = back;
@@ -54,7 +55,7 @@ public class CreateAccountPageController extends PageController{
 		// TODO Auto-generated method stub
 		if(e.getActionCommand() == NEXT) {
 			pageNum++;
-			System.out.println("page number " + pageNum);
+			logger.info("page number " + pageNum);
 			switch(pageNum) {
 			case 1: if(validateCreatePage1()) {
 						this.createAccountPanel.removeAll();
@@ -79,7 +80,7 @@ public class CreateAccountPageController extends PageController{
 		}
 		else if (e.getActionCommand() == BACK) {
 			pageNum--;
-			System.out.println("page number " + pageNum);
+			logger.info("page number " + pageNum);
 			switch(pageNum) {
 			case -1: visitedP1 = false;
 					 visitedP2 = false;

@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 import javax.swing.JFrame;
@@ -18,7 +19,7 @@ public class ForgotPassPageController extends PageController {
 
 	private ForgotPassPageModel forgotPasswordModel = null;
 	private JPanel forgotPasswordPanel = null;
-
+	private static Logger logger = Logger.getLogger(ForgotPassPageController.class.getName());
 	public void launchPage(JFrame mainFrame, String back) {
 		if(back != null) {
 			backPage = back;
@@ -31,12 +32,12 @@ public class ForgotPassPageController extends PageController {
 		switch(e.getActionCommand()) {
 			case SUBMIT: 
 				if(validateInfo() == true) {
-					System.out.println("Submit");
+					logger.info("Submit");
 					GraphicsController.processPage(PageCreator.LOGIN_PAGE,backPage);
 				}
 				break;
 			case BACK:
-				System.out.println("Back");
+				logger.info("Back");
 				GraphicsController.processPage(PageCreator.LOGIN_PAGE,backPage);
 		}
 	}

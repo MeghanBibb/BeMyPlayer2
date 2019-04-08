@@ -2,6 +2,7 @@ package graphics;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Logger;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -16,7 +17,7 @@ public class ProfilePageController extends PageController {
 	public static final String EDIT_ACCOUNT = "edit";
 	public static final String BLOCK = "block";
 	public static final String MESSAGE = "message";
-	
+	private static Logger logger = Logger.getLogger(ProfilePageController.class.getName());
 	// get view and jframe
 	private ProfilePageModel profileModel = null;
 	private JPanel profilePanel = null;
@@ -43,17 +44,17 @@ public class ProfilePageController extends PageController {
 	public void actionPerformed(ActionEvent e) {
 		switch(e.getActionCommand()) {
 			case BACK:
-				System.out.println("back");
+				logger.info("back");
 				GraphicsController.processPage(PageCreator.HOME_PAGE,backPage);
 				break;
 			case EDIT_ACCOUNT:
 				GraphicsController.processPage(PageCreator.EDIT_ACCOUNT_PAGE,backPage);
 				break;
 			case BLOCK:
-				System.out.println("block");
+				logger.info("block");
 				break;
 			case MESSAGE:
-				System.out.println("message");
+				logger.info("message");
 				GraphicsController.processPage(PageCreator.MESSAGE_PAGE,backPage);
 				break;
 		}

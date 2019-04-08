@@ -3,6 +3,7 @@ package graphics;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Logger;
 
 public class SupportController extends PageController{
     public static final String SUBMIT = "submit";
@@ -10,7 +11,7 @@ public class SupportController extends PageController{
 
     private SupportModel supportModel = null;
     private JPanel supportPanel = null;
-
+    private static Logger logger = Logger.getLogger(SupportController.class.getName());
     public void launchPage(JFrame mainFrame, String back) {
     	if(back != null) {
         	backPage = back;
@@ -23,13 +24,13 @@ public class SupportController extends PageController{
         switch(e.getActionCommand()) {
             case SUBMIT:
                 if(validateSupInfo()) {
-                    System.out.println("Submit");
+                    logger.info("Submit");
                     //	logic for updating information here
                     GraphicsController.processPage(PageCreator.HOME_PAGE,backPage);
                 }
                 break;
             case BACK:
-                System.out.println("Back");
+                logger.info("Back");
                 GraphicsController.processPage(PageCreator.HOME_PAGE,backPage);
         }
     }
