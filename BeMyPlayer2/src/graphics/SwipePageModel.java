@@ -21,7 +21,7 @@ public class SwipePageModel {
 	JButton backButton = new JButton("Back");
 	
 	public SwipePageModel(JFrame t_frame){
-		Rectangle briefSize = new Rectangle(150,100,150,200);
+		Rectangle briefSize = new Rectangle(150,100,232,200);
 		this.frame = t_frame;
 
 		////

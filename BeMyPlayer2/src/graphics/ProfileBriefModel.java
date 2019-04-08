@@ -27,6 +27,7 @@ import javax.swing.JScrollPane;
 public class ProfileBriefModel extends JPanel{
 	ViewMatchesController viewMatchController = new ViewMatchesController();
 	private String backPage;
+	
 	ProfileBriefModel(String s,Rectangle r, String page){
 		this.backPage = page;
 
@@ -52,7 +53,7 @@ public class ProfileBriefModel extends JPanel{
 			break;
 		}
 		Image img1 = new ImageIcon(viewMatchController.getClass().getResource(temploc)).getImage();
-		JLabel setIcon = new JLabel(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
+		CircularImage setIcon = new CircularImage(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
 
 		
 		JLabel username = new JLabel(s);
@@ -62,9 +63,10 @@ public class ProfileBriefModel extends JPanel{
 		this.setBounds(r);
 		this.setLayout(null);
 		this.setBackground(yellow);
-		
+
+	
 		viewProfile.setBackground(red);
-		viewProfile.setBounds((int)this.getAlignmentX(),150, this.getWidth(), 75);
+		viewProfile.setBounds(this.getWidth()/4,140, this.getWidth()/2, 75);
 		viewProfile.setForeground(Colors.Yellow);
 		viewProfile.setFont(Fonts.getFont((float) 12));
 		viewProfile.addActionListener(new ActionListener() {
@@ -82,11 +84,12 @@ public class ProfileBriefModel extends JPanel{
 		username.setForeground(Colors.Red);
 		username.setBounds(105,7,150,69);
 		
-		age.setFont(Fonts.getFont((float) 20));
+		age.setFont(Fonts.getFont((float) 15));
+		age.setText("Age");
 		age.setForeground(Colors.Red);
 		age.setBounds(105,27,150,69);
 		
-		gender.setFont(Fonts.getFont((float) 20));
+		gender.setFont(Fonts.getFont((float) 15));
 		gender.setForeground(Colors.Red);
 		gender.setBounds(105,47,150,69);
 		
