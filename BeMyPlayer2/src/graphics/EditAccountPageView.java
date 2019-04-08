@@ -8,7 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -520,6 +522,7 @@ public class EditAccountPageView {
 		editController.getEditAccountModel().setImagePath(img1.toString());
 		final JButton setIcon = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
 		setIcon.setBounds(125,25,150,150);
+		setIcon.setContentAreaFilled(false);
 		setIcon.addActionListener(new ActionListener(){
 
             public void actionPerformed(ActionEvent e) {
@@ -534,7 +537,7 @@ public class EditAccountPageView {
 				fc.addChoosableFileFilter(imageFilter);
 				fc.setAcceptAllFileFilterUsed(false);
 				fc.setCurrentDirectory(new java.io.File("."));
-				Image img1 = null;
+				BufferedImage img1 = null;
 				//	force file chooser
 				File f = null;
 				int returnValue = fc.showOpenDialog(null);
@@ -546,11 +549,21 @@ public class EditAccountPageView {
 				JLabel lblNewLabel = new JLabel("");
 				lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 				if(f != null) {
-					img1 = new ImageIcon(f.getAbsolutePath()).getImage();
+					try {
+						img1 = ImageIO.read(new File(f.getAbsolutePath()));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					editController.getEditAccountModel().setImagePath(f.getAbsolutePath());
 				}
 				else if(f == null){
-					img1 = new ImageIcon(editController.getClass().getResource("/defaultIcon.png")).getImage();
+					try {
+						img1 = ImageIO.read(editController.getClass().getResource("/defaultIcon.png"));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					editController.getEditAccountModel().setImagePath(img1.toString());
 				}
 				setIcon.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
@@ -574,13 +587,18 @@ public class EditAccountPageView {
 			JLabel charCount = new JLabel();
 			charCount.setFont(new Font("Monospaced",Font.BOLD,12));
 			charCount.setBounds(125, 350, 190, 50);
-			charCount.setText("250 characters remaining");
 			editController.getEditAccountModel().setCharcount(charCount);
 			editController.getEditAccountPanel().add(charCount);
 			//	description box
 			JTextArea description = new JTextArea();
-			description.setText(GraphicsController.getActiveAccount().getAccountProfile().getDescription());
-			
+			String desc;
+			desc = GraphicsController.getActiveAccount().getAccountProfile().getDescription();
+			desc = desc.replace("<HTML>","");
+			desc = desc.replace("</HTML>", "");
+			desc = desc.replace("<br>", "\n");
+			description.setText(desc);
+
+			charCount.setText((250-description.getText().length()) + " characters remaining");
 			description.setBounds(125, 230, 250, 140);
 			description.getDocument().addDocumentListener(new DocumentListener() {
 				public void update() {

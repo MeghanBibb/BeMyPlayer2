@@ -2,6 +2,10 @@ package graphics;
 
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import javax.swing.JFrame;
 import javax.swing.UIManager;
@@ -19,8 +23,20 @@ public class GraphicsController {
 	
 	private static JFrame mainFrame;
 	private static String profileAccount;
-	
+	private static Logger logger = Logger.getLogger(GraphicsController.class.getName());	
+	static {
+		try {
+			InputStream configFile = GraphicsController.class.getClassLoader().getResourceAsStream("logger.properties");
+			LogManager.getLogManager().readConfiguration(configFile);
+			configFile.close();
+		} catch (IOException ex) {
+			System.out.println("WARNING: Could not open configuration file");
+		    System.out.println("WARNING: Logging not configured (console output only)");
+		}
+		logger.info("running graphic controller");
+	}
 	GraphicsController() {
+		
 //			init default jframe as base frame
 			mainFrame = (new JFrame("BeMyPlayer2"));
 			mainFrame.setSize(400, 300);
@@ -38,14 +54,6 @@ public class GraphicsController {
 		newPage.launchPage(mainFrame, backPage);
 	}
 	
-
-	public static Account getProfileAccount() {
-		if(profileAccount == ACTIVE_ACCOUNT) {
-			return getActiveAccount();
-		} else {
-			return getOtherAccount();
-		}
-	}
 	
 	public static void setProfileAccountActive() {
 		profileAccount = ACTIVE_ACCOUNT;
@@ -85,9 +93,6 @@ public class GraphicsController {
 		return InformationExpert.getActiveAccount();
 	}
 	
-	public static Account getOtherAccount() {
-		return InformationExpert.getOtherAccount();
-	}
 	
 	public static boolean isActiveAccount(Account a) {
 		return InformationExpert.isActiveUser(a);
@@ -97,9 +102,6 @@ public class GraphicsController {
 		return InformationExpert.getActiveUserID();
 	}
 	
-	public static String getOtherID() {
-		return InformationExpert.getOtherUserID();
-	}
 	
 	public static BufferedImage getProfileImage(String userID) throws DBFailureException {
 		return InformationExpert.getProfileImage(userID);
@@ -109,6 +111,13 @@ public class GraphicsController {
 		InformationExpert.addProfileImage(pic, userID);
 	}
 	
+	public static void updateAccount(Account a) throws DBFailureException {
+		InformationExpert.updateAccount(a);
+	}
+	
+	public static void updateProfile(Account a) throws DBFailureException {
+		InformationExpert.updateProfile(a.getAccountProfile());
+	}
 	
 	/*    MAIN METHOD   */
 	
