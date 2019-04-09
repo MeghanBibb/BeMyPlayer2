@@ -1,2 +1,3 @@
-2019-04-08 17:00:29 INFO graphics.GraphicsController <clinit> running graphic controller
-2019-04-08 17:00:43 INFO graphics.HomePageController actionPerformed Find Friends
+2019-04-08 19:26:14 INFO graphics.GraphicsController <clinit> running graphic controller
+2019-04-08 19:26:33 INFO graphics.HomePageController actionPerformed Account
+2019-04-08 19:26:53 INFO graphics.ProfilePageController actionPerformed back

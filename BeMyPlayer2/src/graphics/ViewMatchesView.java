@@ -38,8 +38,6 @@ import model.Account;
 public class ViewMatchesView {
 	public static void startViewMatches(ViewMatchesController viewMatchController, JFrame mainFrame,Account a) {
 		
-		Color red = new Color(134,48,111);
-		Color yellow = new Color(254, 195, 123);
 		viewMatchController.setViewMatchesModel(new ViewMatchesModel());
 		//	init panel
 		viewMatchController.setViewMatchesPanel(new BackgroundPanel(null));
@@ -226,3 +224,4 @@ public class ViewMatchesView {
 		mainFrame.setVisible(true);
 	}
 }
+

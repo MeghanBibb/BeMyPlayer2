@@ -12,10 +12,6 @@ public class SupportView {
         //init Model
         supportController.setSupportModel(new SupportModel());
 
-        //init colors
-        Color red = new Color(134,48,111);
-		Color white = new Color(254, 195, 123);//	aka peach
-
         //init panel
         supportController.setSupportPanel(new BackgroundPanel(null));
         supportController.getSupportPanel().setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -26,7 +22,7 @@ public class SupportView {
         //init buttons
         JButton backbtn = new JButton("Back");
         backbtn.setBounds(35, 325, 90, 40);
-        backbtn.setBackground(white);
+        backbtn.setBackground(Colors.Yellow);
         backbtn.setActionCommand(SupportController.BACK);
         backbtn.addActionListener(supportController);
         supportController.getSupportModel().setBack(backbtn);
@@ -36,14 +32,14 @@ public class SupportView {
         JButton btnSubmit = new JButton("Submit");
         btnSubmit.setBounds(338,325,90,40);
         btnSubmit.setActionCommand(supportController.SUBMIT);
-        btnSubmit.setBackground(white);
+        btnSubmit.setBackground(Colors.Yellow);
         btnSubmit.addActionListener(supportController);
         supportController.getSupportModel().setBtnSubmit(btnSubmit);
    
         //	probably replaced with header in iteration 3
         JLabel lblBeMyPlayer = new JLabel("Be My Player 2");
 		lblBeMyPlayer.setFont(new Font("Monospaced", Font.BOLD, 20));
-		lblBeMyPlayer.setForeground(white);
+		lblBeMyPlayer.setForeground(Colors.Yellow);
 		lblBeMyPlayer.setBounds(160,0,204,69);
 		supportController.getSupportPanel().add(lblBeMyPlayer);
         //	init fields and listeners
@@ -62,7 +58,7 @@ public class SupportView {
         supportController.getSupportModel().setProbArea(issueSelection);
 		
         JLabel descript = new JLabel("Enter description:");
-        descript.setForeground(white);
+        descript.setForeground(Colors.Yellow);
         descript.setFont(new Font("Monospaced", Font.BOLD, 16));
         descript.setBounds(35,100,204,50);
 		supportController.getSupportPanel().add(descript);
@@ -87,4 +83,3 @@ public class SupportView {
 
     }
 }
-

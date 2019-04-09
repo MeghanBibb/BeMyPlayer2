@@ -32,10 +32,6 @@ public class ProfilePageView {
 		//init Model
 		profileController.setProfileModel(new ProfilePageModel());
 		
-		//init colors
-		Color red = new Color(134,48,111);
-		Color yellow = new Color(254, 195, 123);
-		
 		//init panel
 		profileController.setProfilePanel(new BackgroundPanel(null));
 		profileController.getProfilePanel().setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -66,7 +62,7 @@ public class ProfilePageView {
 		JButton btnBack = new JButton("Back");
 		btnBack.setBounds(10,10,90,40);
 		btnBack.setActionCommand(profileController.BACK);
-		btnBack.setBackground(yellow);
+		btnBack.setBackground(Colors.Yellow);
 		btnBack.addActionListener(profileController);
 		profileController.getProfileModel().setBtnBack(btnBack);
 		
@@ -85,7 +81,7 @@ public class ProfilePageView {
 			JButton btnEdit = new JButton("Edit Profile");
 			btnEdit.setBounds(390,10,100,40);
 			btnEdit.setActionCommand(profileController.EDIT_ACCOUNT);
-			btnEdit.setBackground(yellow);
+			btnEdit.setBackground(Colors.Yellow);
 			btnEdit.addActionListener(profileController);
 			profileController.getProfileModel().setBtnEdit(btnEdit);
 			profileController.getProfilePanel().add(profileController.getProfileModel().getBtnEdit());
@@ -93,7 +89,7 @@ public class ProfilePageView {
 			JButton btnBlock = new JButton("Block");
 			btnBlock.setBounds(300, 350, 90, 40);
 			btnBlock.setActionCommand(profileController.BLOCK);
-			btnBlock.setBackground(yellow);
+			btnBlock.setBackground(Colors.Yellow);
 			btnBlock.addActionListener(profileController);
 			profileController.getProfileModel().setBtnBlock(btnBlock);
 			profileController.getProfilePanel().add(profileController.getProfileModel().getBtnBlock());
@@ -101,7 +97,7 @@ public class ProfilePageView {
 			JButton btnMessage = new JButton("Message");
 			btnMessage.setBounds(100,350,90,40);
 			btnMessage.setActionCommand(profileController.MESSAGE);
-			btnMessage.setBackground(yellow);
+			btnMessage.setBackground(Colors.Yellow);
 			btnMessage.addActionListener(profileController);
 			profileController.getProfileModel().setBtnMessage(btnMessage);
 			profileController.getProfilePanel().add(profileController.getProfileModel().getBtnMessage());
@@ -109,15 +105,15 @@ public class ProfilePageView {
 		
 		//init Labels
 		JLabel lblBeMyPlayer = new JLabel("Be My Player 2");
-		lblBeMyPlayer.setFont(new Font("Monospaced", Font.BOLD, 20));
-		lblBeMyPlayer.setForeground(yellow);
+		lblBeMyPlayer.setFont(Fonts.getFont((float)20));
+		lblBeMyPlayer.setForeground(Colors.Yellow);
 		lblBeMyPlayer.setBounds(160,0,204,69);
 		profileController.getProfileModel().setLblBeMyPlayer(lblBeMyPlayer);
 		
 		JLabel lblUsername = new JLabel();
 		lblUsername.setText(profileController.getAccount().getAccountProfile().getUsername());
-		lblUsername.setFont(new Font("Impact", Font.PLAIN,15));
-		lblUsername.setForeground(yellow);
+		lblUsername.setFont(Fonts.getFont((float)15));
+		lblUsername.setForeground(Colors.Yellow);
 		lblUsername.setBounds(120,35,90,90);
 		profileController.getProfileModel().setLblUsername(lblUsername);
 		
@@ -136,18 +132,18 @@ public class ProfilePageView {
 			diff--;
 		}
 		lblAge.setText(Integer.toString(diff) + " years old");
-		lblAge.setForeground(yellow);
+		lblAge.setForeground(Colors.Yellow);
 		lblAge.setBounds(120,65,150,90);
 		profileController.getProfileModel().setLblAge(lblAge);
 		
 		JLabel lblGender = new JLabel();
 		lblGender.setText(profileController.getAccount().getAccountProfile().getGender());
-		lblGender.setForeground(yellow);
+		lblGender.setForeground(Colors.Yellow);
 		lblGender.setBounds(120,95,90,90);
 		profileController.getProfileModel().setLblGender(lblGender);
 		
 		JLabel lblConsoles = new JLabel("Consoles:");
-		lblConsoles.setForeground(yellow);
+		lblConsoles.setForeground(Colors.Yellow);
 		lblConsoles.setBounds(370,30,90,90);
 		profileController.getProfileModel().setLblConsoles(lblConsoles);
 		
@@ -157,7 +153,7 @@ public class ProfilePageView {
 		description.setText(profileController.getAccount().getAccountProfile().getDescription());
 		description.setBounds(10, 170, 250, 140);
 		description.setOpaque(false);
-		description.setForeground(yellow);
+		description.setForeground(Colors.Yellow);
 		description.setHorizontalAlignment(JTextField.LEFT);
 		description.setVerticalAlignment(JTextField.NORTH);
 		description.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -170,9 +166,9 @@ public class ProfilePageView {
 			xboxBtn.setSelected(true);
 		}
 		xboxBtn.setEnabled(false);
-		xboxBtn.setBackground(red);
-		xboxBtn.setForeground(yellow);
-		xboxBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		xboxBtn.setBackground(Colors.Red);
+		xboxBtn.setForeground(Colors.Yellow);
+		xboxBtn.setFont(Fonts.getFont((float)14));
 		xboxBtn.setBounds(370, 100, 75, 25);
 		profileController.getProfileModel().getCheckList().add(xboxBtn);
 		profileController.getProfilePanel().add(xboxBtn);
@@ -183,9 +179,9 @@ public class ProfilePageView {
 			psBtn.setSelected(true);
 		}
 		psBtn.setEnabled(false);
-		psBtn.setBackground(red);
-		psBtn.setForeground(yellow);
-		psBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		psBtn.setBackground(Colors.Red);
+		psBtn.setForeground(Colors.Yellow);
+		psBtn.setFont(Fonts.getFont(14f));
 		psBtn.setBounds(370, 125, 120, 25);
 		profileController.getProfileModel().getCheckList().add(psBtn);
 		profileController.getProfilePanel().add(psBtn);
@@ -195,9 +191,9 @@ public class ProfilePageView {
 			nintendoBtn.setSelected(true);
 		}
 		nintendoBtn.setEnabled(false);
-		nintendoBtn.setBackground(red);
-		nintendoBtn.setForeground(yellow);
-		nintendoBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		nintendoBtn.setBackground(Colors.Red);
+		nintendoBtn.setForeground(Colors.Yellow);
+		nintendoBtn.setFont(Fonts.getFont(14f));
 		nintendoBtn.setBounds(370, 150, 120, 25);
 		profileController.getProfileModel().getCheckList().add(nintendoBtn);
 		profileController.getProfilePanel().add(nintendoBtn);
@@ -208,9 +204,9 @@ public class ProfilePageView {
 			pcBtn.setSelected(true);
 		}
 		pcBtn.setEnabled(false);
-		pcBtn.setBackground(red);
-		pcBtn.setForeground(yellow);
-		pcBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		pcBtn.setBackground(Colors.Red);
+		pcBtn.setForeground(Colors.Yellow);
+		pcBtn.setFont(Fonts.getFont(14f));
 		pcBtn.setBounds(370, 175, 75, 25);
 		
 		profileController.getProfileModel().getCheckList().add(pcBtn);
@@ -222,9 +218,9 @@ public class ProfilePageView {
 			vrBtn.setSelected(true);
 		}
 		vrBtn.setEnabled(false);
-		vrBtn.setBackground(red);
-		vrBtn.setForeground(yellow);
-		vrBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		vrBtn.setBackground(Colors.Red);
+		vrBtn.setForeground(Colors.Yellow);
+		vrBtn.setFont(Fonts.getFont(14f));
 		vrBtn.setBounds(370, 200, 75, 25);
 		profileController.getProfileModel().getCheckList().add(vrBtn);
 		profileController.getProfilePanel().add(vrBtn);
@@ -234,9 +230,9 @@ public class ProfilePageView {
 			RetroBtn.setSelected(true);
 		}
 		RetroBtn.setEnabled(false);
-		RetroBtn.setBackground(red);
-		RetroBtn.setForeground(yellow);
-		RetroBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		RetroBtn.setBackground(Colors.Red);
+		RetroBtn.setForeground(Colors.Yellow);
+		RetroBtn.setFont(Fonts.getFont(14f));
 		RetroBtn.setBounds(370, 225, 75, 25);
 		profileController.getProfileModel().getCheckList().add(RetroBtn);
 		profileController.getProfilePanel().add(RetroBtn);
