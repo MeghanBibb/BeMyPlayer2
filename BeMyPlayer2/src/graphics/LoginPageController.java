@@ -48,7 +48,11 @@ public class LoginPageController extends PageController{
 			try {
 				String userHash = InformationExpert.authenticateUserAccount(user, Hasher.hashString(pass));
 				
-				InformationExpert.setActiveAccount(InformationExpert.getUserAccountWithProfile(userHash));
+				if(userHash != null && userHash != "") {
+					InformationExpert.setActiveAccount(InformationExpert.getUserAccountWithProfile(userHash));
+				}else {
+					valid = false;
+				}
 				
 			} catch (DBFailureException e) {
 				// TODO Auto-generated catch block

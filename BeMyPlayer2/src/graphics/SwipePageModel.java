@@ -24,19 +24,8 @@ public class SwipePageModel {
 		Rectangle briefSize = new Rectangle(150,100,232,200);
 		this.frame = t_frame;
 
-		////
-		Image backgroundImage;
-		try {
-			backgroundImage = ImageIO.read(new File("background.png"));
-			ImageIcon background=new ImageIcon(backgroundImage.getScaledInstance(500, 400, Image.SCALE_SMOOTH));
-		    JLabel back=new JLabel(background);
-		    this.frame.setContentPane(back);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	
-		////
+		
+		this.frame.setContentPane(new BackgroundPanel(null));
 		
 		frame.getContentPane().removeAll();
 		frame.getContentPane().revalidate();
