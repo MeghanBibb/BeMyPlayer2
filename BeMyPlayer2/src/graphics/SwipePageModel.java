@@ -21,7 +21,7 @@ public class SwipePageModel {
 	JButton backButton = new JButton("Back");
 	
 	public SwipePageModel(JFrame t_frame){
-		Rectangle briefSize = new Rectangle(150,100,232,200);
+		Rectangle briefSize = new Rectangle(150,100,222,200);
 		this.frame = t_frame;
 
 		////
@@ -42,8 +42,7 @@ public class SwipePageModel {
 		frame.getContentPane().revalidate();
 		frame.getContentPane().repaint();
 		frame.getContentPane().setLayout(layout);
-		Color yellow = new Color(253,168,120);
-		backButton.setBackground(yellow);
+		backButton.setBackground(Colors.Yellow);
 		backButton.setFont(Fonts.getFont((float) 12));
 		backButton.setForeground(Colors.Red);
 		
@@ -55,7 +54,7 @@ public class SwipePageModel {
 		layout.setVgap(40);
 		JLabel lblBeMyPlayer = new JLabel("Be My Player 2");
 		lblBeMyPlayer.setFont(Fonts.getFont((float) 30));
-		lblBeMyPlayer.setForeground(yellow);
+		lblBeMyPlayer.setForeground(Colors.Yellow);
 		lblBeMyPlayer.setBounds(160,10,204,69);
 		
 		frame.getContentPane().add(lblBeMyPlayer, BorderLayout.NORTH);
