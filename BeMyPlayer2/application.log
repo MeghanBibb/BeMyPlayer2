@@ -1,1 +1,8 @@
-2019-04-10 09:49:53 INFO graphics.GraphicsController <clinit> running graphic controller
+2019-04-10 10:07:25 INFO graphics.GraphicsController <clinit> running graphic controller
+2019-04-10 10:07:44 INFO graphics.ForgotPassPageController actionPerformed Back
+2019-04-10 10:07:57 INFO graphics.CreateAccountPageController actionPerformed page number -1
+2019-04-10 10:08:11 INFO graphics.HomePageController actionPerformed Find Friends
+2019-04-10 10:08:18 INFO graphics.SwipePageController$1 actionPerformed back
+2019-04-10 10:08:20 INFO graphics.HomePageController actionPerformed View Matches
+2019-04-10 10:08:37 INFO graphics.ViewMatchesController actionPerformed back
+2019-04-10 10:08:39 INFO graphics.HomePageController actionPerformed Logout
