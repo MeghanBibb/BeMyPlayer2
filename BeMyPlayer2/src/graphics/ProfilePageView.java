@@ -22,7 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import firebase.DBFailureException;
+//import firebase.DBFailureException;
 import model.Account;
 import model.InformationExpert;
 
@@ -46,13 +46,15 @@ public class ProfilePageView {
 		 */
 		JLabel imgLabel = new JLabel("");
 		BufferedImage img = null;
-		try {
+		img = InformationExpert.getProfileImage(InformationExpert.getActiveUserID());
+
+		/*try {
 			img = InformationExpert.getProfileImage(InformationExpert.getActiveUserID());
 			
 		} catch (DBFailureException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		imgLabel.setIcon(new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
 		imgLabel.setBounds(10, 60, 100, 100);
 		profileController.getProfileModel().setProfileImage(imgLabel);

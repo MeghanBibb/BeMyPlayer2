@@ -8,8 +8,8 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import firebase.DBFailureException;
-import firebase.Hasher;
+/*import firebase.DBFailureException;
+import firebase.Hasher;*/
 import model.Account;
 import model.InformationExpert;
 
@@ -37,14 +37,14 @@ public class LoginPageController extends PageController{
 			backPage = back;
 		}
 		
-		LoginPageView.startLoginPage(this,mainFrame);
+		LoginPageView.startLoginPage(this, mainFrame);
 	}
 	//	validate login (should check db)
 	public static boolean validateLogin(String user,String pass) {
 		boolean valid = true;
 		if(user.equalsIgnoreCase("") || pass.equalsIgnoreCase("")) {
 			valid = false;
-		}else {
+		}/*else {
 			try {
 				String userHash = InformationExpert.authenticateUserAccount(user, Hasher.hashString(pass));
 				
@@ -54,7 +54,7 @@ public class LoginPageController extends PageController{
 				// TODO Auto-generated catch block
 				valid = false;
 			}
-		}
+		}*/
 		return valid;
 	}
 	public void actionPerformed(ActionEvent e) {

@@ -14,12 +14,12 @@ import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 
-import firebase.FireBaseAdapter;
+//import firebase.FireBaseAdapter;
 
 public class ResourceManager {
 	
-	public static final String IMAGE_FOLDER = "src/main/resources/img/";
-	public static final String FONTS_FOLDER = "src/main/resources/fonts/";
+	public static final String IMAGE_FOLDER = "H:\\S1Proj\\BeMyPlayer2\\BeMyPlayer2\\src\\main\\resources\\img\\";
+	public static final String FONTS_FOLDER = "BeMyPlayer2/JetSet.ttf";
 	
 	private static Logger LOGGER = Logger.getLogger(ResourceManager.class.getName());
 	
@@ -28,6 +28,7 @@ public class ResourceManager {
 			return ImageIO.read(new File(IMAGE_FOLDER + name));
 		} catch (IOException e) {
 			LOGGER.log(Level.SEVERE, "Failed to load image resource: " + name);
+			LOGGER.log(Level.SEVERE, "From Path: " + IMAGE_FOLDER + name);
 		}
 		return null;
 	}

@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
-import firebase.DBFailureException;
+//import firebase.DBFailureException;
 import model.Account;
 import model.InformationExpert;
 
@@ -25,14 +25,14 @@ public class GraphicsController {
 	private static String profileAccount;
 	private static Logger logger = Logger.getLogger(GraphicsController.class.getName());	
 	static {
-		try {
+		/*try {
 			InputStream configFile = GraphicsController.class.getClassLoader().getResourceAsStream("logger.properties");
 			LogManager.getLogManager().readConfiguration(configFile);
 			configFile.close();
 		} catch (IOException ex) {
 			System.out.println("WARNING: Could not open configuration file");
 		    System.out.println("WARNING: Logging not configured (console output only)");
-		}
+		}*/
 		logger.info("running graphic controller");
 	}
 	GraphicsController() {
@@ -73,19 +73,19 @@ public class GraphicsController {
 	
 	
 	/* Info Expert Calls */
-	public static boolean attemptAddNewAccount(Account a) throws DBFailureException {
+	public static boolean attemptAddNewAccount(Account a)  {
 		return InformationExpert.attemptAddNewAccount(a);
 	}
 	
-	public static Account getUserAccount(String userId) throws DBFailureException {
+	public static Account getUserAccount(String userId) {
 		return InformationExpert.getUserAccount(userId);
 	}
 	
-	public static boolean updateUserAccount(Account a) throws DBFailureException {
+	public static boolean updateUserAccount(Account a)  {
 		return InformationExpert.updateUserAccount(a);
 	}
 	
-	public static boolean updateUserProfile(Account a) throws DBFailureException {
+	public static boolean updateUserProfile(Account a)  {
 		return InformationExpert.updateUserProfile(a);
 	}
 	
@@ -103,19 +103,19 @@ public class GraphicsController {
 	}
 	
 	
-	public static BufferedImage getProfileImage(String userID) throws DBFailureException {
+	public static BufferedImage getProfileImage(String userID)  {
 		return InformationExpert.getProfileImage(userID);
 	}
 	
-	public static void uploadProfileImage(BufferedImage pic, String userID) throws DBFailureException {
+	public static void uploadProfileImage(BufferedImage pic, String userID)  {
 		InformationExpert.addProfileImage(pic, userID);
 	}
 	
-	public static void updateAccount(Account a) throws DBFailureException {
+	public static void updateAccount(Account a)  {
 		InformationExpert.updateAccount(a);
 	}
 	
-	public static void updateProfile(Account a) throws DBFailureException {
+	public static void updateProfile(Account a)  {
 		InformationExpert.updateProfile(a.getAccountProfile());
 	}
 	

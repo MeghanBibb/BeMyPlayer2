@@ -2,161 +2,86 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ad0b93e3-fe65-4dbe-8fc3-d23ba426e185" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.firebaserc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/JetSet.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/application.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/application.log.1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/bin/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/brief_background_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/brief_background_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/db/bemyplayer2-e65fc-dca2d3903ee3.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/db/bmp2_demo_dump.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/db/firebase_rules" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/db/firestore_indexes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/db/firestore_rules" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/img/booth1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/img/cerny1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/img/cpystrawberry.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/img/fendt.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/img/fry1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/img/hammerly1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/img/maars1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/img/maars2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/img/maurer1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/img/nullstrawberry.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/img/strawberry.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/log/logger.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/profile_background_4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/profile_brief_background.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/firebase/DBFailureException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/firebase/FireBaseAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/firebase/FireBaseSchema.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/firebase/FirebaseTestConnector.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/firebase/Hasher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/BackgroundPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/CircularImage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/Colors.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/Fonts.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/InvalidPopup.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/MessageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/MessageModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/MessageView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/PageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/PageCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/ProfileBriefModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/ProfilePicGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/SwipeButton.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/SwipeButtonController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/SwipeLeftController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/SwipePageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/SwipePageModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/SwipeRightController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/main/resources/img/background.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/main/resources/logger.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/main/resources/supportLogger.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/model/Account.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/model/ClientResourceManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/model/DBDocumentPackage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/model/DBSerializable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/model/InformationExpert.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/model/Match.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/model/MatchMaker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/model/MatchStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/model/Message.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/model/MessageThread.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/model/Profile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/src/model/ResourceManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/target/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeMyPlayer2/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ForgotPassPageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ForgotPassPageModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ForgotPassPageView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/firebase.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/firebase_rules" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/BeMyPlayer2.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BeMyPlayer2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/.classpath" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/.project" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/.project" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/.settings/org.eclipse.jdt.core.prefs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/Account.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/CreateAccountPageController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/CreateAccountPageModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/CreateAccountPageView$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/CreateAccountPageView$10.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/CreateAccountPageView$11.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/CreateAccountPageView$12.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/CreateAccountPageView$13.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/CreateAccountPageView$14.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/CreateAccountPageView$15.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/CreateAccountPageView$16.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/CreateAccountPageView$17.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/CreateAccountPageView$18.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/CreateAccountPageView$19.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/CreateAccountPageView$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/CreateAccountPageView$20.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/CreateAccountPageView$21.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/CreateAccountPageView$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/CreateAccountPageView$4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/CreateAccountPageView$5.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/CreateAccountPageView$6.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/CreateAccountPageView$7.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/CreateAccountPageView$8.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/CreateAccountPageView$9.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/CreateAccountPageView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/EditAccountPageController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/EditAccountPageModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/EditAccountPageView$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/EditAccountPageView$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/EditAccountPageView$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/EditAccountPageView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/HomePageController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/HomePageModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/HomePageView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/InformationExpert.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/LoginPageModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/MatchAdapter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/PaymentPageModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/PaymentPageView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/ProfilePageController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/ProfilePageModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/ProfilePageView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/ViewMatchesController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/ViewMatchesModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/graphics/ViewMatchesView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/bin/module-info.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/jgoodies-forms-1.8.0-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/jgoodies-forms-1.8.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/Account.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/firebase/DBFailureException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/firebase/FireBaseAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/firebase/FireBaseSchema.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/firebase/FirebaseTestConnector.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/firebase/Hasher.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/CreateAccountPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/CreateAccountPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/CreateAccountPageModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/CreateAccountPageModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/CreateAccountPageView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/CreateAccountPageView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/EditAccountPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/EditAccountPageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/EditAccountPageModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/EditAccountPageModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/EditAccountPageView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/EditAccountPageView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/ForgotPassPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/ForgotPassPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/ForgotPassPageModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/ForgotPassPageModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/ForgotPassPageView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/ForgotPassPageView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/Fonts.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/Fonts.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/GraphicsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/GraphicsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/HomePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/HomePageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/HomePageView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/HomePageView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/InformationExpert.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/LoginPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/LoginPageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/LoginPageView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/LoginPageView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/MatchAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/PaymentPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/PaymentPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/PaymentPageView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/PaymentPageView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/ProfilePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/ProfilePageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/MessageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/ProfilePageView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/ProfilePageView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/SupportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/SupportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/SupportModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/SupportModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/SupportView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/SupportView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/ViewMatchesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/ViewMatchesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/ViewMatchesModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/ViewMatchesModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/ViewMatchesView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/ViewMatchesView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/model/InformationExpert.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/model/InformationExpert.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/model/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/model/Match.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/model/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/model/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/model/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/model/Profile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/model/ResourceManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/model/ResourceManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/module-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/Account.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/CreateAccountPageController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/CreateAccountPageModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/CreateAccountPageView$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/CreateAccountPageView$10.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/CreateAccountPageView$11.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/CreateAccountPageView$12.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/CreateAccountPageView$13.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/CreateAccountPageView$14.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/CreateAccountPageView$15.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/CreateAccountPageView$16.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/CreateAccountPageView$17.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/CreateAccountPageView$18.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/CreateAccountPageView$19.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/CreateAccountPageView$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/CreateAccountPageView$20.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/CreateAccountPageView$21.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/CreateAccountPageView$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/CreateAccountPageView$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/CreateAccountPageView$5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/CreateAccountPageView$6.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/CreateAccountPageView$7.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/CreateAccountPageView$8.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/CreateAccountPageView$9.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/CreateAccountPageView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/EditAccountPageController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/EditAccountPageModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/EditAccountPageView$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/EditAccountPageView$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/EditAccountPageView$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/EditAccountPageView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/ForgotPassPageController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/ForgotPassPageModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/ForgotPassPageView$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/ForgotPassPageView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/GraphicsController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/HomePageController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/HomePageModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/HomePageView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/InformationExpert.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/LoginPageController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/LoginPageModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/LoginPageView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/MatchAdapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/PaymentPageController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/PaymentPageModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/PaymentPageView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/ProfilePageController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/ProfilePageModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/ProfilePageView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/SupportController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/SupportModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/SupportView$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/SupportView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/ViewMatchesController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/ViewMatchesModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/graphics/ViewMatchesView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BeMyPlayer2/module-info.class" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -168,71 +93,97 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SupportController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/SupportController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="42" column="43" selection-start-line="42" selection-start-column="43" selection-end-line="42" selection-end-column="43" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ForgotPassPageController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/ForgotPassPageController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="45" selection-start-line="45" selection-end-line="45" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SupportModel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/SupportModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="16" selection-start-line="16" selection-end-line="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ForgotPassPageModel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/ForgotPassPageModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="697">
-              <caret line="51" selection-start-line="51" selection-end-line="51" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ForgotPassPageView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/ForgotPassPageView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="47" column="40" selection-start-line="47" selection-start-column="40" selection-end-line="47" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SupportView.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/SupportView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="485">
-              <caret line="65" column="41" lean-forward="true" selection-start-line="65" selection-start-column="41" selection-end-line="65" selection-end-column="41" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="GraphicsController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/GraphicsController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1164">
-              <caret line="12" column="49" selection-start-line="12" selection-start-column="49" selection-end-line="12" selection-end-column="49" />
+            <state relative-caret-position="500">
+              <caret line="53" selection-start-line="53" selection-end-line="53" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2180#2181#0" expanded="true" />
+                <element signature="e#2235#2236#0" expanded="true" />
+                <element signature="e#2403#2404#0" expanded="true" />
+                <element signature="e#2455#2456#0" expanded="true" />
+                <element signature="e#2512#2513#0" expanded="true" />
+                <element signature="e#2564#2565#0" expanded="true" />
+                <element signature="e#2919#2920#0" expanded="true" />
+                <element signature="e#2974#2975#0" expanded="true" />
+                <element signature="e#3155#3156#0" expanded="true" />
+                <element signature="e#3196#3197#0" expanded="true" />
+                <element signature="e#3246#3247#0" expanded="true" />
+                <element signature="e#3307#3308#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HomePageView.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/HomePageView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1246">
+              <caret line="84" column="8" lean-forward="true" selection-start-line="84" selection-start-column="8" selection-end-line="84" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginPageController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/LoginPageController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-153">
+              <caret line="39" selection-start-line="39" selection-end-line="39" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2502#2503#0" expanded="true" />
+                <element signature="e#2530#2531#0" expanded="true" />
+                <element signature="e#2594#2595#0" expanded="true" />
+                <element signature="e#2637#2638#0" expanded="true" />
+                <element signature="e#2670#2671#0" expanded="true" />
+                <element signature="e#2694#2695#0" expanded="true" />
+                <element signature="e#2751#2752#0" expanded="true" />
+                <element signature="e#2786#2787#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginPageModel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/LoginPageModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginPageView.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/LoginPageView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="279">
+              <caret line="104" column="10" selection-start-line="104" selection-start-column="10" selection-end-line="104" selection-end-column="10" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ResourceManager.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/model/ResourceManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="250">
+              <caret line="21" column="69" selection-start-line="21" selection-start-column="69" selection-end-line="21" selection-end-column="69" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BackgroundPanel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/BackgroundPanel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="194">
+              <caret line="47" selection-start-line="47" selection-end-line="47" />
             </state>
           </provider>
         </entry>
@@ -240,8 +191,17 @@
       <file leaf-file-name="HomePageController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/HomePageController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
+            <state relative-caret-position="260">
               <caret line="35" column="55" selection-start-line="35" selection-start-column="55" selection-end-line="35" selection-end-column="55" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HomePageModel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/HomePageModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="39" column="39" lean-forward="true" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -262,6 +222,7 @@
       <find>getForgotPasswordPageModel()</find>
       <find>securityQuestions</find>
       <find>getForgotPasswordPanel()</find>
+      <find>throws DBFailureException</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -276,7 +237,20 @@
         <option value="$PROJECT_DIR$/BeMyPlayer2/src/graphics/SupportController.java" />
         <option value="$PROJECT_DIR$/BeMyPlayer2/src/graphics/HomePageController.java" />
         <option value="$PROJECT_DIR$/BeMyPlayer2/src/graphics/SupportView.java" />
+        <option value="$PROJECT_DIR$/BeMyPlayer2/src/module-info.java" />
+        <option value="$PROJECT_DIR$/BeMyPlayer2/src/model/Profile.java" />
+        <option value="$PROJECT_DIR$/BeMyPlayer2/src/graphics/CreateAccountPageController.java" />
+        <option value="$PROJECT_DIR$/BeMyPlayer2/src/model/Message.java" />
+        <option value="$PROJECT_DIR$/BeMyPlayer2/src/graphics/ProfilePageView.java" />
+        <option value="$PROJECT_DIR$/BeMyPlayer2/src/model/Match.java" />
+        <option value="$PROJECT_DIR$/BeMyPlayer2/src/graphics/EditAccountPageModel.java" />
+        <option value="$PROJECT_DIR$/BeMyPlayer2/src/graphics/MessageController.java" />
+        <option value="$PROJECT_DIR$/BeMyPlayer2/src/model/InformationExpert.java" />
         <option value="$PROJECT_DIR$/BeMyPlayer2/src/graphics/GraphicsController.java" />
+        <option value="$PROJECT_DIR$/BeMyPlayer2/src/graphics/Fonts.java" />
+        <option value="$PROJECT_DIR$/BeMyPlayer2/src/graphics/LoginPageController.java" />
+        <option value="$PROJECT_DIR$/BeMyPlayer2/src/graphics/LoginPageView.java" />
+        <option value="$PROJECT_DIR$/BeMyPlayer2/src/model/ResourceManager.java" />
       </list>
     </option>
   </component>
@@ -309,7 +283,20 @@
               <item name="BeMyPlayer2" type="b2602c69:ProjectViewProjectNode" />
               <item name="BeMyPlayer2" type="462c0819:PsiDirectoryNode" />
               <item name="BeMyPlayer2" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BeMyPlayer2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BeMyPlayer2" type="462c0819:PsiDirectoryNode" />
+              <item name="BeMyPlayer2" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BeMyPlayer2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BeMyPlayer2" type="462c0819:PsiDirectoryNode" />
+              <item name="BeMyPlayer2" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -320,9 +307,9 @@
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -403,17 +390,18 @@
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.32943678" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32987747" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32943678" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
@@ -426,7 +414,6 @@
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.32987747" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -488,59 +475,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/LoginPageModel.java">
+    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        <state relative-caret-position="255">
+          <caret line="15" column="13" lean-forward="true" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/LoginPageView.java">
+    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/SupportController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-136">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/LoginPageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="46" column="48" lean-forward="true" selection-start-line="46" selection-start-column="48" selection-end-line="46" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/HomePageModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
-          <caret line="73" column="5" lean-forward="true" selection-start-line="8" selection-start-column="4" selection-end-line="73" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/HomePageView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="100" column="5" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="100" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/ForgotPassPageModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
-          <caret line="51" selection-start-line="51" selection-end-line="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/CreateAccountPageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-136">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        <state relative-caret-position="549">
+          <caret line="42" column="43" selection-start-line="42" selection-start-column="43" selection-end-line="42" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/ForgotPassPageController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
+        <state relative-caret-position="549">
           <caret line="45" selection-start-line="45" selection-end-line="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/SupportModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/ForgotPassPageModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="549">
+          <caret line="51" selection-start-line="51" selection-end-line="51" />
         </state>
       </provider>
     </entry>
@@ -551,41 +520,224 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/SupportController.java">
+    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/SupportView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="42" column="43" selection-start-line="42" selection-start-column="43" selection-end-line="42" selection-end-column="43" />
+        <state relative-caret-position="119">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/HomePageController.java">
+    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/module-info.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="35" column="55" selection-start-line="35" selection-start-column="55" selection-end-line="35" selection-end-column="55" />
+        <state relative-caret-position="204">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/SupportModel.java">
+    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/model/Profile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        <state relative-caret-position="5">
+          <caret line="156" column="36" selection-start-line="156" selection-start-column="36" selection-end-line="156" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/CreateAccountPageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1870">
+          <caret line="157" column="63" lean-forward="true" selection-start-line="157" selection-start-column="63" selection-end-line="157" selection-end-column="63" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#17143#17144#0" expanded="true" />
+            <element signature="e#17186#17187#0" expanded="true" />
+            <element signature="e#17374#17375#0" expanded="true" />
+            <element signature="e#17411#17412#0" expanded="true" />
+            <element signature="e#17475#17476#0" expanded="true" />
+            <element signature="e#17526#17527#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/model/Message.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="63" column="22" selection-start-line="63" selection-start-column="22" selection-end-line="63" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/model/Account.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk10/lib/src.zip!/java.desktop/javax/swing/ImageIcon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2958">
+          <caret line="216" selection-start-line="216" selection-end-line="216" />
+          <folding>
+            <element signature="e#6742#6743#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/Fonts.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="15" column="128" selection-start-line="15" selection-start-column="128" selection-end-line="15" selection-end-column="128" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/ProfilePageView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-835">
+          <caret line="56" column="11" selection-start-line="56" selection-start-column="11" selection-end-line="56" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/model/Match.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-896">
+          <caret line="4" column="2" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/model/InformationExpert.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1610">
+          <caret line="110" column="47" lean-forward="true" selection-start-line="110" selection-start-column="47" selection-end-line="110" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1363#1364#0" expanded="true" />
+            <element signature="e#1423#1424#0" expanded="true" />
+            <element signature="e#1608#1609#0" expanded="true" />
+            <element signature="e#1658#1659#0" expanded="true" />
+            <element signature="e#1927#1928#0" expanded="true" />
+            <element signature="e#1958#1959#0" expanded="true" />
+            <element signature="e#2770#2771#0" expanded="true" />
+            <element signature="e#2813#2814#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/EditAccountPageModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="385">
+          <caret line="194" column="10" selection-start-line="194" selection-start-column="10" selection-end-line="194" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/MessageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="39" column="55" selection-start-line="39" selection-start-column="55" selection-end-line="39" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/LoginPageModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/GraphicsController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1164">
-          <caret line="12" column="49" selection-start-line="12" selection-start-column="49" selection-end-line="12" selection-end-column="49" />
+        <state relative-caret-position="500">
+          <caret line="53" selection-start-line="53" selection-end-line="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2180#2181#0" expanded="true" />
+            <element signature="e#2235#2236#0" expanded="true" />
+            <element signature="e#2403#2404#0" expanded="true" />
+            <element signature="e#2455#2456#0" expanded="true" />
+            <element signature="e#2512#2513#0" expanded="true" />
+            <element signature="e#2564#2565#0" expanded="true" />
+            <element signature="e#2919#2920#0" expanded="true" />
+            <element signature="e#2974#2975#0" expanded="true" />
+            <element signature="e#3155#3156#0" expanded="true" />
+            <element signature="e#3196#3197#0" expanded="true" />
+            <element signature="e#3246#3247#0" expanded="true" />
+            <element signature="e#3307#3308#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/SupportView.java">
+    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/HomePageView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="65" column="41" lean-forward="true" selection-start-line="65" selection-start-column="41" selection-end-line="65" selection-end-column="41" />
+        <state relative-caret-position="1246">
+          <caret line="84" column="8" lean-forward="true" selection-start-line="84" selection-start-column="8" selection-end-line="84" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/HomePageModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="39" column="39" lean-forward="true" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/HomePageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="35" column="55" selection-start-line="35" selection-start-column="55" selection-end-line="35" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/LoginPageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-153">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2502#2503#0" expanded="true" />
+            <element signature="e#2530#2531#0" expanded="true" />
+            <element signature="e#2594#2595#0" expanded="true" />
+            <element signature="e#2637#2638#0" expanded="true" />
+            <element signature="e#2670#2671#0" expanded="true" />
+            <element signature="e#2694#2695#0" expanded="true" />
+            <element signature="e#2751#2752#0" expanded="true" />
+            <element signature="e#2786#2787#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/LoginPageView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="104" column="10" selection-start-line="104" selection-start-column="10" selection-end-line="104" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/BackgroundPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="47" selection-start-line="47" selection-end-line="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/model/ResourceManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="21" column="69" selection-start-line="21" selection-start-column="69" selection-end-line="21" selection-end-column="69" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

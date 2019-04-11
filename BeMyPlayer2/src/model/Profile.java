@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import firebase.FireBaseSchema;
+//import firebase.FireBaseSchema;
 
 public class Profile implements DBSerializable{
 	
@@ -154,7 +154,7 @@ public class Profile implements DBSerializable{
 					this.username = (String) pkg.getValues().get(s);
 					break;
 				case _DATE_OF_BIRTH:
-					this.dateOB = FireBaseSchema.parseDate(pkg.getValues().get(s));
+					//this.dateOB = FireBaseSchema.parseDate(pkg.getValues().get(s));
 					break;
 				case _GENDER:
 					this.gender = (String) pkg.getValues().get(s);

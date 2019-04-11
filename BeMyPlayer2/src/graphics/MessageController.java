@@ -34,7 +34,7 @@ public class MessageController extends PageController {
             case SEND:
             	/* 
             	 * FOR DEMO PRESENTATION
-            	 */
+
             	String t = messageModel.getThread().getText();
             	if(t.isBlank()) {
             		if(!messageModel.getSendBox().getText().isBlank()) {
@@ -48,7 +48,7 @@ public class MessageController extends PageController {
             	messageModel.getThread().setText(t);
             	messageModel.getSendBox().setText("");
             	
-                /*
+
                 Message Sending logic with database adapter
                  */
                 break;

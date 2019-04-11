@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
-import firebase.FireBaseSchema;
+//import firebase.FireBaseSchema;
 
 public class Match implements DBSerializable{ 
 	

@@ -15,9 +15,9 @@ import java.util.regex.Pattern;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import firebase.DBFailureException;
+/*import firebase.DBFailureException;
 import firebase.FireBaseAdapter;
-import firebase.Hasher;
+import firebase.Hasher;*/
 import model.Account;
 import model.InformationExpert;
 import model.Profile;
@@ -123,9 +123,9 @@ public class CreateAccountPageController extends PageController{
 				*/
 				a = new Account();
 				a.setEmail(this.getCreateAccountPageModel().getEnterEmail().getText());
-				a.setPasswordHash(Hasher.hashString(this.getCreateAccountPageModel().getPwdEnterPass().getText()));
+				//a.setPasswordHash(Hasher.hashString(this.getCreateAccountPageModel().getPwdEnterPass().getText()));
 				a.setSecurityQ1(this.getCreateAccountPageModel().getSecurityQuestions());
-				a.setSecurityQ1AnsHash(Hasher.hashString(this.getCreateAccountPageModel().getSecQA().getText()));
+				//a.setSecurityQ1AnsHash(Hasher.hashString(this.getCreateAccountPageModel().getSecQA().getText()));
 				
 				//	set account fields
 				//	set profile fields
@@ -149,9 +149,12 @@ public class CreateAccountPageController extends PageController{
 				p.setGenres(this.getCreateAccountPageModel().getGenres());
 				p.setProfilePicture(this.getCreateAccountPageModel().getProfileImg());
 				a.setAccountProfile(p);
-				
-				
-				try {
+
+				GraphicsController.attemptAddNewAccount(a);
+				InformationExpert.setActiveAccount(a);
+				GraphicsController.uploadProfileImage(p.getProfilePicture(), a.getUserId());
+
+				/*try {
 					GraphicsController.attemptAddNewAccount(a);
 					InformationExpert.setActiveAccount(a);
 					GraphicsController.uploadProfileImage(p.getProfilePicture(), a.getUserId());
@@ -159,7 +162,7 @@ public class CreateAccountPageController extends PageController{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 					//	must be a connection issue
-				}
+				}*/
 				GraphicsController.processPage(PageCreator.HOME_PAGE,backPage);
 			}
 			

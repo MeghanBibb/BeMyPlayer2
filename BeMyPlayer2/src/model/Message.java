@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 
-import firebase.FireBaseSchema;
+//import firebase.FireBaseSchema;
 
 public final class Message implements DBSerializable{
 	
@@ -61,7 +61,7 @@ public final class Message implements DBSerializable{
 					this.message = (String) pkg.getValues().get(s);
 					break;
 				case _TIMESTAMP:
-					this.timestamp = FireBaseSchema.parseDate(pkg.getValues().get(s));
+					//this.timestamp = FireBaseSchema.parseDate(pkg.getValues().get(s));
 					break;
 				case _SENDER_ID:
 					this.senderId = (String) pkg.getValues().get(s);
