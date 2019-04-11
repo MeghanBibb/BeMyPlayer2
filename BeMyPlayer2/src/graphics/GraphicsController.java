@@ -16,10 +16,10 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
-
 import firebase.DBFailureException;
 import model.Account;
 import model.InformationExpert;
+
 
 public class GraphicsController {
 

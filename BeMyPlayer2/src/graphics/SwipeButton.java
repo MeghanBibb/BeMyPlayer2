@@ -17,7 +17,7 @@ public class SwipeButton extends JButton{
 		this.controller = controller;
 		this.setText(controller.text);
 		//this.setMinimumSize(size);
-		this.setBackground(background);
+		this.setBackground(Colors.Yellow);
 		this.addActionListener(controller);
 	}
 	

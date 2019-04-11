@@ -13,6 +13,8 @@ public class MessageView {
         messageController.setMessageModel(new MessageModel());
 
         //init colors
+        Color red = new Color(134,48,111);
+        Color yellow = new Color(254, 195, 123);
 
         //init panel
         messageController.setMessagePanel(new BackgroundPanel(null));
@@ -30,6 +32,8 @@ public class MessageView {
         JLabel lblUsername = new JLabel();
         lblUsername.setText(messageController.getAccount().getAccountProfile().getUsername());
         lblUsername.setFont(new Font("Impact", Font.PLAIN,15));
+        lblUsername.setFont(Fonts.getFont((float) 12));
+        lblUsername.setForeground(Colors.Red);
         lblUsername.setForeground(Colors.Yellow);
         lblUsername.setBounds(150,35,90,90);
         messageController.getMessageModel().setLblUsername(lblUsername);
@@ -50,12 +54,16 @@ public class MessageView {
 		}
 		lblAge.setText(Integer.toString(diff) + " years old");
         lblAge.setForeground(Colors.Yellow);
+        lblAge.setFont(Fonts.getFont((float) 12));
+        lblAge.setForeground(Colors.Red);
         lblAge.setBounds(150,60,200,90);
         messageController.getMessageModel().setLblAge(lblAge);
 
         JLabel lblGender = new JLabel();
         lblGender.setText(messageController.getAccount().getAccountProfile().getGender());
         lblGender.setForeground(Colors.Yellow);
+        lblGender.setFont(Fonts.getFont((float) 12));
+        lblGender.setForeground(Colors.Red);
         lblGender.setBounds(150,85,90,90);
         messageController.getMessageModel().setLblGender(lblGender);
 
@@ -63,6 +71,8 @@ public class MessageView {
         JButton backbtn = new JButton("Back");
         backbtn.setBounds(10,10,90,40);
         backbtn.setBackground(Colors.Yellow);
+        backbtn.setFont(Fonts.getFont((float) 12));
+        backbtn.setForeground(Colors.Red);
         backbtn.setActionCommand(MessageController.BACK);
         backbtn.addActionListener(messageController);
         messageController.getMessageModel().setBack(backbtn);
@@ -73,6 +83,8 @@ public class MessageView {
         btnSend.setBounds(345,365,90,20);
         btnSend.setActionCommand(MessageController.SEND);
         btnSend.setBackground(Colors.White);
+        btnSend.setFont(Fonts.getFont((float) 12));
+        btnSend.setForeground(Colors.Red);
         btnSend.addActionListener(messageController);
         messageController.getMessageModel().setBtnSend(btnSend);
 
@@ -80,6 +92,8 @@ public class MessageView {
         JTextArea thread = new JTextArea();
         thread.setBounds(35, 165, 400, 200);
         thread.setVisible(true);
+        thread.setFont(Fonts.getFont((float) 12));
+        thread.setForeground(Colors.Red);
         messageController.getMessageModel().setThread(thread);
 
         JTextField sendBox = new JTextField();
