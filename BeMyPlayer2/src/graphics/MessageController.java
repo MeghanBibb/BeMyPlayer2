@@ -6,6 +6,8 @@ import model.Account;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 public class MessageController extends PageController {
@@ -32,12 +34,16 @@ public class MessageController extends PageController {
     public void actionPerformed(ActionEvent e) {
         switch(e.getActionCommand()) {
             case SEND:
-            	/* 
+                if (validateMsg()){
+
+                }
+
+            	/*
             	 * FOR DEMO PRESENTATION
-            	 */
+
             	String t = messageModel.getThread().getText();
-            	if(t.isBlank()) {
-            		if(!messageModel.getSendBox().getText().isBlank()) {
+            	if(t.isEmpty()) {
+            		if(!messageModel.getSendBox().getText().isEmpty()) {
                 		t="Me: ";
             			t += messageModel.getSendBox().getText();
             		}
@@ -47,7 +53,7 @@ public class MessageController extends PageController {
             	}
             	messageModel.getThread().setText(t);
             	messageModel.getSendBox().setText("");
-            	
+
                 /*
                 Message Sending logic with database adapter
                  */
@@ -56,6 +62,27 @@ public class MessageController extends PageController {
                 logger.info("Back");
                 GraphicsController.processPage(PageCreator.PROFILE_PAGE,backPage);
         }
+    }
+
+    public boolean validateMsg() {
+        boolean valid = true;
+
+        //	CHECK FIELDS ARE NOT EMPTY OR SQL COMMANDS TO DELETE OUR TABLES
+        //	VALIDATION FROM CREATE ACCOUNT PAGE + DATABASE VALIDATION
+        List<String> warnings = new ArrayList<>();
+        if(this.messageModel.getThread().getText().equals("")) {
+            valid = false;
+            warnings.add("Please enter a description\n");
+        }
+
+        if (this.messageModel.getThread().getText().contains(";")){
+            valid = false;
+        }
+
+        if(valid == false) {
+            InvalidPopup p = new InvalidPopup(this.messagePanel, warnings);
+        }
+        return valid;
     }
 
     public MessageModel getMessageModel() {
