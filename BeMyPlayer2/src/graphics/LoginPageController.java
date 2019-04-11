@@ -3,11 +3,17 @@ package graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class LoginPageController implements ActionListener{
+import firebase.DBFailureException;
+import firebase.Hasher;
+import model.Account;
+import model.InformationExpert;
+
+public class LoginPageController extends PageController{
 
 	//	default frame size
 	//public static final int APP_WINDOW_WIDTH = 300;
@@ -20,40 +26,52 @@ public class LoginPageController implements ActionListener{
 	
 	//	table model, db pull, table model, jtable, jframe
 	private LoginPageModel loginPageModel = null;
-	private JPanel loginPanel = null;
-	
+	private BackgroundPanel loginPanel = null;
+	private static Logger logger = Logger.getLogger(LoginPageController.class.getName());
 	//private JFrame loginFrame = null;
 	//	init controller 
 	
 	//	launch 
-	public void launchLoginPage(JFrame j) {
+	public void launchPage(JFrame mainFrame, String back) {
+		if(back != null) {
+			backPage = back;
+		}
 		
-		LoginPageView.startLoginPage(this,j);
+		LoginPageView.startLoginPage(this,mainFrame);
 	}
 	//	validate login (should check db)
 	public static boolean validateLogin(String user,String pass) {
 		boolean valid = true;
 		if(user.equalsIgnoreCase("") || pass.equalsIgnoreCase("")) {
 			valid = false;
+		}else {
+			try {
+				String userHash = InformationExpert.authenticateUserAccount(user, Hasher.hashString(pass));
+				
+				InformationExpert.setActiveAccount(InformationExpert.getUserAccountWithProfile(userHash));
+				
+			} catch (DBFailureException e) {
+				// TODO Auto-generated catch block
+				valid = false;
+			}
 		}
-		
 		return valid;
 	}
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getActionCommand() == CREATE_ACCOUNT) {
-			GraphicsController.launchCreateAccountPage();
+			GraphicsController.processPage(PageCreator.CREATE_ACCOUNT_PAGE,backPage);
 		}
 		else if(e.getActionCommand() == LOGIN) {
 			if(validateLogin(this.getLoginPageModel().getFrmtdtxtfldEnterUsername().getText(),
 					this.getLoginPageModel().getPwdEnterPass().getText()) == true){
-				GraphicsController.launchHomePage();
+				GraphicsController.processPage(PageCreator.HOME_PAGE, backPage);
 				
 			}
 			
 		}
 		else if(e.getActionCommand() == FORGOT_PASSWORD) {
-			GraphicsController.launchForgotPasswordPage();
+			GraphicsController.processPage(PageCreator.FORGOT_PASSWORD_PAGE,backPage);
 		} else if(e.getActionCommand() == EXIT) {
 			System.exit(0);
 		}
@@ -67,7 +85,7 @@ public class LoginPageController implements ActionListener{
 	public JPanel getLoginPanel() {
 		return loginPanel;
 	}
-	public void setLoginPanel(JPanel loginPanel) {
+	public void setLoginPanel(BackgroundPanel loginPanel) {
 		this.loginPanel = loginPanel;
 	}
 	

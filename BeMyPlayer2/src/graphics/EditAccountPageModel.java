@@ -1,14 +1,13 @@
 package graphics;
 
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
-import javax.swing.JLabel;
-import javax.swing.JPasswordField;
+import javax.swing.*;
 
 public class EditAccountPageModel {
 	
@@ -34,17 +33,17 @@ public class EditAccountPageModel {
 	private String securityQuestions;
 	private JComboBox genderBox;
 	private JComboBox securityQ;
-	
+	private JLabel charcount;
 	//init questionnaire fields
 	private List<JCheckBox> checkList;
 	private List<Boolean> checkLister;
 	
 	//init profile fields
-	private Image profileImg;
+	private BufferedImage profileImg;
 	private String imagePath;
-	private JFormattedTextField charDescription;
+	private JTextArea charDescription;
 	private JLabel profilePicLabel;
-	
+	private Date dob;
 	
 	public JLabel getLblBeMyPlayer() {
 		return lblBeMyPlayer;
@@ -160,10 +159,16 @@ public class EditAccountPageModel {
 	public void setCheckLister(List<Boolean> checkLister) {
 		this.checkLister = checkLister;
 	}
-	public Image getProfileImg() {
+	public List<Boolean> getPlatforms(){
+		return checkLister.subList(0, 6);
+	}
+	public List<Boolean> getGenres(){
+		return checkLister.subList(6, checkList.size());
+	}
+	public BufferedImage getProfileImg() {
 		return profileImg;
 	}
-	public void setProfileImg(Image profileImg) {
+	public void setProfileImg(BufferedImage profileImg) {
 		this.profileImg = profileImg;
 	}
 	public String getImagePath() {
@@ -172,10 +177,10 @@ public class EditAccountPageModel {
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
-	public JFormattedTextField getCharDescription() {
+	public JTextArea getCharDescription() {
 		return charDescription;
 	}
-	public void setCharDescription(JFormattedTextField charDescription) {
+	public void setCharDescription(JTextArea charDescription) {
 		this.charDescription = charDescription;
 	}
 	public JLabel getProfilePicLabel() {
@@ -185,6 +190,18 @@ public class EditAccountPageModel {
 		this.profilePicLabel = profilePicLabel;
 	}
 	
-	
-
+	public Date getDob() throws ParseException {
+		SimpleDateFormat tf = new SimpleDateFormat("dd/MM/yyyy");
+		this.dob = tf.parse(this.age.getText().strip());
+		return dob;
+	}
+	public void setDob(Date dob) {
+		this.dob = dob;
+	}
+	public JLabel getCharcount() {
+		return charcount;
+	}
+	public void setCharcount(JLabel charcount) {
+		this.charcount = charcount;
+	}
 }

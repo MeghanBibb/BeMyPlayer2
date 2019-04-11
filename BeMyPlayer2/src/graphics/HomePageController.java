@@ -2,11 +2,12 @@ package graphics;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Logger;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class HomePageController implements ActionListener{
+public class HomePageController extends PageController{
 	
 	// set constant actions
 	public static final String ACCOUNT = "account";
@@ -19,35 +20,41 @@ public class HomePageController implements ActionListener{
 	// get view and jframe
 	private HomePageModel homePageModel = null;
 	private JPanel homePanel = null;
-	
-	public void launchHomePage(JFrame j) {
-		HomePageView.launchHomePage(this,j);
+	private static Logger logger = Logger.getLogger(HomePageController.class.getName());
+	public void launchPage(JFrame mainFrame, String back) {
+		if(back != null) {
+			backPage = back;
+		}
+		HomePageView.launchHomePage(this,mainFrame);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch(e.getActionCommand()) {
 			case ACCOUNT: 
-				System.out.println("Account");
-				GraphicsController.launchProfilePage();
+				logger.info("Account");
+				GraphicsController.setProfileAccountActive();
+				GraphicsController.processPage(PageCreator.PROFILE_PAGE,PageCreator.HOME_PAGE);
 				break;
 			case SUPPORT: 
-				System.out.println("Support");
-				GraphicsController.launchSupportPage();
+				logger.info("Support");
+				GraphicsController.processPage(PageCreator.SUPPORT_PAGE,backPage);
 				break;
 			case FIND_FRIENDS: 
-				System.out.println("Find Friends");
+				logger.info("Find Friends");
+				GraphicsController.processPage(PageCreator.SWIPE_PAGE,backPage);
 				break;
 			case FIND_LOVE: 
-				System.out.println("Find Love");
+				logger.info("Find Love");
+				GraphicsController.processPage(PageCreator.SWIPE_PAGE,backPage);
 				break;
 			case VIEW_MATCHES: 
-				System.out.println("View Matches");
-				GraphicsController.launchViewMatches();
+				logger.info("View Matches");
+				GraphicsController.processPage(PageCreator.MATCHES_PAGE,backPage);
 				break;
 			case LOGOUT: 
-				System.out.println("Logout");
-				GraphicsController.launchLoginPage();
+				logger.info("Logout");
+				GraphicsController.processPage(PageCreator.LOGIN_PAGE,backPage);
 				break;
 		}
 	}

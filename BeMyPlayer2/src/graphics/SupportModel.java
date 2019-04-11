@@ -6,12 +6,9 @@ public class SupportModel {
 
     private JButton btnSubmit;
     private JButton back;
-    //init text
-    private JLabel lblDescription;
 
-    //private String securityQuestions;
+    private JTextArea description;
 
-    private JFormattedTextField description;
     private JComboBox probArea;
 
     public JButton getBtnSubmit() {
@@ -22,19 +19,12 @@ public class SupportModel {
         this.btnSubmit = btnSubmit;
     }
 
-    public JLabel getLblDescription() {
-        return lblDescription;
-    }
-
-    public void setLblDescription(JLabel lblDescription) {
-        this.lblDescription = lblDescription;
-    }
-
-    public JFormattedTextField getDescription() {
+    public JTextArea getDescription() {
         return description;
     }
 
-    public void setDescription(JFormattedTextField description) {
+    public void setDescription(JTextArea description) {
+
         this.description = description;
     }
 
@@ -54,3 +44,4 @@ public class SupportModel {
         this.back = back;
     }
 }
+

@@ -19,63 +19,58 @@ public class PaymentPageView {
 		//init model
 		paymentController.setPaymentModel(new PaymentPageModel());
 		
-		//init colors
-		Color red = new Color(128,0,0);
-		Color yellow = new Color(255,215,0);
-		
 		//init panel
-		paymentController.setPaymentPanel(new JPanel(null));
+		paymentController.setPaymentPanel(new BackgroundPanel(null));
 		paymentController.getPaymentPanel().setBorder(new EmptyBorder(5, 5, 5, 5));
 		paymentController.getPaymentPanel().setPreferredSize(new Dimension(500,400));
 		paymentController.getPaymentPanel().setMaximumSize(new Dimension(500,400));
 		mainFrame.setContentPane(paymentController.getPaymentPanel());
-		mainFrame.getContentPane().setBackground(red);
 		
 		//init buttons
 		JButton btnBack = new JButton("Cancel");
 		btnBack.setBounds(10,10,90,40);
 		btnBack.setActionCommand(paymentController.BACK);
-		btnBack.setBackground(yellow);
+		btnBack.setBackground(Colors.Yellow);
 		btnBack.addActionListener(paymentController);
 		paymentController.getPaymentModel().setBtnBack(btnBack);
 		
 		JButton btnSubmit = new JButton("Submit Info");
 		btnSubmit.setBounds(70,350,120,40);
 		btnSubmit.setActionCommand(paymentController.SUBMIT);
-		btnSubmit.setBackground(yellow);
+		btnSubmit.setBackground(Colors.Yellow);
 		btnSubmit.addActionListener(paymentController);
 		paymentController.getPaymentModel().setBtnSubmit(btnSubmit);
 		
 		//int labels
 		JLabel lblBeMyPlayer = new JLabel("Be My Player 2");
 		lblBeMyPlayer.setFont(new Font("Monospaced", Font.BOLD, 20));
-		lblBeMyPlayer.setForeground(yellow);
+		lblBeMyPlayer.setForeground(Colors.Yellow);
 		lblBeMyPlayer.setBounds(160,0,204,69);
 		paymentController.getPaymentModel().setLblBeMyPlayer(lblBeMyPlayer);
 		
 		JLabel lblCardNumber = new JLabel("Enter Card Number (numbers only):");
 		lblCardNumber.setBounds(10,70,220,40);
-		lblCardNumber.setForeground(yellow);
+		lblCardNumber.setForeground(Colors.Yellow);
 		paymentController.getPaymentModel().setLblcardNumber(lblCardNumber);
 		
 		JLabel lblCardDate = new JLabel("Enter Card Expiration Month and Year:");
 		lblCardDate.setBounds(10,140,220,40);
-		lblCardDate.setForeground(yellow);
+		lblCardDate.setForeground(Colors.Yellow);
 		paymentController.getPaymentModel().setLblcardDate(lblCardDate);
 		
 		JLabel lblCardCVC = new JLabel("Enter 3 Digit CVC Code:");
 		lblCardCVC.setBounds(10,210,200,40);
-		lblCardCVC.setForeground(yellow);
+		lblCardCVC.setForeground(Colors.Yellow);
 		paymentController.getPaymentModel().setLblcardCVC(lblCardCVC);
 		
 		JLabel lblSlash = new JLabel("/");
 		lblSlash.setBounds(60,170,40,40);
 		lblSlash.setFont(new Font("Defualt",Font.PLAIN,20));
-		lblSlash.setForeground(yellow);
+		lblSlash.setForeground(Colors.Yellow);
 		paymentController.getPaymentModel().setLblSlash(lblSlash);
 		
 		JLabel lblDescription = new JLabel("<HTML>Description of payment pricing and services here.</HTML>");
-		lblDescription.setForeground(yellow);
+		lblDescription.setForeground(Colors.Yellow);
 		lblDescription.setBounds(280,80,200,200);
 		lblDescription.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDescription.setBorder(BorderFactory.createLineBorder(Color.BLACK));
