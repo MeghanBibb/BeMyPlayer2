@@ -12,8 +12,12 @@ public class SupportView {
         //init Model
         supportController.setSupportModel(new SupportModel());
 
+<<<<<<< HEAD
         Color red = Colors.Red;
         Color yellow = Colors.Yellow;
+=======
+        Color yellow = new Color(254, 195, 123);
+>>>>>>> 6d13d53a28710c8d5c9d2403d8443a6aa0f3e9bb
 
         //init panel
         supportController.setSupportPanel(new BackgroundPanel(null));
@@ -47,7 +51,7 @@ public class SupportView {
         JLabel lblBeMyPlayer = new JLabel("Be My Player 2");
 		lblBeMyPlayer.setFont(new Font("Monospaced", Font.BOLD, 20));
 		lblBeMyPlayer.setForeground(Colors.Yellow);
-		lblBeMyPlayer.setForeground(Colors.Red);
+		//lblBeMyPlayer.setForeground(Colors.Red);
 		lblBeMyPlayer.setBounds(160,0,204,69);
 		lblBeMyPlayer.setFont(Fonts.getFont((float) 12));
 		supportController.getSupportPanel().add(lblBeMyPlayer);
@@ -61,7 +65,8 @@ public class SupportView {
             }
         });
         issueSelection.setToolTipText("What kind of issue are you having?");
-        issueSelection.setModel(new DefaultComboBoxModel(new String[] {"Select issue type","type1", "type2", "type3"}));
+        issueSelection.setModel(new DefaultComboBoxModel(new String[] {"Select closest issue type",
+                "Other Users", "Messaging", "Payment", "My Profile"}));
         issueSelection.setBounds(35, 70, 400, 22);
         issueSelection.setFont(Fonts.getFont((float) 12));
         issueSelection.setForeground(Colors.Red);
@@ -72,7 +77,7 @@ public class SupportView {
         JLabel descript = new JLabel("Enter description:");
         descript.setForeground(Colors.Yellow);
         descript.setFont(Fonts.getFont((float) 12));
-        descript.setForeground(Colors.Red);
+        //descript.setForeground(Colors.Red);
         descript.setFont(new Font("Monospaced", Font.BOLD, 16));
         descript.setBounds(35,100,204,50);
 		supportController.getSupportPanel().add(descript);

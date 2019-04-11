@@ -33,7 +33,7 @@ public class MessageView {
         lblUsername.setText(messageController.getAccount().getAccountProfile().getUsername());
         lblUsername.setFont(new Font("Impact", Font.PLAIN,15));
         lblUsername.setFont(Fonts.getFont((float) 12));
-        lblUsername.setForeground(Colors.Red);
+        //lblUsername.setForeground(Colors.Red);
         lblUsername.setForeground(Colors.Yellow);
         lblUsername.setBounds(150,35,90,90);
         messageController.getMessageModel().setLblUsername(lblUsername);
@@ -55,7 +55,7 @@ public class MessageView {
 		lblAge.setText(Integer.toString(diff) + " years old");
         lblAge.setForeground(Colors.Yellow);
         lblAge.setFont(Fonts.getFont((float) 12));
-        lblAge.setForeground(Colors.Red);
+        //lblAge.setForeground(Colors.Red);
         lblAge.setBounds(150,60,200,90);
         messageController.getMessageModel().setLblAge(lblAge);
 
@@ -63,7 +63,7 @@ public class MessageView {
         lblGender.setText(messageController.getAccount().getAccountProfile().getGender());
         lblGender.setForeground(Colors.Yellow);
         lblGender.setFont(Fonts.getFont((float) 12));
-        lblGender.setForeground(Colors.Red);
+        //lblGender.setForeground(Colors.Red);
         lblGender.setBounds(150,85,90,90);
         messageController.getMessageModel().setLblGender(lblGender);
 
