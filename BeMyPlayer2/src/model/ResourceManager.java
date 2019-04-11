@@ -18,7 +18,7 @@ import javax.imageio.ImageIO;
 
 public class ResourceManager {
 	
-	public static final String IMAGE_FOLDER = "H:\\S1Proj\\BeMyPlayer2\\BeMyPlayer2\\src\\main\\resources\\img\\";
+	public static final String IMAGE_FOLDER = "BeMyPlayer2\\src\\main\\resources\\img\\";
 	public static final String FONTS_FOLDER = "BeMyPlayer2/JetSet.ttf";
 	
 	private static Logger LOGGER = Logger.getLogger(ResourceManager.class.getName());
