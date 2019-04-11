@@ -16,7 +16,7 @@ public class HomePageView {
 		
 		//init colors
 		Color red = new Color(134,48,111);
-		Color yellow = new Color(254, 195, 123);
+		Color yellow = Colors.Yellow;
 		
 		//init panel
 		homeController.setHomePanel(new BackgroundPanel(null));

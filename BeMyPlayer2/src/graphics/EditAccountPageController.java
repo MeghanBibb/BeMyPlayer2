@@ -10,6 +10,12 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import firebase.DBFailureException;
+import firebase.Hasher;
+import model.Account;
+import model.InformationExpert;
+import model.Profile;
+
 public class EditAccountPageController extends PageController{
 	
 	public static final String BACK = "back";
@@ -57,12 +63,35 @@ public class EditAccountPageController extends PageController{
 				break;
 			case SUBMITEDITQUESTIONAIRE:
 				if(validateCreatePage2() == true) {
+					InformationExpert.getActiveAccount().getAccountProfile().setPlatforms(this.getEditAccountModel().getPlatforms());
+					InformationExpert.getActiveAccount().getAccountProfile().setGenres(this.getEditAccountModel().getGenres());
+					try {
+						InformationExpert.updateAccount(InformationExpert.getActiveAccount());
+						InformationExpert.updateProfile(InformationExpert.getActiveAccount().getAccountProfile());
+					} catch (DBFailureException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+									
 					logger.info("Submit");
 					GraphicsController.processPage(PageCreator.EDIT_ACCOUNT_PAGE, backPage);
 				}
 				break;
 			case SUBMITEDITPROFILE:
 				if(validateCreatePage3() == true) {
+					InformationExpert.getActiveAccount().getAccountProfile().setProfilePicture(this.editAccountModel.getProfileImg());
+					InformationExpert.getActiveAccount().getAccountProfile().setDescription(this.getEditAccountModel().getCharDescription().getText());
+					
+					try {
+						InformationExpert.updateAccount(InformationExpert.getActiveAccount());
+						InformationExpert.updateProfile(InformationExpert.getActiveAccount().getAccountProfile());
+						//InformationExpert.addProfileImage(InformationExpert.getActiveAccount().getAccountProfile().getProfilePicture(), InformationExpert.getActiveUserID());
+						GraphicsController.uploadProfileImage(InformationExpert.getActiveAccount().getAccountProfile().getProfilePicture()
+								, InformationExpert.getActiveUserID());
+					} catch (DBFailureException e1) {
+						// TODO Auto-generated catch block
+						logger.warning("Database error!");
+					}
 					logger.info("Submit");
 					GraphicsController.processPage(PageCreator.EDIT_ACCOUNT_PAGE, backPage);
 				}
