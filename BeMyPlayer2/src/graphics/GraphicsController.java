@@ -51,7 +51,9 @@ public class GraphicsController {
 			mainFrame.setResizable(false);
 	
 			try {
-			    mainFrame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("hearts.png")));
+			
+				ImageIcon icon = new ImageIcon(ImageIO.read(new File("hearts.png")));
+				mainFrame.setIconImage(icon.getImage());
 			}
 			catch (Exception exc) {
 			    exc.printStackTrace();
