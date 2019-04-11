@@ -1,12 +1,17 @@
 package graphics;
 
 import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
@@ -44,7 +49,13 @@ public class GraphicsController {
 			mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			mainFrame.getContentPane().setLayout(null);
 			mainFrame.setResizable(false);
-			
+	
+			try {
+			    mainFrame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("hearts.png")));
+			}
+			catch (Exception exc) {
+			    exc.printStackTrace();
+			}
 			processPage(PageCreator.LOGIN_PAGE, null);
 			
 	}
