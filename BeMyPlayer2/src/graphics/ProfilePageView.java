@@ -189,9 +189,10 @@ public class ProfilePageView {
 		profileController.getProfilePanel().add(psBtn);
 		
 		
-		JCheckBox nintendoBtn = new JCheckBox("Nintendo");if(profileController.getAccount().getAccountProfile().getPlatforms().get(2)) {
+		JCheckBox nintendoBtn = new JCheckBox("Nintendo");
+		//if(profileController.getAccount().getAccountProfile().getPlatforms().get(2)) {
 			nintendoBtn.setSelected(true);
-		}
+		//}
 		nintendoBtn.setEnabled(false);
 		nintendoBtn.setBackground(Colors.Red);
 		nintendoBtn.setForeground(Colors.Yellow);
@@ -202,9 +203,9 @@ public class ProfilePageView {
 		
 		
 		JCheckBox pcBtn = new JCheckBox("PC");
-		if(profileController.getAccount().getAccountProfile().getPlatforms().get(3)) {
+		//if(profileController.getAccount().getAccountProfile().getPlatforms().get(3)) {
 			pcBtn.setSelected(true);
-		}
+		//}
 		pcBtn.setEnabled(false);
 		pcBtn.setBackground(Colors.Red);
 		pcBtn.setForeground(Colors.Yellow);
@@ -216,9 +217,9 @@ public class ProfilePageView {
 		
 		
 		JCheckBox vrBtn = new JCheckBox("VR");
-		if(profileController.getAccount().getAccountProfile().getPlatforms().get(4)) {
+//		if(profileController.getAccount().getAccountProfile().getPlatforms().get(4)) {
 			vrBtn.setSelected(true);
-		}
+//		}
 		vrBtn.setEnabled(false);
 		vrBtn.setBackground(Colors.Red);
 		vrBtn.setForeground(Colors.Yellow);
@@ -228,9 +229,10 @@ public class ProfilePageView {
 		profileController.getProfilePanel().add(vrBtn);
 		
 		
-		JCheckBox RetroBtn = new JCheckBox("Retro");if(profileController.getAccount().getAccountProfile().getPlatforms().get(5)) {
+		JCheckBox RetroBtn = new JCheckBox("Retro");
+		// if(profileController.getAccount().getAccountProfile().getPlatforms().get(5)) {
 			RetroBtn.setSelected(true);
-		}
+		//}
 		RetroBtn.setEnabled(false);
 		RetroBtn.setBackground(Colors.Red);
 		RetroBtn.setForeground(Colors.Yellow);

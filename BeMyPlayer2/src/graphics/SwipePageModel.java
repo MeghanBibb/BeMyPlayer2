@@ -27,7 +27,7 @@ public class SwipePageModel {
 		////
 		Image backgroundImage;
 		try {
-			backgroundImage = ImageIO.read(new File("background.png"));
+			backgroundImage = ImageIO.read(new File("main/resources/img/background.png"));
 			ImageIcon background=new ImageIcon(backgroundImage.getScaledInstance(500, 400, Image.SCALE_SMOOTH));
 		    JLabel back=new JLabel(background);
 		    this.frame.setContentPane(back);

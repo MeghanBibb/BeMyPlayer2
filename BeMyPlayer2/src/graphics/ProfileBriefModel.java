@@ -52,8 +52,8 @@ public class ProfileBriefModel extends JPanel{
 		case "Prof.Aars":temploc = "/maars1.jpg";	
 			break;
 		}
-		Image img1 = new ImageIcon(viewMatchController.getClass().getResource(temploc)).getImage();
-		CircularImage setIcon = new CircularImage(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
+		ImageIcon img1 = new ImageIcon("BeMyPlayer2/img/booth1.jpg");
+		CircularImage setIcon = new CircularImage(img1);
 
 		
 		JLabel username = new JLabel(s);
@@ -110,8 +110,7 @@ public class ProfileBriefModel extends JPanel{
 	  ////
 		Image backgroundImage;
 		try {
-			
-			backgroundImage = ImageIO.read(new File("profile_brief_background.png"));
+			backgroundImage = ImageIO.read(new File("BeMyPlayer2/profile_brief_background.png"));
 			g.drawImage(backgroundImage.getScaledInstance(this.getWidth()+20, this.getHeight(), Image.SCALE_SMOOTH), 0, 0, null);
 			
 		} catch (IOException e) {
