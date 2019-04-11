@@ -34,8 +34,8 @@ public class CreateAccountPageView {
 			capController.setCreateAccountPageModel(temp);
 		}
 
-		Color red = Colors.Red;
-		Color yellow = Colors.Yellow;
+		Color red = new Color(134, 48, 111);
+		Color yellow = new Color(254, 195, 123);
 		//	init panel
 		capController.setCreateAccountPanel(new BackgroundPanel(null));
 		capController.getCreateAccountPanel().setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -128,7 +128,7 @@ public class CreateAccountPageView {
 		else {
 			secQA.setText("");
 		}
-		secQA.setBounds(275, 205, 128, 32);
+		secQA.setBounds(275, 240, 128, 32);
 		capController.getCreateAccountPageModel().setSecQA(secQA);
 		capController.getCreateAccountPanel().add(capController.getCreateAccountPageModel().getSecQA());
 		
@@ -157,7 +157,7 @@ public class CreateAccountPageView {
         });
 		gender.setToolTipText("Gender");
 		gender.setModel(new DefaultComboBoxModel(new String[] {"Male", "Female"}));
-		gender.setBounds(275, 275, 94, 22);
+		gender.setBounds(275, 305, 94, 22);
 		gender.setVisible(true);
 		if(visited == true) {
 			gender.setSelectedItem(capController.getCreateAccountPageModel().getGenderBox().getSelectedItem());
@@ -176,8 +176,8 @@ public class CreateAccountPageView {
 		securityQuestions.setForeground(Colors.Red);
 		securityQuestions.setFont(Fonts.getFont((float) 12));
 		securityQuestions.setToolTipText("Security Question");
-		securityQuestions.setModel(new DefaultComboBoxModel(new String[] {"Q1", "Q2"}));
-		securityQuestions.setBounds(275, 170, 94, 22);
+		securityQuestions.setModel(new DefaultComboBoxModel(new String[] { "Favorite Game?", "First Console Owned?", "Favorite Character?"}));
+		securityQuestions.setBounds(275, 170, 190, 22);
 		securityQuestions.setVisible(true);
 		if(visited == true) {
 			securityQuestions.setSelectedItem(capController.getCreateAccountPageModel().getSecurityQ().getSelectedItem());
@@ -198,16 +198,16 @@ public class CreateAccountPageView {
 		lbldob.setBounds(275, 65, 204, 32);
 		capController.getCreateAccountPanel().add(lbldob);
 		
-		JLabel lblGender = new JLabel("Gender");
+		JLabel lblGender = new JLabel("Gender: ");
 		lblGender.setForeground(Colors.Yellow);
 		lblGender.setFont(Fonts.getFont((float)12));
-		lblGender.setBounds(275, 245, 204, 32);	
+		lblGender.setBounds(275, 275, 204, 32);
 		capController.getCreateAccountPanel().add(lblGender);
 		
-		JLabel lblSecQ = new JLabel("Security Question");
+		JLabel lblSecQ = new JLabel("Security Question: ");
 		lblSecQ.setForeground(yellow);
-		lblSecQ.setFont(Fonts.getFont((float)20));
-		lblSecQ.setBounds(275, 110, 204, 69);
+		lblSecQ.setFont(Fonts.getFont((float)12));
+		lblSecQ.setBounds(275, 120, 204, 69);
 		capController.getCreateAccountPanel().add(lblSecQ);
 	
 		JLabel userFieldPrmptLoc = new JLabel("Enter Username:");
@@ -238,7 +238,7 @@ public class CreateAccountPageView {
 		JLabel answerPrompt = new JLabel("Answer:");
 		answerPrompt.setForeground(Colors.Yellow);
 		answerPrompt.setFont(Fonts.getFont((float)12));
-		answerPrompt.setBounds(220,205,128,32);
+		answerPrompt.setBounds(275,205,128,32);
 		capController.getCreateAccountPanel().add(answerPrompt);
 		
 		//	set attributes, pack and set visible 
