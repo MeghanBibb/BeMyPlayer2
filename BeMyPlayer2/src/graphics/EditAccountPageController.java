@@ -85,9 +85,9 @@ public class EditAccountPageController extends PageController{
 					try {
 						InformationExpert.updateAccount(InformationExpert.getActiveAccount());
 						InformationExpert.updateProfile(InformationExpert.getActiveAccount().getAccountProfile());
-						InformationExpert.addProfileImage(InformationExpert.getActiveAccount().getAccountProfile().getProfilePicture(), InformationExpert.getActiveUserID());
-						/*GraphicsController.uploadProfileImage(InformationExpert.getActiveAccount().getAccountProfile().getProfilePicture()
-								, InformationExpert.getActiveUserID());*/
+						//InformationExpert.addProfileImage(InformationExpert.getActiveAccount().getAccountProfile().getProfilePicture(), InformationExpert.getActiveUserID());
+						GraphicsController.uploadProfileImage(InformationExpert.getActiveAccount().getAccountProfile().getProfilePicture()
+								, InformationExpert.getActiveUserID());
 					} catch (DBFailureException e1) {
 						// TODO Auto-generated catch block
 						logger.warning("Database error!");
