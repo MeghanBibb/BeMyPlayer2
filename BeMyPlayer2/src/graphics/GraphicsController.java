@@ -7,8 +7,7 @@ import java.io.InputStream;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-import javax.swing.JFrame;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 //import firebase.DBFailureException;
@@ -103,7 +102,7 @@ public class GraphicsController {
 	}
 	
 	
-	public static BufferedImage getProfileImage(String userID)  {
+	public static ImageIcon getProfileImage(String userID)  {
 		return InformationExpert.getProfileImage(userID);
 	}
 	

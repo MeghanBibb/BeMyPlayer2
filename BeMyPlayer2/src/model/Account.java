@@ -1,9 +1,7 @@
 package model;
 
 import java.awt.Image;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Account implements DBSerializable{
 	
@@ -45,6 +43,8 @@ public class Account implements DBSerializable{
 		this.securityQ1AnsHash = sqa1;
 		this.securityQ2 = sq2;
 		this.securityQ2AnsHash = sqa2;
+
+		accountProfile = new Profile("Username", new Date(), "Gender", "Desc", new LinkedList<Boolean>(), new LinkedList<Boolean>() );
 	}
 	
 	public Account(String userId, String email, String pHash, String sq1, String sqa1, String sq2, String sqa2) {

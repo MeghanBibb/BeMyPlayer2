@@ -37,6 +37,9 @@ public class ProfilePageController extends PageController {
 	}
 	
 	public Account getAccount() {
+		if (a == null) {
+			a = new Account("email", "phash", "sq1", "sqa2", "sq2", "sqa2");
+		}
 		return a;
 	}
 

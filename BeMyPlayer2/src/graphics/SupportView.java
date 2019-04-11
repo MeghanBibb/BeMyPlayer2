@@ -52,7 +52,8 @@ public class SupportView {
             }
         });
         issueSelection.setToolTipText("What kind of issue are you having?");
-        issueSelection.setModel(new DefaultComboBoxModel(new String[] {"Select issue type","type1", "type2", "type3"}));
+        issueSelection.setModel(new DefaultComboBoxModel(new String[] {"Select issue type","Other User",
+                "Payment", "My Profile", "Finding Matches"}));
         issueSelection.setBounds(35, 70, 400, 22);
         issueSelection.setVisible(true);
         supportController.getSupportModel().setProbArea(issueSelection);

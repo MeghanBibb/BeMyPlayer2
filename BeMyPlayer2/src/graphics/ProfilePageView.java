@@ -45,7 +45,7 @@ public class ProfilePageView {
 		 * TO DO: load image from user/database
 		 */
 		JLabel imgLabel = new JLabel("");
-		BufferedImage img = null;
+		ImageIcon img = null;
 		img = InformationExpert.getProfileImage(InformationExpert.getActiveUserID());
 
 		/*try {
@@ -55,7 +55,7 @@ public class ProfilePageView {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}*/
-		imgLabel.setIcon(new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
+		imgLabel.setIcon(img);//new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
 		imgLabel.setBounds(10, 60, 100, 100);
 		profileController.getProfileModel().setProfileImage(imgLabel);
 		
@@ -113,7 +113,7 @@ public class ProfilePageView {
 		profileController.getProfileModel().setLblBeMyPlayer(lblBeMyPlayer);
 		
 		JLabel lblUsername = new JLabel();
-		lblUsername.setText(profileController.getAccount().getAccountProfile().getUsername());
+		lblUsername.setText("Name");//profileController.getAccount().getAccountProfile().getUsername());
 		lblUsername.setFont(Fonts.getFont((float)15));
 		lblUsername.setForeground(Colors.Yellow);
 		lblUsername.setBounds(120,35,90,90);
@@ -126,7 +126,7 @@ public class ProfilePageView {
 		Date nowDate = java.sql.Date.valueOf(now);
 		Calendar cnow = Calendar.getInstance();
 		cnow.setTime(nowDate);
-		Date bday = profileController.getAccount().getAccountProfile().getDateOB();
+		Date bday = new Date();//profileController.getAccount().getAccountProfile().getDateOB();
 		Calendar cbday = Calendar.getInstance();
 		cbday.setTime(bday);
 		int diff = cnow.get(Calendar.YEAR) - cbday.get(Calendar.YEAR);
@@ -139,7 +139,7 @@ public class ProfilePageView {
 		profileController.getProfileModel().setLblAge(lblAge);
 		
 		JLabel lblGender = new JLabel();
-		lblGender.setText(profileController.getAccount().getAccountProfile().getGender());
+		lblGender.setText("Gender");//profileController.getAccount().getAccountProfile().getGender());
 		lblGender.setForeground(Colors.Yellow);
 		lblGender.setBounds(120,95,90,90);
 		profileController.getProfileModel().setLblGender(lblGender);
@@ -152,7 +152,7 @@ public class ProfilePageView {
 		//init description
 		JLabel description = new JLabel();
 		//description.setText("<HTML>This is a sample description.<br> Very nice.</HTML>");
-		description.setText(profileController.getAccount().getAccountProfile().getDescription());
+		description.setText("desc");//profileController.getAccount().getAccountProfile().getDescription());
 		description.setBounds(10, 170, 250, 140);
 		description.setOpaque(false);
 		description.setForeground(Colors.Yellow);
@@ -164,9 +164,9 @@ public class ProfilePageView {
 		//checkbox
 		profileController.getProfileModel().setCheckList(new ArrayList<JCheckBox>());
 		JCheckBox xboxBtn = new JCheckBox("Xbox");
-		if(profileController.getAccount().getAccountProfile().getPlatforms().get(0)) {
+		//if(profileController.getAccount().getAccountProfile().getPlatforms().get(0)) {
 			xboxBtn.setSelected(true);
-		}
+		//}
 		xboxBtn.setEnabled(false);
 		xboxBtn.setBackground(Colors.Red);
 		xboxBtn.setForeground(Colors.Yellow);
@@ -177,9 +177,9 @@ public class ProfilePageView {
 		
 
 		JCheckBox psBtn = new JCheckBox("Playstation");
-		if(profileController.getAccount().getAccountProfile().getPlatforms().get(1)) {
+		//if(profileController.getAccount().getAccountProfile().getPlatforms().get(1)) {
 			psBtn.setSelected(true);
-		}
+		//}
 		psBtn.setEnabled(false);
 		psBtn.setBackground(Colors.Red);
 		psBtn.setForeground(Colors.Yellow);

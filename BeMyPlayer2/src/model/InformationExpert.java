@@ -1,5 +1,6 @@
 package model;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
@@ -98,9 +99,9 @@ public class InformationExpert {
 	}
 	
 	
-	public static BufferedImage getProfileImage(String userID)  {
-		BufferedImage temp = new BufferedImage(0, 0, BufferedImage.TYPE_CUSTOM);
-		return temp;//databaseAdapter.getProfileImage(userID);
+	public static ImageIcon getProfileImage(String userID)  {
+		ImageIcon img = new ImageIcon("BeMyPlayer2/img/fry1.jpg");
+		return img;//databaseAdapter.getProfileImage(userID);
 	}
 	
 	public static void addProfileImage(BufferedImage pic, String userID)  {
