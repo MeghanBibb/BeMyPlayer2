@@ -57,6 +57,24 @@ public class EditAccountPageController extends PageController{
 				break;
 			case SUBMITEDITACCOUNT:
 				if(validateCreatePage1() == true) {
+					InformationExpert.getActiveAccount().setPasswordHash(Hasher.hashString(this.getEditAccountModel().getPwdEnterPass().getText()));
+					InformationExpert.getActiveAccount().setSecurityQ1(this.getEditAccountModel().getSecurityQ().getSelectedItem().toString());
+					InformationExpert.getActiveAccount().setSecurityQ1AnsHash(Hasher.hashString(this.getEditAccountModel().getSecQA().getText()));
+					InformationExpert.getActiveAccount().getAccountProfile().setGender(this.getEditAccountModel().getGenderBox().getSelectedItem().toString());
+					try {
+						InformationExpert.getActiveAccount().getAccountProfile().setDateOB(this.getEditAccountModel().getDob());
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						logger.warning("invalid date");
+					}
+					try {
+						InformationExpert.updateAccount(InformationExpert.getActiveAccount());
+						InformationExpert.updateProfile(InformationExpert.getActiveAccount().getAccountProfile());
+					} catch (DBFailureException e1) {
+						// TODO Auto-generated catch block
+						logger.warning("failed to save");
+					}
+					
 					logger.info("Submit");
 					GraphicsController.processPage(PageCreator.EDIT_ACCOUNT_PAGE, backPage);
 				}
@@ -85,9 +103,9 @@ public class EditAccountPageController extends PageController{
 					try {
 						InformationExpert.updateAccount(InformationExpert.getActiveAccount());
 						InformationExpert.updateProfile(InformationExpert.getActiveAccount().getAccountProfile());
-						//InformationExpert.addProfileImage(InformationExpert.getActiveAccount().getAccountProfile().getProfilePicture(), InformationExpert.getActiveUserID());
-						GraphicsController.uploadProfileImage(InformationExpert.getActiveAccount().getAccountProfile().getProfilePicture()
-								, InformationExpert.getActiveUserID());
+						InformationExpert.addProfileImage(InformationExpert.getActiveAccount().getAccountProfile().getProfilePicture(), InformationExpert.getActiveUserID());
+						/*GraphicsController.uploadProfileImage(InformationExpert.getActiveAccount().getAccountProfile().getProfilePicture()
+								, InformationExpert.getActiveUserID());*/
 					} catch (DBFailureException e1) {
 						// TODO Auto-generated catch block
 						logger.warning("Database error!");
