@@ -13,8 +13,8 @@ public class MessageView {
         messageController.setMessageModel(new MessageModel());
 
         //init colors
-        Color red = new Color(134,48,111);
-        Color yellow = new Color(254, 195, 123);
+        Color red = Colors.Red;
+        Color yellow = Colors.Yellow;
 
         //init panel
         messageController.setMessagePanel(new BackgroundPanel(null));

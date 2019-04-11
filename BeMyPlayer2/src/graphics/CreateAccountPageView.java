@@ -34,8 +34,8 @@ public class CreateAccountPageView {
 			capController.setCreateAccountPageModel(temp);
 		}
 
-		Color red = new Color(134, 48, 111);
-		Color yellow = new Color(254, 195, 123);
+		Color red = Colors.Red;
+		Color yellow = Colors.Yellow;
 		//	init panel
 		capController.setCreateAccountPanel(new BackgroundPanel(null));
 		capController.getCreateAccountPanel().setBorder(new EmptyBorder(5, 5, 5, 5));
