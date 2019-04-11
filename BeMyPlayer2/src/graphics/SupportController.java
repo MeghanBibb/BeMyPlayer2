@@ -71,6 +71,7 @@ public class SupportController extends PageController{
 
         if (this.supportModel.getDescription().getText().contains(";")){
             valid = false;
+            warnings.add("No Semi-Colons\n");
         }
 
         if(valid == false) {
