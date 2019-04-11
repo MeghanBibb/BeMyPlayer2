@@ -24,7 +24,44 @@ public class ForgotPassPageModel {
 	private JFormattedTextField frmtdtextfldEnterEmail;
 	private JFormattedTextField frmtdtextfldEnterNewPassword;
 	private JFormattedTextField pwdEnterPass;
-	
+
+	private JLabel lblEmail;
+	private JLabel lblUsername;
+	private JLabel lblNewPassword;
+	private JLabel lblReEnterNewPassword;
+
+
+	public JLabel getLblEmail() {
+		return lblEmail;
+	}
+
+	public void setLblEmail(JLabel lblEmail) {
+		this.lblEmail = lblEmail;
+	}
+
+	public JLabel getLblUsername() {
+		return lblUsername;
+	}
+
+	public void setLblUsername(JLabel lblUsername) {
+		this.lblUsername = lblUsername;
+	}
+
+	public JLabel getLblNewPassword() {
+		return lblNewPassword;
+	}
+
+	public void setLblNewPassword(JLabel lblNewPassword) {
+		this.lblNewPassword = lblNewPassword;
+	}
+
+	public JLabel getLblReEnterNewPassword() {
+		return lblReEnterNewPassword;
+	}
+
+	public void setLblReEnterNewPassword(JLabel lblReEnterNewPassword) {
+		this.lblReEnterNewPassword = lblReEnterNewPassword;
+	}
 
 	public JFormattedTextField getFrmtdtextfldEnterEmail() {
 		return frmtdtextfldEnterEmail;
