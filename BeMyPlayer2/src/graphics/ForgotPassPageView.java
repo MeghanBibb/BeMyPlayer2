@@ -128,7 +128,7 @@ public class ForgotPassPageView {
         	}
         });
 		securityQuestions.setToolTipText("Security Question");
-		securityQuestions.setModel(new DefaultComboBoxModel(new String[] {"Please Select A Security Question to Answer","Q1", "Q2", "What is your mother's maden name?"}));
+		securityQuestions.setModel(new DefaultComboBoxModel(new String[] {"Please Select A Security Question to Answer", "Favorite Game?", "First Console Owned?", "Favorite Character?"}));
 		securityQuestions.setBounds(50, 180, 380, 22);
 		securityQuestions.setVisible(true);
 		forgotPasswordController.getForgotPasswordPageModel().setSecurityQ(securityQuestions);
