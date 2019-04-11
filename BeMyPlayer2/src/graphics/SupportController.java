@@ -1,8 +1,16 @@
 package graphics;
 
 import javax.swing.*;
+
+import model.InformationExpert;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 public class SupportController extends PageController{
@@ -23,9 +31,20 @@ public class SupportController extends PageController{
     public void actionPerformed(ActionEvent e) {
         switch(e.getActionCommand()) {
             case SUBMIT:
-                if(validateSupInfo()) {
+                if(validateSupInfo() == true) {
                     logger.info("Submit");
                     //	logic for updating information here
+                    Logger supportLogger = Logger.getLogger(SupportController.class.getName());
+                		try {
+                			InputStream configFile = GraphicsController.class.getClassLoader().getResourceAsStream("supportLogger.properties");
+                			LogManager.getLogManager().readConfiguration(configFile);
+                			configFile.close();
+                		} catch (IOException ex) {
+                			System.out.println("WARNING: Could not open configuration file");
+                		    System.out.println("WARNING: Logging not configured (console output only)");
+                		}
+                		supportLogger.info("User: " + InformationExpert.getActiveAccount().getEmail() + " noted issue " + this.getSupportModel().getProbArea().getSelectedItem().toString()+ " with description " + this.getSupportModel().getDescription().getText());
+                	
                     GraphicsController.processPage(PageCreator.HOME_PAGE,backPage);
                 }
                 break;
@@ -40,9 +59,17 @@ public class SupportController extends PageController{
 
         //	CHECK FIELDS ARE NOT EMPTY OR SQL COMMANDS TO DELETE OUR TABLES
         //	VALIDATION FROM CREATE ACCOUNT PAGE + DATABASE VALIDATION
+        List<String> warnings = new ArrayList<>();
+        if(this.supportModel.getProbArea().getSelectedIndex() ==0) {
+        	valid = false;
+        	warnings.add("Please select issue type\n");
+        }
         if(this.supportModel.getDescription().getText().equals("")) {
         	valid = false;
-        	InvalidPopup p = new InvalidPopup(this.supportPanel,"Please enter a description\n");
+        	warnings.add("Please enter a description\n");
+        }
+        if(valid == false) {
+        	InvalidPopup p = new InvalidPopup(this.supportPanel,warnings);
         }
         return valid;
     }
