@@ -68,6 +68,9 @@ public class SupportController extends PageController{
         	valid = false;
         	warnings.add("Please enter a description\n");
         }
+
+        
+
         if(valid == false) {
         	InvalidPopup p = new InvalidPopup(this.supportPanel,warnings);
         }
