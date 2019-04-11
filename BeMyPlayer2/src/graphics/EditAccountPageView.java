@@ -547,6 +547,7 @@ public class EditAccountPageView {
 						e.printStackTrace();
 					}
 					editController.getEditAccountModel().setImagePath(f.getAbsolutePath());
+					editController.getEditAccountModel().setProfileImg(img1);
 				}
 				else if(f == null){
 					try {
