@@ -49,6 +49,8 @@ public class CreateAccountPageView {
 		JButton backbtn = new JButton("Back");
 		backbtn.setBounds(45, 345, 90, 40);
 		backbtn.setBackground(Colors.Yellow);
+		backbtn.setForeground(Colors.Red);
+		backbtn.setFont(Fonts.getFont((float) 12));
 		backbtn.setActionCommand(CreateAccountPageController.BACK);
 		backbtn.addActionListener(capController);
 		capController.getCreateAccountPageModel().setBack(backbtn);
@@ -58,6 +60,8 @@ public class CreateAccountPageView {
 		JButton nextbtn = new JButton("Next");
 		nextbtn.setBounds(345, 345, 90, 40);
 		nextbtn.setBackground(Colors.Yellow);
+		nextbtn.setForeground(Colors.Red);
+		nextbtn.setFont(Fonts.getFont((float) 12));
 		nextbtn.setActionCommand(CreateAccountPageController.NEXT);
 		nextbtn.addActionListener(capController);
 		capController.getCreateAccountPageModel().setNext(nextbtn);
@@ -66,6 +70,9 @@ public class CreateAccountPageView {
 		//	enter user name
 		JFormattedTextField frmtdtxtfldEnterUsername = new JFormattedTextField();
 		frmtdtxtfldEnterUsername.setHorizontalAlignment(SwingConstants.CENTER);
+		frmtdtxtfldEnterUsername.setBackground(Colors.Yellow);
+		frmtdtxtfldEnterUsername.setForeground(Colors.Red);
+		frmtdtxtfldEnterUsername.setFont(Fonts.getFont((float) 12));
 		if(visited == true) {
 			frmtdtxtfldEnterUsername.setText(capController.getCreateAccountPageModel().getFrmtdtxtfldEnterUsername().getText());
 		}
@@ -76,6 +83,9 @@ public class CreateAccountPageView {
 		//	enter email
 		JFormattedTextField enterEmail = new JFormattedTextField();
 		enterEmail.setHorizontalAlignment(SwingConstants.CENTER);
+		enterEmail.setBackground(Colors.Yellow);
+		enterEmail.setForeground(Colors.Red);
+		enterEmail.setFont(Fonts.getFont((float) 12));
 		if(visited == true) {
 			enterEmail.setText(capController.getCreateAccountPageModel().getEnterEmail().getText());
 		}
@@ -88,6 +98,9 @@ public class CreateAccountPageView {
 		//	password
 		JPasswordField pwdEnterPass = new JPasswordField();
 		pwdEnterPass.setHorizontalAlignment(SwingConstants.CENTER);
+		pwdEnterPass.setBackground(Colors.Yellow);
+		pwdEnterPass.setForeground(Colors.Red);
+		pwdEnterPass.setFont(Fonts.getFont((float) 12));
 		pwdEnterPass.setBounds(45, 240, 128, 32);
 		capController.getCreateAccountPageModel().setPwdEnterPass(pwdEnterPass);
 		capController.getCreateAccountPanel().add(capController.getCreateAccountPageModel().getPwdEnterPass());
@@ -95,6 +108,9 @@ public class CreateAccountPageView {
 		//	reenter password
 		JPasswordField pwdValidatePass= new JPasswordField();
 		pwdValidatePass.setHorizontalAlignment(SwingConstants.CENTER);
+		pwdValidatePass.setBackground(Colors.Yellow);
+		pwdValidatePass.setForeground(Colors.Red);
+		pwdValidatePass.setFont(Fonts.getFont((float) 12));
 		pwdValidatePass.setBounds(45, 300, 128, 32);
 		capController.getCreateAccountPageModel().setPwdValidatePass(pwdValidatePass);
 		capController.getCreateAccountPanel().add(capController.getCreateAccountPageModel().getPwdValidatePass());
@@ -102,18 +118,25 @@ public class CreateAccountPageView {
 			
 		JFormattedTextField secQA = new JFormattedTextField();
 		secQA.setHorizontalAlignment(SwingConstants.CENTER);
+		secQA.setBackground(Colors.Yellow);
+		secQA.setForeground(Colors.Red);
+		secQA.setFont(Fonts.getFont((float) 12));
+
 		if(visited == true) {
 			secQA.setText(capController.getCreateAccountPageModel().getSecQA().getText());
 		}
 		else {
 			secQA.setText("");
 		}
-		secQA.setBounds(275, 205, 128, 32);
+		secQA.setBounds(275, 240, 128, 32);
 		capController.getCreateAccountPageModel().setSecQA(secQA);
 		capController.getCreateAccountPanel().add(capController.getCreateAccountPageModel().getSecQA());
 		
 		JFormattedTextField age = new JFormattedTextField();
 		age.setHorizontalAlignment(SwingConstants.CENTER);
+		age.setBackground(Colors.Yellow);
+		age.setForeground(Colors.Red);
+		age.setFont(Fonts.getFont((float) 12));
 		if(visited == true) {
 			age.setText(capController.getCreateAccountPageModel().getAge().getText());
 		}
@@ -124,6 +147,9 @@ public class CreateAccountPageView {
 		//	init drop downs
 		
 		JComboBox gender = new JComboBox();
+		gender.setBackground(Colors.Yellow);
+		gender.setForeground(Colors.Red);
+		gender.setFont(Fonts.getFont((float) 12));
 		gender.addItemListener(new ItemListener() {
         	public void itemStateChanged(ItemEvent e) {
         		capController.getCreateAccountPageModel().setGender(e.getItem().toString());
@@ -131,7 +157,7 @@ public class CreateAccountPageView {
         });
 		gender.setToolTipText("Gender");
 		gender.setModel(new DefaultComboBoxModel(new String[] {"Male", "Female"}));
-		gender.setBounds(275, 275, 94, 22);
+		gender.setBounds(275, 305, 94, 22);
 		gender.setVisible(true);
 		if(visited == true) {
 			gender.setSelectedItem(capController.getCreateAccountPageModel().getGenderBox().getSelectedItem());
@@ -146,9 +172,12 @@ public class CreateAccountPageView {
         		capController.getCreateAccountPageModel().setSecurityQuestions(e.getItem().toString());
         	}
         });
+		securityQuestions.setBackground(Colors.Yellow);
+		securityQuestions.setForeground(Colors.Red);
+		securityQuestions.setFont(Fonts.getFont((float) 12));
 		securityQuestions.setToolTipText("Security Question");
-		securityQuestions.setModel(new DefaultComboBoxModel(new String[] {"Q1", "Q2"}));
-		securityQuestions.setBounds(275, 170, 94, 22);
+		securityQuestions.setModel(new DefaultComboBoxModel(new String[] { "Favorite Game?", "First Console Owned?", "Favorite Character?"}));
+		securityQuestions.setBounds(275, 170, 190, 22);
 		securityQuestions.setVisible(true);
 		if(visited == true) {
 			securityQuestions.setSelectedItem(capController.getCreateAccountPageModel().getSecurityQ().getSelectedItem());
@@ -169,16 +198,16 @@ public class CreateAccountPageView {
 		lbldob.setBounds(275, 65, 204, 32);
 		capController.getCreateAccountPanel().add(lbldob);
 		
-		JLabel lblGender = new JLabel("Gender");
+		JLabel lblGender = new JLabel("Gender: ");
 		lblGender.setForeground(Colors.Yellow);
 		lblGender.setFont(Fonts.getFont((float)12));
-		lblGender.setBounds(275, 245, 204, 32);	
+		lblGender.setBounds(275, 275, 204, 32);
 		capController.getCreateAccountPanel().add(lblGender);
 		
-		JLabel lblSecQ = new JLabel("Security Question");
+		JLabel lblSecQ = new JLabel("Security Question: ");
 		lblSecQ.setForeground(yellow);
-		lblSecQ.setFont(Fonts.getFont((float)20));
-		lblSecQ.setBounds(275, 110, 204, 69);
+		lblSecQ.setFont(Fonts.getFont((float)12));
+		lblSecQ.setBounds(275, 120, 204, 69);
 		capController.getCreateAccountPanel().add(lblSecQ);
 	
 		JLabel userFieldPrmptLoc = new JLabel("Enter Username:");
@@ -209,7 +238,7 @@ public class CreateAccountPageView {
 		JLabel answerPrompt = new JLabel("Answer:");
 		answerPrompt.setForeground(Colors.Yellow);
 		answerPrompt.setFont(Fonts.getFont((float)12));
-		answerPrompt.setBounds(220,205,128,32);
+		answerPrompt.setBounds(275,205,128,32);
 		capController.getCreateAccountPanel().add(answerPrompt);
 		
 		//	set attributes, pack and set visible 

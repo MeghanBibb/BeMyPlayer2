@@ -50,6 +50,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import model.Account;
 import model.DBDocumentPackage;
+import model.InformationExpert;
 import model.Match;
 import model.MatchStatus;
 import model.Profile;
@@ -590,9 +591,7 @@ public class FireBaseAdapter {
 		}
 		
 		Bucket defaultBucket = StorageClient.getInstance().bucket(DB_BUCKET_NAME);
-		
 		try {
-			
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			ImageIO.write(pic, "jpg", baos);
 			byte[] binData = baos.toByteArray();
@@ -600,7 +599,6 @@ public class FireBaseAdapter {
 											binData, Bucket.BlobTargetOption.doesNotExist());
 			LOGGER.log(Level.FINE, "Added a Profile Image.");
 		}catch(Exception exc) {
-			
 			LOGGER.log(Level.SEVERE, "Error- Image upload failed!");
 			throw new DBFailureException();
 		}
@@ -632,6 +630,7 @@ public class FireBaseAdapter {
 			LOGGER.log(Level.FINE, "Updated Profile Image to new Image.");
 			
 		}catch(Exception exc) {
+			exc.printStackTrace();
 			LOGGER.log(Level.SEVERE, "Error- Image upload failed-- Profile picture may have been lost!");
 			throw new DBFailureException();
 		}
@@ -654,5 +653,6 @@ public class FireBaseAdapter {
 			throw new DBFailureException();
 		}
 	}
+
 
 }

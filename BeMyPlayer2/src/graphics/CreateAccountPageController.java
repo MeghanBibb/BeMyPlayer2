@@ -149,8 +149,7 @@ public class CreateAccountPageController extends PageController{
 				p.setGenres(this.getCreateAccountPageModel().getGenres());
 				p.setProfilePicture(this.getCreateAccountPageModel().getProfileImg());
 				a.setAccountProfile(p);
-				
-				
+			
 				try {
 					GraphicsController.attemptAddNewAccount(a);
 					InformationExpert.setActiveAccount(a);

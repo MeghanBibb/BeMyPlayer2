@@ -1,20 +1,25 @@
 package graphics;
 
 import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
-
 import firebase.DBFailureException;
 import model.Account;
 import model.InformationExpert;
+
 
 public class GraphicsController {
 
@@ -44,7 +49,15 @@ public class GraphicsController {
 			mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			mainFrame.getContentPane().setLayout(null);
 			mainFrame.setResizable(false);
+	
+			try {
 			
+				ImageIcon icon = new ImageIcon(ImageIO.read(new File("hearts.png")));
+				mainFrame.setIconImage(icon.getImage());
+			}
+			catch (Exception exc) {
+			    exc.printStackTrace();
+			}
 			processPage(PageCreator.LOGIN_PAGE, null);
 			
 	}
@@ -62,7 +75,9 @@ public class GraphicsController {
 	public static void setProfileAccountOther() {
 		profileAccount = OTHER_ACCOUNT;
 	}
-	
+	public static String getProfileString() {
+		return profileAccount;
+	}
 	public static JFrame getMainFrame() {
 		return mainFrame;
 	}
@@ -92,8 +107,9 @@ public class GraphicsController {
 	public static Account getActiveAccount() {
 		return InformationExpert.getActiveAccount();
 	}
-	
-	
+	public static Account getOtherAccount() {
+		return InformationExpert.getOtherAccount();
+	}
 	public static boolean isActiveAccount(Account a) {
 		return InformationExpert.isActiveUser(a);
 	}
@@ -102,11 +118,12 @@ public class GraphicsController {
 		return InformationExpert.getActiveUserID();
 	}
 	
-	
 	public static BufferedImage getProfileImage(String userID) throws DBFailureException {
 		return InformationExpert.getProfileImage(userID);
 	}
-	
+	public static void updateProfileImage(BufferedImage pic, String userId) {
+		InformationExpert.updateProfileImage(pic, userId);
+	}
 	public static void uploadProfileImage(BufferedImage pic, String userID) throws DBFailureException {
 		InformationExpert.addProfileImage(pic, userID);
 	}

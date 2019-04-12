@@ -27,8 +27,14 @@ public class ProfilePageController extends PageController {
 		if(back != null) {
 			backPage = back;
 		}
-		
-		a = GraphicsController.getActiveAccount();
+		if(GraphicsController.getProfileString().equalsIgnoreCase("active account")){
+			a = GraphicsController.getActiveAccount();
+		}
+		else if(GraphicsController.getProfileString().equalsIgnoreCase("other account")){
+			System.out.println("other account");
+			a = GraphicsController.getActiveAccount();//temp since no loading profiles yet
+			/*this is the working solution *///a = GraphicsController.getOtherAccount();
+		}
 		ProfilePageView.startProfilePage(this,mainFrame);
 	}
 	
@@ -45,6 +51,7 @@ public class ProfilePageController extends PageController {
 		switch(e.getActionCommand()) {
 			case BACK:
 				logger.info("back");
+				GraphicsController.setProfileAccountActive();
 				GraphicsController.processPage(PageCreator.HOME_PAGE,backPage);
 				break;
 			case EDIT_ACCOUNT:

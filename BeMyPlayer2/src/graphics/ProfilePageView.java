@@ -44,18 +44,8 @@ public class ProfilePageView {
 		/**
 		 * TO DO: load image from user/database
 		 */
-		JLabel imgLabel = new JLabel("");
-		BufferedImage img = null;
-		try {
-			img = InformationExpert.getProfileImage(InformationExpert.getActiveUserID());
-			
-		} catch (DBFailureException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		imgLabel.setIcon(new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
-		imgLabel.setBounds(10, 60, 100, 100);
-		profileController.getProfileModel().setProfileImage(imgLabel);
+		/* fix for active vs inactive user */
+		
 		
 		
 		//init buttons
@@ -78,6 +68,18 @@ public class ProfilePageView {
 		
 		//	pull information for fields from account passed 
 		if(profileController.isActiveAccount()) {
+			JLabel imgLabel = new JLabel("");
+			BufferedImage img = null;
+			try {
+				img = InformationExpert.getProfileImage(InformationExpert.getActiveUserID());
+				
+			} catch (DBFailureException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			imgLabel.setIcon(new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
+			imgLabel.setBounds(10, 60, 100, 100);
+			profileController.getProfileModel().setProfileImage(imgLabel);
 			JButton btnEdit = new JButton("Edit Profile");
 			btnEdit.setBounds(390,10,100,40);
 			btnEdit.setActionCommand(profileController.EDIT_ACCOUNT);
@@ -86,6 +88,18 @@ public class ProfilePageView {
 			profileController.getProfileModel().setBtnEdit(btnEdit);
 			profileController.getProfilePanel().add(profileController.getProfileModel().getBtnEdit());
 		} else {
+			JLabel imgLabel = new JLabel("");
+			BufferedImage img = null;
+			try {
+				img = InformationExpert.getProfileImage(profileController.getAccount().getUserId());
+				
+			} catch (DBFailureException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			imgLabel.setIcon(new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
+			imgLabel.setBounds(10, 60, 100, 100);
+			profileController.getProfileModel().setProfileImage(imgLabel);
 			JButton btnBlock = new JButton("Block");
 			btnBlock.setBounds(300, 350, 90, 40);
 			btnBlock.setActionCommand(profileController.BLOCK);
@@ -150,7 +164,13 @@ public class ProfilePageView {
 		//init description
 		JLabel description = new JLabel();
 		//description.setText("<HTML>This is a sample description.<br> Very nice.</HTML>");
-		description.setText(profileController.getAccount().getAccountProfile().getDescription());
+		if(profileController.isActiveAccount()) {
+			description.setText(InformationExpert.getActiveAccount().getAccountProfile().getDescription());
+		}
+		else {
+			description.setText(profileController.getAccount().getAccountProfile().getDescription());
+		}
+		
 		description.setBounds(10, 170, 250, 140);
 		description.setOpaque(false);
 		description.setForeground(Colors.Yellow);

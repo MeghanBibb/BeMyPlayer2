@@ -149,7 +149,6 @@ public class EditAccountPageView {
 		
 		JFormattedTextField secQA = new JFormattedTextField();
 		secQA.setHorizontalAlignment(SwingConstants.CENTER);
-		secQA.setText(GraphicsController.getActiveAccount().getSecurityQ1AnsHash());
 		secQA.setBounds(275, 205, 128, 32);
 		editController.getEditAccountModel().setSecQA(secQA);
 		editController.getEditAccountPanel().add(editController.getEditAccountModel().getSecQA());
@@ -547,6 +546,7 @@ public class EditAccountPageView {
 						e.printStackTrace();
 					}
 					editController.getEditAccountModel().setImagePath(f.getAbsolutePath());
+					editController.getEditAccountModel().setProfileImg(img1);
 				}
 				else if(f == null){
 					try {
