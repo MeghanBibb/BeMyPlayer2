@@ -3,6 +3,7 @@ package graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.swing.JFrame;
@@ -42,13 +43,20 @@ public class LoginPageController extends PageController{
 	//	validate login (should check db)
 	public static boolean validateLogin(String user,String pass) {
 		boolean valid = true;
+		List<String> warnings = new ArrayList<>();
+		
 		if(user.equalsIgnoreCase("") || pass.equalsIgnoreCase("")) {
+			warnings.add("Please enter username and password");
 			valid = false;
 		}else {
 			try {
 				String userHash = InformationExpert.authenticateUserAccount(user, Hasher.hashString(pass));
-				
-				InformationExpert.setActiveAccount(InformationExpert.getUserAccountWithProfile(userHash));
+				if(userHash == null) {
+					valid = false;
+				}
+				else {
+					InformationExpert.setActiveAccount(InformationExpert.getUserAccountWithProfile(userHash));
+				}
 				
 			} catch (DBFailureException e) {
 				// TODO Auto-generated catch block

@@ -630,6 +630,7 @@ public class FireBaseAdapter {
 			LOGGER.log(Level.FINE, "Updated Profile Image to new Image.");
 			
 		}catch(Exception exc) {
+			exc.printStackTrace();
 			LOGGER.log(Level.SEVERE, "Error- Image upload failed-- Profile picture may have been lost!");
 			throw new DBFailureException();
 		}

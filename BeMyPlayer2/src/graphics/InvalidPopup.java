@@ -14,7 +14,7 @@ public class InvalidPopup {
 		for(String s : warnings) {
 			warning.append(s);
 		}
-		logger.info("Invalid input" + warnings);
+		//logger.info("Invalid input" + warnings);
 		JOptionPane.showConfirmDialog(p, warning, "Invalid input", JOptionPane.DEFAULT_OPTION);
 	}
 	public InvalidPopup(JPanel p, String dbError) {

@@ -2,3 +2,4 @@
 /BeMyPlayer2/.*
 /BeMyPlayer2/target/
 *.class
+*.log

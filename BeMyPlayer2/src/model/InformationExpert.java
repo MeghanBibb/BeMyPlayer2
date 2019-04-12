@@ -26,8 +26,7 @@ public class InformationExpert {
 	private static List<Profile> allProfiles = null;
 	private static List<Match> allMatches = null;
 	private static FireBaseAdapter databaseAdapter = null;
-	
-	
+	private static Account otherUserAccount = null;
 	
 	public static void initializeAdapter() {
 		databaseAdapter = new FireBaseAdapter();
@@ -41,7 +40,6 @@ public class InformationExpert {
 		activeUserAccount = new Account();
 		//otherAccount = null;
 	}
-	
 	
 	
 	public static boolean attemptAddNewAccount(Account a) throws DBFailureException {
@@ -69,7 +67,12 @@ public class InformationExpert {
 		activeUserAccount = a;
 	}
 	
-	
+	public static Account getOtherAccount() {
+		return otherUserAccount;
+	}
+	public static void setOtherAccount(Account a) {
+		otherUserAccount = a ;
+	}
 	public static boolean isActiveUser(Account a) {
 		if(a == activeUserAccount) {
 			return true;
@@ -93,7 +96,15 @@ public class InformationExpert {
 		return activeUserAccount.getUserId();
 	}
 	
-	
+	public static void updateProfileImage(BufferedImage pic, String userId) {
+		try {
+			databaseAdapter.updateProfileImage(pic, userId);
+		} catch (DBFailureException e) {
+			// TODO Auto-generated catch block
+			//logger.warning("failed to update profile picture");
+			System.out.println("failed to update profile picture");
+		}
+	}
 	public static BufferedImage getProfileImage(String userID) throws DBFailureException {
 		return databaseAdapter.getProfileImage(userID);
 	}

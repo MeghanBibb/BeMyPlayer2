@@ -75,7 +75,9 @@ public class GraphicsController {
 	public static void setProfileAccountOther() {
 		profileAccount = OTHER_ACCOUNT;
 	}
-	
+	public static String getProfileString() {
+		return profileAccount;
+	}
 	public static JFrame getMainFrame() {
 		return mainFrame;
 	}
@@ -105,8 +107,9 @@ public class GraphicsController {
 	public static Account getActiveAccount() {
 		return InformationExpert.getActiveAccount();
 	}
-	
-	
+	public static Account getOtherAccount() {
+		return InformationExpert.getOtherAccount();
+	}
 	public static boolean isActiveAccount(Account a) {
 		return InformationExpert.isActiveUser(a);
 	}
@@ -115,11 +118,12 @@ public class GraphicsController {
 		return InformationExpert.getActiveUserID();
 	}
 	
-	
 	public static BufferedImage getProfileImage(String userID) throws DBFailureException {
 		return InformationExpert.getProfileImage(userID);
 	}
-	
+	public static void updateProfileImage(BufferedImage pic, String userId) {
+		InformationExpert.updateProfileImage(pic, userId);
+	}
 	public static void uploadProfileImage(BufferedImage pic, String userID) throws DBFailureException {
 		InformationExpert.addProfileImage(pic, userID);
 	}

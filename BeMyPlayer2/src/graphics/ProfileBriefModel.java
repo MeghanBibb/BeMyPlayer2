@@ -76,6 +76,9 @@ public class ProfileBriefModel extends JPanel{
 				// TODO Auto-generated method stub
 				// set the other account to selected account
 				GraphicsController.setProfileAccountOther();
+				/* 
+				 * InformationExpert.setOtherAccount( ACCOUNT THIS PROFILE REPRESENTS);
+				 */
 				GraphicsController.processPage(PageCreator.PROFILE_PAGE, backPage);
 			}
 			
