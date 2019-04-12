@@ -38,6 +38,7 @@ import com.google.cloud.storage.Blob.BlobSourceOption;
 import com.google.cloud.storage.BlobId;
 import com.google.cloud.storage.Bucket;
 import com.google.cloud.storage.Storage;
+import com.google.cloud.storage.Storage.BlobGetOption;
 import com.google.cloud.storage.StorageOptions;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
@@ -618,8 +619,9 @@ public class FireBaseAdapter {
 			byte[] binData = baos.toByteArray();
 			
 			Bucket defaultBucket = StorageClient.getInstance().bucket(DB_BUCKET_NAME);
-			BlobId blobId = BlobId.of(DB_BUCKET_NAME, FireBaseSchema.toProfileImageIndex(userId));
-			if(storage.delete(blobId)) {
+			Blob picBlob = defaultBucket.get(FireBaseSchema.toProfileImageIndex(userId));
+			
+			if(picBlob.delete()) {
 				LOGGER.log(Level.FINE, "Deleted old Profile Image.");
 			}else {
 				LOGGER.log(Level.SEVERE, "Error- Profile image for given userID does not exist.");
