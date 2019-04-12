@@ -11,13 +11,9 @@ public class SupportView {
     public static void startSupportPage(SupportController supportController, JFrame mainFrame){
         //init Model
         supportController.setSupportModel(new SupportModel());
-
-<<<<<<< HEAD
         Color red = Colors.Red;
         Color yellow = Colors.Yellow;
-=======
-        Color yellow = new Color(254, 195, 123);
->>>>>>> 6d13d53a28710c8d5c9d2403d8443a6aa0f3e9bb
+
 
         //init panel
         supportController.setSupportPanel(new BackgroundPanel(null));
