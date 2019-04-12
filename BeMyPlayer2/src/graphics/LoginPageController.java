@@ -41,12 +41,12 @@ public class LoginPageController extends PageController{
 		LoginPageView.startLoginPage(this,mainFrame);
 	}
 	//	validate login (should check db)
-	public static boolean validateLogin(String user,String pass) {
+	public boolean validateLogin(String user,String pass) {
 		boolean valid = true;
 		List<String> warnings = new ArrayList<>();
 		
 		if(user.equalsIgnoreCase("") || pass.equalsIgnoreCase("")) {
-			warnings.add("Please enter username and password");
+			warnings.add("Please enter username and password\n");
 			valid = false;
 		}else {
 			try {
@@ -54,6 +54,7 @@ public class LoginPageController extends PageController{
 
 				if(userHash == null) {
 					valid = false;
+					warnings.add("invalid username or password\n");
 				}
 				else {
 					InformationExpert.setActiveAccount(InformationExpert.getUserAccountWithProfile(userHash));
@@ -61,8 +62,12 @@ public class LoginPageController extends PageController{
 				
 			} catch (DBFailureException e) {
 				// TODO Auto-generated catch block
+				warnings.add("Database failed to load user\n");
 				valid = false;
 			}
+		}
+		if(valid == false) {
+			InvalidPopup p = new InvalidPopup(this.getLoginPanel(),warnings);
 		}
 		return valid;
 	}
