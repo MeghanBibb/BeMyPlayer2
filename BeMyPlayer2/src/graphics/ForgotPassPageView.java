@@ -114,7 +114,7 @@ public class ForgotPassPageView {
 
 
 		JLabel reenterNewPass = new JLabel("Re-Enter New Password:");
-		reenterNewPass.setBounds(250, 80, 128, 82);
+		reenterNewPass.setBounds(250, 80, 160, 82);
 		reenterNewPass.setForeground(Colors.Yellow);
 		reenterNewPass.setFont(Fonts.getFont((float) 12));
 		forgotPasswordController.getForgotPasswordPageModel().setLblReEnterNewPassword(reenterNewPass);
