@@ -25,6 +25,7 @@ import javax.swing.border.EmptyBorder;
 import firebase.DBFailureException;
 import model.Account;
 import model.InformationExpert;
+import model.ResourceManager;
 
 public class ProfilePageView {
 
@@ -70,13 +71,18 @@ public class ProfilePageView {
 		if(profileController.isActiveAccount()) {
 			JLabel imgLabel = new JLabel("");
 			BufferedImage img = null;
+			
 			try {
 				img = InformationExpert.getProfileImage(InformationExpert.getActiveUserID());
 				
 			} catch (DBFailureException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+			if(img == null) {
+				img = ResourceManager.loadImage("defaultIcon.png");
+			}
+			
 			imgLabel.setIcon(new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
 			imgLabel.setBounds(10, 60, 100, 100);
 			profileController.getProfileModel().setProfileImage(imgLabel);
@@ -87,16 +93,21 @@ public class ProfilePageView {
 			btnEdit.addActionListener(profileController);
 			profileController.getProfileModel().setBtnEdit(btnEdit);
 			profileController.getProfilePanel().add(profileController.getProfileModel().getBtnEdit());
+		
 		} else {
 			JLabel imgLabel = new JLabel("");
 			BufferedImage img = null;
 			try {
 				img = InformationExpert.getProfileImage(profileController.getAccount().getUserId());
-				
 			} catch (DBFailureException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+			if(img == null) {
+				img = ResourceManager.loadImage("defaultIcon.png");
+			}
+			
+			
 			imgLabel.setIcon(new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
 			imgLabel.setBounds(10, 60, 100, 100);
 			profileController.getProfileModel().setProfileImage(imgLabel);

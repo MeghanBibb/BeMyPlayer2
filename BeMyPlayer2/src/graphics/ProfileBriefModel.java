@@ -24,6 +24,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import model.ResourceManager;
+
 public class ProfileBriefModel extends JPanel{
 	ViewMatchesController viewMatchController = new ViewMatchesController();
 	private String backPage;
@@ -110,19 +112,10 @@ public class ProfileBriefModel extends JPanel{
 		RoundRectangle2D r = new RoundRectangle2D.Float(this.getAlignmentX(), this.getAlignmentY(), this.getWidth(), this.getHeight(), 7, 7);
 		g.setClip(r);
 	    super.paintComponent(g);
-	  ////
+	    
 		Image backgroundImage;
-		try {
-			
-			backgroundImage = ImageIO.read(new File("profile_brief_background.png"));
-			g.drawImage(backgroundImage.getScaledInstance(this.getWidth()+20, this.getHeight(), Image.SCALE_SMOOTH), 0, 0, null);
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		backgroundImage = ResourceManager.loadImage("profile_brief_background.png");
+		g.drawImage(backgroundImage.getScaledInstance(this.getWidth()+20, this.getHeight(), Image.SCALE_SMOOTH), 0, 0, null);	
 		
-		
-		////
 	}
 }

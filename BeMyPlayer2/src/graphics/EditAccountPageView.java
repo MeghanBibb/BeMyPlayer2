@@ -23,6 +23,8 @@ import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import model.ResourceManager;
+
 public class EditAccountPageView {
 	
 	public static void launchEditPage(EditAccountPageController editController, JFrame mainFrame) {
@@ -504,7 +506,7 @@ public class EditAccountPageView {
 		//	default icon
 		Image img1;
 
-		img1 = new ImageIcon(editController.getClass().getResource("/defaultIcon.png")).getImage();
+		img1 = ResourceManager.loadImage("defaultIcon.png");
 		
 		
 		//lblNewLabel.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
@@ -568,7 +570,7 @@ public class EditAccountPageView {
 		//	text field
 		JLabel lblAccInfo = new JLabel("<--- Set Avatar");
 		lblAccInfo.setForeground(Colors.Yellow);
-		lblAccInfo.setFont(new Font("Monospaced", Font.BOLD, 20));
+		lblAccInfo.setFont(Fonts.getFont(20f));
 		lblAccInfo.setBounds(300, 0, 215, 115);
 		editController.getEditAccountPanel().add(lblAccInfo);
 		
@@ -640,7 +642,7 @@ public class EditAccountPageView {
 		
 		JLabel descritionPrmpt = new JLabel("Describe yourself:");
 		descritionPrmpt.setForeground(Colors.Yellow);
-		descritionPrmpt.setFont(new Font("Monospaced",Font.BOLD,20));
+		descritionPrmpt.setFont(Fonts.getFont(20f));
 		descritionPrmpt.setBounds(125,190,265,32);
 		editController.getEditAccountPanel().add(descritionPrmpt);
 		
