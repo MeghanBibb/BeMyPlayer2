@@ -43,7 +43,7 @@ public class EditAccountPageView {
 		//init bemyplayer2 label
 		JLabel lblBeMyPlayer = new JLabel("Be My Player 2");
 		lblBeMyPlayer.setForeground(Colors.Yellow);
-		lblBeMyPlayer.setFont(new Font("Monospaced", Font.BOLD, 20));
+		lblBeMyPlayer.setFont(Fonts.getFont((float)20));
 		lblBeMyPlayer.setBounds(160,0,204,69);
 		editController.getEditAccountModel().setLblBeMyPlayer(lblBeMyPlayer);
 		
@@ -51,6 +51,8 @@ public class EditAccountPageView {
 		JButton btnBack = new JButton("Back");
 		btnBack.setBounds(10,10,90,40);
 		btnBack.setBackground(Colors.Yellow);
+		btnBack.setFont(Fonts.getFont((float)12));
+		btnBack.setForeground(Colors.Red);
 		btnBack.setActionCommand(editController.BACK);
 		btnBack.addActionListener(editController);
 		editController.getEditAccountModel().setBtnBack(btnBack);
@@ -58,6 +60,8 @@ public class EditAccountPageView {
 		JButton btnProfile = new JButton("Edit Profile Details");
 		btnProfile.setBounds(160,100,150,40);
 		btnProfile.setBackground(Colors.Yellow);
+		btnProfile.setFont(Fonts.getFont((float)12));
+		btnProfile.setForeground(Colors.Red);
 		btnProfile.setActionCommand(editController.PROFILE);
 		btnProfile.addActionListener(editController);
 		editController.getEditAccountModel().setBtnProfile(btnProfile);
@@ -66,12 +70,16 @@ public class EditAccountPageView {
 		btnQuestionnaire.addActionListener(editController);
 		btnQuestionnaire.setBounds(160,150,150,40);
 		btnQuestionnaire.setBackground(Colors.Yellow);
+		btnQuestionnaire.setFont(Fonts.getFont((float)12));
+		btnQuestionnaire.setForeground(Colors.Red);
 		btnQuestionnaire.setActionCommand(editController.QUESTIONNAIRE);
 		editController.getEditAccountModel().setBtnQuestionnaire(btnQuestionnaire);
 		
 		JButton btnAccount = new JButton("Edit Account Details");
 		btnAccount.setBounds(160,200,150,40);
 		btnAccount.setBackground(Colors.Yellow);
+		btnAccount.setFont(Fonts.getFont((float)12));
+		btnAccount.setForeground(Colors.Red);
 		btnAccount.setActionCommand(editController.ACCOUNT);
 		btnAccount.addActionListener(editController);
 		editController.getEditAccountModel().setBtnAccount(btnAccount);
@@ -79,6 +87,8 @@ public class EditAccountPageView {
 		JButton btnUpgrade = new JButton("Upgrade Account!");
 		btnUpgrade.setBounds(160,250,150,40);
 		btnUpgrade.setBackground(Colors.Yellow);
+		btnUpgrade.setFont(Fonts.getFont((float)12));
+		btnUpgrade.setForeground(Colors.Red);
 		btnUpgrade.setActionCommand(editController.UPGRADE);
 		btnUpgrade.addActionListener(editController);
 		editController.getEditAccountModel().setBtnUpgrade(btnUpgrade);
@@ -115,6 +125,8 @@ public class EditAccountPageView {
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.setBounds(45,345,90,40);
 		btnCancel.setBackground(Colors.Yellow);
+		btnCancel.setFont(Fonts.getFont((float)12));
+		btnCancel.setForeground(Colors.Red);
 		btnCancel.setActionCommand(editController.CANCEL);
 		btnCancel.addActionListener(editController);
 		editController.getEditAccountModel().setBtnCancel(btnCancel);
@@ -123,6 +135,8 @@ public class EditAccountPageView {
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.setBounds(345,345,90,40);
 		btnSubmit.setBackground(Colors.Yellow);
+		btnSubmit.setFont(Fonts.getFont((float)12));
+		btnSubmit.setForeground(Colors.Red);
 		btnSubmit.setActionCommand(editController.SUBMITEDITACCOUNT);
 		btnSubmit.addActionListener(editController);
 		editController.getEditAccountModel().setBtnSubmit(btnSubmit);
@@ -133,6 +147,8 @@ public class EditAccountPageView {
 		JPasswordField pwdEnterPass = new JPasswordField();
 		pwdEnterPass.setHorizontalAlignment(SwingConstants.CENTER);
 		pwdEnterPass.setBounds(45, 165, 128, 32);
+		pwdEnterPass.setFont(Fonts.getFont((float)12));
+		pwdEnterPass.setForeground(Colors.Red);
 		editController.getEditAccountModel().setPwdEnterPass(pwdEnterPass);
 		editController.getEditAccountPanel().add(editController.getEditAccountModel().getPwdEnterPass());
 		
@@ -148,6 +164,9 @@ public class EditAccountPageView {
 		frmtdtxtfldEnterUsername.setHorizontalAlignment(SwingConstants.CENTER);
 		frmtdtxtfldEnterUsername.setText(InformationExpert.getActiveAccount().getAccountProfile().getUsername());
 		frmtdtxtfldEnterUsername.setBounds(45, 95, 128, 32);
+		frmtdtxtfldEnterUsername.setFont(Fonts.getFont((float)12));
+		frmtdtxtfldEnterUsername.setForeground(Colors.Red);
+		frmtdtxtfldEnterUsername.setBackground(Colors.Yellow);
 		editController.getEditAccountModel().setFrmtdtxtfldEnterUsername(frmtdtxtfldEnterUsername);
 		editController.getEditAccountPanel().add(editController.getEditAccountModel().getFrmtdtxtfldEnterUsername());
 		
@@ -506,16 +525,15 @@ public class EditAccountPageView {
 		mainFrame.setContentPane(editController.getEditAccountPanel());
 		
 		//	default icon
-		Image img1;
-
+		Image img1 = null;
 		try {
 			img1 = InformationExpert.getProfileImage(InformationExpert.getActiveUserID());
 		} catch (DBFailureException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
+		}
+		if(img1 == null) {
 			img1 = ResourceManager.loadImage("defaultIcon.png");
 		}
-		
 		
 		//lblNewLabel.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
 		//lblNewLabel.setBounds(75, 25, 150, 150);

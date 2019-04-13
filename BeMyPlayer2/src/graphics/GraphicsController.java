@@ -29,7 +29,8 @@ public class GraphicsController {
 	
 	private static JFrame mainFrame;
 	private static String profileAccount;
-	private static Logger logger = Logger.getLogger(GraphicsController.class.getName());	
+	private static Logger logger = Logger.getLogger(GraphicsController.class.getName());
+	
 	static {
 		try {
 			InputStream configFile = GraphicsController.class.getClassLoader().getResourceAsStream("logger.properties");
@@ -88,7 +89,6 @@ public class GraphicsController {
 		mainFrame = frame;
 	}
 	
-	
 	/*    MAIN METHOD   */
 	
 	public static void main(String[] args) {
@@ -99,8 +99,8 @@ public class GraphicsController {
 		            break;
 		        }
 		    }
-			 } 
-			catch (Exception ex) {ex.printStackTrace();}
+		}
+		catch (Exception ex) {ex.printStackTrace();}
 		
 		// See the updated Account object in the model package...
 		InformationExpert.initialize();
