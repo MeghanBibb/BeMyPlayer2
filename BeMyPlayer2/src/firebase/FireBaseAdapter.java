@@ -744,6 +744,11 @@ public class FireBaseAdapter {
 			throw new DBFailureException();
 		}
 		
+		if(pic == null) {
+			LOGGER.log(Level.WARNING, "Error- Image to be added is null");
+			throw new DBFailureException();
+		}
+		
 		Bucket defaultBucket = StorageClient.getInstance().bucket(DB_BUCKET_NAME);
 		try {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -752,6 +757,7 @@ public class FireBaseAdapter {
 			Blob writtenPic = defaultBucket.create(FireBaseSchema.toProfileImageIndex(userId), 
 											binData, Bucket.BlobTargetOption.doesNotExist());
 			LOGGER.log(Level.FINE, "Added a Profile Image.");
+			
 		}catch(Exception exc) {
 			LOGGER.log(Level.SEVERE, "Error- Image upload failed!");
 			throw new DBFailureException();
@@ -761,6 +767,11 @@ public class FireBaseAdapter {
 	public void updateProfileImage(BufferedImage pic, String userId) throws DBFailureException {
 		if(this.db == null) {
 			LOGGER.log(Level.WARNING, "Error- no database connection");
+			throw new DBFailureException();
+		}
+		
+		if(pic == null) {
+			LOGGER.log(Level.WARNING, "Error- Image to be updated is null");
 			throw new DBFailureException();
 		}
 		
