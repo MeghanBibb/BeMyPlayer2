@@ -32,6 +32,11 @@ public class MessageController extends PageController {
     	}
     	setOtherProf(InformationExpert.getOtherProfile());
     	account = InformationExpert.getActiveAccount();
+        try {
+            currentThread = InformationExpert.getMessageThread(InformationExpert.getActiveUserID(), InformationExpert.getOtherProfile().getUserId());
+        } catch (DBFailureException e) {
+            logger.log(Level.SEVERE, "Could not find thread");
+        }
         MessageView.startMessagePage(this,mainFrame);
     }
     
@@ -125,4 +130,12 @@ public class MessageController extends PageController {
 	public void setOtherProf(Profile otherProf) {
 		this.otherProf = otherProf;
 	}
+
+    public MessageThread getCurrentThread() {
+        return currentThread;
+    }
+
+    public void setCurrentThread(MessageThread currentThread) {
+        this.currentThread = currentThread;
+    }
 }

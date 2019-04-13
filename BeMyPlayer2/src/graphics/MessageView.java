@@ -110,6 +110,20 @@ public class MessageView {
         thread.setForeground(Colors.Red);
         messageController.getMessageModel().setThread(thread);
 
+        for (int i = 0; i < messageController.getCurrentThread().getMessages().size(); i++){
+            String print;
+            if (messageController.getCurrentThread().getMessages().get(i).getSenderId().equals(InformationExpert.getActiveUserID())){
+                thread.append("Me: ");
+                thread.append(messageController.getCurrentThread().getMessages().get(i).getMessage());
+                thread.append("\n");
+            }
+            else {
+                thread.append(InformationExpert.getOtherProfile().getUserId() + ": ");
+                thread.append(messageController.getCurrentThread().getMessages().get(i).getMessage());
+                thread.append("\n");
+            }
+        }
+
         JTextField sendBox = new JTextField();
         sendBox.setBounds(35, 365, 310, 30);
         sendBox.setVisible(true);
