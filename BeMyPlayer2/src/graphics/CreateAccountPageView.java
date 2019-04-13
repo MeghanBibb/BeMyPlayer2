@@ -788,9 +788,9 @@ public class CreateAccountPageView {
 					}
 					capController.getCreateAccountPageModel().setImagePath(f.getAbsolutePath());
 					capController.getCreateAccountPageModel().setProfileImg(img1);
-				}else if(f == null){
+				}else if(f == null || img1 == null){
 					img1 = CreateAccountPageModel.DEFAULT_PROFILE_IMAGE;
-					capController.getCreateAccountPageModel().setImagePath(img1.toString());
+					capController.getCreateAccountPageModel().setProfileImg(img1);
 				}
 				setIcon.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
 				setIcon.setBounds(125, 25, 150, 150);
