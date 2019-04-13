@@ -56,13 +56,13 @@
       <file leaf-file-name="FireBaseAdapter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/firebase/FireBaseAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="758">
-              <caret line="820" column="50" selection-start-line="820" selection-start-column="50" selection-end-line="820" selection-end-column="50" />
+            <state relative-caret-position="367">
+              <caret line="822" column="9" lean-forward="true" selection-start-line="822" selection-start-column="9" selection-end-line="822" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Match.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Match.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/model/Match.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="102">
@@ -74,13 +74,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InformationExpert.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="InformationExpert.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/model/InformationExpert.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="877">
-              <caret line="132" column="8" selection-start-line="132" selection-start-column="8" selection-end-line="132" selection-end-column="8" />
+            <state relative-caret-position="95">
+              <caret line="98" column="48" selection-start-line="98" selection-start-column="48" selection-end-line="98" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#4023#4024#0" expanded="true" />
+                <element signature="e#4048#4049#0" expanded="true" />
+                <element signature="e#4111#4112#0" expanded="true" />
+                <element signature="e#4161#4162#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -117,6 +121,7 @@
       <find>throws DBFailureException</find>
       <find>profileController.getAcc</find>
       <find>getAccount</find>
+      <find>getUser</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -193,13 +198,6 @@
               <item name="BeMyPlayer2" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="firebase" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BeMyPlayer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BeMyPlayer2" type="462c0819:PsiDirectoryNode" />
-              <item name="BeMyPlayer2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="graphics" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BeMyPlayer2" type="b2602c69:ProjectViewProjectNode" />
@@ -385,6 +383,10 @@
           <caret line="102" column="18" selection-start-line="102" selection-start-column="18" selection-end-line="102" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#4023#4024#0" expanded="true" />
+            <element signature="e#4048#4049#0" expanded="true" />
+            <element signature="e#4111#4112#0" expanded="true" />
+            <element signature="e#4161#4162#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -704,16 +706,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/model/InformationExpert.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="877">
-          <caret line="132" column="8" selection-start-line="132" selection-start-column="8" selection-end-line="132" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/firebase/FireBaseSchema.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -786,19 +778,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/firebase/FireBaseAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="758">
-          <caret line="820" column="50" selection-start-line="820" selection-start-column="50" selection-end-line="820" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/model/Match.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/firebase/FireBaseAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="822" column="9" lean-forward="true" selection-start-line="822" selection-start-column="9" selection-end-line="822" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/model/InformationExpert.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="98" column="48" selection-start-line="98" selection-start-column="48" selection-end-line="98" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4023#4024#0" expanded="true" />
+            <element signature="e#4048#4049#0" expanded="true" />
+            <element signature="e#4111#4112#0" expanded="true" />
+            <element signature="e#4161#4162#0" expanded="true" />
           </folding>
         </state>
       </provider>

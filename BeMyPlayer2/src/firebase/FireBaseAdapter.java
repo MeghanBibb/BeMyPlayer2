@@ -815,15 +815,42 @@ public class FireBaseAdapter {
 			throw new DBFailureException();
 		}
 
-		try{
-			ApiFuture<DocumentSnapshot> getClientMatch =
-					db.collection(FireBaseSchema.MATCHES_TABLE)
-							.document(clientProfile.getUserId())
-							.collection(FireBaseSchema.MATCHES_TABLE_COLLECTION)
-							.document(otherProfile.getUserId())
-							.get();
+		String msgID = null;
 
+		//doesnt allow for both arguments to be equals
+		if (userId.compareTo(otherUserId) < 0){
+			msgID = userId.concat(otherUserId);
 		}
+		else if (userId.compareTo(otherUserId) > 0){
+			msgID = otherUserId.concat(userId);
+		}
+
+		ApiFuture<DocumentSnapshot> fetchThread =
+				db.collection(FireBaseSchema.MESSAGE_THREADS_TABLE)
+						.document(msgID)
+						.get();
+
+		MessageThread msgThread = new MessageThread();
+
+		try {
+			DocumentSnapshot threadResult = fetchThread.get();
+			if(!threadResultResult.exists()) {
+				LOGGER.log(Level.FINE,"Could not find match Thread");
+				return null;
+			}else {
+				DBDocumentPackage threadPackage = new DBDocumentPackage(msgID, threadResult.getData());
+				msgThread.initializeFromPackage(threadPackage);
+			}
+
+		} catch (InterruptedException e1) {
+			LOGGER.log(Level.SEVERE,"Error- Thread query interrupted.");
+			throw new DBFailureException();
+		} catch (ExecutionException e1) {
+			LOGGER.log(Level.SEVERE,"Error- Execution Exception thrown while querying thread.");
+			throw new DBFailureException();
+		}
+
+		return msgThread;
 	}
 
 }
