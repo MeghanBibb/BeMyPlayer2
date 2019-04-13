@@ -10,8 +10,10 @@ import java.awt.*;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Logger;
 
 public class MessageView {
+	private static Logger logger = Logger.getLogger(MessageView.class.getName());
     public static void startMessagePage(MessageController messageController, JFrame mainFrame) {
         //init Model
         messageController.setMessageModel(new MessageModel());
@@ -37,7 +39,7 @@ public class MessageView {
 	        messageController.getMessageModel().setProfileImage(imgLabel);
 		} catch (DBFailureException e) {
 			// TODO Auto-generated catch block
-			System.out.println("data base failure");
+			logger.warning("database failed to get profile image from profile" + messageController.getOtherProf().getUserId());
 		}
         
 
