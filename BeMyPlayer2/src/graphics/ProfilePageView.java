@@ -40,12 +40,7 @@ public class ProfilePageView {
 		profileController.getProfilePanel().setMaximumSize(new Dimension(500,400));
 		mainFrame.setContentPane(profileController.getProfilePanel());
 		
-		//init image (ideally load this from user)
 		
-		/**
-		 * TO DO: load image from user/database
-		 */
-		/* fix for active vs inactive user */
 		
 		
 		
@@ -175,13 +170,21 @@ public class ProfilePageView {
 		
 		//init description
 		JLabel description = new JLabel();
-		//description.setText("<HTML>This is a sample description.<br> Very nice.</HTML>");
 		if(profileController.isActiveAccount()) {
-			description.setText(InformationExpert.getActiveAccount().getAccountProfile().getDescription());
+			String desc = "<HTML>";
+			desc += InformationExpert.getActiveAccount().getAccountProfile().getDescription();
+			desc = desc.replace("\n", "<br>");
+			desc += "</HTML>";
+			description.setText(desc);
 		}
 		else {
-			description.setText(profileController.getProfile().getDescription());
+			String desc = "<HTML>";
+			desc += profileController.getProfile().getDescription();
+			desc = desc.replace("\n", "<br>");
+			desc += "</HTML>";
+			description.setText(desc);
 		}
+		
 		
 		description.setBounds(10, 170, 250, 140);
 		description.setOpaque(false);
