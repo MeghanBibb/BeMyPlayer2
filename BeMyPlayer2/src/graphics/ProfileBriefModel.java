@@ -37,7 +37,7 @@ public class ProfileBriefModel extends JPanel{
 	ViewMatchesController viewMatchController = new ViewMatchesController();
 	private String backPage;
 	
-	public ProfileBriefModel(Profile profile, Rectangle rect){
+	public ProfileBriefModel(Profile profile, Rectangle rect, String backPage){
 
 			
 			CircularImage setIcon = null;
@@ -68,12 +68,15 @@ public class ProfileBriefModel extends JPanel{
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					// TODO Auto-generated method stub
-					// set the other account to selected account
 					GraphicsController.setProfileAccountOther();
-					/* 
-					 * InformationExpert.setOtherAccount( ACCOUNT THIS PROFILE REPRESENTS);
-					 */
+					 
+					try {
+						// HARD CODED, NEED TO LOAD THE NECESSARY PROFILE HERE
+						InformationExpert.setOtherProfile(profile.getUserId());
+					} catch (DBFailureException e1) {
+						System.out.println("NEED LOGGER: CANT LOAD PROFILE");
+					}
+					 
 					GraphicsController.processPage(PageCreator.PROFILE_PAGE, backPage);
 				}
 				
