@@ -102,16 +102,22 @@ public class MessageView {
         btnSend.addActionListener(messageController);
         messageController.getMessageModel().setBtnSend(btnSend);
 
+        //  init Thread scroll pane
+        JScrollPane tPane = new JScrollPane();
+        tPane.createVerticalScrollBar();
+        tPane.setVisible(true);
+        tPane.setBounds(35, 165, 400, 200);
+
         //	init fields and listeners
         JTextArea thread = new JTextArea();
         thread.setBounds(35, 165, 400, 200);
         thread.setVisible(true);
+        thread.setEditable(false);
         thread.setFont(Fonts.getFont((float) 12));
         thread.setForeground(Colors.Red);
         messageController.getMessageModel().setThread(thread);
 
         for (int i = 0; i < messageController.getCurrentThread().getMessages().size(); i++){
-            String print;
             if (messageController.getCurrentThread().getMessages().get(i).getSenderId().equals(InformationExpert.getActiveUserID())){
                 thread.append("Me: ");
                 thread.append(messageController.getCurrentThread().getMessages().get(i).getMessage());
@@ -123,6 +129,8 @@ public class MessageView {
                 thread.append("\n");
             }
         }
+
+        tPane.add(thread);
 
         JTextField sendBox = new JTextField();
         sendBox.setBounds(35, 365, 310, 30);
@@ -136,7 +144,8 @@ public class MessageView {
         messageController.getMessagePanel().add(messageController.getMessageModel().getLblGender());
         messageController.getMessagePanel().add(messageController.getMessageModel().getBtnSend());
         messageController.getMessagePanel().add(messageController.getMessageModel().getBack());
-        messageController.getMessagePanel().add(messageController.getMessageModel().getThread());
+        //messageController.getMessagePanel().add(messageController.getMessageModel().getThread());
+        messageController.getMessagePanel().add(tPane);
         messageController.getMessagePanel().add(messageController.getMessageModel().getSendBox());
 
         //pack and set visible
