@@ -69,7 +69,7 @@ public class ProfileBriefModel extends JPanel{
 		this.setBackground(yellow);
 		
 		viewProfile.setBackground(red);
-		viewProfile.setBounds(this.getWidth()/4,140, this.getWidth()/2, 75);
+		viewProfile.setBounds(this.getWidth()/4,120, this.getWidth()/2, 75);
 		viewProfile.setForeground(Colors.Yellow);
 		viewProfile.setFont(Fonts.getFont((float) 12));
 		viewProfile.addActionListener(new ActionListener() {

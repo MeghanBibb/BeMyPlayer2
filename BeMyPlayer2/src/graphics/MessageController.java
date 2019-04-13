@@ -71,7 +71,7 @@ public class MessageController extends PageController {
         //	CHECK FIELDS ARE NOT EMPTY OR SQL COMMANDS TO DELETE OUR TABLES
         //	VALIDATION FROM CREATE ACCOUNT PAGE + DATABASE VALIDATION
         List<String> warnings = new ArrayList<>();
-        if(this.messageModel.getThread().getText().equals("")) {
+        if(this.messageModel.getSendBox().getText().equals("")) {
             valid = false;
             warnings.add("Please enter a description\n");
         }
