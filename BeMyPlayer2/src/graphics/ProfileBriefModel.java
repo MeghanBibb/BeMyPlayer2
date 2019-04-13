@@ -28,8 +28,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import firebase.DBFailureException;
-import model.*;
-import model.Profile.*;
+
+import model.Profile;
+import model.InformationExpert;
 import model.ResourceManager;
 
 public class ProfileBriefModel extends JPanel{
@@ -161,10 +162,16 @@ public class ProfileBriefModel extends JPanel{
 				// TODO Auto-generated method stub
 				// set the other account to selected account
 				GraphicsController.setProfileAccountOther();
-				/* 
-				 * InformationExpert.setOtherAccount( ACCOUNT THIS PROFILE REPRESENTS);
-				 */
+				 /*
+				try {
+					 HARD CODED, NEED TO LOAD THE NECESSARY PROFILE HERE
+					InformationExpert.setOtherProfile("LfiDeQ0WNQEnNyZ1c94J");
+				} catch (DBFailureException e1) {
+					System.out.println("NEED LOGGER: CANT LOAD PROFILE");
+				}
+				 
 				GraphicsController.processPage(PageCreator.PROFILE_PAGE, backPage);
+				*/
 			}
 			
 		});

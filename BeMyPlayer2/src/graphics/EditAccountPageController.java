@@ -15,6 +15,7 @@ import firebase.Hasher;
 import model.Account;
 import model.InformationExpert;
 import model.Profile;
+import model.ResourceManager;
 
 public class EditAccountPageController extends PageController{
 	
@@ -103,10 +104,11 @@ public class EditAccountPageController extends PageController{
 					try {
 						InformationExpert.updateAccount(InformationExpert.getActiveAccount());
 						InformationExpert.updateProfile(InformationExpert.getActiveAccount().getAccountProfile());
-						//InformationExpert.addProfileImage(InformationExpert.getActiveAccount().getAccountProfile().getProfilePicture(), InformationExpert.getActiveUserID());
-						/*GraphicsController.uploadProfileImage(InformationExpert.getActiveAccount().getAccountProfile().getProfilePicture()
-								, InformationExpert.getActiveUserID());*/
-						InformationExpert.updateProfileImage(this.getEditAccountModel().getProfileImg(), InformationExpert.getActiveUserID());
+						if(this.getEditAccountModel().getProfileImg() == null) {
+							InformationExpert.updateProfileImage(ResourceManager.loadImage("defaultIcon.png"), InformationExpert.getActiveUserID());
+						} else {
+							InformationExpert.updateProfileImage(this.getEditAccountModel().getProfileImg(), InformationExpert.getActiveUserID());
+						}
 					} catch (DBFailureException e1) {
 						// TODO Auto-generated catch block
 						logger.warning("Database error!");
@@ -153,24 +155,20 @@ public class EditAccountPageController extends PageController{
 		 */
 		//	VALIDATIONS
 		List<String> warnings = new ArrayList<>();
-		if(this.editAccountModel.getFrmtdtxtfldEnterUsername().getText().equalsIgnoreCase("")) {
-			valid = false;
-			warnings.add("Invalid username\n");
-		}
 		
 		if(this.editAccountModel.getPwdEnterPass().getText().equalsIgnoreCase("")) {
-			valid = false;
-			warnings.add("Password cannot be empty\n");
-		}
-		
-		if(this.editAccountModel.getPwdValidatePass().getText().equalsIgnoreCase("")) {
-			valid = false;
-			warnings.add("Password confirmation cannot be empty\n");
-		}
-		
-		if(!this.editAccountModel.getPwdEnterPass().getText().equals(this.editAccountModel.getPwdValidatePass().getText())) {
-			valid = false;
-			warnings.add("Passwords must be identical\n");
+			if(!this.editAccountModel.getPwdValidatePass().getText().equalsIgnoreCase("")) {
+				valid = false;
+				warnings.add("Empty password field but non-empty validation field\n");
+			}
+		} else {
+			if(this.editAccountModel.getPwdValidatePass().getText().equals("")) {
+				valid = false;
+				warnings.add("Need to validate password\n");
+			} else if(!this.editAccountModel.getPwdValidatePass().getText().equals(this.editAccountModel.getPwdEnterPass().getText())) {
+				valid = false;
+				warnings.add("Passwords do not match\n");
+			}
 		}
 		if(this.editAccountModel.getSecQA().getText().equalsIgnoreCase("")) {
 			valid = false;
@@ -182,10 +180,6 @@ public class EditAccountPageController extends PageController{
 			// TODO Auto-generated catch block
 			valid = false;
 			warnings.add("invalid date: please enter dd/mm/yyyy\n");
-		}
-		if(this.editAccountModel.getAge().getText().equalsIgnoreCase("")) {
-			valid = false;
-			warnings.add("invalid date:\n");
 		}
 		if(valid == false) {
 			InvalidPopup p  = new InvalidPopup(this.getEditAccountPanel(),warnings);
