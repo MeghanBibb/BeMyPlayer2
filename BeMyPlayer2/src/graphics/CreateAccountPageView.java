@@ -738,7 +738,7 @@ public class CreateAccountPageView {
 		if(visited == true) {
 			img1 = capController.getCreateAccountPageModel().getProfileImg();
 			if(img1 == null) {
-				img1 = ResourceManager.loadImage("defaultIcon");
+				img1 = ResourceManager.loadImage("defaultIcon.png");
 			}
 		}
 		else {

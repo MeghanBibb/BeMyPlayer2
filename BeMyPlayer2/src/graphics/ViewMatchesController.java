@@ -13,7 +13,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import firebase.DBFailureException;
 import model.Account;
+import model.InformationExpert;
 
 public class ViewMatchesController extends PageController{
 //	action commands 	
@@ -47,12 +49,18 @@ public class ViewMatchesController extends PageController{
 		else if(e.getActionCommand() == PROFILE) {
 			String text = ((JButton) e.getSource()).getName();
 			logger.info("launch profile brief for: " + text);
+			try {
+				InformationExpert.setOtherProfile(text);
+			} catch (DBFailureException e1) {
+				// TODO Auto-generated catch block
+				logger.warning("database failed to load profile");
+			}
 			if(brief == null) {
-				brief = new ProfileBriefModel(text,new Rectangle(250,120,215,245),PageCreator.MATCHES_PAGE);
+				brief = new ProfileBriefModel(InformationExpert.getOtherProfile(),new Rectangle(250,120,215,245),PageCreator.MATCHES_PAGE);
 			}
 			else {
 				this.copyFrame.remove(brief);
-				brief = new ProfileBriefModel(text,new Rectangle(250,120,215,245),PageCreator.MATCHES_PAGE);
+				brief = new ProfileBriefModel(InformationExpert.getOtherProfile(),new Rectangle(250,120,215,245),PageCreator.MATCHES_PAGE);
 			}
 			this.copyFrame.add(brief);
 			this.copyFrame.repaint();

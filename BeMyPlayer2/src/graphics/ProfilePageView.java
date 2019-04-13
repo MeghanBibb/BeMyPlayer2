@@ -11,6 +11,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Logger;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -28,7 +29,7 @@ import model.InformationExpert;
 import model.ResourceManager;
 
 public class ProfilePageView {
-
+	private static Logger logger = Logger.getLogger(ProfilePageView.class.getName());
 	public static void startProfilePage(ProfilePageController profileController, JFrame mainFrame) {
 		//init Model
 		profileController.setProfileModel(new ProfilePageModel());
@@ -39,9 +40,6 @@ public class ProfilePageView {
 		profileController.getProfilePanel().setPreferredSize(new Dimension(500,400));
 		profileController.getProfilePanel().setMaximumSize(new Dimension(500,400));
 		mainFrame.setContentPane(profileController.getProfilePanel());
-		
-		
-		
 		
 		
 		//init buttons
@@ -73,7 +71,7 @@ public class ProfilePageView {
 				img = InformationExpert.getProfileImage(InformationExpert.getActiveUserID());
 				
 			} catch (DBFailureException e) {
-				e.printStackTrace();
+				logger.warning("failed to load profile picture for " + InformationExpert.getActiveUserID());
 				img = ResourceManager.loadImage("defaultIcon.png");
 			}
 			
@@ -100,7 +98,7 @@ public class ProfilePageView {
 			try {
 				img = InformationExpert.getProfileImage(profileController.getProfile().getUserId());
 			} catch (DBFailureException e) {
-				e.printStackTrace();
+				logger.warning("failed to load profile picture for " + InformationExpert.getOtherProfile().getUserId());
 			}
 			
 			if(img == null) {

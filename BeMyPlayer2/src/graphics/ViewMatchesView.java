@@ -15,6 +15,7 @@ import java.awt.event.ItemListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
@@ -33,9 +34,14 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import firebase.DBFailureException;
 import model.Account;
+import model.InformationExpert;
+import model.Profile;
 
 public class ViewMatchesView {
+	private static Logger logger = Logger.getLogger(ViewMatchesView.class.getName());
+	
 	public static void startViewMatches(ViewMatchesController viewMatchController, JFrame mainFrame,Account a) {
 		
 		viewMatchController.setViewMatchesModel(new ViewMatchesModel());
@@ -89,68 +95,50 @@ public class ViewMatchesView {
         		//	generate new match request pull 
         		if(viewMatchController.getViewMatchesModel().getMatchtype().getSelectedItem().toString().equalsIgnoreCase("Love Matches")) {
         			profilePicPanel.removeAll();
-        			//a.getLoveMatches();
-        			/////	FOR DEMO PURPOSES
-        			final JButton setIcon = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
-        			setIcon.setLayout(new BorderLayout());
-        			setIcon.setName("Dr.Booth");
-        			setIcon.add(new JLabel("Dr.Booth"),BorderLayout.PAGE_END);
-        			final JButton setIcon2 = new JButton(new ImageIcon(new ImageIcon(img2).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
-        			setIcon2.setLayout(new BorderLayout());
-        			setIcon2.setName("Prof.Fry");
-        			setIcon2.add(new JLabel("Prof.Fry"),BorderLayout.PAGE_END);
-        			final JButton setIcon3 = new JButton(new ImageIcon(new ImageIcon(img3).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
-        			setIcon3.setLayout(new BorderLayout());
-        			setIcon3.setName("Dr.Cerny");
-        			setIcon3.add(new JLabel("Dr.Cerny"),BorderLayout.PAGE_END);
-        			setIcon.setActionCommand("profileclick");
-        			setIcon.addActionListener(viewMatchController);
-        			setIcon2.setActionCommand("profileclick");
-        			setIcon2.addActionListener(viewMatchController);
-        			setIcon3.setActionCommand("profileclick");
-        			setIcon3.addActionListener(viewMatchController);
-        			profilePicPanel.add(setIcon);
-        			profilePicPanel.add(setIcon2);
-        			profilePicPanel.add(setIcon3);
-        			profilePicPanel.validate();
+        			
         			///	ACTUAL SOLUTION
-        			/*
-        			List<JButton> pics = ProfilePicGenerator.getLoveList(a,viewMatchController);
+        			
+        			List<JButton> pics = ProfilePicGenerator.getLoveList(viewMatchController);
+        			if(pics.isEmpty()) {
+        		    	JLabel noMatchlbl1 = new JLabel("Your princess is in another castle");
+        			    noMatchlbl1.setFont(Fonts.getFont(9f));
+        			    noMatchlbl1.setForeground(Colors.Red);
+        			    noMatchlbl1.setBounds(50,160,260,69);
+        			    viewMatchController.getViewMatchesPanel().add(noMatchlbl1);
+        				
+        				JLabel noMatchlbl2 = new JLabel("Get back out there and find a match");
+        				noMatchlbl2.setFont(Fonts.getFont(9f));
+        				noMatchlbl2.setForeground(Colors.Red);
+        				noMatchlbl2.setBounds(50,175,260,69);
+        				viewMatchController.getViewMatchesPanel().add(noMatchlbl2);
+        		    }
         			for(JButton icon: pics) {
         				profilePicPanel.add(icon);
         			}
-        			profilePicPanel.validate();*/
+        			profilePicPanel.validate();
         		}
         		else {
         			profilePicPanel.removeAll();
-        			///	FOR DEMO PURPOSES
-        			final JButton setIcon = new JButton(new ImageIcon(new ImageIcon(img4).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
-        			setIcon.setLayout(new BorderLayout());
-        			setIcon.setName("Dr.Fendt");
-        			setIcon.add(new JLabel("Dr.Fendt"),BorderLayout.PAGE_END);
-        			final JButton setIcon2 = new JButton(new ImageIcon(new ImageIcon(img5).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
-        			setIcon2.setLayout(new BorderLayout());
-        			setIcon2.setName("Dr.Hammerly");
-        			setIcon2.add(new JLabel("Dr.Hammerly"),BorderLayout.PAGE_END);
-        			final JButton setIcon3 = new JButton(new ImageIcon(new ImageIcon(img6).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
-        			setIcon3.setLayout(new BorderLayout());
-        			setIcon3.setName("Prof.Aars");
-        			setIcon3.add(new JLabel("Prof.Aars"),BorderLayout.PAGE_END);
-        			setIcon.setActionCommand("profileclick");
-        			setIcon.addActionListener(viewMatchController);
-        			setIcon2.setActionCommand("profileclick");
-        			setIcon2.addActionListener(viewMatchController);
-        			setIcon3.setActionCommand("profileclick");
-        			setIcon3.addActionListener(viewMatchController);
-        			profilePicPanel.add(setIcon);
-        			profilePicPanel.add(setIcon2);
-        			profilePicPanel.add(setIcon3);
+        			
         			///	ACTUAL SOLUTION
-        			/*
-        			List<JButton> pics = ProfilePicGenerator.getFriendList(a,viewMatchController);
+        			
+        			List<JButton> pics = ProfilePicGenerator.getFriendList(viewMatchController);
+        			if(pics.isEmpty()) {
+        		    	JLabel noMatchlbl1 = new JLabel("Your princess is in another castle");
+        			    noMatchlbl1.setFont(Fonts.getFont(9f));
+        			    noMatchlbl1.setForeground(Colors.Red);
+        			    noMatchlbl1.setBounds(50,160,260,69);
+        			    viewMatchController.getViewMatchesPanel().add(noMatchlbl1);
+        				
+        				JLabel noMatchlbl2 = new JLabel("Get back out there and find a match");
+        				noMatchlbl2.setFont(Fonts.getFont(9f));
+        				noMatchlbl2.setForeground(Colors.Red);
+        				noMatchlbl2.setBounds(50,175,260,69);
+        				viewMatchController.getViewMatchesPanel().add(noMatchlbl2);
+        		    }
         			for(JButton icon: pics) {
         				profilePicPanel.add(icon);
-        			}*/
+        			}
         			profilePicPanel.validate();
         		}
         	}
@@ -165,38 +153,25 @@ public class ViewMatchesView {
 		
 		//	send type request to match adapter to pull list of matches for account
 		
-		//	load temp profile on the right side - > megan's file
-		//	245,75,
-		
-		////////DEMO PURPOSES ONLY
-		final JButton setIcon = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
-		setIcon.setLayout(new BorderLayout());
-		setIcon.setName("Dr.Booth");
-		setIcon.add(new JLabel("Dr.Booth"),BorderLayout.PAGE_END);
-		setIcon.setActionCommand("profileclick");
-		setIcon.addActionListener(viewMatchController);
-		final JButton setIcon2 = new JButton(new ImageIcon(new ImageIcon(img2).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
-		setIcon2.setLayout(new BorderLayout());
-		setIcon2.setName("Prof.Fry");
-		setIcon2.add(new JLabel("Prof.Fry"),BorderLayout.PAGE_END);
-		setIcon2.setActionCommand("profileclick");
-		setIcon2.addActionListener(viewMatchController);
-		final JButton setIcon3 = new JButton(new ImageIcon(new ImageIcon(img3).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
-		setIcon3.setLayout(new BorderLayout());
-		setIcon3.setName("Dr.Cerny");
-		setIcon3.add(new JLabel("Dr.Cerny"),BorderLayout.PAGE_END);
-		setIcon3.setActionCommand("profileclick");
-		setIcon3.addActionListener(viewMatchController);
-		profilePicPanel.add(setIcon);
-		profilePicPanel.add(setIcon2);
-		profilePicPanel.add(setIcon3);
-		
 		////	real implementation
-		/*
-		List<JButton> pics = ProfilePicGenerator.getFriendList(a,viewMatchController);
+		/// 	REMOVE WHEN MATCHING IS DONE////////////////////////
+		List<Profile> temp = new ArrayList<>();
+		try {
+			InformationExpert.setOtherProfile("wNHOZhYxEjUMWsFFvqbR");
+		} catch (DBFailureException e1) {
+			// TODO Auto-generated catch block
+			logger.warning("failed to load");
+		}
+		temp.add(InformationExpert.getOtherProfile());
+		
+		InformationExpert.getClientModel().setFriendMatches(temp);
+		InformationExpert.getClientModel().setLoveMatches(temp);
+		
+		//////////////////////////////////////////////////////////
+		List<JButton> pics = ProfilePicGenerator.getFriendList(viewMatchController);
 		for(JButton icon: pics) {
 			profilePicPanel.add(icon);
-		}*/
+		}
 		
 		//	SCROLLPANE
 	    JScrollPane scrollPane = new JScrollPane(profilePicPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -204,20 +179,20 @@ public class ViewMatchesView {
 	    Color black = new Color(0,0,0);
 	    
 	    //	if empty
-	    /*
-	    JLabel noMatchlbl1 = new JLabel("Your princess is in another castle");
-	    noMatchlbl1.setFont(new Font("Monospaced", Font.BOLD, 9));
-	    noMatchlbl1.setForeground(black);
-	    noMatchlbl1.setBounds(50,160,260,69);
-	    viewMatchController.getViewMatchesPanel().add(noMatchlbl1);
-		
-		JLabel noMatchlbl2 = new JLabel("Get back out there and find a match");
-		noMatchlbl2.setFont(new Font("Monospaced", Font.BOLD, 9));
-		noMatchlbl2.setForeground(black);
-		noMatchlbl2.setBounds(50,175,260,69);
-		viewMatchController.getViewMatchesPanel().add(noMatchlbl2);
-		*/
-		
+	    if(pics.isEmpty()) {
+	    	JLabel noMatchlbl1 = new JLabel("Your princess is in another castle");
+		    noMatchlbl1.setFont(Fonts.getFont(9f));
+		    noMatchlbl1.setForeground(Colors.Red);
+		    noMatchlbl1.setBounds(40,160,260,69);
+		    viewMatchController.getViewMatchesPanel().add(noMatchlbl1);
+			
+			JLabel noMatchlbl2 = new JLabel("Get back out there and find a match");
+			noMatchlbl2.setFont(Fonts.getFont(9f));
+			noMatchlbl2.setForeground(Colors.Red);
+			noMatchlbl2.setBounds(40,175,260,69);
+			viewMatchController.getViewMatchesPanel().add(noMatchlbl2);
+	    }
+	   
 		viewMatchController.getViewMatchesPanel().add(scrollPane);
 	    
 	    mainFrame.pack();
