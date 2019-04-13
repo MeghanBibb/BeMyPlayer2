@@ -131,7 +131,6 @@ public class InformationExpert {
 		databaseAdapter.updateProfile(p);
 	}
 
-
 	public static ClientModel getClientModel() {
 		return clientModel;
 	}
