@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 import model.Account;
 import model.InformationExpert;
+import model.Profile;
 
 public class ProfilePageController extends PageController {
 	
@@ -22,19 +23,18 @@ public class ProfilePageController extends PageController {
 	// get view and jframe
 	private ProfilePageModel profileModel = null;
 	private JPanel profilePanel = null;
-	private Account a;
+	private Profile a;
 	
 	public void launchPage(JFrame mainFrame, String back) {
 		if(back != null) {
 			backPage = back;
 		}
 		if(GraphicsController.getProfileString().equalsIgnoreCase("active account")){
-			a = InformationExpert.getActiveAccount();
+			a = InformationExpert.getActiveAccount().getAccountProfile();
 		}
 		else if(GraphicsController.getProfileString().equalsIgnoreCase("other account")){
 			System.out.println("other account");
-			a = InformationExpert.getActiveAccount();//temp since no loading profiles yet
-			/*this is the working solution *///a = GraphicsController.getOtherAccount();
+			a = InformationExpert.getOtherProfile();
 		}
 		ProfilePageView.startProfilePage(this,mainFrame);
 	}
@@ -43,7 +43,7 @@ public class ProfilePageController extends PageController {
 		return InformationExpert.isActiveUser(a);
 	}
 	
-	public Account getAccount() {
+	public Profile getProfile() {
 		return a;
 	}
 

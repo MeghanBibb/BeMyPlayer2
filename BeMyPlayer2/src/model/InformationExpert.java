@@ -25,6 +25,7 @@ public class InformationExpert {
 	private static Account activeUserAccount = null;
 	private static ClientModel clientModel = null;
 	private static FireBaseAdapter databaseAdapter = null;
+	private static Profile otherProfile = null;
 	
 	public static void initialize() {
 		databaseAdapter = new FireBaseAdapter();
@@ -37,6 +38,14 @@ public class InformationExpert {
 
 		activeUserAccount = new Account();
 		//otherAccount = null;
+	}
+	
+	public static Profile getOtherProfile() {
+		return otherProfile;
+	}
+	
+	public static void setOtherProfile(String userID) throws DBFailureException {
+		otherProfile = databaseAdapter.getProfile(userID);
 	}
 	
 	
@@ -67,6 +76,13 @@ public class InformationExpert {
 	
 	public static boolean isActiveUser(Account a) {
 		if(a == activeUserAccount) {
+			return true;
+		}
+		return false;
+	}
+	
+	public static boolean isActiveUser(Profile a) {
+		if (a == activeUserAccount.getAccountProfile()) {
 			return true;
 		}
 		return false;
