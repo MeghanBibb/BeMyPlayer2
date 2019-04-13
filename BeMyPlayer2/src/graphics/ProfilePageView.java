@@ -79,7 +79,7 @@ public class ProfilePageView {
 		 */
 		
 		//	pull information for fields from account passed 
-		if(profileController.isActiveAccount()) {
+		//if(profileController.isActiveAccount()) {
 			JButton btnEdit = new JButton("Edit Profile");
 			btnEdit.setBounds(390,10,100,40);
 			btnEdit.setActionCommand(profileController.EDIT_ACCOUNT);
@@ -87,7 +87,7 @@ public class ProfilePageView {
 			btnEdit.addActionListener(profileController);
 			profileController.getProfileModel().setBtnEdit(btnEdit);
 			profileController.getProfilePanel().add(profileController.getProfileModel().getBtnEdit());
-		} else {
+		//} else {
 			JButton btnBlock = new JButton("Block");
 			btnBlock.setBounds(300, 350, 90, 40);
 			btnBlock.setActionCommand(profileController.BLOCK);
@@ -103,7 +103,7 @@ public class ProfilePageView {
 			btnMessage.addActionListener(profileController);
 			profileController.getProfileModel().setBtnMessage(btnMessage);
 			profileController.getProfilePanel().add(profileController.getProfileModel().getBtnMessage());
-		}
+		//}
 		
 		//init Labels
 		JLabel lblBeMyPlayer = new JLabel("Be My Player 2");

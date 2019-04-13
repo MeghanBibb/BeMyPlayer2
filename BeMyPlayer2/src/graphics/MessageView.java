@@ -22,13 +22,13 @@ public class MessageView {
         mainFrame.setContentPane(messageController.getMessagePanel());
 
         JLabel imgLabel = new JLabel("");
-        Image img = new ImageIcon(messageController.getClass().getResource("/defaultIcon.png")).getImage();
-        imgLabel.setIcon(new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
+        ImageIcon img = new ImageIcon("BeMyPlayer2/img/defaultIcon.png");
+        imgLabel.setIcon(img);
         imgLabel.setBounds(35, 60, 100, 100);
         messageController.getMessageModel().setProfileImage(imgLabel);
 
         JLabel lblUsername = new JLabel();
-        lblUsername.setText(messageController.getAccount().getAccountProfile().getUsername());
+        lblUsername.setText("Dad");//messageController.getAccount().getAccountProfile().getUsername());
         lblUsername.setFont(new Font("Impact", Font.PLAIN,15));
         lblUsername.setForeground(Colors.Yellow);
         lblUsername.setBounds(150,35,90,90);
@@ -41,7 +41,7 @@ public class MessageView {
 		Date nowDate = java.sql.Date.valueOf(now);
 		Calendar cnow = Calendar.getInstance();
 		cnow.setTime(nowDate);
-		Date bday = messageController.getAccount().getAccountProfile().getDateOB();
+		Date bday = new Date();//messageController.getAccount().getAccountProfile().getDateOB();
 		Calendar cbday = Calendar.getInstance();
 		cbday.setTime(bday);
 		int diff = cnow.get(Calendar.YEAR) - cbday.get(Calendar.YEAR);
@@ -54,7 +54,7 @@ public class MessageView {
         messageController.getMessageModel().setLblAge(lblAge);
 
         JLabel lblGender = new JLabel();
-        lblGender.setText(messageController.getAccount().getAccountProfile().getGender());
+        lblGender.setText("Helicopter");//messageController.getAccount().getAccountProfile().getGender());
         lblGender.setForeground(Colors.Yellow);
         lblGender.setBounds(150,85,90,90);
         messageController.getMessageModel().setLblGender(lblGender);
