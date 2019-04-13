@@ -154,6 +154,7 @@ public class ViewMatchesView {
 		//	send type request to match adapter to pull list of matches for account
 		
 		////	real implementation
+		/// 	REMOVE WHEN MATCHING IS DONE////////////////////////
 		List<Profile> temp = new ArrayList<>();
 		try {
 			InformationExpert.setOtherProfile("wNHOZhYxEjUMWsFFvqbR");
@@ -166,6 +167,7 @@ public class ViewMatchesView {
 		InformationExpert.getClientModel().setFriendMatches(temp);
 		InformationExpert.getClientModel().setLoveMatches(temp);
 		
+		//////////////////////////////////////////////////////////
 		List<JButton> pics = ProfilePicGenerator.getFriendList(viewMatchController);
 		for(JButton icon: pics) {
 			profilePicPanel.add(icon);
@@ -181,13 +183,13 @@ public class ViewMatchesView {
 	    	JLabel noMatchlbl1 = new JLabel("Your princess is in another castle");
 		    noMatchlbl1.setFont(Fonts.getFont(9f));
 		    noMatchlbl1.setForeground(Colors.Red);
-		    noMatchlbl1.setBounds(50,160,260,69);
+		    noMatchlbl1.setBounds(40,160,260,69);
 		    viewMatchController.getViewMatchesPanel().add(noMatchlbl1);
 			
 			JLabel noMatchlbl2 = new JLabel("Get back out there and find a match");
 			noMatchlbl2.setFont(Fonts.getFont(9f));
 			noMatchlbl2.setForeground(Colors.Red);
-			noMatchlbl2.setBounds(50,175,260,69);
+			noMatchlbl2.setBounds(40,175,260,69);
 			viewMatchController.getViewMatchesPanel().add(noMatchlbl2);
 	    }
 	   
