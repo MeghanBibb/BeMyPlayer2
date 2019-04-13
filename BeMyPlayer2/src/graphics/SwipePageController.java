@@ -6,6 +6,9 @@ import java.util.logging.Logger;
 
 import javax.swing.JFrame;
 
+import model.InformationExpert;
+import model.Profile;
+
 public class SwipePageController extends PageController {
 	SwipePageModel model;
 	private static Logger logger = Logger.getLogger(SwipePageController.class.getName());
@@ -18,7 +21,7 @@ public class SwipePageController extends PageController {
 			backPage = back;
 		}
 
-		this.model = new SwipePageModel(mainFrame);
+		this.model = new SwipePageModel(mainFrame, InformationExpert.getActiveAccount().getAccountProfile());
 		model.backButton.addActionListener(new ActionListener() {
 	    	@Override
 	    	public void actionPerformed(ActionEvent e) {
@@ -29,6 +32,10 @@ public class SwipePageController extends PageController {
 		
 	}
 
+	public void setProfile(Profile profile) {
+		this.model.ChangeProfile(profile);
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
