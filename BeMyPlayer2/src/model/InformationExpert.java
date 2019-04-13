@@ -128,4 +128,12 @@ public class InformationExpert {
 	public static void updateProfile(Profile p) throws DBFailureException {
 		databaseAdapter.updateProfile(p);
 	}
+
+	public static ClientModel getClientModel() {
+		return clientModel;
+	}
+
+	public static void setClientModel(ClientModel clientModel) {
+		InformationExpert.clientModel = clientModel;
+	}
 }
