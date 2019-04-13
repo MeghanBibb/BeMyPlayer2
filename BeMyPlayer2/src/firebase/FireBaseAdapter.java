@@ -49,13 +49,7 @@ import com.google.firebase.cloud.StorageClient;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import model.Account;
-import model.DBDocumentPackage;
-import model.InformationExpert;
-import model.Match;
-import model.MatchStatus;
-import model.MatchType;
-import model.Profile;
+import model.*;
 
 import com.google.cloud.Service;
 import com.google.cloud.firestore.Firestore;
@@ -815,5 +809,48 @@ public class FireBaseAdapter {
 		}
 	}
 
+	public MessageThread getMessageThread(String userId, String otherUserId) throws DBFailureException{
+		if(this.db == null) {
+			LOGGER.log(Level.WARNING, "Error- no database connection");
+			throw new DBFailureException();
+		}
+
+		String msgID = null;
+
+		//doesnt allow for both arguments to be equals
+		if (userId.compareTo(otherUserId) < 0){
+			msgID = userId.concat(otherUserId);
+		}
+		else if (userId.compareTo(otherUserId) > 0){
+			msgID = otherUserId.concat(userId);
+		}
+
+		ApiFuture<DocumentSnapshot> fetchThread =
+				db.collection(FireBaseSchema.MESSAGE_THREADS_TABLE)
+						.document(msgID)
+						.get();
+
+		MessageThread msgThread = new MessageThread();
+
+		try {
+			DocumentSnapshot threadResult = fetchThread.get();
+			if(!threadResultResult.exists()) {
+				LOGGER.log(Level.FINE,"Could not find match Thread");
+				return null;
+			}else {
+				DBDocumentPackage threadPackage = new DBDocumentPackage(msgID, threadResult.getData());
+				msgThread.initializeFromPackage(threadPackage);
+			}
+
+		} catch (InterruptedException e1) {
+			LOGGER.log(Level.SEVERE,"Error- Thread query interrupted.");
+			throw new DBFailureException();
+		} catch (ExecutionException e1) {
+			LOGGER.log(Level.SEVERE,"Error- Execution Exception thrown while querying thread.");
+			throw new DBFailureException();
+		}
+
+		return msgThread;
+	}
 
 }

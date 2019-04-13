@@ -26,9 +26,11 @@ public class SwipePageModel {
 	JButton backButton = new JButton("Back");
 	Profile currentProfile;
 	Rectangle briefSize = new Rectangle(150,100,230,200);
+	SwipePageController controller;
+	JLabel lblBeMyPlayer;
 	
-	public SwipePageModel(JFrame t_frame, Profile profile){
-		
+	public SwipePageModel(JFrame t_frame, Profile profile, SwipePageController c){
+		this.controller = c;
 		this.frame = t_frame;
 		
 		this.currentProfile = profile;
@@ -44,12 +46,12 @@ public class SwipePageModel {
 		backButton.setForeground(Colors.Red);
 		
 		
-		this.left = new SwipeButton(new SwipeLeftController());
-		this.right = new SwipeButton(new SwipeRightController());
+		this.left = new SwipeButton(new SwipeLeftController(this.controller));
+		this.right = new SwipeButton(new SwipeRightController(this.controller));
 		
 		layout.setHgap(70);
 		layout.setVgap(40);
-		JLabel lblBeMyPlayer = new JLabel("Be My Player 2");
+		lblBeMyPlayer = new JLabel("Be My Player 2");
 		lblBeMyPlayer.setFont(Fonts.getFont((float) 30));
 		lblBeMyPlayer.setForeground(Colors.Yellow);
 		lblBeMyPlayer.setBounds(160,10,204,69);
@@ -62,7 +64,17 @@ public class SwipePageModel {
 	}
 	public void ChangeProfile(Profile profile) {
 		this.currentProfile = profile;
-		frame.getContentPane().add(new ProfileBriefModel(profile, briefSize, PageCreator.SWIPE_PAGE), BorderLayout.CENTER);
+		frame.getContentPane().removeAll();
+		frame.getContentPane().revalidate();
+		frame.getContentPane().repaint();
+		frame.getContentPane().setLayout(layout);
+		layout.setHgap(70);
+		layout.setVgap(40);
+		frame.getContentPane().add(this.lblBeMyPlayer, BorderLayout.NORTH);
+		frame.getContentPane().add(this.left, BorderLayout.LINE_START);
+		frame.getContentPane().add(this.right, BorderLayout.LINE_END);
+		frame.getContentPane().add(this.backButton, BorderLayout.PAGE_END);
+		frame.getContentPane().add(new ProfileBriefModel(currentProfile, briefSize, PageCreator.SWIPE_PAGE), BorderLayout.CENTER);
 		frame.getContentPane().repaint();
 	}
 }
