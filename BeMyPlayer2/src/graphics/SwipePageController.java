@@ -21,7 +21,7 @@ public class SwipePageController extends PageController {
 			backPage = back;
 		}
 
-		this.model = new SwipePageModel(mainFrame, InformationExpert.getActiveAccount().getAccountProfile());
+		this.model = new SwipePageModel(mainFrame, InformationExpert.getActiveAccount().getAccountProfile(), this);
 		model.backButton.addActionListener(new ActionListener() {
 	    	@Override
 	    	public void actionPerformed(ActionEvent e) {

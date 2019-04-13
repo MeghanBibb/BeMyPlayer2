@@ -131,6 +131,7 @@ public class InformationExpert {
 		databaseAdapter.updateProfile(p);
 	}
 
+
 	public static ClientModel getClientModel() {
 		return clientModel;
 	}
@@ -193,5 +194,20 @@ public class InformationExpert {
 		}
 		
 		return false;
+
+	}
+	
+	public static MessageThread getMessageThread(String userId, String otherUserId) {
+		try {
+			return databaseAdapter.getMessageThread(userId, otherUserId);
+		} catch (DBFailureException e) {
+			//Handle exception here:
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public static void sendIssue(String issueType, String desc){
+		//TODO: implement this for issue tracking in the database
 	}
 }

@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +39,7 @@ import firebase.DBFailureException;
 import model.Account;
 import model.InformationExpert;
 import model.Profile;
+import model.ResourceManager;
 
 public class ViewMatchesView {
 	private static Logger logger = Logger.getLogger(ViewMatchesView.class.getName());
@@ -79,12 +81,6 @@ public class ViewMatchesView {
 		profilePicPanel.setPreferredSize(new Dimension(100,245));
 		profilePicPanel.setSize(100, 245);
 		
-		Image img1 = new ImageIcon(viewMatchController.getClass().getResource("/booth1.jpg")).getImage();
-		Image img2 = new ImageIcon(viewMatchController.getClass().getResource("/fry1.jpg")).getImage();
-		Image img3 = new ImageIcon(viewMatchController.getClass().getResource("/cerny1.png")).getImage();
-		Image img4 = new ImageIcon(viewMatchController.getClass().getResource("/fendt.jpg")).getImage();
-		Image img5 = new ImageIcon(viewMatchController.getClass().getResource("/hammerly1.jpg")).getImage();
-		Image img6 = new ImageIcon(viewMatchController.getClass().getResource("/maars1.jpg")).getImage();
 		JComboBox matchtype = new JComboBox();
 		
 		matchtype.addItemListener(new ItemListener() {
@@ -97,10 +93,8 @@ public class ViewMatchesView {
         			profilePicPanel.removeAll();
         			
         			///	ACTUAL SOLUTION
-        			
-        			List<JButton> pics = ProfilePicGenerator.getLoveList(viewMatchController);
-        			if(pics.isEmpty()) {
-        		    	JLabel noMatchlbl1 = new JLabel("Your princess is in another castle");
+        			if(InformationExpert.getClientModel().getLoveMatches() == null || InformationExpert.getClientModel().getFriendMatches().size() == 0) {
+        				JLabel noMatchlbl1 = new JLabel("Your princess is in another castle");
         			    noMatchlbl1.setFont(Fonts.getFont(9f));
         			    noMatchlbl1.setForeground(Colors.Red);
         			    noMatchlbl1.setBounds(50,160,260,69);
@@ -111,6 +105,10 @@ public class ViewMatchesView {
         				noMatchlbl2.setForeground(Colors.Red);
         				noMatchlbl2.setBounds(50,175,260,69);
         				viewMatchController.getViewMatchesPanel().add(noMatchlbl2);
+        			}
+        			List<JButton> pics = ProfilePicGenerator.getLoveList(viewMatchController);
+        			if(pics.isEmpty()) {
+        		    	
         		    }
         			for(JButton icon: pics) {
         				profilePicPanel.add(icon);
@@ -121,10 +119,8 @@ public class ViewMatchesView {
         			profilePicPanel.removeAll();
         			
         			///	ACTUAL SOLUTION
-        			
-        			List<JButton> pics = ProfilePicGenerator.getFriendList(viewMatchController);
-        			if(pics.isEmpty()) {
-        		    	JLabel noMatchlbl1 = new JLabel("Your princess is in another castle");
+        			if(InformationExpert.getClientModel().getFriendMatches() == null ||InformationExpert.getClientModel().getFriendMatches().size() == 0) {
+        				JLabel noMatchlbl1 = new JLabel("Your princess is in another castle");
         			    noMatchlbl1.setFont(Fonts.getFont(9f));
         			    noMatchlbl1.setForeground(Colors.Red);
         			    noMatchlbl1.setBounds(50,160,260,69);
@@ -135,10 +131,15 @@ public class ViewMatchesView {
         				noMatchlbl2.setForeground(Colors.Red);
         				noMatchlbl2.setBounds(50,175,260,69);
         				viewMatchController.getViewMatchesPanel().add(noMatchlbl2);
-        		    }
-        			for(JButton icon: pics) {
-        				profilePicPanel.add(icon);
         			}
+        			else {
+        				List<JButton> pics = ProfilePicGenerator.getFriendList(viewMatchController);
+                		
+            			for(JButton icon: pics) {
+            				profilePicPanel.add(icon);
+            			}
+        			}
+        			
         			profilePicPanel.validate();
         		}
         	}
@@ -154,6 +155,7 @@ public class ViewMatchesView {
 		//	send type request to match adapter to pull list of matches for account
 		
 		////	real implementation
+		/// 	REMOVE WHEN MATCHING IS DONE////////////////////////
 		List<Profile> temp = new ArrayList<>();
 		try {
 			InformationExpert.setOtherProfile("wNHOZhYxEjUMWsFFvqbR");
@@ -166,31 +168,35 @@ public class ViewMatchesView {
 		InformationExpert.getClientModel().setFriendMatches(temp);
 		InformationExpert.getClientModel().setLoveMatches(temp);
 		
-		List<JButton> pics = ProfilePicGenerator.getFriendList(viewMatchController);
-		for(JButton icon: pics) {
-			profilePicPanel.add(icon);
-		}
 		
-		//	SCROLLPANE
-	    JScrollPane scrollPane = new JScrollPane(profilePicPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-	    scrollPane.setBounds(new Rectangle(25, 120, 215, 245));
-	    Color black = new Color(0,0,0);
-	    
-	    //	if empty
-	    if(pics.isEmpty()) {
+		//////////////////////////////////////////////////////////
+//		if empty
+	    if(InformationExpert.getClientModel().getLoveMatches() == null || InformationExpert.getClientModel().getLoveMatches().size() == 0) {
 	    	JLabel noMatchlbl1 = new JLabel("Your princess is in another castle");
 		    noMatchlbl1.setFont(Fonts.getFont(9f));
 		    noMatchlbl1.setForeground(Colors.Red);
-		    noMatchlbl1.setBounds(50,160,260,69);
+		    noMatchlbl1.setBounds(40,160,260,69);
 		    viewMatchController.getViewMatchesPanel().add(noMatchlbl1);
 			
 			JLabel noMatchlbl2 = new JLabel("Get back out there and find a match");
 			noMatchlbl2.setFont(Fonts.getFont(9f));
 			noMatchlbl2.setForeground(Colors.Red);
-			noMatchlbl2.setBounds(50,175,260,69);
+			noMatchlbl2.setBounds(40,175,260,69);
 			viewMatchController.getViewMatchesPanel().add(noMatchlbl2);
 	    }
-	   
+	    else {
+	    	List<JButton> pics = ProfilePicGenerator.getLoveList(viewMatchController);
+			for(JButton icon: pics) {
+				profilePicPanel.add(icon);
+			}
+	    }
+
+		//	SCROLLPANE
+	    JScrollPane scrollPane = new JScrollPane(profilePicPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+	    scrollPane.setBounds(new Rectangle(25, 120, 215, 245));
+	    Color black = new Color(0,0,0);
+	    
+	    
 		viewMatchController.getViewMatchesPanel().add(scrollPane);
 	    
 	    mainFrame.pack();

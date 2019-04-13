@@ -1,6 +1,7 @@
 package graphics;
 import model.Profile;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -37,14 +38,24 @@ public class ProfilePicGenerator {
 				JButton setIcon = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 50, Image.SCALE_DEFAULT)));
 				setIcon.setLayout(new BorderLayout());
 				setIcon.setName(name);
-				setIcon.setSize(50, 50);
+				setIcon.setPreferredSize(new Dimension(75,50));
 				setIcon.add(new JLabel(temp.getUsername()),BorderLayout.PAGE_END);
 				setIcon.setActionCommand("profileclick");
 				setIcon.addActionListener(b);
 				loveList.add(setIcon);
 			} catch (DBFailureException e) {
 				// TODO Auto-generated catch block
-				logger.warning("database failure");
+				logger.warning("database failed to load " + name);
+			}
+		}
+		if(userIds.size() < 3) {
+			int i = userIds.size();
+			while(i < 3) {
+				JButton temp  =new JButton();
+				temp.setEnabled(false);
+				temp.setVisible(false);
+				loveList.add(temp);
+				i++;
 			}
 		}
 		return loveList;
@@ -63,20 +74,29 @@ public class ProfilePicGenerator {
 				img1 = InformationExpert.getProfileImage(name);
 				InformationExpert.setOtherProfile(name);
 				Profile temp = InformationExpert.getOtherProfile();
-				//Image img1 = new ImageIcon("filepathfromDB").getImage();//	add try catch and dont add if invalid file path
 				JButton setIcon = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 50, Image.SCALE_DEFAULT)));
 				setIcon.setLayout(new BorderLayout());
 				setIcon.setName(name);
-				setIcon.setSize(50, 50);
+				setIcon.setPreferredSize(new Dimension(75,50));
 				setIcon.add(new JLabel(temp.getUsername()),BorderLayout.PAGE_END);
 				setIcon.setActionCommand("profileclick");
 				setIcon.addActionListener(b);
 				friendList.add(setIcon);
 			} catch (DBFailureException e) {
 				// TODO Auto-generated catch block
-				logger.warning("database failure");
+				logger.warning("database failed to load profile pic for " + name);
 			}
 			
+		}
+		if(userIds.size() < 3) {
+			int i = userIds.size();
+			while(i < 3) {
+				JButton temp  =new JButton();
+				temp.setEnabled(false);
+				temp.setVisible(false);
+				friendList.add(temp);
+				i++;
+			}
 		}
 		return friendList;
 	}

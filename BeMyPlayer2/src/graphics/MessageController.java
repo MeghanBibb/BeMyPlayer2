@@ -2,7 +2,9 @@ package graphics;
 
 import javax.swing.*;
 
+import firebase.DBFailureException;
 import model.Account;
+import model.MessageThread;
 import model.Profile;
 import model.InformationExpert;
 
@@ -10,13 +12,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class MessageController extends PageController {
     public static final String SEND = "send";
     public static final String BACK = "back";
+    public static final String REFRESH = "refresh";
 
     private MessageModel messageModel = null;
+    private MessageThread currentThread = null;
     private JPanel messagePanel = null;
     private Account account;
     private Profile otherProf; 
@@ -65,6 +70,14 @@ public class MessageController extends PageController {
             case BACK:
                 logger.info("Back");
                 GraphicsController.processPage(PageCreator.PROFILE_PAGE,backPage);
+                break;
+            case REFRESH:
+                logger.info("Refreshed");
+                /*try {
+                    currentThread = InformationExpert.getMessageThread(InformationExpert.getActiveUserID(), InformationExpert.getOtherProfile().getUserId());
+                } catch (DBFailureException e1) {
+                    logger.log(Level.SEVERE, "Could not find Thread");
+                }*/
         }
     }
 
