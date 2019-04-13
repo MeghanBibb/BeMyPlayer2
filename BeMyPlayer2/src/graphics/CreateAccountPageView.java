@@ -27,6 +27,8 @@ import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import model.ResourceManager;
+
 public class CreateAccountPageView {
 	public static void startCreateAccountPage(final CreateAccountPageController capController,JFrame mainFrame, boolean visited) {
 		if(visited == false) {
@@ -736,21 +738,11 @@ public class CreateAccountPageView {
 		if(visited == true) {
 			img1 = capController.getCreateAccountPageModel().getProfileImg();
 			if(img1 == null) {
-				try {
-					img1 = ImageIO.read(capController.getClass().getResource("/defaultIcon.png"));
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				img1 = ResourceManager.loadImage("defaultIcon");
 			}
 		}
 		else {
-			try {
-				img1 = ImageIO.read(capController.getClass().getResource("/defaultIcon.png"));
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			img1 = ResourceManager.loadImage("defaultIcon.png");
 		}
 		
 		//lblNewLabel.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
@@ -795,18 +787,13 @@ public class CreateAccountPageView {
 						e.printStackTrace();
 					}
 					capController.getCreateAccountPageModel().setImagePath(f.getAbsolutePath());
+					capController.getCreateAccountPageModel().setProfileImg(img1);
 				}
 				else if(f == null){
-					try {
-						img1 = ImageIO.read(capController.getClass().getResource("/defaultIcon.png"));
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					img1 = ResourceManager.loadImage("defaultIcon.png");
 					capController.getCreateAccountPageModel().setImagePath(img1.toString());
 				}
 				setIcon.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
-				//setIcon.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
 				setIcon.setBounds(125, 25, 150, 150);
 				capController.getCreateAccountPageModel().setProfileImg(img1);
 				

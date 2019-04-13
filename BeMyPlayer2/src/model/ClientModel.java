@@ -60,13 +60,8 @@ public class ClientModel {
 		ClientModel.friendMatches = friendMatches;
 	}
 	
-<<<<<<< HEAD
+
 	public static void pollBatchOfFriends(List<Profile> friendMatches){}
-=======
-	public static void pollBatchOfFriends(List<Profile> friendMatches) {}
-	
-	
->>>>>>> 47890d3dcf54dd4416a457581517b935f18a5a7d
 	
 	
 }

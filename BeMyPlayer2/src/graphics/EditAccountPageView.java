@@ -560,16 +560,10 @@ public class EditAccountPageView {
 				}
 				
 				else if(f == null){
-					try {
-						img1 = ImageIO.read(editController.getClass().getResource("/defaultIcon.png"));
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					img1 = ResourceManager.loadImage("defaultIcon.png");
 					editController.getEditAccountModel().setImagePath(img1.toString());
 				}
 				setIcon.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
-				//setIcon.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
 				setIcon.setBounds(125, 25, 150, 150);
 				editController.getEditAccountModel().setProfileImg(img1);
 				
