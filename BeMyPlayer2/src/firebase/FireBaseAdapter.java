@@ -809,7 +809,10 @@ public class FireBaseAdapter {
 		}
 	}
 
+
 	public MessageThread getMessageThread(String userId, String otherUserId) throws DBFailureException{
+		//TODO: Fix this
+		
 		/*if(this.db == null) {
 			LOGGER.log(Level.WARNING, "Error- no database connection");
 			throw new DBFailureException();

@@ -536,16 +536,15 @@ public class EditAccountPageView {
 		mainFrame.setContentPane(editController.getEditAccountPanel());
 		
 		//	default icon
-		Image img1;
-
+		Image img1 = null;
 		try {
 			img1 = InformationExpert.getProfileImage(InformationExpert.getActiveUserID());
 		} catch (DBFailureException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
+		}
+		if(img1 == null) {
 			img1 = ResourceManager.loadImage("defaultIcon.png");
 		}
-		
 		
 		//lblNewLabel.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
 		//lblNewLabel.setBounds(75, 25, 150, 150);
