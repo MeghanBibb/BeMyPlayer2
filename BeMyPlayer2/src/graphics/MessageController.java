@@ -34,7 +34,7 @@ public class MessageController extends PageController {
     	account = InformationExpert.getActiveAccount();
         try {
             currentThread = InformationExpert.getMessageThread(InformationExpert.getActiveUserID(), InformationExpert.getOtherProfile().getUserId());
-        } catch (DBFailureException e) {
+        } catch (Exception e) {
             logger.log(Level.SEVERE, "Could not find thread");
         }
         MessageView.startMessagePage(this,mainFrame);
@@ -94,11 +94,12 @@ public class MessageController extends PageController {
         List<String> warnings = new ArrayList<>();
         if(this.messageModel.getSendBox().getText().equals("")) {
             valid = false;
-            warnings.add("Please enter a description\n");
+            warnings.add("Don't be shy! Enter a message.\n");
         }
 
         if (this.messageModel.getThread().getText().contains(";")){
             valid = false;
+            warnings.add("Please be nice to me :(\n");
         }
 
         if(valid == false) {
