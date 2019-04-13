@@ -209,4 +209,16 @@ public class InformationExpert {
 	public static void sendIssue(String issueType, String desc){
 		//TODO: implement this for issue tracking in the database
 	}
+	
+	public static Match getMatch(Profile clientProfile, Profile otherProfile) throws DBFailureException {
+		return databaseAdapter.getMatch(clientProfile, otherProfile);
+	}
+	
+	public static void addMatch(Match match) throws DBFailureException {
+		databaseAdapter.addMatch(match);
+	}
+	
+	public static void updateMatch(Match match) throws DBFailureException {
+		databaseAdapter.updateMatch(match);
+	}
 }
