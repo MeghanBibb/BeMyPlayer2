@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import model.InformationExpert;
 import model.ResourceManager;
 
 public class SwipePageModel {
@@ -52,7 +53,7 @@ public class SwipePageModel {
 		frame.getContentPane().add(this.left, BorderLayout.LINE_START);
 		frame.getContentPane().add(this.right, BorderLayout.LINE_END);
 		frame.getContentPane().add(this.backButton, BorderLayout.PAGE_END);
-		frame.getContentPane().add(new ProfileBriefModel("Dr.Booth",briefSize,PageCreator.SWIPE_PAGE), BorderLayout.CENTER);
+		frame.getContentPane().add(new ProfileBriefModel(InformationExpert.getActiveAccount().getAccountProfile(), briefSize, PageCreator.SWIPE_PAGE), BorderLayout.CENTER);
 	}
 	
 }
