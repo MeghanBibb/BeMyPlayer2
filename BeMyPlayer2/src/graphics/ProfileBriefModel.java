@@ -43,11 +43,14 @@ public class ProfileBriefModel extends JPanel{
 			CircularImage setIcon = null;
 			Image img1;
 			try {
+
 				img1 = InformationExpert.getProfileImage(profile.getUserId());
 				setIcon = new CircularImage(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
-			} catch (DBFailureException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				
+
+			} catch (Exception e1) {
+				img1 = ResourceManager.loadImage("/booth1.jpg");
+				setIcon = new CircularImage(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
 			}
 			
 

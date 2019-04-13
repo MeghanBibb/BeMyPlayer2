@@ -129,7 +129,12 @@ public class InformationExpert {
 		databaseAdapter.updateProfile(p);
 	}
 
-	public static MessageThread getMessageThread(String userId, String otherUserId) throws DBFailureException{
-		return databaseAdapter.getMessageThread(userId, otherUserId);
+
+	public static ClientModel getClientModel() {
+		return clientModel;
+	}
+
+	public static void setClientModel(ClientModel clientModel) {
+		InformationExpert.clientModel = clientModel;
 	}
 }

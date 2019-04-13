@@ -27,10 +27,8 @@ public class Account implements DBSerializable{
 	private String securityQ1AnsHash;
 	private String securityQ2;
 	private String securityQ2AnsHash;
-	
 	private List<String> loveMatches = null;
 	private List<String> friendMatches = null;
-	
 	Profile accountProfile = null; // This composition is optional
 	
 	public Account() {
