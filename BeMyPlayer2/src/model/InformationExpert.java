@@ -92,11 +92,10 @@ public class InformationExpert {
 		try {
 			databaseAdapter.updateProfileImage(pic, userId);
 		} catch (DBFailureException e) {
-			// TODO Auto-generated catch block
-			//logger.warning("failed to update profile picture");
-			System.out.println("failed to update profile picture");
+			e.printStackTrace();
 		}
 	}
+	
 	public static BufferedImage getProfileImage(String userID) throws DBFailureException {
 		return databaseAdapter.getProfileImage(userID);
 	}
