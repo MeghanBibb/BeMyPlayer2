@@ -9,6 +9,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -35,7 +36,8 @@ public class ResourceManager {
 	public static Font loadFont(String name, float size) {
 		InputStream fontStream;
 		try {
-			fontStream = new BufferedInputStream(new FileInputStream("JetSet.ttf"));
+			File fontFile = new File(FONTS_FOLDER + name);
+			fontStream = new BufferedInputStream(new FileInputStream(fontFile));
 		} catch (FileNotFoundException e1) {
 			LOGGER.log(Level.SEVERE, "Failed to find font resource: " + name);
 			return null;
@@ -51,7 +53,8 @@ public class ResourceManager {
 	public static Font loadFont(String name) {
 		InputStream fontStream;
 		try {
-			fontStream = new BufferedInputStream(new FileInputStream("JetSet.ttf"));
+			File fontFile = new File(FONTS_FOLDER + name);
+			fontStream = new BufferedInputStream(new FileInputStream(fontFile));
 		} catch (FileNotFoundException e1) {
 			LOGGER.log(Level.SEVERE, "Failed to find font resource: " + name);
 			return null;
