@@ -2,13 +2,19 @@ package graphics;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+
+import firebase.DBFailureException;
+import model.InformationExpert;
+
 import java.awt.*;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Logger;
 
 public class MessageView {
-    public static void startMessagePage(MessageController messageController, JFrame mainFrame){
+	private static Logger logger = Logger.getLogger(MessageView.class.getName());
+    public static void startMessagePage(MessageController messageController, JFrame mainFrame) {
         //init Model
         messageController.setMessageModel(new MessageModel());
 
@@ -24,10 +30,18 @@ public class MessageView {
         mainFrame.setContentPane(messageController.getMessagePanel());
 
         JLabel imgLabel = new JLabel("");
-        Image img = new ImageIcon(messageController.getClass().getResource("/defaultIcon.png")).getImage();
-        imgLabel.setIcon(new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
-        imgLabel.setBounds(35, 60, 100, 100);
-        messageController.getMessageModel().setProfileImage(imgLabel);
+        Image img;
+		try {
+			img = InformationExpert.getProfileImage(messageController.getOtherProf().getUserId());
+			//Image img = new ImageIcon(messageController.getClass().getResource("/defaultIcon.png")).getImage();
+	        imgLabel.setIcon(new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
+	        imgLabel.setBounds(35, 60, 100, 100);
+	        messageController.getMessageModel().setProfileImage(imgLabel);
+		} catch (DBFailureException e) {
+			// TODO Auto-generated catch block
+			logger.warning("database failed to get profile image from profile" + messageController.getOtherProf().getUserId());
+		}
+        
 
         JLabel lblUsername = new JLabel();
         lblUsername.setText(messageController.getAccount().getAccountProfile().getUsername());

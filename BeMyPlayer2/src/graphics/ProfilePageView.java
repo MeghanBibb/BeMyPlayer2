@@ -40,12 +40,7 @@ public class ProfilePageView {
 		profileController.getProfilePanel().setMaximumSize(new Dimension(500,400));
 		mainFrame.setContentPane(profileController.getProfilePanel());
 		
-		//init image (ideally load this from user)
 		
-		/**
-		 * TO DO: load image from user/database
-		 */
-		/* fix for active vs inactive user */
 		
 		
 		
@@ -54,6 +49,8 @@ public class ProfilePageView {
 		btnBack.setBounds(10,10,90,40);
 		btnBack.setActionCommand(profileController.BACK);
 		btnBack.setBackground(Colors.Yellow);
+		btnBack.setFont(Fonts.getFont((float)12));
+		btnBack.setForeground(Colors.Red);
 		btnBack.addActionListener(profileController);
 		profileController.getProfileModel().setBtnBack(btnBack);
 		
@@ -91,6 +88,8 @@ public class ProfilePageView {
 			btnEdit.setBounds(390,10,100,40);
 			btnEdit.setActionCommand(profileController.EDIT_ACCOUNT);
 			btnEdit.setBackground(Colors.Yellow);
+			btnEdit.setFont(Fonts.getFont((float)12));
+			btnEdit.setForeground(Colors.Red);
 			btnEdit.addActionListener(profileController);
 			profileController.getProfileModel().setBtnEdit(btnEdit);
 			profileController.getProfilePanel().add(profileController.getProfileModel().getBtnEdit());
@@ -117,6 +116,8 @@ public class ProfilePageView {
 			btnBlock.setActionCommand(profileController.BLOCK);
 			btnBlock.setBackground(Colors.Yellow);
 			btnBlock.addActionListener(profileController);
+			btnBlock.setFont(Fonts.getFont((float)12));
+			btnBlock.setForeground(Colors.Red);
 			profileController.getProfileModel().setBtnBlock(btnBlock);
 			profileController.getProfilePanel().add(profileController.getProfileModel().getBtnBlock());
 			
@@ -124,6 +125,8 @@ public class ProfilePageView {
 			btnMessage.setBounds(100,350,90,40);
 			btnMessage.setActionCommand(profileController.MESSAGE);
 			btnMessage.setBackground(Colors.Yellow);
+			btnMessage.setFont(Fonts.getFont((float)12));
+			btnMessage.setForeground(Colors.Red);
 			btnMessage.addActionListener(profileController);
 			profileController.getProfileModel().setBtnMessage(btnMessage);
 			profileController.getProfilePanel().add(profileController.getProfileModel().getBtnMessage());
@@ -175,13 +178,21 @@ public class ProfilePageView {
 		
 		//init description
 		JLabel description = new JLabel();
-		//description.setText("<HTML>This is a sample description.<br> Very nice.</HTML>");
 		if(profileController.isActiveAccount()) {
-			description.setText(InformationExpert.getActiveAccount().getAccountProfile().getDescription());
+			String desc = "<HTML>";
+			desc += InformationExpert.getActiveAccount().getAccountProfile().getDescription();
+			desc = desc.replace("\n", "<br>");
+			desc += "</HTML>";
+			description.setText(desc);
 		}
 		else {
-			description.setText(profileController.getProfile().getDescription());
+			String desc = "<HTML>";
+			desc += profileController.getProfile().getDescription();
+			desc = desc.replace("\n", "<br>");
+			desc += "</HTML>";
+			description.setText(desc);
 		}
+		
 		
 		description.setBounds(10, 170, 250, 140);
 		description.setOpaque(false);

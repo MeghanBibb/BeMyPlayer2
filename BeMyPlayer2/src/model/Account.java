@@ -27,10 +27,6 @@ public class Account implements DBSerializable{
 	private String securityQ1AnsHash;
 	private String securityQ2;
 	private String securityQ2AnsHash;
-	
-	private List<String> loveMatches = null;
-	private List<String> friendMatches = null;
-	
 	Profile accountProfile = null; // This composition is optional
 	
 	public Account() {
@@ -108,21 +104,9 @@ public class Account implements DBSerializable{
 	public void setPasswordHash(String p) {
 		this.passwordHash = p;
 	}
-	public List<String> getLoveMatches() {
-		return loveMatches;
-	}
 	
-	//TODO: Add/Remove matches functionality
 	
-	public void setLoveMatches(List<String> loveMatches) {
-		this.loveMatches = loveMatches;
-	}
-	public List<String> getFriendMatches() {
-		return friendMatches;
-	}
-	public void setFriendMatches(List<String> friendMatches) {
-		this.friendMatches = friendMatches;
-	}
+
 
 	
 	@Override
@@ -168,14 +152,6 @@ public class Account implements DBSerializable{
 				case _SECURITY_Q2A:
 					this.securityQ2AnsHash = (String) pkg.getValues().get(s);
 					break;
-				case _LOVE_MATCHES:
-					if(pkg.getValues().get(s) instanceof List<?>) {
-						this.loveMatches = (List<String>) pkg.getValues().get(s);
-					}
-				case _FRIEND_MATCHES:
-					if(pkg.getValues().get(s) instanceof List<?>) {
-						this.friendMatches = (List<String>) pkg.getValues().get(s);
-					}
 			}
 		}
 	}

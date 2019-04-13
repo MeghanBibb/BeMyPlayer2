@@ -38,7 +38,9 @@ public class InformationExpert {
 		
 		activeUserAccount = new Account();
 		clientModel = new ClientModel(activeUserAccount.getAccountProfile());
-		//otherAccount = null;
+		
+		//import user matches (This should be made asynchronous in the future):
+		loadAccountMatches();
 	}
 	
 	public static Profile getOtherProfile() {
@@ -127,5 +129,69 @@ public class InformationExpert {
 	
 	public static void updateProfile(Profile p) throws DBFailureException {
 		databaseAdapter.updateProfile(p);
+	}
+
+	public static ClientModel getClientModel() {
+		return clientModel;
+	}
+
+	public static void setClientModel(ClientModel clientModel) {
+		InformationExpert.clientModel = clientModel;
+	}
+	
+	public static void loadAccountMatches() {
+		if(activeUserAccount != null && activeUserAccount.getAccountProfile() != null) {
+			Profile userProf = activeUserAccount.getAccountProfile();
+			List<Profile> friendMatches;
+			List<Profile> loveMatches;
+			try {
+				friendMatches = databaseAdapter.getFullyMatchedProfiles(userProf, FireBaseAdapter.FRIEND_MATCHES);
+				loveMatches = databaseAdapter.getFullyMatchedProfiles(userProf, FireBaseAdapter.LOVE_MATCHES);
+			} catch (DBFailureException e) {
+				return;
+			}
+			clientModel.setFriendMatches(friendMatches);
+			clientModel.setLoveMatches(loveMatches);
+		}
+	}
+	
+	public static boolean importFriendMatchBatch() {
+		if(activeUserAccount != null && activeUserAccount.getAccountProfile() != null) {
+			String uid = activeUserAccount.getUserId();
+			try {
+				List<Profile> importedProfs = 
+				databaseAdapter.getUnmatchedProfiles(uid, FireBaseAdapter.FRIEND_MATCHES, clientModel.getFriendMatchBatch());
+				if(importedProfs.isEmpty())
+					return false;
+				
+				clientModel.importUnmatchedFriendBatch(importedProfs);
+				return true;
+				
+			} catch (DBFailureException e) {
+				return false;
+			}
+		}
+		
+		return false;
+	}
+	
+	public static boolean importLoveMatchBatch() {
+		if(activeUserAccount != null && activeUserAccount.getAccountProfile() != null) {
+			String uid = activeUserAccount.getUserId();
+			try {
+				List<Profile> importedProfs = 
+				databaseAdapter.getUnmatchedProfiles(uid, FireBaseAdapter.LOVE_MATCHES, clientModel.getFriendMatchBatch());
+				if(importedProfs.isEmpty())
+					return false;
+				
+				clientModel.importUnmatchedLoveBatch(importedProfs);
+				return true;
+				
+			} catch (DBFailureException e) {
+				return false;
+			}
+		}
+		
+		return false;
 	}
 }

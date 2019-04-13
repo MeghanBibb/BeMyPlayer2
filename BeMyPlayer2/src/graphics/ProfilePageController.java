@@ -53,7 +53,7 @@ public class ProfilePageController extends PageController {
 			case BACK:
 				logger.info("back");
 				GraphicsController.setProfileAccountActive();
-				GraphicsController.processPage(PageCreator.HOME_PAGE,backPage);
+				GraphicsController.processPage(backPage,backPage);
 				break;
 			case EDIT_ACCOUNT:
 				GraphicsController.processPage(PageCreator.EDIT_ACCOUNT_PAGE,backPage);

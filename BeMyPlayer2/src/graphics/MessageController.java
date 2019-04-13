@@ -3,6 +3,7 @@ package graphics;
 import javax.swing.*;
 
 import model.Account;
+import model.Profile;
 import model.InformationExpert;
 
 import java.awt.event.ActionEvent;
@@ -18,11 +19,13 @@ public class MessageController extends PageController {
     private MessageModel messageModel = null;
     private JPanel messagePanel = null;
     private Account account;
+    private Profile otherProf; 
     private static Logger logger = Logger.getLogger(MessageController.class.getName());
     public void launchPage(JFrame mainFrame, String back) {
     	if(back != null) {
     		backPage = back;
     	}
+    	setOtherProf(InformationExpert.getOtherProfile());
     	account = InformationExpert.getActiveAccount();
         MessageView.startMessagePage(this,mainFrame);
     }
@@ -101,4 +104,12 @@ public class MessageController extends PageController {
     public void setMessagePanel(JPanel messagePanel) {
         this.messagePanel = messagePanel;
     }
+
+	public Profile getOtherProf() {
+		return otherProf;
+	}
+
+	public void setOtherProf(Profile otherProf) {
+		this.otherProf = otherProf;
+	}
 }

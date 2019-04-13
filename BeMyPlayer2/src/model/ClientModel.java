@@ -84,7 +84,7 @@ public class ClientModel {
 	public void resetFriendMatchBatch() {
 		this.friendMatchBatch = 0;
 	}
-	
+
 	public void resetLoveMatchBatch() {
 		this.loveMatchBatch = 0;
 	}
@@ -96,7 +96,5 @@ public class ClientModel {
 	public int getFriendMatchBatch() {
 		return this.friendMatchBatch;
 	}
-	
-	
 	
 }
