@@ -80,7 +80,7 @@ public class MessageView {
         messageController.getMessagePanel().add(messageController.getMessageModel().getBack());
 
         JButton btnSend = new JButton("Send");
-        btnSend.setBounds(345,365,90,20);
+        btnSend.setBounds(345,365,90,30);
         btnSend.setActionCommand(MessageController.SEND);
         btnSend.setBackground(Colors.White);
         btnSend.setFont(Fonts.getFont((float) 12));
@@ -97,7 +97,7 @@ public class MessageView {
         messageController.getMessageModel().setThread(thread);
 
         JTextField sendBox = new JTextField();
-        sendBox.setBounds(35, 365, 310, 20);
+        sendBox.setBounds(35, 365, 310, 30);
         sendBox.setVisible(true);
         messageController.getMessageModel().setSendBox(sendBox);
 

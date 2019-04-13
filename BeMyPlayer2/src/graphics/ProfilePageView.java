@@ -77,6 +77,7 @@ public class ProfilePageView {
 				
 			} catch (DBFailureException e) {
 				e.printStackTrace();
+				img = ResourceManager.loadImage("defaultIcon.png");
 			}
 			
 			if(img == null) {
@@ -98,7 +99,7 @@ public class ProfilePageView {
 			JLabel imgLabel = new JLabel("");
 			BufferedImage img = null;
 			try {
-				img = InformationExpert.getProfileImage(profileController.getAccount().getUserId());
+				img = InformationExpert.getProfileImage(profileController.getProfile().getUserId());
 			} catch (DBFailureException e) {
 				e.printStackTrace();
 			}
@@ -136,7 +137,7 @@ public class ProfilePageView {
 		profileController.getProfileModel().setLblBeMyPlayer(lblBeMyPlayer);
 		
 		JLabel lblUsername = new JLabel();
-		lblUsername.setText(profileController.getAccount().getAccountProfile().getUsername());
+		lblUsername.setText(profileController.getProfile().getUsername());
 		lblUsername.setFont(Fonts.getFont((float)15));
 		lblUsername.setForeground(Colors.Yellow);
 		lblUsername.setBounds(120,35,90,90);
@@ -149,7 +150,7 @@ public class ProfilePageView {
 		Date nowDate = java.sql.Date.valueOf(now);
 		Calendar cnow = Calendar.getInstance();
 		cnow.setTime(nowDate);
-		Date bday = profileController.getAccount().getAccountProfile().getDateOB();
+		Date bday = profileController.getProfile().getDateOB();
 		Calendar cbday = Calendar.getInstance();
 		cbday.setTime(bday);
 		int diff = cnow.get(Calendar.YEAR) - cbday.get(Calendar.YEAR);
@@ -162,7 +163,7 @@ public class ProfilePageView {
 		profileController.getProfileModel().setLblAge(lblAge);
 		
 		JLabel lblGender = new JLabel();
-		lblGender.setText(profileController.getAccount().getAccountProfile().getGender());
+		lblGender.setText(profileController.getProfile().getGender());
 		lblGender.setForeground(Colors.Yellow);
 		lblGender.setBounds(120,95,90,90);
 		profileController.getProfileModel().setLblGender(lblGender);
@@ -179,7 +180,7 @@ public class ProfilePageView {
 			description.setText(InformationExpert.getActiveAccount().getAccountProfile().getDescription());
 		}
 		else {
-			description.setText(profileController.getAccount().getAccountProfile().getDescription());
+			description.setText(profileController.getProfile().getDescription());
 		}
 		
 		description.setBounds(10, 170, 250, 140);
@@ -193,7 +194,7 @@ public class ProfilePageView {
 		//checkbox
 		profileController.getProfileModel().setCheckList(new ArrayList<JCheckBox>());
 		JCheckBox xboxBtn = new JCheckBox("Xbox");
-		if(profileController.getAccount().getAccountProfile().getPlatforms().get(0)) {
+		if(profileController.getProfile().getPlatforms().get(0)) {
 			xboxBtn.setSelected(true);
 		}
 		xboxBtn.setEnabled(false);
@@ -206,7 +207,7 @@ public class ProfilePageView {
 		
 
 		JCheckBox psBtn = new JCheckBox("Playstation");
-		if(profileController.getAccount().getAccountProfile().getPlatforms().get(1)) {
+		if(profileController.getProfile().getPlatforms().get(1)) {
 			psBtn.setSelected(true);
 		}
 		psBtn.setEnabled(false);
@@ -218,7 +219,7 @@ public class ProfilePageView {
 		profileController.getProfilePanel().add(psBtn);
 		
 		
-		JCheckBox nintendoBtn = new JCheckBox("Nintendo");if(profileController.getAccount().getAccountProfile().getPlatforms().get(2)) {
+		JCheckBox nintendoBtn = new JCheckBox("Nintendo");if(profileController.getProfile().getPlatforms().get(2)) {
 			nintendoBtn.setSelected(true);
 		}
 		nintendoBtn.setEnabled(false);
@@ -231,7 +232,7 @@ public class ProfilePageView {
 		
 		
 		JCheckBox pcBtn = new JCheckBox("PC");
-		if(profileController.getAccount().getAccountProfile().getPlatforms().get(3)) {
+		if(profileController.getProfile().getPlatforms().get(3)) {
 			pcBtn.setSelected(true);
 		}
 		pcBtn.setEnabled(false);
@@ -245,7 +246,7 @@ public class ProfilePageView {
 		
 		
 		JCheckBox vrBtn = new JCheckBox("VR");
-		if(profileController.getAccount().getAccountProfile().getPlatforms().get(4)) {
+		if(profileController.getProfile().getPlatforms().get(4)) {
 			vrBtn.setSelected(true);
 		}
 		vrBtn.setEnabled(false);
@@ -257,7 +258,7 @@ public class ProfilePageView {
 		profileController.getProfilePanel().add(vrBtn);
 		
 		
-		JCheckBox RetroBtn = new JCheckBox("Retro");if(profileController.getAccount().getAccountProfile().getPlatforms().get(5)) {
+		JCheckBox RetroBtn = new JCheckBox("Retro");if(profileController.getProfile().getPlatforms().get(5)) {
 			RetroBtn.setSelected(true);
 		}
 		RetroBtn.setEnabled(false);
