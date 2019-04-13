@@ -137,6 +137,7 @@ public class EditAccountPageView {
 		btnSubmit.setBackground(Colors.Yellow);
 		btnSubmit.setFont(Fonts.getFont((float)12));
 		btnSubmit.setForeground(Colors.Red);
+		btnSubmit.setBackground(Colors.Yellow);
 		btnSubmit.setActionCommand(editController.SUBMITEDITACCOUNT);
 		btnSubmit.addActionListener(editController);
 		editController.getEditAccountModel().setBtnSubmit(btnSubmit);
@@ -149,11 +150,15 @@ public class EditAccountPageView {
 		pwdEnterPass.setBounds(45, 165, 128, 32);
 		pwdEnterPass.setFont(Fonts.getFont((float)12));
 		pwdEnterPass.setForeground(Colors.Red);
+		pwdEnterPass.setBackground(Colors.Yellow);
 		editController.getEditAccountModel().setPwdEnterPass(pwdEnterPass);
 		editController.getEditAccountPanel().add(editController.getEditAccountModel().getPwdEnterPass());
 		
 		
 		JPasswordField pwdValidatePass= new JPasswordField();
+		pwdValidatePass.setFont(Fonts.getFont((float)12));
+		pwdValidatePass.setForeground(Colors.Red);
+		pwdValidatePass.setBackground(Colors.Yellow);
 		pwdValidatePass.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		pwdValidatePass.setBounds(45, 240, 128, 32);
@@ -173,6 +178,9 @@ public class EditAccountPageView {
 		JFormattedTextField secQA = new JFormattedTextField();
 		secQA.setHorizontalAlignment(SwingConstants.CENTER);
 		secQA.setBounds(275, 205, 128, 32);
+		secQA.setFont(Fonts.getFont((float)12));
+		secQA.setForeground(Colors.Red);
+		secQA.setBackground(Colors.Yellow);
 		editController.getEditAccountModel().setSecQA(secQA);
 		editController.getEditAccountPanel().add(editController.getEditAccountModel().getSecQA());
 		
@@ -253,8 +261,7 @@ public class EditAccountPageView {
 		
 		JLabel lblSecQ = new JLabel("Security Question");
 		lblSecQ.setFont(Fonts.getFont((float)12));
-		lblSecQ.setForeground(Colors.Red);
-		lblSecQ.setBackground(Colors.Yellow);
+		lblSecQ.setForeground(Colors.Yellow);
 		lblSecQ.setBounds(275, 110, 204, 69);
 		editController.getEditAccountPanel().add(lblSecQ);
 	
