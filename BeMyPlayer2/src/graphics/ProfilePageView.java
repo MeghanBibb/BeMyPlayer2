@@ -54,6 +54,8 @@ public class ProfilePageView {
 		btnBack.setBounds(10,10,90,40);
 		btnBack.setActionCommand(profileController.BACK);
 		btnBack.setBackground(Colors.Yellow);
+		btnBack.setFont(Fonts.getFont((float)12));
+		btnBack.setForeground(Colors.Red);
 		btnBack.addActionListener(profileController);
 		profileController.getProfileModel().setBtnBack(btnBack);
 		
@@ -91,6 +93,8 @@ public class ProfilePageView {
 			btnEdit.setBounds(390,10,100,40);
 			btnEdit.setActionCommand(profileController.EDIT_ACCOUNT);
 			btnEdit.setBackground(Colors.Yellow);
+			btnEdit.setFont(Fonts.getFont((float)12));
+			btnEdit.setForeground(Colors.Red);
 			btnEdit.addActionListener(profileController);
 			profileController.getProfileModel().setBtnEdit(btnEdit);
 			profileController.getProfilePanel().add(profileController.getProfileModel().getBtnEdit());
@@ -117,6 +121,8 @@ public class ProfilePageView {
 			btnBlock.setActionCommand(profileController.BLOCK);
 			btnBlock.setBackground(Colors.Yellow);
 			btnBlock.addActionListener(profileController);
+			btnBlock.setFont(Fonts.getFont((float)12));
+			btnBlock.setForeground(Colors.Red);
 			profileController.getProfileModel().setBtnBlock(btnBlock);
 			profileController.getProfilePanel().add(profileController.getProfileModel().getBtnBlock());
 			
@@ -124,6 +130,8 @@ public class ProfilePageView {
 			btnMessage.setBounds(100,350,90,40);
 			btnMessage.setActionCommand(profileController.MESSAGE);
 			btnMessage.setBackground(Colors.Yellow);
+			btnMessage.setFont(Fonts.getFont((float)12));
+			btnMessage.setForeground(Colors.Red);
 			btnMessage.addActionListener(profileController);
 			profileController.getProfileModel().setBtnMessage(btnMessage);
 			profileController.getProfilePanel().add(profileController.getProfileModel().getBtnMessage());
