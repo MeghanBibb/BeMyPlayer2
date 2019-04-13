@@ -23,7 +23,7 @@ import model.InformationExpert;
 import model.Profile;
 
 public class CreateAccountPageController extends PageController{
-
+	
 	//	action commands
 	public static final int MAXLENGTH = 250;
 	public static final String NEXT = "next";

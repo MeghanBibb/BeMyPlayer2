@@ -752,7 +752,7 @@ public class FireBaseAdapter {
 		Bucket defaultBucket = StorageClient.getInstance().bucket(DB_BUCKET_NAME);
 		try {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			ImageIO.write(pic, "jpg", baos);
+			ImageIO.write(pic, ".jpg", baos);
 			byte[] binData = baos.toByteArray();
 			Blob writtenPic = defaultBucket.create(FireBaseSchema.toProfileImageIndex(userId), 
 											binData, Bucket.BlobTargetOption.doesNotExist());
@@ -779,7 +779,7 @@ public class FireBaseAdapter {
 		
 		try {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			ImageIO.write(pic, "jpg", baos);
+			ImageIO.write(pic, ".jpg", baos);
 			byte[] binData = baos.toByteArray();
 			
 			Bucket defaultBucket = StorageClient.getInstance().bucket(DB_BUCKET_NAME);
