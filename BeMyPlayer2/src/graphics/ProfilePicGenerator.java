@@ -48,6 +48,16 @@ public class ProfilePicGenerator {
 				logger.warning("database failed to load " + name);
 			}
 		}
+		if(userIds.size() < 3) {
+			int i = userIds.size();
+			while(i < 3) {
+				JButton temp  =new JButton();
+				temp.setEnabled(false);
+				temp.setVisible(false);
+				loveList.add(temp);
+				i++;
+			}
+		}
 		return loveList;
 	}
 	public static List<JButton> getFriendList(ViewMatchesController b){
@@ -64,7 +74,6 @@ public class ProfilePicGenerator {
 				img1 = InformationExpert.getProfileImage(name);
 				InformationExpert.setOtherProfile(name);
 				Profile temp = InformationExpert.getOtherProfile();
-				//Image img1 = new ImageIcon("filepathfromDB").getImage();//	add try catch and dont add if invalid file path
 				JButton setIcon = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 50, Image.SCALE_DEFAULT)));
 				setIcon.setLayout(new BorderLayout());
 				setIcon.setName(name);
@@ -78,6 +87,16 @@ public class ProfilePicGenerator {
 				logger.warning("database failed to load profile pic for " + name);
 			}
 			
+		}
+		if(userIds.size() < 3) {
+			int i = userIds.size();
+			while(i < 3) {
+				JButton temp  =new JButton();
+				temp.setEnabled(false);
+				temp.setVisible(false);
+				friendList.add(temp);
+				i++;
+			}
 		}
 		return friendList;
 	}
