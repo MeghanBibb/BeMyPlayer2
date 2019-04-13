@@ -15,6 +15,9 @@ import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
@@ -24,13 +27,94 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import firebase.DBFailureException;
+import model.*;
+import model.Profile.*;
 import model.ResourceManager;
 
 public class ProfileBriefModel extends JPanel{
 	ViewMatchesController viewMatchController = new ViewMatchesController();
 	private String backPage;
 	
-	ProfileBriefModel(String s,Rectangle r, String page){
+	public ProfileBriefModel(Profile profile, Rectangle rect){
+
+			
+			CircularImage setIcon = null;
+			Image img1;
+			try {
+				img1 = InformationExpert.getProfileImage(profile.getUserId());
+				setIcon = new CircularImage(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
+			} catch (DBFailureException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+
+			
+			JLabel username = new JLabel(profile.getUsername());
+			JLabel age = new JLabel();
+			JLabel gender = new JLabel(profile.getGender());
+			JButton viewProfile = new JButton("View Profile");
+			this.setBounds(rect);
+			this.setLayout(null);
+
+			
+			viewProfile.setBackground(Colors.Red);
+			viewProfile.setBounds(this.getWidth()/4,120, this.getWidth()/2, 75);
+			viewProfile.setForeground(Colors.Yellow);
+			viewProfile.setFont(Fonts.getFont((float) 12));
+			viewProfile.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					// set the other account to selected account
+					GraphicsController.setProfileAccountOther();
+					/* 
+					 * InformationExpert.setOtherAccount( ACCOUNT THIS PROFILE REPRESENTS);
+					 */
+					GraphicsController.processPage(PageCreator.PROFILE_PAGE, backPage);
+				}
+				
+			});
+			username.setFont(Fonts.getFont((float) 20));
+			username.setForeground(Colors.Red);
+			username.setBounds(105,7,150,69);
+			
+			age.setFont(Fonts.getFont((float) 15));
+			
+		    LocalDate now = LocalDate.now();
+			Date nowDate = java.sql.Date.valueOf(now);
+			Calendar cnow = Calendar.getInstance();
+			cnow.setTime(nowDate);
+			Date bday = profile.getDateOB();
+			Calendar cbday = Calendar.getInstance();
+			cbday.setTime(bday);
+			int diff = cnow.get(Calendar.YEAR) - cbday.get(Calendar.YEAR);
+			if(cnow.get(Calendar.MONTH) == cbday.get(Calendar.MONTH) && cnow.get(Calendar.DATE) > cbday.get(Calendar.DATE) ) {
+				diff--;
+			}
+			age.setText(Integer.toString(diff) + " years old");
+		    age.setForeground(Colors.Yellow);
+			
+			age.setForeground(Colors.Red);
+			age.setBounds(105,27,150,69);
+			
+			gender.setFont(Fonts.getFont((float) 15));
+			gender.setForeground(Colors.Red);
+			gender.setBounds(105,47,150,69);
+			
+			
+			this.add(username);
+			this.add(age);
+			this.add(gender);
+			this.add(viewProfile);
+			setIcon.setBounds(17, 17, 75, 75);
+			this.add(setIcon);
+			this.setVisible(true);
+	}
+	
+	public ProfileBriefModel(String s,Rectangle r, String page){
 		this.backPage = page;
 
 		//Color yellow = new Color(254, 195, 123);
