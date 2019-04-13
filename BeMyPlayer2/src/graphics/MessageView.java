@@ -30,18 +30,21 @@ public class MessageView {
         mainFrame.setContentPane(messageController.getMessagePanel());
 
         JLabel imgLabel = new JLabel("");
-        Image img;
-		try {
-			img = InformationExpert.getProfileImage(messageController.getOtherProf().getUserId());
-			//Image img = new ImageIcon(messageController.getClass().getResource("/defaultIcon.png")).getImage();
+        ImageIcon img;
+		/*try {
+			//img = InformationExpert.getProfileImage(messageController.getOtherProf().getUserId());
+			 img = new ImageIcon(messageController.getClass().getResource("/defaultIcon.png")).getImage();
 	        imgLabel.setIcon(new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
 	        imgLabel.setBounds(35, 60, 100, 100);
 	        messageController.getMessageModel().setProfileImage(imgLabel);
 		} catch (DBFailureException e) {
 			// TODO Auto-generated catch block
 			logger.warning("database failed to get profile image from profile" + messageController.getOtherProf().getUserId());
-		}
-        
+		}*/
+        img = new ImageIcon("/defaultIcon");
+        imgLabel.setIcon(img);
+        imgLabel.setBounds(35, 60, 100, 100);
+        messageController.getMessageModel().setProfileImage(imgLabel);
 
         JLabel lblUsername = new JLabel();
         lblUsername.setText(messageController.getAccount().getAccountProfile().getUsername());
@@ -117,7 +120,7 @@ public class MessageView {
         thread.setForeground(Colors.Red);
         messageController.getMessageModel().setThread(thread);
 
-        for (int i = 0; i < messageController.getCurrentThread().getMessages().size(); i++){
+        /*for (int i = 0; i < messageController.getCurrentThread().getMessages().size(); i++){
             if (messageController.getCurrentThread().getMessages().get(i).getSenderId().equals(InformationExpert.getActiveUserID())){
                 thread.append("Me: ");
                 thread.append(messageController.getCurrentThread().getMessages().get(i).getMessage());
@@ -128,9 +131,10 @@ public class MessageView {
                 thread.append(messageController.getCurrentThread().getMessages().get(i).getMessage());
                 thread.append("\n");
             }
-        }
+        }*/
 
         tPane.add(thread);
+        tPane.repaint();
 
         JTextField sendBox = new JTextField();
         sendBox.setBounds(35, 365, 310, 30);
