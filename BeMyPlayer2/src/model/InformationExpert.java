@@ -35,9 +35,12 @@ public class InformationExpert {
 		}
 		
 		//should database dump these, also other account should be null until needed
-
+		
 		activeUserAccount = new Account();
-		//otherAccount = null;
+		clientModel = new ClientModel(activeUserAccount.getAccountProfile());
+		
+		//import user matches (This should be made asynchronous in the future):
+		loadAccountMatches();
 	}
 	
 	public static Profile getOtherProfile() {
@@ -108,11 +111,10 @@ public class InformationExpert {
 		try {
 			databaseAdapter.updateProfileImage(pic, userId);
 		} catch (DBFailureException e) {
-			// TODO Auto-generated catch block
-			//logger.warning("failed to update profile picture");
-			System.out.println("failed to update profile picture");
+			e.printStackTrace();
 		}
 	}
+	
 	public static BufferedImage getProfileImage(String userID) throws DBFailureException {
 		return databaseAdapter.getProfileImage(userID);
 	}
@@ -137,12 +139,87 @@ public class InformationExpert {
 	public static void setClientModel(ClientModel clientModel) {
 		InformationExpert.clientModel = clientModel;
 	}
+	
+	public static void loadAccountMatches() {
+		if(activeUserAccount != null && activeUserAccount.getAccountProfile() != null) {
+			Profile userProf = activeUserAccount.getAccountProfile();
+			List<Profile> friendMatches;
+			List<Profile> loveMatches;
+			try {
+				friendMatches = databaseAdapter.getFullyMatchedProfiles(userProf, FireBaseAdapter.FRIEND_MATCHES);
+				loveMatches = databaseAdapter.getFullyMatchedProfiles(userProf, FireBaseAdapter.LOVE_MATCHES);
+			} catch (DBFailureException e) {
+				return;
+			}
+			clientModel.setFriendMatches(friendMatches);
+			clientModel.setLoveMatches(loveMatches);
+		}
+	}
+	
+	public static boolean importFriendMatchBatch() {
+		if(activeUserAccount != null && activeUserAccount.getAccountProfile() != null) {
+			String uid = activeUserAccount.getUserId();
+			try {
+				List<Profile> importedProfs = 
+				databaseAdapter.getUnmatchedProfiles(uid, FireBaseAdapter.FRIEND_MATCHES, clientModel.getFriendMatchBatch());
+				if(importedProfs.isEmpty())
+					return false;
+				
+				clientModel.importUnmatchedFriendBatch(importedProfs);
+				return true;
+				
+			} catch (DBFailureException e) {
+				return false;
+			}
+		}
+		
+		return false;
+	}
+	
+	public static boolean importLoveMatchBatch() {
+		if(activeUserAccount != null && activeUserAccount.getAccountProfile() != null) {
+			String uid = activeUserAccount.getUserId();
+			try {
+				List<Profile> importedProfs = 
+				databaseAdapter.getUnmatchedProfiles(uid, FireBaseAdapter.LOVE_MATCHES, clientModel.getFriendMatchBatch());
+				if(importedProfs.isEmpty())
+					return false;
+				
+				clientModel.importUnmatchedLoveBatch(importedProfs);
+				return true;
+				
+			} catch (DBFailureException e) {
+				return false;
+			}
+		}
+		
+		return false;
 
-	public static MessageThread getMessageThread(String userId, String otherUserId) throws DBFailureException {
-		return databaseAdapter.getMessageThread(userId, otherUserId);
+	}
+	
+	public static MessageThread getMessageThread(String userId, String otherUserId) {
+		try {
+			return databaseAdapter.getMessageThread(userId, otherUserId);
+		} catch (DBFailureException e) {
+			//Handle exception here:
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public static void sendIssue(String issueType, String desc){
-
+		//TODO: implement this for issue tracking in the database
+	}
+	
+	public static Match getMatch(Profile clientProfile, Profile otherProfile) throws DBFailureException {
+		return databaseAdapter.getMatch(clientProfile, otherProfile);
+	}
+	
+	public static void addMatch(Match match) throws DBFailureException {
+		databaseAdapter.addMatch(match);
+	}
+	
+	public static void updateMatch(Match match) throws DBFailureException {
+		databaseAdapter.updateMatch(match);
 	}
 }

@@ -1,63 +1,100 @@
 package model;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.concurrent.PriorityBlockingQueue;
 
+import firebase.FireBaseAdapter;
+
 public class ClientModel {
 	
-	static int friendMatchBatch = 0;
-	static int loveMatchBatch = 0;
+	private int friendMatchBatch = 0;
+	private int loveMatchBatch = 0;
 	
-	private static Queue<Profile> newFriendMatchQueue = new PriorityBlockingQueue<Profile>();
-	private static Queue<Profile> newLoveMatchQueue = new PriorityBlockingQueue<Profile>();
+	private Queue<Profile> newFriendMatchQueue = null;//new PriorityBlockingQueue<Profile>();
+	private Queue<Profile> newLoveMatchQueue = null; //new PriorityBlockingQueue<Profile>();
 	
-	static List<Profile> loveMatches;
-	static List<Profile> friendMatches;
+	private List<Profile> loveMatches = new ArrayList<Profile>();
+	private List<Profile> friendMatches = new ArrayList<Profile>();
 	
-	static Map<String,BufferedImage> profileImageCache;
+	private Map<String,BufferedImage> profileImageCache = new HashMap<String, BufferedImage>();
 	
-	public static void enqueueFriendProfiles(List<Profile> newFriends) {
+	public ClientModel(Profile currentAccountProfile) {
+		this.newFriendMatchQueue = new PriorityQueue<Profile>(
+										Matchmaker.getFriendComparator(currentAccountProfile));
+		this.newLoveMatchQueue = new PriorityQueue<Profile>(
+										Matchmaker.getLoveComparator(currentAccountProfile));
+	}
+	
+	public void enqueueFriendProfiles(List<Profile> newFriends) {
 		newFriendMatchQueue.addAll(newFriends);
 	}
 	
-	public static void enqueueLoveProfiles(List<Profile> newLoves) {
+	public void enqueueLoveProfiles(List<Profile> newLoves) {
 		newLoveMatchQueue.addAll(newLoves);
 	}
 	
-	public static Profile getFriendProfileFront() {
+	public void importUnmatchedLoveBatch(List<Profile> newLoves) {
+		newFriendMatchQueue.addAll(newLoves);
+		loveMatchBatch++;
+	}
+	
+	public void importUnmatchedFriendBatch(List<Profile> newFriends) {
+		newFriendMatchQueue.addAll(newFriends);
+		friendMatchBatch++;
+	}
+	
+	public Profile getFriendProfileFront() {
 		return newFriendMatchQueue.peek();
 	}
 	
-	public static Profile getLoveProfileFront() {
+	public Profile getLoveProfileFront() {
 		return newFriendMatchQueue.peek();
 	}
 	
-	public static void dequeueFriendProfile() {
+	public void dequeueFriendProfile() {
 		newFriendMatchQueue.remove();
 	}
 	
-	public static void dequeLoveProfile() {
+	public void dequeLoveProfile() {
 		newLoveMatchQueue.remove();
 	}
-
-	public static List<Profile> getLoveMatches() {
+	
+	public List<Profile> getLoveMatches() {
 		return loveMatches;
 	}
 
-	public static void setLoveMatches(List<Profile> loveMatches) {
-		ClientModel.loveMatches = loveMatches;
+	public void setLoveMatches(List<Profile> loveMatches) {
+		loveMatches = loveMatches;
 	}
 
-	public static List<Profile> getFriendMatches() {
+	public List<Profile> getFriendMatches() {
 		return friendMatches;
 	}
 
-	public static void setFriendMatches(List<Profile> friendMatches) {
-		ClientModel.friendMatches = friendMatches;
+	public void setFriendMatches(List<Profile> matches) {
+		friendMatches = matches;
+	}
+
+	public void resetFriendMatchBatch() {
+		this.friendMatchBatch = 0;
+	}
+
+	public void resetLoveMatchBatch() {
+		this.loveMatchBatch = 0;
+	}
+	
+	public int getLoveMatchBatch() {
+		return this.loveMatchBatch;
+	}
+	
+	public int getFriendMatchBatch() {
+		return this.friendMatchBatch;
 	}
 	
 }

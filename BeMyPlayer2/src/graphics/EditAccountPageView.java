@@ -43,7 +43,7 @@ public class EditAccountPageView {
 		//init bemyplayer2 label
 		JLabel lblBeMyPlayer = new JLabel("Be My Player 2");
 		lblBeMyPlayer.setForeground(Colors.Yellow);
-		lblBeMyPlayer.setFont(new Font("Monospaced", Font.BOLD, 20));
+		lblBeMyPlayer.setFont(Fonts.getFont((float)20));
 		lblBeMyPlayer.setBounds(160,0,204,69);
 		editController.getEditAccountModel().setLblBeMyPlayer(lblBeMyPlayer);
 		
@@ -51,6 +51,8 @@ public class EditAccountPageView {
 		JButton btnBack = new JButton("Back");
 		btnBack.setBounds(10,10,90,40);
 		btnBack.setBackground(Colors.Yellow);
+		btnBack.setFont(Fonts.getFont((float)12));
+		btnBack.setForeground(Colors.Red);
 		btnBack.setActionCommand(editController.BACK);
 		btnBack.addActionListener(editController);
 		editController.getEditAccountModel().setBtnBack(btnBack);
@@ -58,6 +60,8 @@ public class EditAccountPageView {
 		JButton btnProfile = new JButton("Edit Profile Details");
 		btnProfile.setBounds(160,100,150,40);
 		btnProfile.setBackground(Colors.Yellow);
+		btnProfile.setFont(Fonts.getFont((float)12));
+		btnProfile.setForeground(Colors.Red);
 		btnProfile.setActionCommand(editController.PROFILE);
 		btnProfile.addActionListener(editController);
 		editController.getEditAccountModel().setBtnProfile(btnProfile);
@@ -66,12 +70,16 @@ public class EditAccountPageView {
 		btnQuestionnaire.addActionListener(editController);
 		btnQuestionnaire.setBounds(160,150,150,40);
 		btnQuestionnaire.setBackground(Colors.Yellow);
+		btnQuestionnaire.setFont(Fonts.getFont((float)12));
+		btnQuestionnaire.setForeground(Colors.Red);
 		btnQuestionnaire.setActionCommand(editController.QUESTIONNAIRE);
 		editController.getEditAccountModel().setBtnQuestionnaire(btnQuestionnaire);
 		
 		JButton btnAccount = new JButton("Edit Account Details");
 		btnAccount.setBounds(160,200,150,40);
 		btnAccount.setBackground(Colors.Yellow);
+		btnAccount.setFont(Fonts.getFont((float)12));
+		btnAccount.setForeground(Colors.Red);
 		btnAccount.setActionCommand(editController.ACCOUNT);
 		btnAccount.addActionListener(editController);
 		editController.getEditAccountModel().setBtnAccount(btnAccount);
@@ -79,6 +87,8 @@ public class EditAccountPageView {
 		JButton btnUpgrade = new JButton("Upgrade Account!");
 		btnUpgrade.setBounds(160,250,150,40);
 		btnUpgrade.setBackground(Colors.Yellow);
+		btnUpgrade.setFont(Fonts.getFont((float)12));
+		btnUpgrade.setForeground(Colors.Red);
 		btnUpgrade.setActionCommand(editController.UPGRADE);
 		btnUpgrade.addActionListener(editController);
 		editController.getEditAccountModel().setBtnUpgrade(btnUpgrade);
@@ -115,6 +125,8 @@ public class EditAccountPageView {
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.setBounds(45,345,90,40);
 		btnCancel.setBackground(Colors.Yellow);
+		btnCancel.setFont(Fonts.getFont((float)12));
+		btnCancel.setForeground(Colors.Red);
 		btnCancel.setActionCommand(editController.CANCEL);
 		btnCancel.addActionListener(editController);
 		editController.getEditAccountModel().setBtnCancel(btnCancel);
@@ -123,6 +135,8 @@ public class EditAccountPageView {
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.setBounds(345,345,90,40);
 		btnSubmit.setBackground(Colors.Yellow);
+		btnSubmit.setFont(Fonts.getFont((float)12));
+		btnSubmit.setForeground(Colors.Red);
 		btnSubmit.setActionCommand(editController.SUBMITEDITACCOUNT);
 		btnSubmit.addActionListener(editController);
 		editController.getEditAccountModel().setBtnSubmit(btnSubmit);
@@ -133,6 +147,8 @@ public class EditAccountPageView {
 		JPasswordField pwdEnterPass = new JPasswordField();
 		pwdEnterPass.setHorizontalAlignment(SwingConstants.CENTER);
 		pwdEnterPass.setBounds(45, 165, 128, 32);
+		pwdEnterPass.setFont(Fonts.getFont((float)12));
+		pwdEnterPass.setForeground(Colors.Red);
 		editController.getEditAccountModel().setPwdEnterPass(pwdEnterPass);
 		editController.getEditAccountPanel().add(editController.getEditAccountModel().getPwdEnterPass());
 		
@@ -148,6 +164,9 @@ public class EditAccountPageView {
 		frmtdtxtfldEnterUsername.setHorizontalAlignment(SwingConstants.CENTER);
 		frmtdtxtfldEnterUsername.setText(InformationExpert.getActiveAccount().getAccountProfile().getUsername());
 		frmtdtxtfldEnterUsername.setBounds(45, 95, 128, 32);
+		frmtdtxtfldEnterUsername.setFont(Fonts.getFont((float)12));
+		frmtdtxtfldEnterUsername.setForeground(Colors.Red);
+		frmtdtxtfldEnterUsername.setBackground(Colors.Yellow);
 		editController.getEditAccountModel().setFrmtdtxtfldEnterUsername(frmtdtxtfldEnterUsername);
 		editController.getEditAccountPanel().add(editController.getEditAccountModel().getFrmtdtxtfldEnterUsername());
 		
@@ -159,6 +178,9 @@ public class EditAccountPageView {
 		
 		JFormattedTextField age = new JFormattedTextField();
 		age.setHorizontalAlignment(SwingConstants.CENTER);
+		age.setFont(Fonts.getFont((float)12));
+		age.setForeground(Colors.Red);
+		age.setBackground(Colors.Yellow);
 		Date date = InformationExpert.getActiveAccount().getAccountProfile().getDateOB();
 		SimpleDateFormat tf = new SimpleDateFormat("dd/MM/yyyy");
 		
@@ -176,6 +198,9 @@ public class EditAccountPageView {
         	}
         });
 		gender.setToolTipText("Gender");
+		gender.setFont(Fonts.getFont((float)12));
+		gender.setForeground(Colors.Red);
+		gender.setBackground(Colors.Yellow);
 		gender.setModel(new DefaultComboBoxModel(new String[] {"Male", "Female"}));
 		if(InformationExpert.getActiveAccount().getAccountProfile().getGender().equals("Male")) {
 			gender.setSelectedIndex(0);
@@ -198,6 +223,9 @@ public class EditAccountPageView {
 		securityQuestions.setToolTipText("Security Question");
 		securityQuestions.setModel(new DefaultComboBoxModel(new String[] {"Q1", "Q2"}));
 		securityQuestions.setBounds(275, 170, 94, 22);
+		securityQuestions.setFont(Fonts.getFont((float)12));
+		securityQuestions.setForeground(Colors.Red);
+		securityQuestions.setBackground(Colors.Yellow);
 		securityQuestions.setVisible(true);
 		
 		editController.getEditAccountModel().setSecurityQ(securityQuestions);
@@ -205,51 +233,52 @@ public class EditAccountPageView {
 		
 		//	set text
 		JLabel lblAccInfo = new JLabel("Account Info");
+		lblAccInfo.setFont(Fonts.getFont((float)20));
 		lblAccInfo.setForeground(Colors.Yellow);
-		lblAccInfo.setFont(new Font("Monospaced", Font.BOLD, 20));
 		lblAccInfo.setBounds(45, 0, 204, 69);
 		editController.getEditAccountPanel().add(lblAccInfo);
 		//capController.getCreateAccountPanel().add(lblAccInfo);
 		
 		JLabel lbldob = new JLabel("Age:");
+		lbldob.setFont(Fonts.getFont((float)12));
 		lbldob.setForeground(Colors.Yellow);
-		lbldob.setFont(new Font("Monospaced", Font.BOLD, 12));
 		lbldob.setBounds(275, 65, 204, 32);
 		editController.getEditAccountPanel().add(lbldob);
 		
 		JLabel lblGender = new JLabel("Gender");
+		lblGender.setFont(Fonts.getFont((float)12));
 		lblGender.setForeground(Colors.Yellow);
-		lblGender.setFont(new Font("Monospaced", Font.BOLD, 12));
 		lblGender.setBounds(275, 245, 204, 32);	
 		editController.getEditAccountPanel().add(lblGender);
 		
 		JLabel lblSecQ = new JLabel("Security Question");
-		lblSecQ.setForeground(Colors.Yellow);
-		lblSecQ.setFont(new Font("Monospaced", Font.BOLD, 20));
+		lblSecQ.setFont(Fonts.getFont((float)12));
+		lblSecQ.setForeground(Colors.Red);
+		lblSecQ.setBackground(Colors.Yellow);
 		lblSecQ.setBounds(275, 110, 204, 69);
 		editController.getEditAccountPanel().add(lblSecQ);
 	
 		JLabel pwdField1Prmpt = new JLabel("Enter Password:");
+		pwdField1Prmpt.setFont(Fonts.getFont((float)12));
 		pwdField1Prmpt.setForeground(Colors.Yellow);
-		pwdField1Prmpt.setFont(new Font("Monospaced",Font.BOLD,12));
 		pwdField1Prmpt.setBounds(45, 135, 128, 32);
 		editController.getEditAccountPanel().add(pwdField1Prmpt);
 		
 		JLabel pwdfield2PrmptLoc = new JLabel("Re-enter Password:");
+		pwdfield2PrmptLoc.setFont(Fonts.getFont((float)12));
 		pwdfield2PrmptLoc.setForeground(Colors.Yellow);
-		pwdfield2PrmptLoc.setFont(new Font("Monospaced",Font.BOLD,12));
 		pwdfield2PrmptLoc.setBounds(45,205,155,32);
 		editController.getEditAccountPanel().add(pwdfield2PrmptLoc);
 		
 		JLabel userFieldPrmptLoc = new JLabel("Enter Username:");
+		userFieldPrmptLoc.setFont(Fonts.getFont((float)12));
 		userFieldPrmptLoc.setForeground(Colors.Yellow);
-		userFieldPrmptLoc.setFont(new Font("Monospaced",Font.BOLD,12));
 		userFieldPrmptLoc.setBounds(45,65,128,32);
 		editController.getEditAccountPanel().add(userFieldPrmptLoc);
 		
 		JLabel answerPrompt = new JLabel("Answer:");
+		answerPrompt.setFont(Fonts.getFont((float)12));
 		answerPrompt.setForeground(Colors.Yellow);
-		answerPrompt.setFont(new Font("Monospaced",Font.BOLD,12));
 		answerPrompt.setBounds(220,205,128,32);
 		editController.getEditAccountPanel().add(answerPrompt);
 		
@@ -277,10 +306,11 @@ public class EditAccountPageView {
 		editController.getEditAccountModel().setCheckList(new ArrayList<JCheckBox>());
 		
 		JCheckBox xboxBtn = new JCheckBox("Xbox");
-		xboxBtn.setBackground(Colors.Red);
-		xboxBtn.setForeground(Colors.Yellow);
+		
 		xboxBtn.setSelected(InformationExpert.getActiveAccount().getAccountProfile().getPlatforms().get(0));
-		xboxBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		xboxBtn.setFont(Fonts.getFont((float)14));
+		xboxBtn.setForeground(Colors.Yellow);
+		xboxBtn.setBackground(Colors.Red);
 		xboxBtn.setBounds(45, 80, 75, 25);
 		editController.getEditAccountModel().getCheckList().add(xboxBtn);
 		editController.getEditAccountPanel().add(xboxBtn);
@@ -506,16 +536,15 @@ public class EditAccountPageView {
 		mainFrame.setContentPane(editController.getEditAccountPanel());
 		
 		//	default icon
-		Image img1;
-
+		Image img1 = null;
 		try {
 			img1 = InformationExpert.getProfileImage(InformationExpert.getActiveUserID());
 		} catch (DBFailureException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
+		}
+		if(img1 == null) {
 			img1 = ResourceManager.loadImage("defaultIcon.png");
 		}
-		
 		
 		//lblNewLabel.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
 		//lblNewLabel.setBounds(75, 25, 150, 150);
