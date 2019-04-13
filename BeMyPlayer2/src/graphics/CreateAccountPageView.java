@@ -738,11 +738,11 @@ public class CreateAccountPageView {
 		if(visited == true) {
 			img1 = capController.getCreateAccountPageModel().getProfileImg();
 			if(img1 == null) {
-				img1 = ResourceManager.loadImage("defaultIcon.png");
+				img1 = CreateAccountPageModel.DEFAULT_PROFILE_IMAGE;
 			}
 		}
 		else {
-			img1 = ResourceManager.loadImage("defaultIcon.png");
+			img1 = CreateAccountPageModel.DEFAULT_PROFILE_IMAGE;
 		}
 		
 		//lblNewLabel.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
@@ -761,14 +761,14 @@ public class CreateAccountPageView {
             }
 
 			private void addActionPerformed() {
-				//				load images
+				//load images
 				JFileChooser fc = new JFileChooser();
 				FileFilter imageFilter = new FileNameExtensionFilter(
 					    "Image files", ImageIO.getReaderFileSuffixes());
 				fc.addChoosableFileFilter(imageFilter);
 				fc.setAcceptAllFileFilterUsed(false);
 				fc.setCurrentDirectory(new java.io.File("."));
-				BufferedImage img1 = null;
+				BufferedImage img1 = CreateAccountPageModel.DEFAULT_PROFILE_IMAGE;
 				//	force file chooser
 				File f = null;
 				int returnValue = fc.showOpenDialog(null);
@@ -788,9 +788,8 @@ public class CreateAccountPageView {
 					}
 					capController.getCreateAccountPageModel().setImagePath(f.getAbsolutePath());
 					capController.getCreateAccountPageModel().setProfileImg(img1);
-				}
-				else if(f == null){
-					img1 = ResourceManager.loadImage("defaultIcon.png");
+				}else if(f == null){
+					img1 = CreateAccountPageModel.DEFAULT_PROFILE_IMAGE;
 					capController.getCreateAccountPageModel().setImagePath(img1.toString());
 				}
 				setIcon.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
