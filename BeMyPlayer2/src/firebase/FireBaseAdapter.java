@@ -54,6 +54,7 @@ import model.DBDocumentPackage;
 import model.InformationExpert;
 import model.Match;
 import model.MatchStatus;
+import model.MatchType;
 import model.Profile;
 
 import com.google.cloud.Service;
@@ -69,10 +70,13 @@ public class FireBaseAdapter {
 	private static final String DB_BUCKET_NAME = "bemyplayer2-e65fc.appspot.com";
 	private static final int MAX_NUM_PROFILES_RETRIEVED = 10;
 	
+	public static final String LOVE_MATCHES = "LOVE_MATCHES";
+	public static final String FRIEND_MATCHES = "FRIEND_MATCHES";
+	
 	private Firestore db = null;
 	
 	public boolean initializeDBConnection() {
-	
+		
 		FirebaseOptions options = null;
 		try {
 			FileInputStream clientKeyToken = new FileInputStream(FIREBASE_TOKEN_PATH);
@@ -83,7 +87,7 @@ public class FireBaseAdapter {
 			clientKeyToken.close();
 			FirebaseApp.initializeApp(options);
 			this.db = FirestoreClient.getFirestore();
-				
+			
 		} catch (Exception e) {
 			options = null;
 			LOGGER.log(Level.SEVERE,"Error- unable to locate FIREBASE_TOKEN_PATH");
@@ -421,23 +425,175 @@ public class FireBaseAdapter {
 		return true;
 	}
 	
-	public List<Profile> getUnmatchedProfiles(String userId) throws DBFailureException{
-		return getUnmatchedProfiles(userId, 1);
+	public Profile getProfile(String userId) throws DBFailureException {
+		
+		ApiFuture<DocumentSnapshot> fetchProfile = 
+				db.collection(FireBaseSchema.PROFILES_TABLE)
+				.document(userId)
+				.get();
+		
+		Profile prof = new Profile();
+		try {
+			DocumentSnapshot profResult = fetchProfile.get();
+			if(!profResult.exists()){
+				LOGGER.log(Level.FINE,"Could not find profile with given user id");
+				return null;
+			} else {
+				DBDocumentPackage profilePackage = new DBDocumentPackage(userId, profResult.getData());
+				prof.initializeFromPackage(profilePackage);
+			}
+		} catch (InterruptedException e) {
+			LOGGER.log(Level.SEVERE,"Error- Profile query interrupted.");
+			throw new DBFailureException();
+		} catch (ExecutionException e) {
+			LOGGER.log(Level.SEVERE,"Error- Profile query failed.");
+			throw new DBFailureException();
+		}
+		
+		return prof;
 	}
 	
-	public List<Profile> getUnmatchedProfiles(String userId, int iterationNumber) throws DBFailureException {
+	public List<Profile> getFullyMatchedProfiles(Profile userProfile, String matchType) throws DBFailureException{
+		
 		if(this.db == null) {
 			LOGGER.log(Level.WARNING, "Error- no database connection");
 			throw new DBFailureException();
 		}
 		
-		List<Profile> batch = null;
+		String mStringType = MatchType._TYPE_LOVE_MATCH;
+		if(matchType != LOVE_MATCHES && matchType != FRIEND_MATCHES) {
+			LOGGER.log(Level.WARNING, "Error- Invalid call argument: " + matchType);
+			return null;
+		}else if(matchType == FRIEND_MATCHES) {
+			mStringType = MatchType._TYPE_FRIEND_MATCH;
+		}
 		
-		ApiFuture<QuerySnapshot> getAllClientMatches = 
+		List<Profile> profList = null;
+		ApiFuture<QuerySnapshot> mBatchQuery = 
 				db.collection(FireBaseSchema.MATCHES_TABLE)
-					.document(userId)	
+					.document(userProfile.getUserId())	
 					.collection(FireBaseSchema.MATCHES_TABLE_COLLECTION)
-					.whereEqualTo(Match._BLOCK_STATUS, Boolean.FALSE)
+					.whereEqualTo(Match._TYPE, mStringType)
+					.whereEqualTo(Match._CLIENT_MATCH_STATUS, MatchStatus._STATUS_SWIPE_RIGHT)
+					.whereEqualTo(Match._OTHER_MATCH_STATUS, MatchStatus._STATUS_SWIPE_RIGHT)
+					.get();
+		
+		QuerySnapshot matchBatch;
+		try {
+			matchBatch = mBatchQuery.get();
+		} catch (InterruptedException e) {
+			LOGGER.log(Level.SEVERE,"Error- Match batch retrieval query interrupted.");
+			throw new DBFailureException();
+		} catch (ExecutionException e) {
+			LOGGER.log(Level.SEVERE,"Error- Match batch retrieval query failed.");
+			throw new DBFailureException();
+		}
+		
+		if(matchBatch.isEmpty()) {
+			LOGGER.log(Level.FINE, "Query for matches returned empty.");
+			return new ArrayList<Profile>();
+		}else {
+			
+			//parallelize package conversion to list of profiles:
+			profList = matchBatch.getDocuments().parallelStream()
+				.map(m -> {
+					try {
+						return this.getProfile(m.getId());
+					} catch (Exception e) {
+						LOGGER.log(Level.INFO, "Error- a Profile retrieval query failed");
+						return null;
+					} 
+				})
+				.filter(p -> p != null)
+				.collect(Collectors.toList());
+			
+		}
+		
+		return profList;
+	}
+	
+	public List<Profile> getOtherMatchedProfiles(Profile userProfile, String matchType) throws DBFailureException{
+		if(this.db == null) {
+			LOGGER.log(Level.WARNING, "Error- no database connection");
+			throw new DBFailureException();
+		}
+		
+		String mStringType = MatchType._TYPE_LOVE_MATCH;
+		if(matchType != LOVE_MATCHES && matchType != FRIEND_MATCHES) {
+			LOGGER.log(Level.WARNING, "Error- Invalid call argument: " + matchType);
+			return null;
+		}else if(matchType == FRIEND_MATCHES) {
+			mStringType = MatchType._TYPE_FRIEND_MATCH;
+		}
+		
+		List<Profile> profList = null;
+		ApiFuture<QuerySnapshot> mBatchQuery = 
+				db.collection(FireBaseSchema.MATCHES_TABLE)
+					.document(userProfile.getUserId())	
+					.collection(FireBaseSchema.MATCHES_TABLE_COLLECTION)
+					.whereEqualTo(Match._TYPE, mStringType)
+					.whereEqualTo(Match._CLIENT_MATCH_STATUS, MatchStatus._STATUS_NO_MATCH)
+					.whereEqualTo(Match._OTHER_MATCH_STATUS, MatchStatus._STATUS_SWIPE_RIGHT)
+					.get();
+		
+		QuerySnapshot matchBatch;
+		try {
+			matchBatch = mBatchQuery.get();
+		} catch (InterruptedException e) {
+			LOGGER.log(Level.SEVERE,"Error- Match batch retrieval query interrupted.");
+			throw new DBFailureException();
+		} catch (ExecutionException e) {
+			LOGGER.log(Level.SEVERE,"Error- Match batch retrieval query failed.");
+			throw new DBFailureException();
+		}
+		
+		if(matchBatch.isEmpty()) {
+			LOGGER.log(Level.FINE, "Query for matches returned empty.");
+			return new ArrayList<Profile>();
+		}else {
+			
+			//parallelize package conversion to list of profiles:
+			profList = matchBatch.getDocuments().parallelStream()
+				.map(m -> {
+					try {
+						return this.getProfile(m.getId());
+					} catch (Exception e) {
+						LOGGER.log(Level.INFO, "Error- a Profile retrieval query failed");
+						return null;
+					} 
+				})
+				.filter(p -> p != null)
+				.collect(Collectors.toList());
+			
+		}
+		
+		return profList;
+	}
+	
+	public List<Profile> getUnmatchedProfiles(String userId, String matchType) throws DBFailureException{
+		return getUnmatchedProfiles(userId, matchType,1);
+	}
+	
+	public List<Profile> getUnmatchedProfiles(String userId, String matchType, int iterationNumber) throws DBFailureException {
+		if(this.db == null) {
+			LOGGER.log(Level.WARNING, "Error- no database connection");
+			throw new DBFailureException();
+		}
+		
+		String mStringType = MatchType._TYPE_LOVE_MATCH;
+		if(matchType != LOVE_MATCHES && matchType != FRIEND_MATCHES) {
+			LOGGER.log(Level.WARNING, "Error- Invalid call argument: " + matchType);
+			return null;
+		}else if(matchType == FRIEND_MATCHES) {
+			mStringType = MatchType._TYPE_FRIEND_MATCH;
+		}
+		
+		List<Profile> batch = null;
+		ApiFuture<QuerySnapshot> getTypeMatches = 
+				db.collection(FireBaseSchema.MATCHES_TABLE)
+					.document(userId)
+					.collection(FireBaseSchema.MATCHES_TABLE_COLLECTION)
+					.whereEqualTo(Match._TYPE, mStringType)
 					.whereEqualTo(Match._CLIENT_MATCH_STATUS, MatchStatus._STATUS_SWIPE_RIGHT)
 					.get();
 		
@@ -448,7 +604,8 @@ public class FireBaseAdapter {
 					.get();
 					
 		try {
-			QuerySnapshot clientMatches = getAllClientMatches.get();
+			
+			QuerySnapshot clientMatches = getTypeMatches.get();
 			Set<String> clientMatchIds = clientMatches
 				.getDocuments().stream()
 				.map(m -> m.getId())
@@ -461,7 +618,7 @@ public class FireBaseAdapter {
 				return new ArrayList<Profile>();
 			}else {
 				
-				//parallelize package conversion to lift of profiles:
+				//parallelize package conversion to list of profiles:
 				batch = profileBatch.getDocuments().parallelStream()
 					.filter(p -> !clientMatchIds.contains(p.getId()))
 					.map(p -> {
@@ -507,6 +664,7 @@ public class FireBaseAdapter {
 			DBDocumentPackage pkg = new DBDocumentPackage(clientMatch.getId(), clientMatch.getData());
 			Match newMatch = new Match(clientProfile, otherProfile);
 			newMatch.initializeFromPackage(pkg);
+			
 			return newMatch;
 			
 		} catch (InterruptedException e) {
@@ -528,12 +686,12 @@ public class FireBaseAdapter {
 				.document(match.getClientProfile().getUserId())
 				.collection(FireBaseSchema.MATCHES_TABLE_COLLECTION)
 				.document(match.getOtherProfile().getUserId());
-			
+		
 		DocumentReference otherMatchRef = db.collection(FireBaseSchema.MATCHES_TABLE)
 				.document(match.getOtherProfile().getUserId())
 				.collection(FireBaseSchema.MATCHES_TABLE_COLLECTION)
 				.document(match.getClientProfile().getUserId());
-
+		
 		DBDocumentPackage clientPackage = match.toDBPackage();
 		DBDocumentPackage othPackage = match.converseMatchToDBPackage();
 		ApiFuture<WriteResult> clientResult = clientMatchRef.set(clientPackage.getValues());
@@ -549,6 +707,7 @@ public class FireBaseAdapter {
 			LOGGER.log(Level.SEVERE,"Error- Match addition query failed.");
 			throw new DBFailureException();
 		}
+		
 	}
 	
 	public void updateMatch(Match match) throws DBFailureException {
@@ -604,7 +763,7 @@ public class FireBaseAdapter {
 			throw new DBFailureException();
 		}
 	}
-
+	
 	public void updateProfileImage(BufferedImage pic, String userId) throws DBFailureException {
 		if(this.db == null) {
 			LOGGER.log(Level.WARNING, "Error- no database connection");
@@ -637,7 +796,7 @@ public class FireBaseAdapter {
 			throw new DBFailureException();
 		}
 	}
-
+	
 	public BufferedImage getProfileImage(String userId) throws DBFailureException {
 		if(this.db == null) {
 			LOGGER.log(Level.WARNING, "Error- no database connection");

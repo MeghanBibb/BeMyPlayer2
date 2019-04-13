@@ -3,6 +3,7 @@ package graphics;
 import javax.swing.*;
 
 import model.Account;
+import model.InformationExpert;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,7 +23,7 @@ public class MessageController extends PageController {
     	if(back != null) {
     		backPage = back;
     	}
-    	account = GraphicsController.getActiveAccount();
+    	account = InformationExpert.getActiveAccount();
         MessageView.startMessagePage(this,mainFrame);
     }
     

@@ -151,9 +151,9 @@ public class CreateAccountPageController extends PageController{
 				a.setAccountProfile(p);
 			
 				try {
-					GraphicsController.attemptAddNewAccount(a);
+					InformationExpert.attemptAddNewAccount(a);
 					InformationExpert.setActiveAccount(a);
-					GraphicsController.uploadProfileImage(p.getProfilePicture(), a.getUserId());
+					InformationExpert.addProfileImage(p.getProfilePicture(), a.getUserId());
 				} catch (DBFailureException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

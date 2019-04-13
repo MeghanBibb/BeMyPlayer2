@@ -23,12 +23,10 @@ import firebase.FireBaseSchema;
 public class InformationExpert {
 	
 	private static Account activeUserAccount = null;
-	private static List<Profile> allProfiles = null;
-	private static List<Match> allMatches = null;
+	private static ClientModel clientModel = null;
 	private static FireBaseAdapter databaseAdapter = null;
-	private static Account otherUserAccount = null;
 	
-	public static void initializeAdapter() {
+	public static void initialize() {
 		databaseAdapter = new FireBaseAdapter();
 		
 		if(!databaseAdapter.initializeDBConnection()){
@@ -67,12 +65,6 @@ public class InformationExpert {
 		activeUserAccount = a;
 	}
 	
-	public static Account getOtherAccount() {
-		return otherUserAccount;
-	}
-	public static void setOtherAccount(Account a) {
-		otherUserAccount = a ;
-	}
 	public static boolean isActiveUser(Account a) {
 		if(a == activeUserAccount) {
 			return true;

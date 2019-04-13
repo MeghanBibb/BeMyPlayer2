@@ -9,12 +9,13 @@ public class Match implements DBSerializable{
 	//private Profile 
 	private Profile clientProfile = null;
 	private Profile otherProfile = null;
-	private Boolean blockStatus = false;
+	private MatchType type = MatchType.UNMATCHED;
+	
 	private MatchStatus clientMatchStatus = MatchStatus.NO_MATCH;
 	private MatchStatus otherMatchStatus = MatchStatus.NO_MATCH;
 	
 	//Database schema values (do not modify!)
-	public static final String _BLOCK_STATUS = "block_status";
+	public static final String _TYPE = "match_type";
 	public static final String _CLIENT_MATCH_STATUS = "client_match_status";
 	public static final String _OTHER_MATCH_STATUS = "other_match_status";
 	
@@ -30,7 +31,7 @@ public class Match implements DBSerializable{
 	@Override
 	public DBDocumentPackage toDBPackage() {
 		DBDocumentPackage newPackage = new DBDocumentPackage(clientProfile.getUserId());
-		newPackage.addValue(_BLOCK_STATUS, this.blockStatus);
+		newPackage.addValue(_TYPE, this.type);
 		newPackage.addValue(_CLIENT_MATCH_STATUS, this.clientMatchStatus.getStatusString());
 		newPackage.addValue(_OTHER_MATCH_STATUS, this.otherMatchStatus.getStatusString());
 		
@@ -39,6 +40,7 @@ public class Match implements DBSerializable{
 	
 	public DBDocumentPackage converseMatchToDBPackage() {
 		DBDocumentPackage newPackage = new DBDocumentPackage(otherProfile.getUserId());
+		newPackage.addValue(_TYPE, this.type);
 		newPackage.addValue(_CLIENT_MATCH_STATUS, this.otherMatchStatus.getStatusString());
 		newPackage.addValue(_OTHER_MATCH_STATUS, this.clientMatchStatus.getStatusString());
 		
@@ -50,8 +52,8 @@ public class Match implements DBSerializable{
 		
 		for(String s : pkg.getValues().keySet()) {
 			switch(s) {
-				case _BLOCK_STATUS:
-					this.blockStatus = (Boolean) pkg.getValues().get(s);
+				case _TYPE:
+					this.type = MatchType.getMatchType((String) pkg.getValues().get(s));
 					break;
 				case _CLIENT_MATCH_STATUS:
 					this.clientMatchStatus = MatchStatus.getMatchStatus((String) pkg.getValues().get(s));
@@ -80,14 +82,14 @@ public class Match implements DBSerializable{
 		this.otherProfile = otherProfile;
 	}
 
-	public Boolean getBlockStatus() {
-		return blockStatus;
+	public MatchType getType() {
+		return type;
 	}
 
-	public void setBlockStatus(Boolean blockStatus) {
-		this.blockStatus = blockStatus;
+	public void setType(MatchType newType) {
+		this.type = newType;
 	}
-
+	
 	public MatchStatus getClientMatchStatus() {
 		return clientMatchStatus;
 	}
@@ -95,7 +97,7 @@ public class Match implements DBSerializable{
 	public void setClientMatchStatus(MatchStatus clientMatchStatus) {
 		this.clientMatchStatus = clientMatchStatus;
 	}
-
+	
 	public MatchStatus getOtherMatchStatus() {
 		return otherMatchStatus;
 	}
