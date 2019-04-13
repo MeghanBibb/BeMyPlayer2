@@ -23,6 +23,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import firebase.DBFailureException;
 import model.InformationExpert;
 import model.ResourceManager;
 
@@ -505,10 +506,15 @@ public class EditAccountPageView {
 		mainFrame.setContentPane(editController.getEditAccountPanel());
 		
 		//	default icon
-		Image img1;
-
-		img1 = ResourceManager.loadImage("defaultIcon.png");
-		
+		Image img1 = null;
+		try {
+			img1 = InformationExpert.getProfileImage(InformationExpert.getActiveUserID());
+		} catch (DBFailureException e1) {
+			e1.printStackTrace();
+		}
+		if(img1 == null) {
+			img1 = ResourceManager.loadImage("defaultIcon.png");
+		}
 		
 		//lblNewLabel.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
 		//lblNewLabel.setBounds(75, 25, 150, 150);
