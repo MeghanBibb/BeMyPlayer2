@@ -49,13 +49,7 @@ import com.google.firebase.cloud.StorageClient;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import model.Account;
-import model.DBDocumentPackage;
-import model.InformationExpert;
-import model.Match;
-import model.MatchStatus;
-import model.MatchType;
-import model.Profile;
+import model.*;
 
 import com.google.cloud.Service;
 import com.google.cloud.firestore.Firestore;
@@ -815,5 +809,21 @@ public class FireBaseAdapter {
 		}
 	}
 
+	public MessageThread getMessageThread(String userId, String otherUserId) throws DBFailureException{
+		if(this.db == null) {
+			LOGGER.log(Level.WARNING, "Error- no database connection");
+			throw new DBFailureException();
+		}
+
+		try{
+			ApiFuture<DocumentSnapshot> getClientMatch =
+					db.collection(FireBaseSchema.MATCHES_TABLE)
+							.document(clientProfile.getUserId())
+							.collection(FireBaseSchema.MATCHES_TABLE_COLLECTION)
+							.document(otherProfile.getUserId())
+							.get();
+
+		}
+	}
 
 }

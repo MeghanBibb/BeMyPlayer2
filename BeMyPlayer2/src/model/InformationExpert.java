@@ -128,4 +128,8 @@ public class InformationExpert {
 	public static void updateProfile(Profile p) throws DBFailureException {
 		databaseAdapter.updateProfile(p);
 	}
+
+	public static MessageThread getMessageThread(String userId, String otherUserId) throws DBFailureException{
+		return databaseAdapter.getMessageThread(userId, otherUserId);
+	}
 }

@@ -39,7 +39,7 @@ public class MessageController extends PageController {
         switch(e.getActionCommand()) {
             case SEND:
                 if (validateMsg()){
-
+                    
                 }
 
             	/*
