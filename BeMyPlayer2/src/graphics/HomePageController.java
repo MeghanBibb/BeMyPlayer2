@@ -7,6 +7,8 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import model.InformationExpert;
+
 public class HomePageController extends PageController{
 	
 	// set constant actions
@@ -42,10 +44,12 @@ public class HomePageController extends PageController{
 				break;
 			case FIND_FRIENDS: 
 				logger.info("Find Friends");
+				InformationExpert.setCurretnSwipePage("friend");
 				GraphicsController.processPage(PageCreator.SWIPE_PAGE,backPage);
 				break;
 			case FIND_LOVE: 
 				logger.info("Find Love");
+				InformationExpert.setCurretnSwipePage("love");
 				GraphicsController.processPage(PageCreator.SWIPE_PAGE,backPage);
 				break;
 			case VIEW_MATCHES: 
