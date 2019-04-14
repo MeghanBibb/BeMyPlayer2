@@ -39,6 +39,11 @@ public class ProfileBriefModel extends JPanel{
 	
 	public ProfileBriefModel(Profile profile, Rectangle rect, String backPage){
 
+		try {
+			InformationExpert.setOtherProfile(profile.getUserId());
+		} catch (DBFailureException e2) {
+			System.out.println("profile is null");
+		}
 			
 			CircularImage setIcon = null;
 			Image img1;
