@@ -829,7 +829,7 @@ public class FireBaseAdapter {
 
 	public MessageThread getMessageThread(String userId, String otherUserId) throws DBFailureException{
 		//TODO: Fix this
-		
+		/*
 		if(this.db == null) {
 			LOGGER.log(Level.WARNING, "Error- no database connection");
 			throw new DBFailureException();
@@ -864,9 +864,9 @@ public class FireBaseAdapter {
 			throw new DBFailureException();
 		}
 
-		return msgThread; return null;
+		return msgThread;*/ return null;
 	}
-
+	
 	public void sendIssue(String issueType, String desc) throws DBFailureException{
 		//TODO: Fix Issue Sending
 		/*//
