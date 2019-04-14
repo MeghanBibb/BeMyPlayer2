@@ -117,7 +117,7 @@ public class EditAccountPageController extends PageController{
 							InformationExpert.updateProfileImage(InformationExpert.getActiveAccount().getAccountProfile().getProfilePicture(), InformationExpert.getActiveUserID());
 						}
 					} catch (DBFailureException e1) {
-						logger.warning("Failed to update profile for " + InformationExpert.getActiveUserID()) ;
+						logger.warning("Failed to update profile for " + InformationExpert.getActiveUserID());
 					}
 					logger.info("Submit");
 					GraphicsController.processPage(PageCreator.EDIT_ACCOUNT_PAGE, backPage);

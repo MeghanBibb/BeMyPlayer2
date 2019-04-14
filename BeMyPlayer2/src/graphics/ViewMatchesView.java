@@ -85,8 +85,7 @@ public class ViewMatchesView {
 		
 		matchtype.addItemListener(new ItemListener() {
         	public void itemStateChanged(ItemEvent e) {
-        		System.out.println("updated");
-        		System.out.println(viewMatchController.getViewMatchesModel().getMatchtype().getSelectedItem().toString());
+        		
         		///viewMatchController.getViewMatchesModel().setMatchtype(matchtype);
         		//	generate new match request pull 
         		if(viewMatchController.getViewMatchesModel().getMatchtype().getSelectedItem().toString().equalsIgnoreCase("Love Matches")) {
@@ -155,18 +154,7 @@ public class ViewMatchesView {
 		//	send type request to match adapter to pull list of matches for account
 		
 		////	real implementation
-		/// 	REMOVE WHEN MATCHING IS DONE////////////////////////
-		List<Profile> temp = new ArrayList<>();
-		try {
-			InformationExpert.setOtherProfile("wNHOZhYxEjUMWsFFvqbR");
-		} catch (DBFailureException e1) {
-			// TODO Auto-generated catch block
-			logger.warning("failed to load");
-		}
-		temp.add(InformationExpert.getOtherProfile());
-		
-		InformationExpert.getClientModel().setFriendMatches(temp);
-		InformationExpert.getClientModel().setLoveMatches(temp);
+		/// 	REMOVE WHEN MATCHING IS DONE///////////////////////
 		
 		
 		//////////////////////////////////////////////////////////
