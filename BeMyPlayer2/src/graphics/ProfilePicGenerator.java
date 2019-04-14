@@ -45,7 +45,7 @@ public class ProfilePicGenerator {
 			}
 			Profile temp = InformationExpert.getOtherProfile();
 			//Image img1 = new ImageIcon("filepathfromDB").getImage();//	add try catch and dont add if invalid file path
-			JButton setIcon = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 50, Image.SCALE_DEFAULT)));
+			JButton setIcon = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 50, Image.SCALE_SMOOTH)));
 			setIcon.setLayout(new BorderLayout());
 			setIcon.setName(name);
 			setIcon.setPreferredSize(new Dimension(75,50));
@@ -86,7 +86,7 @@ public class ProfilePicGenerator {
 			}
 			
 			Profile temp = InformationExpert.getOtherProfile();
-			JButton setIcon = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 50, Image.SCALE_DEFAULT)));
+			JButton setIcon = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 50, Image.SCALE_SMOOTH)));
 			setIcon.setLayout(new BorderLayout());
 			setIcon.setName(name);
 			setIcon.setPreferredSize(new Dimension(75,50));

@@ -85,8 +85,7 @@ public class ViewMatchesView {
 		
 		matchtype.addItemListener(new ItemListener() {
         	public void itemStateChanged(ItemEvent e) {
-        		System.out.println("updated");
-        		System.out.println(viewMatchController.getViewMatchesModel().getMatchtype().getSelectedItem().toString());
+        		
         		///viewMatchController.getViewMatchesModel().setMatchtype(matchtype);
         		//	generate new match request pull 
         		if(viewMatchController.getViewMatchesModel().getMatchtype().getSelectedItem().toString().equalsIgnoreCase("Love Matches")) {

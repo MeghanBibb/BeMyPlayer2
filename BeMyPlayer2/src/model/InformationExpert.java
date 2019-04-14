@@ -30,20 +30,18 @@ public class InformationExpert {
 	
 	public static void initialize() {
 		databaseAdapter = new FireBaseAdapter();
-		
 		if(!databaseAdapter.initializeDBConnection()){
 			//error, could not initialize database
 		}
 		
+	}
+	public static void resetClientModel() {
 		//should database dump these, also other account should be null until needed
-		
-		activeUserAccount = new Account();
 		clientModel = new ClientModel(activeUserAccount.getAccountProfile());
 		
 		//import user matches (This should be made asynchronous in the future):
 		loadAccountMatches();
 	}
-	
 	public static void setCurretnSwipePage(String type) {
 		if(type.equalsIgnoreCase("love")) {
 			currentSwipePage = MatchType.LOVE_MATCH;
