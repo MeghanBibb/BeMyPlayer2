@@ -74,14 +74,14 @@ public class ForgotPassPageView {
 		forgotPasswordController.getForgotPasswordPageModel().getFrmtdtextfldEnterUsername().setForeground(Colors.Red);
 		forgotPasswordController.getForgotPasswordPageModel().getFrmtdtextfldEnterUsername().setFont(Fonts.getFont((float) 12));
 			
-		forgotPasswordController.getForgotPasswordPageModel().setFrmtdtextfldEnterNewPassword(new JFormattedTextField(""));
+		forgotPasswordController.getForgotPasswordPageModel().setFrmtdtextfldEnterNewPassword(new JPasswordField(""));
 		forgotPasswordController.getForgotPasswordPageModel().getFrmtdtextfldEnterNewPassword().setHorizontalAlignment(SwingConstants.CENTER);
 		forgotPasswordController.getForgotPasswordPageModel().getFrmtdtextfldEnterNewPassword().setBounds(250,75,180,32);
 		forgotPasswordController.getForgotPasswordPageModel().getFrmtdtextfldEnterNewPassword().setBackground(Colors.Yellow);
 		forgotPasswordController.getForgotPasswordPageModel().getFrmtdtextfldEnterNewPassword().setForeground(Colors.Red);
 		forgotPasswordController.getForgotPasswordPageModel().getFrmtdtextfldEnterNewPassword().setFont(Fonts.getFont((float) 12));
 		
-		forgotPasswordController.getForgotPasswordPageModel().setPwdEnterPass(new JFormattedTextField(""));
+		forgotPasswordController.getForgotPasswordPageModel().setPwdEnterPass(new JPasswordField(""));
 		forgotPasswordController.getForgotPasswordPageModel().getPwdEnterPass().setHorizontalAlignment(SwingConstants.CENTER);
 		forgotPasswordController.getForgotPasswordPageModel().getPwdEnterPass().setBounds(250,130,180,32);
 		forgotPasswordController.getForgotPasswordPageModel().getPwdEnterPass().setBackground(Colors.Yellow);

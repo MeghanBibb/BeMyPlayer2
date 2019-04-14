@@ -2,6 +2,9 @@ package graphics;
 
 import java.awt.event.ActionEvent;
 
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 import firebase.DBFailureException;
 import model.InformationExpert;
 import model.Match;
@@ -42,6 +45,16 @@ public class SwipeRightController extends SwipeButtonController{
 				}
 				//add match
 				InformationExpert.addMatch(thisMatch);
+			}
+			
+			if(thisMatch.getClientMatchStatus().equals(thisMatch.getOtherMatchStatus()) && thisMatch.getClientMatchStatus().equals(MatchStatus.SWIPE_RIGHT)) {
+				JOptionPane.showConfirmDialog(new JPanel(), "Its a Match", "Match", JOptionPane.DEFAULT_OPTION);
+				if(InformationExpert.getCurrentSwipePage().equals(MatchType.FRIEND_MATCH.getStatusString())) {
+					InformationExpert.getClientModel().addFriendMatch(InformationExpert.getOtherProfile());
+				}
+				else if(InformationExpert.getCurrentSwipePage().equals(MatchType.LOVE_MATCH.getStatusString())) {
+					InformationExpert.getClientModel().addLoveMatch(InformationExpert.getOtherProfile());
+				}
 			}
 		} catch (DBFailureException e1) {
 			// TODO Auto-generated catch block

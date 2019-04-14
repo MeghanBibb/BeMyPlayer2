@@ -36,7 +36,6 @@ public class ForgotPassPageController extends PageController {
 		switch(e.getActionCommand()) {
 			case SUBMIT: 
 				if(validateInfo() == true) {
-					System.out.println(Hasher.hashString(this.getForgotPasswordPageModel().getSecQA().getText()));
 					if(resetPassword() == true) {
 						logger.info("Submit");
 						GraphicsController.processPage(PageCreator.LOGIN_PAGE,backPage);
@@ -96,7 +95,9 @@ public class ForgotPassPageController extends PageController {
 	public boolean resetPassword() {
 		try {
 			return InformationExpert.resetUserAccountPassword(this.getForgotPasswordPageModel().getFrmtdtextfldEnterEmail().getText(), 1,
-					Hasher.hashString(this.getForgotPasswordPageModel().getSecQA().getText()), Hasher.hashString(this.getForgotPasswordPageModel().getFrmtdtextfldEnterNewPassword().getText()));
+					Hasher.hashString(this.getForgotPasswordPageModel().getSecQA().getText()), 
+					Hasher.hashString(this.getForgotPasswordPageModel().getFrmtdtextfldEnterNewPassword().getText()),
+					this.getForgotPasswordPageModel().getFrmtdtextfldEnterUsername().getText());
 		} catch (DBFailureException e) {
 			// TODO Auto-generated catch block
 			return false;

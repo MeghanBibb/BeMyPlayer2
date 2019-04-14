@@ -29,6 +29,8 @@ public class EditAccountPageController extends PageController{
 	public static final String ACCOUNT = "account";
 	public static final String QUESTIONNAIRE = "questionnaire";
 	public static final String UPGRADE = "upgrade";
+	public static final String MUTE = "mute";
+	public static final String DELETE = "delete";
 	public static final int MAXLENGTH = 250;
 	private JFrame copyFrame = null;
 	private EditAccountPageModel editAccountModel = null;
@@ -117,7 +119,7 @@ public class EditAccountPageController extends PageController{
 							InformationExpert.updateProfileImage(InformationExpert.getActiveAccount().getAccountProfile().getProfilePicture(), InformationExpert.getActiveUserID());
 						}
 					} catch (DBFailureException e1) {
-						logger.warning("Failed to update profile for " + InformationExpert.getActiveUserID()) ;
+						logger.warning("Failed to update profile for " + InformationExpert.getActiveUserID());
 					}
 					logger.info("Submit");
 					GraphicsController.processPage(PageCreator.EDIT_ACCOUNT_PAGE, backPage);
@@ -141,6 +143,12 @@ public class EditAccountPageController extends PageController{
 				break;
 			case UPGRADE:		//go to upgrade account page
 				GraphicsController.processPage(PageCreator.PAYMENT_PAGE,backPage);
+				break;
+			case MUTE:
+				System.out.println("mute");
+				break;
+			case DELETE:
+				System.out.print("delete");
 				break;
 		}
 		

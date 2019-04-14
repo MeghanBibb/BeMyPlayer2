@@ -22,8 +22,8 @@ public class ForgotPassPageModel {
 	//	init fields and listeners 
 	private JFormattedTextField frmtdtextfldEnterUsername;
 	private JFormattedTextField frmtdtextfldEnterEmail;
-	private JFormattedTextField frmtdtextfldEnterNewPassword;
-	private JFormattedTextField pwdEnterPass;
+	private JPasswordField frmtdtextfldEnterNewPassword;
+	private JPasswordField pwdEnterPass;
 
 	private JLabel lblEmail;
 	private JLabel lblUsername;
@@ -71,11 +71,11 @@ public class ForgotPassPageModel {
 		this.frmtdtextfldEnterEmail = frmtdtextfldEnterEmail;
 	}
 
-	public JFormattedTextField getFrmtdtextfldEnterNewPassword() {
+	public JPasswordField getFrmtdtextfldEnterNewPassword() {
 		return frmtdtextfldEnterNewPassword;
 	}
 
-	public void setFrmtdtextfldEnterNewPassword(JFormattedTextField frmtdtextfldEnterNewPassword) {
+	public void setFrmtdtextfldEnterNewPassword(JPasswordField frmtdtextfldEnterNewPassword) {
 		this.frmtdtextfldEnterNewPassword = frmtdtextfldEnterNewPassword;
 	}
 
@@ -95,11 +95,11 @@ public class ForgotPassPageModel {
 		this.btnSubmit = btnLogout;
 	}
 
-	public JFormattedTextField getPwdEnterPass() {
+	public JPasswordField getPwdEnterPass() {
 		return pwdEnterPass;
 	}
 
-	public void setPwdEnterPass(JFormattedTextField pwdEnterPass) {
+	public void setPwdEnterPass(JPasswordField pwdEnterPass) {
 		this.pwdEnterPass = pwdEnterPass;
 	}
 

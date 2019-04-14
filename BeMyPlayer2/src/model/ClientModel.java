@@ -82,9 +82,14 @@ public class ClientModel {
 	public List<Profile> getLoveMatches() {
 		return loveMatches;
 	}
-
+	public void addLoveMatch(Profile b) {
+		this.loveMatches.add(b);
+	}
+	public void addFriendMatch(Profile b) {
+		this.friendMatches.add(b);
+	}
 	public void setLoveMatches(List<Profile> loveMatches) {
-		loveMatches = loveMatches;
+		this.loveMatches = loveMatches;
 	}
 
 	public List<Profile> getFriendMatches() {
@@ -92,7 +97,7 @@ public class ClientModel {
 	}
 
 	public void setFriendMatches(List<Profile> matches) {
-		friendMatches = matches;
+		this.friendMatches = matches;
 	}
 
 	public void resetFriendMatchBatch() {
