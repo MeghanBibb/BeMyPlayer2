@@ -107,12 +107,10 @@ public class InformationExpert {
 		return activeUserAccount.getUserId();
 	}
 	
-	public static void updateProfileImage(BufferedImage pic, String userId) {
-		try {
-			databaseAdapter.updateProfileImage(pic, userId);
-		} catch (DBFailureException e) {
-			e.printStackTrace();
-		}
+	public static void updateProfileImage(BufferedImage pic, String userId) throws DBFailureException {
+		
+		databaseAdapter.updateProfileImage(pic, userId);
+		
 	}
 	
 	public static BufferedImage getProfileImage(String userID) throws DBFailureException {

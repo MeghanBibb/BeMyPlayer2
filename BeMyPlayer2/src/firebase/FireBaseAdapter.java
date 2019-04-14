@@ -749,16 +749,18 @@ public class FireBaseAdapter {
 			throw new DBFailureException();
 		}
 		
+		BufferedImage convertedPic = ImageConverter.convertToJPG(pic);
 		Bucket defaultBucket = StorageClient.getInstance().bucket(DB_BUCKET_NAME);
 		try {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			ImageIO.write(pic, ".jpg", baos);
+			ImageIO.write(convertedPic, "jpg", baos);
 			byte[] binData = baos.toByteArray();
 			Blob writtenPic = defaultBucket.create(FireBaseSchema.toProfileImageIndex(userId), 
 											binData, Bucket.BlobTargetOption.doesNotExist());
 			LOGGER.log(Level.FINE, "Added a Profile Image.");
 			
 		}catch(Exception exc) {
+			//exc.printStackTrace();
 			LOGGER.log(Level.SEVERE, "Error- Image upload failed!");
 			throw new DBFailureException();
 		}
@@ -776,10 +778,11 @@ public class FireBaseAdapter {
 		}
 		
 		Storage storage = StorageOptions.getDefaultInstance().getService();
-		
+		BufferedImage convertedPic = ImageConverter.convertToJPG(pic);
 		try {
+			
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			ImageIO.write(pic, ".jpg", baos);
+			ImageIO.write(convertedPic, "jpg", baos);
 			byte[] binData = baos.toByteArray();
 			
 			Bucket defaultBucket = StorageClient.getInstance().bucket(DB_BUCKET_NAME);
@@ -796,7 +799,7 @@ public class FireBaseAdapter {
 			LOGGER.log(Level.FINE, "Updated Profile Image to new Image.");
 			
 		}catch(Exception exc) {
-			exc.printStackTrace();
+			//exc.printStackTrace();
 			LOGGER.log(Level.SEVERE, "Error- Image upload failed-- Profile picture may have been lost!");
 			throw new DBFailureException();
 		}

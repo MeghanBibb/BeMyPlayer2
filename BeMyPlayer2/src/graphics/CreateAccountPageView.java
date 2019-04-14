@@ -720,12 +720,12 @@ public class CreateAccountPageView {
 		mainFrame.pack();
 		mainFrame.setVisible(true);
 	}
+	
 	public static void startProfileForm(final CreateAccountPageController capController,JFrame mainFrame, boolean visited) {
 		Color red = new Color(134,48,111);
 		Color yellow = new Color(254, 195, 123);
 		
-		//	 set up panel
-
+		// set up panel
 		capController.setCreateAccountPanel(new BackgroundPanel(null));
 		capController.getCreateAccountPanel().setBorder(new EmptyBorder(5, 5, 5, 5));
 		capController.getCreateAccountPanel().setPreferredSize(new Dimension(500,400));
@@ -733,7 +733,7 @@ public class CreateAccountPageView {
 		mainFrame.setContentPane(capController.getCreateAccountPanel());
 		mainFrame.getContentPane().setBackground(red);
 		
-		//	default icon
+		// default icon
 		BufferedImage img1 = null;
 		if(visited == true) {
 			img1 = capController.getCreateAccountPageModel().getProfileImg();
@@ -784,6 +784,7 @@ public class CreateAccountPageView {
 						img1 = ImageIO.read(new File(f.getAbsolutePath()));
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
+						img1 = CreateAccountPageModel.DEFAULT_PROFILE_IMAGE;
 						e.printStackTrace();
 					}
 					capController.getCreateAccountPageModel().setImagePath(f.getAbsolutePath());
