@@ -85,17 +85,15 @@ public class ViewMatchesView {
 		
 		matchtype.addItemListener(new ItemListener() {
         	public void itemStateChanged(ItemEvent e) {
-        		
-        		///viewMatchController.getViewMatchesModel().setMatchtype(matchtype);
         		//	generate new match request pull 
         		if(viewMatchController.getViewMatchesModel().getMatchtype().getSelectedItem().toString().equalsIgnoreCase("Love Matches")) {
         			
         			profilePicPanel.removeAll();
-        			profilePicPanel.removeNotify();
         			///	ACTUAL SOLUTION
         			if(InformationExpert.getClientModel().getLoveMatches() == null || InformationExpert.getClientModel().getLoveMatches().size() == 0) {
         				viewMatchController.getViewMatchesModel().getEmptylistLine1().setVisible(true);
         				viewMatchController.getViewMatchesModel().getEmptylistLine2().setVisible(true);
+        				
         			}
         			else {
         				List<JButton> pics = ProfilePicGenerator.getLoveList(viewMatchController);
@@ -106,14 +104,12 @@ public class ViewMatchesView {
             			}
             			
         			}
-        			viewMatchController.getViewMatchesPanel().validate();
-        			viewMatchController.getViewMatchesPanel().revalidate();
+        			profilePicPanel.repaint();
         			profilePicPanel.validate();
         			profilePicPanel.revalidate();
         		}
         		else {
         			profilePicPanel.removeAll();
-        			profilePicPanel.removeNotify();
         			///	ACTUAL SOLUTION
         			if(InformationExpert.getClientModel().getFriendMatches() == null ||InformationExpert.getClientModel().getFriendMatches().size() == 0) {
         				viewMatchController.getViewMatchesModel().getEmptylistLine1().setVisible(true);
@@ -127,8 +123,7 @@ public class ViewMatchesView {
             				profilePicPanel.add(icon);
             			}
         			}
-        			viewMatchController.getViewMatchesPanel().validate();
-        			viewMatchController.getViewMatchesPanel().revalidate();
+        			profilePicPanel.repaint();
         			profilePicPanel.validate();
         			profilePicPanel.revalidate();
         		}
