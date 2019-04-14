@@ -65,6 +65,10 @@ public class InformationExpert {
 		otherProfile = databaseAdapter.getProfile(userID);
 	}
 	
+	public static boolean resetUserAccountPassword(String userEmail, int securityQ, String ansHash, String passwordHash) throws DBFailureException {
+		return databaseAdapter.resetUserAccountPassword(userEmail, securityQ, ansHash, passwordHash);
+	}
+	
 	
 	public static boolean attemptAddNewAccount(Account a) throws DBFailureException {
 		return databaseAdapter.attemptAddNewAccount(a);
