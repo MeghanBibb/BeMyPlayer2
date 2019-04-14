@@ -24,6 +24,7 @@ import com.google.firebase.cloud.FirestoreClient;
 
 import model.Account;
 import model.Profile;
+import model.ResourceManager;
 
 import com.google.cloud.Service;
 
@@ -32,6 +33,7 @@ public class FirebaseTestConnector {
 	
 	//initialize app connector
 	public static void main(String[] args) {
+		
 		
 		FireBaseAdapter adapter = new FireBaseAdapter();
 		adapter.initializeDBConnection();
@@ -82,13 +84,10 @@ public class FirebaseTestConnector {
 				System.out.println("Done!");
 				
 				System.out.println("Uploading picture...");
-				try {
-					BufferedImage testImage = ImageIO.read(new File("img/booth1.jpg"));
-					adapter.addProfileImage(testImage, uid);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				
+				BufferedImage testImage = ResourceManager.loadImage("heart.png");
+				adapter.addProfileImage(testImage, uid);
+				
 			}
 			
 		} catch (DBFailureException e) {
