@@ -28,10 +28,12 @@ public class SwipePageModel {
 	Rectangle briefSize = new Rectangle(150,100,230,200);
 	SwipePageController controller;
 	JLabel lblBeMyPlayer;
+	JLabel heartImage;
 	
 	public SwipePageModel(JFrame t_frame, Profile profile, SwipePageController c){
 		this.controller = c;
 		this.frame = t_frame;
+		heartImage = new JLabel();
 		
 		this.currentProfile = profile;
 		
@@ -45,17 +47,22 @@ public class SwipePageModel {
 		backButton.setFont(Fonts.getFont((float) 12));
 		backButton.setForeground(Colors.Red);
 		
+		BufferedImage img1 = ResourceManager.loadImage("splash_heart.png");
+		//img1 = new ImageIcon("C:\\Backup of student files\\Spring 2019\\BeMyPlayer2\\BeMyPlayer2\\BeMyPlayer2\\img\\hearts.png").getImage();
+		heartImage.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH)));
+		heartImage.setBounds(350, 1, 50, 50);
 		
 		this.left = new SwipeButton(new SwipeLeftController(this.controller));
 		this.right = new SwipeButton(new SwipeRightController(this.controller));
 		
 		layout.setHgap(70);
 		layout.setVgap(40);
-		lblBeMyPlayer = new JLabel("Be My Player 2");
+		lblBeMyPlayer = new JLabel("         Be My Player 2");
 		lblBeMyPlayer.setFont(Fonts.getFont((float) 30));
 		lblBeMyPlayer.setForeground(Colors.Yellow);
-		lblBeMyPlayer.setBounds(160,10,204,69);
+		lblBeMyPlayer.setBounds(200,10,204,69);
 		
+		frame.getContentPane().add(heartImage, BorderLayout.NORTH);
 		frame.getContentPane().add(lblBeMyPlayer, BorderLayout.NORTH);
 		frame.getContentPane().add(this.left, BorderLayout.LINE_START);
 		frame.getContentPane().add(this.right, BorderLayout.LINE_END);
