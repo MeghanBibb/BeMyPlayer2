@@ -100,7 +100,7 @@ public class GraphicsController {
 		        }
 		    }
 		}
-		catch (Exception ex) {ex.printStackTrace();}
+		catch (Exception ex) {logger.warning("Failed to load look and feel for main");}
 		
 		// See the updated Account object in the model package...
 		InformationExpert.initialize();

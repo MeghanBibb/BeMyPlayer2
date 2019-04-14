@@ -8,6 +8,7 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -102,7 +103,7 @@ public class LoginPageView {
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-		Image img1 = ResourceManager.loadImage("splash_heart.png");
+		BufferedImage img1 = ResourceManager.loadImage("splash_heart.png");
 		//img1 = new ImageIcon("C:\\Backup of student files\\Spring 2019\\BeMyPlayer2\\BeMyPlayer2\\BeMyPlayer2\\img\\hearts.png").getImage();
 		lblNewLabel.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(64, 64, Image.SCALE_SMOOTH)));
 		lblNewLabel.setBounds(326, 24, 100, 56);

@@ -92,7 +92,7 @@ public class EditAccountPageController extends PageController{
 						InformationExpert.updateProfile(InformationExpert.getActiveAccount().getAccountProfile());
 					} catch (DBFailureException e1) {
 						// TODO Auto-generated catch block
-						e1.printStackTrace();
+						logger.warning("Database failed to update questionaire for " + InformationExpert.getActiveUserID());
 					}
 									
 					logger.info("Submit");
@@ -117,7 +117,7 @@ public class EditAccountPageController extends PageController{
 							InformationExpert.updateProfileImage(InformationExpert.getActiveAccount().getAccountProfile().getProfilePicture(), InformationExpert.getActiveUserID());
 						}
 					} catch (DBFailureException e1) {
-						e1.printStackTrace();
+						logger.warning("Failed to update profile for " + InformationExpert.getActiveUserID()) ;
 					}
 					logger.info("Submit");
 					GraphicsController.processPage(PageCreator.EDIT_ACCOUNT_PAGE, backPage);

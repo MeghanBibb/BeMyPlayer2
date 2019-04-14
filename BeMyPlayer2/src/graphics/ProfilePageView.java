@@ -13,6 +13,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Logger;
 
+import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -33,7 +34,7 @@ public class ProfilePageView {
 	public static void startProfilePage(ProfilePageController profileController, JFrame mainFrame) {
 		//init Model
 		profileController.setProfileModel(new ProfilePageModel());
-		
+		JLabel heartImage = new JLabel();
 		//init panel
 		profileController.setProfilePanel(new BackgroundPanel(null));
 		profileController.getProfilePanel().setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -44,7 +45,7 @@ public class ProfilePageView {
 		
 		//init buttons
 		JButton btnBack = new JButton("Back");
-		btnBack.setBounds(10,10,90,40);
+		btnBack.setBounds(10,10,110,40);
 		btnBack.setActionCommand(profileController.BACK);
 		btnBack.setBackground(Colors.Yellow);
 		btnBack.setFont(Fonts.getFont((float)12));
@@ -83,7 +84,7 @@ public class ProfilePageView {
 			imgLabel.setBounds(10, 60, 100, 100);
 			profileController.getProfileModel().setProfileImage(imgLabel);
 			JButton btnEdit = new JButton("Edit Profile");
-			btnEdit.setBounds(390,10,100,40);
+			btnEdit.setBounds(370,10,120,40);
 			btnEdit.setActionCommand(profileController.EDIT_ACCOUNT);
 			btnEdit.setBackground(Colors.Yellow);
 			btnEdit.setFont(Fonts.getFont((float)12));
@@ -131,10 +132,18 @@ public class ProfilePageView {
 		
 		//init Labels
 		JLabel lblBeMyPlayer = new JLabel("Be My Player 2");
-		lblBeMyPlayer.setFont(Fonts.getFont((float)20));
+		lblBeMyPlayer.setFont(Fonts.getFont((float) 20));
 		lblBeMyPlayer.setForeground(Colors.Yellow);
-		lblBeMyPlayer.setBounds(160,0,204,69);
+		lblBeMyPlayer.setBounds(145,0,204,69);
 		profileController.getProfileModel().setLblBeMyPlayer(lblBeMyPlayer);
+		//mainFrame.setIconImage(Toolkit.getDefaultToolkit().getImage("filepath"));
+		
+		BufferedImage img1 = ResourceManager.loadImage("splash_heart.png");
+		//img1 = new ImageIcon("C:\\Backup of student files\\Spring 2019\\BeMyPlayer2\\BeMyPlayer2\\BeMyPlayer2\\img\\hearts.png").getImage();
+		heartImage .setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH)));
+		heartImage.setBounds(315, 22, 30, 30);
+		
+		
 		
 		JLabel lblUsername = new JLabel();
 		lblUsername.setText(profileController.getProfile().getUsername());
@@ -274,6 +283,7 @@ public class ProfilePageView {
 
 		
 		//add to panel
+		profileController.getProfilePanel().add(heartImage);
 		profileController.getProfilePanel().add(profileController.getProfileModel().getBtnBack());
 		profileController.getProfilePanel().add(profileController.getProfileModel().getLblBeMyPlayer());
 		profileController.getProfilePanel().add(profileController.getProfileModel().getLblUsername());

@@ -40,7 +40,7 @@ public class ClientModel {
 	}
 	
 	public void importUnmatchedLoveBatch(List<Profile> newLoves) {
-		newFriendMatchQueue.addAll(newLoves);
+		newLoveMatchQueue.addAll(newLoves);
 		loveMatchBatch++;
 	}
 	

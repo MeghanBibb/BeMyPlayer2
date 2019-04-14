@@ -830,32 +830,26 @@ public class FireBaseAdapter {
 	public MessageThread getMessageThread(String userId, String otherUserId) throws DBFailureException{
 		//TODO: Fix this
 		
-		/*if(this.db == null) {
+		if(this.db == null) {
 			LOGGER.log(Level.WARNING, "Error- no database connection");
 			throw new DBFailureException();
 		}
-
-		String msgID = null;
-
-		//doesnt allow for both arguments to be equals
-		if (userId.compareTo(otherUserId) < 0){
-			msgID = userId.concat(otherUserId);
-		}
-		else if (userId.compareTo(otherUserId) > 0){
-			msgID = otherUserId.concat(userId);
-		}
-
-		ApiFuture<DocumentSnapshot> fetchThread =
+		
+		String msgId = FireBaseSchema.toMessageThreadIndex(userId, otherUserId);
+		ApiFuture<QuerySnapshot> fetchThread =
 				db.collection(FireBaseSchema.MESSAGE_THREADS_TABLE)
-						.document(msgID)
+						.document(msgId)
+						.collection(FireBaseSchema.MESSAGE_THREADS_TABLE_COLLECTION)
 						.get();
 
 		MessageThread msgThread = new MessageThread();
-
+		
+		
+		
 		try {
-			DocumentSnapshot threadResult = fetchThread.get();
-			if(!threadResultResult.exists()) {
-				LOGGER.log(Level.FINE,"Could not find match Thread");
+			QuerySnapshot threadResult = fetchThread.get();
+			if(!threadResult.isEmpty()) {
+				LOGGER.log(Level.WARNING,"Could not find match Thread");
 				return null;
 			}else {
 				DBDocumentPackage threadPackage = new DBDocumentPackage(msgID, threadResult.getData());
@@ -870,7 +864,7 @@ public class FireBaseAdapter {
 			throw new DBFailureException();
 		}
 
-		return msgThread;*/return null;
+		return msgThread; return null;
 	}
 
 	public void sendIssue(String issueType, String desc) throws DBFailureException{

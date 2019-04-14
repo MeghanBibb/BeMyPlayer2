@@ -1,15 +1,22 @@
 package graphics;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
+import javax.swing.AbstractButton;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import model.ResourceManager;
+
 public class HomePageView {
 	
+	
+
 	public static void launchHomePage(HomePageController homeController, JFrame mainFrame) {
 		//init model
 		homeController.setHomePageModel(new HomePageModel());
@@ -17,6 +24,7 @@ public class HomePageView {
 		//init colors
 		Color red = new Color(134,48,111);
 		Color yellow = Colors.Yellow;
+		JLabel heartImage = new JLabel();
 		
 		//init panel
 		homeController.setHomePanel(new BackgroundPanel(null));
@@ -68,7 +76,7 @@ public class HomePageView {
 		btnSupport.setOpaque(true);
 		btnSupport.setContentAreaFilled(false);
 		btnSupport.setBorderPainted(false);
-		btnSupport.setForeground(Colors.Yellow);
+		btnSupport.setForeground(Colors.White);
 		btnSupport.setFont(Fonts.getFont((float) 12));
 		
 		btnSupport.addActionListener(homeController);
@@ -87,12 +95,17 @@ public class HomePageView {
 		JLabel lblBeMyPlayer = new JLabel("Be My Player 2");
 		lblBeMyPlayer.setFont(Fonts.getFont((float) 20));
 		lblBeMyPlayer.setForeground(Colors.Yellow);
-		lblBeMyPlayer.setBounds(160,0,204,69);
+		lblBeMyPlayer.setBounds(145,0,204,69);
 		homeController.getHomePageModel().setLblBeMyPlayer(lblBeMyPlayer);
 		//mainFrame.setIconImage(Toolkit.getDefaultToolkit().getImage("filepath"));
 		
+		BufferedImage img1 = ResourceManager.loadImage("splash_heart.png");
+		//img1 = new ImageIcon("C:\\Backup of student files\\Spring 2019\\BeMyPlayer2\\BeMyPlayer2\\BeMyPlayer2\\img\\hearts.png").getImage();
+		heartImage.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH)));
+		heartImage.setBounds(315, 22, 30, 30);
 		
 		//add to frame
+		homeController.getHomePanel().add(heartImage);
 		homeController.getHomePanel().add(homeController.getHomePageModel().getBtnFindFriends());
 		homeController.getHomePanel().add(homeController.getHomePageModel().getBtnFindLove());
 		homeController.getHomePanel().add(homeController.getHomePageModel().getBtnLogout());

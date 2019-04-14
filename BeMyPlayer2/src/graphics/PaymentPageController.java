@@ -111,15 +111,13 @@ public class PaymentPageController extends PageController{
 	public void actionPerformed(ActionEvent e) {
 		switch(e.getActionCommand()) {
 			case BACK:
-				System.out.println("back");
+				logger.info("back");
 				GraphicsController.processPage(PageCreator.EDIT_ACCOUNT_PAGE,backPage);
 				break;
 			case SUBMIT:
 				if(verifyPayment()) {
-					System.out.println("Submit");
+					logger.info("Submit");
 					GraphicsController.processPage(PageCreator.EDIT_ACCOUNT_PAGE,backPage);
-				} else {
-					System.out.println("not good data");
 				}
 				break;
 		}

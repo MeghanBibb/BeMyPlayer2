@@ -154,10 +154,9 @@ public class CreateAccountPageController extends PageController{
 					InformationExpert.attemptAddNewAccount(a);
 					InformationExpert.setActiveAccount(a);
 					InformationExpert.addProfileImage(p.getProfilePicture(), a.getUserId());
-					System.out.println(p.getProfilePicture().toString());
 				} catch (DBFailureException e1) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					logger.warning("failed to add new account");
 					//	must be a connection issue
 				}
 				GraphicsController.processPage(PageCreator.HOME_PAGE,backPage);
