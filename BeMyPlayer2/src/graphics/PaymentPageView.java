@@ -53,13 +53,13 @@ public class PaymentPageView {
 		paymentController.getPaymentModel().setLblBeMyPlayer(lblBeMyPlayer);
 		
 		JLabel lblCardNumber = new JLabel("Enter Card Number (numbers only):");
-		lblCardNumber.setBounds(10,70,220,40);
+		lblCardNumber.setBounds(10,70,260,40);
 		lblCardNumber.setForeground(Colors.Yellow);
 		lblCardNumber.setFont(Fonts.getFont(12f));
 		paymentController.getPaymentModel().setLblcardNumber(lblCardNumber);
 		
 		JLabel lblCardDate = new JLabel("Enter Card Expiration Month and Year:");
-		lblCardDate.setBounds(10,140,220,40);
+		lblCardDate.setBounds(10,140,260,40);
 		lblCardDate.setForeground(Colors.Yellow);
 		lblCardDate.setFont(Fonts.getFont(12f));
 		paymentController.getPaymentModel().setLblcardDate(lblCardDate);

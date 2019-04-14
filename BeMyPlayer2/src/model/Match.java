@@ -31,7 +31,7 @@ public class Match implements DBSerializable{
 	@Override
 	public DBDocumentPackage toDBPackage() {
 		DBDocumentPackage newPackage = new DBDocumentPackage(clientProfile.getUserId());
-		newPackage.addValue(_TYPE, this.type);
+		newPackage.addValue(_TYPE, this.type.getStatusString());
 		newPackage.addValue(_CLIENT_MATCH_STATUS, this.clientMatchStatus.getStatusString());
 		newPackage.addValue(_OTHER_MATCH_STATUS, this.otherMatchStatus.getStatusString());
 		
@@ -40,7 +40,7 @@ public class Match implements DBSerializable{
 	
 	public DBDocumentPackage converseMatchToDBPackage() {
 		DBDocumentPackage newPackage = new DBDocumentPackage(otherProfile.getUserId());
-		newPackage.addValue(_TYPE, this.type);
+		newPackage.addValue(_TYPE, this.type.getStatusString());
 		newPackage.addValue(_CLIENT_MATCH_STATUS, this.otherMatchStatus.getStatusString());
 		newPackage.addValue(_OTHER_MATCH_STATUS, this.clientMatchStatus.getStatusString());
 		

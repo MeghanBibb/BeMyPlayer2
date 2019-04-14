@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import javax.swing.JFrame;
 
+import firebase.DBFailureException;
 import model.InformationExpert;
 import model.Profile;
 
@@ -20,8 +21,20 @@ public class SwipePageController extends PageController {
 		if(back != null) {
 			backPage = back;
 		}
-
-		this.model = new SwipePageModel(mainFrame, InformationExpert.getActiveAccount().getAccountProfile(), this);
+		
+		if(InformationExpert.getClientModel().getFriendProfileFront() == null) {
+			//	1 iteration of import, next import grows size
+			InformationExpert.importFriendMatchBatch();
+		}
+		
+		try {
+			InformationExpert.setOtherProfile(InformationExpert.getClientModel().getFriendProfileFront().getUserId());
+			InformationExpert.getClientModel().dequeueFriendProfile();
+		} catch (DBFailureException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		this.model = new SwipePageModel(mainFrame, InformationExpert.getOtherProfile(), this);
 		model.backButton.addActionListener(new ActionListener() {
 	    	@Override
 	    	public void actionPerformed(ActionEvent e) {

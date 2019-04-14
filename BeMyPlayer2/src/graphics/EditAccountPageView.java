@@ -59,7 +59,7 @@ public class EditAccountPageView {
 		editController.getEditAccountModel().setBtnBack(btnBack);
 		
 		JButton btnProfile = new JButton("Edit Profile Details");
-		btnProfile.setBounds(160,100,150,40);
+		btnProfile.setBounds(115,100,250,40);
 		btnProfile.setBackground(Colors.Yellow);
 		btnProfile.setFont(Fonts.getFont((float)12));
 		btnProfile.setForeground(Colors.Red);
@@ -69,7 +69,7 @@ public class EditAccountPageView {
 		
 		JButton btnQuestionnaire = new JButton("Edit Gaming Details");
 		btnQuestionnaire.addActionListener(editController);
-		btnQuestionnaire.setBounds(160,150,150,40);
+		btnQuestionnaire.setBounds(115,150,250,40);
 		btnQuestionnaire.setBackground(Colors.Yellow);
 		btnQuestionnaire.setFont(Fonts.getFont((float)12));
 		btnQuestionnaire.setForeground(Colors.Red);
@@ -77,7 +77,7 @@ public class EditAccountPageView {
 		editController.getEditAccountModel().setBtnQuestionnaire(btnQuestionnaire);
 		
 		JButton btnAccount = new JButton("Edit Account Details");
-		btnAccount.setBounds(160,200,150,40);
+		btnAccount.setBounds(115,200,250,40);
 		btnAccount.setBackground(Colors.Yellow);
 		btnAccount.setFont(Fonts.getFont((float)12));
 		btnAccount.setForeground(Colors.Red);
@@ -86,7 +86,7 @@ public class EditAccountPageView {
 		editController.getEditAccountModel().setBtnAccount(btnAccount);
 		
 		JButton btnUpgrade = new JButton("Upgrade Account!");
-		btnUpgrade.setBounds(160,250,150,40);
+		btnUpgrade.setBounds(115,250,250,40);
 		btnUpgrade.setBackground(Colors.Yellow);
 		btnUpgrade.setFont(Fonts.getFont((float)12));
 		btnUpgrade.setForeground(Colors.Red);
@@ -230,8 +230,8 @@ public class EditAccountPageView {
         	}
         });
 		securityQuestions.setToolTipText("Security Question");
-		securityQuestions.setModel(new DefaultComboBoxModel(new String[] {"Q1", "Q2"}));
-		securityQuestions.setBounds(275, 170, 94, 22);
+		securityQuestions.setModel(new DefaultComboBoxModel(new String[] { "Favorite Game?", "First Console Owned?", "Favorite Character?"}));
+		securityQuestions.setBounds(275, 170, 190, 22);
 		securityQuestions.setFont(Fonts.getFont((float)12));
 		securityQuestions.setForeground(Colors.Red);
 		securityQuestions.setBackground(Colors.Yellow);
