@@ -176,18 +176,10 @@ public class ProfilePageView {
 		//init description
 		JLabel description = new JLabel();
 		if(profileController.isActiveAccount()) {
-			String desc = "<HTML>";
-			desc += InformationExpert.getActiveAccount().getAccountProfile().getDescription();
-			desc = desc.replace("\n", "<br>");
-			desc += "</HTML>";
-			description.setText(desc);
+			description.setText(InformationExpert.getActiveAccount().getAccountProfile().getDescription());
 		}
 		else {
-			String desc = "<HTML>";
-			desc += profileController.getProfile().getDescription();
-			desc = desc.replace("\n", "<br>");
-			desc += "</HTML>";
-			description.setText(desc);
+			description.setText(profileController.getProfile().getDescription());
 		}
 		
 		
