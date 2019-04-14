@@ -157,6 +157,7 @@ public class ProfilePageView {
 		if(cnow.get(Calendar.MONTH) == cbday.get(Calendar.MONTH) && cnow.get(Calendar.DATE) > cbday.get(Calendar.DATE) ) {
 			diff--;
 		}
+		lblAge.setFont(Fonts.getFont(12f));
 		lblAge.setText(Integer.toString(diff) + " years old");
 		lblAge.setForeground(Colors.Yellow);
 		lblAge.setBounds(120,65,150,90);
@@ -165,11 +166,13 @@ public class ProfilePageView {
 		JLabel lblGender = new JLabel();
 		lblGender.setText(profileController.getProfile().getGender());
 		lblGender.setForeground(Colors.Yellow);
+		lblGender.setFont(Fonts.getFont(12f));
 		lblGender.setBounds(120,95,90,90);
 		profileController.getProfileModel().setLblGender(lblGender);
 		
 		JLabel lblConsoles = new JLabel("Consoles:");
 		lblConsoles.setForeground(Colors.Yellow);
+		lblConsoles.setFont(Fonts.getFont(12f));
 		lblConsoles.setBounds(370,30,90,90);
 		profileController.getProfileModel().setLblConsoles(lblConsoles);
 		

@@ -35,20 +35,23 @@ public class SwipeRightController extends SwipeButtonController{
 				thisMatch.setClientMatchStatus(MatchStatus.SWIPE_RIGHT);
 				thisMatch.setOtherMatchStatus(MatchStatus.NO_MATCH);
 				/*SET MATCH TYPE TO FRIEND OR LOVE DEPENDING ON PAGE*/
-				thisMatch.setType(MatchType.LOVE_MATCH);
-				System.out.println("HERE");
+				thisMatch.setType(MatchType.FRIEND_MATCH);
 				
 				//add match
 				InformationExpert.addMatch(thisMatch);
 			}
 		} catch (DBFailureException e1) {
-			System.out.println("here");
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} finally {
 
 			try {
-				controller.setProfile(InformationExpert.getUserAccountWithProfile("LfiDeQ0WNQEnNyZ1c94J").getAccountProfile());
+				if(InformationExpert.getClientModel().getFriendProfileFront() == null) {
+					InformationExpert.importFriendMatchBatch();
+				}				
+				InformationExpert.setOtherProfile(InformationExpert.getClientModel().getFriendProfileFront().getUserId());
+				InformationExpert.getClientModel().dequeueFriendProfile();
+				//controller.setProfile(InformationExpert.getUserAccountWithProfile("LfiDeQ0WNQEnNyZ1c94J").getAccountProfile());
 			} catch (DBFailureException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

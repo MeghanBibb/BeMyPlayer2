@@ -7,6 +7,7 @@ import firebase.DBFailureException;
 import model.InformationExpert;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
@@ -30,19 +31,17 @@ public class MessageView {
         mainFrame.setContentPane(messageController.getMessagePanel());
 
         JLabel imgLabel = new JLabel("");
-        ImageIcon img;
-		/*try {
-			//img = InformationExpert.getProfileImage(messageController.getOtherProf().getUserId());
-			 img = new ImageIcon(messageController.getClass().getResource("/defaultIcon.png")).getImage();
-	        imgLabel.setIcon(new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
-	        imgLabel.setBounds(35, 60, 100, 100);
-	        messageController.getMessageModel().setProfileImage(imgLabel);
+		BufferedImage img = null;
+		try {
+			img = InformationExpert.getProfileImage(InformationExpert.getOtherProfile().getUserId());
 		} catch (DBFailureException e) {
-			// TODO Auto-generated catch block
-			logger.warning("database failed to get profile image from profile" + messageController.getOtherProf().getUserId());
-		}*/
-        img = new ImageIcon("/defaultIcon");
-        imgLabel.setIcon(img);
+			logger.warning("failed to load profile picture for " + InformationExpert.getOtherProfile().getUserId());
+		}
+		
+		if(img == null) {
+			img = CreateAccountPageModel.DEFAULT_PROFILE_IMAGE;
+		}
+		imgLabel.setIcon(new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
         imgLabel.setBounds(35, 60, 100, 100);
         messageController.getMessageModel().setProfileImage(imgLabel);
 
@@ -50,7 +49,6 @@ public class MessageView {
         lblUsername.setText(messageController.getAccount().getAccountProfile().getUsername());
         lblUsername.setFont(new Font("Impact", Font.PLAIN,15));
         lblUsername.setFont(Fonts.getFont((float) 12));
-        //lblUsername.setForeground(Colors.Red);
         lblUsername.setForeground(Colors.Yellow);
         lblUsername.setBounds(150,35,90,90);
         messageController.getMessageModel().setLblUsername(lblUsername);

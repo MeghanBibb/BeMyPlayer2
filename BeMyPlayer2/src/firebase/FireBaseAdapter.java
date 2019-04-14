@@ -860,4 +860,15 @@ public class FireBaseAdapter {
 		return msgThread;*/return null;
 	}
 
+	public void sendIssue(String issueType, String desc) throws DBFailureException{
+		//TODO: Fix Issue Sending
+		/*//
+		if(this.db == null) {
+			LOGGER.log(Level.WARNING, "Error- no database connection");
+			throw new DBFailureException();
+		}*/
+
+
+	}
+
 }

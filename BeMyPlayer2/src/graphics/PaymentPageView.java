@@ -31,6 +31,8 @@ public class PaymentPageView {
 		btnBack.setBounds(10,10,90,40);
 		btnBack.setActionCommand(paymentController.BACK);
 		btnBack.setBackground(Colors.Yellow);
+		btnBack.setForeground(Colors.Red);
+		btnBack.setFont(Fonts.getFont(12f));
 		btnBack.addActionListener(paymentController);
 		paymentController.getPaymentModel().setBtnBack(btnBack);
 		
@@ -38,35 +40,40 @@ public class PaymentPageView {
 		btnSubmit.setBounds(70,350,120,40);
 		btnSubmit.setActionCommand(paymentController.SUBMIT);
 		btnSubmit.setBackground(Colors.Yellow);
+		btnSubmit.setForeground(Colors.Red);
+		btnSubmit.setFont(Fonts.getFont(12f));
 		btnSubmit.addActionListener(paymentController);
 		paymentController.getPaymentModel().setBtnSubmit(btnSubmit);
 		
 		//int labels
 		JLabel lblBeMyPlayer = new JLabel("Be My Player 2");
-		lblBeMyPlayer.setFont(new Font("Monospaced", Font.BOLD, 20));
+		lblBeMyPlayer.setFont(Fonts.getFont(20f));
 		lblBeMyPlayer.setForeground(Colors.Yellow);
 		lblBeMyPlayer.setBounds(160,0,204,69);
 		paymentController.getPaymentModel().setLblBeMyPlayer(lblBeMyPlayer);
 		
 		JLabel lblCardNumber = new JLabel("Enter Card Number (numbers only):");
-		lblCardNumber.setBounds(10,70,220,40);
+		lblCardNumber.setBounds(10,70,260,40);
 		lblCardNumber.setForeground(Colors.Yellow);
+		lblCardNumber.setFont(Fonts.getFont(12f));
 		paymentController.getPaymentModel().setLblcardNumber(lblCardNumber);
 		
 		JLabel lblCardDate = new JLabel("Enter Card Expiration Month and Year:");
-		lblCardDate.setBounds(10,140,220,40);
+		lblCardDate.setBounds(10,140,260,40);
 		lblCardDate.setForeground(Colors.Yellow);
+		lblCardDate.setFont(Fonts.getFont(12f));
 		paymentController.getPaymentModel().setLblcardDate(lblCardDate);
 		
 		JLabel lblCardCVC = new JLabel("Enter 3 Digit CVC Code:");
 		lblCardCVC.setBounds(10,210,200,40);
 		lblCardCVC.setForeground(Colors.Yellow);
+		lblCardCVC.setFont(Fonts.getFont(12f));
 		paymentController.getPaymentModel().setLblcardCVC(lblCardCVC);
 		
 		JLabel lblSlash = new JLabel("/");
 		lblSlash.setBounds(60,170,40,40);
-		lblSlash.setFont(new Font("Defualt",Font.PLAIN,20));
 		lblSlash.setForeground(Colors.Yellow);
+		lblSlash.setFont(Fonts.getFont(20f));
 		paymentController.getPaymentModel().setLblSlash(lblSlash);
 		
 		JLabel lblDescription = new JLabel("<HTML>Description of payment pricing and services here.</HTML>");
@@ -80,21 +87,33 @@ public class PaymentPageView {
 		JFormattedTextField cardNumber = new JFormattedTextField("");
 		cardNumber.setHorizontalAlignment(SwingConstants.CENTER);
 		cardNumber.setBounds(10,100,200,40);
+		cardNumber.setBackground(Colors.Yellow);
+		cardNumber.setForeground(Colors.Red);
+		cardNumber.setFont(Fonts.getFont(20f));
 		paymentController.getPaymentModel().setCardNumber(cardNumber);
 		
 		JFormattedTextField cardMonth = new JFormattedTextField("");
 		cardMonth.setHorizontalAlignment(SwingConstants.CENTER);
 		cardMonth.setBounds(10,170,40,40);
+		cardMonth.setBackground(Colors.Yellow);
+		cardMonth.setForeground(Colors.Red);
+		cardMonth.setFont(Fonts.getFont(20f));
 		paymentController.getPaymentModel().setCardMonth(cardMonth);
 		
 		JFormattedTextField cardYear = new JFormattedTextField("");
 		cardYear.setHorizontalAlignment(SwingConstants.CENTER);
 		cardYear.setBounds(80,170,40,40);
+		cardYear.setBackground(Colors.Yellow);
+		cardYear.setForeground(Colors.Red);
+		cardYear.setFont(Fonts.getFont(20f));
 		paymentController.getPaymentModel().setCardYear(cardYear);
 		
 		JFormattedTextField cardCVC = new JFormattedTextField("");
 		cardCVC.setHorizontalAlignment(SwingConstants.CENTER);
 		cardCVC.setBounds(10,240,60,40);
+		cardCVC.setBackground(Colors.Yellow);
+		cardCVC.setForeground(Colors.Red);
+		cardCVC.setFont(Fonts.getFont(20f));
 		paymentController.getPaymentModel().setCardCVC(cardCVC);
 		
 		
