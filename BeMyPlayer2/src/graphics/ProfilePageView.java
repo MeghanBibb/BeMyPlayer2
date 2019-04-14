@@ -105,7 +105,6 @@ public class ProfilePageView {
 				img = CreateAccountPageModel.DEFAULT_PROFILE_IMAGE;
 			}
 			
-			
 			imgLabel.setIcon(new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
 			imgLabel.setBounds(10, 60, 100, 100);
 			profileController.getProfileModel().setProfileImage(imgLabel);
@@ -177,18 +176,10 @@ public class ProfilePageView {
 		//init description
 		JLabel description = new JLabel();
 		if(profileController.isActiveAccount()) {
-			String desc = "<HTML>";
-			desc += InformationExpert.getActiveAccount().getAccountProfile().getDescription();
-			desc = desc.replace("\n", "<br>");
-			desc += "</HTML>";
-			description.setText(desc);
+			description.setText(InformationExpert.getActiveAccount().getAccountProfile().getDescription());
 		}
 		else {
-			String desc = "<HTML>";
-			desc += profileController.getProfile().getDescription();
-			desc = desc.replace("\n", "<br>");
-			desc += "</HTML>";
-			description.setText(desc);
+			description.setText(profileController.getProfile().getDescription());
 		}
 		
 		
