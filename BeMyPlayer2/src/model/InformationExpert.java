@@ -194,13 +194,9 @@ public class InformationExpert {
 
 	}
 	
-	public static MessageThread getMessageThread(String userId, String otherUserId) {
-		try {
-			return databaseAdapter.getMessageThread(userId, otherUserId);
-		} catch (DBFailureException e) {
-			//Handle exception here:
-			e.printStackTrace();
-		}
+	public static MessageThread getMessageThread(String userId, String otherUserId) throws DBFailureException {
+		//TODO: impliment getMessageThread
+		//return databaseAdapter.getMessageThread(userId, otherUserId);
 		return null;
 	}
 

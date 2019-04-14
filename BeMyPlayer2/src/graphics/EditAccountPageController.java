@@ -98,23 +98,23 @@ public class EditAccountPageController extends PageController{
 				break;
 			case SUBMITEDITPROFILE:
 				if(validateCreatePage3() == true) {
+					String desc = "<HTML>";
+					desc += this.editAccountModel.getCharDescription().getText();
+					desc = desc.replace("\n","<br>");
+					desc += "<HTML>";
 					InformationExpert.getActiveAccount().getAccountProfile().setProfilePicture(this.editAccountModel.getProfileImg());
-					InformationExpert.getActiveAccount().getAccountProfile().setDescription(this.getEditAccountModel().getCharDescription().getText());
+					InformationExpert.getActiveAccount().getAccountProfile().setDescription(desc);
 					
 					try {
 						InformationExpert.updateAccount(InformationExpert.getActiveAccount());
 						InformationExpert.updateProfile(InformationExpert.getActiveAccount().getAccountProfile());
-						if(this.getEditAccountModel().getProfileImg() == null) {
+						if(InformationExpert.getActiveAccount().getAccountProfile().getProfilePicture() == null) {
 							InformationExpert.updateProfileImage(ResourceManager.loadImage("defaultIcon.png"), InformationExpert.getActiveUserID());
 						} else {
-							InformationExpert.updateProfileImage(this.getEditAccountModel().getProfileImg(), InformationExpert.getActiveUserID());
+							InformationExpert.updateProfileImage(InformationExpert.getActiveAccount().getAccountProfile().getProfilePicture(), InformationExpert.getActiveUserID());
 						}
 					} catch (DBFailureException e1) {
-						try {
-							InformationExpert.addProfileImage(ResourceManager.loadImage("defaultIcon.png"), InformationExpert.getActiveUserID());
-						}catch(Exception exc) {
-							exc.printStackTrace();
-						}
+						e1.printStackTrace();
 					}
 					logger.info("Submit");
 					GraphicsController.processPage(PageCreator.EDIT_ACCOUNT_PAGE, backPage);
