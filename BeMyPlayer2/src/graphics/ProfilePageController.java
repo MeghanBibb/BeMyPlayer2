@@ -7,8 +7,12 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import firebase.DBFailureException;
 import model.Account;
 import model.InformationExpert;
+import model.Match;
+import model.MatchStatus;
+import model.MatchType;
 import model.Profile;
 
 public class ProfilePageController extends PageController {
@@ -59,7 +63,38 @@ public class ProfilePageController extends PageController {
 				GraphicsController.processPage(PageCreator.EDIT_ACCOUNT_PAGE,backPage);
 				break;
 			case BLOCK:
-				logger.info("block");
+				logger.info("User " + InformationExpert.getActiveUserID() + " has blocked user" + InformationExpert.getOtherProfile().getUserId());
+				
+				try {
+					Match thisMatch;
+					if((thisMatch = InformationExpert.getMatch(InformationExpert.getActiveAccount().getAccountProfile(), InformationExpert.getOtherProfile())) != null) {
+						/* CHECK TO MAKE SURE MATCH TYPE IS THE SAME IE: loveType on loveSwipePage*/
+						//if(thisMatch.getType == controller.getType){
+						thisMatch.setClientMatchStatus(MatchStatus.NO_MATCH);
+						thisMatch.setOtherMatchStatus(MatchStatus.NO_MATCH);
+						thisMatch.setType(MatchType.BLOCKED);
+						//}
+						    
+						//update match
+						InformationExpert.updateMatch(thisMatch);
+						
+					} else {
+						//create new match
+						thisMatch = new Match(InformationExpert.getActiveAccount().getAccountProfile(), InformationExpert.getOtherProfile());
+						thisMatch.setClientMatchStatus(MatchStatus.NO_MATCH);
+						thisMatch.setOtherMatchStatus(MatchStatus.NO_MATCH);
+						thisMatch.setType(MatchType.FRIEND_MATCH);
+						
+						//add match
+						InformationExpert.addMatch(thisMatch);
+					}
+				} catch (DBFailureException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} 
+				
+				GraphicsController.processPage(backPage, backPage);
+				
 				break;
 			case MESSAGE:
 				logger.info("message");
