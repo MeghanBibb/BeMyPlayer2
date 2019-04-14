@@ -827,21 +827,11 @@ public class FireBaseAdapter {
 	public MessageThread getMessageThread(String userId, String otherUserId) throws DBFailureException{
 		//TODO: Fix this
 		
-		/*if(this.db == null) {
+		if(this.db == null) {
 			LOGGER.log(Level.WARNING, "Error- no database connection");
 			throw new DBFailureException();
 		}
-
-		String msgID = null;
-
-		//doesnt allow for both arguments to be equals
-		if (userId.compareTo(otherUserId) < 0){
-			msgID = userId.concat(otherUserId);
-		}
-		else if (userId.compareTo(otherUserId) > 0){
-			msgID = otherUserId.concat(userId);
-		}
-
+		
 		ApiFuture<DocumentSnapshot> fetchThread =
 				db.collection(FireBaseSchema.MESSAGE_THREADS_TABLE)
 						.document(msgID)
