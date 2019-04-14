@@ -210,10 +210,10 @@ public class FireBaseAdapter {
 		try {
 			QuerySnapshot authUser = fetchUser.get();
 			if(authUser.isEmpty()) {
-				LOGGER.log(Level.WARNING, "[FIREBASE] Error- query returned duplicate users for user email: " + userEmail);
+				LOGGER.log(Level.INFO, "Error- Query returned empty for user: " + userEmail);
 				return false;
 			}else if(authUser.size() > 1) {
-				LOGGER.log(Level.FINE, "Error- Query returned empty for user: " + userEmail);
+				LOGGER.log(Level.WARNING, "[FIREBASE] Error- query returned duplicate users for user email: " + userEmail);
 				return false;
 			}else {
 				//reset password:

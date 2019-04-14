@@ -149,7 +149,6 @@ public class ForgotPassPageView {
 		forgotPasswordController.getForgotPasswordPageModel().getSecQA().setBounds(50, 230, 380, 30);
 		forgotPasswordController.getForgotPasswordPageModel().getSecQA().setBackground(Colors.Yellow);
 		forgotPasswordController.getForgotPasswordPageModel().getSecQA().setForeground(Colors.Red);
-		forgotPasswordController.getForgotPasswordPageModel().getSecQA().setFont(Fonts.getFont((float) 10));
 
 		//add to panel
 		forgotPasswordController.getForgotPasswordPanel().add(forgotPasswordController.getForgotPasswordPageModel().getPwdEnterPass());
