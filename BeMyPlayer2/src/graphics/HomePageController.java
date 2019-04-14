@@ -57,7 +57,7 @@ public class HomePageController extends PageController{
 				GraphicsController.processPage(PageCreator.MATCHES_PAGE,backPage);
 				break;
 			case LOGOUT: 
-				logger.info("Logout");
+				logger.info("Logout of user " + InformationExpert.getActiveUserID());
 				GraphicsController.processPage(PageCreator.LOGIN_PAGE,backPage);
 				break;
 		}
