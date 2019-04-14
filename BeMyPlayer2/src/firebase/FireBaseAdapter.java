@@ -832,17 +832,21 @@ public class FireBaseAdapter {
 			throw new DBFailureException();
 		}
 		
-		ApiFuture<DocumentSnapshot> fetchThread =
+		String msgId = FireBaseSchema.toMessageThreadIndex(userId, otherUserId);
+		ApiFuture<QuerySnapshot> fetchThread =
 				db.collection(FireBaseSchema.MESSAGE_THREADS_TABLE)
-						.document(msgID)
+						.document(msgId)
+						.collection(FireBaseSchema.MESSAGE_THREADS_TABLE_COLLECTION)
 						.get();
 
 		MessageThread msgThread = new MessageThread();
-
+		
+		
+		
 		try {
-			DocumentSnapshot threadResult = fetchThread.get();
-			if(!threadResultResult.exists()) {
-				LOGGER.log(Level.FINE,"Could not find match Thread");
+			QuerySnapshot threadResult = fetchThread.get();
+			if(!threadResult.isEmpty()) {
+				LOGGER.log(Level.WARNING,"Could not find match Thread");
 				return null;
 			}else {
 				DBDocumentPackage threadPackage = new DBDocumentPackage(msgID, threadResult.getData());
@@ -857,7 +861,7 @@ public class FireBaseAdapter {
 			throw new DBFailureException();
 		}
 
-		return msgThread;*/return null;
+		return msgThread; return null;
 	}
 
 	public void sendIssue(String issueType, String desc) throws DBFailureException{

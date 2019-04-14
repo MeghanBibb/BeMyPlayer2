@@ -11,6 +11,7 @@ public class FireBaseSchema {
 							   MATCHES_TABLE = "Matches",
 							   MATCHES_TABLE_COLLECTION = "userMatches",
 							   MESSAGE_THREADS_TABLE = "MessageThreads",
+							   MESSAGE_THREADS_TABLE_COLLECTION = "Messages",
 							   ISSUES_TABLE = "Issues";
 	
 	public static final String PROFILE_IMAGE_PREFIX = "p_img-";
