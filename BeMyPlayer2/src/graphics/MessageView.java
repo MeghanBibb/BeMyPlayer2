@@ -49,7 +49,6 @@ public class MessageView {
         lblUsername.setText(messageController.getAccount().getAccountProfile().getUsername());
         lblUsername.setFont(new Font("Impact", Font.PLAIN,15));
         lblUsername.setFont(Fonts.getFont((float) 12));
-        //lblUsername.setForeground(Colors.Red);
         lblUsername.setForeground(Colors.Yellow);
         lblUsername.setBounds(150,35,90,90);
         messageController.getMessageModel().setLblUsername(lblUsername);
