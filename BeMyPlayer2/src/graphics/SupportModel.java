@@ -9,7 +9,7 @@ public class SupportModel {
 
     private JTextArea description;
 
-    private JComboBox probArea;
+    private JComboBox<String> probArea;
 
     public JButton getBtnSubmit() {
         return btnSubmit;
@@ -28,11 +28,11 @@ public class SupportModel {
         this.description = description;
     }
 
-    public JComboBox getProbArea() {
+    public JComboBox<String> getProbArea() {
         return probArea;
     }
 
-    public void setProbArea(JComboBox probArea) {
+    public void setProbArea(JComboBox<String> probArea) {
         this.probArea = probArea;
     }
 

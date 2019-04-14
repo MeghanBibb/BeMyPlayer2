@@ -54,7 +54,7 @@ public class SupportView {
         //	init fields and listeners
 
 
-        JComboBox issueSelection = new JComboBox();
+        JComboBox issueSelection = new JComboBox<String>();
         issueSelection.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent e) {
                 //supportController.getSupportModel().setissueSelection(e.getItem().toString());

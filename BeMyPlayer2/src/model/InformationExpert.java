@@ -51,6 +51,10 @@ public class InformationExpert {
 		}
 	}
 	
+	public static boolean addIssue(Issue issue) throws DBFailureException {
+		return databaseAdapter.addNewIssue(issue);
+	}
+	
 	public static String getCurrentSwipePage() {
 		return currentSwipePage.getStatusString();
 	}
