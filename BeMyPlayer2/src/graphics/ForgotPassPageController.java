@@ -11,6 +11,10 @@ import java.util.regex.Pattern;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import firebase.DBFailureException;
+import firebase.Hasher;
+import model.InformationExpert;
+
 public class ForgotPassPageController extends PageController {
 	
 	// set constant actions
@@ -32,8 +36,13 @@ public class ForgotPassPageController extends PageController {
 		switch(e.getActionCommand()) {
 			case SUBMIT: 
 				if(validateInfo() == true) {
-					logger.info("Submit");
-					GraphicsController.processPage(PageCreator.LOGIN_PAGE,backPage);
+					System.out.println(Hasher.hashString(this.getForgotPasswordPageModel().getSecQA().getText()));
+					if(resetPassword() == true) {
+						logger.info("Submit");
+						GraphicsController.processPage(PageCreator.LOGIN_PAGE,backPage);
+					} else {
+						System.out.println("didnt change password");
+					}
 				}
 				break;
 			case BACK:
@@ -82,6 +91,16 @@ public class ForgotPassPageController extends PageController {
 			InvalidPopup p  = new InvalidPopup(this.getForgotPasswordPanel(),warnings);
 		}
 		return valid;
+	}
+	
+	public boolean resetPassword() {
+		try {
+			return InformationExpert.resetUserAccountPassword(this.getForgotPasswordPageModel().getFrmtdtextfldEnterEmail().getText(), 1,
+					Hasher.hashString(this.getForgotPasswordPageModel().getSecQA().getText()), Hasher.hashString(this.getForgotPasswordPageModel().getFrmtdtextfldEnterNewPassword().getText()));
+		} catch (DBFailureException e) {
+			// TODO Auto-generated catch block
+			return false;
+		}
 	}
 
 	public ForgotPassPageModel getForgotPasswordPageModel() {
