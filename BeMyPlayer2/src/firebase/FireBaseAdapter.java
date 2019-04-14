@@ -182,7 +182,7 @@ public class FireBaseAdapter {
 		}
 	}
 	
-	public boolean resetUserAccountPassword(String userEmail, int securityQ, String ansHash, String passwordHash) throws DBFailureException {
+	public boolean resetUserAccountPassword(String userEmail, int securityQ, String ansHash, String passwordHash, String username) throws DBFailureException {
 		if(this.db == null) {
 			LOGGER.log(Level.WARNING, "Error- no database connection");
 			throw new DBFailureException();
@@ -200,12 +200,17 @@ public class FireBaseAdapter {
 			throw new DBFailureException();
 		}
 		
+		System.out.println(ansHash);
+		System.out.println(userEmail);
+		
 		//query if user account exists:
 		ApiFuture<QuerySnapshot> fetchUser = 
 				db.collection(FireBaseSchema.ACCOUNTS_TABLE)
 				.whereEqualTo(Account._EMAIL, userEmail)
-				.whereEqualTo(securityQName, ansHash)
+				.whereEqualTo(ansName, ansHash)
 				.get();
+		
+		//TO DO: VALIDATE USERNAME
 		
 		try {
 			QuerySnapshot authUser = fetchUser.get();
@@ -826,7 +831,7 @@ public class FireBaseAdapter {
 		}
 	}
 
-
+/*
 	public MessageThread getMessageThread(String userId, String otherUserId) throws DBFailureException{
 		//TODO: Fix this
 		
@@ -866,6 +871,7 @@ public class FireBaseAdapter {
 
 		return msgThread; return null;
 	}
+	*/
 
 	public void sendIssue(String issueType, String desc) throws DBFailureException{
 		//TODO: Fix Issue Sending
