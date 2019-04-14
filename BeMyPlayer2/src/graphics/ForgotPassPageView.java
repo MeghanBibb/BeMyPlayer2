@@ -89,7 +89,7 @@ public class ForgotPassPageView {
 		forgotPasswordController.getForgotPasswordPageModel().getPwdEnterPass().setFont(Fonts.getFont((float) 12));
 
 
-		JLabel enterEmail = new JLabel("Enter Email:");
+		JLabel enterEmail = new JLabel("Enter Username:");
 		enterEmail.setBounds(51, 20, 128, 82);
 		enterEmail.setForeground(Colors.Yellow);
 		enterEmail.setFont(Fonts.getFont((float) 12));
@@ -97,7 +97,7 @@ public class ForgotPassPageView {
 		forgotPasswordController.getForgotPasswordPanel().add(forgotPasswordController.getForgotPasswordPageModel().getLblEmail());
 
 
-		JLabel enterUsername = new JLabel("Enter Username:");
+		JLabel enterUsername = new JLabel("Enter Email:");
 		enterUsername.setBounds(51, 80, 180, 82);
 		enterUsername.setForeground(Colors.Yellow);
 		enterUsername.setFont(Fonts.getFont((float) 12));
@@ -120,6 +120,12 @@ public class ForgotPassPageView {
 		forgotPasswordController.getForgotPasswordPageModel().setLblReEnterNewPassword(reenterNewPass);
 		forgotPasswordController.getForgotPasswordPanel().add(forgotPasswordController.getForgotPasswordPageModel().getLblReEnterNewPassword());
 
+		JLabel secLabel = new JLabel("Please Select A Security Question to Answer");
+		secLabel.setBounds(50,180,380,22);
+		secLabel.setForeground(Colors.Yellow);
+		secLabel.setVisible(true);
+		secLabel.setFont(Fonts.getFont((float) 12));
+		
 
 		JComboBox securityQuestions = new JComboBox();
 		securityQuestions.addItemListener(new ItemListener() {
@@ -128,8 +134,8 @@ public class ForgotPassPageView {
         	}
         });
 		securityQuestions.setToolTipText("Security Question");
-		securityQuestions.setModel(new DefaultComboBoxModel(new String[] {"Please Select A Security Question to Answer","Q1", "Q2", "What is your mother's maden name?"}));
-		securityQuestions.setBounds(50, 180, 380, 22);
+		securityQuestions.setModel(new DefaultComboBoxModel(new String[] {"Favorite Game?", "First Console Owned?", "Favorite Character?"}));
+		securityQuestions.setBounds(50, 200, 380, 22);
 		securityQuestions.setVisible(true);
 		forgotPasswordController.getForgotPasswordPageModel().setSecurityQ(securityQuestions);
 		forgotPasswordController.getForgotPasswordPageModel().getSecurityQ().setBackground(Colors.Yellow);
@@ -139,7 +145,8 @@ public class ForgotPassPageView {
 		//secQA
 		forgotPasswordController.getForgotPasswordPageModel().setSecQA(new JFormattedTextField(""));
 		forgotPasswordController.getForgotPasswordPageModel().getSecQA().setHorizontalAlignment(SwingConstants.CENTER);
-		forgotPasswordController.getForgotPasswordPageModel().getSecQA().setBounds(50, 220, 380, 22);
+		forgotPasswordController.getForgotPasswordPageModel().getSecQA().setFont(Fonts.getFont((float) 12));
+		forgotPasswordController.getForgotPasswordPageModel().getSecQA().setBounds(50, 230, 380, 30);
 		forgotPasswordController.getForgotPasswordPageModel().getSecQA().setBackground(Colors.Yellow);
 		forgotPasswordController.getForgotPasswordPageModel().getSecQA().setForeground(Colors.Red);
 		forgotPasswordController.getForgotPasswordPageModel().getSecQA().setFont(Fonts.getFont((float) 10));
@@ -152,6 +159,7 @@ public class ForgotPassPageView {
 		forgotPasswordController.getForgotPasswordPanel().add(forgotPasswordController.getForgotPasswordPageModel().getBtnSubmit());
 		forgotPasswordController.getForgotPasswordPanel().add(forgotPasswordController.getForgotPasswordPageModel().getSecQA());
 		forgotPasswordController.getForgotPasswordPanel().add(forgotPasswordController.getForgotPasswordPageModel().getBtnBack());
+		forgotPasswordController.getForgotPasswordPanel().add(secLabel);
 
 		forgotPasswordController.getForgotPasswordPanel().add(securityQuestions);
 		
