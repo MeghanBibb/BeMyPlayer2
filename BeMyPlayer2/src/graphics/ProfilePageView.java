@@ -105,7 +105,6 @@ public class ProfilePageView {
 				img = CreateAccountPageModel.DEFAULT_PROFILE_IMAGE;
 			}
 			
-			
 			imgLabel.setIcon(new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
 			imgLabel.setBounds(10, 60, 100, 100);
 			profileController.getProfileModel().setProfileImage(imgLabel);
