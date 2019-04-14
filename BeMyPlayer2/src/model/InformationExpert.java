@@ -177,10 +177,19 @@ public class InformationExpert {
 			try {
 				List<Profile> importedProfs = 
 				databaseAdapter.getUnmatchedProfiles(uid, FireBaseAdapter.FRIEND_MATCHES, clientModel.getFriendMatchBatch());
+				
 				if(importedProfs.isEmpty())
 					return false;
-				
+				//add match batch from database:
 				clientModel.importUnmatchedFriendBatch(importedProfs);
+				
+				//add any partial matches as well that may exist:
+				/*
+				List<Profile> partialProfs =
+				databaseAdapter.getOtherMatchedProfiles(activeUserAccount.getAccountProfile(), FireBaseAdapter.FRIEND_MATCHES);
+				clientModel.importPartialFriendBatch(partialProfs);
+				*/
+				
 				return true;
 				
 			} catch (DBFailureException e) {
@@ -194,6 +203,7 @@ public class InformationExpert {
 	public static boolean importLoveMatchBatch() {
 		if(activeUserAccount != null && activeUserAccount.getAccountProfile() != null) {
 			String uid = activeUserAccount.getUserId();
+			
 			try {
 				List<Profile> importedProfs = 
 				databaseAdapter.getUnmatchedProfiles(uid, FireBaseAdapter.LOVE_MATCHES, clientModel.getFriendMatchBatch());
@@ -201,6 +211,12 @@ public class InformationExpert {
 					return false;
 				
 				clientModel.importUnmatchedLoveBatch(importedProfs);
+				
+				/*
+				List<Profile> partialProfs =
+				databaseAdapter.getOtherMatchedProfiles(activeUserAccount.getAccountProfile(), FireBaseAdapter.LOVE_MATCHES);
+				clientModel.importPartialLoveBatch(partialProfs);
+				*/
 				return true;
 				
 			} catch (DBFailureException e) {

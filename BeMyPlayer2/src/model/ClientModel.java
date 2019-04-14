@@ -39,6 +39,14 @@ public class ClientModel {
 		newLoveMatchQueue.addAll(newLoves);
 	}
 	
+	public void importPartialFriendBatch(List<Profile> newFriends) {
+		newFriendMatchQueue.addAll(newFriends);
+	}
+	
+	public void importPartialLoveBatch(List<Profile> newLoves) {
+		newLoveMatchQueue.addAll(newLoves);
+	}
+	
 	public void importUnmatchedLoveBatch(List<Profile> newLoves) {
 		newLoveMatchQueue.addAll(newLoves);
 		loveMatchBatch++;

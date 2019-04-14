@@ -826,7 +826,6 @@ public class FireBaseAdapter {
 		}
 	}
 
-
 	public MessageThread getMessageThread(String userId, String otherUserId) throws DBFailureException{
 		//TODO: Fix this
 		/*
