@@ -602,7 +602,10 @@ public class FireBaseAdapter {
 			QuerySnapshot clientMatches = getTypeMatches.get();
 			Set<String> clientMatchIds = clientMatches
 				.getDocuments().stream()
-				.map(m -> m.getId())
+				.map(m -> {
+					System.out.println(m.getId());
+					return m.getId();
+				})
 				.collect(Collectors.toCollection(HashSet::new));
 					
 			
