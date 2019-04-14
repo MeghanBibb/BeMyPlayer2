@@ -49,6 +49,7 @@ public class SwipeLeftController extends SwipeButtonController{
 		} finally {
 
 			try {
+				
 				if(InformationExpert.getClientModel().getFriendProfileFront() == null) {
 					InformationExpert.importFriendMatchBatch();
 				}				
