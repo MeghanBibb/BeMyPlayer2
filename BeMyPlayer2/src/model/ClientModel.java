@@ -50,11 +50,17 @@ public class ClientModel {
 	}
 	
 	public Profile getFriendProfileFront() {
+		if(newFriendMatchQueue.size() == 0) {
+			return null;
+		}
 		return newFriendMatchQueue.peek();
 	}
 	
 	public Profile getLoveProfileFront() {
-		return newFriendMatchQueue.peek();
+		if(newLoveMatchQueue.size() == 0) {
+			return null;
+		}
+		return newLoveMatchQueue.peek();
 	}
 	
 	public void dequeueFriendProfile() {

@@ -51,6 +51,7 @@ public class SwipeRightController extends SwipeButtonController{
 				}				
 				InformationExpert.setOtherProfile(InformationExpert.getClientModel().getFriendProfileFront().getUserId());
 				InformationExpert.getClientModel().dequeueFriendProfile();
+				controller.setProfile(InformationExpert.getOtherProfile());
 				//controller.setProfile(InformationExpert.getUserAccountWithProfile("LfiDeQ0WNQEnNyZ1c94J").getAccountProfile());
 			} catch (DBFailureException e1) {
 				// TODO Auto-generated catch block
