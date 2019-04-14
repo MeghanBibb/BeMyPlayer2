@@ -328,7 +328,7 @@ public class EditAccountPageView {
 		psBtn.setBackground(Colors.Red);
 		psBtn.setForeground(Colors.Yellow);
 		psBtn.setSelected(InformationExpert.getActiveAccount().getAccountProfile().getPlatforms().get(1));
-		psBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		psBtn.setFont(Fonts.getFont((float)12));
 		psBtn.setBounds(45, 105, 120, 25);
 		editController.getEditAccountModel().getCheckList().add(psBtn);
 		editController.getEditAccountPanel().add(psBtn);
@@ -338,7 +338,7 @@ public class EditAccountPageView {
 		nintendoBtn.setBackground(Colors.Red);
 		nintendoBtn.setForeground(Colors.Yellow);
 		nintendoBtn.setSelected(InformationExpert.getActiveAccount().getAccountProfile().getPlatforms().get(2));
-		nintendoBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		nintendoBtn.setFont(Fonts.getFont((float)12));
 		nintendoBtn.setBounds(45, 130, 120, 25);
 		editController.getEditAccountModel().getCheckList().add(nintendoBtn);
 		editController.getEditAccountPanel().add(nintendoBtn);
@@ -348,7 +348,7 @@ public class EditAccountPageView {
 		pcBtn.setBackground(Colors.Red);
 		pcBtn.setForeground(Colors.Yellow);
 		pcBtn.setSelected(InformationExpert.getActiveAccount().getAccountProfile().getPlatforms().get(3));
-		pcBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		pcBtn.setFont(Fonts.getFont((float)12));
 		pcBtn.setBounds(45, 155, 75, 25);
 		editController.getEditAccountModel().getCheckList().add(pcBtn);
 		editController.getEditAccountPanel().add(pcBtn);
@@ -358,7 +358,7 @@ public class EditAccountPageView {
 		vrBtn.setBackground(Colors.Red);
 		vrBtn.setForeground(Colors.Yellow);
 		vrBtn.setSelected(InformationExpert.getActiveAccount().getAccountProfile().getPlatforms().get(4));
-		vrBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		vrBtn.setFont(Fonts.getFont((float)12));
 		vrBtn.setBounds(45, 180, 75, 25);
 		editController.getEditAccountModel().getCheckList().add(vrBtn);
 		editController.getEditAccountPanel().add(vrBtn);
@@ -368,7 +368,7 @@ public class EditAccountPageView {
 		RetroBtn.setBackground(Colors.Red);
 		RetroBtn.setForeground(Colors.Yellow);
 		RetroBtn.setSelected(InformationExpert.getActiveAccount().getAccountProfile().getPlatforms().get(5));
-		RetroBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		RetroBtn.setFont(Fonts.getFont((float)12));
 		RetroBtn.setBounds(45, 205, 75, 25);
 		editController.getEditAccountModel().getCheckList().add(RetroBtn);
 		editController.getEditAccountPanel().add(RetroBtn);
@@ -380,7 +380,7 @@ public class EditAccountPageView {
 		actionBtn.setBackground(Colors.Red);
 		actionBtn.setForeground(Colors.Yellow);
 		actionBtn.setSelected(InformationExpert.getActiveAccount().getAccountProfile().getGenres().get(0));
-		actionBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		actionBtn.setFont(Fonts.getFont((float)12));
 		actionBtn.setBounds(245, 80, 75, 25);
 		editController.getEditAccountModel().getCheckList().add(actionBtn);
 		editController.getEditAccountPanel().add(actionBtn);
@@ -390,7 +390,7 @@ public class EditAccountPageView {
 		advBtn.setBackground(Colors.Red);
 		advBtn.setForeground(Colors.Yellow);
 		advBtn.setSelected(InformationExpert.getActiveAccount().getAccountProfile().getGenres().get(1));
-		advBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		advBtn.setFont(Fonts.getFont((float)12));
 		advBtn.setBounds(245, 105, 120, 25);
 		editController.getEditAccountModel().getCheckList().add(advBtn);
 		editController.getEditAccountPanel().add(advBtn);
@@ -400,7 +400,7 @@ public class EditAccountPageView {
 		FPSBtn.setBackground(Colors.Red);
 		FPSBtn.setForeground(Colors.Yellow);
 		FPSBtn.setSelected(InformationExpert.getActiveAccount().getAccountProfile().getGenres().get(2));
-		FPSBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		FPSBtn.setFont(Fonts.getFont((float)12));
 		FPSBtn.setBounds(245, 130, 120, 25);
 		editController.getEditAccountModel().getCheckList().add(FPSBtn);
 		editController.getEditAccountPanel().add(FPSBtn);
@@ -410,7 +410,7 @@ public class EditAccountPageView {
 		MMOBtn.setBackground(Colors.Red);
 		MMOBtn.setForeground(Colors.Yellow);
 		MMOBtn.setSelected(InformationExpert.getActiveAccount().getAccountProfile().getGenres().get(3));
-		MMOBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		MMOBtn.setFont(Fonts.getFont((float)12));
 		MMOBtn.setBounds(245, 155, 75, 25);
 		editController.getEditAccountModel().getCheckList().add(MMOBtn);
 		editController.getEditAccountPanel().add(MMOBtn);
@@ -420,7 +420,7 @@ public class EditAccountPageView {
 		MOBABtn.setBackground(Colors.Red);
 		MOBABtn.setForeground(Colors.Yellow);
 		MOBABtn.setSelected(InformationExpert.getActiveAccount().getAccountProfile().getGenres().get(4));
-		MOBABtn.setFont(new Font("Monospace",Font.BOLD,14));
+		MOBABtn.setFont(Fonts.getFont((float)12));
 		MOBABtn.setBounds(245, 180, 75, 25);
 		editController.getEditAccountModel().getCheckList().add(MOBABtn);
 		editController.getEditAccountPanel().add(MOBABtn);
@@ -430,7 +430,7 @@ public class EditAccountPageView {
 		pzlBtn.setBackground(Colors.Red);
 		pzlBtn.setForeground(Colors.Yellow);
 		pzlBtn.setSelected(InformationExpert.getActiveAccount().getAccountProfile().getGenres().get(5));
-		pzlBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		pzlBtn.setFont(Fonts.getFont((float)12));
 		pzlBtn.setBounds(245, 205, 125, 25);
 		editController.getEditAccountModel().getCheckList().add(pzlBtn);
 		editController.getEditAccountPanel().add(pzlBtn);
@@ -440,7 +440,7 @@ public class EditAccountPageView {
 		rythBtn.setBackground(Colors.Red);
 		rythBtn.setForeground(Colors.Yellow);
 		rythBtn.setSelected(InformationExpert.getActiveAccount().getAccountProfile().getGenres().get(6));
-		rythBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		rythBtn.setFont(Fonts.getFont((float)12));
 		rythBtn.setBounds(365, 80, 75, 25);
 		editController.getEditAccountModel().getCheckList().add(RetroBtn);
 		editController.getEditAccountPanel().add(rythBtn);
@@ -450,7 +450,7 @@ public class EditAccountPageView {
 		platBtn.setBackground(Colors.Red);
 		platBtn.setForeground(Colors.Yellow);
 		platBtn.setSelected(InformationExpert.getActiveAccount().getAccountProfile().getGenres().get(7));
-		platBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		platBtn.setFont(Fonts.getFont((float)12));
 		platBtn.setBounds(365, 105, 125, 25);
 		editController.getEditAccountModel().getCheckList().add(platBtn);
 		editController.getEditAccountPanel().add(platBtn);
@@ -460,7 +460,7 @@ public class EditAccountPageView {
 		RTSBtn.setBackground(Colors.Red);
 		RTSBtn.setForeground(Colors.Yellow);
 		RTSBtn.setSelected(InformationExpert.getActiveAccount().getAccountProfile().getGenres().get(8));
-		RTSBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		RTSBtn.setFont(Fonts.getFont((float)12));
 		RTSBtn.setBounds(365, 130, 75, 25);
 		editController.getEditAccountModel().getCheckList().add(RTSBtn);
 		editController.getEditAccountPanel().add(RTSBtn);
@@ -470,7 +470,7 @@ public class EditAccountPageView {
 		RPGBtn.setBackground(Colors.Red);
 		RPGBtn.setForeground(Colors.Yellow);
 		RPGBtn.setSelected(InformationExpert.getActiveAccount().getAccountProfile().getGenres().get(9));
-		RPGBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		RPGBtn.setFont(Fonts.getFont((float)12));
 		RPGBtn.setBounds(365, 155, 75, 25);
 		editController.getEditAccountModel().getCheckList().add(RPGBtn);
 		editController.getEditAccountPanel().add(RPGBtn);
@@ -489,7 +489,7 @@ public class EditAccountPageView {
 		sandBtn.setBackground(Colors.Red);
 		sandBtn.setForeground(Colors.Yellow);
 		sandBtn.setSelected(InformationExpert.getActiveAccount().getAccountProfile().getGenres().get(11));
-		sandBtn.setFont(new Font("Monospace",Font.BOLD,14));
+		sandBtn.setFont(Fonts.getFont((float)12));
 		sandBtn.setBounds(365, 205, 125, 25);
 		editController.getEditAccountModel().getCheckList().add(sandBtn);
 		editController.getEditAccountPanel().add(sandBtn);
@@ -499,6 +499,8 @@ public class EditAccountPageView {
 		JButton backbtn = new JButton("Cancel");
 		backbtn.setBounds(45, 345, 90, 40);
 		backbtn.setBackground(Colors.Yellow);
+		backbtn.setForeground(Colors.Red);
+		backbtn.setFont(Fonts.getFont((float)12));
 		backbtn.setActionCommand(EditAccountPageController.CANCEL);
 		backbtn.addActionListener(editController);
 		editController.getEditAccountModel().setBtnCancel(backbtn);
@@ -507,6 +509,8 @@ public class EditAccountPageView {
 		JButton nextbtn = new JButton("Submit");
 		nextbtn.setBounds(345, 345, 90, 40);
 		nextbtn.setBackground(Colors.Yellow);
+		nextbtn.setForeground(Colors.Red);
+		nextbtn.setFont(Fonts.getFont((float)12));
 		nextbtn.setActionCommand(EditAccountPageController.SUBMITEDITQUESTIONAIRE);
 		nextbtn.addActionListener(editController);
 		editController.getEditAccountModel().setBtnSubmit(nextbtn);
@@ -516,13 +520,13 @@ public class EditAccountPageView {
 		//	Labels 
 		JLabel choosePlatPrmpt = new JLabel("Gaming platforms");
 		choosePlatPrmpt.setForeground(Colors.Yellow);
-		choosePlatPrmpt.setFont(new Font("Monospaced", Font.BOLD, 18));
+		choosePlatPrmpt.setFont(Fonts.getFont((float)18));
 		choosePlatPrmpt.setBounds(25, 0, 300, 69);
 		editController.getEditAccountPanel().add(choosePlatPrmpt);
 		
 		JLabel chooseGenrePrmpt = new JLabel("Favorite genres");
 		chooseGenrePrmpt.setForeground(Colors.Yellow);
-		chooseGenrePrmpt.setFont(new Font("Monospaced", Font.BOLD, 16));
+		chooseGenrePrmpt.setFont(Fonts.getFont((float)16));
 		chooseGenrePrmpt.setBounds(245, 0, 250, 69);
 		editController.getEditAccountPanel().add(chooseGenrePrmpt);
 		
@@ -666,6 +670,8 @@ public class EditAccountPageView {
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.setBounds(385, 345, 90, 40);
 		btnSubmit.setBackground(Colors.Yellow);
+		btnSubmit.setForeground(Colors.Red);
+		btnSubmit.setFont(Fonts.getFont(12f));
 		btnSubmit.setActionCommand(EditAccountPageController.SUBMITEDITPROFILE);
 		btnSubmit.addActionListener(editController);
 		editController.getEditAccountModel().setBtnSubmit(btnSubmit);
@@ -675,6 +681,8 @@ public class EditAccountPageView {
 		JButton backbtn = new JButton("Cancel");
 		backbtn.setBounds(25, 345, 90, 40);
 		backbtn.setBackground(Colors.Yellow);
+		backbtn.setForeground(Colors.Red);
+		backbtn.setFont(Fonts.getFont(12f));
 		backbtn.setActionCommand(EditAccountPageController.CANCEL);
 		backbtn.addActionListener(editController);
 		editController.getEditAccountModel().setBtnCancel(backbtn);
