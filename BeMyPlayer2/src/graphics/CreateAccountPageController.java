@@ -23,7 +23,7 @@ import model.InformationExpert;
 import model.Profile;
 
 public class CreateAccountPageController extends PageController{
-
+	
 	//	action commands
 	public static final int MAXLENGTH = 250;
 	public static final String NEXT = "next";
@@ -266,10 +266,13 @@ public class CreateAccountPageController extends PageController{
 		boolean valid = true;
 		//	need to store profile pic in new location to pull from
 		List<String >warnings = new ArrayList<>();
-		
 		if(this.getCreateAccountPageModel().getCharDescription().getText().equals("")) {
 			valid = false;
 			warnings.add("Please enter a description\n");
+		}
+		if(this.getCreateAccountPageModel().getProfileImg() == null) {
+			valid = false;
+			warnings.add("Please select a profile picture");
 		}
 		if(this.getCreateAccountPageModel().getCharDescription().getText().length() > MAXLENGTH) {
 			valid = false;

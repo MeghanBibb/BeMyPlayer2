@@ -24,6 +24,7 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import firebase.DBFailureException;
+import firebase.ImageConverter;
 import model.InformationExpert;
 import model.ResourceManager;
 
@@ -550,13 +551,13 @@ public class EditAccountPageView {
 			e1.printStackTrace();
 		}
 		if(img1 == null) {
-			img1 = ResourceManager.loadImage("defaultIcon.png");
+			img1 = CreateAccountPageModel.DEFAULT_PROFILE_IMAGE;
 		}
 		
 		//lblNewLabel.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
 		//lblNewLabel.setBounds(75, 25, 150, 150);
 		editController.getEditAccountModel().setImagePath(img1.toString());
-		final JButton setIcon = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
+		final JButton setIcon = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH)));
 		setIcon.setBounds(125,25,150,150);
 		setIcon.setContentAreaFilled(false);
 		setIcon.addActionListener(new ActionListener(){
@@ -586,7 +587,7 @@ public class EditAccountPageView {
 				lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 				if(f != null) {
 					try {
-						img1 = ImageIO.read(new File(f.getAbsolutePath()));
+						img1 = ImageConverter.convertToJPG(ImageIO.read(new File(f.getAbsolutePath())));
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -596,10 +597,10 @@ public class EditAccountPageView {
 				}
 				
 				else if(f == null){
-					img1 = ResourceManager.loadImage("defaultIcon.png");
+					img1 = CreateAccountPageModel.DEFAULT_PROFILE_IMAGE;
 					editController.getEditAccountModel().setImagePath(img1.toString());
 				}
-				setIcon.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
+				setIcon.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH)));
 				setIcon.setBounds(125, 25, 150, 150);
 				editController.getEditAccountModel().setProfileImg(img1);
 				

@@ -110,8 +110,11 @@ public class EditAccountPageController extends PageController{
 							InformationExpert.updateProfileImage(this.getEditAccountModel().getProfileImg(), InformationExpert.getActiveUserID());
 						}
 					} catch (DBFailureException e1) {
-						// TODO Auto-generated catch block
-						logger.warning("Database error!");
+						try {
+							InformationExpert.addProfileImage(ResourceManager.loadImage("defaultIcon.png"), InformationExpert.getActiveUserID());
+						}catch(Exception exc) {
+							exc.printStackTrace();
+						}
 					}
 					logger.info("Submit");
 					GraphicsController.processPage(PageCreator.EDIT_ACCOUNT_PAGE, backPage);

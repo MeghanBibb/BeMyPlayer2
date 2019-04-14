@@ -27,6 +27,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import firebase.ImageConverter;
 import model.ResourceManager;
 
 public class CreateAccountPageView {
@@ -720,12 +721,12 @@ public class CreateAccountPageView {
 		mainFrame.pack();
 		mainFrame.setVisible(true);
 	}
+	
 	public static void startProfileForm(final CreateAccountPageController capController,JFrame mainFrame, boolean visited) {
 		Color red = new Color(134,48,111);
 		Color yellow = new Color(254, 195, 123);
 		
-		//	 set up panel
-
+		// set up panel
 		capController.setCreateAccountPanel(new BackgroundPanel(null));
 		capController.getCreateAccountPanel().setBorder(new EmptyBorder(5, 5, 5, 5));
 		capController.getCreateAccountPanel().setPreferredSize(new Dimension(500,400));
@@ -733,7 +734,7 @@ public class CreateAccountPageView {
 		mainFrame.setContentPane(capController.getCreateAccountPanel());
 		mainFrame.getContentPane().setBackground(red);
 		
-		//	default icon
+		// default icon
 		BufferedImage img1 = null;
 		if(visited == true) {
 			img1 = capController.getCreateAccountPageModel().getProfileImg();
@@ -751,7 +752,7 @@ public class CreateAccountPageView {
 		final JButton setIcon = new JButton();
 		setIcon.setMargin(new Insets(0,0,0,0));
 		setIcon.setContentAreaFilled(false);
-		setIcon.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
+		setIcon.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH)));
 		setIcon.setBackground(red);
 		setIcon.setBounds(125,25,150,150);
 		setIcon.addActionListener(new ActionListener(){
@@ -781,18 +782,19 @@ public class CreateAccountPageView {
 				lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 				if(f != null) {
 					try {
-						img1 = ImageIO.read(new File(f.getAbsolutePath()));
+						img1 = ImageConverter.convertToJPG(ImageIO.read(new File(f.getAbsolutePath())));
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
+						img1 = CreateAccountPageModel.DEFAULT_PROFILE_IMAGE;
 						e.printStackTrace();
 					}
 					capController.getCreateAccountPageModel().setImagePath(f.getAbsolutePath());
 					capController.getCreateAccountPageModel().setProfileImg(img1);
-				}else if(f == null){
+				}else if(f == null || img1 == null){
 					img1 = CreateAccountPageModel.DEFAULT_PROFILE_IMAGE;
-					capController.getCreateAccountPageModel().setImagePath(img1.toString());
+					capController.getCreateAccountPageModel().setProfileImg(img1);
 				}
-				setIcon.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
+				setIcon.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH)));
 				setIcon.setBounds(125, 25, 150, 150);
 				capController.getCreateAccountPageModel().setProfileImg(img1);
 				
