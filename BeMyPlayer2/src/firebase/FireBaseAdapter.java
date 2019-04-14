@@ -831,10 +831,7 @@ public class FireBaseAdapter {
 		}
 	}
 
-<<<<<<< HEAD
-=======
-/*
->>>>>>> 35604e851fcb26f7bf6be0aa77a3e3d812be9c32
+
 	public MessageThread getMessageThread(String userId, String otherUserId) throws DBFailureException{
 		//TODO: Fix this
 		/*
@@ -874,12 +871,6 @@ public class FireBaseAdapter {
 
 		return msgThread;*/ return null;
 	}
-<<<<<<< HEAD
-	
-=======
-	*/
-
->>>>>>> 35604e851fcb26f7bf6be0aa77a3e3d812be9c32
 	public void sendIssue(String issueType, String desc) throws DBFailureException{
 		//TODO: Fix Issue Sending
 		/*//

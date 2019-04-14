@@ -47,8 +47,7 @@ public class MessageView {
 
         JLabel lblUsername = new JLabel();
         lblUsername.setText(messageController.getAccount().getAccountProfile().getUsername());
-        lblUsername.setFont(new Font("Impact", Font.PLAIN,15));
-        lblUsername.setFont(Fonts.getFont((float) 12));
+        lblUsername.setFont(Fonts.getFont((float)15));
         lblUsername.setForeground(Colors.Yellow);
         lblUsername.setBounds(150,35,90,90);
         messageController.getMessageModel().setLblUsername(lblUsername);
@@ -69,7 +68,7 @@ public class MessageView {
 		}
 		lblAge.setText(Integer.toString(diff) + " years old");
         lblAge.setForeground(Colors.Yellow);
-        lblAge.setFont(Fonts.getFont((float) 12));
+        lblAge.setFont(Fonts.getFont((float) 15));
         //lblAge.setForeground(Colors.Red);
         lblAge.setBounds(150,60,200,90);
         messageController.getMessageModel().setLblAge(lblAge);
@@ -77,7 +76,7 @@ public class MessageView {
         JLabel lblGender = new JLabel();
         lblGender.setText(messageController.getAccount().getAccountProfile().getGender());
         lblGender.setForeground(Colors.Yellow);
-        lblGender.setFont(Fonts.getFont((float) 12));
+        lblGender.setFont(Fonts.getFont((float) 15));
         //lblGender.setForeground(Colors.Red);
         lblGender.setBounds(150,85,90,90);
         messageController.getMessageModel().setLblGender(lblGender);
@@ -110,10 +109,11 @@ public class MessageView {
         tPane.setBounds(35, 165, 400, 200);
 
         //	init fields and listeners
+        /* TODO: FIX THIS
         JTextArea thread = new JTextArea();
         thread.setBounds(35, 165, 400, 200);
         thread.setVisible(true);
-        thread.setEditable(false);
+        thread.setEditable(true);
         thread.setFont(Fonts.getFont((float) 12));
         thread.setForeground(Colors.Red);
         messageController.getMessageModel().setThread(thread);
@@ -129,10 +129,12 @@ public class MessageView {
                 thread.append(messageController.getCurrentThread().getMessages().get(i).getMessage());
                 thread.append("\n");
             }
-        }*/
+        }
 
         tPane.add(thread);
         tPane.repaint();
+        
+        */
 
         JTextField sendBox = new JTextField();
         sendBox.setBounds(35, 365, 310, 30);
