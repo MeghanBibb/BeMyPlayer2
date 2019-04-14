@@ -49,12 +49,23 @@ public class SwipeLeftController extends SwipeButtonController{
 		} finally {
 
 			try {
-				
-				if(InformationExpert.getClientModel().getFriendProfileFront() == null) {
-					InformationExpert.importFriendMatchBatch();
-				}				
-				InformationExpert.setOtherProfile(InformationExpert.getClientModel().getFriendProfileFront().getUserId());
-				InformationExpert.getClientModel().dequeueFriendProfile();
+				if(InformationExpert.getCurrentSwipePage().equals(MatchType.FRIEND_MATCH.getStatusString())) {
+					InformationExpert.getClientModel().dequeueFriendProfile();
+					if(InformationExpert.getClientModel().getFriendProfileFront() == null) {
+						InformationExpert.importFriendMatchBatch();
+					}	
+					
+					InformationExpert.setOtherProfile(InformationExpert.getClientModel().getFriendProfileFront().getUserId());
+					//InformationExpert.getClientModel().dequeueFriendProfile();
+				}
+				else if (InformationExpert.getCurrentSwipePage().equals(MatchType.LOVE_MATCH.getStatusString())) {
+					InformationExpert.getClientModel().dequeLoveProfile();
+					if(InformationExpert.getClientModel().getLoveProfileFront() == null) {
+						InformationExpert.importLoveMatchBatch();
+					}	
+					
+					InformationExpert.setOtherProfile(InformationExpert.getClientModel().getLoveProfileFront().getUserId());
+				}
 				controller.setProfile(InformationExpert.getOtherProfile());
 				//controller.setProfile(InformationExpert.getUserAccountWithProfile("LfiDeQ0WNQEnNyZ1c94J").getAccountProfile());
 			} catch (DBFailureException e1) {
