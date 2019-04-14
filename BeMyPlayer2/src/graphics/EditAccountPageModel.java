@@ -22,6 +22,8 @@ public class EditAccountPageModel {
 	private JButton btnQuestionnaire;
 	private JButton btnProfile;
 	private JButton btnUpgrade;
+	private JButton btnDelete;
+	private JButton btnMute;
 	
 	//init account fields
 	private JPasswordField pwdEnterPass;
@@ -45,6 +47,20 @@ public class EditAccountPageModel {
 	private JLabel profilePicLabel;
 	private Date dob;
 	
+	
+	
+	public JButton getBtnMute() {
+		return btnMute;
+	}
+	public void setBtnMute(JButton btnMute) {
+		this.btnMute = btnMute;
+	}
+	public JButton getBtnDelete() {
+		return btnDelete;
+	}
+	public void setBtnDelete(JButton btnDelete) {
+		this.btnDelete = btnDelete;
+	}
 	public JLabel getLblBeMyPlayer() {
 		return lblBeMyPlayer;
 	}
