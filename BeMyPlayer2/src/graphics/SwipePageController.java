@@ -24,9 +24,6 @@ public class SwipePageController extends PageController {
 		}
 		
 		//	load first matches
-		System.out.println("info" + InformationExpert.getCurrentSwipePage());
-		System.out.println("other" + MatchType.FRIEND_MATCH.getStatusString());
-		System.out.println("Type: " + MatchType.LOVE_MATCH.getStatusString());
 		if(InformationExpert.getCurrentSwipePage().equals(MatchType.FRIEND_MATCH.getStatusString())) {
 			if(InformationExpert.getClientModel().getFriendProfileFront() == null) {
 				//	1 iteration of import, next import grows size
@@ -43,7 +40,6 @@ public class SwipePageController extends PageController {
 		}
 		else if(InformationExpert.getCurrentSwipePage().equals(MatchType.LOVE_MATCH.getStatusString())){
 			if(InformationExpert.getClientModel().getLoveProfileFront() == null) {
-				System.out.println("Importing love matches");
 				InformationExpert.importLoveMatchBatch();
 			}
 
