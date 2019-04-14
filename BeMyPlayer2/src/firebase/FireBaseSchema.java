@@ -18,7 +18,6 @@ public class FireBaseSchema {
 	public static final String MESSAGE_THREAD_UID_DELIM = "_+_";
 	
 	
-	
 	public static Date parseDate(Object obj) {
 		//perform additional formatting on Date object as needed:
 		if(obj instanceof Timestamp) {
