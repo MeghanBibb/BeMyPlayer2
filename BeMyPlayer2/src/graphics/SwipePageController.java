@@ -24,7 +24,9 @@ public class SwipePageController extends PageController {
 		}
 		
 		//	load first matches
-		if(InformationExpert.getCurrentSwipePage().equals(MatchType.FRIEND_MATCH)) {
+		System.out.println("info" + InformationExpert.getCurrentSwipePage());
+		System.out.println("other" + MatchType.FRIEND_MATCH.getStatusString());
+		if(InformationExpert.getCurrentSwipePage().equals(MatchType.FRIEND_MATCH.getStatusString())) {
 			if(InformationExpert.getClientModel().getFriendProfileFront() == null) {
 				//	1 iteration of import, next import grows size
 				InformationExpert.importFriendMatchBatch();
@@ -32,27 +34,28 @@ public class SwipePageController extends PageController {
 			
 			try {
 				InformationExpert.setOtherProfile(InformationExpert.getClientModel().getFriendProfileFront().getUserId());
-				InformationExpert.getClientModel().dequeueFriendProfile();
+				//InformationExpert.getClientModel().dequeueFriendProfile();
 			} catch (DBFailureException e1) {
 				// TODO Auto-generated catch block
 				logger.warning("database failed to load matches");
 			}
 		}
-		else if(InformationExpert.getCurrentSwipePage().equals(MatchType.LOVE_MATCH)){
+		else if(InformationExpert.getCurrentSwipePage().equals(MatchType.LOVE_MATCH.getStatusString())){
 			if(InformationExpert.getClientModel().getLoveProfileFront() == null) {
-				//	1 iteration of import, next import grows size
 				InformationExpert.importLoveMatchBatch();
 			}
 
 			try {
 				InformationExpert.setOtherProfile(InformationExpert.getClientModel().getLoveProfileFront().getUserId());
-				InformationExpert.getClientModel().dequeLoveProfile();
+				//InformationExpert.getClientModel().dequeLoveProfile();
 			} catch (DBFailureException e1) {
 				// TODO Auto-generated catch block
 				logger.warning("database failed to load matches");
 			}
 		}
-		
+		if(InformationExpert.getOtherProfile() == null) {
+			logger.warning("no matches for you loser");
+		}
 		this.model = new SwipePageModel(mainFrame, InformationExpert.getOtherProfile(), this);
 		model.backButton.addActionListener(new ActionListener() {
 	    	@Override
