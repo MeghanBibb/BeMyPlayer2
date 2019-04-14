@@ -79,7 +79,7 @@ public class ProfilePageView {
 				img = ResourceManager.loadImage("defaultIcon.png");
 			}
 			
-			imgLabel.setIcon(new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
+			imgLabel.setIcon(new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
 			imgLabel.setBounds(10, 60, 100, 100);
 			profileController.getProfileModel().setProfileImage(imgLabel);
 			JButton btnEdit = new JButton("Edit Profile");
@@ -102,11 +102,11 @@ public class ProfilePageView {
 			}
 			
 			if(img == null) {
-				img = ResourceManager.loadImage("defaultIcon.png");
+				img = CreateAccountPageModel.DEFAULT_PROFILE_IMAGE;
 			}
 			
 			
-			imgLabel.setIcon(new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
+			imgLabel.setIcon(new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
 			imgLabel.setBounds(10, 60, 100, 100);
 			profileController.getProfileModel().setProfileImage(imgLabel);
 			JButton btnBlock = new JButton("Block");

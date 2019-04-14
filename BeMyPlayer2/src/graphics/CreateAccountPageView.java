@@ -27,6 +27,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import firebase.ImageConverter;
 import model.ResourceManager;
 
 public class CreateAccountPageView {
@@ -751,7 +752,7 @@ public class CreateAccountPageView {
 		final JButton setIcon = new JButton();
 		setIcon.setMargin(new Insets(0,0,0,0));
 		setIcon.setContentAreaFilled(false);
-		setIcon.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
+		setIcon.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH)));
 		setIcon.setBackground(red);
 		setIcon.setBounds(125,25,150,150);
 		setIcon.addActionListener(new ActionListener(){
@@ -781,7 +782,7 @@ public class CreateAccountPageView {
 				lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 				if(f != null) {
 					try {
-						img1 = ImageIO.read(new File(f.getAbsolutePath()));
+						img1 = ImageConverter.convertToJPG(ImageIO.read(new File(f.getAbsolutePath())));
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						img1 = CreateAccountPageModel.DEFAULT_PROFILE_IMAGE;
@@ -793,7 +794,7 @@ public class CreateAccountPageView {
 					img1 = CreateAccountPageModel.DEFAULT_PROFILE_IMAGE;
 					capController.getCreateAccountPageModel().setProfileImg(img1);
 				}
-				setIcon.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
+				setIcon.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH)));
 				setIcon.setBounds(125, 25, 150, 150);
 				capController.getCreateAccountPageModel().setProfileImg(img1);
 				

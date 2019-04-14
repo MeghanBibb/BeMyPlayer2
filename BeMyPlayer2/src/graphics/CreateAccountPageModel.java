@@ -12,11 +12,13 @@ import java.util.List;
 
 import javax.swing.*;
 
+import firebase.ImageConverter;
 import model.ResourceManager;
 
 public class CreateAccountPageModel {
 	
-	public static final BufferedImage DEFAULT_PROFILE_IMAGE = ResourceManager.loadImage("defaultIcon.png");
+	public static final BufferedImage DEFAULT_PROFILE_IMAGE = 
+			ImageConverter.convertToJPG(ResourceManager.loadImage("defaultIcon.png"));
 	
 	//	init buttons
 	private JButton back;
