@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
@@ -36,27 +37,25 @@ import model.ResourceManager;
 public class ProfileBriefModel extends JPanel{
 	ViewMatchesController viewMatchController = new ViewMatchesController();
 	private String backPage;
-	
+	public static final BufferedImage DEFAULT_PIC = ResourceManager.loadImage("defaultIcon.png");
+	private static Logger logger = Logger.getLogger(ProfilePageController.class.getName());
 	public ProfileBriefModel(Profile profile, Rectangle rect, String backPage){
 
 		try {
 			InformationExpert.setOtherProfile(profile.getUserId());
 		} catch (DBFailureException e2) {
-			System.out.println("profile is null");
+			logger.warning("Database failed to load other profile" + profile.getUserId());
 		}
 			
-			CircularImage setIcon = null;
-			Image img1;
-			try {
-
-				img1 = InformationExpert.getProfileImage(profile.getUserId());
-				setIcon = new CircularImage(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
-				
-
-			} catch (Exception e1) {
-				img1 = ResourceManager.loadImage("/booth1.jpg");
-				setIcon = new CircularImage(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
-			}
+		CircularImage setIcon = null;
+		Image img1;
+		try {
+			img1 = InformationExpert.getProfileImage(profile.getUserId());
+			setIcon = new CircularImage(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
+		} catch (Exception e1) {
+			img1 = DEFAULT_PIC;
+			setIcon = new CircularImage(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
+		}
 			
 
 			

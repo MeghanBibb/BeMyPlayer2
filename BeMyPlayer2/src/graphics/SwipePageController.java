@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 
 import firebase.DBFailureException;
 import model.InformationExpert;
+import model.MatchType;
 import model.Profile;
 
 public class SwipePageController extends PageController {
@@ -22,18 +23,36 @@ public class SwipePageController extends PageController {
 			backPage = back;
 		}
 		
-		if(InformationExpert.getClientModel().getFriendProfileFront() == null) {
-			//	1 iteration of import, next import grows size
-			InformationExpert.importFriendMatchBatch();
+		//	load first matches
+		if(InformationExpert.getCurrentSwipePage().equals(MatchType.FRIEND_MATCH)) {
+			if(InformationExpert.getClientModel().getFriendProfileFront() == null) {
+				//	1 iteration of import, next import grows size
+				InformationExpert.importFriendMatchBatch();
+			}
+			
+			try {
+				InformationExpert.setOtherProfile(InformationExpert.getClientModel().getFriendProfileFront().getUserId());
+				InformationExpert.getClientModel().dequeueFriendProfile();
+			} catch (DBFailureException e1) {
+				// TODO Auto-generated catch block
+				logger.warning("database failed to load matches");
+			}
+		}
+		else if(InformationExpert.getCurrentSwipePage().equals(MatchType.LOVE_MATCH)){
+			if(InformationExpert.getClientModel().getLoveProfileFront() == null) {
+				//	1 iteration of import, next import grows size
+				InformationExpert.importLoveMatchBatch();
+			}
+
+			try {
+				InformationExpert.setOtherProfile(InformationExpert.getClientModel().getLoveProfileFront().getUserId());
+				InformationExpert.getClientModel().dequeLoveProfile();
+			} catch (DBFailureException e1) {
+				// TODO Auto-generated catch block
+				logger.warning("database failed to load matches");
+			}
 		}
 		
-		try {
-			InformationExpert.setOtherProfile(InformationExpert.getClientModel().getFriendProfileFront().getUserId());
-			InformationExpert.getClientModel().dequeueFriendProfile();
-		} catch (DBFailureException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 		this.model = new SwipePageModel(mainFrame, InformationExpert.getOtherProfile(), this);
 		model.backButton.addActionListener(new ActionListener() {
 	    	@Override

@@ -34,9 +34,12 @@ public class SwipeRightController extends SwipeButtonController{
 				thisMatch = new Match(InformationExpert.getActiveAccount().getAccountProfile(), InformationExpert.getOtherProfile());
 				thisMatch.setClientMatchStatus(MatchStatus.SWIPE_RIGHT);
 				thisMatch.setOtherMatchStatus(MatchStatus.NO_MATCH);
-				/*SET MATCH TYPE TO FRIEND OR LOVE DEPENDING ON PAGE*/
-				thisMatch.setType(MatchType.FRIEND_MATCH);
-				
+				if(InformationExpert.getCurrentSwipePage().equals(MatchType.FRIEND_MATCH)) {
+					thisMatch.setType(MatchType.FRIEND_MATCH);
+				}
+				else if(InformationExpert.getCurrentSwipePage().equals(MatchType.LOVE_MATCH)) {
+					thisMatch.setType(MatchType.LOVE_MATCH);
+				}
 				//add match
 				InformationExpert.addMatch(thisMatch);
 			}
@@ -46,11 +49,24 @@ public class SwipeRightController extends SwipeButtonController{
 		} finally {
 
 			try {
-				if(InformationExpert.getClientModel().getFriendProfileFront() == null) {
-					InformationExpert.importFriendMatchBatch();
-				}				
-				InformationExpert.setOtherProfile(InformationExpert.getClientModel().getFriendProfileFront().getUserId());
-				InformationExpert.getClientModel().dequeueFriendProfile();
+				//	get next profile
+				if(InformationExpert.getCurrentSwipePage().equals(MatchType.FRIEND_MATCH)) {
+					if(InformationExpert.getClientModel().getFriendProfileFront() == null) {
+						InformationExpert.importFriendMatchBatch();
+					}	
+					
+					InformationExpert.setOtherProfile(InformationExpert.getClientModel().getFriendProfileFront().getUserId());
+					InformationExpert.getClientModel().dequeueFriendProfile();
+				}
+				else if (InformationExpert.getCurrentSwipePage().equals(MatchType.LOVE_MATCH)) {
+					if(InformationExpert.getClientModel().getLoveProfileFront() == null) {
+						InformationExpert.importLoveMatchBatch();
+					}	
+					
+					InformationExpert.setOtherProfile(InformationExpert.getClientModel().getLoveProfileFront().getUserId());
+					InformationExpert.getClientModel().dequeLoveProfile();
+				}
+				
 				controller.setProfile(InformationExpert.getOtherProfile());
 				//controller.setProfile(InformationExpert.getUserAccountWithProfile("LfiDeQ0WNQEnNyZ1c94J").getAccountProfile());
 			} catch (DBFailureException e1) {

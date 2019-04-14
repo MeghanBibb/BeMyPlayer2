@@ -26,6 +26,7 @@ public class InformationExpert {
 	private static ClientModel clientModel = null;
 	private static FireBaseAdapter databaseAdapter = null;
 	private static Profile otherProfile = null;
+	private static MatchType currentSwipePage = null;
 	
 	public static void initialize() {
 		databaseAdapter = new FireBaseAdapter();
@@ -41,6 +42,19 @@ public class InformationExpert {
 		
 		//import user matches (This should be made asynchronous in the future):
 		loadAccountMatches();
+	}
+	
+	public static void setCurretnSwipePage(String type) {
+		if(type.equalsIgnoreCase("love")) {
+			currentSwipePage = MatchType.LOVE_MATCH;
+		}
+		else if(type.equalsIgnoreCase("friend")) {
+			currentSwipePage = MatchType.FRIEND_MATCH;
+		}
+	}
+	
+	public static String getCurrentSwipePage() {
+		return currentSwipePage.getStatusString();
 	}
 	
 	public static Profile getOtherProfile() {
