@@ -67,6 +67,7 @@ public class ProfilePageController extends PageController {
 				
 				try {
 					Match thisMatch;
+					
 					if((thisMatch = InformationExpert.getMatch(InformationExpert.getActiveAccount().getAccountProfile(), InformationExpert.getOtherProfile())) != null) {
 						/* CHECK TO MAKE SURE MATCH TYPE IS THE SAME IE: loveType on loveSwipePage*/
 						//if(thisMatch.getType == controller.getType){
@@ -87,6 +88,12 @@ public class ProfilePageController extends PageController {
 						
 						//add match
 						InformationExpert.addMatch(thisMatch);
+					}
+					if(backPage.equalsIgnoreCase("swipe page") && InformationExpert.getCurrentSwipePage().equals(MatchType.FRIEND_MATCH.getStatusString())) {
+						InformationExpert.getClientModel().dequeueFriendProfile();
+					}
+					else if(backPage.equalsIgnoreCase("swipe page") && InformationExpert.getCurrentSwipePage().equals(MatchType.LOVE_MATCH.getStatusString())){
+						InformationExpert.getClientModel().dequeLoveProfile();
 					}
 				} catch (DBFailureException e1) {
 					// TODO Auto-generated catch block

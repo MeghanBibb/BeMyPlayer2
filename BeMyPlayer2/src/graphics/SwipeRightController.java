@@ -34,10 +34,10 @@ public class SwipeRightController extends SwipeButtonController{
 				thisMatch = new Match(InformationExpert.getActiveAccount().getAccountProfile(), InformationExpert.getOtherProfile());
 				thisMatch.setClientMatchStatus(MatchStatus.SWIPE_RIGHT);
 				thisMatch.setOtherMatchStatus(MatchStatus.NO_MATCH);
-				if(InformationExpert.getCurrentSwipePage().equals(MatchType.FRIEND_MATCH)) {
+				if(InformationExpert.getCurrentSwipePage().equals(MatchType.FRIEND_MATCH.getStatusString())) {
 					thisMatch.setType(MatchType.FRIEND_MATCH);
 				}
-				else if(InformationExpert.getCurrentSwipePage().equals(MatchType.LOVE_MATCH)) {
+				else if(InformationExpert.getCurrentSwipePage().equals(MatchType.LOVE_MATCH.getStatusString())) {
 					thisMatch.setType(MatchType.LOVE_MATCH);
 				}
 				//add match
