@@ -1,5 +1,7 @@
 package model;
 
+import firebase.FireBaseSchema;
+
 public class Issue implements DBSerializable{
 	
 	public static final String _MESSAGE = "Message",
@@ -21,7 +23,7 @@ public class Issue implements DBSerializable{
 	public DBDocumentPackage toDBPackage() {
 		
 		DBDocumentPackage p = new DBDocumentPackage();
-		
+		//(Primary key is auto-generated)
 		p.addValue(_MESSAGE, this.message);
 		p.addValue(_TYPE, this.type);
 		p.addValue(_USER_ID, this.userID);
@@ -31,8 +33,19 @@ public class Issue implements DBSerializable{
 
 	@Override
 	public void initializeFromPackage(DBDocumentPackage pkg) {
-		//do nothing for now
-		
+		for(String s : pkg.getValues().keySet()) {
+			switch(s) {
+				case _MESSAGE:
+					this.message = (String) pkg.getValues().get(s);
+					break;
+				case _TYPE:
+					this.type = (String) pkg.getValues().get(s);
+					break;
+				case _USER_ID:
+					this.userID = (String) pkg.getValues().get(s);
+					break;
+			}
+		}
 	}
 
 }
