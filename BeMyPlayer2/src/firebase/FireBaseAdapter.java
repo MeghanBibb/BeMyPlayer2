@@ -91,6 +91,22 @@ public class FireBaseAdapter {
 		return true;
 	}
 	
+	public boolean addNewIssue(Issue issue) throws DBFailureException {
+		
+		if(this.db == null) {
+			LOGGER.warning("Error- no database connection");
+			throw new DBFailureException();
+		}
+		
+		DBDocumentPackage issPackage = issue.toDBPackage();
+		ApiFuture<DocumentReference> newAccountDoc;
+		
+		newAccountDoc = this.db.collection(FireBaseSchema.ISSUES_TABLE)
+				.add(issPackage.getValues());
+		
+		return true;
+	}
+	
 	public boolean attemptAddNewAccount(Account account) throws DBFailureException {
 		
 		if(this.db == null) {
@@ -845,6 +861,10 @@ public class FireBaseAdapter {
 		}
 	}
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> fed4d87adea111bd12b70237640bb6e749e4ea7e
 	public MessageThread getMessageThread(String userId, String otherUserId) throws DBFailureException{
 		//TODO: Fix this
 		/*

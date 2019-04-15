@@ -24,10 +24,8 @@ public class SwipeRightController extends SwipeButtonController{
 		try {
 			Match thisMatch;
 			if((thisMatch = InformationExpert.getMatch(InformationExpert.getActiveAccount().getAccountProfile(), InformationExpert.getOtherProfile())) != null) {
-				/* CHECK TO MAKE SURE MATCH TYPE IS THE SAME IE: loveType on loveSwipePage*/
-				//if(thisMatch.getType == controller.getType){
+			
 				thisMatch.setClientMatchStatus(MatchStatus.SWIPE_RIGHT);	
-				//}
 				    
 				//update match
 				InformationExpert.updateMatch(thisMatch);
@@ -48,7 +46,7 @@ public class SwipeRightController extends SwipeButtonController{
 			}
 			
 			if(thisMatch.getClientMatchStatus().equals(thisMatch.getOtherMatchStatus()) && thisMatch.getClientMatchStatus().equals(MatchStatus.SWIPE_RIGHT)) {
-				JOptionPane.showConfirmDialog(new JPanel(), "Its a Match", "Match", JOptionPane.DEFAULT_OPTION);
+				JOptionPane.showConfirmDialog(new JPanel(), "You have a succesful match with " + InformationExpert.getOtherProfile().getUsername(), "Match", JOptionPane.DEFAULT_OPTION);
 				if(InformationExpert.getCurrentSwipePage().equals(MatchType.FRIEND_MATCH.getStatusString())) {
 					InformationExpert.getClientModel().addFriendMatch(InformationExpert.getOtherProfile());
 				}

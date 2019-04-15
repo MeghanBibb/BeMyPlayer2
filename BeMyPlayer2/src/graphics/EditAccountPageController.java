@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import firebase.DBFailureException;
@@ -145,10 +146,31 @@ public class EditAccountPageController extends PageController{
 				GraphicsController.processPage(PageCreator.PAYMENT_PAGE,backPage);
 				break;
 			case MUTE:
-				System.out.println("mute");
+				//	remove from match queues
+				int dialogButton = JOptionPane.YES_NO_OPTION;
+				int dialogResult= JOptionPane.showConfirmDialog(this.editAccountPanel, "Are you sure you want to mute your account?","Mute account?", dialogButton);
+				if(dialogResult == 0) {
+					  logger.info("muting account "  + InformationExpert.getActiveUserID());
+					  //	DATA BASE LOGIC FOR MUTING ACCOUNT FROM Db
+					  
+					  //	if yes set bool, if no unset bool
+				} else {
+				  logger.info("Not muting account " + InformationExpert.getActiveUserID());
+				}
+				
 				break;
 			case DELETE:
-				System.out.print("delete");
+				int dialogButton2 = JOptionPane.YES_NO_OPTION;
+				int dialogResult2= JOptionPane.showConfirmDialog(this.editAccountPanel, "Are you sure you want to delete your account?","Delete account?", dialogButton2);
+				if(dialogResult2 == 0) {
+					  logger.info("deleting account "  + InformationExpert.getActiveUserID());
+					  //	DATA BASE LOGIC FOR DELETING ACCOUNT FROM Db
+					  
+					  
+					  GraphicsController.processPage(PageCreator.LOGIN_PAGE,backPage);
+				} else {
+				  logger.info("Not deleting account " + InformationExpert.getActiveUserID());
+				} 
 				break;
 		}
 		

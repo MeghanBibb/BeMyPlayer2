@@ -2,7 +2,9 @@ package graphics;
 
 import javax.swing.*;
 
+import firebase.DBFailureException;
 import model.InformationExpert;
+import model.Issue;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -45,6 +47,13 @@ public class SupportController extends PageController{
                 		}
                 		supportLogger.info("User: " + InformationExpert.getActiveAccount().getEmail() + " noted issue " + this.getSupportModel().getProbArea().getSelectedItem().toString()+ " with description " + this.getSupportModel().getDescription().getText());
                 	
+                		Issue iss = new Issue(this.getSupportModel().getDescription().getText(), (String) this.getSupportModel().getProbArea().getSelectedItem(), InformationExpert.getActiveUserID());
+                	try {
+                		InformationExpert.addIssue(iss);
+                	} catch (DBFailureException exc1) {
+                		exc1.printStackTrace();
+                		supportLogger.fine("could not load database");
+                	}
                     GraphicsController.processPage(PageCreator.HOME_PAGE,backPage);
                 }
                 break;

@@ -89,6 +89,15 @@ public class ProfilePageController extends PageController {
 						//add match
 						InformationExpert.addMatch(thisMatch);
 					}
+					
+					/*REMOVE FROM MATCH LISTS*/
+					if(InformationExpert.getClientModel().getFriendMatches().contains(InformationExpert.getOtherProfile())) {
+						InformationExpert.getClientModel().getFriendMatches().remove(InformationExpert.getOtherProfile());
+					}
+					if(InformationExpert.getClientModel().getLoveMatches().contains(InformationExpert.getOtherProfile())) {
+						InformationExpert.getClientModel().getLoveMatches().remove(InformationExpert.getOtherProfile());
+					}
+					
 					if(backPage.equalsIgnoreCase("swipe page") && InformationExpert.getCurrentSwipePage().equals(MatchType.FRIEND_MATCH.getStatusString())) {
 						InformationExpert.getClientModel().dequeueFriendProfile();
 					}
