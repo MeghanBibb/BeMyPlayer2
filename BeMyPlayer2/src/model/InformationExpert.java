@@ -42,6 +42,7 @@ public class InformationExpert {
 		//import user matches (This should be made asynchronous in the future):
 		loadAccountMatches();
 	}
+	
 	public static void setCurretnSwipePage(String type) {
 		if(type.equalsIgnoreCase("love")) {
 			currentSwipePage = MatchType.LOVE_MATCH;

@@ -154,6 +154,7 @@ public class FireBaseAdapter {
 				db.collection(FireBaseSchema.PROFILES_TABLE)
 				.document(newId)
 				.set(profPackage.getValues());
+				account.getAccountProfile().setUserId(newId);
 			}
 			LOGGER.log(Level.FINE,"Added user with ID: " + newId);
 			

@@ -151,9 +151,15 @@ public class CreateAccountPageController extends PageController{
 				a.setAccountProfile(p);
 			
 				try {
-					InformationExpert.attemptAddNewAccount(a);
-					InformationExpert.setActiveAccount(a);
-					InformationExpert.addProfileImage(p.getProfilePicture(), a.getUserId());
+					if(InformationExpert.attemptAddNewAccount(a)) {
+						InformationExpert.setActiveAccount(a);
+						InformationExpert.addProfileImage(p.getProfilePicture(), a.getUserId());
+					
+						InformationExpert.resetClientModel();
+					}else {
+						//TODO: Handle account exists already:
+						throw new RuntimeException();
+					}
 				} catch (DBFailureException e1) {
 					// TODO Auto-generated catch block
 					logger.warning("failed to add new account");
