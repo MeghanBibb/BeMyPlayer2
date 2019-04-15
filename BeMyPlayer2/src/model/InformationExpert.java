@@ -33,8 +33,8 @@ public class InformationExpert {
 		if(!databaseAdapter.initializeDBConnection()){
 			//error, could not initialize database
 		}
-		
 	}
+	
 	public static void resetClientModel() {
 		//should database dump these, also other account should be null until needed
 		clientModel = new ClientModel(activeUserAccount.getAccountProfile());

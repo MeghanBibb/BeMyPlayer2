@@ -561,7 +561,7 @@ public class FireBaseAdapter {
 						return null;
 					} 
 				})
-				.filter(p -> p != null)
+				.filter(p -> p != null && p.getUserId() != userProfile.getUserId())
 				.collect(Collectors.toList());
 			
 		}
@@ -596,23 +596,36 @@ public class FireBaseAdapter {
 					.whereEqualTo(Match._CLIENT_MATCH_STATUS, MatchStatus._STATUS_SWIPE_RIGHT)
 					.get();
 		
+		ApiFuture<QuerySnapshot> getBlockedMatches = 
+				db.collection(FireBaseSchema.MATCHES_TABLE)
+				.document(userId)
+				.collection(FireBaseSchema.MATCHES_TABLE_COLLECTION)
+				.whereEqualTo(Match._TYPE, MatchType._TYPE_BLOCKED)
+				.get();
+		
 		ApiFuture<QuerySnapshot> getBatchProfiles = 
 				db.collection(FireBaseSchema.PROFILES_TABLE)
 					.offset(iterationNumber * MAX_NUM_PROFILES_RETRIEVED)
 					.limit(MAX_NUM_PROFILES_RETRIEVED)
 					.get();
-					
+		
 		try {
-			
+			//create set from profiles swiped right on:
 			QuerySnapshot clientMatches = getTypeMatches.get();
-			Set<String> clientMatchIds = clientMatches
-				.getDocuments().stream()
+			Set<String> filteredIds = clientMatches
+				.getDocuments().parallelStream()
 				.map(m -> {
 					System.out.println(m.getId());
 					return m.getId();
 				})
 				.collect(Collectors.toCollection(HashSet::new));
-					
+			QuerySnapshot blockedMatches = getBlockedMatches.get();
+			
+			//augment with blocked profiles and user's Id:
+			blockedMatches.getDocuments().stream()
+				.forEach(p -> filteredIds.add(p.getId()));
+				
+			filteredIds.add(userId);
 			
 			QuerySnapshot profileBatch = getBatchProfiles.get();
 			if(profileBatch.isEmpty()) {
@@ -622,7 +635,7 @@ public class FireBaseAdapter {
 				
 				//parallelize package conversion to list of profiles:
 				batch = profileBatch.getDocuments().parallelStream()
-					.filter(p -> !clientMatchIds.contains(p.getId()))
+					.filter(p -> !(filteredIds.contains(p.getId())))
 					.map(p -> {
 							Profile newProf = new Profile();
 							newProf.initializeFromPackage(new DBDocumentPackage(p.getId(), p.getData()));
@@ -648,6 +661,7 @@ public class FireBaseAdapter {
 			throw new DBFailureException();
 		}
 		
+		System.out.println("UID: " + clientProfile.getUserId());
 		ApiFuture<DocumentSnapshot> getClientMatch = 
 				db.collection(FireBaseSchema.MATCHES_TABLE)
 					.document(clientProfile.getUserId())	
@@ -831,10 +845,6 @@ public class FireBaseAdapter {
 		}
 	}
 
-<<<<<<< HEAD
-=======
-/*
->>>>>>> 35604e851fcb26f7bf6be0aa77a3e3d812be9c32
 	public MessageThread getMessageThread(String userId, String otherUserId) throws DBFailureException{
 		//TODO: Fix this
 		/*
@@ -874,20 +884,15 @@ public class FireBaseAdapter {
 
 		return msgThread;*/ return null;
 	}
-<<<<<<< HEAD
-	
-=======
-	*/
 
->>>>>>> 35604e851fcb26f7bf6be0aa77a3e3d812be9c32
 	public void sendIssue(String issueType, String desc) throws DBFailureException{
 		//TODO: Fix Issue Sending
-		/*//
+		/*
 		if(this.db == null) {
 			LOGGER.log(Level.WARNING, "Error- no database connection");
 			throw new DBFailureException();
-		}*/
-
+		}
+		*/
 
 	}
 
