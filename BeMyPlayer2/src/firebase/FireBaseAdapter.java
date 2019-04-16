@@ -93,6 +93,102 @@ public class FireBaseAdapter {
 		return true;
 	}
 	
+	public boolean addNewPaymentInfo(PaymentInfo payment) throws DBFailureException {
+		
+		if(this.db == null) {
+			LOGGER.warning("Error- no database connection");
+			throw new DBFailureException();
+		}
+		
+
+		DBDocumentPackage payPackage = payment.toDBPackage();
+		ApiFuture<DocumentReference> newPaymentDoc;
+		
+		/*newPaymentDoc = this.db.collection(FireBaseSchema.PAYMENT_TABLE)
+				.add(payPackage.getValues());
+		*/
+		db.collection(FireBaseSchema.PAYMENT_TABLE)
+		        .document(payment.getID())
+		        .set(payPackage.getValues());
+		
+		
+		return true;
+	}
+	
+	public boolean removePaymentInfo(String userID) throws DBFailureException {
+		
+		if(this.db == null) {
+			LOGGER.warning("Error- no database connection");
+			throw new DBFailureException();
+		}
+		
+		
+		ApiFuture<DocumentSnapshot> payment = 
+				db.collection(FireBaseSchema.PAYMENT_TABLE)
+				.document(userID)
+				.get();
+				
+		
+		ApiFuture<QuerySnapshot> paymentQ = 
+				db.collection(FireBaseSchema.PAYMENT_TABLE)
+				.whereEqualTo(PaymentInfo._USER_ID, userID).get();
+		
+		try {
+			if(paymentQ.get().isEmpty()) {
+				return false;
+			}
+		} catch (InterruptedException e) {
+			LOGGER.log(Level.SEVERE,"Error- Match query interrupted.");
+			throw new DBFailureException();
+		} catch (ExecutionException e) {
+			LOGGER.log(Level.SEVERE,"Error- Match query failed.");
+			throw new DBFailureException();
+		}
+		
+		ApiFuture<WriteResult> deletePayment = db.collection(FireBaseSchema.PAYMENT_TABLE)
+				.document(userID)
+				.delete();
+		
+		return true;
+	}
+	
+	public PaymentInfo getPaymentInfo(String userID) throws DBFailureException {
+		
+		if(this.db == null) {
+			LOGGER.warning("Error- no database connection");
+			throw new DBFailureException();
+		}
+		
+		ApiFuture<DocumentSnapshot> getPayment = 
+				db.collection(FireBaseSchema.PAYMENT_TABLE)
+					.document(userID)
+					.get();
+		
+		DocumentSnapshot payment;
+		
+		try {
+			
+			payment = getPayment.get();
+			if(!payment.exists()) {
+				return null;
+			}
+			
+			DBDocumentPackage pkg = new DBDocumentPackage(payment.getId(), payment.getData());
+			PaymentInfo info = new PaymentInfo(userID);
+			info.initializeFromPackage(pkg);
+			
+			return info;
+			
+		} catch (InterruptedException e) {
+			LOGGER.log(Level.SEVERE,"Error- Match query interrupted.");
+			throw new DBFailureException();
+		} catch (ExecutionException e) {
+			LOGGER.log(Level.SEVERE,"Error- Match query failed.");
+			throw new DBFailureException();
+		}
+		
+	}
+	
 	public boolean addNewIssue(Issue issue) throws DBFailureException {
 		
 		if(this.db == null) {
@@ -101,9 +197,9 @@ public class FireBaseAdapter {
 		}
 		
 		DBDocumentPackage issPackage = issue.toDBPackage();
-		ApiFuture<DocumentReference> newAccountDoc;
+		ApiFuture<DocumentReference> newIssueDoc;
 		
-		newAccountDoc = this.db.collection(FireBaseSchema.ISSUES_TABLE)
+		newIssueDoc = this.db.collection(FireBaseSchema.ISSUES_TABLE)
 				.add(issPackage.getValues());
 		
 		return true;
