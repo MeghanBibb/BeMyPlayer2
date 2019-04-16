@@ -20,6 +20,10 @@ public class CircularImage extends JLabel{
 		super(image);
 	}
 	
+	public CircularImage() {
+		super();
+	}
+	
 	@Override
 	  protected void paintComponent(Graphics g) {
 		Ellipse2D r = new Ellipse2D.Float(this.getAlignmentX(), this.getAlignmentY(), this.getWidth(), this.getHeight());

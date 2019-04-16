@@ -43,10 +43,17 @@ public class EditAccountPageView {
 		mainFrame.setContentPane(editController.getEditAccountPanel());
 		
 		//init bemyplayer2 label
+		JLabel heartImage = new JLabel();
 		JLabel lblBeMyPlayer = new JLabel("Be My Player 2");
+		lblBeMyPlayer.setFont(Fonts.getFont((float) 20));
 		lblBeMyPlayer.setForeground(Colors.Yellow);
-		lblBeMyPlayer.setFont(Fonts.getFont((float)20));
-		lblBeMyPlayer.setBounds(160,0,204,69);
+		lblBeMyPlayer.setBounds(145,0,204,69);
+
+		
+		BufferedImage img1 = ResourceManager.loadImage("splash_heart.png");
+		heartImage .setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH)));
+		heartImage.setBounds(315, 22, 30, 30);
+		editController.getEditAccountPanel().add(heartImage);
 		editController.getEditAccountModel().setLblBeMyPlayer(lblBeMyPlayer);
 		
 		//init Buttons
@@ -656,7 +663,7 @@ public class EditAccountPageView {
 		
 //		char count on description
 			JLabel charCount = new JLabel();
-			charCount.setFont(new Font("Monospaced",Font.BOLD,12));
+			charCount.setFont(Fonts.getFont(12f));
 			charCount.setBounds(125, 350, 190, 50);
 			editController.getEditAccountModel().setCharcount(charCount);
 			editController.getEditAccountPanel().add(charCount);
