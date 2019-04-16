@@ -55,20 +55,25 @@ public class HomePageView {
 		JButton btnLove = new JButton("Find Love");
 		btnLove.setBounds(30,100,200,140);
 		btnLove.setActionCommand(homeController.FIND_LOVE);
-		btnLove.setBackground(yellow);
 		btnLove.setFont(Fonts.getFont((float) 12));
-		btnLove.setForeground(Colors.Red);
+		btnLove.setBackground(Colors.Red);
+		btnLove.setContentAreaFilled(false);
 		btnLove.addActionListener(homeController);
 		homeController.getHomePageModel().setBtnFindLove(btnLove);
+		BufferedImage findLovepic = ResourceManager.loadImage("findlove.png");
+		//btnLove.setIcon(new ImageIcon(new ImageIcon(findLovepic).getImage().getScaledInstance(200, 140, Image.SCALE_SMOOTH)));
+		btnLove.setIcon(new ImageIcon(new ImageIcon(findLovepic).getImage().getScaledInstance(200, 140, Image.SCALE_SMOOTH)));
 		
 		JButton btnFriends = new JButton("Find Friends");
 		btnFriends.setBounds(270,100,200,140);
 		btnFriends.setActionCommand(homeController.FIND_FRIENDS);
-		btnFriends.setBackground(yellow);
 		btnFriends.setFont(Fonts.getFont((float) 12));
-		btnFriends.setForeground(Colors.Red);
+		//btnFriends.setForeground(Colors.Red);
+		btnFriends.setContentAreaFilled(false);
 		btnFriends.addActionListener(homeController);
 		homeController.getHomePageModel().setBtnFindFriends(btnFriends);
+		BufferedImage findfriendspic = ResourceManager.loadImage("findfriends.png");
+		btnFriends.setIcon(new ImageIcon(new ImageIcon(findfriendspic).getImage().getScaledInstance(200, 140, Image.SCALE_SMOOTH)));
 		
 		JButton btnSupport = new JButton("<HTML><U>Support</U></HTML>");
 		btnSupport.setBounds(0,360,90,40);

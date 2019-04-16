@@ -26,6 +26,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import firebase.DBFailureException;
 import firebase.ImageConverter;
 import model.InformationExpert;
+import model.PaymentInfo;
 import model.ResourceManager;
 
 public class EditAccountPageView {
@@ -93,13 +94,26 @@ public class EditAccountPageView {
 		editController.getEditAccountModel().setBtnAccount(btnAccount);
 		
 		JButton btnUpgrade = new JButton("Upgrade Account!");
+		btnUpgrade.setActionCommand(editController.UPGRADE);
 		btnUpgrade.setBounds(115,220,250,40);
 		btnUpgrade.setBackground(Colors.Yellow);
 		btnUpgrade.setFont(Fonts.getFont((float)12));
 		btnUpgrade.setForeground(Colors.Red);
-		btnUpgrade.setActionCommand(editController.UPGRADE);
 		btnUpgrade.addActionListener(editController);
 		editController.getEditAccountModel().setBtnUpgrade(btnUpgrade);
+		
+		PaymentInfo p;
+		try {
+			p = InformationExpert.getPaymentInfo(InformationExpert.getActiveUserID());
+
+			if(p != null) {	
+				btnUpgrade.setText("Cancel Payment Plan");
+				btnUpgrade.setActionCommand(editController.END_PAYMENT);
+			}
+		} catch (DBFailureException e) {
+			//database error, go with default
+		}
+		
 		
 		JButton btnMute = new JButton ("Mute Account");
 		btnMute.setBounds(115,270,250,40);
