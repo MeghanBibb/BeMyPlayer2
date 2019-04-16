@@ -160,7 +160,6 @@ public class EditAccountPageController extends PageController{
 					logger.info("Not muting account " + InformationExpert.getActiveAccount().getAccountProfile().getUsername());
 					InformationExpert.getActiveAccount().getAccountProfile().setMute(false);
 				}
-				
 				break;
 			case DELETE:
 				int dialogButton2 = JOptionPane.YES_NO_OPTION;

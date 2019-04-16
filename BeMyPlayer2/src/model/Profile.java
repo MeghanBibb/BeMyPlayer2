@@ -18,7 +18,8 @@ public class Profile implements DBSerializable{
 							   _GENDER = "gender",
 							   _DESCRIPTION = "description",
 							   _PLATFORMS = "platforms",
-							   _GENRES = "genres";
+							   _GENRES = "genres",
+							   _IS_MUTE = "isMute";
 	
 	public static final SimpleDateFormat DOB_FORMAT = new SimpleDateFormat("dd/MM/yyyy"); 
 	
@@ -137,7 +138,8 @@ public class Profile implements DBSerializable{
 		p.addValue(_DATE_OF_BIRTH, this.dateOB);
 		p.addValue(_GENDER, this.gender);
 		p.addValue(_DESCRIPTION, this.description);
-		
+		p.addValue(_IS_MUTE, this.isMute);
+
 		//flatten genres and platforms into a text array
 		String pls = "", gs = "";
 		for(Boolean b : this.platforms) { pls += b? "Y":"N"; };
@@ -182,6 +184,9 @@ public class Profile implements DBSerializable{
 					for(int i =0 ; i < arrStr.length(); ++i) {
 						this.genres.add(arrStr.charAt(i) == 'Y');
 					}
+					break;
+				case _IS_MUTE:
+					this.isMute = (Boolean) pkg.getValues().get(s);
 					break;
 			}
 		}

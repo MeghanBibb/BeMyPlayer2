@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ad0b93e3-fe65-4dbe-8fc3-d23ba426e185" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/firebase/FireBaseAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/firebase/FireBaseAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/EditAccountPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/EditAccountPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/SwipeLeftController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/graphics/SwipeLeftController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/model/InformationExpert.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/model/InformationExpert.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BeMyPlayer2/src/model/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeMyPlayer2/src/model/Profile.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -30,11 +29,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FireBaseAdapter.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FireBaseAdapter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/firebase/FireBaseAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="81" column="47" selection-start-line="81" selection-start-column="47" selection-end-line="81" selection-end-column="47" />
+            <state relative-caret-position="452">
+              <caret line="628" column="66" selection-start-line="628" selection-start-column="66" selection-end-line="628" selection-end-column="66" />
             </state>
           </provider>
         </entry>
@@ -44,18 +43,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="629">
               <caret line="73" column="31" selection-start-line="73" selection-start-column="31" selection-end-line="73" selection-end-column="31" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SwipeLeftController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/SwipeLeftController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="54" column="126" selection-start-line="54" selection-start-column="126" selection-end-line="54" selection-end-column="126" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -87,8 +74,8 @@
       <file leaf-file-name="Profile.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/model/Profile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1394">
-              <caret line="125" column="5" lean-forward="true" selection-start-line="125" selection-start-column="5" selection-end-line="125" selection-end-column="5" />
+            <state relative-caret-position="1292">
+              <caret line="223" lean-forward="true" selection-start-line="223" selection-end-line="223" />
             </state>
           </provider>
         </entry>
@@ -96,8 +83,8 @@
       <file leaf-file-name="EditAccountPageController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/EditAccountPageController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
-              <caret line="162" column="16" lean-forward="true" selection-start-line="162" selection-start-column="16" selection-end-line="162" selection-end-column="16" />
+            <state relative-caret-position="559">
+              <caret line="161" column="17" selection-start-line="161" selection-start-column="17" selection-end-line="161" selection-end-column="17" />
               <folding>
                 <element signature="e#11229#11230#0" expanded="true" />
                 <element signature="e#11259#11260#0" expanded="true" />
@@ -112,11 +99,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SwipePageModel.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SwipePageModel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/SwipePageModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="45" column="45" lean-forward="true" selection-start-line="45" selection-start-column="45" selection-end-line="45" selection-end-column="45" />
+            <state relative-caret-position="153">
+              <caret line="63" column="67" lean-forward="true" selection-start-line="63" selection-start-column="67" selection-end-line="63" selection-end-column="67" />
             </state>
           </provider>
         </entry>
@@ -157,6 +144,7 @@
       <find>scroll</find>
       <find>getcurrent</find>
       <find>importFr</find>
+      <find>getunmat</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -192,11 +180,11 @@
         <option value="$PROJECT_DIR$/BeMyPlayer2/src/model/MessageThread.java" />
         <option value="$PROJECT_DIR$/BeMyPlayer2/src/graphics/MessageController.java" />
         <option value="$PROJECT_DIR$/BeMyPlayer2/src/graphics/MessageView.java" />
-        <option value="$PROJECT_DIR$/BeMyPlayer2/src/firebase/FireBaseAdapter.java" />
-        <option value="$PROJECT_DIR$/BeMyPlayer2/src/model/Profile.java" />
-        <option value="$PROJECT_DIR$/BeMyPlayer2/src/graphics/EditAccountPageController.java" />
         <option value="$PROJECT_DIR$/BeMyPlayer2/src/graphics/SwipeLeftController.java" />
         <option value="$PROJECT_DIR$/BeMyPlayer2/src/model/InformationExpert.java" />
+        <option value="$PROJECT_DIR$/BeMyPlayer2/src/model/Profile.java" />
+        <option value="$PROJECT_DIR$/BeMyPlayer2/src/firebase/FireBaseAdapter.java" />
+        <option value="$PROJECT_DIR$/BeMyPlayer2/src/graphics/EditAccountPageController.java" />
       </list>
     </option>
   </component>
@@ -691,13 +679,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/model/Profile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1394">
-          <caret line="125" column="5" lean-forward="true" selection-start-line="125" selection-start-column="5" selection-end-line="125" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/SwipeRightController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -708,13 +689,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/SwipePageModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="45" column="45" lean-forward="true" selection-start-line="45" selection-start-column="45" selection-end-line="45" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/ProfilePageController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="867">
@@ -722,47 +696,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/EditAccountPageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="162" column="16" lean-forward="true" selection-start-line="162" selection-start-column="16" selection-end-line="162" selection-end-column="16" />
-          <folding>
-            <element signature="e#11229#11230#0" expanded="true" />
-            <element signature="e#11259#11260#0" expanded="true" />
-            <element signature="e#11334#11335#0" expanded="true" />
-            <element signature="e#11381#11382#0" expanded="true" />
-            <element signature="e#11421#11422#0" expanded="true" />
-            <element signature="e#11451#11452#0" expanded="true" />
-            <element signature="e#11512#11513#0" expanded="true" />
-            <element signature="e#11559#11560#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/model/ClientModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="73" column="31" selection-start-line="73" selection-start-column="31" selection-end-line="73" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/SwipePageController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="29" column="49" selection-start-line="29" selection-start-column="49" selection-end-line="29" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/SwipeLeftController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="54" column="126" selection-start-line="54" selection-start-column="126" selection-end-line="54" selection-end-column="126" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -779,10 +716,61 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/model/Profile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1292">
+          <caret line="223" lean-forward="true" selection-start-line="223" selection-end-line="223" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/firebase/FireBaseAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="81" column="47" selection-start-line="81" selection-start-column="47" selection-end-line="81" selection-end-column="47" />
+        <state relative-caret-position="452">
+          <caret line="628" column="66" selection-start-line="628" selection-start-column="66" selection-end-line="628" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/EditAccountPageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="559">
+          <caret line="161" column="17" selection-start-line="161" selection-start-column="17" selection-end-line="161" selection-end-column="17" />
+          <folding>
+            <element signature="e#11229#11230#0" expanded="true" />
+            <element signature="e#11259#11260#0" expanded="true" />
+            <element signature="e#11334#11335#0" expanded="true" />
+            <element signature="e#11381#11382#0" expanded="true" />
+            <element signature="e#11421#11422#0" expanded="true" />
+            <element signature="e#11451#11452#0" expanded="true" />
+            <element signature="e#11512#11513#0" expanded="true" />
+            <element signature="e#11559#11560#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/SwipeLeftController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="918">
+          <caret line="54" column="126" selection-start-line="54" selection-start-column="126" selection-end-line="54" selection-end-column="126" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/model/ClientModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="73" column="31" selection-start-line="73" selection-start-column="31" selection-end-line="73" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BeMyPlayer2/src/graphics/SwipePageModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="63" column="67" lean-forward="true" selection-start-line="63" selection-start-column="67" selection-end-line="63" selection-end-column="67" />
         </state>
       </provider>
     </entry>

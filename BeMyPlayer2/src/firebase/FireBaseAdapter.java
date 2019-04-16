@@ -55,6 +55,8 @@ import com.google.cloud.Service;
 import com.google.cloud.firestore.Firestore;
 import com.google.firebase.FirebaseOptions;
 
+import static model.Profile._IS_MUTE;
+
 public class FireBaseAdapter {
 	
 	public final static Logger LOGGER = Logger.getLogger(FireBaseAdapter.class.getName());
@@ -624,6 +626,7 @@ public class FireBaseAdapter {
 				db.collection(FireBaseSchema.PROFILES_TABLE)
 					.offset(iterationNumber * MAX_NUM_PROFILES_RETRIEVED)
 					.limit(MAX_NUM_PROFILES_RETRIEVED)
+					.whereEqualTo(Profile._IS_MUTE, Boolean.FALSE)
 					.get();
 		
 		try {
