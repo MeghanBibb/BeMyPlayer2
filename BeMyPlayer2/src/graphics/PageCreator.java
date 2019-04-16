@@ -13,6 +13,7 @@ public class PageCreator {
 	public static final String SWIPE_PAGE = "swipe page";
 	public static final String MATCHES_PAGE = "matches page";
 	public static final String PROFILE_PAGE = "profile page";
+	public static final String CREDITS_PAGE = "credits page";
 	
 	public static PageController getPage(String pageType) {
 		switch(pageType) {
@@ -27,6 +28,7 @@ public class PageCreator {
 		case SWIPE_PAGE: return new SwipePageController();
 		case MATCHES_PAGE: return new ViewMatchesController();
 		case PROFILE_PAGE: return new ProfilePageController();
+		case CREDITS_PAGE: return new CreditsPageController();
 		default: return null;
 		}
 	}

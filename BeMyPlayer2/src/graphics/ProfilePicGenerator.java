@@ -44,6 +44,7 @@ public class ProfilePicGenerator {
 				logger.warning("database failed to load pic for " + name);
 			}
 			Profile temp = InformationExpert.getOtherProfile();
+			if(temp != null) {
 			//Image img1 = new ImageIcon("filepathfromDB").getImage();//	add try catch and dont add if invalid file path
 			JButton setIcon = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 50, Image.SCALE_SMOOTH)));
 			setIcon.setLayout(new BorderLayout());
@@ -53,6 +54,7 @@ public class ProfilePicGenerator {
 			setIcon.setActionCommand("profileclick");
 			setIcon.addActionListener(b);
 			loveList.add(setIcon);
+			}
 		}
 		if(userIds.size() < 3) {
 			int i = userIds.size();
@@ -86,6 +88,7 @@ public class ProfilePicGenerator {
 			}
 			
 			Profile temp = InformationExpert.getOtherProfile();
+			if(temp != null) {
 			JButton setIcon = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 50, Image.SCALE_SMOOTH)));
 			setIcon.setLayout(new BorderLayout());
 			setIcon.setName(name);
@@ -94,7 +97,7 @@ public class ProfilePicGenerator {
 			setIcon.setActionCommand("profileclick");
 			setIcon.addActionListener(b);
 			friendList.add(setIcon);
-			
+			}
 		}
 		if(userIds.size() < 3) {
 			int i = userIds.size();
@@ -108,5 +111,45 @@ public class ProfilePicGenerator {
 		}
 		return friendList;
 	}
-	
+	public static List<JButton> getCreatorsList(CreditsPageController p){
+		
+		List<JButton> creators = new ArrayList<JButton>();
+		List<String> userIds = p.getCreators();
+		for(String name: userIds) {
+			//	query db for name and get images 
+			Image img1;
+			try {
+				img1 = InformationExpert.getProfileImage(name);
+				InformationExpert.setOtherProfile(name);
+			} catch (DBFailureException e) {
+				// TODO Auto-generated catch block
+				img1 = DEFAULT_PIC;
+				logger.warning("database failed to load profile pic for " + name);
+			}
+			
+			Profile temp = InformationExpert.getOtherProfile();
+			if(temp != null) {
+			JButton setIcon = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 50, Image.SCALE_SMOOTH)));
+			setIcon.setLayout(new BorderLayout());
+			setIcon.setName(name);
+			setIcon.setPreferredSize(new Dimension(75,50));
+			setIcon.add(new JLabel(temp.getUsername()),BorderLayout.PAGE_END);
+			setIcon.setActionCommand("profileclick");
+			setIcon.addActionListener(p);
+			creators.add(setIcon);
+			}
+		}
+		if(userIds.size() < 3) {
+			int i = userIds.size();
+			while(i < 3) {
+				JButton temp  =new JButton();
+				temp.setEnabled(false);
+				temp.setVisible(false);
+				creators.add(temp);
+				i++;
+			}
+		}
+		
+		return creators;
+	}
 }
