@@ -27,6 +27,7 @@ public class Profile implements DBSerializable{
 	private Date dateOB;
 	private String gender;
 	private String description;
+	private Boolean isMute;
 	
 	private List<Boolean> platforms;
 	private List<Boolean> genres;
@@ -116,6 +117,12 @@ public class Profile implements DBSerializable{
 	}
 	public void setGenres(List<Boolean> genres) {
 		this.genres = genres;
+	}
+	public Boolean getMute() {
+		return isMute;
+	}
+	public void setMute(Boolean mute) {
+		isMute = mute;
 	}
 
 	@Override
