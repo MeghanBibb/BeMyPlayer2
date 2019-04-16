@@ -18,7 +18,7 @@ public class HomePageController extends PageController{
 	public static final String FIND_LOVE = "love";
 	public static final String VIEW_MATCHES = "matches";
 	public static final String LOGOUT = "logout";
-	
+	public static final String LAUNCH_WEB_PAGE = "launchsite";
 	// get view and jframe
 	private HomePageModel homePageModel = null;
 	private JPanel homePanel = null;
@@ -59,6 +59,10 @@ public class HomePageController extends PageController{
 			case LOGOUT: 
 				logger.info("Logout of user " + InformationExpert.getActiveUserID());
 				GraphicsController.processPage(PageCreator.LOGIN_PAGE,backPage);
+				break;
+			case LAUNCH_WEB_PAGE:
+				logger.info("Launching webpage");
+				web.WebHandler.openWebPage("https://mpbibb7.wixsite.com/be-my-player-2",this.homePanel);
 				break;
 		}
 	}

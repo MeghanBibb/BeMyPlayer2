@@ -104,7 +104,19 @@ public class HomePageView {
 		heartImage.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH)));
 		heartImage.setBounds(315, 22, 30, 30);
 		
+		//	website link
+		JButton site = new JButton("<HTML><U>BeMyPlayer2 Webpage</U></HTML>");
+		site.setActionCommand("launchsite");
+		site.addActionListener(homeController);
+		site.setBounds(300,360,200,30);
+		site.setOpaque(true);
+		site.setContentAreaFilled(false);
+		site.setBorderPainted(false);
+		site.setFont(Fonts.getFont(12f));
+		site.setForeground(Colors.White);
+		
 		//add to frame
+		homeController.getHomePanel().add(site);
 		homeController.getHomePanel().add(heartImage);
 		homeController.getHomePanel().add(homeController.getHomePageModel().getBtnFindFriends());
 		homeController.getHomePanel().add(homeController.getHomePageModel().getBtnFindLove());
