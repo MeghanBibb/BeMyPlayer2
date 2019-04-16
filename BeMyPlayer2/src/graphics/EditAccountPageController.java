@@ -15,6 +15,7 @@ import firebase.DBFailureException;
 import firebase.Hasher;
 import model.Account;
 import model.InformationExpert;
+import model.PaymentInfo;
 import model.Profile;
 import model.ResourceManager;
 
@@ -32,6 +33,7 @@ public class EditAccountPageController extends PageController{
 	public static final String UPGRADE = "upgrade";
 	public static final String MUTE = "mute";
 	public static final String DELETE = "delete";
+	public static final String END_PAYMENT = "cancel payment";
 	public static final int MAXLENGTH = 250;
 	private JFrame copyFrame = null;
 	private EditAccountPageModel editAccountModel = null;
@@ -143,7 +145,34 @@ public class EditAccountPageController extends PageController{
 				EditAccountPageView.launchEditQuestionnairePage(this, copyFrame);
 				break;
 			case UPGRADE:		//go to upgrade account page
+			try {
+				PaymentInfo p = InformationExpert.getPaymentInfo(InformationExpert.getActiveUserID());
+				if(p != null) {
+					System.out.print("GOT PAYMENT INFO FROM DB\n");
+				}
+			} catch (DBFailureException e1) {
+				//database failure
+			}
+				
 				GraphicsController.processPage(PageCreator.PAYMENT_PAGE,backPage);
+				break;
+			case END_PAYMENT:
+				
+				/* make popup warning*/
+				int dialogButtonP = JOptionPane.YES_NO_OPTION;
+				int dialogResultP= JOptionPane.showConfirmDialog(this.editAccountPanel, "Are you sure you want to cancel your payment plan? You will no longer benefit from being a pro account.","Unsubscribe from pro features?", dialogButtonP);
+				if(dialogResultP == 0) {
+					  logger.info("removing payment info for "  + InformationExpert.getActiveAccount().getEmail());
+					  try {
+							InformationExpert.deletePaymentInfo(InformationExpert.getActiveUserID());
+						} catch (DBFailureException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						GraphicsController.processPage(PageCreator.PROFILE_PAGE, backPage);
+				} else {
+				  logger.info("Not removing payment info for " + InformationExpert.getActiveAccount().getEmail());
+				}
 				break;
 			case MUTE:
 				//	remove from match queues

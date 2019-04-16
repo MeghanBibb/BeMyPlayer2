@@ -86,7 +86,7 @@ public class PaymentPageView {
 		//init text fields
 		JFormattedTextField cardNumber = new JFormattedTextField("");
 		cardNumber.setHorizontalAlignment(SwingConstants.CENTER);
-		cardNumber.setBounds(10,100,200,40);
+		cardNumber.setBounds(10,100,220,40);
 		cardNumber.setBackground(Colors.Yellow);
 		cardNumber.setForeground(Colors.Red);
 		cardNumber.setFont(Fonts.getFont(20f));

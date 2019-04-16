@@ -11,7 +11,10 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import firebase.DBFailureException;
 import model.Account;
+import model.InformationExpert;
+import model.PaymentInfo;
 
 public class PaymentPageController extends PageController{
 	
@@ -64,9 +67,10 @@ public class PaymentPageController extends PageController{
 				warnings.add("Invalid month\n");
 			}
 			year = Integer.parseInt(paymentModel.getCardYear().getText());
+			year += 2000;
 			LocalDate now = LocalDate.now();
 			int currentYear = now.getYear();
-			if(currentYear > year) {
+			if(currentYear > year || (year-2000) > 50) { // > 50 to ensure a two digit year
 				isValid = false;
 				warnings.add("Invalid year\n");
 			} else if(currentYear == year && now.getMonthValue() > month) {
@@ -116,7 +120,15 @@ public class PaymentPageController extends PageController{
 				break;
 			case SUBMIT:
 				if(verifyPayment()) {
-					logger.info("Submit");
+					logger.info("attempting to submit payment info for " + InformationExpert.getActiveAccount().getEmail());
+					PaymentInfo p = new PaymentInfo(this.getPaymentModel().getCardNumber().getText(), InformationExpert.getActiveUserID(),
+							        Integer.parseInt(this.getPaymentModel().getCardMonth().getText()), Integer.parseInt(this.getPaymentModel().getCardYear().getText()),
+							        Integer.parseInt(this.getPaymentModel().getCardCVC().getText()));
+					try {
+						InformationExpert.addPaymentInfo(p);
+					} catch (DBFailureException e1) {
+						logger.warning("Database Failure: Could not upload new Payment Info");
+					}
 					GraphicsController.processPage(PageCreator.EDIT_ACCOUNT_PAGE,backPage);
 				}
 				break;

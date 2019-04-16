@@ -43,6 +43,18 @@ public class InformationExpert {
 		loadAccountMatches();
 	}
 	
+	public static void addPaymentInfo(PaymentInfo payment) throws DBFailureException {
+		databaseAdapter.addNewPaymentInfo(payment);
+	}
+	
+	public static PaymentInfo getPaymentInfo(String userID) throws DBFailureException {
+		return databaseAdapter.getPaymentInfo(userID);
+	}
+	
+	public static boolean deletePaymentInfo(String userID) throws DBFailureException {
+		return databaseAdapter.removePaymentInfo(userID);
+	}
+	
 	public static void setCurretnSwipePage(String type) {
 		if(type.equalsIgnoreCase("love")) {
 			currentSwipePage = MatchType.LOVE_MATCH;
