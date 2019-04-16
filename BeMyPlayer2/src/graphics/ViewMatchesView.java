@@ -91,8 +91,10 @@ public class ViewMatchesView {
         			profilePicPanel.removeAll();
         			///	ACTUAL SOLUTION
         			if(InformationExpert.getClientModel().getLoveMatches() == null || InformationExpert.getClientModel().getLoveMatches().size() == 0) {
-        				viewMatchController.getViewMatchesModel().getEmptylistLine1().setVisible(true);
-        				viewMatchController.getViewMatchesModel().getEmptylistLine2().setVisible(true);
+        				if(viewMatchController.getViewMatchesModel().getEmptylistLine2().isVisible() == false || viewMatchController.getViewMatchesModel().getEmptylistLine1().isVisible() == false) {
+        					viewMatchController.getViewMatchesModel().getEmptylistLine1().setVisible(true);
+            				viewMatchController.getViewMatchesModel().getEmptylistLine2().setVisible(true);
+        				}
         				
         			}
         			else {
@@ -112,8 +114,10 @@ public class ViewMatchesView {
         			profilePicPanel.removeAll();
         			///	ACTUAL SOLUTION
         			if(InformationExpert.getClientModel().getFriendMatches() == null ||InformationExpert.getClientModel().getFriendMatches().size() == 0) {
-        				viewMatchController.getViewMatchesModel().getEmptylistLine1().setVisible(true);
-        				viewMatchController.getViewMatchesModel().getEmptylistLine2().setVisible(true);
+        				if(viewMatchController.getViewMatchesModel().getEmptylistLine2().isVisible() == false || viewMatchController.getViewMatchesModel().getEmptylistLine1().isVisible() == false) {
+        					viewMatchController.getViewMatchesModel().getEmptylistLine1().setVisible(true);
+            				viewMatchController.getViewMatchesModel().getEmptylistLine2().setVisible(true);
+        				}
         			}
         			else {
         				List<JButton> pics = ProfilePicGenerator.getFriendList(viewMatchController);
@@ -127,6 +131,8 @@ public class ViewMatchesView {
         			profilePicPanel.validate();
         			profilePicPanel.revalidate();
         		}
+        		viewMatchController.getViewMatchesPanel().add(viewMatchController.getViewMatchesModel().getEmptylistLine1());
+        		viewMatchController.getViewMatchesPanel().add(viewMatchController.getViewMatchesModel().getEmptylistLine2());
         	}
         });
 		
