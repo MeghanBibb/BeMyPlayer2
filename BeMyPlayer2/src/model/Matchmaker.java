@@ -8,7 +8,7 @@ public class Matchmaker{
 	public static Comparator<Profile> getFriendComparator(Profile c) {
 		
 		return new Comparator<Profile>() {
-	    	Profile current = c;
+	    	//Profile current = c;
 			@Override
 			public int compare(Profile o1, Profile o2) {
 				//This is a temporary stub:
@@ -21,7 +21,7 @@ public class Matchmaker{
 	public static Comparator<Profile> getLoveComparator(Profile c) {
 		
 	    return new Comparator<Profile>() {
-	    	Profile current = c;
+	    	//Profile current = c;
 			@Override
 			public int compare(Profile o1, Profile o2) {
 				//This is a temporary stub:
