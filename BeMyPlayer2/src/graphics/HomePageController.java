@@ -19,8 +19,6 @@ public class HomePageController extends PageController{
 	public static final String VIEW_MATCHES = "matches";
 	public static final String LOGOUT = "logout";
 	public static final String LAUNCH_WEB_PAGE = "launchsite";
-	public static final String CREDITS = "credits";
-	
 	// get view and jframe
 	private HomePageModel homePageModel = null;
 	private JPanel homePanel = null;
@@ -65,10 +63,6 @@ public class HomePageController extends PageController{
 			case LAUNCH_WEB_PAGE:
 				logger.info("Launching webpage");
 				web.WebHandler.openWebPage("https://mpbibb7.wixsite.com/be-my-player-2",this.homePanel);
-				break;
-			case CREDITS:
-				logger.info("Launching credits page");
-				GraphicsController.processPage(PageCreator.CREDITS_PAGE, PageCreator.HOME_PAGE);
 				break;
 		}
 	}
