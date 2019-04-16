@@ -44,10 +44,9 @@ public class HomePageController extends PageController{
 				logger.info("Support");
 				GraphicsController.processPage(PageCreator.SUPPORT_PAGE,backPage);
 				break;
-			case FIND_FRIENDS: 
-				logger.info("Find Friends");
-				InformationExpert.setCurretnSwipePage("friend");
-				GraphicsController.processPage(PageCreator.SWIPE_PAGE,backPage);
+			case FIND_FRIENDS:
+				System.out.println("Find Friends");
+				GraphicsController.launchMessagePage();
 				break;
 			case FIND_LOVE: 
 				logger.info("Find Love");

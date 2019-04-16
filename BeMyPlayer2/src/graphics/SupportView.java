@@ -69,17 +69,8 @@ public class SupportView {
         issueSelection.setBackground(yellow);
         issueSelection.setVisible(true);
         supportController.getSupportModel().setProbArea(issueSelection);
-		
-        JLabel descript = new JLabel("Enter description:");
-        descript.setForeground(Colors.Yellow);
-        descript.setFont(Fonts.getFont((float) 12));
-        //descript.setForeground(Colors.Red);
-        descript.setFont(new Font("Monospaced", Font.BOLD, 16));
-        descript.setBounds(35,100,204,50);
-		supportController.getSupportPanel().add(descript);
-		
         JTextArea desc = new JTextArea();
-        desc.setBounds(35, 150, 400, 150);
+        desc.setBounds(35, 100, 400, 200);
         desc.setVisible(true);
         desc.setFont(Fonts.getFont((float) 12));
         desc.setForeground(Colors.Red);

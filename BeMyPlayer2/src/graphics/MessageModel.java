@@ -13,14 +13,14 @@ public class MessageModel {
     private JLabel lblAge;
     private JLabel lblGender;
 
-    private JTextField sendBox;
-    private JTextArea thread;
+    private JTextField thread;
+    private JTextArea sendBox;
 
-    public JTextArea getThread() {
+    public JTextField getThread() {
         return thread;
     }
 
-    public void setThread(JTextArea thread) {
+    public void setThread(JTextField thread) {
         this.thread = thread;
     }
 
@@ -80,12 +80,11 @@ public class MessageModel {
         this.lblGender = lblGender;
     }
 
-    public JTextField getSendBox() {
+    public JTextArea getSendBox() {
         return sendBox;
     }
 
-    public void setSendBox(JTextField sendBox) {
+    public void setSendBox(JTextArea sendBox) {
         this.sendBox = sendBox;
     }
 }
-

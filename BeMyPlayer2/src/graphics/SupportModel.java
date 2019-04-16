@@ -8,8 +8,7 @@ public class SupportModel {
     private JButton back;
 
     private JTextArea description;
-
-    private JComboBox<String> probArea;
+    private JComboBox probArea;
 
     public JButton getBtnSubmit() {
         return btnSubmit;
@@ -24,7 +23,6 @@ public class SupportModel {
     }
 
     public void setDescription(JTextArea description) {
-
         this.description = description;
     }
 

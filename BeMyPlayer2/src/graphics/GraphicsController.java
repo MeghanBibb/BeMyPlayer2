@@ -76,9 +76,14 @@ public class GraphicsController {
 	public static void setProfileAccountOther() {
 		profileAccount = OTHER_ACCOUNT;
 	}
-	
-	public static String getProfileString() {
-		return profileAccount;
+
+	public static void launchMessagePage(){
+		MessageController messageController = new MessageController();
+		messageController.launchMessagePage(mainFrame);
+	}
+	public static void main(String[] args) {
+		Account a = new Account();
+		GraphicsController g = new GraphicsController(a);
 	}
 	
 	public static JFrame getMainFrame() {
@@ -87,25 +92,6 @@ public class GraphicsController {
 	
 	public void setMainFrame(JFrame frame) {
 		mainFrame = frame;
-	}
-	
-	/*    MAIN METHOD   */
-	
-	public static void main(String[] args) {
-		try {
-			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-		        if ("Nimbus".equals(info.getName())) {
-		            UIManager.setLookAndFeel(info.getClassName());
-		            break;
-		        }
-		    }
-		}
-		catch (Exception ex) {logger.warning("Failed to load look and feel for main");}
-		
-		// See the updated Account object in the model package...
-		InformationExpert.initialize();
-		GraphicsController g = new GraphicsController();
-		
 	}
 	
 }

@@ -2,142 +2,72 @@ package graphics;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
-import firebase.DBFailureException;
-import model.InformationExpert;
-
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.logging.Logger;
 
 public class MessageView {
-	private static Logger logger = Logger.getLogger(MessageView.class.getName());
-    public static void startMessagePage(MessageController messageController, JFrame mainFrame) {
+    public static void startMessagePage(MessageController messageController, JFrame mainFrame){
         //init Model
         messageController.setMessageModel(new MessageModel());
 
-        //init colors
-        Color red = Colors.Red;
-        Color yellow = Colors.Yellow;
+        Color red = new Color(127,4,42);
+        Color white = new Color(255,255,255);
+        Color yellow = new Color(255,215,0);
 
         //init panel
-        messageController.setMessagePanel(new BackgroundPanel(null));
+        messageController.setMessagePanel(new JPanel(null));
         messageController.getMessagePanel().setBorder(new EmptyBorder(5, 5, 5, 5));
         messageController.getMessagePanel().setPreferredSize(new Dimension(500,400));
         messageController.getMessagePanel().setMaximumSize(new Dimension(500,400));
         mainFrame.setContentPane(messageController.getMessagePanel());
+        mainFrame.getContentPane().setBackground(red);
 
         JLabel imgLabel = new JLabel("");
-		BufferedImage img = null;
-		try {
-			img = InformationExpert.getProfileImage(InformationExpert.getOtherProfile().getUserId());
-		} catch (DBFailureException e) {
-			logger.warning("failed to load profile picture for " + InformationExpert.getOtherProfile().getUserId());
-		}
-		
-		if(img == null) {
-			img = CreateAccountPageModel.DEFAULT_PROFILE_IMAGE;
-		}
-		imgLabel.setIcon(new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
+        Image img = new ImageIcon(messageController.getClass().getResource("/defaultIcon.png")).getImage();
+        imgLabel.setIcon(new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
         imgLabel.setBounds(35, 60, 100, 100);
         messageController.getMessageModel().setProfileImage(imgLabel);
 
-        JLabel lblUsername = new JLabel();
-        lblUsername.setText(messageController.getAccount().getAccountProfile().getUsername());
-        lblUsername.setFont(Fonts.getFont((float)15));
-        lblUsername.setForeground(Colors.Yellow);
+        JLabel lblUsername = new JLabel("Username");
+        lblUsername.setFont(new Font("Impact", Font.PLAIN,15));
+        lblUsername.setForeground(yellow);
         lblUsername.setBounds(150,35,90,90);
         messageController.getMessageModel().setLblUsername(lblUsername);
 
-        
-        /*age stuff*/
-        JLabel lblAge = new JLabel();
-        LocalDate now = LocalDate.now();
-		Date nowDate = java.sql.Date.valueOf(now);
-		Calendar cnow = Calendar.getInstance();
-		cnow.setTime(nowDate);
-		Date bday = messageController.getAccount().getAccountProfile().getDateOB();
-		Calendar cbday = Calendar.getInstance();
-		cbday.setTime(bday);
-		int diff = cnow.get(Calendar.YEAR) - cbday.get(Calendar.YEAR);
-		if(cnow.get(Calendar.MONTH) == cbday.get(Calendar.MONTH) && cnow.get(Calendar.DATE) > cbday.get(Calendar.DATE) ) {
-			diff--;
-		}
-		lblAge.setText(Integer.toString(diff) + " years old");
-        lblAge.setForeground(Colors.Yellow);
-        lblAge.setFont(Fonts.getFont((float) 15));
-        //lblAge.setForeground(Colors.Red);
-        lblAge.setBounds(150,60,200,90);
+        JLabel lblAge = new JLabel("[age] years old");
+        lblAge.setForeground(yellow);
+        lblAge.setBounds(150,60,90,90);
         messageController.getMessageModel().setLblAge(lblAge);
 
-        JLabel lblGender = new JLabel();
-        lblGender.setText(messageController.getAccount().getAccountProfile().getGender());
-        lblGender.setForeground(Colors.Yellow);
-        lblGender.setFont(Fonts.getFont((float) 15));
-        //lblGender.setForeground(Colors.Red);
+        JLabel lblGender = new JLabel("Gender");
+        lblGender.setForeground(yellow);
         lblGender.setBounds(150,85,90,90);
         messageController.getMessageModel().setLblGender(lblGender);
 
         //init buttons
         JButton backbtn = new JButton("Back");
         backbtn.setBounds(10,10,90,40);
-        backbtn.setBackground(Colors.Yellow);
-        backbtn.setFont(Fonts.getFont((float) 12));
-        backbtn.setForeground(Colors.Red);
-        backbtn.setActionCommand(MessageController.BACK);
+        backbtn.setBackground(white);
+        backbtn.setActionCommand(SupportController.BACK);
         backbtn.addActionListener(messageController);
         messageController.getMessageModel().setBack(backbtn);
 
         messageController.getMessagePanel().add(messageController.getMessageModel().getBack());
 
         JButton btnSend = new JButton("Send");
-        btnSend.setBounds(345,365,90,30);
-        btnSend.setActionCommand(MessageController.SEND);
-        btnSend.setBackground(Colors.White);
-        btnSend.setFont(Fonts.getFont((float) 12));
-        btnSend.setForeground(Colors.Red);
+        btnSend.setBounds(345,365,90,20);
+        btnSend.setActionCommand(messageController.SEND);
+        btnSend.setBackground(white);
         btnSend.addActionListener(messageController);
         messageController.getMessageModel().setBtnSend(btnSend);
 
-        //  init Thread scroll pane
-        JScrollPane tPane = new JScrollPane();
-        tPane.createVerticalScrollBar();
-        tPane.setVisible(true);
-        tPane.setBounds(35, 165, 400, 200);
-
         //	init fields and listeners
-        /* TODO: FIX THIS
-        JTextArea thread = new JTextArea();
+        JTextField thread = new JTextField();
         thread.setBounds(35, 165, 400, 200);
         thread.setVisible(true);
-        thread.setEditable(true);
-        thread.setFont(Fonts.getFont((float) 12));
-        thread.setForeground(Colors.Red);
         messageController.getMessageModel().setThread(thread);
 
-        /*for (int i = 0; i < messageController.getCurrentThread().getMessages().size(); i++){
-            if (messageController.getCurrentThread().getMessages().get(i).getSenderId().equals(InformationExpert.getActiveUserID())){
-                thread.append("Me: ");
-                thread.append(messageController.getCurrentThread().getMessages().get(i).getMessage());
-                thread.append("\n");
-            }
-            else {
-                thread.append(InformationExpert.getOtherProfile().getUserId() + ": ");
-                thread.append(messageController.getCurrentThread().getMessages().get(i).getMessage());
-                thread.append("\n");
-            }
-        }
-
-        tPane.add(thread);
-        tPane.repaint();
-        
-        */
-
-        JTextField sendBox = new JTextField();
-        sendBox.setBounds(35, 365, 310, 30);
+        JTextArea sendBox = new JTextArea();
+        sendBox.setBounds(35, 365, 400, 20);
         sendBox.setVisible(true);
         messageController.getMessageModel().setSendBox(sendBox);
 
@@ -148,8 +78,7 @@ public class MessageView {
         messageController.getMessagePanel().add(messageController.getMessageModel().getLblGender());
         messageController.getMessagePanel().add(messageController.getMessageModel().getBtnSend());
         messageController.getMessagePanel().add(messageController.getMessageModel().getBack());
-        //messageController.getMessagePanel().add(messageController.getMessageModel().getThread());
-        messageController.getMessagePanel().add(tPane);
+        messageController.getMessagePanel().add(messageController.getMessageModel().getThread());
         messageController.getMessagePanel().add(messageController.getMessageModel().getSendBox());
 
         //pack and set visible
@@ -157,4 +86,3 @@ public class MessageView {
         mainFrame.setVisible(true);
     }
 }
-
