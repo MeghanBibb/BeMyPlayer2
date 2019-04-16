@@ -30,10 +30,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.plaf.ColorUIResource;
 
 import firebase.DBFailureException;
 import model.Account;
@@ -43,6 +45,8 @@ import model.ResourceManager;
 
 public class ViewMatchesView {
 	private static Logger logger = Logger.getLogger(ViewMatchesView.class.getName());
+	static BufferedImage img1 = ResourceManager.loadImage("splash_heart.png");
+	static JLabel heartImage = new JLabel();
 	
 	public static void startViewMatches(ViewMatchesController viewMatchController, JFrame mainFrame,Account a) {
 		
@@ -66,12 +70,16 @@ public class ViewMatchesView {
 		viewMatchController.getViewMatchesPanel().add(backbtn);
 		
 		//	label
+		
+		heartImage.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH)));
+		heartImage.setBounds(400, 25, 50, 50);
+
 		JLabel lblBeMyPlayer = new JLabel("Be My Player 2");
-		lblBeMyPlayer.setFont(new Font("Monospaced", Font.BOLD, 20));
-		lblBeMyPlayer.setFont(Fonts.getFont((float) 20));
+		lblBeMyPlayer.setFont(Fonts.getFont((float) 30));
 		lblBeMyPlayer.setForeground(Colors.Yellow);
-		lblBeMyPlayer.setBounds(160,0,204,69);
+		lblBeMyPlayer.setBounds(150,10,300,69);
 		viewMatchController.getViewMatchesPanel().add(lblBeMyPlayer);
+		viewMatchController.getViewMatchesPanel().add(heartImage);
 		
 		//	pull from match adapter giving the temp account
 		GridLayout gridLayout = new GridLayout(0,2,5,5);
@@ -160,6 +168,9 @@ public class ViewMatchesView {
 		
 		matchtype.setToolTipText("Match type");
 		matchtype.setModel(new DefaultComboBoxModel(new String[] {"Love Matches", "Friend Matches"}));
+		matchtype.setFont(Fonts.getFont(12f));
+		matchtype.setForeground(Colors.Red);
+		matchtype.setBackground(Colors.Yellow);
 		matchtype.setBounds(45, 85, 150, 25);
 		matchtype.setVisible(true);
 		viewMatchController.getViewMatchesModel().setMatchtype(matchtype);
@@ -199,6 +210,7 @@ public class ViewMatchesView {
 
 		//	SCROLLPANE
 	    JScrollPane scrollPane = new JScrollPane(profilePicPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+	
 	    scrollPane.setBounds(new Rectangle(25, 120, 215, 245));
 	    
 		viewMatchController.getViewMatchesPanel().add(scrollPane);

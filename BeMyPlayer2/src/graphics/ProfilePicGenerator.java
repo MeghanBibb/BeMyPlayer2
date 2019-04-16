@@ -4,6 +4,7 @@ import model.ResourceManager;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,6 +29,9 @@ public class ProfilePicGenerator {
 		List<JButton> loveList = new ArrayList<>();
 		List<Profile> profiles= InformationExpert.getClientModel().getLoveMatches();
 		List<String> userIds = new ArrayList<>();
+		JLabel nameLabel = new JLabel();
+		nameLabel.setFont(Fonts.getFont(12f));
+		nameLabel.setForeground(Colors.Yellow);
 		for(int i = 0; i < profiles.size(); i++) {
 			userIds.add(profiles.get(i).getUserId());
 		}
@@ -46,11 +50,16 @@ public class ProfilePicGenerator {
 			Profile temp = InformationExpert.getOtherProfile();
 			if(temp != null) {
 			//Image img1 = new ImageIcon("filepathfromDB").getImage();//	add try catch and dont add if invalid file path
-			JButton setIcon = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 50, Image.SCALE_SMOOTH)));
-			setIcon.setLayout(new BorderLayout());
+			JButton setIcon = new JButton();
+			setIcon.setLayout(new FlowLayout());
+			setIcon.add(new CircularImage((new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH)))));
+			setIcon.setFont(Fonts.getFont(12f));
+			setIcon.setForeground(Colors.Yellow);
+			setIcon.setBackground(Colors.Red);
 			setIcon.setName(name);
 			setIcon.setPreferredSize(new Dimension(75,50));
-			setIcon.add(new JLabel(temp.getUsername()),BorderLayout.PAGE_END);
+			nameLabel.setText(temp.getUsername());
+			setIcon.add(nameLabel, BorderLayout.PAGE_END);
 			setIcon.setActionCommand("profileclick");
 			setIcon.addActionListener(b);
 			loveList.add(setIcon);
@@ -72,6 +81,9 @@ public class ProfilePicGenerator {
 		List<JButton> friendList = new ArrayList<JButton>();
 		List<Profile> profiles= InformationExpert.getClientModel().getFriendMatches();
 		List<String> userIds = new ArrayList<>();
+		JLabel nameLabel = new JLabel();
+		nameLabel.setFont(Fonts.getFont(12f));
+		nameLabel.setForeground(Colors.Yellow);
 		for(int i = 0; i < profiles.size(); i++) {
 			userIds.add(profiles.get(i).getUserId());
 		}
@@ -89,11 +101,16 @@ public class ProfilePicGenerator {
 			
 			Profile temp = InformationExpert.getOtherProfile();
 			if(temp != null) {
-			JButton setIcon = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 50, Image.SCALE_SMOOTH)));
-			setIcon.setLayout(new BorderLayout());
+			JButton setIcon = new JButton();
+			setIcon.setLayout(new FlowLayout());
+			setIcon.add(new CircularImage((new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH)))));
+			setIcon.setFont(Fonts.getFont(12f));
+			setIcon.setForeground(Colors.Yellow);
+			setIcon.setBackground(Colors.Red);
 			setIcon.setName(name);
 			setIcon.setPreferredSize(new Dimension(75,50));
-			setIcon.add(new JLabel(temp.getUsername()),BorderLayout.PAGE_END);
+			nameLabel.setText(temp.getUsername());
+			setIcon.add(nameLabel, BorderLayout.PAGE_END);
 			setIcon.setActionCommand("profileclick");
 			setIcon.addActionListener(b);
 			friendList.add(setIcon);
