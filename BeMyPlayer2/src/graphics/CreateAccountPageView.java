@@ -161,6 +161,9 @@ public class CreateAccountPageView {
 		gender.setToolTipText("Gender");
 		gender.setModel(new DefaultComboBoxModel(new String[] {"Male", "Female"}));
 		gender.setBounds(275, 305, 94, 22);
+		gender.setBackground(Colors.Yellow);
+		gender.setForeground(Colors.Red);
+		gender.setFont(Fonts.getFont((float) 12));
 		gender.setVisible(true);
 		if(visited == true) {
 			gender.setSelectedItem(capController.getCreateAccountPageModel().getGenderBox().getSelectedItem());
@@ -690,6 +693,8 @@ public class CreateAccountPageView {
 		JButton backbtn = new JButton("Back");
 		backbtn.setBounds(45, 345, 90, 40);
 		backbtn.setBackground(Colors.Yellow);
+		backbtn.setForeground(Colors.Red);
+		backbtn.setFont(Fonts.getFont((float) 12));
 		backbtn.setActionCommand(CreateAccountPageController.BACK);
 		backbtn.addActionListener(capController);
 		capController.getCreateAccountPageModel().setBack(backbtn);
@@ -699,6 +704,8 @@ public class CreateAccountPageView {
 		JButton nextbtn = new JButton("Next");
 		nextbtn.setBounds(345, 345, 90, 40);
 		nextbtn.setBackground(Colors.Yellow);
+		nextbtn.setForeground(Colors.Red);
+		nextbtn.setFont(Fonts.getFont((float) 12));
 		nextbtn.setActionCommand(CreateAccountPageController.NEXT);
 		nextbtn.addActionListener(capController);
 		capController.getCreateAccountPageModel().setNext(nextbtn);
@@ -753,7 +760,7 @@ public class CreateAccountPageView {
 		setIcon.setMargin(new Insets(0,0,0,0));
 		setIcon.setContentAreaFilled(false);
 		setIcon.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH)));
-		setIcon.setBackground(red);
+		setIcon.setBackground(Colors.Red);
 		setIcon.setBounds(125,25,150,150);
 		setIcon.addActionListener(new ActionListener(){
 
@@ -857,6 +864,8 @@ public class CreateAccountPageView {
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.setBounds(385, 345, 90, 40);
 		btnSubmit.setBackground(Colors.Yellow);
+		btnSubmit.setForeground(Colors.Red);
+		btnSubmit.setFont(Fonts.getFont((float) 12));
 		btnSubmit.setActionCommand(CreateAccountPageController.SUBMIT);
 		btnSubmit.addActionListener(capController);
 		capController.getCreateAccountPanel().add(btnSubmit);
@@ -865,6 +874,8 @@ public class CreateAccountPageView {
 		JButton backbtn = new JButton("Back");
 		backbtn.setBounds(25, 345, 90, 40);
 		backbtn.setBackground(Colors.Yellow);
+		backbtn.setForeground(Colors.Red);
+		backbtn.setFont(Fonts.getFont((float) 12));
 		backbtn.setActionCommand(CreateAccountPageController.BACK);
 		backbtn.addActionListener(capController);
 		capController.getCreateAccountPageModel().setBack(backbtn);
