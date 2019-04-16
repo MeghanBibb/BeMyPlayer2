@@ -52,9 +52,8 @@ public class HomePageView {
 		btnAccount.addActionListener(homeController);
 		homeController.getHomePageModel().setBtnProfile(btnAccount);
 		
-		TransparentButton btnLove = new TransparentButton("Find Love");
+		JButton btnLove = new JButton("Find Love");
 		btnLove.setBounds(30,100,200,140);
-		btnLove.setOpaque(false);
 		btnLove.setActionCommand(homeController.FIND_LOVE);
 		btnLove.setFont(Fonts.getFont((float) 12));
 		//btnLove.setForeground(Colors.Red);
@@ -63,9 +62,8 @@ public class HomePageView {
 		BufferedImage findLovepic = ResourceManager.loadImage("findlove.png");
 		btnLove.setIcon(new ImageIcon(new ImageIcon(findLovepic).getImage().getScaledInstance(200, 140, Image.SCALE_SMOOTH)));
 		
-		TransparentButton btnFriends = new TransparentButton("Find Friends");
+		JButton btnFriends = new JButton("Find Friends");
 		btnFriends.setBounds(270,100,200,140);
-		btnFriends.setOpaque(false);
 		btnFriends.setActionCommand(homeController.FIND_FRIENDS);
 		btnFriends.setFont(Fonts.getFont((float) 12));
 		//btnFriends.setForeground(Colors.Red);
