@@ -91,10 +91,21 @@ public class ViewMatchesView {
         			profilePicPanel.removeAll();
         			///	ACTUAL SOLUTION
         			if(InformationExpert.getClientModel().getLoveMatches() == null || InformationExpert.getClientModel().getLoveMatches().size() == 0) {
-        				if(viewMatchController.getViewMatchesModel().getEmptylistLine2().isVisible() == false || viewMatchController.getViewMatchesModel().getEmptylistLine1().isVisible() == false) {
-        					viewMatchController.getViewMatchesModel().getEmptylistLine1().setVisible(true);
-            				viewMatchController.getViewMatchesModel().getEmptylistLine2().setVisible(true);
-        				}
+        				JLabel noMatchlbl1 = new JLabel("Your princess is in another castle");
+        			    noMatchlbl1.setFont(Fonts.getFont(9f));
+        			    noMatchlbl1.setForeground(Colors.Red);
+        			    noMatchlbl1.setBounds(40,160,260,69);
+        			 
+        			    viewMatchController.getViewMatchesPanel().add(noMatchlbl1);
+        				
+        				JLabel noMatchlbl2 = new JLabel("Get back out there and find a match");
+        				noMatchlbl2.setFont(Fonts.getFont(9f));
+        				noMatchlbl2.setForeground(Colors.Red);
+        				noMatchlbl2.setBounds(40,175,260,69);
+        				viewMatchController.getViewMatchesPanel().add(noMatchlbl2);
+        				
+        				viewMatchController.getViewMatchesModel().setEmptylistLine1(noMatchlbl1);
+        				viewMatchController.getViewMatchesModel().setEmptylistLine2(noMatchlbl2);
         				
         			}
         			else {
@@ -114,10 +125,21 @@ public class ViewMatchesView {
         			profilePicPanel.removeAll();
         			///	ACTUAL SOLUTION
         			if(InformationExpert.getClientModel().getFriendMatches() == null ||InformationExpert.getClientModel().getFriendMatches().size() == 0) {
-        				if(viewMatchController.getViewMatchesModel().getEmptylistLine2().isVisible() == false || viewMatchController.getViewMatchesModel().getEmptylistLine1().isVisible() == false) {
-        					viewMatchController.getViewMatchesModel().getEmptylistLine1().setVisible(true);
-            				viewMatchController.getViewMatchesModel().getEmptylistLine2().setVisible(true);
-        				}
+        				JLabel noMatchlbl1 = new JLabel("Your princess is in another castle");
+        			    noMatchlbl1.setFont(Fonts.getFont(9f));
+        			    noMatchlbl1.setForeground(Colors.Red);
+        			    noMatchlbl1.setBounds(40,160,260,69);
+        			 
+        			    viewMatchController.getViewMatchesPanel().add(noMatchlbl1);
+        				
+        				JLabel noMatchlbl2 = new JLabel("Get back out there and find a match");
+        				noMatchlbl2.setFont(Fonts.getFont(9f));
+        				noMatchlbl2.setForeground(Colors.Red);
+        				noMatchlbl2.setBounds(40,175,260,69);
+        				viewMatchController.getViewMatchesPanel().add(noMatchlbl2);
+        				
+        				viewMatchController.getViewMatchesModel().setEmptylistLine1(noMatchlbl1);
+        				viewMatchController.getViewMatchesModel().setEmptylistLine2(noMatchlbl2);
         			}
         			else {
         				List<JButton> pics = ProfilePicGenerator.getFriendList(viewMatchController);
@@ -178,8 +200,6 @@ public class ViewMatchesView {
 		//	SCROLLPANE
 	    JScrollPane scrollPane = new JScrollPane(profilePicPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	    scrollPane.setBounds(new Rectangle(25, 120, 215, 245));
-	    Color black = new Color(0,0,0);
-	    
 	    
 		viewMatchController.getViewMatchesPanel().add(scrollPane);
 	    
