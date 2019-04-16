@@ -77,13 +77,9 @@ public class GraphicsController {
 		profileAccount = OTHER_ACCOUNT;
 	}
 
-	public static void launchMessagePage(){
-		MessageController messageController = new MessageController();
-		messageController.launchMessagePage(mainFrame);
-	}
 	public static void main(String[] args) {
 		Account a = new Account();
-		GraphicsController g = new GraphicsController(a);
+		GraphicsController g = new GraphicsController();
 	}
 	
 	public static JFrame getMainFrame() {
