@@ -40,6 +40,10 @@ public class HomePageController extends PageController{
 	/** The Constant CREDITS. */
 	public static final String CREDITS = "credits";
 	
+	/** The Constant SOUND. */
+	public static final String SOUND = "sound";
+
+	
 	/** The home page model. */
 	// get view and jframe
 	private HomePageModel homePageModel = null;
@@ -100,6 +104,10 @@ public class HomePageController extends PageController{
 			case CREDITS:
 				logger.info("Launching credits page");
 				GraphicsController.processPage(PageCreator.CREDITS_PAGE, PageCreator.HOME_PAGE);
+				break;
+			case SOUND:
+				logger.info("Modifying the sound settings");
+				BackgroundMusic.music();
 				break;
 		}
 	}

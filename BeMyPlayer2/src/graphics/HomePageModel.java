@@ -28,6 +28,9 @@ public class HomePageModel {
 	/** The btn view matches. */
 	private JButton btnViewMatches;
 	
+	/** The btn view matches. */
+	private JButton btnSound;
+	
 	/** The lbl be my player. */
 	//init label
 	private JLabel lblBeMyPlayer;
@@ -48,6 +51,26 @@ public class HomePageModel {
 	 */
 	public void setBtnLogout(JButton btnLogout) {
 		this.btnLogout = btnLogout;
+	}
+	
+	
+	
+	/**
+	 * Gets the btn sound.
+	 *
+	 * @return the btn sound
+	 */
+	public JButton getBtnSound() {
+		return btnSound;
+	}
+
+	/**
+	 * Sets the btn sound.
+	 *
+	 * @param btnSound the new btn sound
+	 */
+	public void setBtnSound(JButton btnSound) {
+		this.btnSound = btnSound;
 	}
 
 	/**

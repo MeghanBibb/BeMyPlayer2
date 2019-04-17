@@ -25,29 +25,25 @@ public class BackgroundMusic {
 		}
 	}
 
-	public static void playSong() {
-			try {
-				audioInputStream = AudioSystem.getAudioInputStream(new File("MiiBackgroundSong.wav"));
-				clip = AudioSystem.getClip();
-				clip.open(audioInputStream);
-				clip.loop(Clip.LOOP_CONTINUOUSLY);
-			}catch(IOException e) {
-				//logger.log();
-			} catch (LineUnavailableException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (UnsupportedAudioFileException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+	private static void playSong() {
+		try {
+			audioInputStream = AudioSystem.getAudioInputStream(new File("MiiBackgroundSong.wav"));
+			clip = AudioSystem.getClip();
+			clip.open(audioInputStream);
+			clip.loop(Clip.LOOP_CONTINUOUSLY);
+		}catch(IOException e) {
+			return;
+		} catch (LineUnavailableException e) {
+			return;
+		} catch (UnsupportedAudioFileException e) {
+			return;
+		}
 	}
 	
-	
-	public static void stopSong() {
+	private static void stopSong() {
 		clip.stop();
 		clip.close();
 		status = "stop";
-		
 	}
 	
 }
