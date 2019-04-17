@@ -278,6 +278,13 @@ public class EditAccountPageView {
 		securityQuestions.setBackground(Colors.Yellow);
 		securityQuestions.setVisible(true);
 		
+		String defaultQuestion = InformationExpert.getActiveAccount().getSecurityQ1();
+		if(defaultQuestion.equals("Favorite Character?")) {
+			securityQuestions.setSelectedIndex(2);
+		} else if(defaultQuestion.equals("First Console Owned?")) {
+			securityQuestions.setSelectedIndex(1);
+		}
+		
 		editController.getEditAccountModel().setSecurityQ(securityQuestions);
 		editController.getEditAccountPanel().add(securityQuestions);
 		
@@ -589,7 +596,7 @@ public class EditAccountPageView {
 		mainFrame.setContentPane(editController.getEditAccountPanel());
 		
 		//	default icon
-		Image img1 = null;
+		BufferedImage img1 = null;
 		try {
 			img1 = InformationExpert.getProfileImage(InformationExpert.getActiveUserID());
 		} catch (DBFailureException e1) {
@@ -602,6 +609,7 @@ public class EditAccountPageView {
 		//lblNewLabel.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
 		//lblNewLabel.setBounds(75, 25, 150, 150);
 		editController.getEditAccountModel().setImagePath(img1.toString());
+		editController.getEditAccountModel().setProfileImg(img1);
 		final JButton setIcon = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH)));
 		setIcon.setBounds(125,25,150,150);
 		setIcon.setContentAreaFilled(false);

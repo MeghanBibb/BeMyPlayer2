@@ -65,7 +65,6 @@ public class EditAccountPageController extends PageController{
 				if(validateCreatePage1() == true) {
 					InformationExpert.getActiveAccount().getAccountProfile().setUsername(this.getEditAccountModel().getFrmtdtxtfldEnterUsername().getText());
 					InformationExpert.getActiveAccount().setSecurityQ1(this.getEditAccountModel().getSecurityQ().getSelectedItem().toString());
-					InformationExpert.getActiveAccount().setSecurityQ1AnsHash(Hasher.hashString(this.getEditAccountModel().getSecQA().getText()));
 					InformationExpert.getActiveAccount().getAccountProfile().setGender(this.getEditAccountModel().getGenderBox().getSelectedItem().toString());
 					if(!this.getEditAccountModel().getPwdEnterPass().getText().isEmpty()) {
 						InformationExpert.getActiveAccount().setPasswordHash(Hasher.hashString(this.getEditAccountModel().getPwdEnterPass().getText()));
@@ -83,6 +82,13 @@ public class EditAccountPageController extends PageController{
 						// TODO Auto-generated catch block
 						logger.warning("failed to save");
 					}
+					if(InformationExpert.getActiveAccount().getSecurityQ1().equals(this.getEditAccountModel().getSecurityQ().getSelectedItem()) && this.getEditAccountModel().getSecQA().getText().isBlank()) {
+						System.out.println("equals");
+					} else {
+						InformationExpert.getActiveAccount().setSecurityQ1AnsHash(Hasher.hashString(this.getEditAccountModel().getSecQA().getText()));
+					}
+				
+
 					
 					logger.info("Submit");
 					GraphicsController.processPage(PageCreator.EDIT_ACCOUNT_PAGE, backPage);
@@ -235,7 +241,7 @@ public class EditAccountPageController extends PageController{
 				warnings.add("Passwords do not match\n");
 			}
 		}
-		if(this.editAccountModel.getSecQA().getText().equalsIgnoreCase("")) {
+		if(this.editAccountModel.getSecQA().getText().equalsIgnoreCase("") && !this.editAccountModel.getSecurityQ().getSelectedItem().equals(InformationExpert.getActiveAccount().getSecurityQ1())) {
 			valid = false;
 			warnings.add("Please provide answer to a security question\n");
 		}
