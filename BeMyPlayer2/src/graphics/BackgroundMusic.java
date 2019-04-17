@@ -12,7 +12,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 public class BackgroundMusic {
 	
 	static Clip clip;
-	static String status = "play";
+	static String status = "stop";
 	static AudioInputStream audioInputStream;
 	private static BackgroundMusic instance;
 	
@@ -37,7 +37,7 @@ public class BackgroundMusic {
 
 	private void playSong() {
 		try {
-			audioInputStream = AudioSystem.getAudioInputStream(new File("MiiBackgroundSong.wav"));
+			audioInputStream = AudioSystem.getAudioInputStream(new File("music\\MiiSong.wav"));
 			clip = AudioSystem.getClip();
 			clip.open(audioInputStream);
 			clip.loop(Clip.LOOP_CONTINUOUSLY);

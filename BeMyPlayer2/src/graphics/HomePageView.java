@@ -160,14 +160,20 @@ public class HomePageView {
 		credits.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		homeController.getHomePanel().add(credits);
 		
-		JButton btnMute = new JButton("Mute Sound");
-		btnMute.setBounds(380,360,90,40);
+		JButton btnMute = new JButton("<HTML><U>Sound</U></HTML>");
+		btnMute.setBounds(115,360,90,40);
 		btnMute.setActionCommand(homeController.SOUND);
 		btnMute.setBackground(yellow);
 		btnMute.setFont(Fonts.getFont((float) 12));
-		btnMute.setForeground(Colors.Red);
+		btnMute.setOpaque(true);
+		btnMute.setContentAreaFilled(false);
+		btnMute.setBorderPainted(false);
+		btnMute.setForeground(Colors.White);
+		btnMute.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnMute.addActionListener(homeController);
-		homeController.getHomePageModel().setBtnSound(btnMute);
+		homeController.getHomePanel().add(btnMute);
+		
+	
 		
 		
 		//add to frame
@@ -180,7 +186,7 @@ public class HomePageView {
 		homeController.getHomePanel().add(homeController.getHomePageModel().getBtnSupport());
 		homeController.getHomePanel().add(homeController.getHomePageModel().getBtnViewMatches());
 		homeController.getHomePanel().add(homeController.getHomePageModel().getLblBeMyPlayer());
-		homeController.getHomePanel().add(homeController.getHomePageModel().getBtnSound());
+
 		
 		
 		//pack and set visible

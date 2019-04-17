@@ -53,8 +53,6 @@ public class HomePageModel {
 		this.btnLogout = btnLogout;
 	}
 	
-	
-	
 	/**
 	 * Gets the btn sound.
 	 *
@@ -181,6 +179,4 @@ public class HomePageModel {
 		this.lblBeMyPlayer = lblBeMyPlayer;
 	}
 	
-	
-
 }

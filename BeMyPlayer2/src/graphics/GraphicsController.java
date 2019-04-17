@@ -151,6 +151,7 @@ public class GraphicsController {
 		catch (Exception ex) {logger.warning("Failed to load look and feel for main");}
 		
 		// See the updated Account object in the model package...
+		BackgroundMusic.getInstance().music();
 		InformationExpert.initialize();
 		GraphicsController g = new GraphicsController();
 		
