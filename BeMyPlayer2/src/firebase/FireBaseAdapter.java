@@ -323,7 +323,8 @@ public class FireBaseAdapter {
 				.whereEqualTo(ansName, ansHash)
 				.get();
 		
-		//TO DO: VALIDATE USERNAME
+		//TODO: VALIDATE USERNAME
+		
 		
 		try {
 			QuerySnapshot authUser = fetchUser.get();
@@ -998,31 +999,5 @@ public class FireBaseAdapter {
 		return msgThread;*/ return null;
 	}
 
-	public void sendIssue(Issue issue) throws DBFailureException{
-		
-		//TODO: Fix Issue Sending
-		if(this.db == null) {
-			LOGGER.log(Level.WARNING, "Error- no database connection");
-			throw new DBFailureException();
-		}
-		
-		if(issue == null) {
-			LOGGER.log(Level.WARNING, "Error- issue object was null");
-			return;
-		}
-		DBDocumentPackage iPackage = issue.toDBPackage();
-		
-		ApiFuture<DocumentReference> newIssueDoc = 
-				this.db.collection(FireBaseSchema.ISSUES_TABLE)
-				.add(iPackage.getValues());
-		
-		try {
-			String newIssueId = newIssueDoc.get().getId();
-			LOGGER.log(Level.INFO,"Submitted issue with Id: " + newIssueId);
-		} catch (InterruptedException | ExecutionException e) {
-			LOGGER.log(Level.WARNING, "Error- issue submission interrupted");
-		}
-		
-	}
 
 }
