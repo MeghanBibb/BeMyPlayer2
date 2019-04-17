@@ -132,6 +132,7 @@ public class GraphicsController {
 			catch (Exception ex) {ex.printStackTrace();}
 		
 		// See the updated Account object in the model package...
+		BackgroundMusic.playSong();
 		InformationExpert.initializeAdapter();
 		GraphicsController g = new GraphicsController();
 		

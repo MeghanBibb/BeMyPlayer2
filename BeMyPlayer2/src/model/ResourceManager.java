@@ -25,7 +25,7 @@ public class ResourceManager {
 	
 	public static BufferedImage loadImage(String name) {
 		try {
-			return ImageIO.read(new File(IMAGE_FOLDER + name));
+			return ImageIO.read(new File("img\\background.png"));
 		} catch (IOException e) {
 			LOGGER.log(Level.SEVERE, "Failed to load image resource: " + name);
 			LOGGER.log(Level.SEVERE, "From Path: " + IMAGE_FOLDER + name);

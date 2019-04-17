@@ -83,6 +83,16 @@ public class HomePageView {
 		btnMatches.addActionListener(homeController);
 		homeController.getHomePageModel().setBtnViewMatches(btnMatches);
 		
+		//init buttons
+		JButton btnMute = new JButton("Mute Sound");
+		btnMute.setBounds(380,360,90,40);
+		btnMute.setActionCommand(homeController.MUTE_SOUND);
+		btnMute.setBackground(yellow);
+		btnMute.setFont(Fonts.getFont((float) 12));
+		btnMute.setForeground(Colors.Red);
+		btnMute.addActionListener(homeController);
+		homeController.getHomePageModel().setBtnSound(btnMute);
+		
 		//init Label
 		JLabel lblBeMyPlayer = new JLabel("Be My Player 2");
 		lblBeMyPlayer.setFont(Fonts.getFont((float) 20));
@@ -99,6 +109,7 @@ public class HomePageView {
 		homeController.getHomePanel().add(homeController.getHomePageModel().getBtnProfile());
 		homeController.getHomePanel().add(homeController.getHomePageModel().getBtnSupport());
 		homeController.getHomePanel().add(homeController.getHomePageModel().getBtnViewMatches());
+		homeController.getHomePanel().add(homeController.getHomePageModel().getBtnSound());
 		homeController.getHomePanel().add(homeController.getHomePageModel().getLblBeMyPlayer());
 		
 		

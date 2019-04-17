@@ -16,6 +16,7 @@ public class HomePageController extends PageController{
 	public static final String FIND_LOVE = "love";
 	public static final String VIEW_MATCHES = "matches";
 	public static final String LOGOUT = "logout";
+	public static final String MUTE_SOUND = "mute sound";
 	
 	// get view and jframe
 	private HomePageModel homePageModel = null;
@@ -55,6 +56,10 @@ public class HomePageController extends PageController{
 			case LOGOUT: 
 				logger.info("Logout");
 				GraphicsController.processPage(PageCreator.LOGIN_PAGE,backPage);
+				break;
+			case MUTE_SOUND: 
+				logger.info("Mute Sound");
+				BackgroundMusic.music();
 				break;
 		}
 	}

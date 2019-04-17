@@ -13,7 +13,7 @@ public class Fonts {
 	static Font font = null;
 	static {
         try {
-        	InputStream myStream = new BufferedInputStream(new FileInputStream("H:\\S1Proj\\BeMyPlayer2\\BeMyPlayer2\\JetSet.ttf"));
+        	InputStream myStream = new BufferedInputStream(new FileInputStream("JetSet.ttf"));
 			font = Font.createFont(Font.TRUETYPE_FONT, myStream);
 		} catch (FontFormatException | IOException e) {
 			// TODO Auto-generated catch block

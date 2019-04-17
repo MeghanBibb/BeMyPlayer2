@@ -14,6 +14,9 @@ public class HomePageModel {
 	private JButton btnFindFriends;
 	private JButton btnViewMatches;
 	
+	private JButton btnSound;
+	
+	
 	//init label
 	private JLabel lblBeMyPlayer;
 
@@ -23,6 +26,14 @@ public class HomePageModel {
 
 	public void setBtnLogout(JButton btnLogout) {
 		this.btnLogout = btnLogout;
+	}
+	
+	public JButton getBtnSound() {
+		return btnSound;
+	}
+
+	public void setBtnSound(JButton btnSound) {
+		this.btnSound = btnSound;
 	}
 
 	public JButton getBtnProfile() {
