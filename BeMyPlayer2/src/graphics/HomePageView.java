@@ -9,7 +9,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 import model.ResourceManager;
 
@@ -65,6 +67,8 @@ public class HomePageView {
 		btnLove.setBackground(Colors.Red);
 		btnLove.setContentAreaFilled(false);
 		btnLove.addActionListener(homeController);
+		Border thickBorder = new LineBorder(Colors.Yellow, 1);
+	    btnLove.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		homeController.getHomePageModel().setBtnFindLove(btnLove);
 		BufferedImage findLovepic = ResourceManager.loadImage("findlove.png");
 		//btnLove.setIcon(new ImageIcon(new ImageIcon(findLovepic).getImage().getScaledInstance(200, 140, Image.SCALE_SMOOTH)));
@@ -80,6 +84,7 @@ public class HomePageView {
 		btnFriends.setBounds(270,100,200,140);
 		btnFriends.setActionCommand(homeController.FIND_FRIENDS);
 		btnFriends.setFont(Fonts.getFont((float) 12));
+		btnFriends.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		//btnFriends.setForeground(Colors.Red);
 		btnFriends.setContentAreaFilled(false);
 		btnFriends.addActionListener(homeController);
@@ -96,6 +101,7 @@ public class HomePageView {
 		btnSupport.setForeground(Colors.White);
 		btnSupport.setFont(Fonts.getFont((float) 12));
 		btnSupport.addActionListener(homeController);
+		btnSupport.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		homeController.getHomePageModel().setBtnSupport(btnSupport);
 		
 		JButton btnMatches = new JButton("View Matches");
@@ -129,6 +135,7 @@ public class HomePageView {
 		site.setContentAreaFilled(false);
 		site.setBorderPainted(false);
 		site.setFont(Fonts.getFont(12f));
+		site.setCursor(Cursor.getPredefinedCursor(Cursor.NE_RESIZE_CURSOR));
 		site.setForeground(Colors.White);
 		
 		JButton credits = new JButton("<HTML><U>Credits</U></HTML>");
@@ -140,6 +147,7 @@ public class HomePageView {
 		credits.setForeground(Colors.White);
 		credits.setFont(Fonts.getFont((float) 12));
 		credits.addActionListener(homeController);
+		credits.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		homeController.getHomePanel().add(credits);
 		
 		//add to frame
