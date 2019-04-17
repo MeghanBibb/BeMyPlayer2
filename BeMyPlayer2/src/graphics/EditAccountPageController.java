@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.JFrame;
@@ -15,6 +16,7 @@ import firebase.DBFailureException;
 import firebase.Hasher;
 import model.Account;
 import model.InformationExpert;
+import model.PaymentInfo;
 import model.Profile;
 import model.ResourceManager;
 
@@ -32,6 +34,7 @@ public class EditAccountPageController extends PageController{
 	public static final String UPGRADE = "upgrade";
 	public static final String MUTE = "mute";
 	public static final String DELETE = "delete";
+	public static final String END_PAYMENT = "cancel payment";
 	public static final int MAXLENGTH = 250;
 	private JFrame copyFrame = null;
 	private EditAccountPageModel editAccountModel = null;
@@ -63,7 +66,6 @@ public class EditAccountPageController extends PageController{
 				if(validateCreatePage1() == true) {
 					InformationExpert.getActiveAccount().getAccountProfile().setUsername(this.getEditAccountModel().getFrmtdtxtfldEnterUsername().getText());
 					InformationExpert.getActiveAccount().setSecurityQ1(this.getEditAccountModel().getSecurityQ().getSelectedItem().toString());
-					InformationExpert.getActiveAccount().setSecurityQ1AnsHash(Hasher.hashString(this.getEditAccountModel().getSecQA().getText()));
 					InformationExpert.getActiveAccount().getAccountProfile().setGender(this.getEditAccountModel().getGenderBox().getSelectedItem().toString());
 					if(!this.getEditAccountModel().getPwdEnterPass().getText().isEmpty()) {
 						InformationExpert.getActiveAccount().setPasswordHash(Hasher.hashString(this.getEditAccountModel().getPwdEnterPass().getText()));
@@ -81,6 +83,11 @@ public class EditAccountPageController extends PageController{
 						// TODO Auto-generated catch block
 						logger.warning("failed to save");
 					}
+					if(!this.getEditAccountModel().getSecQA().getText().isEmpty()) {
+						InformationExpert.getActiveAccount().setSecurityQ1AnsHash(Hasher.hashString(this.getEditAccountModel().getSecQA().getText()));
+					}
+				
+
 					
 					logger.info("Submit");
 					GraphicsController.processPage(PageCreator.EDIT_ACCOUNT_PAGE, backPage);
@@ -143,19 +150,48 @@ public class EditAccountPageController extends PageController{
 				EditAccountPageView.launchEditQuestionnairePage(this, copyFrame);
 				break;
 			case UPGRADE:		//go to upgrade account page
+			try {
+				PaymentInfo p = InformationExpert.getPaymentInfo(InformationExpert.getActiveUserID());
+				if(p != null) {
+					System.out.print("GOT PAYMENT INFO FROM DB\n");
+				}
+			} catch (DBFailureException e1) {
+				//database failure
+			}
+				
 				GraphicsController.processPage(PageCreator.PAYMENT_PAGE,backPage);
+				break;
+			case END_PAYMENT:
+				
+				/* make popup warning*/
+				int dialogButtonP = JOptionPane.YES_NO_OPTION;
+				int dialogResultP= JOptionPane.showConfirmDialog(this.editAccountPanel, "Are you sure you want to cancel your payment plan? You will no longer benefit from being a pro account.","Unsubscribe from pro features?", dialogButtonP);
+				if(dialogResultP == 0) {
+					  logger.info("removing payment info for "  + InformationExpert.getActiveAccount().getEmail());
+					  try {
+							InformationExpert.deletePaymentInfo(InformationExpert.getActiveUserID());
+						} catch (DBFailureException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						GraphicsController.processPage(PageCreator.PROFILE_PAGE, backPage);
+				} else {
+				  logger.info("Not removing payment info for " + InformationExpert.getActiveAccount().getEmail());
+				}
 				break;
 			case MUTE:
 				//	remove from match queues
 				int dialogButton = JOptionPane.YES_NO_OPTION;
-				int dialogResult= JOptionPane.showConfirmDialog(this.editAccountPanel, "Are you sure you want to mute your account?","Mute account?", dialogButton);
+				int dialogResult = JOptionPane.showConfirmDialog(this.editAccountPanel, "Want your account muted?","Mute account?", dialogButton);
 				if(dialogResult == 0) {
-					  logger.info("muting account "  + InformationExpert.getActiveUserID());
-					  //	DATA BASE LOGIC FOR MUTING ACCOUNT FROM Db
-					  
+					logger.info("muting account "  + InformationExpert.getActiveAccount().getAccountProfile().getUsername());
+					//	DATA BASE LOGIC FOR MUTING ACCOUNT FROM Db
+
+					  InformationExpert.getActiveAccount().getAccountProfile().setMute(true);
 					  //	if yes set bool, if no unset bool
 				} else {
-				  logger.info("Not muting account " + InformationExpert.getActiveUserID());
+					logger.info("Not muting account " + InformationExpert.getActiveAccount().getAccountProfile().getUsername());
+					InformationExpert.getActiveAccount().getAccountProfile().setMute(false);
 				}
 				
 				break;
@@ -206,7 +242,7 @@ public class EditAccountPageController extends PageController{
 				warnings.add("Passwords do not match\n");
 			}
 		}
-		if(this.editAccountModel.getSecQA().getText().equalsIgnoreCase("")) {
+		if(this.editAccountModel.getSecQA().getText().equalsIgnoreCase("") && !this.editAccountModel.getSecurityQ().getSelectedItem().equals(InformationExpert.getActiveAccount().getSecurityQ1())) {
 			valid = false;
 			warnings.add("Please provide answer to a security question\n");
 		}

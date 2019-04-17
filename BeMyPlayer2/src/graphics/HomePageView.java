@@ -9,7 +9,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 import model.ResourceManager;
 
@@ -52,23 +54,43 @@ public class HomePageView {
 		btnAccount.addActionListener(homeController);
 		homeController.getHomePageModel().setBtnProfile(btnAccount);
 		
+		JLabel lblLove = new JLabel("Find Love");
+		lblLove.setBounds(90, 220, 100, 50);
+		lblLove.setFont(Fonts.getFont((14f)));
+		lblLove.setForeground(Colors.Yellow);
+		homeController.getHomePanel().add(lblLove);
+		
 		JButton btnLove = new JButton("Find Love");
 		btnLove.setBounds(30,100,200,140);
 		btnLove.setActionCommand(homeController.FIND_LOVE);
-		btnLove.setBackground(yellow);
 		btnLove.setFont(Fonts.getFont((float) 12));
-		btnLove.setForeground(Colors.Red);
+		btnLove.setBackground(Colors.Red);
+		btnLove.setContentAreaFilled(false);
 		btnLove.addActionListener(homeController);
+		Border thickBorder = new LineBorder(Colors.Yellow, 1);
+	    btnLove.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		homeController.getHomePageModel().setBtnFindLove(btnLove);
+		BufferedImage findLovepic = ResourceManager.loadImage("findlove.png");
+		//btnLove.setIcon(new ImageIcon(new ImageIcon(findLovepic).getImage().getScaledInstance(200, 140, Image.SCALE_SMOOTH)));
+		btnLove.setIcon(new ImageIcon(new ImageIcon(findLovepic).getImage().getScaledInstance(200, 140, Image.SCALE_SMOOTH)));
+		
+		JLabel lblFriend = new JLabel("Find Friends");
+		lblFriend.setBounds(330, 220, 100, 50);
+		lblFriend.setFont(Fonts.getFont(14f));
+		lblFriend.setForeground(Colors.Yellow);
+		homeController.getHomePanel().add(lblFriend);
 		
 		JButton btnFriends = new JButton("Find Friends");
 		btnFriends.setBounds(270,100,200,140);
 		btnFriends.setActionCommand(homeController.FIND_FRIENDS);
-		btnFriends.setBackground(yellow);
 		btnFriends.setFont(Fonts.getFont((float) 12));
-		btnFriends.setForeground(Colors.Red);
+		btnFriends.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		//btnFriends.setForeground(Colors.Red);
+		btnFriends.setContentAreaFilled(false);
 		btnFriends.addActionListener(homeController);
 		homeController.getHomePageModel().setBtnFindFriends(btnFriends);
+		BufferedImage findfriendspic = ResourceManager.loadImage("findfriends.png");
+		btnFriends.setIcon(new ImageIcon(new ImageIcon(findfriendspic).getImage().getScaledInstance(200, 140, Image.SCALE_SMOOTH)));
 		
 		JButton btnSupport = new JButton("<HTML><U>Support</U></HTML>");
 		btnSupport.setBounds(0,360,90,40);
@@ -80,6 +102,7 @@ public class HomePageView {
 		btnSupport.setFont(Fonts.getFont((float) 12));
 		
 		btnSupport.addActionListener(homeController);
+		btnSupport.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		homeController.getHomePageModel().setBtnSupport(btnSupport);
 		
 		JButton btnMatches = new JButton("View Matches");
@@ -113,7 +136,20 @@ public class HomePageView {
 		site.setContentAreaFilled(false);
 		site.setBorderPainted(false);
 		site.setFont(Fonts.getFont(12f));
+		site.setCursor(Cursor.getPredefinedCursor(Cursor.NE_RESIZE_CURSOR));
 		site.setForeground(Colors.White);
+		
+		JButton credits = new JButton("<HTML><U>Credits</U></HTML>");
+		credits.setBounds(60,360,90,40);
+		credits.setActionCommand(homeController.CREDITS);
+		credits.setOpaque(true);
+		credits.setContentAreaFilled(false);
+		credits.setBorderPainted(false);
+		credits.setForeground(Colors.White);
+		credits.setFont(Fonts.getFont((float) 12));
+		credits.addActionListener(homeController);
+		credits.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		homeController.getHomePanel().add(credits);
 		
 		//add to frame
 		homeController.getHomePanel().add(site);

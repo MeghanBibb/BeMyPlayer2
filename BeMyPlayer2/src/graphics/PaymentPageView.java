@@ -3,8 +3,11 @@ package graphics;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
@@ -12,6 +15,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
+import model.ResourceManager;
 
 public class PaymentPageView {
 	
@@ -46,10 +51,17 @@ public class PaymentPageView {
 		paymentController.getPaymentModel().setBtnSubmit(btnSubmit);
 		
 		//int labels
+		JLabel heartImage = new JLabel();
 		JLabel lblBeMyPlayer = new JLabel("Be My Player 2");
-		lblBeMyPlayer.setFont(Fonts.getFont(20f));
+		lblBeMyPlayer.setFont(Fonts.getFont((float) 20));
 		lblBeMyPlayer.setForeground(Colors.Yellow);
-		lblBeMyPlayer.setBounds(160,0,204,69);
+		lblBeMyPlayer.setBounds(145,0,204,69);
+
+		
+		BufferedImage img1 = ResourceManager.loadImage("splash_heart.png");
+		heartImage .setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH)));
+		heartImage.setBounds(315, 22, 30, 30);
+		paymentController.getPaymentPanel().add(heartImage);
 		paymentController.getPaymentModel().setLblBeMyPlayer(lblBeMyPlayer);
 		
 		JLabel lblCardNumber = new JLabel("Enter Card Number (numbers only):");
@@ -79,6 +91,7 @@ public class PaymentPageView {
 		JLabel lblDescription = new JLabel("<HTML>Description of payment pricing and services here.</HTML>");
 		lblDescription.setForeground(Colors.Yellow);
 		lblDescription.setBounds(280,80,200,200);
+		lblDescription.setFont(Fonts.getFont(12f));
 		lblDescription.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDescription.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		paymentController.getPaymentModel().setLblDescription(lblDescription);
@@ -86,7 +99,7 @@ public class PaymentPageView {
 		//init text fields
 		JFormattedTextField cardNumber = new JFormattedTextField("");
 		cardNumber.setHorizontalAlignment(SwingConstants.CENTER);
-		cardNumber.setBounds(10,100,200,40);
+		cardNumber.setBounds(10,100,220,40);
 		cardNumber.setBackground(Colors.Yellow);
 		cardNumber.setForeground(Colors.Red);
 		cardNumber.setFont(Fonts.getFont(20f));

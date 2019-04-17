@@ -12,7 +12,8 @@ public class FireBaseSchema {
 							   MATCHES_TABLE_COLLECTION = "userMatches",
 							   MESSAGE_THREADS_TABLE = "MessageThreads",
 							   MESSAGE_THREADS_TABLE_COLLECTION = "Messages",
-							   ISSUES_TABLE = "Issues";
+							   ISSUES_TABLE = "Issues",
+							   PAYMENT_TABLE = "Payments";
 	
 	public static final String PROFILE_IMAGE_PREFIX = "p_img-";
 	public static final String MESSAGE_THREAD_UID_DELIM = "_+_";

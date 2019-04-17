@@ -26,6 +26,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import firebase.DBFailureException;
 import firebase.ImageConverter;
 import model.InformationExpert;
+import model.PaymentInfo;
 import model.ResourceManager;
 
 public class EditAccountPageView {
@@ -42,10 +43,17 @@ public class EditAccountPageView {
 		mainFrame.setContentPane(editController.getEditAccountPanel());
 		
 		//init bemyplayer2 label
+		JLabel heartImage = new JLabel();
 		JLabel lblBeMyPlayer = new JLabel("Be My Player 2");
+		lblBeMyPlayer.setFont(Fonts.getFont((float) 20));
 		lblBeMyPlayer.setForeground(Colors.Yellow);
-		lblBeMyPlayer.setFont(Fonts.getFont((float)20));
-		lblBeMyPlayer.setBounds(160,0,204,69);
+		lblBeMyPlayer.setBounds(145,0,204,69);
+
+		
+		BufferedImage img1 = ResourceManager.loadImage("splash_heart.png");
+		heartImage .setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH)));
+		heartImage.setBounds(315, 22, 30, 30);
+		editController.getEditAccountPanel().add(heartImage);
 		editController.getEditAccountModel().setLblBeMyPlayer(lblBeMyPlayer);
 		
 		//init Buttons
@@ -86,13 +94,26 @@ public class EditAccountPageView {
 		editController.getEditAccountModel().setBtnAccount(btnAccount);
 		
 		JButton btnUpgrade = new JButton("Upgrade Account!");
+		btnUpgrade.setActionCommand(editController.UPGRADE);
 		btnUpgrade.setBounds(115,220,250,40);
 		btnUpgrade.setBackground(Colors.Yellow);
 		btnUpgrade.setFont(Fonts.getFont((float)12));
 		btnUpgrade.setForeground(Colors.Red);
-		btnUpgrade.setActionCommand(editController.UPGRADE);
 		btnUpgrade.addActionListener(editController);
 		editController.getEditAccountModel().setBtnUpgrade(btnUpgrade);
+		
+		PaymentInfo p;
+		try {
+			p = InformationExpert.getPaymentInfo(InformationExpert.getActiveUserID());
+
+			if(p != null) {	
+				btnUpgrade.setText("Cancel Payment Plan");
+				btnUpgrade.setActionCommand(editController.END_PAYMENT);
+			}
+		} catch (DBFailureException e) {
+			//database error, go with default
+		}
+		
 		
 		JButton btnMute = new JButton ("Mute Account");
 		btnMute.setBounds(115,270,250,40);
@@ -256,6 +277,13 @@ public class EditAccountPageView {
 		securityQuestions.setForeground(Colors.Red);
 		securityQuestions.setBackground(Colors.Yellow);
 		securityQuestions.setVisible(true);
+		
+		String defaultQuestion = InformationExpert.getActiveAccount().getSecurityQ1();
+		if(defaultQuestion.equals("Favorite Character?")) {
+			securityQuestions.setSelectedIndex(2);
+		} else if(defaultQuestion.equals("First Console Owned?")) {
+			securityQuestions.setSelectedIndex(1);
+		}
 		
 		editController.getEditAccountModel().setSecurityQ(securityQuestions);
 		editController.getEditAccountPanel().add(securityQuestions);
@@ -568,7 +596,7 @@ public class EditAccountPageView {
 		mainFrame.setContentPane(editController.getEditAccountPanel());
 		
 		//	default icon
-		Image img1 = null;
+		BufferedImage img1 = null;
 		try {
 			img1 = InformationExpert.getProfileImage(InformationExpert.getActiveUserID());
 		} catch (DBFailureException e1) {
@@ -581,6 +609,7 @@ public class EditAccountPageView {
 		//lblNewLabel.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
 		//lblNewLabel.setBounds(75, 25, 150, 150);
 		editController.getEditAccountModel().setImagePath(img1.toString());
+		editController.getEditAccountModel().setProfileImg(img1);
 		final JButton setIcon = new JButton(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH)));
 		setIcon.setBounds(125,25,150,150);
 		setIcon.setContentAreaFilled(false);
@@ -642,7 +671,7 @@ public class EditAccountPageView {
 		
 //		char count on description
 			JLabel charCount = new JLabel();
-			charCount.setFont(new Font("Monospaced",Font.BOLD,12));
+			charCount.setFont(Fonts.getFont(12f));
 			charCount.setBounds(125, 350, 190, 50);
 			editController.getEditAccountModel().setCharcount(charCount);
 			editController.getEditAccountPanel().add(charCount);
