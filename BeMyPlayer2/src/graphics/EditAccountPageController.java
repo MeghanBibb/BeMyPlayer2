@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.JFrame;
@@ -183,14 +184,16 @@ public class EditAccountPageController extends PageController{
 			case MUTE:
 				//	remove from match queues
 				int dialogButton = JOptionPane.YES_NO_OPTION;
-				int dialogResult= JOptionPane.showConfirmDialog(this.editAccountPanel, "Are you sure you want to mute your account?","Mute account?", dialogButton);
+				int dialogResult = JOptionPane.showConfirmDialog(this.editAccountPanel, "Want your account muted?","Mute account?", dialogButton);
 				if(dialogResult == 0) {
-					  logger.info("muting account "  + InformationExpert.getActiveUserID());
-					  //	DATA BASE LOGIC FOR MUTING ACCOUNT FROM Db
-					  
+					logger.info("muting account "  + InformationExpert.getActiveAccount().getAccountProfile().getUsername());
+					//	DATA BASE LOGIC FOR MUTING ACCOUNT FROM Db
+
+					  InformationExpert.getActiveAccount().getAccountProfile().setMute(true);
 					  //	if yes set bool, if no unset bool
 				} else {
-				  logger.info("Not muting account " + InformationExpert.getActiveUserID());
+					logger.info("Not muting account " + InformationExpert.getActiveAccount().getAccountProfile().getUsername());
+					InformationExpert.getActiveAccount().getAccountProfile().setMute(false);
 				}
 				
 				break;

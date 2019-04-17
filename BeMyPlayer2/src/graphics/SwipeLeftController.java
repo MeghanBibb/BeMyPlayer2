@@ -3,10 +3,7 @@ package graphics;
 import java.awt.event.ActionEvent;
 
 import firebase.DBFailureException;
-import model.InformationExpert;
-import model.Match;
-import model.MatchStatus;
-import model.MatchType;
+import model.*;
 
 public class SwipeLeftController extends SwipeButtonController{
 	SwipePageController controller;
@@ -53,10 +50,9 @@ public class SwipeLeftController extends SwipeButtonController{
 					InformationExpert.getClientModel().dequeueFriendProfile();
 					if(InformationExpert.getClientModel().getFriendProfileFront() == null) {
 						InformationExpert.importFriendMatchBatch();
-					}	
-					
+					}
+
 					InformationExpert.setOtherProfile(InformationExpert.getClientModel().getFriendProfileFront().getUserId());
-					//InformationExpert.getClientModel().dequeueFriendProfile();
 				}
 				else if (InformationExpert.getCurrentSwipePage().equals(MatchType.LOVE_MATCH.getStatusString())) {
 					InformationExpert.getClientModel().dequeLoveProfile();

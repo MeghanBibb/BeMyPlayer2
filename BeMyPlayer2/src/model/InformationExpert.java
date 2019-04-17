@@ -195,7 +195,9 @@ public class InformationExpert {
 				
 				if(importedProfs.isEmpty())
 					return false;
+
 				//add match batch from database:
+
 				clientModel.importUnmatchedFriendBatch(importedProfs);
 				
 				//add any partial matches as well that may exist:
