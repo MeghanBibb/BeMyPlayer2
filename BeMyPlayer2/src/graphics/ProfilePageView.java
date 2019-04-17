@@ -65,7 +65,7 @@ public class ProfilePageView {
 		
 		//	pull information for fields from account passed 
 		if(profileController.isActiveAccount()) {
-			JLabel imgLabel = new JLabel("");
+			CircularImage imgLabel = new CircularImage();
 			BufferedImage img = null;
 			
 			try {
@@ -94,7 +94,7 @@ public class ProfilePageView {
 			profileController.getProfilePanel().add(profileController.getProfileModel().getBtnEdit());
 		
 		} else {
-			JLabel imgLabel = new JLabel("");
+			CircularImage imgLabel = new CircularImage();
 			BufferedImage img = null;
 			try {
 				img = InformationExpert.getProfileImage(profileController.getProfile().getUserId());
