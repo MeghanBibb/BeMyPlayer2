@@ -43,11 +43,28 @@ import model.InformationExpert;
 import model.Profile;
 import model.ResourceManager;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ViewMatchesView.
+ */
 public class ViewMatchesView {
+	
+	/** The logger. */
 	private static Logger logger = Logger.getLogger(ViewMatchesView.class.getName());
+	
+	/** The img 1. */
 	static BufferedImage img1 = ResourceManager.loadImage("splash_heart.png");
+	
+	/** The heart image. */
 	static JLabel heartImage = new JLabel();
 	
+	/**
+	 * Start view matches.
+	 *
+	 * @param viewMatchController the view match controller
+	 * @param mainFrame the main frame
+	 * @param a the a
+	 */
 	public static void startViewMatches(ViewMatchesController viewMatchController, JFrame mainFrame,Account a) {
 		
 		viewMatchController.setViewMatchesModel(new ViewMatchesModel());

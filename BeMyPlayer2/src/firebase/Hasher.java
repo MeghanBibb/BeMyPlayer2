@@ -5,6 +5,10 @@ import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Hasher.
+ */
 public class Hasher {
 	
 	/*
@@ -17,10 +21,18 @@ public class Hasher {
 	 * Note that the below algorithm is unsalted, but secure enough for the purposes of this application.
 	 */
 	
+	/** The Constant LOGGER. */
 	public final static Logger LOGGER = Logger.getLogger(Hasher.class.getName());
 	
+	/** The Constant DIGEST. */
 	private static final String DIGEST = "MD5";
 	
+	/**
+	 * Hash string.
+	 *
+	 * @param plaintext the plaintext
+	 * @return the string
+	 */
 	public static String hashString(String plaintext) {
 		
         String hashedString = null;

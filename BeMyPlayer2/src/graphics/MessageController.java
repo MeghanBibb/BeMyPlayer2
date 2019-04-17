@@ -15,17 +15,42 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MessageController.
+ */
 public class MessageController extends PageController {
+    
+    /** The Constant SEND. */
     public static final String SEND = "send";
+    
+    /** The Constant BACK. */
     public static final String BACK = "back";
+    
+    /** The Constant REFRESH. */
     public static final String REFRESH = "refresh";
 
+    /** The message model. */
     private MessageModel messageModel = null;
+    
+    /** The current thread. */
     private MessageThread currentThread = null;
+    
+    /** The message panel. */
     private JPanel messagePanel = null;
+    
+    /** The account. */
     private Account account;
+    
+    /** The other prof. */
     private Profile otherProf; 
+    
+    /** The logger. */
     private static Logger logger = Logger.getLogger(MessageController.class.getName());
+    
+    /* (non-Javadoc)
+     * @see graphics.PageController#launchPage(javax.swing.JFrame, java.lang.String)
+     */
     public void launchPage(JFrame mainFrame, String back) {
     	if(back != null) {
     		backPage = back;
@@ -40,10 +65,18 @@ public class MessageController extends PageController {
         MessageView.startMessagePage(this,mainFrame);
     }
     
+    /**
+     * Gets the account.
+     *
+     * @return the account
+     */
     public Account getAccount() {
     	return account;
     }
 
+    /* (non-Javadoc)
+     * @see graphics.PageController#actionPerformed(java.awt.event.ActionEvent)
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         switch(e.getActionCommand()) {
@@ -86,6 +119,11 @@ public class MessageController extends PageController {
         }
     }
 
+    /**
+     * Validate msg.
+     *
+     * @return true, if successful
+     */
     public boolean validateMsg() {
         boolean valid = true;
 
@@ -108,34 +146,74 @@ public class MessageController extends PageController {
         return valid;
     }
 
+    /**
+     * Gets the message model.
+     *
+     * @return the message model
+     */
     public MessageModel getMessageModel() {
         return messageModel;
     }
 
+    /**
+     * Sets the message model.
+     *
+     * @param messageModel the new message model
+     */
     public void setMessageModel(MessageModel messageModel) {
         this.messageModel = messageModel;
     }
 
+    /**
+     * Gets the message panel.
+     *
+     * @return the message panel
+     */
     public JPanel getMessagePanel() {
         return messagePanel;
     }
 
+    /**
+     * Sets the message panel.
+     *
+     * @param messagePanel the new message panel
+     */
     public void setMessagePanel(JPanel messagePanel) {
         this.messagePanel = messagePanel;
     }
 
+	/**
+	 * Gets the other prof.
+	 *
+	 * @return the other prof
+	 */
 	public Profile getOtherProf() {
 		return otherProf;
 	}
 
+	/**
+	 * Sets the other prof.
+	 *
+	 * @param otherProf the new other prof
+	 */
 	public void setOtherProf(Profile otherProf) {
 		this.otherProf = otherProf;
 	}
 
+    /**
+     * Gets the current thread.
+     *
+     * @return the current thread
+     */
     public MessageThread getCurrentThread() {
         return currentThread;
     }
 
+    /**
+     * Sets the current thread.
+     *
+     * @param currentThread the new current thread
+     */
     public void setCurrentThread(MessageThread currentThread) {
         this.currentThread = currentThread;
     }

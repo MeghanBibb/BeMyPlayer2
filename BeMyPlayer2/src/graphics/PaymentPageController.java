@@ -16,15 +16,30 @@ import model.Account;
 import model.InformationExpert;
 import model.PaymentInfo;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PaymentPageController.
+ */
 public class PaymentPageController extends PageController{
 	
+	/** The Constant BACK. */
 	public static final String BACK = "back";
+	
+	/** The Constant SUBMIT. */
 	public static final String SUBMIT = "submit";
 	
+	/** The payment model. */
 	private PaymentPageModel paymentModel = null;
+	
+	/** The payment panel. */
 	private JPanel paymentPanel = null;
+	
+	/** The logger. */
 	private static Logger logger = Logger.getLogger(PaymentPageController.class.getName());
 	
+	/* (non-Javadoc)
+	 * @see graphics.PageController#launchPage(javax.swing.JFrame, java.lang.String)
+	 */
 	public void launchPage(JFrame mainFrame, String back) {
 		if(back != backPage) {
 			backPage = back;
@@ -33,26 +48,51 @@ public class PaymentPageController extends PageController{
 		PaymentPageView.launchPaymentPage(this,mainFrame);
 	}
 	
+	/**
+	 * Gets the payment model.
+	 *
+	 * @return the payment model
+	 */
 	public PaymentPageModel getPaymentModel() {
 		return paymentModel;
 	}
 
+	/**
+	 * Sets the payment model.
+	 *
+	 * @param paymentModel the new payment model
+	 */
 	public void setPaymentModel(PaymentPageModel paymentModel) {
 		this.paymentModel = paymentModel;
 	}
 
 
 
+	/**
+	 * Gets the payment panel.
+	 *
+	 * @return the payment panel
+	 */
 	public JPanel getPaymentPanel() {
 		return paymentPanel;
 	}
 
 
 
+	/**
+	 * Sets the payment panel.
+	 *
+	 * @param paymentPanel the new payment panel
+	 */
 	public void setPaymentPanel(JPanel paymentPanel) {
 		this.paymentPanel = paymentPanel;
 	}
 	
+	/**
+	 * Verify payment.
+	 *
+	 * @return true, if successful
+	 */
 	private boolean verifyPayment() {
 		int month;
 		int year;
@@ -111,6 +151,9 @@ public class PaymentPageController extends PageController{
 
 
 
+	/* (non-Javadoc)
+	 * @see graphics.PageController#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch(e.getActionCommand()) {

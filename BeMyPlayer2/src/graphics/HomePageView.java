@@ -15,10 +15,20 @@ import javax.swing.border.LineBorder;
 
 import model.ResourceManager;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class HomePageView.
+ */
 public class HomePageView {
 	
 	
 
+	/**
+	 * Launch home page.
+	 *
+	 * @param homeController the home controller
+	 * @param mainFrame the main frame
+	 */
 	public static void launchHomePage(HomePageController homeController, JFrame mainFrame) {
 		//init model
 		homeController.setHomePageModel(new HomePageModel());

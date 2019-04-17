@@ -11,12 +11,27 @@ import model.InformationExpert;
 import model.MatchType;
 import model.Profile;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SwipePageController.
+ */
 public class SwipePageController extends PageController {
+	
+	/** The model. */
 	SwipePageModel model;
+	
+	/** The logger. */
 	private static Logger logger = Logger.getLogger(SwipePageController.class.getName());
+	
+	/**
+	 * Instantiates a new swipe page controller.
+	 */
 	public SwipePageController() {
 	}
 
+	/* (non-Javadoc)
+	 * @see graphics.PageController#launchPage(javax.swing.JFrame, java.lang.String)
+	 */
 	@Override
 	public void launchPage(JFrame mainFrame, String back) {
 		if(back != null) {
@@ -65,10 +80,18 @@ public class SwipePageController extends PageController {
 		
 	}
 
+	/**
+	 * Sets the profile.
+	 *
+	 * @param profile the new profile
+	 */
 	public void setProfile(Profile profile) {
 		this.model.ChangeProfile(profile);
 	}
 	
+	/* (non-Javadoc)
+	 * @see graphics.PageController#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

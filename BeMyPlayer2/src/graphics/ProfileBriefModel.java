@@ -34,11 +34,31 @@ import model.Profile;
 import model.InformationExpert;
 import model.ResourceManager;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ProfileBriefModel.
+ */
 public class ProfileBriefModel extends JPanel{
+	
+	/** The view match controller. */
 	ViewMatchesController viewMatchController = new ViewMatchesController();
+	
+	/** The back page. */
 	private String backPage;
+	
+	/** The Constant DEFAULT_PIC. */
 	public static final BufferedImage DEFAULT_PIC = ResourceManager.loadImage("defaultIcon.png");
+	
+	/** The logger. */
 	private static Logger logger = Logger.getLogger(ProfilePageController.class.getName());
+	
+	/**
+	 * Instantiates a new profile brief model.
+	 *
+	 * @param profile the profile
+	 * @param rect the rect
+	 * @param backPage the back page
+	 */
 	public ProfileBriefModel(Profile profile, Rectangle rect, String backPage){
 
 		try {
@@ -125,6 +145,13 @@ public class ProfileBriefModel extends JPanel{
 			this.setVisible(true);
 	}
 	
+	/**
+	 * Instantiates a new profile brief model.
+	 *
+	 * @param s the s
+	 * @param r the r
+	 * @param page the page
+	 */
 	public ProfileBriefModel(String s,Rectangle r, String page){
 		this.backPage = page;
 
@@ -207,6 +234,10 @@ public class ProfileBriefModel extends JPanel{
 		this.add(setIcon);
 		this.setVisible(true);
 	}
+	
+	/* (non-Javadoc)
+	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+	 */
 	@Override
 	  protected void paintComponent(Graphics g) {
 		RoundRectangle2D r = new RoundRectangle2D.Float(this.getAlignmentX(), this.getAlignmentY(), this.getWidth(), this.getHeight(), 7, 7);

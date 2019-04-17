@@ -12,15 +12,30 @@ import javax.swing.JPanel;
 
 import model.ResourceManager;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class BackgroundPanel.
+ */
 public class BackgroundPanel extends JPanel {
 	
+	/** The base image. */
 	public static BufferedImage baseImage = ResourceManager.loadImage("background.png");
 	
 	
+	/** The scaled background. */
 	private Image scaledBackground;
+	
+	/** The updated. */
 	private boolean updated = false;
+	
+	/** The offset Y. */
 	private int offsetX = 0, offsetY = 0;
 	
+	/**
+	 * Instantiates a new background panel.
+	 *
+	 * @param object the object
+	 */
 	public BackgroundPanel(Object object) {
 		super(null);
 		scaledBackground = baseImage;
@@ -28,6 +43,9 @@ public class BackgroundPanel extends JPanel {
 	}
 	
 	
+	/* (non-Javadoc)
+	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+	 */
 	@Override
 	  protected void paintComponent(Graphics g) {
 	    super.paintComponent(g);
@@ -40,6 +58,9 @@ public class BackgroundPanel extends JPanel {
 		
 	}
 	
+	/**
+	 * Resize.
+	 */
 	private void resize() {
 		
 		offsetX = 0;
@@ -61,6 +82,9 @@ public class BackgroundPanel extends JPanel {
 		scaledBackground = baseImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
 	}
 	
+	/**
+	 * Update.
+	 */
 	public void update() {
 		updated = false;
 	}

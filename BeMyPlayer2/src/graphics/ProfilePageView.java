@@ -29,8 +29,21 @@ import model.Account;
 import model.InformationExpert;
 import model.ResourceManager;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ProfilePageView.
+ */
 public class ProfilePageView {
+	
+	/** The logger. */
 	private static Logger logger = Logger.getLogger(ProfilePageView.class.getName());
+	
+	/**
+	 * Start profile page.
+	 *
+	 * @param profileController the profile controller
+	 * @param mainFrame the main frame
+	 */
 	public static void startProfilePage(ProfilePageController profileController, JFrame mainFrame) {
 		//init Model
 		profileController.setProfileModel(new ProfilePageModel());

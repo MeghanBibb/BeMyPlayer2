@@ -13,15 +13,33 @@ import javax.swing.JPanel;
 import firebase.DBFailureException;
 import model.InformationExpert;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CreditsPageController.
+ */
 public class CreditsPageController extends PageController{
+	
+	/** The Constant BACK. */
 	public static final String BACK = "back";
+	
+	/** The Constant PROFILE. */
 	public static final String PROFILE = "profileclick";
+	
+	/** The logger. */
 	private static Logger logger = Logger.getLogger(CreditsPageController.class.getName());
 	
+	/** The copy frame. */
 	private JFrame copyFrame = null;
+	
+	/** The credits panel. */
 	private JPanel creditsPanel = null;
+	
+	/** The brief. */
 	private ProfileBriefModel brief = null;
 	
+	/* (non-Javadoc)
+	 * @see graphics.PageController#launchPage(javax.swing.JFrame, java.lang.String)
+	 */
 	public void launchPage(JFrame mainFrame, String back) {
 		if(back != null) {
 			backPage = back;
@@ -29,6 +47,10 @@ public class CreditsPageController extends PageController{
 		this.copyFrame = mainFrame;
 		CreditsPageView.launchPage(this,mainFrame);
 	}
+	
+	/* (non-Javadoc)
+	 * @see graphics.PageController#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -56,12 +78,30 @@ public class CreditsPageController extends PageController{
 			this.copyFrame.repaint();
 		}
 	}
+	
+	/**
+	 * Gets the credits panel.
+	 *
+	 * @return the credits panel
+	 */
 	public JPanel getCreditsPanel() {
 		return creditsPanel;
 	}
+	
+	/**
+	 * Sets the credits panel.
+	 *
+	 * @param creditsPanel the new credits panel
+	 */
 	public void setCreditsPanel(JPanel creditsPanel) {
 		this.creditsPanel = creditsPanel;
 	}
+	
+	/**
+	 * Gets the creators.
+	 *
+	 * @return the creators
+	 */
 	protected List<String> getCreators(){
 		List<String> creators = new ArrayList<>();
 		creators.add("Colin");

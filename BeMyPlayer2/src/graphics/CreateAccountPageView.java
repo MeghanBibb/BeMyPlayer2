@@ -30,7 +30,19 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import firebase.ImageConverter;
 import model.ResourceManager;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CreateAccountPageView.
+ */
 public class CreateAccountPageView {
+	
+	/**
+	 * Start create account page.
+	 *
+	 * @param capController the cap controller
+	 * @param mainFrame the main frame
+	 * @param visited the visited
+	 */
 	public static void startCreateAccountPage(final CreateAccountPageController capController,JFrame mainFrame, boolean visited) {
 		if(visited == false) {
 			CreateAccountPageModel temp = new CreateAccountPageModel();
@@ -253,6 +265,14 @@ public class CreateAccountPageView {
 		//set attributes in loginController:
 		
 	}
+	
+	/**
+	 * Start questionaire.
+	 *
+	 * @param capController the cap controller
+	 * @param mainFrame the main frame
+	 * @param visited the visited
+	 */
 	public static void startQuestionaire(final CreateAccountPageController capController,JFrame mainFrame,boolean visited) {
 		//	load questionare 
 		Color red = new Color(134, 48, 111);
@@ -729,6 +749,13 @@ public class CreateAccountPageView {
 		mainFrame.setVisible(true);
 	}
 	
+	/**
+	 * Start profile form.
+	 *
+	 * @param capController the cap controller
+	 * @param mainFrame the main frame
+	 * @param visited the visited
+	 */
 	public static void startProfileForm(final CreateAccountPageController capController,JFrame mainFrame, boolean visited) {
 		Color red = new Color(134,48,111);
 		Color yellow = new Color(254, 195, 123);

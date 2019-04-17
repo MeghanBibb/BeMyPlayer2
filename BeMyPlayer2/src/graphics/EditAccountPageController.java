@@ -20,26 +20,69 @@ import model.PaymentInfo;
 import model.Profile;
 import model.ResourceManager;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class EditAccountPageController.
+ */
 public class EditAccountPageController extends PageController{
 	
+	/** The Constant BACK. */
 	public static final String BACK = "back";
+	
+	/** The Constant CANCEL. */
 	public static final String CANCEL = "cancel";
+	
+	/** The Constant SUBMIT. */
 	public static final String SUBMIT = "submit";
+	
+	/** The Constant SUBMITEDITPROFILE. */
 	public static final String SUBMITEDITPROFILE = "subeditprof";
+	
+	/** The Constant SUBMITEDITACCOUNT. */
 	public static final String SUBMITEDITACCOUNT = "subeditacc";
+	
+	/** The Constant SUBMITEDITQUESTIONAIRE. */
 	public static final String SUBMITEDITQUESTIONAIRE = "subeditq";
+	
+	/** The Constant PROFILE. */
 	public static final String PROFILE = "profile";
+	
+	/** The Constant ACCOUNT. */
 	public static final String ACCOUNT = "account";
+	
+	/** The Constant QUESTIONNAIRE. */
 	public static final String QUESTIONNAIRE = "questionnaire";
+	
+	/** The Constant UPGRADE. */
 	public static final String UPGRADE = "upgrade";
+	
+	/** The Constant MUTE. */
 	public static final String MUTE = "mute";
+	
+	/** The Constant DELETE. */
 	public static final String DELETE = "delete";
+	
+	/** The Constant END_PAYMENT. */
 	public static final String END_PAYMENT = "cancel payment";
+	
+	/** The Constant MAXLENGTH. */
 	public static final int MAXLENGTH = 250;
+	
+	/** The copy frame. */
 	private JFrame copyFrame = null;
+	
+	/** The edit account model. */
 	private EditAccountPageModel editAccountModel = null;
+	
+	/** The edit account panel. */
 	private JPanel editAccountPanel = null;
+	
+	/** The logger. */
 	private static Logger logger = Logger.getLogger(EditAccountPageController.class.getName());
+	
+	/* (non-Javadoc)
+	 * @see graphics.PageController#launchPage(javax.swing.JFrame, java.lang.String)
+	 */
 	public void launchPage(JFrame mainFrame, String back) {
 		if(back != null) {
 			backPage = back;
@@ -48,6 +91,9 @@ public class EditAccountPageController extends PageController{
 		EditAccountPageView.launchEditPage(this,mainFrame);
 	}
 
+	/* (non-Javadoc)
+	 * @see graphics.PageController#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch(e.getActionCommand()) {
@@ -211,6 +257,12 @@ public class EditAccountPageController extends PageController{
 		}
 		
 	}
+	
+	/**
+	 * Validate create page 1.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean validateCreatePage1() {
 		boolean valid = true;
 		
@@ -259,6 +311,12 @@ public class EditAccountPageController extends PageController{
 		
 		return valid;
 	}
+	
+	/**
+	 * Validate create page 2.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean validateCreatePage2() {
 		boolean valid = true;
 		
@@ -293,6 +351,12 @@ public class EditAccountPageController extends PageController{
 		
 		return valid;
 	}
+	
+	/**
+	 * Validate create page 3.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean validateCreatePage3() {
 		boolean valid = true;
 		//	need to store profile pic in new location to pull from
@@ -313,18 +377,39 @@ public class EditAccountPageController extends PageController{
 		//	send to temp account and populate db
 		return valid;
 	}
+	
+	/**
+	 * Gets the edits the account model.
+	 *
+	 * @return the edits the account model
+	 */
 	public EditAccountPageModel getEditAccountModel() {
 		return editAccountModel;
 	}
 
+	/**
+	 * Sets the edits the account model.
+	 *
+	 * @param editAccountModel the new edits the account model
+	 */
 	public void setEditAccountModel(EditAccountPageModel editAccountModel) {
 		this.editAccountModel = editAccountModel;
 	}
 
+	/**
+	 * Gets the edits the account panel.
+	 *
+	 * @return the edits the account panel
+	 */
 	public JPanel getEditAccountPanel() {
 		return editAccountPanel;
 	}
 
+	/**
+	 * Sets the edits the account panel.
+	 *
+	 * @param editAccountPanel the new edits the account panel
+	 */
 	public void setEditAccountPanel(JPanel editAccountPanel) {
 		this.editAccountPanel = editAccountPanel;
 	}

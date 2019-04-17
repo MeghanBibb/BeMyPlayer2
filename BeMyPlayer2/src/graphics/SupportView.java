@@ -6,8 +6,18 @@ import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SupportView.
+ */
 public class SupportView {
 
+    /**
+     * Start support page.
+     *
+     * @param supportController the support controller
+     * @param mainFrame the main frame
+     */
     public static void startSupportPage(SupportController supportController, JFrame mainFrame){
         //init Model
         supportController.setSupportModel(new SupportModel());

@@ -15,20 +15,42 @@ import model.MatchStatus;
 import model.MatchType;
 import model.Profile;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ProfilePageController.
+ */
 public class ProfilePageController extends PageController {
 	
 	
+	/** The Constant BACK. */
 	//init command constants
 	public static final String BACK = "back";
+	
+	/** The Constant EDIT_ACCOUNT. */
 	public static final String EDIT_ACCOUNT = "edit";
+	
+	/** The Constant BLOCK. */
 	public static final String BLOCK = "block";
+	
+	/** The Constant MESSAGE. */
 	public static final String MESSAGE = "message";
+	
+	/** The logger. */
 	private static Logger logger = Logger.getLogger(ProfilePageController.class.getName());
+	
+	/** The profile model. */
 	// get view and jframe
 	private ProfilePageModel profileModel = null;
+	
+	/** The profile panel. */
 	private JPanel profilePanel = null;
+	
+	/** The a. */
 	private Profile a;
 	
+	/* (non-Javadoc)
+	 * @see graphics.PageController#launchPage(javax.swing.JFrame, java.lang.String)
+	 */
 	public void launchPage(JFrame mainFrame, String back) {
 		if(back != null) {
 			backPage = back;
@@ -43,14 +65,27 @@ public class ProfilePageController extends PageController {
 		ProfilePageView.startProfilePage(this,mainFrame);
 	}
 	
+	/**
+	 * Checks if is active account.
+	 *
+	 * @return true, if is active account
+	 */
 	public boolean isActiveAccount() {
 		return InformationExpert.isActiveUser(a);
 	}
 	
+	/**
+	 * Gets the profile.
+	 *
+	 * @return the profile
+	 */
 	public Profile getProfile() {
 		return a;
 	}
 
+	/* (non-Javadoc)
+	 * @see graphics.PageController#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch(e.getActionCommand()) {
@@ -120,18 +155,38 @@ public class ProfilePageController extends PageController {
 		
 	}
 
+	/**
+	 * Gets the profile model.
+	 *
+	 * @return the profile model
+	 */
 	public ProfilePageModel getProfileModel() {
 		return profileModel;
 	}
 
+	/**
+	 * Sets the profile model.
+	 *
+	 * @param profileModel the new profile model
+	 */
 	public void setProfileModel(ProfilePageModel profileModel) {
 		this.profileModel = profileModel;
 	}
 
+	/**
+	 * Gets the profile panel.
+	 *
+	 * @return the profile panel
+	 */
 	public JPanel getProfilePanel() {
 		return profilePanel;
 	}
 
+	/**
+	 * Sets the profile panel.
+	 *
+	 * @param profilePanel the new profile panel
+	 */
 	public void setProfilePanel(JPanel profilePanel) {
 		this.profilePanel = profilePanel;
 	}

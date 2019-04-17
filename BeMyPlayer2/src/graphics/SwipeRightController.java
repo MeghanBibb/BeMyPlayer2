@@ -11,14 +11,28 @@ import model.Match;
 import model.MatchStatus;
 import model.MatchType;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SwipeRightController.
+ */
 public class SwipeRightController extends SwipeButtonController{
+	
+	/** The controller. */
 	SwipePageController controller;
 	
+	/**
+	 * Instantiates a new swipe right controller.
+	 *
+	 * @param controller the controller
+	 */
 	public SwipeRightController(SwipePageController controller) {
 		super("Right");
 		this.controller = controller;
 	}
 
+	/* (non-Javadoc)
+	 * @see graphics.SwipeButtonController#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		try {

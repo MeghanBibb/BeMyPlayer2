@@ -25,9 +25,18 @@ import javax.swing.border.EmptyBorder;
 
 import model.ResourceManager;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class LoginPageView.
+ */
 public class LoginPageView {
+	
 	/**
-	 * @wbp.parser.entryPoint
+	 * Start login page.
+	 *
+	 * @param loginController the login controller
+	 * @param mainFrame the main frame
+	 * @wbp.parser.entryPoint 
 	 */
 	public static void startLoginPage(LoginPageController loginController,JFrame mainFrame) {
 		//	init table model 

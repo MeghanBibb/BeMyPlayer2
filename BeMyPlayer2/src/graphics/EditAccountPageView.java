@@ -29,8 +29,18 @@ import model.InformationExpert;
 import model.PaymentInfo;
 import model.ResourceManager;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class EditAccountPageView.
+ */
 public class EditAccountPageView {
 	
+	/**
+	 * Launch edit page.
+	 *
+	 * @param editController the edit controller
+	 * @param mainFrame the main frame
+	 */
 	public static void launchEditPage(EditAccountPageController editController, JFrame mainFrame) {
 		//set model
 		editController.setEditAccountModel(new EditAccountPageModel());
@@ -149,6 +159,12 @@ public class EditAccountPageView {
 		
 	}
 	
+	/**
+	 * Launch edit account page.
+	 *
+	 * @param editController the edit controller
+	 * @param mainFrame the main frame
+	 */
 	public static void launchEditAccountPage(final EditAccountPageController editController, JFrame mainFrame) {
 	
 		//get mdoel
@@ -346,6 +362,12 @@ public class EditAccountPageView {
 		//set attributes in loginController:
 	}
 	
+	/**
+	 * Launch edit questionnaire page.
+	 *
+	 * @param editController the edit controller
+	 * @param mainFrame the main frame
+	 */
 	public static void launchEditQuestionnairePage(EditAccountPageController editController, JFrame mainFrame) {
 		
 		//init colors
@@ -584,6 +606,12 @@ public class EditAccountPageView {
 		mainFrame.setVisible(true);
 	}
 	
+	/**
+	 * Launch edit profile page.
+	 *
+	 * @param editController the edit controller
+	 * @param mainFrame the main frame
+	 */
 	public static void launchEditProfilePage(final EditAccountPageController editController, JFrame mainFrame) {
 		
 		//init colors

@@ -22,9 +22,24 @@ import firebase.DBFailureException;
 import model.Account;
 import model.InformationExpert;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ProfilePicGenerator.
+ */
 public class ProfilePicGenerator {
+	
+	/** The logger. */
 	private static Logger logger = Logger.getLogger(ProfilePicGenerator.class.getName());
+	
+	/** The Constant DEFAULT_PIC. */
 	public static final BufferedImage DEFAULT_PIC = ResourceManager.loadImage("defaultIcon.png");
+	
+	/**
+	 * Gets the love list.
+	 *
+	 * @param b the b
+	 * @return the love list
+	 */
 	public static List<JButton> getLoveList(ViewMatchesController b){
 		List<JButton> loveList = new ArrayList<>();
 		List<Profile> profiles= InformationExpert.getClientModel().getLoveMatches();
@@ -77,6 +92,13 @@ public class ProfilePicGenerator {
 		}
 		return loveList;
 	}
+	
+	/**
+	 * Gets the friend list.
+	 *
+	 * @param b the b
+	 * @return the friend list
+	 */
 	public static List<JButton> getFriendList(ViewMatchesController b){
 		List<JButton> friendList = new ArrayList<JButton>();
 		List<Profile> profiles= InformationExpert.getClientModel().getFriendMatches();
@@ -128,6 +150,13 @@ public class ProfilePicGenerator {
 		}
 		return friendList;
 	}
+	
+	/**
+	 * Gets the creators list.
+	 *
+	 * @param p the p
+	 * @return the creators list
+	 */
 	public static List<JButton> getCreatorsList(CreditsPageController p){
 		
 		List<JButton> creators = new ArrayList<JButton>();

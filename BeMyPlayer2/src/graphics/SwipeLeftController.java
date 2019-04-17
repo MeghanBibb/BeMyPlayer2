@@ -5,14 +5,29 @@ import java.awt.event.ActionEvent;
 import firebase.DBFailureException;
 import model.*;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SwipeLeftController.
+ */
 public class SwipeLeftController extends SwipeButtonController{
+	
+	/** The controller. */
 	SwipePageController controller;
+	
+	/**
+	 * Instantiates a new swipe left controller.
+	 *
+	 * @param controller the controller
+	 */
 	public SwipeLeftController(SwipePageController controller) {
 		super("Left");
 		this.controller = controller;
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see graphics.SwipeButtonController#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		try {
