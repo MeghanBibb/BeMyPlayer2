@@ -83,9 +83,7 @@ public class EditAccountPageController extends PageController{
 						// TODO Auto-generated catch block
 						logger.warning("failed to save");
 					}
-					if(InformationExpert.getActiveAccount().getSecurityQ1().equals(this.getEditAccountModel().getSecurityQ().getSelectedItem()) && this.getEditAccountModel().getSecQA().getText().isBlank()) {
-						System.out.println("equals");
-					} else {
+					if(!this.getEditAccountModel().getSecQA().getText().isEmpty()) {
 						InformationExpert.getActiveAccount().setSecurityQ1AnsHash(Hasher.hashString(this.getEditAccountModel().getSecQA().getText()));
 					}
 				
