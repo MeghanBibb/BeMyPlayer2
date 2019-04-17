@@ -107,7 +107,7 @@ public class HomePageController extends PageController{
 				break;
 			case SOUND:
 				logger.info("Modifying the sound settings");
-				BackgroundMusic.music();
+				BackgroundMusic.getInstance().music();
 				break;
 		}
 	}

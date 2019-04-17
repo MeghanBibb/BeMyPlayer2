@@ -14,8 +14,18 @@ public class BackgroundMusic {
 	static Clip clip;
 	static String status = "play";
 	static AudioInputStream audioInputStream;
+	private static BackgroundMusic instance;
 	
-	public static void music() {
+	public static BackgroundMusic getInstance(){
+		if(instance == null) {
+			instance = new BackgroundMusic();
+		}
+		return instance;
+	}
+	
+	private BackgroundMusic() {}
+	
+	public void music() {
 		if(status.contentEquals("play")) {
 			stopSong();
 			status = "stop";
@@ -25,7 +35,7 @@ public class BackgroundMusic {
 		}
 	}
 
-	private static void playSong() {
+	private void playSong() {
 		try {
 			audioInputStream = AudioSystem.getAudioInputStream(new File("MiiBackgroundSong.wav"));
 			clip = AudioSystem.getClip();
