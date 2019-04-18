@@ -238,7 +238,7 @@ public class EditAccountPageView {
 		
 		JFormattedTextField secQA = new JFormattedTextField();
 		secQA.setHorizontalAlignment(SwingConstants.CENTER);
-		secQA.setBounds(275, 205, 128, 32);
+		secQA.setBounds(275, 240, 128, 32);
 		secQA.setFont(Fonts.getFont((float)12));
 		secQA.setForeground(Colors.Red);
 		secQA.setBackground(Colors.Yellow);
@@ -276,7 +276,7 @@ public class EditAccountPageView {
 		} else {
 			gender.setSelectedIndex(1);
 		}
-		gender.setBounds(275, 275, 94, 22);
+		gender.setBounds(275, 305, 94, 22);
 		gender.setVisible(true);
 		
 		editController.getEditAccountModel().setGenderBox(gender);
@@ -291,7 +291,7 @@ public class EditAccountPageView {
         });
 		securityQuestions.setToolTipText("Security Question");
 		securityQuestions.setModel(new DefaultComboBoxModel(new String[] { "Favorite Game?", "First Console Owned?", "Favorite Character?"}));
-		securityQuestions.setBounds(275, 170, 190, 22);
+		securityQuestions.setBounds(275, 165, 180, 30);
 		securityQuestions.setFont(Fonts.getFont((float)12));
 		securityQuestions.setForeground(Colors.Red);
 		securityQuestions.setBackground(Colors.Yellow);
@@ -321,10 +321,10 @@ public class EditAccountPageView {
 		lbldob.setBounds(275, 65, 204, 32);
 		editController.getEditAccountPanel().add(lbldob);
 		
-		JLabel lblGender = new JLabel("Gender");
+		JLabel lblGender = new JLabel("Gender:");
 		lblGender.setFont(Fonts.getFont((float)12));
 		lblGender.setForeground(Colors.Yellow);
-		lblGender.setBounds(275, 245, 204, 32);	
+		lblGender.setBounds(275, 275, 204, 32);	
 		editController.getEditAccountPanel().add(lblGender);
 		
 		JLabel lblSecQ = new JLabel("Security Question");
@@ -354,7 +354,7 @@ public class EditAccountPageView {
 		JLabel answerPrompt = new JLabel("Answer:");
 		answerPrompt.setFont(Fonts.getFont((float)12));
 		answerPrompt.setForeground(Colors.Yellow);
-		answerPrompt.setBounds(220,205,128,32);
+		answerPrompt.setBounds(275,205,128,32);
 		editController.getEditAccountPanel().add(answerPrompt);
 		
 		//add to panel
