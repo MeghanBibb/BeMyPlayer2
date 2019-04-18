@@ -38,10 +38,16 @@ public class SwipeLeftController extends SwipeButtonController{
 		try {
 			Match thisMatch;
 			if((thisMatch = InformationExpert.getMatch(InformationExpert.getActiveAccount().getAccountProfile(), InformationExpert.getOtherProfile())) != null) {
-				/* CHECK TO MAKE SURE MATCH TYPE IS THE SAME IE: loveType on loveSwipePage*/
-				//if(thisMatch.getType == controller.getType){
+				
+				if(InformationExpert.getCurrentSwipePage().equals(MatchType.FRIEND_MATCH.getStatusString())) {
+					thisMatch.setType(MatchType.FRIEND_MATCH);
+				}
+				else if(InformationExpert.getCurrentSwipePage().equals(MatchType.LOVE_MATCH.getStatusString())) {
+					thisMatch.setType(MatchType.LOVE_MATCH);
+				}
+				
 				thisMatch.setClientMatchStatus(MatchStatus.SWIPE_LEFT);	
-				//}
+				
 				    
 				//update match
 				InformationExpert.updateMatch(thisMatch);
