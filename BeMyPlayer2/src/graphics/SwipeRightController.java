@@ -93,7 +93,9 @@ public class SwipeRightController extends SwipeButtonController{
 					if(InformationExpert.getClientModel().getFriendProfileFront() == null) {
 						InformationExpert.importFriendMatchBatch();
 					}	
-					
+					if(InformationExpert.getClientModel().getFriendProfileFront() == null) {
+						throw new DBFailureException();
+					}
 					InformationExpert.setOtherProfile(InformationExpert.getClientModel().getFriendProfileFront().getUserId());
 					//InformationExpert.getClientModel().dequeueFriendProfile();
 				}
@@ -102,7 +104,9 @@ public class SwipeRightController extends SwipeButtonController{
 					if(InformationExpert.getClientModel().getLoveProfileFront() == null) {
 						InformationExpert.importLoveMatchBatch();
 					}	
-					
+					if(InformationExpert.getClientModel().getLoveProfileFront() == null) {
+						throw new DBFailureException();
+					}
 					InformationExpert.setOtherProfile(InformationExpert.getClientModel().getLoveProfileFront().getUserId());
 					
 				}
