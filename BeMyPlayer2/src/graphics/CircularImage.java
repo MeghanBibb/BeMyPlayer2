@@ -8,6 +8,7 @@ import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
@@ -20,6 +21,8 @@ import javax.swing.JLabel;
  */
 public class CircularImage extends JLabel{
 	
+	/** The logger. */
+	private static Logger logger = Logger.getLogger(CircularImage.class.getName());
 	/**
 	 * Instantiates a new circular image.
 	 *

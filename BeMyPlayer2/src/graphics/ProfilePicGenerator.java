@@ -44,12 +44,18 @@ public class ProfilePicGenerator {
 		List<JButton> loveList = new ArrayList<>();
 		List<Profile> profiles= InformationExpert.getClientModel().getLoveMatches();
 		List<String> userIds = new ArrayList<>();
-		JLabel nameLabel = new JLabel();
-		nameLabel.setFont(Fonts.getFont(12f));
-		nameLabel.setForeground(Colors.Yellow);
+		List<JLabel> nameLabel = new ArrayList<>();
+		for(int i = 0; i < profiles.size();i++) {
+			JLabel nameLabel1 = new JLabel();
+			nameLabel1.setFont(Fonts.getFont(12f));
+			nameLabel1.setForeground(Colors.Yellow);
+			nameLabel.add(nameLabel1);
+		}
+		
 		for(int i = 0; i < profiles.size(); i++) {
 			userIds.add(profiles.get(i).getUserId());
 		}
+		int j = 0;
 		for(String name: userIds) {
 			//	query db for name and get images 
 			Image img1;
@@ -73,11 +79,12 @@ public class ProfilePicGenerator {
 			setIcon.setBackground(Colors.Red);
 			setIcon.setName(name);
 			setIcon.setPreferredSize(new Dimension(75,50));
-			nameLabel.setText(temp.getUsername());
-			setIcon.add(nameLabel, BorderLayout.PAGE_END);
+			nameLabel.get(j).setText(temp.getUsername());
+			setIcon.add(nameLabel.get(j), BorderLayout.PAGE_END);
 			setIcon.setActionCommand("profileclick");
 			setIcon.addActionListener(b);
 			loveList.add(setIcon);
+			j++;
 			}
 		}
 		if(userIds.size() < 3) {
@@ -103,12 +110,17 @@ public class ProfilePicGenerator {
 		List<JButton> friendList = new ArrayList<JButton>();
 		List<Profile> profiles= InformationExpert.getClientModel().getFriendMatches();
 		List<String> userIds = new ArrayList<>();
-		JLabel nameLabel = new JLabel();
-		nameLabel.setFont(Fonts.getFont(12f));
-		nameLabel.setForeground(Colors.Yellow);
+		List<JLabel> nameLabel = new ArrayList<>();
+		for(int i = 0; i < profiles.size();i++) {
+			JLabel nameLabel1 = new JLabel();
+			nameLabel1.setFont(Fonts.getFont(12f));
+			nameLabel1.setForeground(Colors.Yellow);
+			nameLabel.add(nameLabel1);
+		}
 		for(int i = 0; i < profiles.size(); i++) {
 			userIds.add(profiles.get(i).getUserId());
 		}
+		int j = 0;
 		for(String name: userIds) {
 			//	query db for name and get images 
 			Image img1;
@@ -131,11 +143,12 @@ public class ProfilePicGenerator {
 			setIcon.setBackground(Colors.Red);
 			setIcon.setName(name);
 			setIcon.setPreferredSize(new Dimension(75,50));
-			nameLabel.setText(temp.getUsername());
-			setIcon.add(nameLabel, BorderLayout.PAGE_END);
+			nameLabel.get(j).setText(temp.getUsername());
+			setIcon.add(nameLabel.get(j), BorderLayout.PAGE_END);
 			setIcon.setActionCommand("profileclick");
 			setIcon.addActionListener(b);
 			friendList.add(setIcon);
+			j++;
 			}
 		}
 		if(userIds.size() < 3) {

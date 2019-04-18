@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 public class HomePageModel {
 	
 	
+	/** The is sound on. */
 	boolean isSoundOn = true;
 	
 	/** The btn logout. */
@@ -56,10 +57,20 @@ public class HomePageModel {
 		this.btnLogout = btnLogout;
 	}
 	
+	/**
+	 * Checks if is sound on.
+	 *
+	 * @return true, if is sound on
+	 */
 	public boolean isSoundOn() {
 		return isSoundOn;
 	}
 
+	/**
+	 * Sets the sound on.
+	 *
+	 * @param isSoundOn the new sound on
+	 */
 	public void setSoundOn(boolean isSoundOn) {
 		this.isSoundOn = isSoundOn;
 	}

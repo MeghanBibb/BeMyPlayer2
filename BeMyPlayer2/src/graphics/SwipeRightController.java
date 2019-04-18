@@ -1,6 +1,7 @@
 package graphics;
 
 import java.awt.event.ActionEvent;
+import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -29,7 +30,9 @@ public class SwipeRightController extends SwipeButtonController{
 		super("Right");
 		this.controller = controller;
 	}
-
+	
+	/** The logger. */
+	private static Logger logger = Logger.getLogger(SwipeRightController.class.getName());
 	/* (non-Javadoc)
 	 * @see graphics.SwipeButtonController#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -78,6 +81,8 @@ public class SwipeRightController extends SwipeButtonController{
 		} catch (DBFailureException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+			logger.severe("Database error occured");
+			InvalidPopup p = new InvalidPopup(new JPanel(),"Database error, please try again later");
 		} finally {
 
 			try {
@@ -106,8 +111,9 @@ public class SwipeRightController extends SwipeButtonController{
 				//controller.setProfile(InformationExpert.getUserAccountWithProfile("LfiDeQ0WNQEnNyZ1c94J").getAccountProfile());
 			} catch (DBFailureException e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
-				System.out.println("cant load next account");
+				logger.severe("Ran out of matches");
+				InvalidPopup p = new InvalidPopup(new JPanel(),"Ran out of matches for today. Please come back tomorrow");
+				GraphicsController.processPage(PageCreator.HOME_PAGE, PageController.backPage);
 			}
 		}
 		

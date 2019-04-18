@@ -25,7 +25,7 @@ import model.ResourceManager;
 public class CreditsPageView {
 
 	/**
-	 * Launch page.
+	 * Launch credits page.
 	 *
 	 * @param creditscontrol the creditscontrol
 	 * @param mainFrame the main frame

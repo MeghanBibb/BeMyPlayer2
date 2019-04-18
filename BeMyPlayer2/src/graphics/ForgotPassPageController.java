@@ -59,7 +59,8 @@ public class ForgotPassPageController extends PageController {
 						logger.info("Submit");
 						GraphicsController.processPage(PageCreator.LOGIN_PAGE,backPage);
 					} else {
-						System.out.println("didnt change password");
+						logger.info("Failed to reset password");
+						InvalidPopup p = new InvalidPopup(this.getForgotPasswordPanel(),"Invalid account info provided");
 					}
 				}
 				break;
