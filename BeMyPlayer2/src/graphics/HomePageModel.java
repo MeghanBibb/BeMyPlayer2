@@ -9,6 +9,9 @@ import javax.swing.JLabel;
  */
 public class HomePageModel {
 	
+	
+	boolean isSoundOn = true;
+	
 	/** The btn logout. */
 	//init buttons
 	private JButton btnLogout;
@@ -53,6 +56,14 @@ public class HomePageModel {
 		this.btnLogout = btnLogout;
 	}
 	
+	public boolean isSoundOn() {
+		return isSoundOn;
+	}
+
+	public void setSoundOn(boolean isSoundOn) {
+		this.isSoundOn = isSoundOn;
+	}
+
 	/**
 	 * Gets the btn sound.
 	 *

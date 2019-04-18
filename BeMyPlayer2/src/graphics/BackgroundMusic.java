@@ -56,4 +56,12 @@ public class BackgroundMusic {
 		status = "stop";
 	}
 	
+	public static boolean isPlaying() {
+		if(status.equals("play")) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
 }

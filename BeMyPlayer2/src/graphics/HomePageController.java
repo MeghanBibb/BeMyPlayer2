@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.logging.Logger;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -107,6 +108,13 @@ public class HomePageController extends PageController{
 			case SOUND:
 				logger.info("Modifying the sound settings");
 				BackgroundMusic.getInstance().music();
+				JButton temp = homePageModel.getBtnSound();
+				if(BackgroundMusic.getInstance().isPlaying()) {
+					temp.setText("<HTML><U>Turn Music Off</U></HTML>");
+				}else {
+					temp.setText("<HTML><U>Turn Music On</U></HTML>");
+				}
+				homePageModel.setBtnSound(temp);
 				break;
 		}
 	}

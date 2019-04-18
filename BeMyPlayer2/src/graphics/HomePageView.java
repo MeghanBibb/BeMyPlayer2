@@ -160,8 +160,8 @@ public class HomePageView {
 		credits.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		homeController.getHomePanel().add(credits);
 		
-		JButton btnMute = new JButton("<HTML><U>Sound</U></HTML>");
-		btnMute.setBounds(115,360,90,40);
+		JButton btnMute = new JButton("<HTML><U>Turn Music Off</U></HTML>");
+		btnMute.setBounds(115,360,120,40);
 		btnMute.setActionCommand(homeController.SOUND);
 		btnMute.setBackground(yellow);
 		btnMute.setFont(Fonts.getFont((float) 12));
@@ -171,7 +171,7 @@ public class HomePageView {
 		btnMute.setForeground(Colors.White);
 		btnMute.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnMute.addActionListener(homeController);
-		homeController.getHomePanel().add(btnMute);
+		homeController.getHomePageModel().setBtnSound(btnMute);
 		
 	
 		
@@ -186,6 +186,7 @@ public class HomePageView {
 		homeController.getHomePanel().add(homeController.getHomePageModel().getBtnSupport());
 		homeController.getHomePanel().add(homeController.getHomePageModel().getBtnViewMatches());
 		homeController.getHomePanel().add(homeController.getHomePageModel().getLblBeMyPlayer());
+		homeController.getHomePanel().add(homeController.getHomePageModel().getBtnSound());
 
 		
 		
