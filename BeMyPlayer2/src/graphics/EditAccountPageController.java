@@ -132,8 +132,6 @@ public class EditAccountPageController extends PageController{
 					if(!this.getEditAccountModel().getSecQA().getText().isEmpty()) {
 						InformationExpert.getActiveAccount().setSecurityQ1AnsHash(Hasher.hashString(this.getEditAccountModel().getSecQA().getText()));
 					}
-				
-
 					
 					logger.info("Submit");
 					GraphicsController.processPage(PageCreator.EDIT_ACCOUNT_PAGE, backPage);
