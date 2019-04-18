@@ -3,6 +3,7 @@ package graphics;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -103,9 +104,10 @@ public class ViewMatchesView {
 		JPanel profilePicPanel = new JPanel();
 		profilePicPanel.setBackground(Colors.Yellow);
 		profilePicPanel.setLayout(gridLayout);
-		profilePicPanel.setPreferredSize(new Dimension(100,245));
-		profilePicPanel.setSize(100, 245);
 		
+		profilePicPanel.setPreferredSize(new Dimension(100,245));
+		
+		//profilePicPanel.setSize(100, 245);
 		JComboBox matchtype = new JComboBox();
 		
 		matchtype.addItemListener(new ItemListener() {
@@ -127,9 +129,15 @@ public class ViewMatchesView {
         			}
         			else {
         				List<JButton> pics = ProfilePicGenerator.getLoveList(viewMatchController);
-            			for(JButton icon: pics) {
-            				profilePicPanel.add(icon);
-            			}
+        		    	double temp = pics.size();
+        		    	
+        		    	if(pics.size() > 4) {
+        		    		temp = (Math.ceil(Math.abs(temp/4)));
+        		    		profilePicPanel.setPreferredSize(new Dimension(100,(int) (250*temp)));
+        		    	}
+        				for(JButton icon: pics) {
+        					profilePicPanel.add(icon);
+        				}
             			
         			}
         			profilePicPanel.repaint();
@@ -149,10 +157,16 @@ public class ViewMatchesView {
         				viewMatchController.getViewMatchesModel().setEmptylistLine1(noMatchlbl1);
         			}
         			else {
-        				List<JButton> pics = ProfilePicGenerator.getFriendList(viewMatchController);
-            			for(JButton icon: pics) {
-            				profilePicPanel.add(icon);
-            			}
+        				List<JButton> pics = ProfilePicGenerator.getLoveList(viewMatchController);
+        		    	double temp = pics.size();
+        		    	
+        		    	if(pics.size() > 4) {
+        		    		temp = (Math.ceil(Math.abs(temp/4)));
+        		    		profilePicPanel.setPreferredSize(new Dimension(100,(int) (250*temp)));
+        		    	}
+        				for(JButton icon: pics) {
+        					profilePicPanel.add(icon);
+        				}
         			}
         			viewMatchController.getViewMatchesPanel().repaint();
         			profilePicPanel.repaint();
@@ -182,7 +196,7 @@ public class ViewMatchesView {
 		//////////////////////////////////////////////////////////
 //		if empty
 		
-	    if(InformationExpert.getClientModel().getLoveMatches() == null || InformationExpert.getClientModel().getLoveMatches().size() == 0) {
+		if(InformationExpert.getClientModel().getLoveMatches() == null || InformationExpert.getClientModel().getLoveMatches().size() == 0) {
 	    	JLabel noMatchlbl1 = new JLabel("<HTML>Your princess is in another castle<br>Get back out there and find a match!<br></HTML>");
 		    noMatchlbl1.setFont(Fonts.getFont(12f));
 		    noMatchlbl1.setForeground(Colors.Red);
@@ -193,14 +207,22 @@ public class ViewMatchesView {
 	    }
 	    else {
 	    	List<JButton> pics = ProfilePicGenerator.getLoveList(viewMatchController);
+	    	double temp = pics.size();
+	    	
+	    	if(pics.size() > 4) {
+	    		temp = (Math.ceil(Math.abs(temp/4)));
+	    		profilePicPanel.setPreferredSize(new Dimension(100,(int) (250*temp)));
+	    	}
 			for(JButton icon: pics) {
 				profilePicPanel.add(icon);
 			}
 	    }
-
+		
 		//	SCROLLPANE
 	    JScrollPane scrollPane = new JScrollPane(profilePicPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-	
+	    
+	    
+	    //scrollPane.getViewport().add(profilePicPanel);
 	    scrollPane.setBounds(new Rectangle(25, 120, 215, 245));
 	    
 		viewMatchController.getViewMatchesPanel().add(scrollPane);

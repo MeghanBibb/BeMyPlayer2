@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.logging.Logger;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import firebase.DBFailureException;
 import model.InformationExpert;
@@ -37,38 +38,46 @@ public class SwipePageController extends PageController {
 		if(back != null) {
 			backPage = back;
 		}
-		
+		boolean invalid = false;
 		//	load first matches
 		if(InformationExpert.getCurrentSwipePage().equals(MatchType.FRIEND_MATCH.getStatusString())) {
+			try {
 			if(InformationExpert.getClientModel().getFriendProfileFront() == null) {
 				//	1 iteration of import, next import grows size
 				InformationExpert.importFriendMatchBatch();
 			}
+			if(InformationExpert.getClientModel().getFriendProfileFront() == null) {
+				throw new DBFailureException();
+			}
 			
-			try {
 				InformationExpert.setOtherProfile(InformationExpert.getClientModel().getFriendProfileFront().getUserId());
 				//InformationExpert.getClientModel().dequeueFriendProfile();
 			} catch (DBFailureException e1) {
-				// TODO Auto-generated catch block
-				logger.warning("database failed to load matches");
+				invalid = true;
+				logger.severe("Ran out of matches");
+				InvalidPopup p = new InvalidPopup(new JPanel(),"Ran out of matches for today. Please come back tomorrow");
+				GraphicsController.processPage(PageCreator.HOME_PAGE, PageController.backPage);
 			}
 		}
 		else if(InformationExpert.getCurrentSwipePage().equals(MatchType.LOVE_MATCH.getStatusString())){
+			try {
 			if(InformationExpert.getClientModel().getLoveProfileFront() == null) {
 				InformationExpert.importLoveMatchBatch();
 			}
-
-			try {
+			if(InformationExpert.getClientModel().getLoveProfileFront() == null) {
+				throw new DBFailureException();
+			}
+			
 				InformationExpert.setOtherProfile(InformationExpert.getClientModel().getLoveProfileFront().getUserId());
 				//InformationExpert.getClientModel().dequeLoveProfile();
 			} catch (DBFailureException e1) {
-				// TODO Auto-generated catch block
-				logger.warning("database failed to load matches");
+				invalid = true;
+				logger.severe("Ran out of matches");
+				InvalidPopup p = new InvalidPopup(new JPanel(),"Ran out of matches for today. Please come back tomorrow");
+				GraphicsController.processPage(PageCreator.HOME_PAGE, PageController.backPage);
 			}
 		}
-		if(InformationExpert.getOtherProfile() == null) {
-			logger.warning("no matches for you loser");
-		}
+		if(invalid = false) {
 		this.model = new SwipePageModel(mainFrame, InformationExpert.getOtherProfile(), this);
 		model.backButton.addActionListener(new ActionListener() {
 	    	@Override
@@ -77,7 +86,7 @@ public class SwipePageController extends PageController {
 	    			GraphicsController.processPage(PageCreator.HOME_PAGE,backPage);
 	    	}
 	    });
-		
+		}
 	}
 
 	/**

@@ -434,7 +434,7 @@ public class InformationExpert {
 			
 			try {
 				List<Profile> importedProfs = 
-				databaseAdapter.getUnmatchedProfiles(uid, FireBaseAdapter.LOVE_MATCHES, clientModel.getFriendMatchBatch());
+				databaseAdapter.getUnmatchedProfiles(uid, FireBaseAdapter.LOVE_MATCHES, clientModel.getLoveMatchBatch());
 				if(importedProfs.isEmpty())
 					return false;
 				
