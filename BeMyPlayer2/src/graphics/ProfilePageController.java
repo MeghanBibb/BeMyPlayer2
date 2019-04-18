@@ -59,7 +59,6 @@ public class ProfilePageController extends PageController {
 			a = InformationExpert.getActiveAccount().getAccountProfile();
 		}
 		else if(GraphicsController.getProfileString().equalsIgnoreCase("other account")){
-			System.out.println("other account");
 			a = InformationExpert.getOtherProfile();
 		}
 		ProfilePageView.startProfilePage(this,mainFrame);
@@ -141,7 +140,7 @@ public class ProfilePageController extends PageController {
 					}
 				} catch (DBFailureException e1) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					logger.severe("Database failure for blocking user");
 				} 
 				
 				GraphicsController.processPage(backPage, backPage);

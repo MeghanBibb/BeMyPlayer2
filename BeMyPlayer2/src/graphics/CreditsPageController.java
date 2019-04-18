@@ -65,7 +65,8 @@ public class CreditsPageController extends PageController{
 				InformationExpert.setOtherProfile(text);
 			} catch (DBFailureException e1) {
 				// TODO Auto-generated catch block
-				logger.warning("database failed to load profile");
+				logger.severe("database failed to load profile");
+				InvalidPopup p = new InvalidPopup(this.getCreditsPanel(),"Database failed to load profiles");
 			}
 			if(brief == null) {
 				brief = new ProfileBriefModel(InformationExpert.getOtherProfile(),new Rectangle(250,120,215,245),PageCreator.MATCHES_PAGE);

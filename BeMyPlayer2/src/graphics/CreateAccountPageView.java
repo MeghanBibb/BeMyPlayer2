@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -36,6 +37,8 @@ import model.ResourceManager;
  */
 public class CreateAccountPageView {
 	
+	/** The logger. */
+	private static Logger logger = Logger.getLogger(CreateAccountPageView.class.getName());
 	/**
 	 * Start create account page.
 	 *
@@ -820,7 +823,7 @@ public class CreateAccountPageView {
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						img1 = CreateAccountPageModel.DEFAULT_PROFILE_IMAGE;
-						e.printStackTrace();
+						logger.warning("Image not found exception. Default image selected");
 					}
 					capController.getCreateAccountPageModel().setImagePath(f.getAbsolutePath());
 					capController.getCreateAccountPageModel().setProfileImg(img1);

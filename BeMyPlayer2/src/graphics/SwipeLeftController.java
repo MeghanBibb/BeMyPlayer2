@@ -1,6 +1,9 @@
 package graphics;
 
 import java.awt.event.ActionEvent;
+import java.util.logging.Logger;
+
+import javax.swing.JPanel;
 
 import firebase.DBFailureException;
 import model.*;
@@ -11,6 +14,8 @@ import model.*;
  */
 public class SwipeLeftController extends SwipeButtonController{
 	
+	/** The logger. */
+	private static Logger logger = Logger.getLogger(SwipeLeftController.class.getName());
 	/** The controller. */
 	SwipePageController controller;
 	
@@ -57,7 +62,8 @@ public class SwipeLeftController extends SwipeButtonController{
 			}
 		} catch (DBFailureException e1) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			logger.severe("Failed to load matches");
+			InvalidPopup p = new InvalidPopup(new JPanel(), "Database error, please try again later");
 		} finally {
 
 			try {
@@ -81,8 +87,9 @@ public class SwipeLeftController extends SwipeButtonController{
 				//controller.setProfile(InformationExpert.getUserAccountWithProfile("LfiDeQ0WNQEnNyZ1c94J").getAccountProfile());
 			} catch (DBFailureException e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
-				System.out.println("cant load next account");
+				logger.severe("Ran out of matches");
+				InvalidPopup p = new InvalidPopup(new JPanel(),"Ran out of matches for today. Please come back tomorrow");
+				GraphicsController.processPage(PageCreator.HOME_PAGE, PageController.backPage);
 			}
 		}
 	}

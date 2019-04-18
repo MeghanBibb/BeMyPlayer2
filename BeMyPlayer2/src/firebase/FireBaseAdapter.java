@@ -388,8 +388,8 @@ public class FireBaseAdapter {
 			throw new DBFailureException();
 		}
 		
-		System.out.println(ansHash);
-		System.out.println(userEmail);
+		//System.out.println(ansHash);
+		//System.out.println(userEmail);
 		
 		//query if user account exists:
 		ApiFuture<QuerySnapshot> fetchUser = 
@@ -872,7 +872,7 @@ public class FireBaseAdapter {
 			Set<String> filteredIds = clientMatches
 				.getDocuments().parallelStream()
 				.map(m -> {
-					System.out.println(m.getId());
+					//System.out.println(m.getId());
 					return m.getId();
 				})
 				.collect(Collectors.toCollection(HashSet::new));
@@ -926,7 +926,7 @@ public class FireBaseAdapter {
 			throw new DBFailureException();
 		}
 		
-		System.out.println("UID: " + clientProfile.getUserId());
+		//System.out.println("UID: " + clientProfile.getUserId());
 		ApiFuture<DocumentSnapshot> getClientMatch = 
 				db.collection(FireBaseSchema.MATCHES_TABLE)
 					.document(clientProfile.getUserId())	

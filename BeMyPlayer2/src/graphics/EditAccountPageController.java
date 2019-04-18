@@ -172,6 +172,7 @@ public class EditAccountPageController extends PageController{
 						}
 					} catch (DBFailureException e1) {
 						logger.warning("Failed to update profile for " + InformationExpert.getActiveUserID());
+						InvalidPopup p =  new InvalidPopup(this.getEditAccountPanel(),"Failed to update profile");
 					}
 					logger.info("Submit");
 					GraphicsController.processPage(PageCreator.EDIT_ACCOUNT_PAGE, backPage);
@@ -197,10 +198,12 @@ public class EditAccountPageController extends PageController{
 			try {
 				PaymentInfo p = InformationExpert.getPaymentInfo(InformationExpert.getActiveUserID());
 				if(p != null) {
-					System.out.print("GOT PAYMENT INFO FROM DB\n");
+					logger.info("GOT PAYMENT INFO FROM DB\n");
 				}
 			} catch (DBFailureException e1) {
 				//database failure
+				logger.severe("Database failed to pull payment info for " + InformationExpert.getActiveUserID());
+				InvalidPopup p = new InvalidPopup(this.getEditAccountPanel(),"Error loading payment info from database");
 			}
 				
 				GraphicsController.processPage(PageCreator.PAYMENT_PAGE,backPage);

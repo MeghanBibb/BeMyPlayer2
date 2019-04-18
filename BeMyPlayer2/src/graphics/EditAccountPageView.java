@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -35,6 +36,8 @@ import model.ResourceManager;
  */
 public class EditAccountPageView {
 	
+	/** The logger. */
+	private static Logger logger = Logger.getLogger(EditAccountPageView.class.getName());
 	/**
 	 * Launch edit page.
 	 *
@@ -671,7 +674,10 @@ public class EditAccountPageView {
 						img1 = ImageConverter.convertToJPG(ImageIO.read(new File(f.getAbsolutePath())));
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
-						e.printStackTrace();
+						logger.warning("Failed to load image");
+						img1 = CreateAccountPageModel.DEFAULT_PROFILE_IMAGE;
+						editController.getEditAccountModel().setImagePath(img1.toString());
+						editController.getEditAccountModel().setProfileImg(img1);
 					}
 					editController.getEditAccountModel().setImagePath(f.getAbsolutePath());
 					editController.getEditAccountModel().setProfileImg(img1);
@@ -680,6 +686,7 @@ public class EditAccountPageView {
 				else if(f == null){
 					img1 = CreateAccountPageModel.DEFAULT_PROFILE_IMAGE;
 					editController.getEditAccountModel().setImagePath(img1.toString());
+					editController.getEditAccountModel().setProfileImg(img1);
 				}
 				setIcon.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH)));
 				setIcon.setBounds(125, 25, 150, 150);

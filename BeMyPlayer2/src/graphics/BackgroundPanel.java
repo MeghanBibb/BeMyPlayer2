@@ -6,6 +6,7 @@ import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -18,6 +19,8 @@ import model.ResourceManager;
  */
 public class BackgroundPanel extends JPanel {
 	
+	/** The logger. */
+	private static Logger logger = Logger.getLogger(BackgroundPanel.class.getName());
 	/** The base image. */
 	public static BufferedImage baseImage = ResourceManager.loadImage("background.png");
 	

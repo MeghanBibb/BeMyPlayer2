@@ -74,7 +74,7 @@ public class GraphicsController {
 				mainFrame.setIconImage(icon.getImage());
 			}
 			catch (Exception exc) {
-			    exc.printStackTrace();
+			    logger.warning("Failed to load app icon");
 			}
 			processPage(PageCreator.LOGIN_PAGE, null);
 			
