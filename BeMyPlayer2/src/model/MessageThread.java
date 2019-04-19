@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import java.util.List;
 /**
  * The Class MessageThread.
  */
-public class MessageThread {
+public class MessageThread{
 	
 	/** The Constant CHRONOLOGICAL_MSG_SORT. */
 	private static final Comparator<Message> CHRONOLOGICAL_MSG_SORT = new Comparator<Message>() {
@@ -44,6 +45,9 @@ public class MessageThread {
 	 * @param m the m
 	 */
 	public void addMessage(Message m) {
+		if(this.messages == null) {
+			this.messages = new ArrayList<Message>();
+		}
 		this.messages.add(m);
 	}
 	

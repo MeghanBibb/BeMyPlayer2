@@ -128,11 +128,7 @@ public class FireBaseAdapter {
 		
 
 		DBDocumentPackage payPackage = payment.toDBPackage();
-		ApiFuture<DocumentReference> newPaymentDoc;
 		
-		/*newPaymentDoc = this.db.collection(FireBaseSchema.PAYMENT_TABLE)
-				.add(payPackage.getValues());
-		*/
 		db.collection(FireBaseSchema.PAYMENT_TABLE)
 		        .document(payment.getID())
 		        .set(payPackage.getValues());
@@ -768,7 +764,7 @@ public class FireBaseAdapter {
 		List<Profile> profList = null;
 		ApiFuture<QuerySnapshot> mBatchQuery = 
 				db.collection(FireBaseSchema.MATCHES_TABLE)
-					.document(userProfile.getUserId())	
+					.document(userProfile.getUserId())
 					.collection(FireBaseSchema.MATCHES_TABLE_COLLECTION)
 					.whereEqualTo(Match._TYPE, mStringType)
 					.whereEqualTo(Match._CLIENT_MATCH_STATUS, MatchStatus._STATUS_NO_MATCH)
@@ -816,10 +812,10 @@ public class FireBaseAdapter {
 	 * @param matchType the match type
 	 * @return the unmatched profiles
 	 * @throws DBFailureException the DB failure exception
-	 */
+	 *//*
 	public List<Profile> getUnmatchedProfiles(String userId, String matchType) throws DBFailureException{
 		return getUnmatchedProfiles(userId, matchType,1);
-	}
+	}*/
 	
 	/**
 	 * Gets the unmatched profiles.
@@ -1153,11 +1149,14 @@ public class FireBaseAdapter {
 	 */
 	public MessageThread getMessageThread(String userId, String otherUserId) throws DBFailureException{
 		//TODO: Fix this
-		/*
+		
 		if(this.db == null) {
 			LOGGER.log(Level.WARNING, "Error- no database connection");
 			throw new DBFailureException();
 		}
+		
+
+		MessageThread msgThread = new MessageThread();
 		
 		String msgId = FireBaseSchema.toMessageThreadIndex(userId, otherUserId);
 		ApiFuture<QuerySnapshot> fetchThread =
@@ -1165,19 +1164,34 @@ public class FireBaseAdapter {
 						.document(msgId)
 						.collection(FireBaseSchema.MESSAGE_THREADS_TABLE_COLLECTION)
 						.get();
+		
+		QuerySnapshot threadResult;
 
-		MessageThread msgThread = new MessageThread();
-		
-		
-		
 		try {
-			QuerySnapshot threadResult = fetchThread.get();
-			if(!threadResult.isEmpty()) {
+			threadResult = fetchThread.get();
+			if(threadResult.isEmpty()) {
 				LOGGER.log(Level.WARNING,"Could not find match Thread");
 				return null;
 			}else {
-				DBDocumentPackage threadPackage = new DBDocumentPackage(msgID, threadResult.getData());
-				msgThread.initializeFromPackage(threadPackage);
+				List<Message> messageList;
+				messageList = threadResult.getDocuments().parallelStream()
+						.map(m -> {
+							try {
+								DBDocumentPackage dbpck = new DBDocumentPackage(m.getId(),m.getData());
+								Message msg = new Message();
+								msg.initializeFromPackage(dbpck);
+								return msg;
+								
+							} catch(Exception e) {
+								LOGGER.log(Level.INFO, "Error- a Message retrieval query failed");
+								return null;
+							}
+						})
+						.filter(p -> p !=null)
+						.collect(Collectors.toList());
+				msgThread.setMessages(messageList);
+				
+				
 			}
 
 		} catch (InterruptedException e1) {
@@ -1188,7 +1202,29 @@ public class FireBaseAdapter {
 			throw new DBFailureException();
 		}
 
-		return msgThread;*/ return null;
+		return msgThread;
+	}
+	
+	public boolean addMessage(String userId, String otherUserId, Message message) throws DBFailureException {
+		
+		if(this.db == null) {
+			LOGGER.log(Level.WARNING, "Error- no database connection");
+			throw new DBFailureException();
+		}
+		
+		String msgId = FireBaseSchema.toMessageThreadIndex(userId, otherUserId);
+		
+		DBDocumentPackage pck = message.toDBPackage();
+		
+		db.collection(FireBaseSchema.MESSAGE_THREADS_TABLE)
+			.document(msgId)
+			.collection(FireBaseSchema.MESSAGE_THREADS_TABLE_COLLECTION)
+			.document(message.getTimestamp().toString())
+			.set(pck.getValues());
+		
+		
+		return true;
+		
 	}
 
 
