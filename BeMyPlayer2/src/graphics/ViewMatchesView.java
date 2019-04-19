@@ -128,6 +128,7 @@ public class ViewMatchesView {
         				
         			}
         			else {
+        				System.out.println("should be here for reloading lovers");
         				List<JButton> pics = ProfilePicGenerator.getLoveList(viewMatchController);
         		    	double temp = pics.size();
         		    	
@@ -157,7 +158,7 @@ public class ViewMatchesView {
         				viewMatchController.getViewMatchesModel().setEmptylistLine1(noMatchlbl1);
         			}
         			else {
-        				List<JButton> pics = ProfilePicGenerator.getLoveList(viewMatchController);
+        				List<JButton> pics = ProfilePicGenerator.getFriendList(viewMatchController);
         		    	double temp = pics.size();
         		    	
         		    	if(pics.size() > 4) {
