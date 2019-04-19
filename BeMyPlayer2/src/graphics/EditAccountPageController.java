@@ -280,7 +280,14 @@ public class EditAccountPageController extends PageController{
 		 */
 		//	VALIDATIONS
 		List<String> warnings = new ArrayList<>();
-		
+		if(this.editAccountModel.getFrmtdtxtfldEnterUsername().getText().equals("")) {
+			valid = false;
+			warnings.add("Please enter a username\n");
+		}
+		if(this.editAccountModel.getFrmtdtxtfldEnterUsername().getText().length() > 12) {
+			valid = false;
+			warnings.add("Character limit 12 exceeded\n");
+		}
 		if(this.editAccountModel.getPwdEnterPass().getText().equalsIgnoreCase("")) {
 			if(!this.editAccountModel.getPwdValidatePass().getText().equalsIgnoreCase("")) {
 				valid = false;
