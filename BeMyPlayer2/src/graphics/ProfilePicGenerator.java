@@ -77,7 +77,6 @@ public class ProfilePicGenerator {
 				
 			}
 		}
-		System.out.println(userIds.size());
 		if(userIds.size() < 3) {
 			int i = userIds.size();
 			while(i < 3) {

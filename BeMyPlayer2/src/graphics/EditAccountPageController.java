@@ -170,7 +170,7 @@ public class EditAccountPageController extends PageController{
 						} else {
 							InformationExpert.updateProfileImage(InformationExpert.getActiveAccount().getAccountProfile().getProfilePicture(), InformationExpert.getActiveUserID());
 						}
-					} catch (DBFailureException e1) {
+					} catch (Exception e1) {
 						logger.warning("Failed to update profile for " + InformationExpert.getActiveUserID());
 						InvalidPopup p =  new InvalidPopup(this.getEditAccountPanel(),"Failed to update profile");
 					}
