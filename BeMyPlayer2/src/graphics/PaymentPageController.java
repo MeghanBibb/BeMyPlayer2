@@ -93,7 +93,7 @@ public class PaymentPageController extends PageController{
 	 *
 	 * @return true, if successful
 	 */
-	private boolean verifyPayment() {
+	public boolean verifyPayment() {
 		int month;
 		int year;
 		int cvc;
