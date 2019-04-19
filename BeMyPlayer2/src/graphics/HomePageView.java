@@ -146,7 +146,7 @@ public class HomePageView {
 		site.setContentAreaFilled(false);
 		site.setBorderPainted(false);
 		site.setFont(Fonts.getFont(12f));
-		site.setCursor(Cursor.getPredefinedCursor(Cursor.NE_RESIZE_CURSOR));
+		site.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		site.setForeground(Colors.White);
 		
 		JButton credits = new JButton("<HTML><U>Credits</U></HTML>");

@@ -25,6 +25,7 @@ import java.util.concurrent.ExecutionException;
 
 import com.google.api.core.ApiFuture;
 import com.google.auth.oauth2.GoogleCredentials;
+import com.google.cloud.firestore.CollectionReference;
 import com.google.cloud.firestore.DocumentChange;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
@@ -32,6 +33,8 @@ import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.Query;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
+import com.google.cloud.firestore.Transaction;
+import com.google.cloud.firestore.WriteBatch;
 import com.google.cloud.firestore.WriteResult;
 import com.google.cloud.storage.Blob;
 import com.google.cloud.storage.Blob.BlobSourceOption;
@@ -1191,5 +1194,51 @@ public class FireBaseAdapter {
 		return msgThread;*/ return null;
 	}
 
+	public void deleteAccount(String userId) throws DBFailureException {
+		
+		CollectionReference acctable = db.collection(FireBaseSchema.ACCOUNTS_TABLE);
+		DocumentReference accRef = db.collection(FireBaseSchema.ACCOUNTS_TABLE).document(userId);
+		DocumentReference profRef = db.collection(FireBaseSchema.PROFILES_TABLE).document(userId);
+		DocumentReference matchesRef = db.collection(FireBaseSchema.MATCHES_TABLE).document(userId);
+		
+		ApiFuture<QuerySnapshot> matchIds = db.collection(FireBaseSchema.MATCHES_TABLE_COLLECTION)
+				.document(userId)
+				.collection(FireBaseSchema.MATCHES_TABLE_COLLECTION)
+				.get();
+				
+		
+		List<String> matchUIds;
+		try {
+			matchUIds = matchIds.get().getDocuments().parallelStream()
+					.map( m -> m.getId())
+					.collect(Collectors.toList());
+		} catch (InterruptedException | ExecutionException e) {
+			LOGGER.log(Level.SEVERE, "Error- could not retrieve all matches for id.");
+			throw new DBFailureException();
+		} 
+		
+		WriteBatch deleteBatch = db.batch();
+		
+		//delete Account and Profile:
+		deleteBatch.delete(accRef);
+		deleteBatch.delete(profRef);
+		deleteBatch.delete(matchesRef);
+		
+		//Delete all converse matches:
+		matchUIds.stream()
+			.forEach(id -> {
+				DocumentReference convMatch = acctable.document(id)
+						.collection(FireBaseSchema.MATCHES_TABLE_COLLECTION)
+						.document(userId);
+				deleteBatch.delete(convMatch);
+			});
 
+		try {
+			deleteBatch.commit().get();
+		} catch (InterruptedException | ExecutionException e) {
+			LOGGER.log(Level.SEVERE, "Error- could not delete User Account.");
+			e.printStackTrace();
+			throw new DBFailureException();
+		}
+	}
 }
