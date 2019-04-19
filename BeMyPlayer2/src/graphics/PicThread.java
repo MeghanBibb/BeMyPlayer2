@@ -49,21 +49,26 @@ public class PicThread extends Thread{
 	public void run() {
 //		query db for name and get images 
 		Image img1;
+		Profile temp =  null;
 		try {
 			img1 = InformationExpert.getProfileImage(this.uid);
-			InformationExpert.setOtherProfile(this.uid);
-			
 		} catch (DBFailureException e) {
 			// TODO Auto-generated catch block
 			img1 = DEFAULT_PIC;
 			logger.warning("database failed to load pic for " + this.uid);
 		}
-		Profile temp = InformationExpert.getOtherProfile();
+		try {
+			temp = InformationExpert.getUserAccountWithProfile(this.uid).getAccountProfile();
+		}
+		catch(DBFailureException b) {
+			logger.warning("Failed to load profile");
+		}
 		if(temp != null) {
 		//Image img1 = new ImageIcon("filepathfromDB").getImage();//	add try catch and dont add if invalid file path
 		JButton setIcon = new JButton();
 		setIcon.setLayout(new FlowLayout());
 		setIcon.add(new CircularImage((new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH)))));
+		
 		setIcon.setFont(Fonts.getFont(12f));
 		setIcon.setForeground(Colors.Yellow);
 		setIcon.setBackground(Colors.Red);
@@ -79,6 +84,12 @@ public class PicThread extends Thread{
 		}
 		
 		this.buttons.add(setIcon);
+		}
+		else {
+			JButton trash  =new JButton();
+			trash.setEnabled(false);
+			trash.setVisible(false);
+			this.buttons.add(trash);
 		}
 	}
 }

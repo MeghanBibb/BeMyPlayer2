@@ -110,7 +110,6 @@ public class SwipeRightController extends SwipeButtonController{
 						throw new DBFailureException();
 					}
 					InformationExpert.setOtherProfile(InformationExpert.getClientModel().getLoveProfileFront().getUserId());
-					
 				}
 				
 				controller.setProfile(InformationExpert.getOtherProfile());
