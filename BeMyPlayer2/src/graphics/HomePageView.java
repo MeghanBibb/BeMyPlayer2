@@ -15,10 +15,20 @@ import javax.swing.border.LineBorder;
 
 import model.ResourceManager;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class HomePageView.
+ */
 public class HomePageView {
 	
 	
 
+	/**
+	 * Launch home page.
+	 *
+	 * @param homeController the home controller
+	 * @param mainFrame the main frame
+	 */
 	public static void launchHomePage(HomePageController homeController, JFrame mainFrame) {
 		//init model
 		homeController.setHomePageModel(new HomePageModel());
@@ -151,6 +161,22 @@ public class HomePageView {
 		credits.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		homeController.getHomePanel().add(credits);
 		
+		JButton btnMute = new JButton("<HTML><U>Turn Music Off</U></HTML>");
+		btnMute.setBounds(115,360,120,40);
+		btnMute.setActionCommand(homeController.SOUND);
+		btnMute.setBackground(yellow);
+		btnMute.setFont(Fonts.getFont((float) 12));
+		btnMute.setOpaque(true);
+		btnMute.setContentAreaFilled(false);
+		btnMute.setBorderPainted(false);
+		btnMute.setForeground(Colors.White);
+		btnMute.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnMute.addActionListener(homeController);
+		homeController.getHomePageModel().setBtnSound(btnMute);
+		
+	
+		
+		
 		//add to frame
 		homeController.getHomePanel().add(site);
 		homeController.getHomePanel().add(heartImage);
@@ -161,6 +187,8 @@ public class HomePageView {
 		homeController.getHomePanel().add(homeController.getHomePageModel().getBtnSupport());
 		homeController.getHomePanel().add(homeController.getHomePageModel().getBtnViewMatches());
 		homeController.getHomePanel().add(homeController.getHomePageModel().getLblBeMyPlayer());
+		homeController.getHomePanel().add(homeController.getHomePageModel().getBtnSound());
+
 		
 		
 		//pack and set visible

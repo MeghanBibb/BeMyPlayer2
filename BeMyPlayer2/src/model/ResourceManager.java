@@ -17,13 +17,27 @@ import javax.imageio.ImageIO;
 
 import firebase.FireBaseAdapter;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ResourceManager.
+ */
 public class ResourceManager {
 	
+	/** The Constant IMAGE_FOLDER. */
 	public static final String IMAGE_FOLDER = "src/main/resources/img/";
+	
+	/** The Constant FONTS_FOLDER. */
 	public static final String FONTS_FOLDER = "src/main/resources/fonts/";
 	
+	/** The logger. */
 	private static Logger LOGGER = Logger.getLogger(ResourceManager.class.getName());
 	
+	/**
+	 * Load image.
+	 *
+	 * @param name the name
+	 * @return the buffered image
+	 */
 	public static BufferedImage loadImage(String name) {
 		try {
 			return ImageIO.read(new File(IMAGE_FOLDER + name));
@@ -33,6 +47,13 @@ public class ResourceManager {
 		return null;
 	}
 	
+	/**
+	 * Load font.
+	 *
+	 * @param name the name
+	 * @param size the size
+	 * @return the font
+	 */
 	public static Font loadFont(String name, float size) {
 		InputStream fontStream;
 		try {
@@ -50,6 +71,12 @@ public class ResourceManager {
 		return null;
 	}
 	
+	/**
+	 * Load font.
+	 *
+	 * @param name the name
+	 * @return the font
+	 */
 	public static Font loadFont(String name) {
 		InputStream fontStream;
 		try {

@@ -1,19 +1,56 @@
 package graphics;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PageCreator.
+ */
 public class PageCreator {
 	
+	/** The Constant CREATE_ACCOUNT_PAGE. */
 	public static final String CREATE_ACCOUNT_PAGE = "create account";
-	public static final String EDIT_ACCOUNT_PAGE = "edit account";
-	public static final String FORGOT_PASSWORD_PAGE = "forgot password";
-	public static final String HOME_PAGE = "home page";
-	public static final String LOGIN_PAGE = "login page";
-	public static final String MESSAGE_PAGE = "message page";
-	public static final String PAYMENT_PAGE = "payment page";
-	public static final String SUPPORT_PAGE = "support page";
-	public static final String SWIPE_PAGE = "swipe page";
-	public static final String MATCHES_PAGE = "matches page";
-	public static final String PROFILE_PAGE = "profile page";
 	
+	/** The Constant EDIT_ACCOUNT_PAGE. */
+	public static final String EDIT_ACCOUNT_PAGE = "edit account";
+	
+	/** The Constant FORGOT_PASSWORD_PAGE. */
+	public static final String FORGOT_PASSWORD_PAGE = "forgot password";
+	
+	/** The Constant HOME_PAGE. */
+	public static final String HOME_PAGE = "home page";
+	
+	/** The Constant LOGIN_PAGE. */
+	public static final String LOGIN_PAGE = "login page";
+	
+	/** The Constant MESSAGE_PAGE. */
+	public static final String MESSAGE_PAGE = "message page";
+	
+	/** The Constant PAYMENT_PAGE. */
+	public static final String PAYMENT_PAGE = "payment page";
+	
+	/** The Constant SUPPORT_PAGE. */
+	public static final String SUPPORT_PAGE = "support page";
+	
+	/** The Constant SWIPE_PAGE. */
+	public static final String SWIPE_PAGE = "swipe page";
+	
+	/** The Constant MATCHES_PAGE. */
+	public static final String MATCHES_PAGE = "matches page";
+	
+	/** The Constant PROFILE_PAGE. */
+	public static final String PROFILE_PAGE = "profile page";
+<<<<<<< HEAD
+=======
+	
+	/** The Constant CREDITS_PAGE. */
+	public static final String CREDITS_PAGE = "credits page";
+>>>>>>> 9c72b0e720d4be7b57e3ae4e0247263ac0d969a1
+	
+	/**
+	 * Gets the page.
+	 *
+	 * @param pageType the page type
+	 * @return the page
+	 */
 	public static PageController getPage(String pageType) {
 		switch(pageType) {
 		case CREATE_ACCOUNT_PAGE: return new CreateAccountPageController();

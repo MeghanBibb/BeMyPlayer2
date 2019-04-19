@@ -22,13 +22,25 @@ import model.InformationExpert;
 import model.ResourceManager;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GraphicsController.
+ */
 public class GraphicsController {
 
+	/** The Constant ACTIVE_ACCOUNT. */
 	private static final String ACTIVE_ACCOUNT = "active account";
+	
+	/** The Constant OTHER_ACCOUNT. */
 	private static final String OTHER_ACCOUNT = "other account";
 	
+	/** The main frame. */
 	private static JFrame mainFrame;
+	
+	/** The profile account. */
 	private static String profileAccount;
+	
+	/** The logger. */
 	private static Logger logger = Logger.getLogger(GraphicsController.class.getName());
 	
 	static {
@@ -42,6 +54,10 @@ public class GraphicsController {
 		}
 		logger.info("running graphic controller");
 	}
+	
+	/**
+	 * Instantiates a new graphics controller.
+	 */
 	GraphicsController() {
 		
 			//init default jframe as base frame
@@ -58,39 +74,71 @@ public class GraphicsController {
 				mainFrame.setIconImage(icon.getImage());
 			}
 			catch (Exception exc) {
-			    exc.printStackTrace();
+			    logger.warning("Failed to load app icon");
 			}
 			processPage(PageCreator.LOGIN_PAGE, null);
 			
 	}
 	
+	/**
+	 * Process page.
+	 *
+	 * @param page the page
+	 * @param backPage the back page
+	 */
 	public static void processPage(String page, String backPage) {
 		PageController newPage = PageCreator.getPage(page);
 		newPage.launchPage(mainFrame, backPage);
 	}
 	
+	/**
+	 * Sets the profile account active.
+	 */
 	public static void setProfileAccountActive() {
 		profileAccount = ACTIVE_ACCOUNT;
 	}
 	
+	/**
+	 * Sets the profile account other.
+	 */
 	public static void setProfileAccountOther() {
 		profileAccount = OTHER_ACCOUNT;
 	}
 	
+	/**
+	 * Gets the profile string.
+	 *
+	 * @return the profile string
+	 */
 	public static String getProfileString() {
 		return profileAccount;
 	}
 	
+	/**
+	 * Gets the main frame.
+	 *
+	 * @return the main frame
+	 */
 	public static JFrame getMainFrame() {
 		return mainFrame;
 	}
 	
+	/**
+	 * Sets the main frame.
+	 *
+	 * @param frame the new main frame
+	 */
 	public void setMainFrame(JFrame frame) {
 		mainFrame = frame;
 	}
 	
 	/*    MAIN METHOD   */
 	
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 		try {
 			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -103,6 +151,7 @@ public class GraphicsController {
 		catch (Exception ex) {logger.warning("Failed to load look and feel for main");}
 		
 		// See the updated Account object in the model package...
+		BackgroundMusic.getInstance().music();
 		InformationExpert.initialize();
 		GraphicsController g = new GraphicsController();
 		

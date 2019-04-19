@@ -23,8 +23,18 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ForgotPassPageView.
+ */
 public class ForgotPassPageView {
 	
+	/**
+	 * Start forgot password page.
+	 *
+	 * @param forgotPasswordController the forgot password controller
+	 * @param mainFrame the main frame
+	 */
 	public static void startForgotPasswordPage(final ForgotPassPageController forgotPasswordController, JFrame mainFrame) {
 		//init Model
 		forgotPasswordController.setForgotPasswordPageModel(new ForgotPassPageModel());

@@ -13,8 +13,21 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Logger;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MessageView.
+ */
 public class MessageView {
+	
+	/** The logger. */
 	private static Logger logger = Logger.getLogger(MessageView.class.getName());
+    
+    /**
+     * Start message page.
+     *
+     * @param messageController the message controller
+     * @param mainFrame the main frame
+     */
     public static void startMessagePage(MessageController messageController, JFrame mainFrame) {
         //init Model
         messageController.setMessageModel(new MessageModel());

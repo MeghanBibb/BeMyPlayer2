@@ -15,15 +15,31 @@ import firebase.DBFailureException;
 import firebase.Hasher;
 import model.InformationExpert;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ForgotPassPageController.
+ */
 public class ForgotPassPageController extends PageController {
 	
+	/** The Constant SUBMIT. */
 	// set constant actions
 	public static final String SUBMIT = "submit";
+	
+	/** The Constant BACK. */
 	public static final String BACK = "back";
 
+	/** The forgot password model. */
 	private ForgotPassPageModel forgotPasswordModel = null;
+	
+	/** The forgot password panel. */
 	private JPanel forgotPasswordPanel = null;
+	
+	/** The logger. */
 	private static Logger logger = Logger.getLogger(ForgotPassPageController.class.getName());
+	
+	/* (non-Javadoc)
+	 * @see graphics.PageController#launchPage(javax.swing.JFrame, java.lang.String)
+	 */
 	public void launchPage(JFrame mainFrame, String back) {
 		if(back != null) {
 			backPage = back;
@@ -31,6 +47,9 @@ public class ForgotPassPageController extends PageController {
 		ForgotPassPageView.startForgotPasswordPage(this,mainFrame);
 	}
 	
+	/* (non-Javadoc)
+	 * @see graphics.PageController#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch(e.getActionCommand()) {
@@ -40,7 +59,8 @@ public class ForgotPassPageController extends PageController {
 						logger.info("Submit");
 						GraphicsController.processPage(PageCreator.LOGIN_PAGE,backPage);
 					} else {
-						System.out.println("didnt change password");
+						logger.info("Failed to reset password");
+						InvalidPopup p = new InvalidPopup(this.getForgotPasswordPanel(),"Invalid account info provided");
 					}
 				}
 				break;
@@ -50,6 +70,11 @@ public class ForgotPassPageController extends PageController {
 		}
 	}
 
+	/**
+	 * Validate info.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean validateInfo() {
 		boolean valid = true;
 		
@@ -92,6 +117,11 @@ public class ForgotPassPageController extends PageController {
 		return valid;
 	}
 	
+	/**
+	 * Reset password.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean resetPassword() {
 		try {
 			return InformationExpert.resetUserAccountPassword(this.getForgotPasswordPageModel().getFrmtdtextfldEnterEmail().getText(), 1,
@@ -104,18 +134,38 @@ public class ForgotPassPageController extends PageController {
 		}
 	}
 
+	/**
+	 * Gets the forgot password page model.
+	 *
+	 * @return the forgot password page model
+	 */
 	public ForgotPassPageModel getForgotPasswordPageModel() {
 		return forgotPasswordModel;
 	}
 
+	/**
+	 * Sets the forgot password page model.
+	 *
+	 * @param forgotPageModel the new forgot password page model
+	 */
 	public void setForgotPasswordPageModel(ForgotPassPageModel forgotPageModel) {
 		this.forgotPasswordModel = forgotPageModel;
 	}
 
+	/**
+	 * Gets the forgot password panel.
+	 *
+	 * @return the forgot password panel
+	 */
 	public JPanel getForgotPasswordPanel() {
 		return forgotPasswordPanel;
 	}
 
+	/**
+	 * Sets the forgot password panel.
+	 *
+	 * @param forgotPanel the new forgot password panel
+	 */
 	public void setForgotPasswordPanel(JPanel forgotPanel) {
 		this.forgotPasswordPanel = forgotPanel;
 	}

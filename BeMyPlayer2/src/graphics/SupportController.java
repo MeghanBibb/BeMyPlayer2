@@ -15,13 +15,30 @@ import java.util.List;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SupportController.
+ */
 public class SupportController extends PageController{
+    
+    /** The Constant SUBMIT. */
     public static final String SUBMIT = "submit";
+    
+    /** The Constant BACK. */
     public static final String BACK = "back";
 
+    /** The support model. */
     private SupportModel supportModel = null;
+    
+    /** The support panel. */
     private JPanel supportPanel = null;
+    
+    /** The logger. */
     private static Logger logger = Logger.getLogger(SupportController.class.getName());
+    
+    /* (non-Javadoc)
+     * @see graphics.PageController#launchPage(javax.swing.JFrame, java.lang.String)
+     */
     public void launchPage(JFrame mainFrame, String back) {
     	if(back != null) {
         	backPage = back;
@@ -29,6 +46,9 @@ public class SupportController extends PageController{
         SupportView.startSupportPage(this,mainFrame);
     }
 
+    /* (non-Javadoc)
+     * @see graphics.PageController#actionPerformed(java.awt.event.ActionEvent)
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         switch(e.getActionCommand()) {
@@ -63,6 +83,11 @@ public class SupportController extends PageController{
         }
     }
 
+    /**
+     * Validate sup info.
+     *
+     * @return true, if successful
+     */
     public boolean validateSupInfo() {
         boolean valid = true;
 
@@ -89,18 +114,38 @@ public class SupportController extends PageController{
         return valid;
     }
 
+    /**
+     * Gets the support model.
+     *
+     * @return the support model
+     */
     public SupportModel getSupportModel() {
         return supportModel;
     }
 
+    /**
+     * Sets the support model.
+     *
+     * @param supportModel the new support model
+     */
     public void setSupportModel(SupportModel supportModel) {
         this.supportModel = supportModel;
     }
 
+    /**
+     * Gets the support panel.
+     *
+     * @return the support panel
+     */
     public JPanel getSupportPanel() {
         return supportPanel;
     }
 
+    /**
+     * Sets the support panel.
+     *
+     * @param supportPanel the new support panel
+     */
     public void setSupportPanel(JPanel supportPanel) {
         this.supportPanel = supportPanel;
     }

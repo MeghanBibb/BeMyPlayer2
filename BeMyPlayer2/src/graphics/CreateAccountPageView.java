@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -30,7 +31,21 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import firebase.ImageConverter;
 import model.ResourceManager;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CreateAccountPageView.
+ */
 public class CreateAccountPageView {
+	
+	/** The logger. */
+	private static Logger logger = Logger.getLogger(CreateAccountPageView.class.getName());
+	/**
+	 * Start create account page.
+	 *
+	 * @param capController the cap controller
+	 * @param mainFrame the main frame
+	 * @param visited the visited
+	 */
 	public static void startCreateAccountPage(final CreateAccountPageController capController,JFrame mainFrame, boolean visited) {
 		if(visited == false) {
 			CreateAccountPageModel temp = new CreateAccountPageModel();
@@ -253,6 +268,14 @@ public class CreateAccountPageView {
 		//set attributes in loginController:
 		
 	}
+	
+	/**
+	 * Start questionaire.
+	 *
+	 * @param capController the cap controller
+	 * @param mainFrame the main frame
+	 * @param visited the visited
+	 */
 	public static void startQuestionaire(final CreateAccountPageController capController,JFrame mainFrame,boolean visited) {
 		//	load questionare 
 		Color red = new Color(134, 48, 111);
@@ -729,6 +752,13 @@ public class CreateAccountPageView {
 		mainFrame.setVisible(true);
 	}
 	
+	/**
+	 * Start profile form.
+	 *
+	 * @param capController the cap controller
+	 * @param mainFrame the main frame
+	 * @param visited the visited
+	 */
 	public static void startProfileForm(final CreateAccountPageController capController,JFrame mainFrame, boolean visited) {
 		Color red = new Color(134,48,111);
 		Color yellow = new Color(254, 195, 123);
@@ -793,7 +823,7 @@ public class CreateAccountPageView {
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						img1 = CreateAccountPageModel.DEFAULT_PROFILE_IMAGE;
-						e.printStackTrace();
+						logger.warning("Image not found exception. Default image selected");
 					}
 					capController.getCreateAccountPageModel().setImagePath(f.getAbsolutePath());
 					capController.getCreateAccountPageModel().setProfileImg(img1);

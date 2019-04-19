@@ -34,17 +34,37 @@ import model.Profile;
 import model.InformationExpert;
 import model.ResourceManager;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ProfileBriefModel.
+ */
 public class ProfileBriefModel extends JPanel{
+	
+	/** The view match controller. */
 	ViewMatchesController viewMatchController = new ViewMatchesController();
+	
+	/** The back page. */
 	private String backPage;
+	
+	/** The Constant DEFAULT_PIC. */
 	public static final BufferedImage DEFAULT_PIC = ResourceManager.loadImage("defaultIcon.png");
-	private static Logger logger = Logger.getLogger(ProfilePageController.class.getName());
+	
+	/** The logger. */
+	private static Logger logger = Logger.getLogger(ProfileBriefModel.class.getName());
+	
+	/**
+	 * Instantiates a new profile brief model.
+	 *
+	 * @param profile the profile
+	 * @param rect the rect
+	 * @param backPage the back page
+	 */
 	public ProfileBriefModel(Profile profile, Rectangle rect, String backPage){
 
 		try {
 			InformationExpert.setOtherProfile(profile.getUserId());
 		} catch (DBFailureException e2) {
-			logger.warning("Database failed to load other profile" + profile.getUserId());
+			logger.severe("Database failed to load other profile" + profile.getUserId());
 		}
 			
 		CircularImage setIcon = null;
@@ -53,6 +73,7 @@ public class ProfileBriefModel extends JPanel{
 			img1 = InformationExpert.getProfileImage(profile.getUserId());
 			setIcon = new CircularImage(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
 		} catch (Exception e1) {
+			logger.warning("Failed to load profile picture for " + profile.getUserId()) ;
 			img1 = DEFAULT_PIC;
 			setIcon = new CircularImage(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
 		}
@@ -78,10 +99,9 @@ public class ProfileBriefModel extends JPanel{
 					GraphicsController.setProfileAccountOther();
 					 
 					try {
-						// HARD CODED, NEED TO LOAD THE NECESSARY PROFILE HERE
 						InformationExpert.setOtherProfile(profile.getUserId());
 					} catch (DBFailureException e1) {
-						System.out.println("NEED LOGGER: CANT LOAD PROFILE");
+						logger.severe("Failed to load user profile for " + profile.getUserId());
 					}
 					 
 					GraphicsController.processPage(PageCreator.PROFILE_PAGE, backPage);
@@ -125,88 +145,10 @@ public class ProfileBriefModel extends JPanel{
 			this.setVisible(true);
 	}
 	
-	public ProfileBriefModel(String s,Rectangle r, String page){
-		this.backPage = page;
-
-		//Color yellow = new Color(254, 195, 123);
-		Color black = new Color(204, 255, 255);
-		Color yellow = new Color(254, 195, 123);
-		Color red = new Color(134,48,111);
-		Color white = new Color(255, 255, 255);
-		//	TEMPORARY FOR PROFILE IMAGE SWAPPING
-		String temploc = null;
-		switch(s) {
-		case "Dr.Booth": temploc = "/booth1.jpg";
-			break;
-		case "Dr.Cerny": temploc = "/cerny1.png";
-			break;
-		case "Dr.Fendt": temploc = "/fendt.jpg";
-			break;
-		case "Dr.Hammerly": temploc = "/hammerly1.jpg";
-		break;
-		case "Prof.Fry": temploc = "/fry1.jpg";
-			break;
-		case "Prof.Aars":temploc = "/maars1.jpg";	
-			break;
-		}
-		Image img1 = new ImageIcon(viewMatchController.getClass().getResource(temploc)).getImage();
-		CircularImage setIcon = new CircularImage(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
-
-		
-		JLabel username = new JLabel(s);
-		JLabel age = new JLabel();
-		JLabel gender = new JLabel("Gender");
-		JButton viewProfile = new JButton("View Profile");
-		this.setBounds(r);
-		this.setLayout(null);
-		this.setBackground(yellow);
-		
-		viewProfile.setBackground(red);
-		viewProfile.setBounds(this.getWidth()/4,120, this.getWidth()/2, 75);
-		viewProfile.setForeground(Colors.Yellow);
-		viewProfile.setFont(Fonts.getFont((float) 12));
-		viewProfile.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				// set the other account to selected account
-				GraphicsController.setProfileAccountOther();
-				 /*
-				try {
-					 HARD CODED, NEED TO LOAD THE NECESSARY PROFILE HERE
-					InformationExpert.setOtherProfile("LfiDeQ0WNQEnNyZ1c94J");
-				} catch (DBFailureException e1) {
-					System.out.println("NEED LOGGER: CANT LOAD PROFILE");
-				}
-				 
-				GraphicsController.processPage(PageCreator.PROFILE_PAGE, backPage);
-				*/
-			}
-			
-		});
-		username.setFont(Fonts.getFont((float) 20));
-		username.setForeground(Colors.Red);
-		username.setBounds(105,7,150,69);
-		
-		age.setFont(Fonts.getFont((float) 15));
-		age.setText("Age");
-		age.setForeground(Colors.Red);
-		age.setBounds(105,27,150,69);
-		
-		gender.setFont(Fonts.getFont((float) 15));
-		gender.setForeground(Colors.Red);
-		gender.setBounds(105,47,150,69);
-		
-		
-		this.add(username);
-		this.add(age);
-		this.add(gender);
-		this.add(viewProfile);
-		setIcon.setBounds(17, 17, 75, 75);
-		this.add(setIcon);
-		this.setVisible(true);
-	}
+	
+	/* (non-Javadoc)
+	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+	 */
 	@Override
 	  protected void paintComponent(Graphics g) {
 		RoundRectangle2D r = new RoundRectangle2D.Float(this.getAlignmentX(), this.getAlignmentY(), this.getWidth(), this.getHeight(), 7, 7);
