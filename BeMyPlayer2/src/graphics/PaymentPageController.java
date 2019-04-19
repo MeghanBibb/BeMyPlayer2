@@ -25,6 +25,8 @@ public class PaymentPageController extends PageController{
 	/** The Constant BACK. */
 	public static final String BACK = "back";
 	
+	public InvalidPopup pop;
+	
 	/** The Constant SUBMIT. */
 	public static final String SUBMIT = "submit";
 	
@@ -144,7 +146,7 @@ public class PaymentPageController extends PageController{
 			warnings.add("Invalid card number digits\n");
 		}
 		if(isValid == false) {
-			InvalidPopup p = new InvalidPopup(this.getPaymentPanel(),warnings);
+			pop = new InvalidPopup(this.getPaymentPanel(),warnings);
 		}
 		return isValid;
 	}

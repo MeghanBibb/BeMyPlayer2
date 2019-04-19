@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -44,6 +45,9 @@ public class MessageThread{
 	 * @param m the m
 	 */
 	public void addMessage(Message m) {
+		if(this.messages == null) {
+			this.messages = new ArrayList<Message>();
+		}
 		this.messages.add(m);
 	}
 	

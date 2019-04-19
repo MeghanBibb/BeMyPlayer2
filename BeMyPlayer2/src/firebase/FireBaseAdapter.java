@@ -815,10 +815,10 @@ public class FireBaseAdapter {
 	 * @param matchType the match type
 	 * @return the unmatched profiles
 	 * @throws DBFailureException the DB failure exception
-	 */
+	 *//*
 	public List<Profile> getUnmatchedProfiles(String userId, String matchType) throws DBFailureException{
 		return getUnmatchedProfiles(userId, matchType,1);
-	}
+	}*/
 	
 	/**
 	 * Gets the unmatched profiles.
@@ -1172,7 +1172,7 @@ public class FireBaseAdapter {
 
 		try {
 			threadResult = fetchThread.get();
-			if(!threadResult.isEmpty()) {
+			if(threadResult.isEmpty()) {
 				LOGGER.log(Level.WARNING,"Could not find match Thread");
 				return null;
 			}else {

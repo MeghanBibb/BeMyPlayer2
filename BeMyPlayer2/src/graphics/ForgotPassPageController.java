@@ -44,6 +44,7 @@ public class ForgotPassPageController extends PageController {
 		if(back != null) {
 			backPage = back;
 		}
+		logger.info("Forgot Password Page was intitiated");
 		ForgotPassPageView.startForgotPasswordPage(this,mainFrame);
 	}
 	
@@ -113,6 +114,7 @@ public class ForgotPassPageController extends PageController {
 		
 		if(valid == false) {
 			InvalidPopup p  = new InvalidPopup(this.getForgotPasswordPanel(),warnings);
+			logger.info("the user entered in invalid data to the forgot password page");
 		}
 		return valid;
 	}
@@ -129,7 +131,7 @@ public class ForgotPassPageController extends PageController {
 					Hasher.hashString(this.getForgotPasswordPageModel().getFrmtdtextfldEnterNewPassword().getText()),
 					this.getForgotPasswordPageModel().getFrmtdtextfldEnterUsername().getText());
 		} catch (DBFailureException e) {
-			// TODO Auto-generated catch block
+			logger.warning("database failure. the user's password could not be reset");
 			return false;
 		}
 	}
