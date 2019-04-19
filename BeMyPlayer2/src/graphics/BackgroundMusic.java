@@ -10,7 +10,6 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class BackgroundMusic.
  */
@@ -52,9 +51,11 @@ public class BackgroundMusic {
 	 */
 	public void music() {
 		if(status.contentEquals("play")) {
+			logger.info("Background Music is stopped");
 			stopSong();
 			status = "stop";
 		} else {
+			logger.info("Background Music started to play");
 			playSong();
 			status = "play";
 		}
@@ -70,7 +71,7 @@ public class BackgroundMusic {
 			clip.open(audioInputStream);
 			clip.loop(Clip.LOOP_CONTINUOUSLY);
 		}catch(Exception e) {
-			logger.warning("Music exception");
+			logger.warning("Background Music FAILED to play");
 		} 
 	}
 	

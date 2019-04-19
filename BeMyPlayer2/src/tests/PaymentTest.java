@@ -23,56 +23,38 @@ import static org.junit.Assert.*;
 
 public class PaymentTest {
 	
-	Account account;
-	Profile profile;
 	PaymentPageModel model;
 	PaymentPageView view;
 	PaymentPageController controller;
 	
+	//this initializes the controller/model with valid, correct data
 	//@BeforeEach
-		//@DisplayName("Create Profile")
-		public void InitProfile() {
-			profile = new Profile();
-			account = new Account();
-			profile.setDescription("hi this is my message");
-			profile.setMute(false);
-			profile.setDateOB(new Date(1998, 11, 19));
-			profile.setGender("female");
-			
-			account.setEmail("mpbibb@gmail.com");
-			account.setPasswordHash("myPassword1");
-			account.setSecurityQ1("myAnswer");
-			account.setUserId("myUsername!");
-			account.setAccountProfile(profile);
-		}
+	//@DisplayName("Create Model")
+	public void initModel() {
+		model = new PaymentPageModel();
+		controller = new PaymentPageController();
+		view = new PaymentPageView();
 		
-		//this initializes the controller/model with valid, correct data
-		//@BeforeEach
-		//@DisplayName("Create Model")
-		public void initModel() {
-			model = new PaymentPageModel();
-			controller = new PaymentPageController();
-			view = new PaymentPageView();
+		JFormattedTextField cardCVC = new JFormattedTextField("123");
+		model.setCardCVC(cardCVC);
 			
-			JFormattedTextField cardCVC = new JFormattedTextField("123");
-			model.setCardCVC(cardCVC);
+		JFormattedTextField cardMonth = new JFormattedTextField("11");
+		model.setCardMonth(cardMonth);
 			
-			JFormattedTextField cardMonth = new JFormattedTextField("11");
-			model.setCardMonth(cardMonth);
+		JFormattedTextField cardNumber = new JFormattedTextField("1234567891234567");
+		model.setCardNumber(cardNumber);
 			
-			JFormattedTextField cardNumber = new JFormattedTextField("1234567891234567");
-			model.setCardNumber(cardNumber);
+		JFormattedTextField cardYear = new JFormattedTextField("25");
+		model.setCardYear(cardYear);
 			
-			JFormattedTextField cardYear = new JFormattedTextField("25");
-			model.setCardYear(cardYear);
-			
-			controller.setPaymentModel(model);
-		}
+		controller.setPaymentModel(model);
+	}
 		
-		//@Test
-		public void testPasswordVerification() {
-			assert(controller.verifyPayment());
-		}
+	//this has valid data, should pass
+	//@Test
+	public void testPasswordVerification() {
+		assert(controller.verifyPayment());
+	}
 		
 		//@Test
 		public void testBadMonth() {
