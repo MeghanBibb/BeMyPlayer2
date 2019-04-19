@@ -246,8 +246,15 @@ public class EditAccountPageController extends PageController{
 				int dialogButton2 = JOptionPane.YES_NO_OPTION;
 				int dialogResult2= JOptionPane.showConfirmDialog(this.editAccountPanel, "Are you sure you want to delete your account?","Delete account?", dialogButton2);
 				if(dialogResult2 == 0) {
-					  logger.info("deleting account "  + InformationExpert.getActiveUserID());
-					  //	DATA BASE LOGIC FOR DELETING ACCOUNT FROM Db
+					  logger.info("attempting to delete account "  + InformationExpert.getActiveUserID());
+					  
+					  //attempt to delete account:
+					  try {
+						  InformationExpert.deleteUserAccount();
+						  GraphicsController.processPage(PageCreator.LOGIN_PAGE,backPage);
+					  }catch(DBFailureException dbexc){
+						  logger.warning("Failed to delete account: " + InformationExpert.getActiveUserID());
+					  }
 					  
 					  
 					  GraphicsController.processPage(PageCreator.LOGIN_PAGE,backPage);
@@ -299,6 +306,7 @@ public class EditAccountPageController extends PageController{
 			valid = false;
 			warnings.add("Please provide answer to a security question\n");
 		}
+		
 		try {
 			this.editAccountModel.getDob();
 		} catch (ParseException e) {

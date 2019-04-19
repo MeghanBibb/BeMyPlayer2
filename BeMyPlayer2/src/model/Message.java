@@ -106,6 +106,7 @@ public final class Message implements DBSerializable{
 	public DBDocumentPackage toDBPackage() {
 		
 		DBDocumentPackage newPackage = new DBDocumentPackage();
+		newPackage.setPrimaryKey(this.message);
 		newPackage.addValue(_MESSAGE, this.message);
 		newPackage.addValue(_TIMESTAMP, this.timestamp);
 		newPackage.addValue(_SENDER_ID, this.senderId);
