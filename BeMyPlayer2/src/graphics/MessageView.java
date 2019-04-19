@@ -116,10 +116,7 @@ public class MessageView {
         messageController.getMessageModel().setBtnSend(btnSend);
 
         //  init Thread scroll pane
-        JScrollPane tPane = new JScrollPane();
-        tPane.createVerticalScrollBar();
-        tPane.setVisible(true);
-        tPane.setBounds(35, 165, 400, 200);
+        
 
         //	init fields and listeners
         //TODO: FIX THIS
@@ -144,9 +141,11 @@ public class MessageView {
                 thread.append("\n");
             }
         }
-
-        tPane.add(thread);
-        tPane.repaint();
+        JScrollPane tPane = new JScrollPane(thread,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+       
+        tPane.setVisible(true);
+        tPane.setBounds(35, 165, 400, 200);
+        
         
         
 
