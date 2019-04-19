@@ -28,9 +28,18 @@ import model.ResourceManager;
 
 import com.google.cloud.Service;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class FirebaseTestConnector.
+ */
 public class FirebaseTestConnector {
 	
 	
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	//initialize app connector
 	public static void main(String[] args) {
 		

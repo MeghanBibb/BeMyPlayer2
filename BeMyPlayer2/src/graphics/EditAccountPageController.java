@@ -20,26 +20,69 @@ import model.PaymentInfo;
 import model.Profile;
 import model.ResourceManager;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class EditAccountPageController.
+ */
 public class EditAccountPageController extends PageController{
 	
+	/** The Constant BACK. */
 	public static final String BACK = "back";
+	
+	/** The Constant CANCEL. */
 	public static final String CANCEL = "cancel";
+	
+	/** The Constant SUBMIT. */
 	public static final String SUBMIT = "submit";
+	
+	/** The Constant SUBMITEDITPROFILE. */
 	public static final String SUBMITEDITPROFILE = "subeditprof";
+	
+	/** The Constant SUBMITEDITACCOUNT. */
 	public static final String SUBMITEDITACCOUNT = "subeditacc";
+	
+	/** The Constant SUBMITEDITQUESTIONAIRE. */
 	public static final String SUBMITEDITQUESTIONAIRE = "subeditq";
+	
+	/** The Constant PROFILE. */
 	public static final String PROFILE = "profile";
+	
+	/** The Constant ACCOUNT. */
 	public static final String ACCOUNT = "account";
+	
+	/** The Constant QUESTIONNAIRE. */
 	public static final String QUESTIONNAIRE = "questionnaire";
+	
+	/** The Constant UPGRADE. */
 	public static final String UPGRADE = "upgrade";
+	
+	/** The Constant MUTE. */
 	public static final String MUTE = "mute";
+	
+	/** The Constant DELETE. */
 	public static final String DELETE = "delete";
+	
+	/** The Constant END_PAYMENT. */
 	public static final String END_PAYMENT = "cancel payment";
+	
+	/** The Constant MAXLENGTH. */
 	public static final int MAXLENGTH = 250;
+	
+	/** The copy frame. */
 	private JFrame copyFrame = null;
+	
+	/** The edit account model. */
 	private EditAccountPageModel editAccountModel = null;
+	
+	/** The edit account panel. */
 	private JPanel editAccountPanel = null;
+	
+	/** The logger. */
 	private static Logger logger = Logger.getLogger(EditAccountPageController.class.getName());
+	
+	/* (non-Javadoc)
+	 * @see graphics.PageController#launchPage(javax.swing.JFrame, java.lang.String)
+	 */
 	public void launchPage(JFrame mainFrame, String back) {
 		if(back != null) {
 			backPage = back;
@@ -48,6 +91,9 @@ public class EditAccountPageController extends PageController{
 		EditAccountPageView.launchEditPage(this,mainFrame);
 	}
 
+	/* (non-Javadoc)
+	 * @see graphics.PageController#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch(e.getActionCommand()) {
@@ -66,7 +112,6 @@ public class EditAccountPageController extends PageController{
 				if(validateCreatePage1() == true) {
 					InformationExpert.getActiveAccount().getAccountProfile().setUsername(this.getEditAccountModel().getFrmtdtxtfldEnterUsername().getText());
 					InformationExpert.getActiveAccount().setSecurityQ1(this.getEditAccountModel().getSecurityQ().getSelectedItem().toString());
-					InformationExpert.getActiveAccount().setSecurityQ1AnsHash(Hasher.hashString(this.getEditAccountModel().getSecQA().getText()));
 					InformationExpert.getActiveAccount().getAccountProfile().setGender(this.getEditAccountModel().getGenderBox().getSelectedItem().toString());
 					if(!this.getEditAccountModel().getPwdEnterPass().getText().isEmpty()) {
 						InformationExpert.getActiveAccount().setPasswordHash(Hasher.hashString(this.getEditAccountModel().getPwdEnterPass().getText()));
@@ -83,6 +128,9 @@ public class EditAccountPageController extends PageController{
 					} catch (DBFailureException e1) {
 						// TODO Auto-generated catch block
 						logger.warning("failed to save");
+					}
+					if(!this.getEditAccountModel().getSecQA().getText().isEmpty()) {
+						InformationExpert.getActiveAccount().setSecurityQ1AnsHash(Hasher.hashString(this.getEditAccountModel().getSecQA().getText()));
 					}
 					
 					logger.info("Submit");
@@ -122,8 +170,9 @@ public class EditAccountPageController extends PageController{
 						} else {
 							InformationExpert.updateProfileImage(InformationExpert.getActiveAccount().getAccountProfile().getProfilePicture(), InformationExpert.getActiveUserID());
 						}
-					} catch (DBFailureException e1) {
+					} catch (Exception e1) {
 						logger.warning("Failed to update profile for " + InformationExpert.getActiveUserID());
+						InvalidPopup p =  new InvalidPopup(this.getEditAccountPanel(),"Failed to update profile");
 					}
 					logger.info("Submit");
 					GraphicsController.processPage(PageCreator.EDIT_ACCOUNT_PAGE, backPage);
@@ -149,10 +198,12 @@ public class EditAccountPageController extends PageController{
 			try {
 				PaymentInfo p = InformationExpert.getPaymentInfo(InformationExpert.getActiveUserID());
 				if(p != null) {
-					System.out.print("GOT PAYMENT INFO FROM DB\n");
+					logger.info("GOT PAYMENT INFO FROM DB\n");
 				}
 			} catch (DBFailureException e1) {
 				//database failure
+				logger.severe("Database failed to pull payment info for " + InformationExpert.getActiveUserID());
+				InvalidPopup p = new InvalidPopup(this.getEditAccountPanel(),"Error loading payment info from database");
 			}
 				
 				GraphicsController.processPage(PageCreator.PAYMENT_PAGE,backPage);
@@ -194,8 +245,15 @@ public class EditAccountPageController extends PageController{
 				int dialogButton2 = JOptionPane.YES_NO_OPTION;
 				int dialogResult2= JOptionPane.showConfirmDialog(this.editAccountPanel, "Are you sure you want to delete your account?","Delete account?", dialogButton2);
 				if(dialogResult2 == 0) {
-					  logger.info("deleting account "  + InformationExpert.getActiveUserID());
-					  //	DATA BASE LOGIC FOR DELETING ACCOUNT FROM Db
+					  logger.info("attempting to delete account "  + InformationExpert.getActiveUserID());
+					  
+					  //attempt to delete account:
+					  try {
+						  InformationExpert.deleteUserAccount();
+						  GraphicsController.processPage(PageCreator.LOGIN_PAGE,backPage);
+					  }catch(DBFailureException dbexc){
+						  logger.warning("Failed to delete account: " + InformationExpert.getActiveUserID());
+					  }
 					  
 					  
 					  GraphicsController.processPage(PageCreator.LOGIN_PAGE,backPage);
@@ -206,6 +264,12 @@ public class EditAccountPageController extends PageController{
 		}
 		
 	}
+	
+	/**
+	 * Validate create page 1.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean validateCreatePage1() {
 		boolean valid = true;
 		
@@ -222,7 +286,14 @@ public class EditAccountPageController extends PageController{
 		 */
 		//	VALIDATIONS
 		List<String> warnings = new ArrayList<>();
-		
+		if(this.editAccountModel.getFrmtdtxtfldEnterUsername().getText().equals("")) {
+			valid = false;
+			warnings.add("Please enter a username\n");
+		}
+		if(this.editAccountModel.getFrmtdtxtfldEnterUsername().getText().length() > 12) {
+			valid = false;
+			warnings.add("Character limit 12 exceeded\n");
+		}
 		if(this.editAccountModel.getPwdEnterPass().getText().equalsIgnoreCase("")) {
 			if(!this.editAccountModel.getPwdValidatePass().getText().equalsIgnoreCase("")) {
 				valid = false;
@@ -237,10 +308,11 @@ public class EditAccountPageController extends PageController{
 				warnings.add("Passwords do not match\n");
 			}
 		}
-		if(this.editAccountModel.getSecQA().getText().equalsIgnoreCase("")) {
+		if(this.editAccountModel.getSecQA().getText().equalsIgnoreCase("") && !this.editAccountModel.getSecurityQ().getSelectedItem().equals(InformationExpert.getActiveAccount().getSecurityQ1())) {
 			valid = false;
 			warnings.add("Please provide answer to a security question\n");
 		}
+		
 		try {
 			this.editAccountModel.getDob();
 		} catch (ParseException e) {
@@ -254,6 +326,12 @@ public class EditAccountPageController extends PageController{
 		
 		return valid;
 	}
+	
+	/**
+	 * Validate create page 2.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean validateCreatePage2() {
 		boolean valid = true;
 		
@@ -288,6 +366,12 @@ public class EditAccountPageController extends PageController{
 		
 		return valid;
 	}
+	
+	/**
+	 * Validate create page 3.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean validateCreatePage3() {
 		boolean valid = true;
 		//	need to store profile pic in new location to pull from
@@ -308,18 +392,39 @@ public class EditAccountPageController extends PageController{
 		//	send to temp account and populate db
 		return valid;
 	}
+	
+	/**
+	 * Gets the edits the account model.
+	 *
+	 * @return the edits the account model
+	 */
 	public EditAccountPageModel getEditAccountModel() {
 		return editAccountModel;
 	}
 
+	/**
+	 * Sets the edits the account model.
+	 *
+	 * @param editAccountModel the new edits the account model
+	 */
 	public void setEditAccountModel(EditAccountPageModel editAccountModel) {
 		this.editAccountModel = editAccountModel;
 	}
 
+	/**
+	 * Gets the edits the account panel.
+	 *
+	 * @return the edits the account panel
+	 */
 	public JPanel getEditAccountPanel() {
 		return editAccountPanel;
 	}
 
+	/**
+	 * Sets the edits the account panel.
+	 *
+	 * @param editAccountPanel the new edits the account panel
+	 */
 	public void setEditAccountPanel(JPanel editAccountPanel) {
 		this.editAccountPanel = editAccountPanel;
 	}

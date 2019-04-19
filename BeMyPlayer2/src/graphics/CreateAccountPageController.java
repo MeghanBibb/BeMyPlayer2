@@ -22,23 +22,55 @@ import model.Account;
 import model.InformationExpert;
 import model.Profile;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CreateAccountPageController.
+ */
 public class CreateAccountPageController extends PageController{
 	
+	/** The Constant MAXLENGTH. */
 	//	action commands
 	public static final int MAXLENGTH = 250;
+	
+	/** The Constant NEXT. */
 	public static final String NEXT = "next";
+	
+	/** The Constant BACK. */
 	public static final String BACK="back";
+	
+	/** The Constant SUBMIT. */
 	public static final String SUBMIT = "submit";
 	
+	/** The create account page model. */
 	private CreateAccountPageModel createAccountPageModel;
+	
+	/** The create account panel. */
 	private JPanel createAccountPanel;
+	
+	/** The page num. */
 	private int pageNum;
+	
+	/** The a. */
 	private Account a;
+	
+	/** The copy frame. */
 	private JFrame copyFrame;
+	
+	/** The visited P 1. */
 	private boolean visitedP1;
+	
+	/** The visited P 2. */
 	private boolean visitedP2;
+	
+	/** The visited P 3. */
 	private boolean visitedP3;
+	
+	/** The logger. */
 	private static Logger logger = Logger.getLogger(CreateAccountPageController.class.getName());
+	
+	/* (non-Javadoc)
+	 * @see graphics.PageController#launchPage(javax.swing.JFrame, java.lang.String)
+	 */
 	public void launchPage(JFrame mainFrame, String back) {
 		if(back != null) {
 			backPage = back;
@@ -50,6 +82,10 @@ public class CreateAccountPageController extends PageController{
 		visitedP3 = false;
 		CreateAccountPageView.startCreateAccountPage(this,mainFrame,false);
 	}
+	
+	/* (non-Javadoc)
+	 * @see graphics.PageController#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	//	check command 
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -171,6 +207,11 @@ public class CreateAccountPageController extends PageController{
 		}
 	}
 	
+	/**
+	 * Validate create page 1.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean validateCreatePage1() {
 		boolean valid = true;
 		
@@ -187,6 +228,10 @@ public class CreateAccountPageController extends PageController{
 		 */
 		//	VALIDATIONS
 		List<String> warnings = new ArrayList<>();
+		if(this.createAccountPageModel.getFrmtdtxtfldEnterUsername().getText().length() > 12) {
+			valid = false;
+			warnings.add("Character limit 12 exceeded for username\n");
+		}
 		if(this.createAccountPageModel.getFrmtdtxtfldEnterUsername().getText().equalsIgnoreCase("")) {
 			valid = false;
 			warnings.add("Invalid username\n");
@@ -233,6 +278,12 @@ public class CreateAccountPageController extends PageController{
 		
 		return valid;
 	}
+	
+	/**
+	 * Validate create page 2.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean validateCreatePage2() {
 		boolean valid = true;
 		
@@ -267,6 +318,12 @@ public class CreateAccountPageController extends PageController{
 		
 		return valid;
 	}
+	
+	/**
+	 * Validate create page 3.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean validateCreatePage3() {
 		boolean valid = true;
 		//	need to store profile pic in new location to pull from
@@ -290,15 +347,39 @@ public class CreateAccountPageController extends PageController{
 		//	send to temp account and populate db
 		return valid;
 	}
+	
+	/**
+	 * Gets the creates the account page model.
+	 *
+	 * @return the creates the account page model
+	 */
 	public CreateAccountPageModel getCreateAccountPageModel() {		
 		return this.createAccountPageModel;
 	}
+	
+	/**
+	 * Sets the creates the account page model.
+	 *
+	 * @param createAccountPageModel the new creates the account page model
+	 */
 	public void setCreateAccountPageModel(CreateAccountPageModel createAccountPageModel) {
 		this.createAccountPageModel = createAccountPageModel;
 	}
+	
+	/**
+	 * Gets the creates the account panel.
+	 *
+	 * @return the creates the account panel
+	 */
 	public JPanel getCreateAccountPanel() {
 		return this.createAccountPanel;
 	}
+	
+	/**
+	 * Sets the creates the account panel.
+	 *
+	 * @param createAccountPanel the new creates the account panel
+	 */
 	public void setCreateAccountPanel(JPanel createAccountPanel) {
 		this.createAccountPanel = createAccountPanel;
 	}

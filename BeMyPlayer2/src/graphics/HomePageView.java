@@ -9,14 +9,26 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 import model.ResourceManager;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class HomePageView.
+ */
 public class HomePageView {
 	
 	
 
+	/**
+	 * Launch home page.
+	 *
+	 * @param homeController the home controller
+	 * @param mainFrame the main frame
+	 */
 	public static void launchHomePage(HomePageController homeController, JFrame mainFrame) {
 		//init model
 		homeController.setHomePageModel(new HomePageModel());
@@ -52,6 +64,12 @@ public class HomePageView {
 		btnAccount.addActionListener(homeController);
 		homeController.getHomePageModel().setBtnProfile(btnAccount);
 		
+		JLabel lblLove = new JLabel("Find Love");
+		lblLove.setBounds(90, 220, 100, 50);
+		lblLove.setFont(Fonts.getFont((14f)));
+		lblLove.setForeground(Colors.Yellow);
+		homeController.getHomePanel().add(lblLove);
+		
 		JButton btnLove = new JButton("Find Love");
 		btnLove.setBounds(30,100,200,140);
 		btnLove.setActionCommand(homeController.FIND_LOVE);
@@ -59,15 +77,24 @@ public class HomePageView {
 		btnLove.setBackground(Colors.Red);
 		btnLove.setContentAreaFilled(false);
 		btnLove.addActionListener(homeController);
+		Border thickBorder = new LineBorder(Colors.Yellow, 1);
+	    btnLove.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		homeController.getHomePageModel().setBtnFindLove(btnLove);
 		BufferedImage findLovepic = ResourceManager.loadImage("findlove.png");
 		//btnLove.setIcon(new ImageIcon(new ImageIcon(findLovepic).getImage().getScaledInstance(200, 140, Image.SCALE_SMOOTH)));
 		btnLove.setIcon(new ImageIcon(new ImageIcon(findLovepic).getImage().getScaledInstance(200, 140, Image.SCALE_SMOOTH)));
 		
+		JLabel lblFriend = new JLabel("Find Friends");
+		lblFriend.setBounds(330, 220, 100, 50);
+		lblFriend.setFont(Fonts.getFont(14f));
+		lblFriend.setForeground(Colors.Yellow);
+		homeController.getHomePanel().add(lblFriend);
+		
 		JButton btnFriends = new JButton("Find Friends");
 		btnFriends.setBounds(270,100,200,140);
 		btnFriends.setActionCommand(homeController.FIND_FRIENDS);
 		btnFriends.setFont(Fonts.getFont((float) 12));
+		btnFriends.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		//btnFriends.setForeground(Colors.Red);
 		btnFriends.setContentAreaFilled(false);
 		btnFriends.addActionListener(homeController);
@@ -83,7 +110,9 @@ public class HomePageView {
 		btnSupport.setBorderPainted(false);
 		btnSupport.setForeground(Colors.White);
 		btnSupport.setFont(Fonts.getFont((float) 12));
+		
 		btnSupport.addActionListener(homeController);
+		btnSupport.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		homeController.getHomePageModel().setBtnSupport(btnSupport);
 		
 		JButton btnMatches = new JButton("View Matches");
@@ -112,11 +141,12 @@ public class HomePageView {
 		JButton site = new JButton("<HTML><U>BeMyPlayer2 Webpage</U></HTML>");
 		site.setActionCommand("launchsite");
 		site.addActionListener(homeController);
-		site.setBounds(300,360,200,40);
+		site.setBounds(300,360,200,30);
 		site.setOpaque(true);
 		site.setContentAreaFilled(false);
 		site.setBorderPainted(false);
 		site.setFont(Fonts.getFont(12f));
+		site.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		site.setForeground(Colors.White);
 		
 		JButton credits = new JButton("<HTML><U>Credits</U></HTML>");
@@ -128,7 +158,24 @@ public class HomePageView {
 		credits.setForeground(Colors.White);
 		credits.setFont(Fonts.getFont((float) 12));
 		credits.addActionListener(homeController);
+		credits.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		homeController.getHomePanel().add(credits);
+		
+		JButton btnMute = new JButton("<HTML><U>Turn Music Off</U></HTML>");
+		btnMute.setBounds(115,360,120,40);
+		btnMute.setActionCommand(homeController.SOUND);
+		btnMute.setBackground(yellow);
+		btnMute.setFont(Fonts.getFont((float) 12));
+		btnMute.setOpaque(true);
+		btnMute.setContentAreaFilled(false);
+		btnMute.setBorderPainted(false);
+		btnMute.setForeground(Colors.White);
+		btnMute.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnMute.addActionListener(homeController);
+		homeController.getHomePageModel().setBtnSound(btnMute);
+		
+	
+		
 		
 		//add to frame
 		homeController.getHomePanel().add(site);
@@ -140,6 +187,8 @@ public class HomePageView {
 		homeController.getHomePanel().add(homeController.getHomePageModel().getBtnSupport());
 		homeController.getHomePanel().add(homeController.getHomePageModel().getBtnViewMatches());
 		homeController.getHomePanel().add(homeController.getHomePageModel().getLblBeMyPlayer());
+		homeController.getHomePanel().add(homeController.getHomePageModel().getBtnSound());
+
 		
 		
 		//pack and set visible

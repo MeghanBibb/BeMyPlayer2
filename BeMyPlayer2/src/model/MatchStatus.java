@@ -1,14 +1,31 @@
 package model;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Enum MatchStatus.
+ */
 public enum MatchStatus {
 
-	NO_MATCH,SWIPE_RIGHT,SWIPE_LEFT;
+	/** The no match. */
+	NO_MATCH,/** The swipe right. */
+SWIPE_RIGHT,/** The swipe left. */
+SWIPE_LEFT;
 	
+	/** The Constant _STATUS_NO_MATCH. */
 	//Firebase schema values (do not modify!)
 	public static final String _STATUS_NO_MATCH = "no_match";
+	
+	/** The Constant _STATUS_SWIPE_RIGHT. */
 	public static final String _STATUS_SWIPE_RIGHT = "swipe_right";
+	
+	/** The Constant _STATUS_SWIPE_LEFT. */
 	public static final String _STATUS_SWIPE_LEFT = "swipe_left";
 	
+	/**
+	 * Gets the status string.
+	 *
+	 * @return the status string
+	 */
 	public String getStatusString() {
 		switch(this) {
 			case NO_MATCH:
@@ -21,6 +38,12 @@ public enum MatchStatus {
 		return null;
 	}
 	
+	/**
+	 * Gets the match status.
+	 *
+	 * @param statusString the status string
+	 * @return the match status
+	 */
 	public static MatchStatus getMatchStatus(String statusString) {
 		switch(statusString) {
 			case _STATUS_NO_MATCH:

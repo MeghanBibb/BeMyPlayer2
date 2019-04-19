@@ -25,9 +25,18 @@ import javax.swing.border.EmptyBorder;
 
 import model.ResourceManager;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class LoginPageView.
+ */
 public class LoginPageView {
+	
 	/**
-	 * @wbp.parser.entryPoint
+	 * Start login page.
+	 *
+	 * @param loginController the login controller
+	 * @param mainFrame the main frame
+	 * @wbp.parser.entryPoint 
 	 */
 	public static void startLoginPage(LoginPageController loginController,JFrame mainFrame) {
 		//	init table model 
@@ -42,8 +51,8 @@ public class LoginPageView {
 		//mainFrame.getContentPane().setBackground(Colors.Red);
 		
 		//	init buttons
-		loginController.getLoginPageModel().setBtnLogin(new JButton("Login")); 
-		loginController.getLoginPageModel().getBtnLogin().setBounds(70, 145, 90, 40);
+		loginController.getLoginPageModel().setBtnLogin(new JButton("Begin My Quest")); 
+		loginController.getLoginPageModel().getBtnLogin().setBounds(39, 165,  175, 40);
 		loginController.getLoginPageModel().getBtnLogin().setBackground(Colors.Yellow);
 		loginController.getLoginPageModel().getBtnLogin().setFont(Fonts.getFont((float) 12));
 		loginController.getLoginPageModel().getBtnLogin().setForeground(Colors.Red);
@@ -54,7 +63,7 @@ public class LoginPageView {
 		loginController.getLoginPageModel().getBtnCreateNewAccount().setBackground(Colors.Yellow);
 		loginController.getLoginPageModel().getBtnCreateNewAccount().setFont(Fonts.getFont((float) 12));
 		loginController.getLoginPageModel().getBtnCreateNewAccount().setForeground(Colors.Red);
-		loginController.getLoginPageModel().getBtnCreateNewAccount().setBounds(29, 196, 175, 40);
+		loginController.getLoginPageModel().getBtnCreateNewAccount().setBounds(39, 216, 175, 40);
 		loginController.getLoginPageModel().getBtnCreateNewAccount().setActionCommand(LoginPageController.CREATE_ACCOUNT);
 		loginController.getLoginPageModel().getBtnCreateNewAccount().addActionListener(loginController);
 		
@@ -62,7 +71,7 @@ public class LoginPageView {
 		btnForgotPassword.setFont(Fonts.getFont((float) 12));
 		btnForgotPassword.setForeground(Colors.Red);
 		btnForgotPassword.setBackground(Colors.Yellow);
-		btnForgotPassword.setBounds(29, 245, 175, 40);
+		btnForgotPassword.setBounds(39, 265, 175, 40);
 		btnForgotPassword.setActionCommand(LoginPageController.FORGOT_PASSWORD);
 		btnForgotPassword.addActionListener(loginController);
 		loginController.getLoginPageModel().setBtnForgotPassword(btnForgotPassword);
@@ -71,7 +80,7 @@ public class LoginPageView {
 		btnExit.setFont(Fonts.getFont((float) 12));
 		btnExit.setForeground(Colors.Red);
 		btnExit.setBackground(Colors.Yellow);
-		btnExit.setBounds(280,350,175,40);
+		btnExit.setBounds(410,350,70,40);
 		btnExit.setActionCommand(LoginPageController.EXIT);
 		btnExit.addActionListener(loginController);
 		loginController.getLoginPageModel().setBtnExit(btnExit);
@@ -86,12 +95,14 @@ public class LoginPageView {
 		loginController.getLoginPageModel().getPwdEnterPass().setHorizontalAlignment(SwingConstants.CENTER);
 		loginController.getLoginPageModel().getPwdEnterPass().setBackground(Colors.Yellow);
 		loginController.getLoginPageModel().getPwdEnterPass().setForeground(Colors.Red);
-		loginController.getLoginPageModel().getPwdEnterPass().setBounds(305, 186, 128, 32);
+		loginController.getLoginPageModel().getPwdEnterPass().setBounds(315, 206, 128, 32);
+
 		loginController.getLoginPanel().add(loginController.getLoginPageModel().getPwdEnterPass());
 		
 		JFormattedTextField frmtdtxtfldEnterUsername = new JFormattedTextField();
 		frmtdtxtfldEnterUsername.setHorizontalAlignment(SwingConstants.CENTER);
-		frmtdtxtfldEnterUsername.setBounds(305, 145, 128, 30);
+		frmtdtxtfldEnterUsername.setBounds(315, 165, 128, 30);
+
 		loginController.getLoginPageModel().setFrmtdtxtfldEnterUsername(frmtdtxtfldEnterUsername);
 		loginController.getLoginPageModel().getFrmtdtxtfldEnterUsername().setBackground(Colors.Yellow);
 		loginController.getLoginPageModel().getFrmtdtxtfldEnterUsername().setForeground(Colors.Red);
@@ -106,7 +117,7 @@ public class LoginPageView {
 		BufferedImage img1 = ResourceManager.loadImage("splash_heart.png");
 		//img1 = new ImageIcon("C:\\Backup of student files\\Spring 2019\\BeMyPlayer2\\BeMyPlayer2\\BeMyPlayer2\\img\\hearts.png").getImage();
 		lblNewLabel.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(64, 64, Image.SCALE_SMOOTH)));
-		lblNewLabel.setBounds(326, 24, 100, 56);
+		lblNewLabel.setBounds(320, 64, 100, 56);
 		loginController.getLoginPageModel().setLblNewLabel(lblNewLabel);
 		loginController.getLoginPanel().add(loginController.getLoginPageModel().getLblNewLabel());
 		
@@ -114,20 +125,20 @@ public class LoginPageView {
 		JLabel lblBeMyPlayer = new JLabel("Be My Player 2");
 		lblBeMyPlayer.setFont(Fonts.getFont((float) 30));
 		lblBeMyPlayer.setForeground(Colors.Yellow);
-		lblBeMyPlayer.setBounds(86,16,300,69);
+		lblBeMyPlayer.setBounds(82,56,300,69);
 		//lblBeMyPlayer.setBounds(24, 44, 204, 69);
 		loginController.getLoginPageModel().setLblBeMyPlayer(lblBeMyPlayer);
 		loginController.getLoginPanel().add(loginController.getLoginPageModel().getLblBeMyPlayer());
 		
 		JLabel usernameLabel = new JLabel("Email:");
-		usernameLabel.setBounds(235, 120, 128, 82);
+		usernameLabel.setBounds(276, 140, 128, 82);
 		usernameLabel.setForeground(Colors.Yellow);
 		usernameLabel.setFont(Fonts.getFont((float) 12));
 		loginController.getLoginPageModel().setLblUsername(usernameLabel);
 		loginController.getLoginPanel().add(loginController.getLoginPageModel().getLblUsername());
 		
 		JLabel passwordLabel = new JLabel("Password:");
-		passwordLabel.setBounds(235,160,128,82);
+		passwordLabel.setBounds(245,180,128,82);
 		passwordLabel.setForeground(Colors.Yellow);
 		passwordLabel.setFont(Fonts.getFont((float) 12));
 		loginController.getLoginPageModel().setLblPassword(passwordLabel);

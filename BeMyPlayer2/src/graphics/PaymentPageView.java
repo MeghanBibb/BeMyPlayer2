@@ -18,8 +18,18 @@ import javax.swing.border.EmptyBorder;
 
 import model.ResourceManager;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PaymentPageView.
+ */
 public class PaymentPageView {
 	
+	/**
+	 * Launch payment page.
+	 *
+	 * @param paymentController the payment controller
+	 * @param mainFrame the main frame
+	 */
 	public static void launchPaymentPage(PaymentPageController paymentController, JFrame mainFrame) {
 		//init model
 		paymentController.setPaymentModel(new PaymentPageModel());

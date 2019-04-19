@@ -18,8 +18,18 @@ import javax.swing.border.EmptyBorder;
 
 import model.ResourceManager;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CreditsPageView.
+ */
 public class CreditsPageView {
 
+	/**
+	 * Launch credits page.
+	 *
+	 * @param creditscontrol the creditscontrol
+	 * @param mainFrame the main frame
+	 */
 	public static void launchPage(CreditsPageController creditscontrol, JFrame mainFrame) {
 		// TODO Auto-generated method stub
 		

@@ -17,20 +17,49 @@ import firebase.DBFailureException;
 import model.Account;
 import model.InformationExpert;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ViewMatchesController.
+ */
 public class ViewMatchesController extends PageController{
+
+/** The Constant NEXT. */
 //	action commands 	
 	public static final String NEXT = "next";
+	
+	/** The Constant BACK. */
 	public static final String BACK="back";
+	
+	/** The Constant SUBMIT. */
 	public static final String SUBMIT = "submit";
+	
+	/** The Constant PROFILE. */
 	public static final String PROFILE = "profileclick";
+	
+	/** The view matches model. */
 	private ViewMatchesModel viewMatchesModel;
+	
+	/** The view matches panel. */
 	private JPanel viewMatchesPanel;
+	
+	/** The page num. */
 	private int pageNum;
+	
+	/** The a. */
 	private Account a;
+	
+	/** The copy frame. */
 	private JFrame copyFrame;
+	
+	/** The brief. */
 	private ProfileBriefModel brief = null;
+	
+	/** The logger. */
 	private static Logger logger = Logger.getLogger(ViewMatchesController.class.getName());
 	
+	/* (non-Javadoc)
+	 * @see graphics.PageController#launchPage(javax.swing.JFrame, java.lang.String)
+	 */
 	public void launchPage(JFrame mainFrame, String back) {
 		if(back != null) {
 			backPage = back;
@@ -39,6 +68,10 @@ public class ViewMatchesController extends PageController{
 		this.copyFrame = mainFrame;
 		ViewMatchesView.startViewMatches(this,mainFrame,a);
 	}
+	
+	/* (non-Javadoc)
+	 * @see graphics.PageController#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	//	check command 
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -66,15 +99,39 @@ public class ViewMatchesController extends PageController{
 			this.copyFrame.repaint();
 		}
 	}
+	
+	/**
+	 * Gets the view matches panel.
+	 *
+	 * @return the view matches panel
+	 */
 	public JPanel getViewMatchesPanel() {
 		return viewMatchesPanel;
 	}
+	
+	/**
+	 * Sets the view matches panel.
+	 *
+	 * @param viewMatchesPanel the new view matches panel
+	 */
 	public void setViewMatchesPanel(JPanel viewMatchesPanel) {
 		this.viewMatchesPanel = viewMatchesPanel;
 	}
+	
+	/**
+	 * Gets the view matches model.
+	 *
+	 * @return the view matches model
+	 */
 	public ViewMatchesModel getViewMatchesModel() {
 		return viewMatchesModel;
 	}
+	
+	/**
+	 * Sets the view matches model.
+	 *
+	 * @param viewMatchesModel the new view matches model
+	 */
 	public void setViewMatchesModel(ViewMatchesModel viewMatchesModel) {
 		this.viewMatchesModel = viewMatchesModel;
 	}

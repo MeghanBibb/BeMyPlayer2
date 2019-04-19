@@ -25,6 +25,7 @@ import java.util.concurrent.ExecutionException;
 
 import com.google.api.core.ApiFuture;
 import com.google.auth.oauth2.GoogleCredentials;
+import com.google.cloud.firestore.CollectionReference;
 import com.google.cloud.firestore.DocumentChange;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
@@ -32,6 +33,8 @@ import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.Query;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
+import com.google.cloud.firestore.Transaction;
+import com.google.cloud.firestore.WriteBatch;
 import com.google.cloud.firestore.WriteResult;
 import com.google.cloud.storage.Blob;
 import com.google.cloud.storage.Blob.BlobSourceOption;
@@ -55,22 +58,41 @@ import com.google.cloud.Service;
 import com.google.cloud.firestore.Firestore;
 import com.google.firebase.FirebaseOptions;
 
-import static model.Profile._IS_MUTE;
-
+// TODO: Auto-generated Javadoc
+/**
+ * The Class FireBaseAdapter.
+ */
 public class FireBaseAdapter {
 	
+	/** The Constant LOGGER. */
 	public final static Logger LOGGER = Logger.getLogger(FireBaseAdapter.class.getName());
 	
+	/** The Constant FIREBASE_TOKEN_PATH. */
 	private static final String FIREBASE_TOKEN_PATH = "db/bemyplayer2-e65fc-dca2d3903ee3.json";
+	
+	/** The Constant DB_URL. */
 	private static final String DB_URL = "https://bemyplayer2-e65fc.firebaseio.com";
+	
+	/** The Constant DB_BUCKET_NAME. */
 	private static final String DB_BUCKET_NAME = "bemyplayer2-e65fc.appspot.com";
+	
+	/** The Constant MAX_NUM_PROFILES_RETRIEVED. */
 	private static final int MAX_NUM_PROFILES_RETRIEVED = 10;
 	
+	/** The Constant LOVE_MATCHES. */
 	public static final String LOVE_MATCHES = "LOVE_MATCHES";
+	
+	/** The Constant FRIEND_MATCHES. */
 	public static final String FRIEND_MATCHES = "FRIEND_MATCHES";
 	
+	/** The db. */
 	private Firestore db = null;
 	
+	/**
+	 * Initialize DB connection.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean initializeDBConnection() {
 		
 		FirebaseOptions options = null;
@@ -93,6 +115,13 @@ public class FireBaseAdapter {
 		return true;
 	}
 	
+	/**
+	 * Adds the new payment info.
+	 *
+	 * @param payment the payment
+	 * @return true, if successful
+	 * @throws DBFailureException the DB failure exception
+	 */
 	public boolean addNewPaymentInfo(PaymentInfo payment) throws DBFailureException {
 		
 		if(this.db == null) {
@@ -102,11 +131,7 @@ public class FireBaseAdapter {
 		
 
 		DBDocumentPackage payPackage = payment.toDBPackage();
-		ApiFuture<DocumentReference> newPaymentDoc;
 		
-		/*newPaymentDoc = this.db.collection(FireBaseSchema.PAYMENT_TABLE)
-				.add(payPackage.getValues());
-		*/
 		db.collection(FireBaseSchema.PAYMENT_TABLE)
 		        .document(payment.getID())
 		        .set(payPackage.getValues());
@@ -115,6 +140,13 @@ public class FireBaseAdapter {
 		return true;
 	}
 	
+	/**
+	 * Removes the payment info.
+	 *
+	 * @param userID the user ID
+	 * @return true, if successful
+	 * @throws DBFailureException the DB failure exception
+	 */
 	public boolean removePaymentInfo(String userID) throws DBFailureException {
 		
 		if(this.db == null) {
@@ -152,6 +184,13 @@ public class FireBaseAdapter {
 		return true;
 	}
 	
+	/**
+	 * Gets the payment info.
+	 *
+	 * @param userID the user ID
+	 * @return the payment info
+	 * @throws DBFailureException the DB failure exception
+	 */
 	public PaymentInfo getPaymentInfo(String userID) throws DBFailureException {
 		
 		if(this.db == null) {
@@ -189,6 +228,13 @@ public class FireBaseAdapter {
 		
 	}
 	
+	/**
+	 * Adds the new issue.
+	 *
+	 * @param issue the issue
+	 * @return true, if successful
+	 * @throws DBFailureException the DB failure exception
+	 */
 	public boolean addNewIssue(Issue issue) throws DBFailureException {
 		
 		if(this.db == null) {
@@ -205,6 +251,13 @@ public class FireBaseAdapter {
 		return true;
 	}
 	
+	/**
+	 * Attempt add new account.
+	 *
+	 * @param account the account
+	 * @return true, if successful
+	 * @throws DBFailureException the DB failure exception
+	 */
 	public boolean attemptAddNewAccount(Account account) throws DBFailureException {
 		
 		if(this.db == null) {
@@ -266,6 +319,14 @@ public class FireBaseAdapter {
 		return true; 
 	}
 	
+	/**
+	 * Authenticate user account.
+	 *
+	 * @param userEmail the user email
+	 * @param passwordHash the password hash
+	 * @return the string
+	 * @throws DBFailureException the DB failure exception
+	 */
 	public String authenticateUserAccount(String userEmail, String passwordHash) throws DBFailureException {
 		if(this.db == null) {
 			LOGGER.log(Level.WARNING, "Error- no database connection");
@@ -297,6 +358,17 @@ public class FireBaseAdapter {
 		}
 	}
 	
+	/**
+	 * Reset user account password.
+	 *
+	 * @param userEmail the user email
+	 * @param securityQ the security Q
+	 * @param ansHash the ans hash
+	 * @param passwordHash the password hash
+	 * @param username the username
+	 * @return true, if successful
+	 * @throws DBFailureException the DB failure exception
+	 */
 	public boolean resetUserAccountPassword(String userEmail, int securityQ, String ansHash, String passwordHash, String username) throws DBFailureException {
 		if(this.db == null) {
 			LOGGER.log(Level.WARNING, "Error- no database connection");
@@ -315,8 +387,8 @@ public class FireBaseAdapter {
 			throw new DBFailureException();
 		}
 		
-		System.out.println(ansHash);
-		System.out.println(userEmail);
+		//System.out.println(ansHash);
+		//System.out.println(userEmail);
 		
 		//query if user account exists:
 		ApiFuture<QuerySnapshot> fetchUser = 
@@ -325,7 +397,8 @@ public class FireBaseAdapter {
 				.whereEqualTo(ansName, ansHash)
 				.get();
 		
-		//TO DO: VALIDATE USERNAME
+		//TODO: VALIDATE USERNAME
+		
 		
 		try {
 			QuerySnapshot authUser = fetchUser.get();
@@ -352,6 +425,13 @@ public class FireBaseAdapter {
 		
 	}
 	
+	/**
+	 * Gets the user account no profile.
+	 *
+	 * @param userId the user id
+	 * @return the user account no profile
+	 * @throws DBFailureException the DB failure exception
+	 */
 	public Account getUserAccountNoProfile(String userId) throws DBFailureException{
 		if(this.db == null) {
 			LOGGER.log(Level.WARNING, "Error- no database connection");
@@ -387,6 +467,13 @@ public class FireBaseAdapter {
 		return userAccount;
 	}
 	
+	/**
+	 * Gets the user account with profile.
+	 *
+	 * @param userId the user id
+	 * @return the user account with profile
+	 * @throws DBFailureException the DB failure exception
+	 */
 	public Account getUserAccountWithProfile(String userId) throws DBFailureException{
 		if(this.db == null) {
 			LOGGER.log(Level.WARNING, "Error- no database connection");
@@ -436,6 +523,13 @@ public class FireBaseAdapter {
 		return userAccount;
 	}
 	
+	/**
+	 * Update user account.
+	 *
+	 * @param account the account
+	 * @return true, if successful
+	 * @throws DBFailureException the DB failure exception
+	 */
 	public boolean updateUserAccount(Account account) throws DBFailureException {
 		if(this.db == null) {
 			LOGGER.log(Level.WARNING, "Error- no database connection");
@@ -497,6 +591,13 @@ public class FireBaseAdapter {
 		return true;
 	}
 	
+	/**
+	 * Update profile.
+	 *
+	 * @param profile the profile
+	 * @return true, if successful
+	 * @throws DBFailureException the DB failure exception
+	 */
 	public boolean updateProfile(Profile profile) throws DBFailureException {
 		if(this.db == null) {
 			LOGGER.log(Level.WARNING, "Error- no database connection");
@@ -539,6 +640,13 @@ public class FireBaseAdapter {
 		return true;
 	}
 	
+	/**
+	 * Gets the profile.
+	 *
+	 * @param userId the user id
+	 * @return the profile
+	 * @throws DBFailureException the DB failure exception
+	 */
 	public Profile getProfile(String userId) throws DBFailureException {
 		
 		ApiFuture<DocumentSnapshot> fetchProfile = 
@@ -567,6 +675,14 @@ public class FireBaseAdapter {
 		return prof;
 	}
 	
+	/**
+	 * Gets the fully matched profiles.
+	 *
+	 * @param userProfile the user profile
+	 * @param matchType the match type
+	 * @return the fully matched profiles
+	 * @throws DBFailureException the DB failure exception
+	 */
 	public List<Profile> getFullyMatchedProfiles(Profile userProfile, String matchType) throws DBFailureException{
 		
 		if(this.db == null) {
@@ -626,6 +742,14 @@ public class FireBaseAdapter {
 		return profList;
 	}
 	
+	/**
+	 * Gets the other matched profiles.
+	 *
+	 * @param userProfile the user profile
+	 * @param matchType the match type
+	 * @return the other matched profiles
+	 * @throws DBFailureException the DB failure exception
+	 */
 	public List<Profile> getOtherMatchedProfiles(Profile userProfile, String matchType) throws DBFailureException{
 		if(this.db == null) {
 			LOGGER.log(Level.WARNING, "Error- no database connection");
@@ -643,7 +767,7 @@ public class FireBaseAdapter {
 		List<Profile> profList = null;
 		ApiFuture<QuerySnapshot> mBatchQuery = 
 				db.collection(FireBaseSchema.MATCHES_TABLE)
-					.document(userProfile.getUserId())	
+					.document(userProfile.getUserId())
 					.collection(FireBaseSchema.MATCHES_TABLE_COLLECTION)
 					.whereEqualTo(Match._TYPE, mStringType)
 					.whereEqualTo(Match._CLIENT_MATCH_STATUS, MatchStatus._STATUS_NO_MATCH)
@@ -684,10 +808,27 @@ public class FireBaseAdapter {
 		return profList;
 	}
 	
+	/**
+	 * Gets the unmatched profiles.
+	 *
+	 * @param userId the user id
+	 * @param matchType the match type
+	 * @return the unmatched profiles
+	 * @throws DBFailureException the DB failure exception
+	 *//*
 	public List<Profile> getUnmatchedProfiles(String userId, String matchType) throws DBFailureException{
 		return getUnmatchedProfiles(userId, matchType,1);
-	}
+	}*/
 	
+	/**
+	 * Gets the unmatched profiles.
+	 *
+	 * @param userId the user id
+	 * @param matchType the match type
+	 * @param iterationNumber the iteration number
+	 * @return the unmatched profiles
+	 * @throws DBFailureException the DB failure exception
+	 */
 	public List<Profile> getUnmatchedProfiles(String userId, String matchType, int iterationNumber) throws DBFailureException {
 		if(this.db == null) {
 			LOGGER.log(Level.WARNING, "Error- no database connection");
@@ -731,7 +872,7 @@ public class FireBaseAdapter {
 			Set<String> filteredIds = clientMatches
 				.getDocuments().parallelStream()
 				.map(m -> {
-					System.out.println(m.getId());
+					//System.out.println(m.getId());
 					return m.getId();
 				})
 				.collect(Collectors.toCollection(HashSet::new));
@@ -771,13 +912,21 @@ public class FireBaseAdapter {
 		return batch;
 	}
 	
+	/**
+	 * Gets the match.
+	 *
+	 * @param clientProfile the client profile
+	 * @param otherProfile the other profile
+	 * @return the match
+	 * @throws DBFailureException the DB failure exception
+	 */
 	public Match getMatch(Profile clientProfile, Profile otherProfile) throws DBFailureException {
 		if(this.db == null) {
 			LOGGER.log(Level.WARNING, "Error- no database connection");
 			throw new DBFailureException();
 		}
 		
-		System.out.println("UID: " + clientProfile.getUserId());
+		//System.out.println("UID: " + clientProfile.getUserId());
 		ApiFuture<DocumentSnapshot> getClientMatch = 
 				db.collection(FireBaseSchema.MATCHES_TABLE)
 					.document(clientProfile.getUserId())	
@@ -808,6 +957,12 @@ public class FireBaseAdapter {
 		}
 	}
 	
+	/**
+	 * Adds the match.
+	 *
+	 * @param match the match
+	 * @throws DBFailureException the DB failure exception
+	 */
 	public void addMatch(Match match) throws DBFailureException {
 		if(this.db == null) {
 			LOGGER.log(Level.WARNING, "Error- no database connection");
@@ -842,6 +997,12 @@ public class FireBaseAdapter {
 		
 	}
 	
+	/**
+	 * Update match.
+	 *
+	 * @param match the match
+	 * @throws DBFailureException the DB failure exception
+	 */
 	public void updateMatch(Match match) throws DBFailureException {
 		if(this.db == null) {
 			LOGGER.log(Level.WARNING, "Error- no database connection");
@@ -875,6 +1036,13 @@ public class FireBaseAdapter {
 		}
 	}
 	
+	/**
+	 * Adds the profile image.
+	 *
+	 * @param pic the pic
+	 * @param userId the user id
+	 * @throws DBFailureException the DB failure exception
+	 */
 	public void addProfileImage(BufferedImage pic, String userId) throws DBFailureException {
 		
 		if(this.db == null) {
@@ -904,6 +1072,13 @@ public class FireBaseAdapter {
 		}
 	}
 	
+	/**
+	 * Update profile image.
+	 *
+	 * @param pic the pic
+	 * @param userId the user id
+	 * @throws DBFailureException the DB failure exception
+	 */
 	public void updateProfileImage(BufferedImage pic, String userId) throws DBFailureException {
 		if(this.db == null) {
 			LOGGER.log(Level.WARNING, "Error- no database connection");
@@ -943,6 +1118,13 @@ public class FireBaseAdapter {
 		}
 	}
 	
+	/**
+	 * Gets the profile image.
+	 *
+	 * @param userId the user id
+	 * @return the profile image
+	 * @throws DBFailureException the DB failure exception
+	 */
 	public BufferedImage getProfileImage(String userId) throws DBFailureException {
 		if(this.db == null) {
 			LOGGER.log(Level.WARNING, "Error- no database connection");
@@ -961,13 +1143,24 @@ public class FireBaseAdapter {
 		}
 	}
 
+	/**
+	 * Gets the message thread.
+	 *
+	 * @param userId the user id
+	 * @param otherUserId the other user id
+	 * @return the message thread
+	 * @throws DBFailureException the DB failure exception
+	 */
 	public MessageThread getMessageThread(String userId, String otherUserId) throws DBFailureException{
 		//TODO: Fix this
-		/*
+		
 		if(this.db == null) {
 			LOGGER.log(Level.WARNING, "Error- no database connection");
 			throw new DBFailureException();
 		}
+		
+
+		MessageThread msgThread = new MessageThread();
 		
 		String msgId = FireBaseSchema.toMessageThreadIndex(userId, otherUserId);
 		ApiFuture<QuerySnapshot> fetchThread =
@@ -975,19 +1168,34 @@ public class FireBaseAdapter {
 						.document(msgId)
 						.collection(FireBaseSchema.MESSAGE_THREADS_TABLE_COLLECTION)
 						.get();
+		
+		QuerySnapshot threadResult;
 
-		MessageThread msgThread = new MessageThread();
-		
-		
-		
 		try {
-			QuerySnapshot threadResult = fetchThread.get();
-			if(!threadResult.isEmpty()) {
+			threadResult = fetchThread.get();
+			if(threadResult.isEmpty()) {
 				LOGGER.log(Level.WARNING,"Could not find match Thread");
 				return null;
 			}else {
-				DBDocumentPackage threadPackage = new DBDocumentPackage(msgID, threadResult.getData());
-				msgThread.initializeFromPackage(threadPackage);
+				List<Message> messageList;
+				messageList = threadResult.getDocuments().parallelStream()
+						.map(m -> {
+							try {
+								DBDocumentPackage dbpck = new DBDocumentPackage(m.getId(),m.getData());
+								Message msg = new Message();
+								msg.initializeFromPackage(dbpck);
+								return msg;
+								
+							} catch(Exception e) {
+								LOGGER.log(Level.INFO, "Error- a Message retrieval query failed");
+								return null;
+							}
+						})
+						.filter(p -> p !=null)
+						.collect(Collectors.toList());
+				msgThread.setMessages(messageList);
+				
+				
 			}
 
 		} catch (InterruptedException e1) {
@@ -998,34 +1206,76 @@ public class FireBaseAdapter {
 			throw new DBFailureException();
 		}
 
-		return msgThread;*/ return null;
+		return msgThread;
 	}
-
-	public void sendIssue(Issue issue) throws DBFailureException{
+	
+	public boolean addMessage(String userId, String otherUserId, Message message) throws DBFailureException {
 		
-		//TODO: Fix Issue Sending
 		if(this.db == null) {
 			LOGGER.log(Level.WARNING, "Error- no database connection");
 			throw new DBFailureException();
 		}
 		
-		if(issue == null) {
-			LOGGER.log(Level.WARNING, "Error- issue object was null");
-			return;
-		}
-		DBDocumentPackage iPackage = issue.toDBPackage();
+		String msgId = FireBaseSchema.toMessageThreadIndex(userId, otherUserId);
 		
-		ApiFuture<DocumentReference> newIssueDoc = 
-				this.db.collection(FireBaseSchema.ISSUES_TABLE)
-				.add(iPackage.getValues());
+		DBDocumentPackage pck = message.toDBPackage();
 		
-		try {
-			String newIssueId = newIssueDoc.get().getId();
-			LOGGER.log(Level.INFO,"Submitted issue with Id: " + newIssueId);
-		} catch (InterruptedException | ExecutionException e) {
-			LOGGER.log(Level.WARNING, "Error- issue submission interrupted");
-		}
+		db.collection(FireBaseSchema.MESSAGE_THREADS_TABLE)
+			.document(msgId)
+			.collection(FireBaseSchema.MESSAGE_THREADS_TABLE_COLLECTION)
+			.document(message.getTimestamp().toString())
+			.set(pck.getValues());
+		
+		
+		return true;
 		
 	}
 
+	public void deleteAccount(String userId) throws DBFailureException {
+		
+		CollectionReference acctable = db.collection(FireBaseSchema.ACCOUNTS_TABLE);
+		DocumentReference accRef = db.collection(FireBaseSchema.ACCOUNTS_TABLE).document(userId);
+		DocumentReference profRef = db.collection(FireBaseSchema.PROFILES_TABLE).document(userId);
+		DocumentReference matchesRef = db.collection(FireBaseSchema.MATCHES_TABLE).document(userId);
+		
+		ApiFuture<QuerySnapshot> matchIds = db.collection(FireBaseSchema.MATCHES_TABLE)
+				.document(userId)
+				.collection(FireBaseSchema.MATCHES_TABLE_COLLECTION)
+				.get();
+				
+		
+		List<String> matchUIds;
+		try {
+			matchUIds = matchIds.get().getDocuments().parallelStream()
+					.map( m -> m.getId() )
+					.collect(Collectors.toList());
+		} catch (InterruptedException | ExecutionException e) {
+			LOGGER.log(Level.SEVERE, "Error- could not retrieve all matches for id.");
+			throw new DBFailureException();
+		}
+		
+		WriteBatch deleteBatch = db.batch();
+		
+		//delete Account and Profile:
+		deleteBatch.delete(accRef);
+		deleteBatch.delete(profRef);
+		deleteBatch.delete(matchesRef);
+		
+		//Delete all converse matches:
+		matchUIds.forEach(id -> {
+				DocumentReference convMatch = db.collection(FireBaseSchema.MATCHES_TABLE)
+						.document(id)
+						.collection(FireBaseSchema.MATCHES_TABLE_COLLECTION)
+						.document(userId);
+				
+				deleteBatch.delete(convMatch);
+			});
+		
+		try {
+			deleteBatch.commit().get();
+		} catch (InterruptedException | ExecutionException e) {
+			LOGGER.log(Level.SEVERE, "Error- could not delete User Account.");
+			throw new DBFailureException();
+		}
+	}
 }

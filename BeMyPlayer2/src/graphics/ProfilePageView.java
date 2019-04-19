@@ -29,8 +29,21 @@ import model.Account;
 import model.InformationExpert;
 import model.ResourceManager;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ProfilePageView.
+ */
 public class ProfilePageView {
+	
+	/** The logger. */
 	private static Logger logger = Logger.getLogger(ProfilePageView.class.getName());
+	
+	/**
+	 * Start profile page.
+	 *
+	 * @param profileController the profile controller
+	 * @param mainFrame the main frame
+	 */
 	public static void startProfilePage(ProfilePageController profileController, JFrame mainFrame) {
 		//init Model
 		profileController.setProfileModel(new ProfilePageModel());
@@ -149,7 +162,7 @@ public class ProfilePageView {
 		lblUsername.setText(profileController.getProfile().getUsername());
 		lblUsername.setFont(Fonts.getFont((float)15));
 		lblUsername.setForeground(Colors.Yellow);
-		lblUsername.setBounds(120,35,90,90);
+		lblUsername.setBounds(120,35, 120,90);
 		profileController.getProfileModel().setLblUsername(lblUsername);
 		
 

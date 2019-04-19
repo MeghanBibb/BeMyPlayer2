@@ -3,6 +3,7 @@ package graphics;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -43,11 +44,28 @@ import model.InformationExpert;
 import model.Profile;
 import model.ResourceManager;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ViewMatchesView.
+ */
 public class ViewMatchesView {
+	
+	/** The logger. */
 	private static Logger logger = Logger.getLogger(ViewMatchesView.class.getName());
+	
+	/** The img 1. */
 	static BufferedImage img1 = ResourceManager.loadImage("splash_heart.png");
+	
+	/** The heart image. */
 	static JLabel heartImage = new JLabel();
 	
+	/**
+	 * Start view matches.
+	 *
+	 * @param viewMatchController the view match controller
+	 * @param mainFrame the main frame
+	 * @param a the a
+	 */
 	public static void startViewMatches(ViewMatchesController viewMatchController, JFrame mainFrame,Account a) {
 		
 		viewMatchController.setViewMatchesModel(new ViewMatchesModel());
@@ -86,82 +104,83 @@ public class ViewMatchesView {
 		JPanel profilePicPanel = new JPanel();
 		profilePicPanel.setBackground(Colors.Yellow);
 		profilePicPanel.setLayout(gridLayout);
-		profilePicPanel.setPreferredSize(new Dimension(100,245));
-		profilePicPanel.setSize(100, 245);
 		
+		profilePicPanel.setPreferredSize(new Dimension(100,250));
+		
+		//profilePicPanel.setSize(100, 245);
 		JComboBox matchtype = new JComboBox();
 		
 		matchtype.addItemListener(new ItemListener() {
         	public void itemStateChanged(ItemEvent e) {
         		//	generate new match request pull 
+        		if(e.getStateChange() == ItemEvent.SELECTED) {
         		if(viewMatchController.getViewMatchesModel().getMatchtype().getSelectedItem().toString().equalsIgnoreCase("Love Matches")) {
         			
         			profilePicPanel.removeAll();
         			///	ACTUAL SOLUTION
         			
         			if(InformationExpert.getClientModel().getLoveMatches() == null || InformationExpert.getClientModel().getLoveMatches().size() == 0) {
-        				JLabel noMatchlbl1 = new JLabel("<HTML>Your princess is in another castle<br></HTML>");
+        				JLabel noMatchlbl1 = new JLabel("<HTML>Your princess is in another castle<br>Get back out there and find a match!<br></HTML>");
         			    noMatchlbl1.setFont(Fonts.getFont(12f));
         			    noMatchlbl1.setForeground(Colors.Red);
-        			    noMatchlbl1.setBounds(40,160,260,69);
-        			 
-        			    viewMatchController.getViewMatchesPanel().add(noMatchlbl1);
-        				
-        				JLabel noMatchlbl2 = new JLabel("<HTML>Get back out there and find a match<br></HTML>");
-        				noMatchlbl2.setFont(Fonts.getFont(12f));
-        				noMatchlbl2.setForeground(Colors.Red);
-        				noMatchlbl2.setBounds(40,175,260,69);
-        				viewMatchController.getViewMatchesPanel().add(noMatchlbl2);
-        				
+        			    noMatchlbl1.setBounds(50,30,260,69);
+        			    profilePicPanel.add(noMatchlbl1);
         				viewMatchController.getViewMatchesModel().setEmptylistLine1(noMatchlbl1);
-        				viewMatchController.getViewMatchesModel().setEmptylistLine2(noMatchlbl2);
         				
         			}
         			else {
         				List<JButton> pics = ProfilePicGenerator.getLoveList(viewMatchController);
-            			for(JButton icon: pics) {
-            				profilePicPanel.add(icon);
-            			}
+        		    	double temp = pics.size();
+        		    	
+        		    	if(InformationExpert.getClientModel().getLoveMatches().size()  > 4) {
+        		    		temp = (Math.ceil(Math.abs(temp/4)));
+        		    		profilePicPanel.setSize(new Dimension(100,(int) (250*temp)));
+        		    	}
+        		    	else {
+        		    		profilePicPanel.setSize(new Dimension(100,250));
+        		    	}
+        				for(JButton icon: pics) {
+        					profilePicPanel.add(icon);
+        				}
             			
         			}
-        			viewMatchController.getViewMatchesPanel().repaint();
-        			profilePicPanel.repaint();
+        			//profilePicPanel.repaint();
         			profilePicPanel.validate();
-        			profilePicPanel.revalidate();
+        			//profilePicPanel.revalidate();
         		}
         		else {
         			profilePicPanel.removeAll();
         			///	ACTUAL SOLUTION
         			
         			if(InformationExpert.getClientModel().getFriendMatches() == null ||InformationExpert.getClientModel().getFriendMatches().size() == 0) {
-        				JLabel noMatchlbl1 = new JLabel("<HTML>Your princess is in another castle<br></HTML>");
+        				JLabel noMatchlbl1 = new JLabel("<HTML>Your princess is in another castle<br>Get out there and find a match!<br></HTML>");
         			    noMatchlbl1.setFont(Fonts.getFont(12f));
         			    noMatchlbl1.setForeground(Colors.Red);
-        			    noMatchlbl1.setBounds(40,160,260,69);
-        			 
+        			    noMatchlbl1.setBounds(50,30,260,69);
         			    profilePicPanel.add(noMatchlbl1);
-        				
-        				JLabel noMatchlbl2 = new JLabel("<HTML>Get back out there and find a match<br></HTML>");
-        				noMatchlbl2.setFont(Fonts.getFont(12f));
-        				noMatchlbl2.setForeground(Colors.Red);
-        				noMatchlbl2.setBounds(40,175,260,69);
-        				profilePicPanel.add(noMatchlbl2);
-        				
         				viewMatchController.getViewMatchesModel().setEmptylistLine1(noMatchlbl1);
-        				viewMatchController.getViewMatchesModel().setEmptylistLine2(noMatchlbl2);
         			}
         			else {
         				List<JButton> pics = ProfilePicGenerator.getFriendList(viewMatchController);
-            			for(JButton icon: pics) {
-            				profilePicPanel.add(icon);
-            			}
+        		    	double temp = pics.size();
+        		    	
+        		    	if(InformationExpert.getClientModel().getFriendMatches().size() > 4) {
+        		    		temp = (Math.ceil(Math.abs(temp/4)));
+        		    		profilePicPanel.setSize(new Dimension(100,(int) (250*temp)));
+        		    	}
+        		    	else {
+        		    		profilePicPanel.setSize(new Dimension(100,250));
+        		    	}
+        				for(JButton icon: pics) {
+        					profilePicPanel.add(icon);
+        				}
         			}
-        			viewMatchController.getViewMatchesPanel().repaint();
-        			profilePicPanel.repaint();
+        			//profilePicPanel.repaint();
         			profilePicPanel.validate();
-        			profilePicPanel.revalidate();
+        			//profilePicPanel.revalidate();
         		}
         		
+        	}
         	}
         });
 		
@@ -183,34 +202,37 @@ public class ViewMatchesView {
 		
 		//////////////////////////////////////////////////////////
 //		if empty
-		System.out.println("init love size + " + InformationExpert.getClientModel().getLoveMatches().size());
-	    if(InformationExpert.getClientModel().getLoveMatches() == null || InformationExpert.getClientModel().getLoveMatches().size() == 0) {
-	    	JLabel noMatchlbl1 = new JLabel("Your princess is in another castle");
-		    noMatchlbl1.setFont(Fonts.getFont(9f));
+		
+		if(InformationExpert.getClientModel().getLoveMatches() == null || InformationExpert.getClientModel().getLoveMatches().size() == 0) {
+	    	JLabel noMatchlbl1 = new JLabel("<HTML>Your princess is in another castle<br>Get back out there and find a match!<br></HTML>");
+		    noMatchlbl1.setFont(Fonts.getFont(12f));
 		    noMatchlbl1.setForeground(Colors.Red);
-		    noMatchlbl1.setBounds(40,160,260,69);
-		 
-		    viewMatchController.getViewMatchesPanel().add(noMatchlbl1);
-			
-			JLabel noMatchlbl2 = new JLabel("Get back out there and find a match");
-			noMatchlbl2.setFont(Fonts.getFont(9f));
-			noMatchlbl2.setForeground(Colors.Red);
-			noMatchlbl2.setBounds(40,175,260,69);
-			viewMatchController.getViewMatchesPanel().add(noMatchlbl2);
+		    noMatchlbl1.setBounds(50,30,260,69);
+		    profilePicPanel.add(noMatchlbl1);
 			
 			viewMatchController.getViewMatchesModel().setEmptylistLine1(noMatchlbl1);
-			viewMatchController.getViewMatchesModel().setEmptylistLine2(noMatchlbl2);
 	    }
 	    else {
 	    	List<JButton> pics = ProfilePicGenerator.getLoveList(viewMatchController);
+	    	double temp = pics.size();
+	    	
+	    	if(InformationExpert.getClientModel().getLoveMatches().size() > 4) {
+	    		temp = (Math.ceil(Math.abs(temp/4)));
+	    		profilePicPanel.setSize(new Dimension(100,(int) (250*temp)));
+	    	}
+	    	else {
+	    		profilePicPanel.setSize(new Dimension(100,250));
+	    	}
 			for(JButton icon: pics) {
 				profilePicPanel.add(icon);
 			}
 	    }
-
+		
 		//	SCROLLPANE
 	    JScrollPane scrollPane = new JScrollPane(profilePicPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-	
+	    
+	    
+	    //scrollPane.getViewport().add(profilePicPanel);
 	    scrollPane.setBounds(new Rectangle(25, 120, 215, 245));
 	    
 		viewMatchController.getViewMatchesPanel().add(scrollPane);
