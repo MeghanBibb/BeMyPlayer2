@@ -77,6 +77,9 @@ public class SwipePageController extends PageController {
 				GraphicsController.processPage(PageCreator.HOME_PAGE, PageController.backPage);
 			}
 		}
+		//if(!invalid) {
+		//	AccountIsMuted.Warning(mainFrame);
+		//}
 		if(!invalid) {
 		this.model = new SwipePageModel(mainFrame, InformationExpert.getOtherProfile(), this);
 		model.backButton.addActionListener(new ActionListener() {
