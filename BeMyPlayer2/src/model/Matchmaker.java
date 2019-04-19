@@ -36,6 +36,9 @@ public class Matchmaker{
 				if(o.getUsername().equals(c.getUsername())) {
 					return 1000;
 				}
+				if(o.getMute() == true) {
+					return 1000;
+				}
 				score += o.getGender().compareTo(o.getGender());
 				for(int i = 0; i < o.getPlatforms().size(); i++) {
 					if(o.getPlatforms().get(i).equals(c.getPlatforms().get(i))) {
@@ -74,6 +77,9 @@ public class Matchmaker{
 					return 1000;
 				}
 				if(o.getGender().equals(c.getGender())) {
+					return 1000;
+				}
+				if(o.getMute() == true) {
 					return 1000;
 				}
 				for(int i = 0; i < o.getPlatforms().size(); i++) {

@@ -44,7 +44,7 @@ public class Profile implements DBSerializable{
 	private String description;
 	
 	/** The is mute. */
-	private Boolean isMute;
+	private Boolean isMute = false;
 	
 	/** The platforms. */
 	private List<Boolean> platforms;
@@ -78,6 +78,7 @@ public class Profile implements DBSerializable{
 		this.description = description;
 		this.platforms = new ArrayList<Boolean>();
 		this.genres = new ArrayList<Boolean>();
+		this.isMute = false;
 	}
 	
 	/**
@@ -99,6 +100,7 @@ public class Profile implements DBSerializable{
 		this.description = description;
 		this.platforms = platforms;
 		this.genres = genres;
+		this.isMute = false;
 	}
 	
 	/**
@@ -121,6 +123,7 @@ public class Profile implements DBSerializable{
 		this.description = description;
 		this.platforms = platforms;
 		this.genres = genres;
+		this.isMute = false;
 	}
 	
 	/**
