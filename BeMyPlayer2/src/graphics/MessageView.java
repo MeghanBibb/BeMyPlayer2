@@ -87,7 +87,7 @@ public class MessageView {
         messageController.getMessageModel().setLblAge(lblAge);
 
         JLabel lblGender = new JLabel();
-        lblGender.setText(messageController.getAccount().getAccountProfile().getGender());
+        lblGender.setText(messageController.getOtherProf().getGender());
         lblGender.setForeground(Colors.Yellow);
         lblGender.setFont(Fonts.getFont((float) 15));
         //lblGender.setForeground(Colors.Red);
@@ -116,38 +116,32 @@ public class MessageView {
         messageController.getMessageModel().setBtnSend(btnSend);
 
         //  init Thread scroll pane
-        
-
-        //	init fields and listeners
-        //TODO: FIX THIS
-        
         JTextArea thread = new JTextArea();
         //thread.setBounds(35, 165, 400, 200);
         thread.setVisible(true);
-        thread.setEditable(true);
+        thread.setEditable(false);
         thread.setFont(Fonts.getFont((float) 12));
         thread.setForeground(Colors.Red);
         messageController.getMessageModel().setThread(thread);
         
-        for (int i = 0; i < messageController.getCurrentThread().getMessages().size(); i++){
-            if (messageController.getCurrentThread().getMessages().get(i).getSenderId().equals(InformationExpert.getActiveUserID())){
-                thread.append("Me: ");
-                thread.append(messageController.getCurrentThread().getMessages().get(i).getMessage());
-                thread.append("\n");
-            }
-            else {
-                thread.append(InformationExpert.getOtherProfile().getUserId() + ": ");
-                thread.append(messageController.getCurrentThread().getMessages().get(i).getMessage());
-                thread.append("\n");
-            }
+        if(messageController.getCurrentThread() != null) {
+        	 for (int i = 0; i < messageController.getCurrentThread().getMessages().size(); i++){
+                 if (messageController.getCurrentThread().getMessages().get(i).getSenderId().equals(InformationExpert.getActiveUserID())){
+                     thread.append("Me: ");
+                     thread.append(messageController.getCurrentThread().getMessages().get(i).getMessage());
+                     thread.append("\n");
+                 }
+                 else {
+                     thread.append(InformationExpert.getOtherProfile().getUsername() + ": ");
+                     thread.append(messageController.getCurrentThread().getMessages().get(i).getMessage());
+                     thread.append("\n");
+                 }
+             }
         }
-        JScrollPane tPane = new JScrollPane(thread,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
        
+        JScrollPane tPane = new JScrollPane(thread,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         tPane.setVisible(true);
         tPane.setBounds(35, 165, 400, 200);
-        
-        
-        
 
         JTextField sendBox = new JTextField();
         sendBox.setBounds(35, 365, 310, 30);
@@ -161,7 +155,6 @@ public class MessageView {
         messageController.getMessagePanel().add(messageController.getMessageModel().getLblGender());
         messageController.getMessagePanel().add(messageController.getMessageModel().getBtnSend());
         messageController.getMessagePanel().add(messageController.getMessageModel().getBack());
-        //messageController.getMessagePanel().add(messageController.getMessageModel().getThread());
         messageController.getMessagePanel().add(tPane);
         messageController.getMessagePanel().add(messageController.getMessageModel().getSendBox());
 

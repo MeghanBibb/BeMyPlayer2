@@ -82,7 +82,6 @@ public class SwipeRightController extends SwipeButtonController{
 			}
 		} catch (DBFailureException e1) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();
 			logger.severe("Database error occured");
 			InvalidPopup p = new InvalidPopup(new JPanel(),"Database error, please try again later");
 		} finally {
