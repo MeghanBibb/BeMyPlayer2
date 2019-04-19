@@ -38,12 +38,9 @@ public class PageCreator {
 	
 	/** The Constant PROFILE_PAGE. */
 	public static final String PROFILE_PAGE = "profile page";
-<<<<<<< HEAD
-=======
 	
 	/** The Constant CREDITS_PAGE. */
 	public static final String CREDITS_PAGE = "credits page";
->>>>>>> 9c72b0e720d4be7b57e3ae4e0247263ac0d969a1
 	
 	/**
 	 * Gets the page.

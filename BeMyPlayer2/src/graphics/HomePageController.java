@@ -37,8 +37,6 @@ public class HomePageController extends PageController{
 	
 	/** The Constant LAUNCH_WEB_PAGE. */
 	public static final String LAUNCH_WEB_PAGE = "launchsite";
-<<<<<<< HEAD
-=======
 	
 	/** The Constant CREDITS. */
 	public static final String CREDITS = "credits";
@@ -48,7 +46,7 @@ public class HomePageController extends PageController{
 
 	
 	/** The home page model. */
->>>>>>> 9c72b0e720d4be7b57e3ae4e0247263ac0d969a1
+	
 	// get view and jframe
 	private HomePageModel homePageModel = null;
 	
@@ -105,8 +103,6 @@ public class HomePageController extends PageController{
 				logger.info("Launching webpage");
 				web.WebHandler.openWebPage("https://mpbibb7.wixsite.com/be-my-player-2",this.homePanel);
 				break;
-<<<<<<< HEAD
-=======
 			case CREDITS:
 				logger.info("Launching credits page");
 				GraphicsController.processPage(PageCreator.CREDITS_PAGE, PageCreator.HOME_PAGE);
@@ -122,7 +118,6 @@ public class HomePageController extends PageController{
 				}
 				homePageModel.setBtnSound(temp);
 				break;
->>>>>>> 9c72b0e720d4be7b57e3ae4e0247263ac0d969a1
 		}
 	}
 
@@ -134,7 +129,7 @@ public class HomePageController extends PageController{
 	public HomePageModel getHomePageModel() {
 		return homePageModel;
 	}
-
+	
 	/**
 	 * Sets the home page model.
 	 *

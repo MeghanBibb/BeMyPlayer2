@@ -72,31 +72,10 @@ public class ProfilePicGenerator {
 				threads.get(i).join();
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
-<<<<<<< HEAD
-				img1 = DEFAULT_PIC;
-				logger.warning("database failed to load pic for " + name);
-			}
-			Profile temp = InformationExpert.getOtherProfile();
-			//Image img1 = new ImageIcon("filepathfromDB").getImage();//	add try catch and dont add if invalid file path
-			JButton setIcon = new JButton();
-			setIcon.setLayout(new FlowLayout());
-			setIcon.add(new CircularImage((new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH)))));
-			setIcon.setFont(Fonts.getFont(12f));
-			setIcon.setForeground(Colors.Yellow);
-			setIcon.setBackground(Colors.Red);
-			setIcon.setName(name);
-			setIcon.setPreferredSize(new Dimension(75,50));
-			nameLabel.setText(temp.getUsername());
-			setIcon.add(nameLabel, BorderLayout.PAGE_END);
-			setIcon.setActionCommand("profileclick");
-			setIcon.addActionListener(b);
-			loveList.add(setIcon);
-=======
 				logger.severe("Join failure");
 				InvalidPopup p = new InvalidPopup(b.getViewMatchesPanel(),"Synchronization issue with threads");
 				
 			}
->>>>>>> 9c72b0e720d4be7b57e3ae4e0247263ac0d969a1
 		}
 		if(userIds.size() < 3) {
 			int i = userIds.size();
@@ -147,34 +126,12 @@ public class ProfilePicGenerator {
 				threads.get(i).join();
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
-<<<<<<< HEAD
-				img1 = DEFAULT_PIC;
-				logger.warning("database failed to load profile pic for " + name);
-			}
-			
-			Profile temp = InformationExpert.getOtherProfile();
-			
-			if(temp != null) {
-			JButton setIcon = new JButton();
-			setIcon.setLayout(new FlowLayout());
-			setIcon.add(new CircularImage((new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH)))));
-			setIcon.setFont(Fonts.getFont(12f));
-			setIcon.setForeground(Colors.Yellow);
-			setIcon.setBackground(Colors.Red);
-			setIcon.setName(name);
-			setIcon.setPreferredSize(new Dimension(75,50));
-			nameLabel.setText(temp.getUsername());
-			setIcon.add(nameLabel, BorderLayout.PAGE_END);
-			setIcon.setActionCommand("profileclick");
-			setIcon.addActionListener(b);
-			friendList.add(setIcon);
-			
-=======
+
 				logger.severe("Join failure");
 				InvalidPopup p = new InvalidPopup(b.getViewMatchesPanel(),"Synchronization issue with threads");
 				
 			}
->>>>>>> 9c72b0e720d4be7b57e3ae4e0247263ac0d969a1
+			
 		}
 		if(userIds.size() < 3) {
 			int i = userIds.size();
@@ -189,8 +146,6 @@ public class ProfilePicGenerator {
 		return friendList;
 	}
 	
-<<<<<<< HEAD
-=======
 	/**
 	 * Gets the creators list.
 	 *
@@ -238,5 +193,5 @@ public class ProfilePicGenerator {
 		
 		return creators;
 	}
->>>>>>> 9c72b0e720d4be7b57e3ae4e0247263ac0d969a1
+
 }
