@@ -228,6 +228,10 @@ public class CreateAccountPageController extends PageController{
 		 */
 		//	VALIDATIONS
 		List<String> warnings = new ArrayList<>();
+		if(this.createAccountPageModel.getFrmtdtxtfldEnterUsername().getText().length() > 12) {
+			valid = false;
+			warnings.add("Character limit 12 exceeded for username\n");
+		}
 		if(this.createAccountPageModel.getFrmtdtxtfldEnterUsername().getText().equalsIgnoreCase("")) {
 			valid = false;
 			warnings.add("Invalid username\n");
