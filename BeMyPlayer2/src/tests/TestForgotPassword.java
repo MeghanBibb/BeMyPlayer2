@@ -66,10 +66,92 @@ public class TestForgotPassword {
 		controller.setForgotPasswordPageModel(model);
 	}
 	
+	//test with valid data
 	//@Test
 	public void testPasswordVerification() {
 		model = new ForgotPassPageModel();
 		assert(controller.validateInfo());
+	}
+	
+	//@Test
+	public void testBadAnswer() {
+		JFormattedTextField answer = new JFormattedTextField("BAD ANSWER");
+		model.setSecQA(answer);
+		controller.setForgotPasswordPageModel(model);
+		
+		assertFalse(controller.validateInfo());
+	}
+	
+	//@Test
+	public void testEmptyAnswer() {
+		JFormattedTextField answer = new JFormattedTextField();
+		model.setSecQA(answer);
+		controller.setForgotPasswordPageModel(model);
+		
+		assertFalse(controller.validateInfo());
+	}
+	
+	//@Test
+	public void testBadEmail() {
+		JFormattedTextField tempEmail = new JFormattedTextField("badEmail@gmail.com");
+		model.setFrmtdtextfldEnterEmail(tempEmail);
+		
+		controller.setForgotPasswordPageModel(model);
+		assertFalse(controller.validateInfo());
+	}
+	
+	//@Test
+	public void testBadEmail2() {
+		JFormattedTextField tempEmail = new JFormattedTextField("mpbibb");
+		model.setFrmtdtextfldEnterEmail(tempEmail);
+		
+		controller.setForgotPasswordPageModel(model);
+		assertFalse(controller.validateInfo());
+	}
+	
+	//@Test
+	public void testEmptyEmail() {
+		JFormattedTextField tempEmail = new JFormattedTextField();
+		model.setFrmtdtextfldEnterEmail(tempEmail);
+		
+		controller.setForgotPasswordPageModel(model);
+		assertFalse(controller.validateInfo());
+	}
+	
+	//@Test
+	public void testBadPassword() {
+		JPasswordField tempPassword1 = new JPasswordField("myBadPassword");
+		model.setFrmtdtextfldEnterNewPassword(tempPassword1);
+		
+		controller.setForgotPasswordPageModel(model);
+		assertFalse(controller.validateInfo());
+	}
+	
+	//@Test
+	public void testEmptyPassword() {
+		JPasswordField tempPassword1 = new JPasswordField();
+		model.setFrmtdtextfldEnterNewPassword(tempPassword1);
+		
+		controller.setForgotPasswordPageModel(model);
+		assertFalse(controller.validateInfo());
+	}
+	
+	//@Test
+	public void testEmptyPasswordMatch() {
+		JPasswordField tempPassword2 = new JPasswordField();
+		model.setPwdEnterPass(tempPassword2);
+		
+		controller.setForgotPasswordPageModel(model);
+		assertFalse(controller.validateInfo());
+	}
+	
+	//@Test
+	public void testBadPasswordMatch() {
+		JPasswordField tempPassword2 = new JPasswordField("myBADPassword1BAD");
+		model.setPwdEnterPass(tempPassword2);
+		
+		controller.setForgotPasswordPageModel(model);
+		assertFalse(controller.validateInfo());
 	}
 	
 }
