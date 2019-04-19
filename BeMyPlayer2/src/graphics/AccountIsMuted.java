@@ -15,7 +15,7 @@ import javax.swing.border.EmptyBorder;
 
 import model.ResourceManager;
 
-public class AccountIsMuted extends PageController{
+public class AccountIsMuted {
 	public static void Warning(JFrame mainFrame) {
 		
 		 Timer time = new Timer(1000,new ActionListener() {
@@ -48,20 +48,6 @@ public class AccountIsMuted extends PageController{
     	 mainFrame.setVisible(true);
     	 time.start();
 	     
-	}
-
-	@Override
-	public void launchPage(JFrame mainFrame, String back) {
-		// TODO Auto-generated method stub
-		if(back != null) {
-			backPage = back;
-		}
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

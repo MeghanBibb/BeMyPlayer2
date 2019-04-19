@@ -9,8 +9,6 @@ public class PageCreator {
 	/** The Constant CREATE_ACCOUNT_PAGE. */
 	public static final String CREATE_ACCOUNT_PAGE = "create account";
 	
-	public static final String MUTE_PAGE = "mute account";
-	
 	/** The Constant EDIT_ACCOUNT_PAGE. */
 	public static final String EDIT_ACCOUNT_PAGE = "edit account";
 	
@@ -63,7 +61,6 @@ public class PageCreator {
 		case SWIPE_PAGE: return new SwipePageController();
 		case MATCHES_PAGE: return new ViewMatchesController();
 		case PROFILE_PAGE: return new ProfilePageController();
-		case MUTE_PAGE: return new AccountIsMuted();
 		default: return null;
 		}
 	}
