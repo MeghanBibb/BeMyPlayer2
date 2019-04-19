@@ -91,10 +91,19 @@ public class MessageController extends PageController {
                     try {
 						if(InformationExpert.addMessage(InformationExpert.getActiveUserID(), InformationExpert.getOtherProfile().getUserId(), newMessage)) {
 							//message upload successful
-							System.out.println("YES!!");
+							//TODO: Add message to thread, repaint pane
+							
+							if(this.getCurrentThread() == null) {
+								MessageThread t = new MessageThread();
+								t.addMessage(newMessage);
+								this.setCurrentThread(t);
+							} else {
+								this.getCurrentThread().addMessage(newMessage);
+							}
 						}
+						this.updateMessageArea();
 					} catch (DBFailureException e1) {
-						// TODO Auto-generated catch block
+						// TODO print warning
 						e1.printStackTrace();
 					}
                 }
@@ -110,6 +119,26 @@ public class MessageController extends PageController {
                 } catch (DBFailureException e1) {
                     logger.log(Level.SEVERE, "Could not find Thread");
                 }*/
+        }
+    }
+    
+    public void updateMessageArea() {
+    	//current method is clear the message area and re-add everything
+    	//better method would be to dynamically determine what needs to be added
+    	
+    	this.getMessageModel().getThread().setText("");
+    	
+    	for (int i = 0; i < getCurrentThread().getMessages().size(); i++){
+            if (getCurrentThread().getMessages().get(i).getSenderId().equals(InformationExpert.getActiveUserID())){
+                this.getMessageModel().getThread().append("Me: ");
+                this.getMessageModel().getThread().append(getCurrentThread().getMessages().get(i).getMessage());
+                this.getMessageModel().getThread().append("\n");
+            }
+            else {
+            	this.getMessageModel().getThread().append(InformationExpert.getOtherProfile().getUsername() + ": ");
+            	this.getMessageModel().getThread().append(getCurrentThread().getMessages().get(i).getMessage());
+            	this.getMessageModel().getThread().append("\n");
+            }
         }
     }
 
