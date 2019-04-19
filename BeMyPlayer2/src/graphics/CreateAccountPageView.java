@@ -854,6 +854,7 @@ public class CreateAccountPageView {
 		capController.getCreateAccountPanel().add(charCount);
 		//	description box
 		JTextArea description = new JTextArea();
+		description.setLineWrap(true);
 		if(visited == true) {
 			description.setText(capController.getCreateAccountPageModel().getCharDescription().getText());
 			capController.getCreateAccountPageModel().getCharcount().setText(
