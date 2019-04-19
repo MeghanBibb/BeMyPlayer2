@@ -44,8 +44,6 @@ public class Account implements DBSerializable{
 	/** The security Q 2 ans hash. */
 	private String securityQ2AnsHash;
 	
-	private Boolean isMute = true;
-	
 	/** The account profile. */
 	Profile accountProfile = null; // This composition is optional
 	
@@ -241,14 +239,6 @@ public class Account implements DBSerializable{
 	 */
 	public void setPasswordHash(String p) {
 		this.passwordHash = p;
-	}
-
-	public Boolean getIsMute() {
-		return isMute;
-	}
-
-	public void setIsMute(Boolean isMute) {
-		this.isMute = isMute;
 	}
 
 	/* (non-Javadoc)
