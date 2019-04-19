@@ -105,7 +105,7 @@ public class ViewMatchesView {
 		profilePicPanel.setBackground(Colors.Yellow);
 		profilePicPanel.setLayout(gridLayout);
 		
-		profilePicPanel.setPreferredSize(new Dimension(100,245));
+		profilePicPanel.setPreferredSize(new Dimension(100,250));
 		
 		//profilePicPanel.setSize(100, 245);
 		JComboBox matchtype = new JComboBox();
@@ -113,6 +113,7 @@ public class ViewMatchesView {
 		matchtype.addItemListener(new ItemListener() {
         	public void itemStateChanged(ItemEvent e) {
         		//	generate new match request pull 
+        		if(e.getStateChange() == ItemEvent.SELECTED) {
         		if(viewMatchController.getViewMatchesModel().getMatchtype().getSelectedItem().toString().equalsIgnoreCase("Love Matches")) {
         			
         			profilePicPanel.removeAll();
@@ -128,22 +129,24 @@ public class ViewMatchesView {
         				
         			}
         			else {
-        				System.out.println("should be here for reloading lovers");
         				List<JButton> pics = ProfilePicGenerator.getLoveList(viewMatchController);
         		    	double temp = pics.size();
         		    	
-        		    	if(pics.size() > 4) {
+        		    	if(InformationExpert.getClientModel().getLoveMatches().size()  > 4) {
         		    		temp = (Math.ceil(Math.abs(temp/4)));
-        		    		profilePicPanel.setPreferredSize(new Dimension(100,(int) (250*temp)));
+        		    		profilePicPanel.setSize(new Dimension(100,(int) (250*temp)));
+        		    	}
+        		    	else {
+        		    		profilePicPanel.setSize(new Dimension(100,250));
         		    	}
         				for(JButton icon: pics) {
         					profilePicPanel.add(icon);
         				}
             			
         			}
-        			profilePicPanel.repaint();
+        			//profilePicPanel.repaint();
         			profilePicPanel.validate();
-        			profilePicPanel.revalidate();
+        			//profilePicPanel.revalidate();
         		}
         		else {
         			profilePicPanel.removeAll();
@@ -161,20 +164,23 @@ public class ViewMatchesView {
         				List<JButton> pics = ProfilePicGenerator.getFriendList(viewMatchController);
         		    	double temp = pics.size();
         		    	
-        		    	if(pics.size() > 4) {
+        		    	if(InformationExpert.getClientModel().getFriendMatches().size() > 4) {
         		    		temp = (Math.ceil(Math.abs(temp/4)));
-        		    		profilePicPanel.setPreferredSize(new Dimension(100,(int) (250*temp)));
+        		    		profilePicPanel.setSize(new Dimension(100,(int) (250*temp)));
+        		    	}
+        		    	else {
+        		    		profilePicPanel.setSize(new Dimension(100,250));
         		    	}
         				for(JButton icon: pics) {
         					profilePicPanel.add(icon);
         				}
         			}
-        			viewMatchController.getViewMatchesPanel().repaint();
-        			profilePicPanel.repaint();
+        			//profilePicPanel.repaint();
         			profilePicPanel.validate();
-        			profilePicPanel.revalidate();
+        			//profilePicPanel.revalidate();
         		}
         		
+        	}
         	}
         });
 		
@@ -210,9 +216,12 @@ public class ViewMatchesView {
 	    	List<JButton> pics = ProfilePicGenerator.getLoveList(viewMatchController);
 	    	double temp = pics.size();
 	    	
-	    	if(pics.size() > 4) {
+	    	if(InformationExpert.getClientModel().getLoveMatches().size() > 4) {
 	    		temp = (Math.ceil(Math.abs(temp/4)));
-	    		profilePicPanel.setPreferredSize(new Dimension(100,(int) (250*temp)));
+	    		profilePicPanel.setSize(new Dimension(100,(int) (250*temp)));
+	    	}
+	    	else {
+	    		profilePicPanel.setSize(new Dimension(100,250));
 	    	}
 			for(JButton icon: pics) {
 				profilePicPanel.add(icon);
