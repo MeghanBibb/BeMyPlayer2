@@ -465,9 +465,7 @@ public class InformationExpert {
 	 * @throws DBFailureException the DB failure exception
 	 */
 	public static MessageThread getMessageThread(String userId, String otherUserId) throws DBFailureException {
-		//TODO: impliment getMessageThread
-		//return databaseAdapter.getMessageThread(userId, otherUserId);
-		return null;
+		return databaseAdapter.getMessageThread(userId, otherUserId);
 	}
 
 	/**
@@ -510,5 +508,9 @@ public class InformationExpert {
 	 */
 	public static void updateMatch(Match match) throws DBFailureException {
 		databaseAdapter.updateMatch(match);
+	}
+	
+	public static boolean addMessage(String userId, String otherUserId, Message message) throws DBFailureException {
+		return databaseAdapter.addMessage(userId, otherUserId, message);
 	}
 }

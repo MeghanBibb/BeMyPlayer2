@@ -59,7 +59,7 @@ public class MessageView {
         messageController.getMessageModel().setProfileImage(imgLabel);
 
         JLabel lblUsername = new JLabel();
-        lblUsername.setText(messageController.getAccount().getAccountProfile().getUsername());
+        lblUsername.setText(InformationExpert.getOtherProfile().getUsername());
         lblUsername.setFont(Fonts.getFont((float)15));
         lblUsername.setForeground(Colors.Yellow);
         lblUsername.setBounds(150,35,90,90);
@@ -72,7 +72,7 @@ public class MessageView {
 		Date nowDate = java.sql.Date.valueOf(now);
 		Calendar cnow = Calendar.getInstance();
 		cnow.setTime(nowDate);
-		Date bday = messageController.getAccount().getAccountProfile().getDateOB();
+		Date bday = InformationExpert.getOtherProfile().getDateOB();
 		Calendar cbday = Calendar.getInstance();
 		cbday.setTime(bday);
 		int diff = cnow.get(Calendar.YEAR) - cbday.get(Calendar.YEAR);
@@ -116,22 +116,20 @@ public class MessageView {
         messageController.getMessageModel().setBtnSend(btnSend);
 
         //  init Thread scroll pane
-        JScrollPane tPane = new JScrollPane();
-        tPane.createVerticalScrollBar();
-        tPane.setVisible(true);
-        tPane.setBounds(35, 165, 400, 200);
+        
 
         //	init fields and listeners
-        /* TODO: FIX THIS
+        //TODO: FIX THIS
+        
         JTextArea thread = new JTextArea();
-        thread.setBounds(35, 165, 400, 200);
+        //thread.setBounds(35, 165, 400, 200);
         thread.setVisible(true);
         thread.setEditable(true);
         thread.setFont(Fonts.getFont((float) 12));
         thread.setForeground(Colors.Red);
         messageController.getMessageModel().setThread(thread);
-
-        /*for (int i = 0; i < messageController.getCurrentThread().getMessages().size(); i++){
+        
+        for (int i = 0; i < messageController.getCurrentThread().getMessages().size(); i++){
             if (messageController.getCurrentThread().getMessages().get(i).getSenderId().equals(InformationExpert.getActiveUserID())){
                 thread.append("Me: ");
                 thread.append(messageController.getCurrentThread().getMessages().get(i).getMessage());
@@ -143,11 +141,13 @@ public class MessageView {
                 thread.append("\n");
             }
         }
-
-        tPane.add(thread);
-        tPane.repaint();
+        JScrollPane tPane = new JScrollPane(thread,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+       
+        tPane.setVisible(true);
+        tPane.setBounds(35, 165, 400, 200);
         
-        */
+        
+        
 
         JTextField sendBox = new JTextField();
         sendBox.setBounds(35, 365, 310, 30);

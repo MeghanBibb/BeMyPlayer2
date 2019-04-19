@@ -1169,7 +1169,7 @@ public class FireBaseAdapter {
 
 		try {
 			threadResult = fetchThread.get();
-			if(!threadResult.isEmpty()) {
+			if(threadResult.isEmpty()) {
 				LOGGER.log(Level.WARNING,"Could not find match Thread");
 				return null;
 			}else {
