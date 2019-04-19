@@ -32,10 +32,6 @@ public class MessageView {
         //init Model
         messageController.setMessageModel(new MessageModel());
 
-        //init colors
-        Color red = Colors.Red;
-        Color yellow = Colors.Yellow;
-
         //init panel
         messageController.setMessagePanel(new BackgroundPanel(null));
         messageController.getMessagePanel().setBorder(new EmptyBorder(5, 5, 5, 5));

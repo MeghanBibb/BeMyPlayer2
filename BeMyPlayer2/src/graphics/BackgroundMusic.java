@@ -1,14 +1,11 @@
 package graphics;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.logging.Logger;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
  * The Class BackgroundMusic.
