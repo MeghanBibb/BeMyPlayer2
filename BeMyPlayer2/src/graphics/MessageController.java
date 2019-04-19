@@ -7,6 +7,7 @@ import model.Account;
 import model.MessageThread;
 import model.Profile;
 import model.InformationExpert;
+import model.Message;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -82,28 +83,21 @@ public class MessageController extends PageController {
         switch(e.getActionCommand()) {
             case SEND:
                 if (validateMsg()){
-
+                    Message newMessage = new Message();
+                    newMessage.setMessage(this.getMessageModel().getSendBox().getText());
+                    newMessage.setSenderId(InformationExpert.getActiveUserID());
+                    newMessage.setTimestampNow();
+                    
+                    try {
+						if(InformationExpert.addMessage(InformationExpert.getActiveUserID(), InformationExpert.getOtherProfile().getUserId(), newMessage)) {
+							//message upload successful
+							System.out.println("YES!!");
+						}
+					} catch (DBFailureException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
                 }
-
-            	/*
-            	 * FOR DEMO PRESENTATION
-
-            	String t = messageModel.getThread().getText();
-            	if(t.isEmpty()) {
-            		if(!messageModel.getSendBox().getText().isEmpty()) {
-                		t="Me: ";
-            			t += messageModel.getSendBox().getText();
-            		}
-            	} else {
-            		t+="\nMe: ";
-            		t+=messageModel.getSendBox().getText();
-            	}
-            	messageModel.getThread().setText(t);
-            	messageModel.getSendBox().setText("");
-
-                /*
-                Message Sending logic with database adapter
-                 */
                 break;
             case BACK:
                 logger.info("Back");
@@ -134,12 +128,12 @@ public class MessageController extends PageController {
             valid = false;
             warnings.add("Don't be shy! Enter a message.\n");
         }
-
+/*
         if (this.messageModel.getThread().getText().contains(";")){
             valid = false;
             warnings.add("Please be nice to me :(\n");
         }
-
+*/
         if(valid == false) {
             InvalidPopup p = new InvalidPopup(this.messagePanel, warnings);
         }
