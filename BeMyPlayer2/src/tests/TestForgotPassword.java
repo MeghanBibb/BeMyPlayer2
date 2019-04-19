@@ -1,5 +1,5 @@
 package tests;
-
+/*
 import model.Profile; 
 
 import java.util.ArrayList;
@@ -155,3 +155,4 @@ public class TestForgotPassword {
 	}
 	
 }
+*/

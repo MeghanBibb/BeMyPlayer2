@@ -1,5 +1,5 @@
 package tests;
-
+/*
 import static org.junit.Assert.*;
 
 import java.awt.image.BufferedImage;
@@ -149,4 +149,4 @@ public class CreateAccountTest {
 	}
 	
 	
-}
+}*/

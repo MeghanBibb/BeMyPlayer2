@@ -102,6 +102,7 @@ public class MessageController extends PageController {
 							}
 						}
 						this.updateMessageArea();
+						this.getMessageModel().getSendBox().setText("");
 					} catch (DBFailureException e1) {
 						// TODO print warning
 						e1.printStackTrace();
