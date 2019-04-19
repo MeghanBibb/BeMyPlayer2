@@ -99,7 +99,6 @@ public class SwipeLeftController extends SwipeButtonController{
 				}
 				
 				controller.setProfile(InformationExpert.getOtherProfile());
-				//controller.setProfile(InformationExpert.getUserAccountWithProfile("LfiDeQ0WNQEnNyZ1c94J").getAccountProfile());
 			} catch (DBFailureException e1) {
 				// TODO Auto-generated catch block
 				logger.severe("Ran out of matches");
