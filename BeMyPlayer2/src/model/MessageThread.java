@@ -36,6 +36,7 @@ public class MessageThread{
 	 * @return the messages
 	 */
 	public List<Message> getMessages() {
+		this.messages.sort(CHRONOLOGICAL_MSG_SORT);
 		return messages;
 	}
 	

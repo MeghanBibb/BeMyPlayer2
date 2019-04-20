@@ -1215,12 +1215,11 @@ public class FireBaseAdapter {
 		String msgId = FireBaseSchema.toMessageThreadIndex(userId, otherUserId);
 		
 		DBDocumentPackage pck = message.toDBPackage();
-		
+
 		db.collection(FireBaseSchema.MESSAGE_THREADS_TABLE)
 			.document(msgId)
 			.collection(FireBaseSchema.MESSAGE_THREADS_TABLE_COLLECTION)
-			.document(message.getTimestamp().toString())
-			.set(pck.getValues());
+			.add(pck.getValues());
 		
 		
 		return true;
