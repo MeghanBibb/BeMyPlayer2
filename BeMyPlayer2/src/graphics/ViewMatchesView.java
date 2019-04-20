@@ -121,13 +121,7 @@ public class ViewMatchesView {
         			///	ACTUAL SOLUTION
         			
         			if(InformationExpert.getClientModel().getLoveMatches() == null || InformationExpert.getClientModel().getLoveMatches().size() == 0) {
-        				JLabel noMatchlbl1 = new JLabel("<HTML>Your princess is in another castle<br>Get back out there and find a match!<br></HTML>");
-        			    noMatchlbl1.setFont(Fonts.getFont(12f));
-        			    noMatchlbl1.setForeground(Colors.Red);
-        			    noMatchlbl1.setBounds(50,30,260,69);
-        			    profilePicPanel.add(noMatchlbl1);
-        				viewMatchController.getViewMatchesModel().setEmptylistLine1(noMatchlbl1);
-        				
+        				profilePicPanel.add(viewMatchController.getViewMatchesModel().getEmptyPanel());
         			}
         			else {
         				List<JButton> pics = ProfilePicGenerator.getLoveList(viewMatchController);
@@ -163,12 +157,7 @@ public class ViewMatchesView {
         			///	ACTUAL SOLUTION
         			
         			if(InformationExpert.getClientModel().getFriendMatches() == null ||InformationExpert.getClientModel().getFriendMatches().size() == 0) {
-        				JLabel noMatchlbl1 = new JLabel("<HTML>Your princess is in another castle<br>Get out there and find a match!<br></HTML>");
-        			    noMatchlbl1.setFont(Fonts.getFont(12f));
-        			    noMatchlbl1.setForeground(Colors.Red);
-        			    noMatchlbl1.setBounds(50,30,260,69);
-        			    profilePicPanel.add(noMatchlbl1);
-        				viewMatchController.getViewMatchesModel().setEmptylistLine1(noMatchlbl1);
+        				profilePicPanel.add(viewMatchController.getViewMatchesModel().getEmptyPanel());
         			}
         			else {
         				List<JButton> pics = ProfilePicGenerator.getFriendList(viewMatchController);
@@ -223,13 +212,7 @@ public class ViewMatchesView {
 //		if empty
 		
 		if(InformationExpert.getClientModel().getLoveMatches() == null || InformationExpert.getClientModel().getLoveMatches().size() == 0) {
-	    	JLabel noMatchlbl1 = new JLabel("<HTML>Your princess is in another castle<br>Get back out there and find a match!<br></HTML>");
-		    noMatchlbl1.setFont(Fonts.getFont(12f));
-		    noMatchlbl1.setForeground(Colors.Red);
-		    noMatchlbl1.setBounds(50,30,260,69);
-		    profilePicPanel.add(noMatchlbl1);
-			
-			viewMatchController.getViewMatchesModel().setEmptylistLine1(noMatchlbl1);
+			profilePicPanel.add(viewMatchController.getViewMatchesModel().getEmptyPanel());
 	    }
 	    else {
 	    	List<JButton> pics = ProfilePicGenerator.getLoveList(viewMatchController);
