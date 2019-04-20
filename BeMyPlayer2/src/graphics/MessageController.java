@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 /**
  * The Class MessageController.
  */
-public class MessageController extends PageController {
+public class MessageController extends PageController implements ExternalListener{
     
     /** The Constant SEND. */
     public static final String SEND = "send";
@@ -60,8 +60,9 @@ public class MessageController extends PageController {
     	account = InformationExpert.getActiveAccount();
         try {
             currentThread = InformationExpert.getMessageThread(InformationExpert.getActiveUserID(), InformationExpert.getOtherProfile().getUserId());
+            currentThread.setUpdateListener(this);
         } catch (Exception e) {
-            logger.log(Level.SEVERE, "Could not find thread");
+            logger.log(Level.SEVERE, "Error- could not find message thread");
         }
         MessageView.startMessagePage(this,mainFrame);
     }
@@ -97,10 +98,12 @@ public class MessageController extends PageController {
 								MessageThread t = new MessageThread();
 								t.addMessage(newMessage);
 								this.setCurrentThread(t);
-							} else {
-								this.getCurrentThread().addMessage(newMessage);
 							}
+							
+							// After sending to database, messages are added through the callback
+							// in the MessageThread Class
 						}
+						
 						this.updateMessageArea();
 						this.getMessageModel().getSendBox().setText("");
 					} catch (DBFailureException e1) {
@@ -240,5 +243,11 @@ public class MessageController extends PageController {
      */
     public void setCurrentThread(MessageThread currentThread) {
         this.currentThread = currentThread;
+        this.currentThread.setUpdateListener(this);
     }
+
+	@Override
+	public void externalUpdate() {
+		this.updateMessageArea();
+	}
 }
