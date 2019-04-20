@@ -2,6 +2,8 @@ package graphics;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -18,7 +20,7 @@ import model.InformationExpert;
 /**
  * The Class LoginPageController.
  */
-public class LoginPageController extends PageController{
+public class LoginPageController extends PageController implements KeyListener{
 
 	//	default frame size
 	//public static final int APP_WINDOW_WIDTH = 300;
@@ -158,6 +160,23 @@ public class LoginPageController extends PageController{
 	 */
 	public void setLoginPanel(BackgroundPanel loginPanel) {
 		this.loginPanel = loginPanel;
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		if(e.getKeyChar() == e.VK_ENTER) {
+			this.getLoginPageModel().getBtnLogin().doClick();
+		}
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		//do nothing
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		//do nothing
 	}
 	
 }

@@ -92,6 +92,7 @@ public class LoginPageView {
 		
 		//	init fields and listeners 
 		loginController.getLoginPageModel().setPwdEnterPass(new JPasswordField());
+		loginController.getLoginPageModel().getPwdEnterPass().addKeyListener(loginController);
 		loginController.getLoginPageModel().getPwdEnterPass().setHorizontalAlignment(SwingConstants.CENTER);
 		loginController.getLoginPageModel().getPwdEnterPass().setBackground(Colors.Yellow);
 		loginController.getLoginPageModel().getPwdEnterPass().setForeground(Colors.Red);
@@ -101,6 +102,7 @@ public class LoginPageView {
 		
 		JFormattedTextField frmtdtxtfldEnterUsername = new JFormattedTextField();
 		frmtdtxtfldEnterUsername.setHorizontalAlignment(SwingConstants.CENTER);
+		frmtdtxtfldEnterUsername.addKeyListener(loginController);
 		frmtdtxtfldEnterUsername.setBounds(315, 165, 128, 30);
 
 		loginController.getLoginPageModel().setFrmtdtxtfldEnterUsername(frmtdtxtfldEnterUsername);
