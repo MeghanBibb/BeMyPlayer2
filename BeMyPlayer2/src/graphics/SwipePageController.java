@@ -38,7 +38,7 @@ public class SwipePageController extends PageController {
 		if(back != null) {
 			backPage = back;
 		}
-		boolean invalid = true;
+		boolean invalid = false;
 		//	load first matches
 		if(InformationExpert.getCurrentSwipePage().equals(MatchType.FRIEND_MATCH.getStatusString())) {
 			try {
