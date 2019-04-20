@@ -60,8 +60,9 @@ public class PicThread extends Thread{
 		try {
 			temp = InformationExpert.getUserAccountWithProfile(this.uid).getAccountProfile();
 		}
-		catch(DBFailureException b) {
+		catch(Exception b) {
 			logger.warning("Failed to load profile");
+			temp  = null;
 		}
 		if(temp != null) {
 		//Image img1 = new ImageIcon("filepathfromDB").getImage();//	add try catch and dont add if invalid file path

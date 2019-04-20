@@ -11,6 +11,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.AbstractButton;
@@ -27,6 +28,7 @@ import javax.swing.border.EmptyBorder;
 import firebase.DBFailureException;
 import model.Account;
 import model.InformationExpert;
+import model.MatchType;
 import model.ResourceManager;
 
 // TODO: Auto-generated Javadoc
@@ -132,15 +134,26 @@ public class ProfilePageView {
 			profileController.getProfileModel().setBtnBlock(btnBlock);
 			profileController.getProfilePanel().add(profileController.getProfileModel().getBtnBlock());
 			
-			JButton btnMessage = new JButton("Message");
-			btnMessage.setBounds(100,350,90,40);
-			btnMessage.setActionCommand(profileController.MESSAGE);
-			btnMessage.setBackground(Colors.Yellow);
-			btnMessage.setFont(Fonts.getFont((float)12));
-			btnMessage.setForeground(Colors.Red);
-			btnMessage.addActionListener(profileController);
-			profileController.getProfileModel().setBtnMessage(btnMessage);
-			profileController.getProfilePanel().add(profileController.getProfileModel().getBtnMessage());
+			try {
+				if (InformationExpert.getMatch(InformationExpert.getActiveAccount().getAccountProfile(),
+						InformationExpert.getOtherProfile()).getClientMatchStatus()
+						.equals(InformationExpert.getMatch(InformationExpert.getActiveAccount().getAccountProfile()
+								,InformationExpert.getOtherProfile()).getOtherMatchStatus())) {
+					
+					JButton btnMessage = new JButton("Message");
+					btnMessage.setBounds(100,350,90,40);
+					btnMessage.setActionCommand(profileController.MESSAGE);
+					btnMessage.setBackground(Colors.Yellow);
+					btnMessage.setFont(Fonts.getFont((float)12));
+					btnMessage.setForeground(Colors.Red);
+					btnMessage.addActionListener(profileController);
+					profileController.getProfileModel().setBtnMessage(btnMessage);
+					profileController.getProfilePanel().add(profileController.getProfileModel().getBtnMessage());
+				}
+				
+			}catch (Exception e) {
+				
+			}
 		}
 		
 		//init Labels
