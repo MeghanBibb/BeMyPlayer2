@@ -53,6 +53,7 @@ public class MessageThread implements DBQuerySynchronized{
 	 * @return the messages
 	 */
 	public List<Message> getMessages() {
+		this.messages.sort(CHRONOLOGICAL_MSG_SORT);
 		return messages;
 	}
 	

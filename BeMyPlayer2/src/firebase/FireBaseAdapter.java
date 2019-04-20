@@ -1230,12 +1230,13 @@ public class FireBaseAdapter {
 		String msgId = FireBaseSchema.toMessageThreadIndex(userId, otherUserId);
 		
 		DBDocumentPackage pck = message.toDBPackage();
-		
+
 		try {
 		db.collection(FireBaseSchema.MESSAGE_THREADS_TABLE)
 			.document(msgId)
 			.collection(FireBaseSchema.MESSAGE_THREADS_TABLE_COLLECTION)
 			.add(pck.getValues());
+
 		}catch(Exception e) {
 			LOGGER.warning("Error- failed to add message");
 			throw new DBFailureException();
