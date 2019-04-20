@@ -240,11 +240,7 @@ public class Account implements DBSerializable{
 	public void setPasswordHash(String p) {
 		this.passwordHash = p;
 	}
-	
-	
 
-
-	
 	/* (non-Javadoc)
 	 * @see model.DBSerializable#toDBPackage()
 	 */
