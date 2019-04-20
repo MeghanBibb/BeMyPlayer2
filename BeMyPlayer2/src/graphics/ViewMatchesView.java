@@ -114,6 +114,8 @@ public class ViewMatchesView {
         	public void itemStateChanged(ItemEvent e) {
         		//	generate new match request pull 
         		if(e.getStateChange() == ItemEvent.SELECTED) {
+        			System.out.println("lovers " + InformationExpert.getClientModel().getLoveMatches().size());
+        			System.out.println("Friends " + InformationExpert.getClientModel().getFriendMatches().size());
         		if(viewMatchController.getViewMatchesModel().getMatchtype().getSelectedItem().toString().equalsIgnoreCase("Love Matches")) {
         			
         			profilePicPanel.removeAll();
@@ -134,6 +136,7 @@ public class ViewMatchesView {
         		    	
         		    	if(InformationExpert.getClientModel().getLoveMatches().size()  > 4) {
         		    		temp = (Math.ceil(Math.abs(temp/4)));
+        		    		System.out.println("resize factor" + temp);
         		    		profilePicPanel.setSize(new Dimension(100,(int) (250*temp)));
         		    	}
         		    	else {
@@ -166,6 +169,7 @@ public class ViewMatchesView {
         		    	
         		    	if(InformationExpert.getClientModel().getFriendMatches().size() > 4) {
         		    		temp = (Math.ceil(Math.abs(temp/4)));
+        		    		System.out.println("resize factor" + temp);
         		    		profilePicPanel.setSize(new Dimension(100,(int) (250*temp)));
         		    	}
         		    	else {

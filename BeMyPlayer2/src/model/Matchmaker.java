@@ -2,13 +2,17 @@ package model;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.logging.Logger;
+
+import firebase.DBFailureException;
+import graphics.ViewMatchesView;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class Matchmaker.
  */
 public class Matchmaker{
-	
+	private static Logger logger = Logger.getLogger(ViewMatchesView.class.getName());
 	/**
 	 * Gets the friend comparator.
 	 *
@@ -24,8 +28,6 @@ public class Matchmaker{
 				//This is a temporary stub:
 				//	user profile and compare < 0 if left more similar than right or pos if right more like
 				//lower score is better return left - right
-				System.out.println("comparing " + o1.getUsername() + " and " + o2.getUsername());
-				System.out.println(generateZScore(o1) + " : " + generateZScore(o2));
 				return generateZScore(o1) - generateZScore(o2);
 			}
 			
@@ -39,6 +41,14 @@ public class Matchmaker{
 				}
 				if(o.getMute() == true) {
 					return 1000;
+				}
+				try {
+					if(InformationExpert.getPaymentInfo(o.getUserId()) != null) {
+						return -5000;
+					}
+				} catch (DBFailureException e) {
+					// TODO Auto-generated catch block
+					logger.warning("Profile not found exception");
 				}
 				score += o.getGender().compareTo(o.getGender());
 				for(int i = 0; i < o.getPlatforms().size(); i++) {
@@ -82,6 +92,14 @@ public class Matchmaker{
 				}
 				if(o.getMute() == true) {
 					return 1000;
+				}
+				try {
+					if(InformationExpert.getPaymentInfo(o.getUserId()) != null) {
+						return -5000;
+					}
+				} catch (DBFailureException e) {
+					// TODO Auto-generated catch block
+					logger.warning("Profile not found exception");
 				}
 				for(int i = 0; i < o.getPlatforms().size(); i++) {
 					if(o.getPlatforms().get(i).equals(c.getPlatforms().get(i))) {
