@@ -108,7 +108,7 @@ public class LoginPageView {
 
 		BufferedImage img1 = ResourceManager.loadImage("splash_heart.png");
 		lblNewLabel.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(64, 64, Image.SCALE_SMOOTH)));
-		lblNewLabel.setBounds(320, 64, 100, 56);
+		lblNewLabel.setBounds(320, 54, 100, 56);
 		loginController.getLoginPageModel().setLblNewLabel(lblNewLabel);
 		loginController.getLoginPanel().add(loginController.getLoginPageModel().getLblNewLabel());
 		
