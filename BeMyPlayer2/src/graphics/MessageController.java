@@ -9,8 +9,11 @@ import model.Profile;
 import model.InformationExpert;
 import model.Message;
 
+import java.awt.KeyEventDispatcher;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -20,7 +23,7 @@ import java.util.logging.Logger;
 /**
  * The Class MessageController.
  */
-public class MessageController extends PageController implements ExternalListener{
+public class MessageController extends PageController implements ExternalListener, KeyListener{
     
     /** The Constant SEND. */
     public static final String SEND = "send";
@@ -250,4 +253,24 @@ public class MessageController extends PageController implements ExternalListene
 	public void externalUpdate() {
 		this.updateMessageArea();
 	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		if(e.getKeyChar() == e.VK_ENTER) {
+			this.getMessageModel().getBtnSend().doClick();
+		}
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		//do nothing
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		//do nothing
+		
+	}
+
 }

@@ -114,8 +114,7 @@ public class ViewMatchesView {
         	public void itemStateChanged(ItemEvent e) {
         		//	generate new match request pull 
         		if(e.getStateChange() == ItemEvent.SELECTED) {
-        			System.out.println("lovers " + InformationExpert.getClientModel().getLoveMatches().size());
-        			System.out.println("Friends " + InformationExpert.getClientModel().getFriendMatches().size());
+  
         		if(viewMatchController.getViewMatchesModel().getMatchtype().getSelectedItem().toString().equalsIgnoreCase("Love Matches")) {
         			
         			profilePicPanel.removeAll();
@@ -133,23 +132,31 @@ public class ViewMatchesView {
         			else {
         				List<JButton> pics = ProfilePicGenerator.getLoveList(viewMatchController);
         		    	double temp = pics.size();
-        		    	
+        		    	boolean addTrash = false;
         		    	if(InformationExpert.getClientModel().getLoveMatches().size()  > 4) {
+        		    		addTrash = true;
         		    		temp = (Math.ceil(Math.abs(temp/4)));
-        		    		System.out.println("resize factor" + temp);
-        		    		profilePicPanel.setSize(new Dimension(100,(int) (250*temp)));
+        		    		profilePicPanel.setPreferredSize(new Dimension(100,(int)(250*temp)));
         		    	}
         		    	else {
-        		    		profilePicPanel.setSize(new Dimension(100,250));
+        		    		profilePicPanel.setPreferredSize(new Dimension(100,250));
         		    	}
         				for(JButton icon: pics) {
         					profilePicPanel.add(icon);
         				}
-            			
+        				if(addTrash == true) {
+        				while((int)temp%4 != 0) {
+        	    			temp++;
+        	    			JButton trash =new JButton();
+        	    			trash.setEnabled(false);
+        	    			trash.setVisible(false);
+        	    			profilePicPanel.add(trash);
+        	    		}
+        				}
         			}
-        			//profilePicPanel.repaint();
+        			profilePicPanel.repaint();
         			profilePicPanel.validate();
-        			//profilePicPanel.revalidate();
+        			profilePicPanel.revalidate();
         		}
         		else {
         			profilePicPanel.removeAll();
@@ -166,22 +173,30 @@ public class ViewMatchesView {
         			else {
         				List<JButton> pics = ProfilePicGenerator.getFriendList(viewMatchController);
         		    	double temp = pics.size();
-        		    	
+        		    	boolean addTrash = false;
         		    	if(InformationExpert.getClientModel().getFriendMatches().size() > 4) {
+        		    		addTrash = true;
         		    		temp = (Math.ceil(Math.abs(temp/4)));
-        		    		System.out.println("resize factor" + temp);
-        		    		profilePicPanel.setSize(new Dimension(100,(int) (250*temp)));
+        		    		profilePicPanel.setPreferredSize(new Dimension(100,(int)(250*temp)));
         		    	}
         		    	else {
-        		    		profilePicPanel.setSize(new Dimension(100,250));
+        		    		profilePicPanel.setPreferredSize(new Dimension(100,250));
         		    	}
         				for(JButton icon: pics) {
         					profilePicPanel.add(icon);
         				}
+        				if(addTrash == true) {
+        				while((int)temp%4 != 0) {
+        	    			temp++;
+        	    			JButton trash  =new JButton();
+        	    			trash.setEnabled(false);
+        	    			trash.setVisible(false);
+        	    			profilePicPanel.add(trash);
+        	    		}}
         			}
-        			//profilePicPanel.repaint();
+        			profilePicPanel.repaint();
         			profilePicPanel.validate();
-        			//profilePicPanel.revalidate();
+        			profilePicPanel.revalidate();
         		}
         		
         	}
@@ -222,14 +237,21 @@ public class ViewMatchesView {
 	    	
 	    	if(InformationExpert.getClientModel().getLoveMatches().size() > 4) {
 	    		temp = (Math.ceil(Math.abs(temp/4)));
-	    		profilePicPanel.setSize(new Dimension(100,(int) (250*temp)));
+	    		profilePicPanel.setPreferredSize(new Dimension(100,(int) (250*temp)));
 	    	}
 	    	else {
-	    		profilePicPanel.setSize(new Dimension(100,250));
+	    		profilePicPanel.setPreferredSize(new Dimension(100,250));
 	    	}
 			for(JButton icon: pics) {
 				profilePicPanel.add(icon);
 			}
+			while((int)temp%4 != 0) {
+    			temp++;
+    			JButton trash  =new JButton();
+    			trash.setEnabled(false);
+    			trash.setVisible(false);
+    			profilePicPanel.add(trash);
+    		}
 	    }
 		
 		//	SCROLLPANE

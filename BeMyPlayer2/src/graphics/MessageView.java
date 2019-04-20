@@ -141,6 +141,7 @@ public class MessageView {
         JTextField sendBox = new JTextField();
         sendBox.setBounds(35, 365, 310, 30);
         sendBox.setVisible(true);
+        sendBox.addKeyListener(messageController);
         messageController.getMessageModel().setSendBox(sendBox);
 
         //add to panel
