@@ -34,7 +34,6 @@ public class CreditsPageView {
 		// TODO Auto-generated method stub
 		
 		//init colors
-		Color yellow = Colors.Yellow;
 		JLabel heartImage = new JLabel();
 		
 		//init panel
@@ -67,7 +66,7 @@ public class CreditsPageView {
 		//init buttons
 		JButton btnBack = new JButton("Back");
 		btnBack.setBounds(10, 10, 90, 40);
-		btnBack.setActionCommand(creditscontrol.BACK);
+		btnBack.setActionCommand(CreditsPageController.BACK);
 		btnBack.setBackground(Colors.Yellow);
 		btnBack.setFont(Fonts.getFont((float) 12));
 		btnBack.setForeground(Colors.Red);

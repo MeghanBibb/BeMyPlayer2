@@ -1,13 +1,6 @@
 package graphics;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.FileAlreadyExistsException;
-import java.nio.file.Files;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +11,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import firebase.DBFailureException;
-import firebase.FireBaseAdapter;
 import firebase.Hasher;
 import model.Account;
 import model.InformationExpert;
@@ -138,27 +130,6 @@ public class CreateAccountPageController extends PageController{
 		else if (e.getActionCommand() == SUBMIT) {
 			
 			if(validateCreatePage3()) {
-				//	CATCH FILE DUPLICATE
-				/*
-				File temp = new File(this.createAccountPageModel.getImagePath());
-				
-				File t2 = new File("bin\\dskfjlslkdjf");
-				
-				try {
-					Files.copy(temp.toPath(), new File(t2.getParent()+ "\\..\\img\\"+temp.getName() ).toPath());
-					this.createAccountPageModel.setImagePath(t2.getParent()+ "\\..\\img\\"+temp.getName() );
-				} catch (FileAlreadyExistsException dup) {
-					try {
-						Files.copy(temp.toPath(), new File(t2.getParent()+ "\\..\\img\\"+"cpy"+temp.getName() ).toPath());
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					}
-					this.createAccountPageModel.setImagePath(t2.getParent()+ "\\..\\img\\"+temp.getName() );
-				}
-				catch(IOException e1) {
-					
-				}
-				*/
 				a = new Account();
 				a.setEmail(this.getCreateAccountPageModel().getEnterEmail().getText());
 				a.setPasswordHash(Hasher.hashString(this.getCreateAccountPageModel().getPwdEnterPass().getText()));
