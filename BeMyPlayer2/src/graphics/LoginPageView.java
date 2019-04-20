@@ -117,7 +117,7 @@ public class LoginPageView {
 		BufferedImage img1 = ResourceManager.loadImage("splash_heart.png");
 		//img1 = new ImageIcon("C:\\Backup of student files\\Spring 2019\\BeMyPlayer2\\BeMyPlayer2\\BeMyPlayer2\\img\\hearts.png").getImage();
 		lblNewLabel.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(64, 64, Image.SCALE_SMOOTH)));
-		lblNewLabel.setBounds(320, 64, 100, 56);
+		lblNewLabel.setBounds(320, 54, 100, 56);
 		loginController.getLoginPageModel().setLblNewLabel(lblNewLabel);
 		loginController.getLoginPanel().add(loginController.getLoginPageModel().getLblNewLabel());
 		
@@ -125,7 +125,7 @@ public class LoginPageView {
 		JLabel lblBeMyPlayer = new JLabel("Be My Player 2");
 		lblBeMyPlayer.setFont(Fonts.getFont((float) 30));
 		lblBeMyPlayer.setForeground(Colors.Yellow);
-		lblBeMyPlayer.setBounds(82,56,300,69);
+		lblBeMyPlayer.setBounds(82,46,300,69);
 		//lblBeMyPlayer.setBounds(24, 44, 204, 69);
 		loginController.getLoginPageModel().setLblBeMyPlayer(lblBeMyPlayer);
 		loginController.getLoginPanel().add(loginController.getLoginPageModel().getLblBeMyPlayer());
