@@ -492,12 +492,16 @@ public class InformationExpert {
 	
 	/**
 	 * Adds the match.
-	 *
+	 * 
 	 * @param match the match
 	 * @throws DBFailureException the DB failure exception
 	 */
 	public static void addMatch(Match match) throws DBFailureException {
 		databaseAdapter.addMatch(match);
+	}
+	
+	public static void deleteUserAccount() throws DBFailureException {
+		databaseAdapter.deleteAccount(getActiveUserID());
 	}
 	
 	/**

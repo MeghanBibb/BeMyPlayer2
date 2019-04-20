@@ -5,4 +5,4 @@
 *.log
 /BeMyPlayer2/application.log
 /BeMyPlayer2/log/*
-
+/BeMyPlayer2/log

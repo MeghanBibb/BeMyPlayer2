@@ -126,8 +126,7 @@ public class MessageView {
                      thread.append("Me: ");
                      thread.append(messageController.getCurrentThread().getMessages().get(i).getMessage());
                      thread.append("\n");
-                 }
-                 else {
+                 } else {
                      thread.append(InformationExpert.getOtherProfile().getUsername() + ": ");
                      thread.append(messageController.getCurrentThread().getMessages().get(i).getMessage());
                      thread.append("\n");

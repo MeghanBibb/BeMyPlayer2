@@ -110,6 +110,7 @@ public class HomePageView {
 		btnSupport.setBorderPainted(false);
 		btnSupport.setForeground(Colors.White);
 		btnSupport.setFont(Fonts.getFont((float) 12));
+		
 		btnSupport.addActionListener(homeController);
 		btnSupport.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		homeController.getHomePageModel().setBtnSupport(btnSupport);
@@ -140,7 +141,7 @@ public class HomePageView {
 		JButton site = new JButton("<HTML><U>BeMyPlayer2 Webpage</U></HTML>");
 		site.setActionCommand("launchsite");
 		site.addActionListener(homeController);
-		site.setBounds(300,360,200,40);
+		site.setBounds(300,360,200,30);
 		site.setOpaque(true);
 		site.setContentAreaFilled(false);
 		site.setBorderPainted(false);

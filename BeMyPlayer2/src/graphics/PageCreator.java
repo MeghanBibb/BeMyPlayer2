@@ -61,7 +61,6 @@ public class PageCreator {
 		case SWIPE_PAGE: return new SwipePageController();
 		case MATCHES_PAGE: return new ViewMatchesController();
 		case PROFILE_PAGE: return new ProfilePageController();
-		case CREDITS_PAGE: return new CreditsPageController();
 		default: return null;
 		}
 	}

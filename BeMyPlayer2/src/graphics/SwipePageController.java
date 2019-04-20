@@ -61,21 +61,26 @@ public class SwipePageController extends PageController {
 		}
 		else if(InformationExpert.getCurrentSwipePage().equals(MatchType.LOVE_MATCH.getStatusString())){
 			try {
-			if(InformationExpert.getClientModel().getLoveProfileFront() == null) {
-				InformationExpert.importLoveMatchBatch();
-			}
-			if(InformationExpert.getClientModel().getLoveProfileFront() == null) {
-				throw new DBFailureException();
-			}
-			
-				InformationExpert.setOtherProfile(InformationExpert.getClientModel().getLoveProfileFront().getUserId());
-				//InformationExpert.getClientModel().dequeLoveProfile();
-			} catch (DBFailureException e1) {
-				invalid = true;
-				logger.severe("Ran out of matches");
-				InvalidPopup p = new InvalidPopup(new JPanel(),"Ran out of matches for today. Please come back tomorrow");
-				GraphicsController.processPage(PageCreator.HOME_PAGE, PageController.backPage);
-			}
+				if(InformationExpert.getClientModel().getLoveProfileFront() == null) {
+					//	1 iteration of import, next import grows size
+					InformationExpert.importLoveMatchBatch();
+				}
+				if(InformationExpert.getClientModel().getLoveProfileFront() == null) {
+					throw new DBFailureException();
+				}
+				
+					InformationExpert.setOtherProfile(InformationExpert.getClientModel().getLoveProfileFront().getUserId());
+					//InformationExpert.getClientModel().dequeueFriendProfile();
+				} catch (DBFailureException e1) {
+					invalid = true;
+					logger.severe("Ran out of matches");
+					InvalidPopup p = new InvalidPopup(new JPanel(),"Ran out of matches for today. Please come back tomorrow");
+					GraphicsController.processPage(PageCreator.HOME_PAGE, PageController.backPage);
+				}
+		}
+		if(InformationExpert.getActiveAccount().getAccountProfile().getMute()) {
+			AccountIsMuted.Warning(mainFrame);
+			invalid = true;
 		}
 		if(!invalid) {
 		this.model = new SwipePageModel(mainFrame, InformationExpert.getOtherProfile(), this);

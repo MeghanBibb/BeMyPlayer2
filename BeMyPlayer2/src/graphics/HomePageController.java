@@ -46,6 +46,7 @@ public class HomePageController extends PageController{
 
 	
 	/** The home page model. */
+	
 	// get view and jframe
 	private HomePageModel homePageModel = null;
 	
@@ -128,7 +129,7 @@ public class HomePageController extends PageController{
 	public HomePageModel getHomePageModel() {
 		return homePageModel;
 	}
-
+	
 	/**
 	 * Sets the home page model.
 	 *

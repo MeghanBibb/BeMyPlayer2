@@ -162,7 +162,7 @@ public class ProfilePageView {
 		lblUsername.setText(profileController.getProfile().getUsername());
 		lblUsername.setFont(Fonts.getFont((float)15));
 		lblUsername.setForeground(Colors.Yellow);
-		lblUsername.setBounds(120,35,90,90);
+		lblUsername.setBounds(120,35, 120,90);
 		profileController.getProfileModel().setLblUsername(lblUsername);
 		
 

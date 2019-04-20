@@ -24,6 +24,7 @@ public class Profile implements DBSerializable{
 							   _DESCRIPTION = "description",
 							   _PLATFORMS = "platforms",
 							   _GENRES = "genres";
+								//needs mute
 	
 	/** The Constant DOB_FORMAT. */
 	public static final SimpleDateFormat DOB_FORMAT = new SimpleDateFormat("dd/MM/yyyy"); 

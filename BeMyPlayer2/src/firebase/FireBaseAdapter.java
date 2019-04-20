@@ -25,6 +25,7 @@ import java.util.concurrent.ExecutionException;
 
 import com.google.api.core.ApiFuture;
 import com.google.auth.oauth2.GoogleCredentials;
+import com.google.cloud.firestore.CollectionReference;
 import com.google.cloud.firestore.DocumentChange;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
@@ -32,6 +33,8 @@ import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.Query;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
+import com.google.cloud.firestore.Transaction;
+import com.google.cloud.firestore.WriteBatch;
 import com.google.cloud.firestore.WriteResult;
 import com.google.cloud.storage.Blob;
 import com.google.cloud.storage.Blob.BlobSourceOption;
@@ -81,6 +84,8 @@ public class FireBaseAdapter {
 	
 	/** The Constant FRIEND_MATCHES. */
 	public static final String FRIEND_MATCHES = "FRIEND_MATCHES";
+	
+	public static final int MAX_NUM_MESSAGES_RETRIEVED = 100;
 	
 	/** The db. */
 	private Firestore db = null;
@@ -1148,7 +1153,6 @@ public class FireBaseAdapter {
 	 * @throws DBFailureException the DB failure exception
 	 */
 	public MessageThread getMessageThread(String userId, String otherUserId) throws DBFailureException{
-		//TODO: Fix this
 		
 		if(this.db == null) {
 			LOGGER.log(Level.WARNING, "Error- no database connection");
@@ -1159,10 +1163,19 @@ public class FireBaseAdapter {
 		MessageThread msgThread = new MessageThread();
 		
 		String msgId = FireBaseSchema.toMessageThreadIndex(userId, otherUserId);
+		
+		java.util.Date timeNow = new java.util.Date();
+		Query latestMessages = db.collection(FireBaseSchema.MESSAGE_THREADS_TABLE)
+								.document(msgId)
+								.collection(FireBaseSchema.MESSAGE_THREADS_TABLE_COLLECTION)
+								.whereGreaterThan(Message._TIMESTAMP, timeNow);
+		
 		ApiFuture<QuerySnapshot> fetchThread =
 				db.collection(FireBaseSchema.MESSAGE_THREADS_TABLE)
 						.document(msgId)
 						.collection(FireBaseSchema.MESSAGE_THREADS_TABLE_COLLECTION)
+						.limit(MAX_NUM_MESSAGES_RETRIEVED)
+						.orderBy(Message._TIMESTAMP)
 						.get();
 		
 		QuerySnapshot threadResult;
@@ -1175,22 +1188,24 @@ public class FireBaseAdapter {
 			}else {
 				List<Message> messageList;
 				messageList = threadResult.getDocuments().parallelStream()
-						.map(m -> {
-							try {
-								DBDocumentPackage dbpck = new DBDocumentPackage(m.getId(),m.getData());
-								Message msg = new Message();
-								msg.initializeFromPackage(dbpck);
-								return msg;
-								
-							} catch(Exception e) {
-								LOGGER.log(Level.INFO, "Error- a Message retrieval query failed");
-								return null;
-							}
-						})
-						.filter(p -> p !=null)
-						.collect(Collectors.toList());
+					.map(m -> {
+						try {
+							DBDocumentPackage dbpck = new DBDocumentPackage(m.getId(),m.getData());
+							Message msg = new Message();
+							msg.initializeFromPackage(dbpck);
+							return msg;
+							
+						} catch(Exception e) {
+							LOGGER.log(Level.INFO, "Error- a Message retrieval query failed");
+							return null;
+						}
+					})
+					.filter(p -> p !=null)
+					.collect(Collectors.toList());
 				msgThread.setMessages(messageList);
 				
+				//set event listener for thread:
+				msgThread.registerEventListener(latestMessages);
 				
 			}
 
@@ -1216,15 +1231,66 @@ public class FireBaseAdapter {
 		
 		DBDocumentPackage pck = message.toDBPackage();
 
+		try {
 		db.collection(FireBaseSchema.MESSAGE_THREADS_TABLE)
 			.document(msgId)
 			.collection(FireBaseSchema.MESSAGE_THREADS_TABLE_COLLECTION)
 			.add(pck.getValues());
-		
+
+		}catch(Exception e) {
+			LOGGER.warning("Error- failed to add message");
+			throw new DBFailureException();
+		}
 		
 		return true;
 		
 	}
 
-
+	public void deleteAccount(String userId) throws DBFailureException {
+		
+		CollectionReference acctable = db.collection(FireBaseSchema.ACCOUNTS_TABLE);
+		DocumentReference accRef = db.collection(FireBaseSchema.ACCOUNTS_TABLE).document(userId);
+		DocumentReference profRef = db.collection(FireBaseSchema.PROFILES_TABLE).document(userId);
+		DocumentReference matchesRef = db.collection(FireBaseSchema.MATCHES_TABLE).document(userId);
+		
+		ApiFuture<QuerySnapshot> matchIds = db.collection(FireBaseSchema.MATCHES_TABLE)
+				.document(userId)
+				.collection(FireBaseSchema.MATCHES_TABLE_COLLECTION)
+				.get();
+				
+		
+		List<String> matchUIds;
+		try {
+			matchUIds = matchIds.get().getDocuments().parallelStream()
+					.map( m -> m.getId() )
+					.collect(Collectors.toList());
+		} catch (InterruptedException | ExecutionException e) {
+			LOGGER.log(Level.SEVERE, "Error- could not retrieve all matches for id.");
+			throw new DBFailureException();
+		}
+		
+		WriteBatch deleteBatch = db.batch();
+		
+		//delete Account and Profile:
+		deleteBatch.delete(accRef);
+		deleteBatch.delete(profRef);
+		deleteBatch.delete(matchesRef);
+		
+		//Delete all converse matches:
+		matchUIds.forEach(id -> {
+				DocumentReference convMatch = db.collection(FireBaseSchema.MATCHES_TABLE)
+						.document(id)
+						.collection(FireBaseSchema.MATCHES_TABLE_COLLECTION)
+						.document(userId);
+				
+				deleteBatch.delete(convMatch);
+			});
+		
+		try {
+			deleteBatch.commit().get();
+		} catch (InterruptedException | ExecutionException e) {
+			LOGGER.log(Level.SEVERE, "Error- could not delete User Account.");
+			throw new DBFailureException();
+		}
+	}
 }

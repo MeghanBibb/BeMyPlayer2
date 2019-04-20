@@ -126,10 +126,12 @@ public class ProfilePicGenerator {
 				threads.get(i).join();
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
+
 				logger.severe("Join failure");
 				InvalidPopup p = new InvalidPopup(b.getViewMatchesPanel(),"Synchronization issue with threads");
 				
 			}
+			
 		}
 		if(userIds.size() < 3) {
 			int i = userIds.size();
@@ -191,4 +193,5 @@ public class ProfilePicGenerator {
 		
 		return creators;
 	}
+
 }
