@@ -3,12 +3,27 @@ package model;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
+import com.google.cloud.Timestamp;
+import com.google.cloud.firestore.DocumentChange;
+import com.google.cloud.firestore.DocumentChange.Type;
+import com.google.cloud.firestore.DocumentSnapshot;
+import com.google.cloud.firestore.EventListener;
+import com.google.cloud.firestore.FirestoreException;
+import com.google.cloud.firestore.ListenerRegistration;
+import com.google.cloud.firestore.Query;
+import com.google.cloud.firestore.QuerySnapshot;
+
+import graphics.ExternalListener;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class MessageThread.
  */
-public class MessageThread{
+public class MessageThread implements DBQuerySynchronized{
 	
 	/** The Constant CHRONOLOGICAL_MSG_SORT. */
 	private static final Comparator<Message> CHRONOLOGICAL_MSG_SORT = new Comparator<Message>() {
@@ -20,6 +35,8 @@ public class MessageThread{
 	/** The messages. */
 	//other variables go here...
 	private List<Message> messages;
+	private ListenerRegistration registration = null;
+	private ExternalListener updateListener = null;
 	
 	/**
 	 * Sets the messages.
@@ -65,5 +82,68 @@ public class MessageThread{
 	 */
 	public void addMessages(List<Message> messages) {
 		this.messages.addAll(messages);
+	}
+	
+	@Override
+	public void registerEventListener(Query q) {
+		this.registration = q.addSnapshotListener(this.getEventListener());
+	}
+
+	@Override
+	public void removeEventListener() {
+		// TODO Auto-generated method stub
+		this.registration.remove();
+		this.registration = null;
+	}
+	
+
+	@Override
+	public void finalize() {
+		if(this.registration != null) {
+			this.registration.remove();
+		}
+	}
+	
+	public void setUpdateListener(ExternalListener e) {
+		this.updateListener = e;
+	}
+	
+	public void updateListener() {
+		if(this.updateListener != null) {
+			this.updateListener.externalUpdate();
+		}
+		
+	}
+	
+	private EventListener<QuerySnapshot> getEventListener(){
+		
+		
+		return new EventListener<QuerySnapshot>(){
+			
+			@Override
+			public void onEvent(QuerySnapshot value, FirestoreException error) {
+				if (error != null) {
+					System.err.println("Listen failed: " + error);
+					return;
+			    }
+				
+				for(DocumentChange d : value.getDocumentChanges()) {
+					if(d.getType() == Type.ADDED) {
+						
+						
+						Map<String, Object> data = d.getDocument().getData();
+						
+						messages.add(new Message(
+								(String) data.get(Message._MESSAGE),
+								(Timestamp) data.get(Message._TIMESTAMP),
+							    (String) data.get(Message._SENDER_ID))
+						);
+						
+						updateListener();
+					}
+				}
+				
+			}
+		};
 	}
 }

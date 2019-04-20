@@ -85,6 +85,8 @@ public class FireBaseAdapter {
 	/** The Constant FRIEND_MATCHES. */
 	public static final String FRIEND_MATCHES = "FRIEND_MATCHES";
 	
+	public static final int MAX_NUM_MESSAGES_RETRIEVED = 100;
+	
 	/** The db. */
 	private Firestore db = null;
 	
@@ -1151,7 +1153,6 @@ public class FireBaseAdapter {
 	 * @throws DBFailureException the DB failure exception
 	 */
 	public MessageThread getMessageThread(String userId, String otherUserId) throws DBFailureException{
-		//TODO: Fix this
 		
 		if(this.db == null) {
 			LOGGER.log(Level.WARNING, "Error- no database connection");
@@ -1162,10 +1163,19 @@ public class FireBaseAdapter {
 		MessageThread msgThread = new MessageThread();
 		
 		String msgId = FireBaseSchema.toMessageThreadIndex(userId, otherUserId);
+		
+		java.util.Date timeNow = new java.util.Date();
+		Query latestMessages = db.collection(FireBaseSchema.MESSAGE_THREADS_TABLE)
+								.document(msgId)
+								.collection(FireBaseSchema.MESSAGE_THREADS_TABLE_COLLECTION)
+								.whereGreaterThan(Message._TIMESTAMP, timeNow);
+		
 		ApiFuture<QuerySnapshot> fetchThread =
 				db.collection(FireBaseSchema.MESSAGE_THREADS_TABLE)
 						.document(msgId)
 						.collection(FireBaseSchema.MESSAGE_THREADS_TABLE_COLLECTION)
+						.limit(MAX_NUM_MESSAGES_RETRIEVED)
+						.orderBy(Message._TIMESTAMP)
 						.get();
 		
 		QuerySnapshot threadResult;
@@ -1178,22 +1188,24 @@ public class FireBaseAdapter {
 			}else {
 				List<Message> messageList;
 				messageList = threadResult.getDocuments().parallelStream()
-						.map(m -> {
-							try {
-								DBDocumentPackage dbpck = new DBDocumentPackage(m.getId(),m.getData());
-								Message msg = new Message();
-								msg.initializeFromPackage(dbpck);
-								return msg;
-								
-							} catch(Exception e) {
-								LOGGER.log(Level.INFO, "Error- a Message retrieval query failed");
-								return null;
-							}
-						})
-						.filter(p -> p !=null)
-						.collect(Collectors.toList());
+					.map(m -> {
+						try {
+							DBDocumentPackage dbpck = new DBDocumentPackage(m.getId(),m.getData());
+							Message msg = new Message();
+							msg.initializeFromPackage(dbpck);
+							return msg;
+							
+						} catch(Exception e) {
+							LOGGER.log(Level.INFO, "Error- a Message retrieval query failed");
+							return null;
+						}
+					})
+					.filter(p -> p !=null)
+					.collect(Collectors.toList());
 				msgThread.setMessages(messageList);
 				
+				//set event listener for thread:
+				msgThread.registerEventListener(latestMessages);
 				
 			}
 
@@ -1219,12 +1231,15 @@ public class FireBaseAdapter {
 		
 		DBDocumentPackage pck = message.toDBPackage();
 		
+		try {
 		db.collection(FireBaseSchema.MESSAGE_THREADS_TABLE)
 			.document(msgId)
 			.collection(FireBaseSchema.MESSAGE_THREADS_TABLE_COLLECTION)
-			.document(message.getTimestamp().toString())
-			.set(pck.getValues());
-		
+			.add(pck.getValues());
+		}catch(Exception e) {
+			LOGGER.warning("Error- failed to add message");
+			throw new DBFailureException();
+		}
 		
 		return true;
 		

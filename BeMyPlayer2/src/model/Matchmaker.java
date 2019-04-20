@@ -28,6 +28,7 @@ public class Matchmaker{
 				System.out.println(generateZScore(o1) + " : " + generateZScore(o2));
 				return generateZScore(o1) - generateZScore(o2);
 			}
+			
 			public int generateZScore(Profile o) {
 				int score = 0;
 				if(o.getUserId().equals(c.getUserId())) {
@@ -64,8 +65,8 @@ public class Matchmaker{
 			@Override
 			public int compare(Profile o1, Profile o2) {
 				//This is a temporary stub:
-				System.out.println("comparing " + o1.getUsername() + " and " + o2.getUsername());
-				System.out.println(generateZScore(o1) + " : " + generateZScore(o2));
+				//System.out.println("comparing " + o1.getUsername() + " and " + o2.getUsername());
+				//System.out.println(generateZScore(o1) + " : " + generateZScore(o2));
 				return generateZScore(o1) - generateZScore(o2);
 			}
 			public int generateZScore(Profile o) {

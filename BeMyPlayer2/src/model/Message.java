@@ -3,6 +3,7 @@ package model;
 import java.util.Date;
 import java.util.List;
 
+import com.google.cloud.Timestamp;
 
 import firebase.FireBaseSchema;
 
@@ -16,7 +17,7 @@ public final class Message implements DBSerializable{
 	private String message;
 	
 	/** The timestamp. */
-	private Date timestamp;
+	private Timestamp timestamp;
 	
 	/** The sender id. */
 	private String senderId;
@@ -36,6 +37,12 @@ public final class Message implements DBSerializable{
 	 */
 	public Message() {
 		
+	}
+	
+	public Message(String msg, Timestamp tstmp, String sender) {
+		this.message = msg;
+		this.timestamp = tstmp;
+		this.senderId = sender;
 	}
 	
 	/**
@@ -61,8 +68,12 @@ public final class Message implements DBSerializable{
 	 *
 	 * @return the timestamp
 	 */
-	public Date getTimestamp() {
+	public Timestamp getTimestamp() {
 		return timestamp;
+	}
+	
+	public Date getTimestampDate() {
+		return FireBaseSchema.parseDate(timestamp);
 	}
 	
 	/**
@@ -70,7 +81,7 @@ public final class Message implements DBSerializable{
 	 *
 	 * @param timestamp the new timestamp
 	 */
-	public void setTimestamp(Date timestamp) {
+	public void setTimestamp(Timestamp timestamp) {
 		this.timestamp = timestamp;
 	}
 	
@@ -78,7 +89,7 @@ public final class Message implements DBSerializable{
 	 * Sets the timestamp now.
 	 */
 	public void setTimestampNow() {
-		this.timestamp = new Date();
+		this.timestamp = Timestamp.now();
 	}
 	
 	/**
@@ -106,7 +117,6 @@ public final class Message implements DBSerializable{
 	public DBDocumentPackage toDBPackage() {
 		
 		DBDocumentPackage newPackage = new DBDocumentPackage();
-		newPackage.setPrimaryKey(this.message);
 		newPackage.addValue(_MESSAGE, this.message);
 		newPackage.addValue(_TIMESTAMP, this.timestamp);
 		newPackage.addValue(_SENDER_ID, this.senderId);
@@ -124,7 +134,7 @@ public final class Message implements DBSerializable{
 					this.message = (String) pkg.getValues().get(s);
 					break;
 				case _TIMESTAMP:
-					this.timestamp = FireBaseSchema.parseDate(pkg.getValues().get(s));
+					this.timestamp = (Timestamp) pkg.getValues().get(s);
 					break;
 				case _SENDER_ID:
 					this.senderId = (String) pkg.getValues().get(s);
