@@ -112,7 +112,7 @@ public class ClientModel {
 	 * @return the friend profile front
 	 */
 	public Profile getFriendProfileFront() {
-		if(newFriendMatchQueue.size() == 0) {
+		if(newFriendMatchQueue.isEmpty()) {
 			return null;
 		}
 		return newFriendMatchQueue.peek();
@@ -124,7 +124,7 @@ public class ClientModel {
 	 * @return the love profile front
 	 */
 	public Profile getLoveProfileFront() {
-		if(newLoveMatchQueue.size() == 0) {
+		if(newLoveMatchQueue.isEmpty()) {
 			return null;
 		}
 		return newLoveMatchQueue.peek();
