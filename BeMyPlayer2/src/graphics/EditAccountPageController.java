@@ -235,6 +235,12 @@ public class EditAccountPageController extends PageController{
 					//	DATA BASE LOGIC FOR MUTING ACCOUNT FROM Db
 
 					  InformationExpert.getActiveAccount().getAccountProfile().setMute(true);
+					  try {
+						InformationExpert.updateProfile(InformationExpert.getActiveAccount().getAccountProfile());
+					} catch (DBFailureException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					  //	if yes set bool, if no unset bool
 				} else {
 					logger.info("Not muting account " + InformationExpert.getActiveAccount().getAccountProfile().getUsername());
