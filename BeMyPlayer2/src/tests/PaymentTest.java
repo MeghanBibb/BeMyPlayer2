@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.swing.JFormattedTextField;
 import javax.swing.JPasswordField;
+/*
+import org.junit.jupiter.api.*;
 
 import graphics.PaymentPageController;
 import graphics.PaymentPageModel;
@@ -18,7 +20,7 @@ import graphics.ForgotPassPageView;
 import graphics.InvalidPopup;
 import model.Account;
 import model.Profile;
-/*
+
 import static org.junit.Assert.*;
 
 public class PaymentTest {
@@ -28,8 +30,8 @@ public class PaymentTest {
 	PaymentPageController controller;
 	
 	//this initializes the controller/model with valid, correct data
-	//@BeforeEach
-	//@DisplayName("Create Model")
+	@BeforeEach
+	@DisplayName("Create Model")
 	public void initModel() {
 		model = new PaymentPageModel();
 		controller = new PaymentPageController();
@@ -51,12 +53,12 @@ public class PaymentTest {
 	}
 		
 	//this has valid data, should pass
-	//@Test
+	@Test
 	public void testPasswordVerification() {
 		assert(controller.verifyPayment());
 	}
 		
-		//@Test
+		@Test
 		public void testBadMonth() {
 			JFormattedTextField cardMonth = new JFormattedTextField("14");
 			model.setCardMonth(cardMonth);

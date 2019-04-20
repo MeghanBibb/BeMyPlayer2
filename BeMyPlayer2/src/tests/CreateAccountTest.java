@@ -148,5 +148,10 @@ public class CreateAccountTest {
 		assertFalse(controller.validateCreatePage1());
 	}
 	
+	public void validPage2Test() {
+		assert(controller.validateCreatePage2());
+	}
 	
-}*/
+	
+}
+*/

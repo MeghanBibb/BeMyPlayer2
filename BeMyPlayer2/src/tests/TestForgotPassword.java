@@ -42,7 +42,7 @@ public class TestForgotPassword {
 	}
 	
 	//@BeforeEach
-	//@DisplayName("Create Profile")
+	//@DisplayName("Create Model")
 	public void initModel() {
 		model = new ForgotPassPageModel();
 		controller = new ForgotPassPageController();
