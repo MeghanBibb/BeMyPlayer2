@@ -111,8 +111,6 @@ public class MessageThread implements DBQuerySynchronized{
 	public void updateListener() {
 		if(this.updateListener != null) {
 			this.updateListener.externalUpdate();
-		}else {
-			System.out.println("Listener not set!");
 		}
 		
 	}
@@ -140,9 +138,6 @@ public class MessageThread implements DBQuerySynchronized{
 								(Timestamp) data.get(Message._TIMESTAMP),
 							    (String) data.get(Message._SENDER_ID))
 						);
-						
-						for(Message m : messages)
-							System.out.println(m.getMessage());
 						
 						updateListener();
 					}
