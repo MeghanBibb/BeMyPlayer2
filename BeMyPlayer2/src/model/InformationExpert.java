@@ -412,6 +412,7 @@ public class InformationExpert {
 				databaseAdapter.getOtherMatchedProfiles(activeUserAccount.getAccountProfile(), FireBaseAdapter.FRIEND_MATCHES);
 				clientModel.importPartialFriendBatch(partialProfs);
 				
+				System.out.println(partialProfs);
 				
 				return true;
 				
@@ -444,6 +445,8 @@ public class InformationExpert {
 				List<Profile> partialProfs =
 				databaseAdapter.getOtherMatchedProfiles(activeUserAccount.getAccountProfile(), FireBaseAdapter.LOVE_MATCHES);
 				clientModel.importPartialLoveBatch(partialProfs);
+				
+				System.out.println(partialProfs);
 				
 				return true;
 				
