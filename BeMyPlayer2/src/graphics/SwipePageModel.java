@@ -1,23 +1,16 @@
 package graphics;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import model.InformationExpert;
 import model.Profile;
 import model.ResourceManager;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SwipePageModel.
  */

@@ -7,7 +7,6 @@ import model.InformationExpert;
 import model.Issue;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -15,7 +14,6 @@ import java.util.List;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SupportController.
  */

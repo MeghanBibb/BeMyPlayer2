@@ -4,13 +4,10 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 import com.google.cloud.Timestamp;
 import com.google.cloud.firestore.DocumentChange;
 import com.google.cloud.firestore.DocumentChange.Type;
-import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.EventListener;
 import com.google.cloud.firestore.FirestoreException;
 import com.google.cloud.firestore.ListenerRegistration;
@@ -19,7 +16,6 @@ import com.google.cloud.firestore.QuerySnapshot;
 
 import graphics.ExternalListener;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class MessageThread.
  */
@@ -92,7 +88,6 @@ public class MessageThread implements DBQuerySynchronized{
 
 	@Override
 	public void removeEventListener() {
-		// TODO Auto-generated method stub
 		this.registration.remove();
 		this.registration = null;
 	}

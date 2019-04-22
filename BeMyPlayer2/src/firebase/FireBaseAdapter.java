@@ -1,64 +1,41 @@
 package firebase;
 
-import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
-import java.awt.image.WritableRaster;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.logging.*;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import javax.imageio.ImageIO;
 
-import java.sql.Date;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 import com.google.api.core.ApiFuture;
 import com.google.auth.oauth2.GoogleCredentials;
-import com.google.cloud.firestore.CollectionReference;
-import com.google.cloud.firestore.DocumentChange;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.Query;
-import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
-import com.google.cloud.firestore.Transaction;
 import com.google.cloud.firestore.WriteBatch;
 import com.google.cloud.firestore.WriteResult;
 import com.google.cloud.storage.Blob;
 import com.google.cloud.storage.Blob.BlobSourceOption;
-import com.google.cloud.storage.BlobId;
 import com.google.cloud.storage.Bucket;
 import com.google.cloud.storage.Storage;
-import com.google.cloud.storage.Storage.BlobGetOption;
 import com.google.cloud.storage.StorageOptions;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.UserRecord.CreateRequest;
 import com.google.firebase.cloud.FirestoreClient;
 import com.google.firebase.cloud.StorageClient;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import model.*;
 
-import com.google.cloud.Service;
-import com.google.cloud.firestore.Firestore;
-import com.google.firebase.FirebaseOptions;
-
-// TODO: Auto-generated Javadoc
 /**
  * The Class FireBaseAdapter.
  */
@@ -155,12 +132,6 @@ public class FireBaseAdapter {
 			LOGGER.warning("Error- no database connection");
 			throw new DBFailureException();
 		}
-		
-		
-		ApiFuture<DocumentSnapshot> payment = 
-				db.collection(FireBaseSchema.PAYMENT_TABLE)
-				.document(userID)
-				.get();
 				
 		
 		ApiFuture<QuerySnapshot> paymentQ = 
@@ -376,18 +347,9 @@ public class FireBaseAdapter {
 			LOGGER.log(Level.WARNING, "Error- no database connection");
 			throw new DBFailureException();
 		}
-		String securityQName;
 		String ansName;
-		if(securityQ == 1) {
-			securityQName = Account._SECURITY_Q1;
-			ansName = Account._SECURITY_Q1A;
-		}else if(securityQ == 2) {
-			securityQName = Account._SECURITY_Q2;
-			ansName = Account._SECURITY_Q2A;
-		}else {
-			//invalid security Q number:
-			throw new DBFailureException();
-		}
+
+		ansName = Account._SECURITY_Q1A;
 		
 		//query if user account exists:
 		ApiFuture<QuerySnapshot> fetchUser = 
@@ -395,8 +357,6 @@ public class FireBaseAdapter {
 				.whereEqualTo(Account._EMAIL, userEmail)
 				.whereEqualTo(ansName, ansHash)
 				.get();
-		
-		//TODO: VALIDATE USERNAME
 		
 		
 		try {
@@ -609,7 +569,6 @@ public class FireBaseAdapter {
 				.get();
 		DocumentReference profRef = db.collection(FireBaseSchema.PROFILES_TABLE)
 				.document(profile.getUserId());
-		Profile userProf = null;
 		
 		if(profile == null || profile.getUserId() == null) {
 			LOGGER.log(Level.WARNING,"Profile has no initialized userId; cannot update");
@@ -811,18 +770,6 @@ public class FireBaseAdapter {
 		*/
 		return profList;
 	}
-	
-	/**
-	 * Gets the unmatched profiles.
-	 *
-	 * @param userId the user id
-	 * @param matchType the match type
-	 * @return the unmatched profiles
-	 * @throws DBFailureException the DB failure exception
-	 *//*
-	public List<Profile> getUnmatchedProfiles(String userId, String matchType) throws DBFailureException{
-		return getUnmatchedProfiles(userId, matchType,1);
-	}*/
 	
 	/**
 	 * Gets the unmatched profiles.
@@ -1080,6 +1027,7 @@ public class FireBaseAdapter {
 			LOGGER.log(Level.FINE, "Added a Profile Image.");
 			
 		}catch(Exception exc) {
+			LOGGER.log(Level.SEVERE, "Exception thrown: ", exc);
 			//exc.printStackTrace();
 			LOGGER.log(Level.SEVERE, "Error- Image upload failed!");
 			throw new DBFailureException();
@@ -1260,8 +1208,6 @@ public class FireBaseAdapter {
 	}
 
 	public void deleteAccount(String userId) throws DBFailureException {
-		
-		CollectionReference acctable = db.collection(FireBaseSchema.ACCOUNTS_TABLE);
 		DocumentReference accRef = db.collection(FireBaseSchema.ACCOUNTS_TABLE).document(userId);
 		DocumentReference profRef = db.collection(FireBaseSchema.PROFILES_TABLE).document(userId);
 		DocumentReference matchesRef = db.collection(FireBaseSchema.MATCHES_TABLE).document(userId);

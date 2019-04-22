@@ -8,7 +8,6 @@ import java.util.List;
 
 import javax.swing.*;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class EditAccountPageModel.
  */

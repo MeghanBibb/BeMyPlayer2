@@ -1,50 +1,29 @@
 package graphics;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.LayoutManager;
 import java.awt.Rectangle;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.SwingConstants;
-import javax.swing.UIManager;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
-import javax.swing.filechooser.FileFilter;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.plaf.ColorUIResource;
 
-import firebase.DBFailureException;
 import model.Account;
 import model.InformationExpert;
-import model.Profile;
 import model.ResourceManager;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ViewMatchesView.
  */
@@ -108,7 +87,7 @@ public class ViewMatchesView {
 		profilePicPanel.setPreferredSize(new Dimension(100,250));
 		
 		//profilePicPanel.setSize(100, 245);
-		JComboBox matchtype = new JComboBox();
+		JComboBox<String> matchtype = new JComboBox<String>();
 		
 		matchtype.addItemListener(new ItemListener() {
         	public void itemStateChanged(ItemEvent e) {
@@ -121,9 +100,17 @@ public class ViewMatchesView {
         			///	ACTUAL SOLUTION
         			
         			if(InformationExpert.getClientModel().getLoveMatches() == null || InformationExpert.getClientModel().getLoveMatches().size() == 0) {
-        				profilePicPanel.add(viewMatchController.getViewMatchesModel().getEmptyPanel());
+        				//profilePicPanel.add(viewMatchController.getViewMatchesModel().getEmptyPanel());
+        				JLabel temp1 = viewMatchController.getViewMatchesModel().getNoMatchMessage();
+        				temp1.setVisible(true);
+        				mainFrame.add(temp1);
+        				mainFrame.repaint();
         			}
         			else {
+        				JLabel temp1 = viewMatchController.getViewMatchesModel().getNoMatchMessage();
+        				temp1.setVisible(false);
+        				viewMatchController.getViewMatchesModel().setNoMatchMessage(temp1);
+        				mainFrame.add(viewMatchController.getViewMatchesModel().getNoMatchMessage());
         				List<JButton> pics = ProfilePicGenerator.getLoveList(viewMatchController);
         		    	double temp = pics.size();
         		    	boolean addTrash = false;
@@ -157,9 +144,18 @@ public class ViewMatchesView {
         			///	ACTUAL SOLUTION
         			
         			if(InformationExpert.getClientModel().getFriendMatches() == null ||InformationExpert.getClientModel().getFriendMatches().size() == 0) {
-        				profilePicPanel.add(viewMatchController.getViewMatchesModel().getEmptyPanel());
+        			//	profilePicPanel.add(viewMatchController.getViewMatchesModel().getEmptyPanel());
+        				JLabel temp1 = viewMatchController.getViewMatchesModel().getNoMatchMessage();
+        				temp1.setVisible(true);
+        				mainFrame.add(temp1);
+        				mainFrame.repaint();
         			}
         			else {
+        				JLabel temp1 = viewMatchController.getViewMatchesModel().getNoMatchMessage();
+        				temp1.setVisible(false);
+        				viewMatchController.getViewMatchesModel().setNoMatchMessage(temp1);
+        				mainFrame.add(viewMatchController.getViewMatchesModel().getNoMatchMessage());
+        				mainFrame.repaint();
         				List<JButton> pics = ProfilePicGenerator.getFriendList(viewMatchController);
         		    	double temp = pics.size();
         		    	boolean addTrash = false;
@@ -193,7 +189,7 @@ public class ViewMatchesView {
         });
 		
 		matchtype.setToolTipText("Match type");
-		matchtype.setModel(new DefaultComboBoxModel(new String[] {"Love Matches", "Friend Matches"}));
+		matchtype.setModel(new DefaultComboBoxModel<String>(new String[] {"Love Matches", "Friend Matches"}));
 		matchtype.setFont(Fonts.getFont(12f));
 		matchtype.setForeground(Colors.Red);
 		matchtype.setBackground(Colors.Yellow);
@@ -202,17 +198,12 @@ public class ViewMatchesView {
 		viewMatchController.getViewMatchesModel().setMatchtype(matchtype);
 		viewMatchController.getViewMatchesPanel().add(matchtype);
 		
-		//	send type request to match adapter to pull list of matches for account
-		
-		////	real implementation
-		/// 	REMOVE WHEN MATCHING IS DONE///////////////////////
-		
-		
-		//////////////////////////////////////////////////////////
-//		if empty
-		
 		if(InformationExpert.getClientModel().getLoveMatches() == null || InformationExpert.getClientModel().getLoveMatches().size() == 0) {
-			profilePicPanel.add(viewMatchController.getViewMatchesModel().getEmptyPanel());
+			//profilePicPanel.add(viewMatchController.getViewMatchesModel().getEmptyPanel());
+			JLabel temp1 = viewMatchController.getViewMatchesModel().getNoMatchMessage();
+			temp1.setVisible(true);
+			mainFrame.add(temp1);
+			mainFrame.repaint();
 	    }
 	    else {
 	    	List<JButton> pics = ProfilePicGenerator.getLoveList(viewMatchController);
@@ -240,8 +231,6 @@ public class ViewMatchesView {
 		//	SCROLLPANE
 	    JScrollPane scrollPane = new JScrollPane(profilePicPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	    
-	    
-	    //scrollPane.getViewport().add(profilePicPanel);
 	    scrollPane.setBounds(new Rectangle(25, 120, 215, 245));
 	    
 		viewMatchController.getViewMatchesPanel().add(scrollPane);

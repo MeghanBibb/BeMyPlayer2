@@ -1,13 +1,11 @@
 package model;
 
 import java.util.Date;
-import java.util.List;
 
 import com.google.cloud.Timestamp;
 
 import firebase.FireBaseSchema;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Message.
  */

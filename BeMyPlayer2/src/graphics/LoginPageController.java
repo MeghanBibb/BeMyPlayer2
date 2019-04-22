@@ -1,7 +1,6 @@
 package graphics;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
@@ -13,20 +12,14 @@ import javax.swing.JPanel;
 
 import firebase.DBFailureException;
 import firebase.Hasher;
-import model.Account;
 import model.InformationExpert;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class LoginPageController.
  */
 public class LoginPageController extends PageController implements KeyListener{
 
-	//	default frame size
-	//public static final int APP_WINDOW_WIDTH = 300;
-	//public static final int APP_WINDOW_HEIGHT = 400;
 	/** The Constant LOGIN. */
-	//	set action commands
 	public static final String LOGIN="login";
 	
 	/** The Constant CREATE_ACCOUNT. */
@@ -47,8 +40,6 @@ public class LoginPageController extends PageController implements KeyListener{
 	
 	/** The logger. */
 	private static Logger logger = Logger.getLogger(LoginPageController.class.getName());
-	//private JFrame loginFrame = null;
-	//	init controller 
 	
 	/* (non-Javadoc)
 	 * @see graphics.PageController#launchPage(javax.swing.JFrame, java.lang.String)
@@ -90,7 +81,6 @@ public class LoginPageController extends PageController implements KeyListener{
 				}
 				
 			} catch (DBFailureException e) {
-				// TODO Auto-generated catch block
 				warnings.add("Database failed to load user\n");
 				valid = false;
 			}
@@ -112,7 +102,7 @@ public class LoginPageController extends PageController implements KeyListener{
 		else if(e.getActionCommand() == LOGIN) {
 			if(validateLogin(this.getLoginPageModel().getFrmtdtxtfldEnterUsername().getText(),
 					this.getLoginPageModel().getPwdEnterPass().getText()) == true){
-				
+				logger.info("Logging in user " + InformationExpert.getActiveAccount().getEmail());
 				InformationExpert.resetClientModel();
 				GraphicsController.processPage(PageCreator.HOME_PAGE, backPage);
 				
@@ -164,7 +154,7 @@ public class LoginPageController extends PageController implements KeyListener{
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		if(e.getKeyChar() == e.VK_ENTER) {
+		if(e.getKeyChar() == KeyEvent.VK_ENTER) {
 			this.getLoginPageModel().getBtnLogin().doClick();
 		}
 	}

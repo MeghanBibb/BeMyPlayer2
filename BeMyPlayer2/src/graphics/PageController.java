@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class PageController.
  */

@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.JFrame;
@@ -16,7 +17,6 @@ import model.InformationExpert;
 import model.PaymentInfo;
 import model.ResourceManager;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class EditAccountPageController.
  */
@@ -115,14 +115,12 @@ public class EditAccountPageController extends PageController{
 					try {
 						InformationExpert.getActiveAccount().getAccountProfile().setDateOB(this.getEditAccountModel().getDob());
 					} catch (ParseException e1) {
-						// TODO Auto-generated catch block
 						logger.warning("invalid date");
 					}
 					try {
 						InformationExpert.updateAccount(InformationExpert.getActiveAccount());
 						InformationExpert.updateProfile(InformationExpert.getActiveAccount().getAccountProfile());
 					} catch (DBFailureException e1) {
-						// TODO Auto-generated catch block
 						logger.warning("failed to save");
 					}
 					if(!this.getEditAccountModel().getSecQA().getText().isEmpty()) {
@@ -141,7 +139,6 @@ public class EditAccountPageController extends PageController{
 						InformationExpert.updateAccount(InformationExpert.getActiveAccount());
 						InformationExpert.updateProfile(InformationExpert.getActiveAccount().getAccountProfile());
 					} catch (DBFailureException e1) {
-						// TODO Auto-generated catch block
 						logger.warning("Database failed to update questionaire for " + InformationExpert.getActiveUserID());
 					}
 									
@@ -197,7 +194,6 @@ public class EditAccountPageController extends PageController{
 					logger.info("GOT PAYMENT INFO FROM DB\n");
 				}
 			} catch (DBFailureException e1) {
-				//database failure
 				logger.severe("Database failed to pull payment info for " + InformationExpert.getActiveUserID());
 				InvalidPopup p = new InvalidPopup(this.getEditAccountPanel(),"Error loading payment info from database");
 			}
@@ -214,7 +210,7 @@ public class EditAccountPageController extends PageController{
 					  try {
 							InformationExpert.deletePaymentInfo(InformationExpert.getActiveUserID());
 						} catch (DBFailureException e1) {
-							// TODO Auto-generated catch block
+							logger.log(Level.SEVERE, "Databse Failure on end_payment: ", e1);
 							e1.printStackTrace();
 						}
 						GraphicsController.processPage(PageCreator.PROFILE_PAGE, backPage);
@@ -250,8 +246,6 @@ public class EditAccountPageController extends PageController{
 							logger.warning("Failed to update muted profile");
 						}
 					}
-					
-					
 				}
 				
 				break;
@@ -330,7 +324,6 @@ public class EditAccountPageController extends PageController{
 		try {
 			this.editAccountModel.getDob();
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			valid = false;
 			warnings.add("invalid date: please enter dd/mm/yyyy\n");
 		}

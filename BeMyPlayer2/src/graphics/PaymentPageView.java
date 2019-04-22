@@ -2,7 +2,6 @@ package graphics;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 
@@ -12,13 +11,11 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import model.ResourceManager;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class PaymentPageView.
  */
@@ -44,7 +41,7 @@ public class PaymentPageView {
 		//init buttons
 		JButton btnBack = new JButton("Cancel");
 		btnBack.setBounds(10,10,90,40);
-		btnBack.setActionCommand(paymentController.BACK);
+		btnBack.setActionCommand(PaymentPageController.BACK);
 		btnBack.setBackground(Colors.Yellow);
 		btnBack.setForeground(Colors.Red);
 		btnBack.setFont(Fonts.getFont(12f));
@@ -53,7 +50,7 @@ public class PaymentPageView {
 		
 		JButton btnSubmit = new JButton("Submit Info");
 		btnSubmit.setBounds(70,350,120,40);
-		btnSubmit.setActionCommand(paymentController.SUBMIT);
+		btnSubmit.setActionCommand(PaymentPageController.SUBMIT);
 		btnSubmit.setBackground(Colors.Yellow);
 		btnSubmit.setForeground(Colors.Red);
 		btnSubmit.setFont(Fonts.getFont(12f));
