@@ -62,6 +62,9 @@ public class MessageController extends PageController implements ExternalListene
             currentThread = InformationExpert.getMessageThread(InformationExpert.getActiveUserID(), InformationExpert.getOtherProfile().getUserId());
             if(currentThread != null) {
                 currentThread.setUpdateListener(this);
+            }else {
+            	currentThread = InformationExpert.getNewMessageThread(InformationExpert.getActiveUserID(), InformationExpert.getOtherProfile().getUserId());
+            	currentThread.setUpdateListener(this);
             }
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Error- could not find message thread");
@@ -94,16 +97,15 @@ public class MessageController extends PageController implements ExternalListene
                     newMessage.setTimestampNow();
                     
                     try {
-						if(InformationExpert.addMessage(InformationExpert.getActiveUserID(), InformationExpert.getOtherProfile().getUserId(), newMessage)) {
-							//message upload successful
-							
-							if(this.getCurrentThread() == null) {
-								this.setCurrentThread(InformationExpert.getMessageThread(InformationExpert.getActiveUserID(), InformationExpert.getOtherProfile().getUserId()));
-
-								this.updateMessageArea();
-							}
+						if(!InformationExpert.addMessage(InformationExpert.getActiveUserID(), InformationExpert.getOtherProfile().getUserId(), newMessage)) {
+							List<String> warnings = new ArrayList<String>();
+							warnings.add("Message could not be sent.");
+							InvalidPopup p = new InvalidPopup(this.messagePanel, warnings);
 						}
 					} catch (DBFailureException e1) {
+						List<String> warnings = new ArrayList<String>();
+						warnings.add("Connection was lost.\nMessage could not be sent.");
+						InvalidPopup p = new InvalidPopup(this.messagePanel, warnings);
 						logger.log(Level.SEVERE, "Databse Failure during message sending: ", e1);
 					}
             		this.getMessageModel().getSendBox().setText("");

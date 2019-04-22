@@ -762,12 +762,12 @@ public class FireBaseAdapter {
 				.collect(Collectors.toList());
 			
 		}
-		
+		/*
 		System.out.println("PARTIAL PROFILES:");
 		for(Profile p : profList) {
 			System.out.println(p.getUsername());
 		}
-		
+		*/
 		return profList;
 	}
 	
@@ -840,12 +840,12 @@ public class FireBaseAdapter {
 				return new ArrayList<Profile>();
 			}else {
 				
-				
+				/*
 				System.out.println("FILTERED IDS:");
 				for(String id : filteredIds) {
 					System.out.println(id);
 				}
-				
+				*/
 				
 				//parallelize package conversion to list of profiles:
 				batch = profileBatch.getDocuments().parallelStream()
@@ -865,12 +865,12 @@ public class FireBaseAdapter {
 			LOGGER.log(Level.SEVERE,"Error- Profile batch retrieval query failed.");
 			throw new DBFailureException();
 		}
-		
+		/*
 		System.out.println("UNMATCHED PROFILES:");
 		for(Profile p : batch) {
 			System.out.println(p.getUsername());
 		}
-		
+		*/
 		return batch;
 	}
 	
@@ -1104,6 +1104,16 @@ public class FireBaseAdapter {
 			throw new DBFailureException();
 		}
 	}
+	
+	public void resetMessageThreadListener(String userId, String otherUserId, MessageThread mt) {
+		String msgId = FireBaseSchema.toMessageThreadIndex(userId, otherUserId);
+		java.util.Date timeNow = new java.util.Date();
+		Query latestMessages = db.collection(FireBaseSchema.MESSAGE_THREADS_TABLE)
+								.document(msgId)
+								.collection(FireBaseSchema.MESSAGE_THREADS_TABLE_COLLECTION)
+								.whereGreaterThan(Message._TIMESTAMP, timeNow);
+		mt.registerEventListener(latestMessages);
+	}
 
 	/**
 	 * Gets the message thread.
@@ -1124,12 +1134,6 @@ public class FireBaseAdapter {
 		MessageThread msgThread = new MessageThread();
 		
 		String msgId = FireBaseSchema.toMessageThreadIndex(userId, otherUserId);
-		
-		java.util.Date timeNow = new java.util.Date();
-		Query latestMessages = db.collection(FireBaseSchema.MESSAGE_THREADS_TABLE)
-								.document(msgId)
-								.collection(FireBaseSchema.MESSAGE_THREADS_TABLE_COLLECTION)
-								.whereGreaterThan(Message._TIMESTAMP, timeNow);
 		
 		ApiFuture<QuerySnapshot> fetchThread =
 				db.collection(FireBaseSchema.MESSAGE_THREADS_TABLE)
@@ -1166,7 +1170,7 @@ public class FireBaseAdapter {
 				msgThread.setMessages(messageList);
 				
 				//set event listener for thread:
-				msgThread.registerEventListener(latestMessages);
+				resetMessageThreadListener(userId, otherUserId, msgThread);
 				
 			}
 
@@ -1192,7 +1196,7 @@ public class FireBaseAdapter {
 		String msgId = FireBaseSchema.toMessageThreadIndex(userId, otherUserId);
 		
 		DBDocumentPackage pck = message.toDBPackage();
-
+		
 		try {
 			DocumentReference dbRef = db.collection(FireBaseSchema.MESSAGE_THREADS_TABLE)
 			.document(msgId)
