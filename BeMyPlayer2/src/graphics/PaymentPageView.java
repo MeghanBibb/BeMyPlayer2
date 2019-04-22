@@ -95,7 +95,9 @@ public class PaymentPageView {
 		lblSlash.setFont(Fonts.getFont(20f));
 		paymentController.getPaymentModel().setLblSlash(lblSlash);
 		
-		JLabel lblDescription = new JLabel("<HTML>Description of payment pricing and services here.</HTML>");
+		JLabel lblDescription = new JLabel("<HTML>Upgrading your account will give you the highest level of"
+				+ "matching potential. For only $19.99 a year, your account will be seen first by "
+				+ "all other potential matchers. You can cancel your plan at any time.</HTML>");
 		lblDescription.setForeground(Colors.Yellow);
 		lblDescription.setBounds(280,80,200,200);
 		lblDescription.setFont(Fonts.getFont(12f));

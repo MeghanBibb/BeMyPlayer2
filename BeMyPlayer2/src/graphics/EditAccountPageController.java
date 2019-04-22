@@ -211,9 +211,9 @@ public class EditAccountPageController extends PageController{
 							InformationExpert.deletePaymentInfo(InformationExpert.getActiveUserID());
 						} catch (DBFailureException e1) {
 							logger.log(Level.SEVERE, "Databse Failure on end_payment: ", e1);
-							e1.printStackTrace();
 						}
-						GraphicsController.processPage(PageCreator.PROFILE_PAGE, backPage);
+					  this.getEditAccountModel().getBtnUpgrade().setText("Upgrade Account!");
+					  this.getEditAccountModel().getBtnUpgrade().setActionCommand(UPGRADE);
 				} else {
 				  logger.info("Not removing payment info for " + InformationExpert.getActiveAccount().getEmail());
 				}
@@ -298,9 +298,9 @@ public class EditAccountPageController extends PageController{
 			valid = false;
 			warnings.add("Please enter a username\n");
 		}
-		if(this.editAccountModel.getFrmtdtxtfldEnterUsername().getText().length() > 12) {
+		if(this.editAccountModel.getFrmtdtxtfldEnterUsername().getText().length() > 8) {
 			valid = false;
-			warnings.add("Character limit 12 exceeded\n");
+			warnings.add("Character limit 8 exceeded\n");
 		}
 		if(this.editAccountModel.getPwdEnterPass().getText().equalsIgnoreCase("")) {
 			if(!this.editAccountModel.getPwdValidatePass().getText().equalsIgnoreCase("")) {

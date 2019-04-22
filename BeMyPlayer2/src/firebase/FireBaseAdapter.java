@@ -1144,7 +1144,7 @@ public class FireBaseAdapter {
 		try {
 			threadResult = fetchThread.get();
 			if(threadResult.isEmpty()) {
-				LOGGER.log(Level.WARNING,"Could not find match Thread");
+				LOGGER.log(Level.WARNING,"Could not find message Thread");
 				return null;
 			}else {
 				List<Message> messageList;
@@ -1187,17 +1187,18 @@ public class FireBaseAdapter {
 		if(this.db == null) {
 			LOGGER.log(Level.WARNING, "Error- no database connection");
 			throw new DBFailureException();
-		}
+		}		
 		
 		String msgId = FireBaseSchema.toMessageThreadIndex(userId, otherUserId);
 		
 		DBDocumentPackage pck = message.toDBPackage();
 
 		try {
-		db.collection(FireBaseSchema.MESSAGE_THREADS_TABLE)
+			DocumentReference dbRef = db.collection(FireBaseSchema.MESSAGE_THREADS_TABLE)
 			.document(msgId)
 			.collection(FireBaseSchema.MESSAGE_THREADS_TABLE_COLLECTION)
-			.add(pck.getValues());
+			.add(pck.getValues())
+			.get();
 
 		}catch(Exception e) {
 			LOGGER.warning("Error- failed to add message");

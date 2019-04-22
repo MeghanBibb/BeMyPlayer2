@@ -10,13 +10,11 @@ import java.util.regex.Pattern;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import firebase.DBFailureException;
 import firebase.Hasher;
 import model.Account;
 import model.InformationExpert;
 import model.Profile;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class CreateAccountPageController.
  */
@@ -198,9 +196,9 @@ public class CreateAccountPageController extends PageController{
 
 		//	VALIDATIONS
 		List<String> warnings = new ArrayList<>();
-		if(this.createAccountPageModel.getFrmtdtxtfldEnterUsername().getText().length() > 12) {
+		if(this.createAccountPageModel.getFrmtdtxtfldEnterUsername().getText().length() > 8) {
 			valid = false;
-			warnings.add("Character limit 12 exceeded for username\n");
+			warnings.add("Character limit 8 exceeded for username\n");
 		}
 		if(this.createAccountPageModel.getFrmtdtxtfldEnterUsername().getText().equalsIgnoreCase("")) {
 			valid = false;

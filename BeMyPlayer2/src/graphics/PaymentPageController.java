@@ -171,7 +171,7 @@ public class PaymentPageController extends PageController{
 					} catch (DBFailureException e1) {
 						logger.warning("Database Failure: Could not upload new Payment Info");
 					}
-					GraphicsController.processPage(PageCreator.EDIT_ACCOUNT_PAGE,backPage);
+					GraphicsController.processPage(PageCreator.PROFILE_PAGE,backPage);
 				}
 				break;
 		}

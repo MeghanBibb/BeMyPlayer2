@@ -103,7 +103,7 @@ public class HomePageController extends PageController{
 				break;
 			case CREDITS:
 				logger.info("Launching credits page");
-				GraphicsController.processPage(PageCreator.CREDITS_PAGE, PageCreator.HOME_PAGE);
+				GraphicsController.processPage(PageCreator.CREDITS_PAGE, backPage);
 				break;
 			case SOUND:
 				logger.info("Modifying the sound settings");

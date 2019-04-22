@@ -60,7 +60,9 @@ public class MessageController extends PageController implements ExternalListene
     	account = InformationExpert.getActiveAccount();
         try {
             currentThread = InformationExpert.getMessageThread(InformationExpert.getActiveUserID(), InformationExpert.getOtherProfile().getUserId());
-            currentThread.setUpdateListener(this);
+            if(currentThread != null) {
+                currentThread.setUpdateListener(this);
+            }
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Error- could not find message thread");
         }
@@ -85,6 +87,7 @@ public class MessageController extends PageController implements ExternalListene
             case SEND:
             	
                 if (validateMsg()){
+                	
                     Message newMessage = new Message();
                     newMessage.setMessage(this.getMessageModel().getSendBox().getText());
                     newMessage.setSenderId(InformationExpert.getActiveUserID());
@@ -95,16 +98,15 @@ public class MessageController extends PageController implements ExternalListene
 							//message upload successful
 							
 							if(this.getCurrentThread() == null) {
-								MessageThread t = new MessageThread();
-								t.addMessage(newMessage);
-								this.setCurrentThread(t);
+								this.setCurrentThread(InformationExpert.getMessageThread(InformationExpert.getActiveUserID(), InformationExpert.getOtherProfile().getUserId()));
+
+								this.updateMessageArea();
 							}
 						}
-						
 					} catch (DBFailureException e1) {
 						logger.log(Level.SEVERE, "Databse Failure during message sending: ", e1);
-						e1.printStackTrace();
 					}
+            		this.getMessageModel().getSendBox().setText("");
                 }
                 break;
             case BACK:
@@ -135,7 +137,6 @@ public class MessageController extends PageController implements ExternalListene
             	this.getMessageModel().getThread().append("\n");
             }
         }
-		this.getMessageModel().getSendBox().setText("");
 	}
     
 
