@@ -100,9 +100,17 @@ public class ViewMatchesView {
         			///	ACTUAL SOLUTION
         			
         			if(InformationExpert.getClientModel().getLoveMatches() == null || InformationExpert.getClientModel().getLoveMatches().size() == 0) {
-        				profilePicPanel.add(viewMatchController.getViewMatchesModel().getEmptyPanel());
+        				//profilePicPanel.add(viewMatchController.getViewMatchesModel().getEmptyPanel());
+        				JLabel temp1 = viewMatchController.getViewMatchesModel().getNoMatchMessage();
+        				temp1.setVisible(true);
+        				mainFrame.add(temp1);
+        				mainFrame.repaint();
         			}
         			else {
+        				JLabel temp1 = viewMatchController.getViewMatchesModel().getNoMatchMessage();
+        				temp1.setVisible(false);
+        				viewMatchController.getViewMatchesModel().setNoMatchMessage(temp1);
+        				mainFrame.add(viewMatchController.getViewMatchesModel().getNoMatchMessage());
         				List<JButton> pics = ProfilePicGenerator.getLoveList(viewMatchController);
         		    	double temp = pics.size();
         		    	boolean addTrash = false;
@@ -136,9 +144,18 @@ public class ViewMatchesView {
         			///	ACTUAL SOLUTION
         			
         			if(InformationExpert.getClientModel().getFriendMatches() == null ||InformationExpert.getClientModel().getFriendMatches().size() == 0) {
-        				profilePicPanel.add(viewMatchController.getViewMatchesModel().getEmptyPanel());
+        			//	profilePicPanel.add(viewMatchController.getViewMatchesModel().getEmptyPanel());
+        				JLabel temp1 = viewMatchController.getViewMatchesModel().getNoMatchMessage();
+        				temp1.setVisible(true);
+        				mainFrame.add(temp1);
+        				mainFrame.repaint();
         			}
         			else {
+        				JLabel temp1 = viewMatchController.getViewMatchesModel().getNoMatchMessage();
+        				temp1.setVisible(false);
+        				viewMatchController.getViewMatchesModel().setNoMatchMessage(temp1);
+        				mainFrame.add(viewMatchController.getViewMatchesModel().getNoMatchMessage());
+        				mainFrame.repaint();
         				List<JButton> pics = ProfilePicGenerator.getFriendList(viewMatchController);
         		    	double temp = pics.size();
         		    	boolean addTrash = false;
@@ -182,7 +199,11 @@ public class ViewMatchesView {
 		viewMatchController.getViewMatchesPanel().add(matchtype);
 		
 		if(InformationExpert.getClientModel().getLoveMatches() == null || InformationExpert.getClientModel().getLoveMatches().size() == 0) {
-			profilePicPanel.add(viewMatchController.getViewMatchesModel().getEmptyPanel());
+			//profilePicPanel.add(viewMatchController.getViewMatchesModel().getEmptyPanel());
+			JLabel temp1 = viewMatchController.getViewMatchesModel().getNoMatchMessage();
+			temp1.setVisible(true);
+			mainFrame.add(temp1);
+			mainFrame.repaint();
 	    }
 	    else {
 	    	List<JButton> pics = ProfilePicGenerator.getLoveList(viewMatchController);
