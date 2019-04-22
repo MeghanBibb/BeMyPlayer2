@@ -652,7 +652,7 @@ public class FireBaseAdapter {
 		if(!matchType.equals(LOVE_MATCHES) && !matchType.equals(FRIEND_MATCHES)) {
 			LOGGER.log(Level.WARNING, "Error- Invalid call argument: " + matchType);
 			return null;
-		}else if(matchType == FRIEND_MATCHES) {
+		}else if(matchType.equals(FRIEND_MATCHES)) {
 			mStringType = MatchType._TYPE_FRIEND_MATCH;
 		}
 		
@@ -718,7 +718,7 @@ public class FireBaseAdapter {
 		if(matchType != LOVE_MATCHES && matchType != FRIEND_MATCHES) {
 			LOGGER.log(Level.WARNING, "Error- Invalid call argument: " + matchType);
 			return null;
-		}else if(matchType == FRIEND_MATCHES) {
+		}else if(matchType.equals(FRIEND_MATCHES)) {
 			mStringType = MatchType._TYPE_FRIEND_MATCH;
 		}
 		
@@ -790,7 +790,7 @@ public class FireBaseAdapter {
 		if(matchType != LOVE_MATCHES && matchType != FRIEND_MATCHES) {
 			LOGGER.log(Level.WARNING, "Error- Invalid call argument: " + matchType);
 			return null;
-		}else if(matchType == FRIEND_MATCHES) {
+		}else if(matchType.equals(FRIEND_MATCHES)) {
 			mStringType = MatchType._TYPE_FRIEND_MATCH;
 		}
 		
