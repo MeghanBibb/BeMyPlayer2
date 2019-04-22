@@ -298,9 +298,9 @@ public class EditAccountPageController extends PageController{
 			valid = false;
 			warnings.add("Please enter a username\n");
 		}
-		if(this.editAccountModel.getFrmtdtxtfldEnterUsername().getText().length() > 12) {
+		if(this.editAccountModel.getFrmtdtxtfldEnterUsername().getText().length() > 8) {
 			valid = false;
-			warnings.add("Character limit 12 exceeded\n");
+			warnings.add("Character limit 8 exceeded\n");
 		}
 		if(this.editAccountModel.getPwdEnterPass().getText().equalsIgnoreCase("")) {
 			if(!this.editAccountModel.getPwdValidatePass().getText().equalsIgnoreCase("")) {
