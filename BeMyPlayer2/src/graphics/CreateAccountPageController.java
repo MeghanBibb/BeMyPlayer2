@@ -10,13 +10,11 @@ import java.util.regex.Pattern;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import firebase.DBFailureException;
 import firebase.Hasher;
 import model.Account;
 import model.InformationExpert;
 import model.Profile;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class CreateAccountPageController.
  */

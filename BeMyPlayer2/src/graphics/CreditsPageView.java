@@ -14,7 +14,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
+import model.InformationExpert;
 import model.ResourceManager;
 
 /**
@@ -74,23 +77,29 @@ public class CreditsPageView {
 		JPanel profilePicPanel = new JPanel();
 		profilePicPanel.setBackground(Colors.Yellow);
 		profilePicPanel.setLayout(gridLayout);
-		profilePicPanel.setPreferredSize(new Dimension(100,245));
-		profilePicPanel.setSize(100, 245);
+		profilePicPanel.setPreferredSize(new Dimension(100,500));
+		profilePicPanel.setSize(100,500);
 		
 		List<JButton> pics = ProfilePicGenerator.getCreatorsList(creditscontrol);
-		for(JButton icon: pics) {
+		
+    	double temp = pics.size();
+    	
+    	for(JButton icon: pics) {
 			profilePicPanel.add(icon);
 		}
-		
+		while((int)temp%4 != 0) {
+			temp++;
+			JButton trash  =new JButton();
+			trash.setEnabled(false);
+			trash.setVisible(false);
+			profilePicPanel.add(trash);
+		}
 //		SCROLLPANE
 	    JScrollPane scrollPane = new JScrollPane(profilePicPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-	    scrollPane.setBounds(new Rectangle(25, 120, 215, 245));
+	    scrollPane.setBounds(new Rectangle(25, 120, 215, 250));
+	    
 	    creditscontrol.getCreditsPanel().add(scrollPane);
-		// creators
 		
-		// picture
-		// name 
-		// responsibilities:
 		
 		//pack and make visible
 		mainFrame.pack();

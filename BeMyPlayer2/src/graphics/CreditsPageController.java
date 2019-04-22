@@ -73,7 +73,10 @@ public class CreditsPageController extends PageController{
 				brief = new ProfileBriefModel(InformationExpert.getOtherProfile(),new Rectangle(250,120,215,245),PageCreator.MATCHES_PAGE);
 			}
 			this.copyFrame.add(brief);
-			this.copyFrame.repaint();
+			this.copyFrame.revalidate();
+			//this.copyFrame.repaint();
+			brief.repaint();
+			this.creditsPanel.revalidate();
 		}
 	}
 	

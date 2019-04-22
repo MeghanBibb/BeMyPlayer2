@@ -510,7 +510,7 @@ public class FireBaseAdapter {
 				.document(account.getUserId());
 		Profile userProf = null;
 		
-		if(account == null || account.getUserId() == null) {
+		if(account.getUserId() == null) {
 			LOGGER.log(Level.WARNING,"Account has no initialized userId; cannot update");
 			throw new DBFailureException();
 		}
@@ -570,7 +570,7 @@ public class FireBaseAdapter {
 		DocumentReference profRef = db.collection(FireBaseSchema.PROFILES_TABLE)
 				.document(profile.getUserId());
 		
-		if(profile == null || profile.getUserId() == null) {
+		if(profile.getUserId() == null) {
 			LOGGER.log(Level.WARNING,"Profile has no initialized userId; cannot update");
 			throw new DBFailureException();
 		}
@@ -649,7 +649,7 @@ public class FireBaseAdapter {
 		}
 		
 		String mStringType = MatchType._TYPE_LOVE_MATCH;
-		if(matchType != LOVE_MATCHES && matchType != FRIEND_MATCHES) {
+		if(!matchType.equals(LOVE_MATCHES) && !matchType.equals(FRIEND_MATCHES)) {
 			LOGGER.log(Level.WARNING, "Error- Invalid call argument: " + matchType);
 			return null;
 		}else if(matchType == FRIEND_MATCHES) {
@@ -758,7 +758,7 @@ public class FireBaseAdapter {
 						return null;
 					} 
 				})
-				.filter(p -> p != null && p.getUserId() != userProfile.getUserId())
+				.filter(p -> p != null && !p.getUserId().equals(userProfile.getUserId()))
 				.collect(Collectors.toList());
 			
 		}
@@ -1104,6 +1104,16 @@ public class FireBaseAdapter {
 			throw new DBFailureException();
 		}
 	}
+	
+	public void resetMessageThreadListener(String userId, String otherUserId, MessageThread mt) {
+		String msgId = FireBaseSchema.toMessageThreadIndex(userId, otherUserId);
+		java.util.Date timeNow = new java.util.Date();
+		Query latestMessages = db.collection(FireBaseSchema.MESSAGE_THREADS_TABLE)
+								.document(msgId)
+								.collection(FireBaseSchema.MESSAGE_THREADS_TABLE_COLLECTION)
+								.whereGreaterThan(Message._TIMESTAMP, timeNow);
+		mt.registerEventListener(latestMessages);
+	}
 
 	/**
 	 * Gets the message thread.
@@ -1124,12 +1134,6 @@ public class FireBaseAdapter {
 		MessageThread msgThread = new MessageThread();
 		
 		String msgId = FireBaseSchema.toMessageThreadIndex(userId, otherUserId);
-		
-		java.util.Date timeNow = new java.util.Date();
-		Query latestMessages = db.collection(FireBaseSchema.MESSAGE_THREADS_TABLE)
-								.document(msgId)
-								.collection(FireBaseSchema.MESSAGE_THREADS_TABLE_COLLECTION)
-								.whereGreaterThan(Message._TIMESTAMP, timeNow);
 		
 		ApiFuture<QuerySnapshot> fetchThread =
 				db.collection(FireBaseSchema.MESSAGE_THREADS_TABLE)
@@ -1166,7 +1170,7 @@ public class FireBaseAdapter {
 				msgThread.setMessages(messageList);
 				
 				//set event listener for thread:
-				msgThread.registerEventListener(latestMessages);
+				resetMessageThreadListener(userId, otherUserId, msgThread);
 				
 			}
 
@@ -1181,22 +1185,24 @@ public class FireBaseAdapter {
 		return msgThread;
 	}
 	
+	
 	public boolean addMessage(String userId, String otherUserId, Message message) throws DBFailureException {
 		
 		if(this.db == null) {
 			LOGGER.log(Level.WARNING, "Error- no database connection");
 			throw new DBFailureException();
-		}
+		}		
 		
 		String msgId = FireBaseSchema.toMessageThreadIndex(userId, otherUserId);
 		
 		DBDocumentPackage pck = message.toDBPackage();
-
+		
 		try {
-		db.collection(FireBaseSchema.MESSAGE_THREADS_TABLE)
+			DocumentReference dbRef = db.collection(FireBaseSchema.MESSAGE_THREADS_TABLE)
 			.document(msgId)
 			.collection(FireBaseSchema.MESSAGE_THREADS_TABLE_COLLECTION)
-			.add(pck.getValues());
+			.add(pck.getValues())
+			.get();
 
 		}catch(Exception e) {
 			LOGGER.warning("Error- failed to add message");

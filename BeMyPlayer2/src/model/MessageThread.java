@@ -30,7 +30,7 @@ public class MessageThread implements DBQuerySynchronized{
 	
 	/** The messages. */
 	//other variables go here...
-	private List<Message> messages;
+	private List<Message> messages = new ArrayList<Message>();
 	private ListenerRegistration registration = null;
 	private ExternalListener updateListener = null;
 	
