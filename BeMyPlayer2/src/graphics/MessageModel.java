@@ -2,6 +2,7 @@ package graphics;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -9,6 +10,8 @@ import javax.swing.JTextField;
  * The Class MessageModel.
  */
 public class MessageModel {
+	
+	private JScrollPane panel;
     
     /** The btn send. */
     private JButton btnSend;
@@ -36,8 +39,18 @@ public class MessageModel {
     
     /** The thread. */
     private JTextArea thread;
+    
+    
 
-    /**
+    public JScrollPane getPanel() {
+		return panel;
+	}
+
+	public void setPanel(JScrollPane panel) {
+		this.panel = panel;
+	}
+
+	/**
      * Gets the thread.
      *
      * @return the thread

@@ -134,7 +134,11 @@ public class MessageView {
         JScrollPane tPane = new JScrollPane(thread,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         tPane.setVisible(true);
         tPane.setBounds(35, 165, 400, 200);
+        tPane.getVerticalScrollBar().setValue(tPane.getVerticalScrollBar().getMaximum());
+        SmartScroller s = new SmartScroller(tPane);
 
+        messageController.getMessageModel().setPanel(tPane);
+        
         JTextField sendBox = new JTextField();
         sendBox.setBounds(35, 365, 310, 30);
         sendBox.setVisible(true);

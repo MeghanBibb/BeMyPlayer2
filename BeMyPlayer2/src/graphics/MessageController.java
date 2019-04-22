@@ -83,6 +83,7 @@ public class MessageController extends PageController implements ExternalListene
     public void actionPerformed(ActionEvent e) {
         switch(e.getActionCommand()) {
             case SEND:
+            	
                 if (validateMsg()){
                     Message newMessage = new Message();
                     newMessage.setMessage(this.getMessageModel().getSendBox().getText());
@@ -98,13 +99,8 @@ public class MessageController extends PageController implements ExternalListene
 								t.addMessage(newMessage);
 								this.setCurrentThread(t);
 							}
-							
-							// After sending to database, messages are added through the callback
-							// in the MessageThread Class
 						}
 						
-						this.updateMessageArea();
-						this.getMessageModel().getSendBox().setText("");
 					} catch (DBFailureException e1) {
 						logger.log(Level.SEVERE, "Databse Failure during message sending: ", e1);
 						e1.printStackTrace();
@@ -125,6 +121,7 @@ public class MessageController extends PageController implements ExternalListene
     	//better method would be to dynamically determine what needs to be added
     	
     	this.getMessageModel().getThread().setText("");
+
     	
     	for (int i = 0; i < getCurrentThread().getMessages().size(); i++){
             if (getCurrentThread().getMessages().get(i).getSenderId().equals(InformationExpert.getActiveUserID())){
@@ -138,7 +135,9 @@ public class MessageController extends PageController implements ExternalListene
             	this.getMessageModel().getThread().append("\n");
             }
         }
-    }
+		this.getMessageModel().getSendBox().setText("");
+	}
+    
 
     /**
      * Validate msg.
@@ -237,6 +236,7 @@ public class MessageController extends PageController implements ExternalListene
 	@Override
 	public void externalUpdate() {
 		this.updateMessageArea();
+		
 	}
 
 	@Override

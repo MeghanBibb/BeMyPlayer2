@@ -36,7 +36,6 @@ import com.google.firebase.cloud.StorageClient;
 
 import model.*;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class FireBaseAdapter.
  */
