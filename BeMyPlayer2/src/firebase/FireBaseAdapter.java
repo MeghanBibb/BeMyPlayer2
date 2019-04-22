@@ -807,6 +807,7 @@ public class FireBaseAdapter {
 		
 		ApiFuture<QuerySnapshot> getBatchProfiles = 
 				db.collection(FireBaseSchema.PROFILES_TABLE)
+					.whereEqualTo(Profile._IS_MUTED, Boolean.FALSE)
 					.offset(iterationNumber * MAX_NUM_PROFILES_RETRIEVED)
 					.limit(MAX_NUM_PROFILES_RETRIEVED)
 					.get();

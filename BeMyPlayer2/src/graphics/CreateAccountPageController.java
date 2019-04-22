@@ -158,7 +158,7 @@ public class CreateAccountPageController extends PageController{
 				p.setGenres(this.getCreateAccountPageModel().getGenres());
 				p.setProfilePicture(this.getCreateAccountPageModel().getProfileImg());
 				a.setAccountProfile(p);
-			
+				boolean valid = true;
 				try {
 					if(InformationExpert.attemptAddNewAccount(a)) {
 						InformationExpert.setActiveAccount(a);
@@ -168,10 +168,26 @@ public class CreateAccountPageController extends PageController{
 					}else {
 						throw new RuntimeException();
 					}
+<<<<<<< HEAD
 				} catch (DBFailureException e1) {
 					logger.warning("failed to add new account");
+=======
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					valid = false;
+					logger.warning("failed to add new account");
+					List<String> warnings = new ArrayList<>();
+					warnings.add("Failed to create new account\n");
+					warnings.add("User already exists\n");
+					InvalidPopup d = new InvalidPopup(this.createAccountPanel,warnings);
+					GraphicsController.processPage(PageCreator.LOGIN_PAGE, backPage);
+					//	must be a connection issue
+>>>>>>> 37be07f1179b4f04b069d0ea5d9ca0b0e03d6f66
 				}
-				GraphicsController.processPage(PageCreator.HOME_PAGE,backPage);
+				if(valid == true) {
+					GraphicsController.processPage(PageCreator.HOME_PAGE,backPage);
+				}
+				
 			}
 			
 		}
