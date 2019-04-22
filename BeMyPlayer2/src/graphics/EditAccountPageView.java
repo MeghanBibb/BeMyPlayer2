@@ -68,7 +68,7 @@ public class EditAccountPageView {
 		editController.getEditAccountModel().setLblBeMyPlayer(lblBeMyPlayer);
 		
 		//init Buttons
-		JButton btnBack = new JButton("Back");
+		ImgButton btnBack = new ImgButton("Back");
 		btnBack.setBounds(10,10,90,40);
 		btnBack.setBackground(Colors.Yellow);
 		btnBack.setFont(Fonts.getFont((float)12));
@@ -77,7 +77,7 @@ public class EditAccountPageView {
 		btnBack.addActionListener(editController);
 		editController.getEditAccountModel().setBtnBack(btnBack);
 		
-		JButton btnProfile = new JButton("Edit Profile Details");
+		ImgButton btnProfile = new ImgButton("Edit Profile Details");
 		btnProfile.setBounds(115,70,250,40);
 		btnProfile.setBackground(Colors.Yellow);
 		btnProfile.setFont(Fonts.getFont((float)12));
@@ -86,7 +86,7 @@ public class EditAccountPageView {
 		btnProfile.addActionListener(editController);
 		editController.getEditAccountModel().setBtnProfile(btnProfile);
 		
-		JButton btnQuestionnaire = new JButton("Edit Gaming Details");
+		ImgButton btnQuestionnaire = new ImgButton("Edit Gaming Details");
 		btnQuestionnaire.addActionListener(editController);
 		btnQuestionnaire.setBounds(115,120,250,40);
 		btnQuestionnaire.setBackground(Colors.Yellow);
@@ -95,7 +95,7 @@ public class EditAccountPageView {
 		btnQuestionnaire.setActionCommand(EditAccountPageController.QUESTIONNAIRE);
 		editController.getEditAccountModel().setBtnQuestionnaire(btnQuestionnaire);
 		
-		JButton btnAccount = new JButton("Edit Account Details");
+		ImgButton btnAccount = new ImgButton("Edit Account Details");
 		btnAccount.setBounds(115,170,250,40);
 		btnAccount.setBackground(Colors.Yellow);
 		btnAccount.setFont(Fonts.getFont((float)12));
@@ -104,7 +104,7 @@ public class EditAccountPageView {
 		btnAccount.addActionListener(editController);
 		editController.getEditAccountModel().setBtnAccount(btnAccount);
 		
-		JButton btnUpgrade = new JButton("Upgrade Account!");
+		ImgButton btnUpgrade = new ImgButton("Upgrade Account!");
 		btnUpgrade.setActionCommand(EditAccountPageController.UPGRADE);
 		btnUpgrade.setBounds(115,220,250,40);
 		btnUpgrade.setBackground(Colors.Yellow);
@@ -128,7 +128,7 @@ public class EditAccountPageView {
 		
 		String muteButtonText = InformationExpert.getActiveAccount().getAccountProfile().isMute()?
 				"Unmute Account" : "Mute Account";
-		JButton btnMute = new JButton (muteButtonText);
+		ImgButton btnMute = new ImgButton (muteButtonText);
 		btnMute.setBounds(115,270,250,40);
 		btnMute.setBackground(Colors.Yellow);
 		btnMute.setFont(Fonts.getFont((float) 12));
@@ -137,7 +137,7 @@ public class EditAccountPageView {
 		btnMute.addActionListener(editController);
 		editController.getEditAccountModel().setBtnMute(btnMute);
 		
-		JButton btnDelete = new JButton("Delete Account");
+		ImgButton btnDelete = new ImgButton("Delete Account");
 		btnDelete.setBounds(115,320,250,40);
 		btnDelete.setBackground(Colors.Yellow);
 		btnDelete.setForeground(Colors.Red);
@@ -183,7 +183,7 @@ public class EditAccountPageView {
 		
 		
 		//	init buttons and add to panel
-		JButton btnCancel = new JButton("Cancel");
+		ImgButton btnCancel = new ImgButton("Cancel");
 		btnCancel.setBounds(45,345,90,40);
 		btnCancel.setBackground(Colors.Yellow);
 		btnCancel.setFont(Fonts.getFont((float)12));
@@ -193,7 +193,7 @@ public class EditAccountPageView {
 		editController.getEditAccountModel().setBtnCancel(btnCancel);
 		editController.getEditAccountPanel().add(editController.getEditAccountModel().getBtnCancel());
 		
-		JButton btnSubmit = new JButton("Submit");
+		ImgButton btnSubmit = new ImgButton("Submit");
 		btnSubmit.setBounds(345,345,90,40);
 		btnSubmit.setBackground(Colors.Yellow);
 		btnSubmit.setFont(Fonts.getFont((float)12));
@@ -569,7 +569,7 @@ public class EditAccountPageView {
 		
 		
 		//		init buttons and add to panel
-		JButton backbtn = new JButton("Cancel");
+		ImgButton backbtn = new ImgButton("Cancel");
 		backbtn.setBounds(45, 345, 90, 40);
 		backbtn.setBackground(Colors.Yellow);
 		backbtn.setForeground(Colors.Red);
@@ -579,7 +579,7 @@ public class EditAccountPageView {
 		editController.getEditAccountModel().setBtnCancel(backbtn);
 		editController.getEditAccountPanel().add(backbtn);
 		
-		JButton nextbtn = new JButton("Submit");
+		ImgButton nextbtn = new ImgButton("Submit");
 		nextbtn.setBounds(345, 345, 90, 40);
 		nextbtn.setBackground(Colors.Yellow);
 		nextbtn.setForeground(Colors.Red);
@@ -750,7 +750,7 @@ public class EditAccountPageView {
 		editController.getEditAccountPanel().add(editController.getEditAccountModel().getCharDescription());
 		
 		//	load submit button
-		JButton btnSubmit = new JButton("Submit");
+		ImgButton btnSubmit = new ImgButton("Submit");
 		btnSubmit.setBounds(385, 345, 90, 40);
 		btnSubmit.setBackground(Colors.Yellow);
 		btnSubmit.setForeground(Colors.Red);
@@ -761,7 +761,7 @@ public class EditAccountPageView {
 		editController.getEditAccountPanel().add(btnSubmit);
 		
 		//	load back button
-		JButton backbtn = new JButton("Cancel");
+		ImgButton backbtn = new ImgButton("Cancel");
 		backbtn.setBounds(25, 345, 90, 40);
 		backbtn.setBackground(Colors.Yellow);
 		backbtn.setForeground(Colors.Red);

@@ -50,7 +50,7 @@ public class ProfilePageView {
 		
 		
 		//init buttons
-		JButton btnBack = new JButton("Back");
+		ImgButton btnBack = new ImgButton("Back");
 		btnBack.setBounds(10,10,110,40);
 		btnBack.setActionCommand(ProfilePageController.BACK);
 		btnBack.setBackground(Colors.Yellow);
@@ -79,7 +79,7 @@ public class ProfilePageView {
 			imgLabel.setIcon(new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
 			imgLabel.setBounds(10, 60, 100, 100);
 			profileController.getProfileModel().setProfileImage(imgLabel);
-			JButton btnEdit = new JButton("Edit Profile");
+			ImgButton btnEdit = new ImgButton("Edit Profile");
 			btnEdit.setBounds(370,10,120,40);
 			btnEdit.setActionCommand(ProfilePageController.EDIT_ACCOUNT);
 			btnEdit.setBackground(Colors.Yellow);
@@ -105,7 +105,7 @@ public class ProfilePageView {
 			imgLabel.setIcon(new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
 			imgLabel.setBounds(10, 60, 100, 100);
 			profileController.getProfileModel().setProfileImage(imgLabel);
-			JButton btnBlock = new JButton("Block");
+			ImgButton btnBlock = new ImgButton("Block");
 			btnBlock.setBounds(300, 350, 90, 40);
 			btnBlock.setActionCommand(ProfilePageController.BLOCK);
 			btnBlock.setBackground(Colors.Yellow);
@@ -121,7 +121,7 @@ public class ProfilePageView {
 						.equals(InformationExpert.getMatch(InformationExpert.getActiveAccount().getAccountProfile()
 								,InformationExpert.getOtherProfile()).getOtherMatchStatus())) {
 					
-					JButton btnMessage = new JButton("Message");
+					ImgButton btnMessage = new ImgButton("Message");
 					btnMessage.setBounds(100,350,90,40);
 					btnMessage.setActionCommand(ProfilePageController.MESSAGE);
 					btnMessage.setBackground(Colors.Yellow);
