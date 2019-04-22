@@ -32,8 +32,15 @@ public class ImgButton extends JButton{
 		this.setBorder(new EmptyBorder(0, 0, 0, 0));
 	}
 	
+	public ImgButton(){
+		super();
+		this.setOpaque(false);
+		this.setBackground((new java.awt.Color(255, 255, 255, 0)));
+		this.setBorder(new EmptyBorder(0, 0, 0, 0));
+	}
+	
     protected void paintComponent(Graphics g) {  
-          
+        
         this.setMinimumSize(new Dimension((this.getWidth()), this.getHeight()));
         g.drawImage(image.getScaledInstance((int) (this.getMinimumSize().getWidth()), this.getHeight(), Image.SCALE_SMOOTH), 0, 0, null);  
         super.paintComponent(g);
