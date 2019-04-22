@@ -168,10 +168,6 @@ public class CreateAccountPageController extends PageController{
 					}else {
 						throw new RuntimeException();
 					}
-<<<<<<< HEAD
-				} catch (DBFailureException e1) {
-					logger.warning("failed to add new account");
-=======
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					valid = false;
@@ -182,7 +178,6 @@ public class CreateAccountPageController extends PageController{
 					InvalidPopup d = new InvalidPopup(this.createAccountPanel,warnings);
 					GraphicsController.processPage(PageCreator.LOGIN_PAGE, backPage);
 					//	must be a connection issue
->>>>>>> 37be07f1179b4f04b069d0ea5d9ca0b0e03d6f66
 				}
 				if(valid == true) {
 					GraphicsController.processPage(PageCreator.HOME_PAGE,backPage);
