@@ -1,11 +1,9 @@
 package graphics;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.JFrame;
@@ -14,10 +12,8 @@ import javax.swing.JPanel;
 
 import firebase.DBFailureException;
 import firebase.Hasher;
-import model.Account;
 import model.InformationExpert;
 import model.PaymentInfo;
-import model.Profile;
 import model.ResourceManager;
 
 // TODO: Auto-generated Javadoc
@@ -235,6 +231,12 @@ public class EditAccountPageController extends PageController{
 					//	DATA BASE LOGIC FOR MUTING ACCOUNT FROM Db
 
 					  InformationExpert.getActiveAccount().getAccountProfile().setMute(true);
+					  try {
+						InformationExpert.updateProfile(InformationExpert.getActiveAccount().getAccountProfile());
+					} catch (DBFailureException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					  //	if yes set bool, if no unset bool
 				} else {
 					logger.info("Not muting account " + InformationExpert.getActiveAccount().getAccountProfile().getUsername());

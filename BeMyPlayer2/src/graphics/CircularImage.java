@@ -1,18 +1,9 @@
 package graphics;
 
-import java.awt.Component;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.geom.Ellipse2D;
-import java.awt.geom.RoundRectangle2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Logger;
 
-import javax.imageio.ImageIO;
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 // TODO: Auto-generated Javadoc
@@ -21,8 +12,11 @@ import javax.swing.JLabel;
  */
 public class CircularImage extends JLabel{
 	
-	/** The logger. */
-	private static Logger logger = Logger.getLogger(CircularImage.class.getName());
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	/**
 	 * Instantiates a new circular image.
 	 *

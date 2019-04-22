@@ -1,6 +1,5 @@
 package graphics;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
@@ -75,7 +74,7 @@ public class EditAccountPageView {
 		btnBack.setBackground(Colors.Yellow);
 		btnBack.setFont(Fonts.getFont((float)12));
 		btnBack.setForeground(Colors.Red);
-		btnBack.setActionCommand(editController.BACK);
+		btnBack.setActionCommand(EditAccountPageController.BACK);
 		btnBack.addActionListener(editController);
 		editController.getEditAccountModel().setBtnBack(btnBack);
 		
@@ -84,7 +83,7 @@ public class EditAccountPageView {
 		btnProfile.setBackground(Colors.Yellow);
 		btnProfile.setFont(Fonts.getFont((float)12));
 		btnProfile.setForeground(Colors.Red);
-		btnProfile.setActionCommand(editController.PROFILE);
+		btnProfile.setActionCommand(EditAccountPageController.PROFILE);
 		btnProfile.addActionListener(editController);
 		editController.getEditAccountModel().setBtnProfile(btnProfile);
 		
@@ -94,7 +93,7 @@ public class EditAccountPageView {
 		btnQuestionnaire.setBackground(Colors.Yellow);
 		btnQuestionnaire.setFont(Fonts.getFont((float)12));
 		btnQuestionnaire.setForeground(Colors.Red);
-		btnQuestionnaire.setActionCommand(editController.QUESTIONNAIRE);
+		btnQuestionnaire.setActionCommand(EditAccountPageController.QUESTIONNAIRE);
 		editController.getEditAccountModel().setBtnQuestionnaire(btnQuestionnaire);
 		
 		JButton btnAccount = new JButton("Edit Account Details");
@@ -102,12 +101,12 @@ public class EditAccountPageView {
 		btnAccount.setBackground(Colors.Yellow);
 		btnAccount.setFont(Fonts.getFont((float)12));
 		btnAccount.setForeground(Colors.Red);
-		btnAccount.setActionCommand(editController.ACCOUNT);
+		btnAccount.setActionCommand(EditAccountPageController.ACCOUNT);
 		btnAccount.addActionListener(editController);
 		editController.getEditAccountModel().setBtnAccount(btnAccount);
 		
 		JButton btnUpgrade = new JButton("Upgrade Account!");
-		btnUpgrade.setActionCommand(editController.UPGRADE);
+		btnUpgrade.setActionCommand(EditAccountPageController.UPGRADE);
 		btnUpgrade.setBounds(115,220,250,40);
 		btnUpgrade.setBackground(Colors.Yellow);
 		btnUpgrade.setFont(Fonts.getFont((float)12));
@@ -121,7 +120,7 @@ public class EditAccountPageView {
 
 			if(p != null) {	
 				btnUpgrade.setText("Cancel Payment Plan");
-				btnUpgrade.setActionCommand(editController.END_PAYMENT);
+				btnUpgrade.setActionCommand(EditAccountPageController.END_PAYMENT);
 			}
 		} catch (DBFailureException e) {
 			//database error, go with default
@@ -133,7 +132,7 @@ public class EditAccountPageView {
 		btnMute.setBackground(Colors.Yellow);
 		btnMute.setFont(Fonts.getFont((float) 12));
 		btnMute.setForeground(Colors.Red);
-		btnMute.setActionCommand(editController.MUTE);
+		btnMute.setActionCommand(EditAccountPageController.MUTE);
 		btnMute.addActionListener(editController);
 		editController.getEditAccountModel().setBtnMute(btnMute);
 		
@@ -141,7 +140,7 @@ public class EditAccountPageView {
 		btnDelete.setBounds(115,320,250,40);
 		btnDelete.setBackground(Colors.Yellow);
 		btnDelete.setForeground(Colors.Red);
-		btnDelete.setActionCommand(editController.DELETE);
+		btnDelete.setActionCommand(EditAccountPageController.DELETE);
 		btnDelete.addActionListener(editController);
 		btnDelete.setFont(Fonts.getFont((float) 12));
 		editController.getEditAccountModel().setBtnDelete(btnDelete);
@@ -188,7 +187,7 @@ public class EditAccountPageView {
 		btnCancel.setBackground(Colors.Yellow);
 		btnCancel.setFont(Fonts.getFont((float)12));
 		btnCancel.setForeground(Colors.Red);
-		btnCancel.setActionCommand(editController.CANCEL);
+		btnCancel.setActionCommand(EditAccountPageController.CANCEL);
 		btnCancel.addActionListener(editController);
 		editController.getEditAccountModel().setBtnCancel(btnCancel);
 		editController.getEditAccountPanel().add(editController.getEditAccountModel().getBtnCancel());
@@ -199,7 +198,7 @@ public class EditAccountPageView {
 		btnSubmit.setFont(Fonts.getFont((float)12));
 		btnSubmit.setForeground(Colors.Red);
 		btnSubmit.setBackground(Colors.Yellow);
-		btnSubmit.setActionCommand(editController.SUBMITEDITACCOUNT);
+		btnSubmit.setActionCommand(EditAccountPageController.SUBMITEDITACCOUNT);
 		btnSubmit.addActionListener(editController);
 		editController.getEditAccountModel().setBtnSubmit(btnSubmit);
 		editController.getEditAccountPanel().add(editController.getEditAccountModel().getBtnSubmit());
@@ -259,7 +258,7 @@ public class EditAccountPageView {
 		editController.getEditAccountPanel().add(age);
 		//	init drop downs
 		
-		JComboBox gender = new JComboBox();
+		JComboBox<String> gender = new JComboBox<String>();
 		gender.addItemListener(new ItemListener() {
         	public void itemStateChanged(ItemEvent e) {
         		editController.getEditAccountModel().setGender(e.getItem().toString());
@@ -270,7 +269,7 @@ public class EditAccountPageView {
 		gender.setFont(Fonts.getFont((float)12));
 		gender.setForeground(Colors.Red);
 		gender.setBackground(Colors.Yellow);
-		gender.setModel(new DefaultComboBoxModel(new String[] {"Male", "Female"}));
+		gender.setModel(new DefaultComboBoxModel<String>(new String[] {"Male", "Female"}));
 		if(InformationExpert.getActiveAccount().getAccountProfile().getGender().equals("Male")) {
 			gender.setSelectedIndex(0);
 		} else {
@@ -283,14 +282,14 @@ public class EditAccountPageView {
 		editController.getEditAccountPanel().add(gender);
 		
 		//	security question
-		JComboBox securityQuestions = new JComboBox();
+		JComboBox<String> securityQuestions = new JComboBox<String>();
 		securityQuestions.addItemListener(new ItemListener() {
         	public void itemStateChanged(ItemEvent e) {
         		editController.getEditAccountModel().setSecurityQuestions(e.getItem().toString());
         	}
         });
 		securityQuestions.setToolTipText("Security Question");
-		securityQuestions.setModel(new DefaultComboBoxModel(new String[] { "Favorite Game?", "First Console Owned?", "Favorite Character?"}));
+		securityQuestions.setModel(new DefaultComboBoxModel<String>(new String[] { "Favorite Game?", "First Console Owned?", "Favorite Character?"}));
 		securityQuestions.setBounds(275, 165, 180, 30);
 		securityQuestions.setFont(Fonts.getFont((float)12));
 		securityQuestions.setForeground(Colors.Red);
@@ -628,6 +627,7 @@ public class EditAccountPageView {
 		
 		//	default icon
 		BufferedImage img1 = null;
+		BufferedImage prev;
 		try {
 			img1 = InformationExpert.getProfileImage(InformationExpert.getActiveUserID());
 		} catch (DBFailureException e1) {
@@ -636,6 +636,8 @@ public class EditAccountPageView {
 		if(img1 == null) {
 			img1 = CreateAccountPageModel.DEFAULT_PROFILE_IMAGE;
 		}
+		
+		prev = img1;
 		
 		//lblNewLabel.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
 		//lblNewLabel.setBounds(75, 25, 150, 150);
@@ -684,7 +686,7 @@ public class EditAccountPageView {
 				}
 				
 				else if(f == null){
-					img1 = CreateAccountPageModel.DEFAULT_PROFILE_IMAGE;
+					img1 = prev;
 					editController.getEditAccountModel().setImagePath(img1.toString());
 					editController.getEditAccountModel().setProfileImg(img1);
 				}

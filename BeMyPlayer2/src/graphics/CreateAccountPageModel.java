@@ -1,10 +1,6 @@
 package graphics;
 
-import java.awt.Image;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.image.BufferedImage;
-import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -48,17 +44,11 @@ public class CreateAccountPageModel {
 	/** The age. */
 	private JFormattedTextField age;
 	
-	/** The gender. */
-	private String gender;
-	
-	/** The security questions. */
-	private String securityQuestions;
-	
 	/** The gender box. */
-	private JComboBox genderBox;
+	private JComboBox<String> genderBox;
 	
 	/** The security Q. */
-	private JComboBox securityQ;
+	private JComboBox<String> securityQ;
 	
 	/** The profile img. */
 	private BufferedImage profileImg;
@@ -206,16 +196,6 @@ public class CreateAccountPageModel {
 	}
 	
 	/**
-	 * Sets the gender.
-	 *
-	 * @param gender the new gender
-	 */
-	public void setGender(String gender) {
-	
-		this.gender = gender;
-	}
-	
-	/**
 	 * Gets the security questions.
 	 *
 	 * @return the security questions
@@ -223,15 +203,6 @@ public class CreateAccountPageModel {
 	public String getSecurityQuestions() {
 		return this.getSecurityQ().getSelectedItem().toString();
 		//return securityQuestions;
-	}
-	
-	/**
-	 * Sets the security questions.
-	 *
-	 * @param securityQuestions the new security questions
-	 */
-	public void setSecurityQuestions(String securityQuestions) {
-		this.securityQuestions = securityQuestions;
 	}
 	
 	/**
@@ -293,7 +264,7 @@ public class CreateAccountPageModel {
 	 *
 	 * @return the security Q
 	 */
-	public JComboBox getSecurityQ() {
+	public JComboBox<String> getSecurityQ() {
 		return this.securityQ;
 	}
 	
@@ -302,7 +273,7 @@ public class CreateAccountPageModel {
 	 *
 	 * @param securityQ the new security Q
 	 */
-	public void setSecurityQ(JComboBox securityQ) {
+	public void setSecurityQ(JComboBox<String> securityQ) {
 		this.securityQ = securityQ;
 	}
 	
@@ -311,7 +282,7 @@ public class CreateAccountPageModel {
 	 *
 	 * @return the gender box
 	 */
-	public JComboBox getGenderBox() {
+	public JComboBox<String> getGenderBox() {
 		return genderBox;
 	}
 	
@@ -320,7 +291,7 @@ public class CreateAccountPageModel {
 	 *
 	 * @param genderBox the new gender box
 	 */
-	public void setGenderBox(JComboBox genderBox) {
+	public void setGenderBox(JComboBox<String> genderBox) {
 		this.genderBox = genderBox;
 	}
 	

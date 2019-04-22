@@ -9,16 +9,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 import javax.swing.Timer;
-import javax.swing.border.EmptyBorder;
 
 import model.ResourceManager;
 
 public class AccountIsMuted {
 	public static void Warning(JFrame mainFrame) {
 		
-		 Timer time = new Timer(1000,new ActionListener() {
+		 Timer time = new Timer(2000,new ActionListener() {
 	         @Override
 	         public void actionPerformed(ActionEvent e) {
 	        	 GraphicsController.processPage(PageCreator.HOME_PAGE, PageController.backPage);

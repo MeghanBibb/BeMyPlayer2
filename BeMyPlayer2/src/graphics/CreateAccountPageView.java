@@ -2,7 +2,6 @@ package graphics;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -10,26 +9,20 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.image.BufferedImage;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import firebase.ImageConverter;
-import model.ResourceManager;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -164,17 +157,12 @@ public class CreateAccountPageView {
 		capController.getCreateAccountPanel().add(capController.getCreateAccountPageModel().getAge());
 		//	init drop downs
 		
-		JComboBox gender = new JComboBox();
+		JComboBox<String> gender = new JComboBox<String>();
 		gender.setBackground(Colors.Yellow);
 		gender.setForeground(Colors.Red);
 		gender.setFont(Fonts.getFont((float) 12));
-		gender.addItemListener(new ItemListener() {
-        	public void itemStateChanged(ItemEvent e) {
-        		capController.getCreateAccountPageModel().setGender(e.getItem().toString());
-        	}
-        });
 		gender.setToolTipText("Gender");
-		gender.setModel(new DefaultComboBoxModel(new String[] {"Male", "Female"}));
+		gender.setModel(new DefaultComboBoxModel<String>(new String[] {"Male", "Female"}));
 		gender.setBounds(275, 305, 94, 22);
 		gender.setBackground(Colors.Yellow);
 		gender.setForeground(Colors.Red);
@@ -187,17 +175,13 @@ public class CreateAccountPageView {
 		capController.getCreateAccountPanel().add(gender);
 		
 		//	security question
-		JComboBox securityQuestions = new JComboBox();
-		securityQuestions.addItemListener(new ItemListener() {
-        	public void itemStateChanged(ItemEvent e) {
-        		capController.getCreateAccountPageModel().setSecurityQuestions(e.getItem().toString());
-        	}
-        });
+		JComboBox<String> securityQuestions = new JComboBox<String>();
+		
 		securityQuestions.setBackground(Colors.Yellow);
 		securityQuestions.setForeground(Colors.Red);
 		securityQuestions.setFont(Fonts.getFont((float) 12));
 		securityQuestions.setToolTipText("Security Question");
-		securityQuestions.setModel(new DefaultComboBoxModel(new String[] { "Favorite Game?", "First Console Owned?", "Favorite Character?"}));
+		securityQuestions.setModel(new DefaultComboBoxModel<String>(new String[] { "Favorite Game?", "First Console Owned?", "Favorite Character?"}));
 		securityQuestions.setBounds(275, 170, 190, 22);
 		securityQuestions.setVisible(true);
 		if(visited == true) {
@@ -279,7 +263,6 @@ public class CreateAccountPageView {
 	public static void startQuestionaire(final CreateAccountPageController capController,JFrame mainFrame,boolean visited) {
 		//	load questionare 
 		Color red = new Color(134, 48, 111);
-		Color yellow = new Color(254, 195, 123);
 		
 		//	 set up panel
 
@@ -761,7 +744,6 @@ public class CreateAccountPageView {
 	 */
 	public static void startProfileForm(final CreateAccountPageController capController,JFrame mainFrame, boolean visited) {
 		Color red = new Color(134,48,111);
-		Color yellow = new Color(254, 195, 123);
 		
 		// set up panel
 		capController.setCreateAccountPanel(new BackgroundPanel(null));

@@ -1,24 +1,14 @@
 package graphics;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
@@ -117,7 +107,6 @@ public class LoginPageView {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
 		BufferedImage img1 = ResourceManager.loadImage("splash_heart.png");
-		//img1 = new ImageIcon("C:\\Backup of student files\\Spring 2019\\BeMyPlayer2\\BeMyPlayer2\\BeMyPlayer2\\img\\hearts.png").getImage();
 		lblNewLabel.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(64, 64, Image.SCALE_SMOOTH)));
 		lblNewLabel.setBounds(320, 54, 100, 56);
 		loginController.getLoginPageModel().setLblNewLabel(lblNewLabel);
@@ -127,8 +116,7 @@ public class LoginPageView {
 		JLabel lblBeMyPlayer = new JLabel("Be My Player 2");
 		lblBeMyPlayer.setFont(Fonts.getFont((float) 30));
 		lblBeMyPlayer.setForeground(Colors.Yellow);
-		lblBeMyPlayer.setBounds(82,46,300,69);
-		//lblBeMyPlayer.setBounds(24, 44, 204, 69);
+		lblBeMyPlayer.setBounds(82,56,300,69);
 		loginController.getLoginPageModel().setLblBeMyPlayer(lblBeMyPlayer);
 		loginController.getLoginPanel().add(loginController.getLoginPageModel().getLblBeMyPlayer());
 		

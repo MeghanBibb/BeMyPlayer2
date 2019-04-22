@@ -40,12 +40,14 @@ public class SwipePageController extends PageController {
 		}
 		boolean invalid = false;
 		//	load first matches
+		
 		if(InformationExpert.getCurrentSwipePage().equals(MatchType.FRIEND_MATCH.getStatusString())) {
 			try {
-			if(InformationExpert.getClientModel().getFriendProfileFront() == null) {
+			if(InformationExpert.getClientModel().getFriendProfileFront() == null || InformationExpert.getClientModel().getFriendMatches().isEmpty()) {
 				//	1 iteration of import, next import grows size
 				InformationExpert.importFriendMatchBatch();
 			}
+			
 			if(InformationExpert.getClientModel().getFriendProfileFront() == null) {
 				throw new DBFailureException();
 			}
@@ -61,7 +63,7 @@ public class SwipePageController extends PageController {
 		}
 		else if(InformationExpert.getCurrentSwipePage().equals(MatchType.LOVE_MATCH.getStatusString())){
 			try {
-				if(InformationExpert.getClientModel().getLoveProfileFront() == null) {
+				if(InformationExpert.getClientModel().getLoveProfileFront() == null || InformationExpert.getClientModel().getLoveMatches().isEmpty()) {
 					//	1 iteration of import, next import grows size
 					InformationExpert.importLoveMatchBatch();
 				}

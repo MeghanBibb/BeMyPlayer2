@@ -28,6 +28,13 @@ public class Matchmaker{
 				//This is a temporary stub:
 				//	user profile and compare < 0 if left more similar than right or pos if right more like
 				//lower score is better return left - right
+				if(o1 == o2 ) {
+					return 0;
+				}
+				
+				if(o1 == null || o2 == null) {
+					return o1 == null ? -1 : 1;
+				}
 				return generateZScore(o1) - generateZScore(o2);
 			}
 			
@@ -77,10 +84,18 @@ public class Matchmaker{
 				//This is a temporary stub:
 				//System.out.println("comparing " + o1.getUsername() + " and " + o2.getUsername());
 				//System.out.println(generateZScore(o1) + " : " + generateZScore(o2));
+				if(o1 == o2 ) {
+					return 0;
+				}
+				
+				if(o1 == null || o2 == null) {
+					return o1 == null ? -1 : 1;
+				}
 				return generateZScore(o1) - generateZScore(o2);
 			}
 			public int generateZScore(Profile o) {
 				int score = 0;
+				
 				if(o.getUserId().equals(c.getUserId())) {
 					return 1000;
 				}

@@ -1,6 +1,5 @@
 package graphics;
 
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -70,10 +69,10 @@ public class EditAccountPageModel {
 	private String securityQuestions;
 	
 	/** The gender box. */
-	private JComboBox genderBox;
+	private JComboBox<String> genderBox;
 	
 	/** The security Q. */
-	private JComboBox securityQ;
+	private JComboBox<String> securityQ;
 	
 	/** The charcount. */
 	private JLabel charcount;
@@ -414,7 +413,7 @@ public class EditAccountPageModel {
 	 *
 	 * @return the gender box
 	 */
-	public JComboBox getGenderBox() {
+	public JComboBox<String> getGenderBox() {
 		return genderBox;
 	}
 	
@@ -423,7 +422,7 @@ public class EditAccountPageModel {
 	 *
 	 * @param genderBox the new gender box
 	 */
-	public void setGenderBox(JComboBox genderBox) {
+	public void setGenderBox(JComboBox<String> genderBox) {
 		this.genderBox = genderBox;
 	}
 	
@@ -432,7 +431,7 @@ public class EditAccountPageModel {
 	 *
 	 * @return the security Q
 	 */
-	public JComboBox getSecurityQ() {
+	public JComboBox<String> getSecurityQ() {
 		return securityQ;
 	}
 	
@@ -441,7 +440,7 @@ public class EditAccountPageModel {
 	 *
 	 * @param securityQ the new security Q
 	 */
-	public void setSecurityQ(JComboBox securityQ) {
+	public void setSecurityQ(JComboBox<String> securityQ) {
 		this.securityQ = securityQ;
 	}
 	
