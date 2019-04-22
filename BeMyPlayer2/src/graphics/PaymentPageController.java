@@ -40,7 +40,7 @@ public class PaymentPageController extends PageController{
 	 * @see graphics.PageController#launchPage(javax.swing.JFrame, java.lang.String)
 	 */
 	public void launchPage(JFrame mainFrame, String back) {
-		if(back != backPage) {
+		if(!back.equals(backPage)) {
 			backPage = back;
 		}
 		
