@@ -715,10 +715,10 @@ public class FireBaseAdapter {
 		}
 		
 		String mStringType = MatchType._TYPE_LOVE_MATCH;
-		if(matchType != LOVE_MATCHES && matchType != FRIEND_MATCHES) {
+		if(!matchType.equals(LOVE_MATCHES) && !matchType.equals(FRIEND_MATCHES)) {
 			LOGGER.log(Level.WARNING, "Error- Invalid call argument: " + matchType);
 			return null;
-		}else if(matchType == FRIEND_MATCHES) {
+		}else if(matchType.equals(FRIEND_MATCHES)) {
 			mStringType = MatchType._TYPE_FRIEND_MATCH;
 		}
 		
@@ -762,12 +762,7 @@ public class FireBaseAdapter {
 				.collect(Collectors.toList());
 			
 		}
-		/*
-		System.out.println("PARTIAL PROFILES:");
-		for(Profile p : profList) {
-			System.out.println(p.getUsername());
-		}
-		*/
+		
 		return profList;
 	}
 	
@@ -787,10 +782,10 @@ public class FireBaseAdapter {
 		}
 		
 		String mStringType = MatchType._TYPE_LOVE_MATCH;
-		if(matchType != LOVE_MATCHES && matchType != FRIEND_MATCHES) {
+		if(!matchType.equals(LOVE_MATCHES) && !matchType.equals(FRIEND_MATCHES)) {
 			LOGGER.log(Level.WARNING, "Error- Invalid call argument: " + matchType);
 			return null;
-		}else if(matchType == FRIEND_MATCHES) {
+		}else if(matchType.equals(FRIEND_MATCHES)) {
 			mStringType = MatchType._TYPE_FRIEND_MATCH;
 		}
 		
@@ -799,7 +794,7 @@ public class FireBaseAdapter {
 				db.collection(FireBaseSchema.MATCHES_TABLE)
 					.document(userId)
 					.collection(FireBaseSchema.MATCHES_TABLE_COLLECTION)
-					.whereEqualTo(Match._TYPE, mStringType)
+					//.whereEqualTo(Match._TYPE, mStringType)
 					.whereEqualTo(Match._CLIENT_MATCH_STATUS, MatchStatus._STATUS_SWIPE_RIGHT)
 					.get();
 		
@@ -840,12 +835,6 @@ public class FireBaseAdapter {
 				return new ArrayList<Profile>();
 			}else {
 				
-				/*
-				System.out.println("FILTERED IDS:");
-				for(String id : filteredIds) {
-					System.out.println(id);
-				}
-				*/
 				
 				//parallelize package conversion to list of profiles:
 				batch = profileBatch.getDocuments().parallelStream()
@@ -865,12 +854,7 @@ public class FireBaseAdapter {
 			LOGGER.log(Level.SEVERE,"Error- Profile batch retrieval query failed.");
 			throw new DBFailureException();
 		}
-		/*
-		System.out.println("UNMATCHED PROFILES:");
-		for(Profile p : batch) {
-			System.out.println(p.getUsername());
-		}
-		*/
+		
 		return batch;
 	}
 	
