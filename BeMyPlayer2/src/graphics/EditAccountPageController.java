@@ -213,6 +213,7 @@ public class EditAccountPageController extends PageController{
 							logger.log(Level.SEVERE, "Databse Failure on end_payment: ", e1);
 						}
 					  this.getEditAccountModel().getBtnUpgrade().setText("Upgrade Account!");
+					  this.getEditAccountModel().getBtnUpgrade().setActionCommand(UPGRADE);
 				} else {
 				  logger.info("Not removing payment info for " + InformationExpert.getActiveAccount().getEmail());
 				}
