@@ -348,6 +348,7 @@ public class FireBaseAdapter {
 			throw new DBFailureException();
 		}
 		String ansName;
+
 		ansName = Account._SECURITY_Q1A;
 		
 		//query if user account exists:
@@ -761,7 +762,12 @@ public class FireBaseAdapter {
 				.collect(Collectors.toList());
 			
 		}
-		
+		/*
+		System.out.println("PARTIAL PROFILES:");
+		for(Profile p : profList) {
+			System.out.println(p.getUsername());
+		}
+		*/
 		return profList;
 	}
 	
@@ -817,7 +823,6 @@ public class FireBaseAdapter {
 			Set<String> filteredIds = clientMatches
 				.getDocuments().parallelStream()
 				.map(m -> {
-					//System.out.println(m.getId());
 					return m.getId();
 				})
 				.collect(Collectors.toCollection(HashSet::new));
@@ -834,6 +839,13 @@ public class FireBaseAdapter {
 				LOGGER.log(Level.FINE, "Query for new Profiles returned empty.");
 				return new ArrayList<Profile>();
 			}else {
+				
+				/*
+				System.out.println("FILTERED IDS:");
+				for(String id : filteredIds) {
+					System.out.println(id);
+				}
+				*/
 				
 				//parallelize package conversion to list of profiles:
 				batch = profileBatch.getDocuments().parallelStream()
@@ -853,7 +865,12 @@ public class FireBaseAdapter {
 			LOGGER.log(Level.SEVERE,"Error- Profile batch retrieval query failed.");
 			throw new DBFailureException();
 		}
-		
+		/*
+		System.out.println("UNMATCHED PROFILES:");
+		for(Profile p : batch) {
+			System.out.println(p.getUsername());
+		}
+		*/
 		return batch;
 	}
 	
@@ -871,7 +888,6 @@ public class FireBaseAdapter {
 			throw new DBFailureException();
 		}
 		
-		//System.out.println("UID: " + clientProfile.getUserId());
 		ApiFuture<DocumentSnapshot> getClientMatch = 
 				db.collection(FireBaseSchema.MATCHES_TABLE)
 					.document(clientProfile.getUserId())	

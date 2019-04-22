@@ -220,21 +220,31 @@ public class EditAccountPageController extends PageController{
 			case MUTE:
 				//	remove from match queues
 				int dialogButton = JOptionPane.YES_NO_OPTION;
-				int dialogResult = JOptionPane.showConfirmDialog(this.editAccountPanel, "Want your account muted?","Mute account?", dialogButton);
+				boolean muteStatus = InformationExpert.getActiveAccount().getAccountProfile().isMute();
+				String msg = muteStatus? "Want your account unmuted?" : "Want your account muted?";
+				int dialogResult = JOptionPane.showConfirmDialog(this.editAccountPanel, msg,"Account Muting", dialogButton);
+				
 				if(dialogResult == 0) {
-					logger.info("muting account "  + InformationExpert.getActiveAccount().getAccountProfile().getUsername());
-					//	DATA BASE LOGIC FOR MUTING ACCOUNT FROM Db
-
-					  InformationExpert.getActiveAccount().getAccountProfile().setMute(true);
-					  try {
-						InformationExpert.updateProfile(InformationExpert.getActiveAccount().getAccountProfile());
-					} catch (DBFailureException e1) {
-						logger.log(Level.SEVERE, "Databse error on muting: ", e1);
+					
+					if(muteStatus) {
+						try {
+							InformationExpert.getActiveAccount().getAccountProfile().setMute(false);
+							InformationExpert.updateProfile(InformationExpert.getActiveAccount().getAccountProfile());
+							logger.info("Un-muted account " + InformationExpert.getActiveAccount().getAccountProfile().getUsername());
+							editAccountModel.getBtnMute().setText("Mute Account");
+						} catch (DBFailureException e1) {
+							logger.warning("Failed to update unmuted profile");
+						}
+					}else {
+						try {
+							InformationExpert.getActiveAccount().getAccountProfile().setMute(true);
+							InformationExpert.updateProfile(InformationExpert.getActiveAccount().getAccountProfile());
+							logger.info("Muted account " + InformationExpert.getActiveAccount().getAccountProfile().getUsername());
+							editAccountModel.getBtnMute().setText("Unmute Account");
+						} catch (DBFailureException e1) {
+							logger.warning("Failed to update muted profile");
+						}
 					}
-					  //	if yes set bool, if no unset bool
-				} else {
-					logger.info("Not muting account " + InformationExpert.getActiveAccount().getAccountProfile().getUsername());
-					InformationExpert.getActiveAccount().getAccountProfile().setMute(false);
 				}
 				
 				break;
