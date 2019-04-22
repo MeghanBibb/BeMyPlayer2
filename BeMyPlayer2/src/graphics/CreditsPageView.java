@@ -1,6 +1,5 @@
 package graphics;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -18,7 +17,6 @@ import javax.swing.border.EmptyBorder;
 
 import model.ResourceManager;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class CreditsPageView.
  */
@@ -31,7 +29,6 @@ public class CreditsPageView {
 	 * @param mainFrame the main frame
 	 */
 	public static void launchPage(CreditsPageController creditscontrol, JFrame mainFrame) {
-		// TODO Auto-generated method stub
 		
 		//init colors
 		JLabel heartImage = new JLabel();

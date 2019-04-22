@@ -13,7 +13,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Logger;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class MessageView.
  */
@@ -86,7 +85,6 @@ public class MessageView {
         lblGender.setText(messageController.getOtherProf().getGender());
         lblGender.setForeground(Colors.Yellow);
         lblGender.setFont(Fonts.getFont((float) 15));
-        //lblGender.setForeground(Colors.Red);
         lblGender.setBounds(150,85,90,90);
         messageController.getMessageModel().setLblGender(lblGender);
 
@@ -113,7 +111,6 @@ public class MessageView {
 
         //  init Thread scroll pane
         JTextArea thread = new JTextArea();
-        //thread.setBounds(35, 165, 400, 200);
         thread.setVisible(true);
         thread.setEditable(false);
         thread.setFont(Fonts.getFont((float) 12));

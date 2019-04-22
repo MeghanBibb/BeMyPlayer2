@@ -1,10 +1,5 @@
 package model;
 
-import java.util.ArrayList;
-
-import firebase.FireBaseSchema;
-
-// TODO: Auto-generated Javadoc
 /**
  * The Class Match.
  */

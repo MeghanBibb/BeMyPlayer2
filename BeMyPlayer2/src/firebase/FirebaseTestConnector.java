@@ -1,32 +1,13 @@
 package firebase;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-
-import java.sql.Date;
 import java.text.ParseException;
-import java.util.List;
-
-import javax.imageio.ImageIO;
-
-import com.google.api.core.ApiFuture;
-import com.google.auth.oauth2.GoogleCredentials;
-import com.google.cloud.firestore.Firestore;
-import com.google.cloud.firestore.QueryDocumentSnapshot;
-import com.google.cloud.firestore.QuerySnapshot;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseOptions;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.UserRecord.CreateRequest;
-import com.google.firebase.cloud.FirestoreClient;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import model.Account;
 import model.Profile;
 import model.ResourceManager;
-
-import com.google.cloud.Service;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -34,6 +15,9 @@ import com.google.cloud.Service;
  */
 public class FirebaseTestConnector {
 	
+
+	/** The Constant LOGGER. */
+	public final static Logger LOGGER = Logger.getLogger(FireBaseAdapter.class.getName());
 	
 	/**
 	 * The main method.
@@ -59,40 +43,40 @@ public class FirebaseTestConnector {
 										"This is a profile description");
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.log(Level.WARNING, "ParseExceptio: ", e);
 		}
 		acc.setAccountProfile(prof);
 		
 		try {
 			
 			if(adapter.attemptAddNewAccount(acc)) {
-				System.out.println("ADDED ACCOUNT");
+				LOGGER.info("ADDED ACCOUNT");
 			}else {
-				System.out.println("ACCOUNT EXISTS");
-				System.out.println("Authenticating/Fetching UID...");
+				LOGGER.info("ACCOUNT EXISTS");
+				LOGGER.info("Authenticating/Fetching UID...");
 				String uid = adapter.authenticateUserAccount("myOtherEmail@myDomain.org","12345");
-				System.out.println("UID: " + uid);
+				LOGGER.info("UID: " + uid);
 				
-				System.out.println("Fetching account...");
+				LOGGER.info("Fetching account...");
 				Account newacc = adapter.getUserAccountNoProfile(uid);
-				System.out.println(newacc.getSecurityQ2());
+				LOGGER.info(newacc.getSecurityQ2());
 				
-				System.out.println("Fetching full account...");
+				LOGGER.info("Fetching full account...");
 				Account fullacc = adapter.getUserAccountWithProfile(uid);
-				System.out.println(fullacc.getSecurityQ2());
-				System.out.println(fullacc.getAccountProfile().getDescription());
+				LOGGER.info(fullacc.getSecurityQ2());
+				LOGGER.info(fullacc.getAccountProfile().getDescription());
 				
 				fullacc.setSecurityQ1("IS THIS A NEW SECURITY QUESTION?");
 				fullacc.getAccountProfile().setDescription("This is an account description modified again.");
-				System.out.println("Updating account with changes...");
+				LOGGER.info("Updating account with changes...");
 				adapter.updateUserAccount(fullacc);
 				
-				System.out.println("Updating Profile to have new description...");
+				LOGGER.info("Updating Profile to have new description...");
 				fullacc.getAccountProfile().setDescription("THIS IS A TOTALLY NEW DESCRIPTION!");
 				adapter.updateProfile(fullacc.getAccountProfile());
-				System.out.println("Done!");
+				LOGGER.info("Done!");
 				
-				System.out.println("Uploading picture...");
+				LOGGER.info("Uploading picture...");
 				
 				BufferedImage testImage = ResourceManager.loadImage("heart.png");
 				adapter.addProfileImage(testImage, uid);
@@ -100,8 +84,7 @@ public class FirebaseTestConnector {
 			}
 			
 		} catch (DBFailureException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.log(Level.WARNING, "Databse Failure Exception: ", e);
 		}
 		
 	}

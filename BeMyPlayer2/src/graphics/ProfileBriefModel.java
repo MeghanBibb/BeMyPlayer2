@@ -1,32 +1,21 @@
 package graphics;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.geom.Area;
-import java.awt.geom.Ellipse2D;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Logger;
 
-import javax.imageio.ImageIO;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 
 import firebase.DBFailureException;
 
@@ -34,17 +23,18 @@ import model.Profile;
 import model.InformationExpert;
 import model.ResourceManager;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ProfileBriefModel.
  */
 public class ProfileBriefModel extends JPanel{
 	
+	/**
+	 * Default serial ID
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/** The view match controller. */
 	ViewMatchesController viewMatchController = new ViewMatchesController();
-	
-	/** The back page. */
-	private String backPage;
 	
 	/** The Constant DEFAULT_PIC. */
 	public static final BufferedImage DEFAULT_PIC = ResourceManager.loadImage("defaultIcon.png");

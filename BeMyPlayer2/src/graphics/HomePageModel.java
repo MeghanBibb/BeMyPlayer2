@@ -3,7 +3,6 @@ package graphics;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class HomePageModel.
  */

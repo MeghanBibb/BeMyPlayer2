@@ -1,13 +1,11 @@
 package model;
 
 import java.util.Comparator;
-import java.util.List;
 import java.util.logging.Logger;
 
 import firebase.DBFailureException;
 import graphics.ViewMatchesView;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Matchmaker.
  */
@@ -54,7 +52,6 @@ public class Matchmaker{
 						return -5000;
 					}
 				} catch (DBFailureException e) {
-					// TODO Auto-generated catch block
 					logger.warning("Profile not found exception");
 				}
 				score += o.getGender().compareTo(o.getGender());
@@ -113,7 +110,6 @@ public class Matchmaker{
 						return -5000;
 					}
 				} catch (DBFailureException e) {
-					// TODO Auto-generated catch block
 					logger.warning("Profile not found exception");
 				}
 				for(int i = 0; i < o.getPlatforms().size(); i++) {

@@ -6,13 +6,17 @@ import java.awt.Graphics2D;
 
 import javax.swing.JButton;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class TransparentButton.
  */
 public class TransparentButton extends JButton{
 	
     /**
+	 * Default serial ID
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Instantiates a new transparent button.
      *
      * @param text the text

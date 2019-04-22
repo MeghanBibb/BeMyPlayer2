@@ -1,26 +1,11 @@
 package model;
 
 import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.logging.Level;
-
-import com.google.api.core.ApiFuture;
-import com.google.auth.oauth2.GoogleCredentials;
-import com.google.cloud.firestore.DocumentReference;
-import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.QuerySnapshot;
-import com.google.cloud.firestore.WriteResult;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseOptions;
-import com.google.firebase.cloud.FirestoreClient;
 
 import firebase.DBFailureException;
 import firebase.FireBaseAdapter;
-import firebase.FireBaseSchema;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class InformationExpert.
  */
@@ -466,16 +451,6 @@ public class InformationExpert {
 	 */
 	public static MessageThread getMessageThread(String userId, String otherUserId) throws DBFailureException {
 		return databaseAdapter.getMessageThread(userId, otherUserId);
-	}
-
-	/**
-	 * Send issue.
-	 *
-	 * @param issueType the issue type
-	 * @param desc the desc
-	 */
-	public static void sendIssue(String issueType, String desc){
-		//TODO: implement this for issue tracking in the database
 	}
 	
 	/**

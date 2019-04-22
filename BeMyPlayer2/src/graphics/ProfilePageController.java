@@ -1,21 +1,19 @@
 package graphics;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import firebase.DBFailureException;
-import model.Account;
 import model.InformationExpert;
 import model.Match;
 import model.MatchStatus;
 import model.MatchType;
 import model.Profile;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ProfilePageController.
  */
@@ -103,12 +101,9 @@ public class ProfilePageController extends PageController {
 					Match thisMatch;
 					
 					if((thisMatch = InformationExpert.getMatch(InformationExpert.getActiveAccount().getAccountProfile(), InformationExpert.getOtherProfile())) != null) {
-						/* CHECK TO MAKE SURE MATCH TYPE IS THE SAME IE: loveType on loveSwipePage*/
-						//if(thisMatch.getType == controller.getType){
 						thisMatch.setClientMatchStatus(MatchStatus.NO_MATCH);
 						thisMatch.setOtherMatchStatus(MatchStatus.NO_MATCH);
 						thisMatch.setType(MatchType.BLOCKED);
-						//}
 						    
 						//update match
 						InformationExpert.updateMatch(thisMatch);
@@ -139,8 +134,7 @@ public class ProfilePageController extends PageController {
 						InformationExpert.getClientModel().dequeLoveProfile();
 					}
 				} catch (DBFailureException e1) {
-					// TODO Auto-generated catch block
-					logger.severe("Database failure for blocking user");
+					logger.log(Level.SEVERE,"Database failure for blocking user: ", e1);
 				} 
 				
 				GraphicsController.processPage(backPage, backPage);

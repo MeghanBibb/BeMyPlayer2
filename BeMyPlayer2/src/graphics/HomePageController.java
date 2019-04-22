@@ -1,7 +1,6 @@
 package graphics;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.logging.Logger;
 
 import javax.swing.JButton;
@@ -10,7 +9,6 @@ import javax.swing.JPanel;
 
 import model.InformationExpert;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class HomePageController.
  */
@@ -111,7 +109,7 @@ public class HomePageController extends PageController{
 				logger.info("Modifying the sound settings");
 				BackgroundMusic.getInstance().music();
 				JButton temp = homePageModel.getBtnSound();
-				if(BackgroundMusic.getInstance().isPlaying()) {
+				if(BackgroundMusic.isPlaying()) {
 					temp.setText("<HTML><U>Turn Music Off</U></HTML>");
 				}else {
 					temp.setText("<HTML><U>Turn Music On</U></HTML>");

@@ -12,7 +12,6 @@ import model.InformationExpert;
 import model.MatchType;
 import model.Profile;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SwipePageController.
  */
@@ -53,7 +52,6 @@ public class SwipePageController extends PageController {
 			}
 			
 				InformationExpert.setOtherProfile(InformationExpert.getClientModel().getFriendProfileFront().getUserId());
-				//InformationExpert.getClientModel().dequeueFriendProfile();
 			} catch (DBFailureException e1) {
 				invalid = true;
 				logger.severe("Ran out of matches");
@@ -72,7 +70,6 @@ public class SwipePageController extends PageController {
 				}
 				
 					InformationExpert.setOtherProfile(InformationExpert.getClientModel().getLoveProfileFront().getUserId());
-					//InformationExpert.getClientModel().dequeueFriendProfile();
 				} catch (DBFailureException e1) {
 					invalid = true;
 					logger.severe("Ran out of matches");
@@ -110,7 +107,7 @@ public class SwipePageController extends PageController {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		//do nothing
 		
 	}
 	

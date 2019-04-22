@@ -1,21 +1,10 @@
 package graphics;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Image;
-
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class LoginPageModel.
  */

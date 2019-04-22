@@ -1,28 +1,19 @@
 package graphics;
 
 import java.awt.Dimension;
-import java.awt.Image;
-import java.awt.Toolkit;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
-import javax.swing.plaf.nimbus.NimbusLookAndFeel;
-import firebase.DBFailureException;
-import model.Account;
 import model.InformationExpert;
 import model.ResourceManager;
 
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class GraphicsController.
  */
