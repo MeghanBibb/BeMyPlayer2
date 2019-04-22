@@ -222,7 +222,6 @@ public class InformationExpert {
 	 * @param a the new active account
 	 */
 	public static void setActiveAccount(Account a) {
-		System.out.println("setting active account " + a.getEmail());
 		activeUserAccount = a;
 	}
 	
@@ -412,7 +411,6 @@ public class InformationExpert {
 				databaseAdapter.getOtherMatchedProfiles(activeUserAccount.getAccountProfile(), FireBaseAdapter.FRIEND_MATCHES);
 				clientModel.importPartialFriendBatch(partialProfs);
 				
-				System.out.println(partialProfs);
 				
 				return true;
 				
@@ -446,7 +444,6 @@ public class InformationExpert {
 				databaseAdapter.getOtherMatchedProfiles(activeUserAccount.getAccountProfile(), FireBaseAdapter.LOVE_MATCHES);
 				clientModel.importPartialLoveBatch(partialProfs);
 				
-				System.out.println(partialProfs);
 				
 				return true;
 				
