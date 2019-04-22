@@ -39,8 +39,8 @@ public class ForgotPassPageView {
 		mainFrame.setContentPane(forgotPasswordController.getForgotPasswordPanel());
 		
 		//init buttons
-		JButton backbtn = new JButton("Back");
-		backbtn.setBounds(45, 265, 90, 40);
+		ImgButton backbtn = new ImgButton("Back");
+		backbtn.setBounds(55, 290, 90, 40);
 		backbtn.setBackground(Colors.Yellow);
 		backbtn.setForeground(Colors.Red);
 		backbtn.setFont(Fonts.getFont((float) 12));
@@ -50,8 +50,8 @@ public class ForgotPassPageView {
 		
 		forgotPasswordController.getForgotPasswordPanel().add(forgotPasswordController.getForgotPasswordPageModel().getBtnBack());
 		
-		JButton btnSubmit = new JButton("Submit");
-		btnSubmit.setBounds(340,265,90,40);
+		ImgButton btnSubmit = new ImgButton("Submit");
+		btnSubmit.setBounds(335,290,90,40);
 		btnSubmit.setActionCommand(ForgotPassPageController.SUBMIT);
 		btnSubmit.setBackground(Colors.Yellow);
 		btnSubmit.setForeground(Colors.Red);

@@ -58,7 +58,6 @@ public class LoginPageView {
 		ImgButton btnForgotPassword = new ImgButton("Forgot Password");
 		btnForgotPassword.setFont(Fonts.getFont((float) 12));
 		btnForgotPassword.setForeground(Colors.Red);
-		//btnForgotPassword.setBackground(Colors.Yellow);
 		btnForgotPassword.setBounds(39, 265, 175, 40);
 		btnForgotPassword.setActionCommand(LoginPageController.FORGOT_PASSWORD);
 		btnForgotPassword.addActionListener(loginController);

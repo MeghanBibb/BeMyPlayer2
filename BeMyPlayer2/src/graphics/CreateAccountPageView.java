@@ -54,9 +54,8 @@ public class CreateAccountPageView {
 		
 		
 		//	init buttons and add to panel
-		JButton backbtn = new JButton("Back");
+		ImgButton backbtn = new ImgButton("Back");
 		backbtn.setBounds(45, 345, 90, 40);
-		backbtn.setBackground(Colors.Yellow);
 		backbtn.setForeground(Colors.Red);
 		backbtn.setFont(Fonts.getFont((float) 12));
 		backbtn.setActionCommand(CreateAccountPageController.BACK);
@@ -65,9 +64,8 @@ public class CreateAccountPageView {
 		
 		capController.getCreateAccountPanel().add(capController.getCreateAccountPageModel().getBack());
 		
-		JButton nextbtn = new JButton("Next");
+		ImgButton nextbtn = new ImgButton("Next");
 		nextbtn.setBounds(345, 345, 90, 40);
-		nextbtn.setBackground(Colors.Yellow);
 		nextbtn.setForeground(Colors.Red);
 		nextbtn.setFont(Fonts.getFont((float) 12));
 		nextbtn.setActionCommand(CreateAccountPageController.NEXT);
@@ -675,9 +673,8 @@ public class CreateAccountPageView {
 		
 		
 		//		init buttons and add to panel
-		JButton backbtn = new JButton("Back");
+		ImgButton backbtn = new ImgButton("Back");
 		backbtn.setBounds(45, 345, 90, 40);
-		backbtn.setBackground(Colors.Yellow);
 		backbtn.setForeground(Colors.Red);
 		backbtn.setFont(Fonts.getFont((float) 12));
 		backbtn.setActionCommand(CreateAccountPageController.BACK);
@@ -686,9 +683,8 @@ public class CreateAccountPageView {
 		
 		capController.getCreateAccountPanel().add(capController.getCreateAccountPageModel().getBack());
 		
-		JButton nextbtn = new JButton("Next");
+		ImgButton nextbtn = new ImgButton("Next");
 		nextbtn.setBounds(345, 345, 90, 40);
-		nextbtn.setBackground(Colors.Yellow);
 		nextbtn.setForeground(Colors.Red);
 		nextbtn.setFont(Fonts.getFont((float) 12));
 		nextbtn.setActionCommand(CreateAccountPageController.NEXT);
@@ -847,9 +843,8 @@ public class CreateAccountPageView {
 		
 		
 		//	load submit button
-		JButton btnSubmit = new JButton("Submit");
+		ImgButton btnSubmit = new ImgButton("Submit");
 		btnSubmit.setBounds(385, 345, 90, 40);
-		btnSubmit.setBackground(Colors.Yellow);
 		btnSubmit.setForeground(Colors.Red);
 		btnSubmit.setFont(Fonts.getFont((float) 12));
 		btnSubmit.setActionCommand(CreateAccountPageController.SUBMIT);
@@ -857,9 +852,8 @@ public class CreateAccountPageView {
 		capController.getCreateAccountPanel().add(btnSubmit);
 		
 		//	load back button
-		JButton backbtn = new JButton("Back");
+		ImgButton backbtn = new ImgButton("Back");
 		backbtn.setBounds(25, 345, 90, 40);
-		backbtn.setBackground(Colors.Yellow);
 		backbtn.setForeground(Colors.Red);
 		backbtn.setFont(Fonts.getFont((float) 12));
 		backbtn.setActionCommand(CreateAccountPageController.BACK);
