@@ -60,7 +60,9 @@ public class MessageController extends PageController implements ExternalListene
     	account = InformationExpert.getActiveAccount();
         try {
             currentThread = InformationExpert.getMessageThread(InformationExpert.getActiveUserID(), InformationExpert.getOtherProfile().getUserId());
-            currentThread.setUpdateListener(this);
+            if(currentThread == null) {
+                currentThread.setUpdateListener(this);
+            }
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Error- could not find message thread");
         }
@@ -98,13 +100,14 @@ public class MessageController extends PageController implements ExternalListene
 								MessageThread t = new MessageThread();
 								t.addMessage(newMessage);
 								this.setCurrentThread(t);
+								this.updateMessageArea();
 							}
 						}
 						
 					} catch (DBFailureException e1) {
 						logger.log(Level.SEVERE, "Databse Failure during message sending: ", e1);
-						e1.printStackTrace();
 					}
+            		this.getMessageModel().getSendBox().setText("");
                 }
                 break;
             case BACK:
@@ -135,7 +138,6 @@ public class MessageController extends PageController implements ExternalListene
             	this.getMessageModel().getThread().append("\n");
             }
         }
-		this.getMessageModel().getSendBox().setText("");
 	}
     
 

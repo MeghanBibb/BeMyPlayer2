@@ -1144,7 +1144,7 @@ public class FireBaseAdapter {
 		try {
 			threadResult = fetchThread.get();
 			if(threadResult.isEmpty()) {
-				LOGGER.log(Level.WARNING,"Could not find match Thread");
+				LOGGER.log(Level.WARNING,"Could not find message Thread");
 				return null;
 			}else {
 				List<Message> messageList;
