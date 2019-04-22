@@ -127,7 +127,9 @@ public class EditAccountPageView {
 		}
 		
 		
-		JButton btnMute = new JButton ("Mute Account");
+		String muteButtonText = InformationExpert.getActiveAccount().getAccountProfile().isMute()?
+				"Unmute Account" : "Mute Account";
+		JButton btnMute = new JButton (muteButtonText);
 		btnMute.setBounds(115,270,250,40);
 		btnMute.setBackground(Colors.Yellow);
 		btnMute.setFont(Fonts.getFont((float) 12));
