@@ -60,7 +60,7 @@ public class MessageController extends PageController implements ExternalListene
     	account = InformationExpert.getActiveAccount();
         try {
             currentThread = InformationExpert.getMessageThread(InformationExpert.getActiveUserID(), InformationExpert.getOtherProfile().getUserId());
-            if(currentThread == null) {
+            if(currentThread != null) {
                 currentThread.setUpdateListener(this);
             }
         } catch (Exception e) {
@@ -87,6 +87,7 @@ public class MessageController extends PageController implements ExternalListene
             case SEND:
             	
                 if (validateMsg()){
+                	
                     Message newMessage = new Message();
                     newMessage.setMessage(this.getMessageModel().getSendBox().getText());
                     newMessage.setSenderId(InformationExpert.getActiveUserID());
@@ -97,13 +98,11 @@ public class MessageController extends PageController implements ExternalListene
 							//message upload successful
 							
 							if(this.getCurrentThread() == null) {
-								MessageThread t = new MessageThread();
-								t.addMessage(newMessage);
-								this.setCurrentThread(t);
+								this.setCurrentThread(InformationExpert.getMessageThread(InformationExpert.getActiveUserID(), InformationExpert.getOtherProfile().getUserId()));
+
 								this.updateMessageArea();
 							}
 						}
-						
 					} catch (DBFailureException e1) {
 						logger.log(Level.SEVERE, "Databse Failure during message sending: ", e1);
 					}
