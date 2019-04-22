@@ -39,7 +39,7 @@ public class Matchmaker{
 				if(o.getUsername().equals(c.getUsername())) {
 					return 1000;
 				}
-				if(o.getMute() == true) {
+				if(o.isMute() == true) {
 					return 1000;
 				}
 				try {
@@ -90,7 +90,7 @@ public class Matchmaker{
 				if(o.getGender().equals(c.getGender())) {
 					return 1000;
 				}
-				if(o.getMute() == true) {
+				if(o.isMute() == true) {
 					return 1000;
 				}
 				try {

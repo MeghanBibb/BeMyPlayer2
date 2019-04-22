@@ -23,8 +23,8 @@ public class Profile implements DBSerializable{
 							   _GENDER = "gender",
 							   _DESCRIPTION = "description",
 							   _PLATFORMS = "platforms",
-							   _GENRES = "genres";
-								//needs mute
+							   _GENRES = "genres",
+							   _IS_MUTED = "isMuted";
 	
 	/** The Constant DOB_FORMAT. */
 	public static final SimpleDateFormat DOB_FORMAT = new SimpleDateFormat("dd/MM/yyyy"); 
@@ -276,7 +276,7 @@ public class Profile implements DBSerializable{
 	 *
 	 * @return the mute
 	 */
-	public Boolean getMute() {
+	public Boolean isMute() {
 		return isMute;
 	}
 	
@@ -312,6 +312,7 @@ public class Profile implements DBSerializable{
 		
 		p.addValue(_PLATFORMS, pls);
 		p.addValue(_GENRES, gs);
+		p.addValue(_IS_MUTED, this.isMute);
 		
 		return p;
 	}
@@ -353,6 +354,8 @@ public class Profile implements DBSerializable{
 						this.genres.add(arrStr.charAt(i) == 'Y');
 					}
 					break;
+				case _IS_MUTED:
+					this.isMute = (Boolean) pkg.getValues().get(s);
 			}
 		}
 	}

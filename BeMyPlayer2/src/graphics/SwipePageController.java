@@ -78,19 +78,19 @@ public class SwipePageController extends PageController {
 					GraphicsController.processPage(PageCreator.HOME_PAGE, PageController.backPage);
 				}
 		}
-		if(InformationExpert.getActiveAccount().getAccountProfile().getMute()) {
+		if(InformationExpert.getActiveAccount().getAccountProfile().isMute()) {
 			AccountIsMuted.Warning(mainFrame);
 			invalid = true;
 		}
 		if(!invalid) {
-		this.model = new SwipePageModel(mainFrame, InformationExpert.getOtherProfile(), this);
-		model.backButton.addActionListener(new ActionListener() {
-	    	@Override
-	    	public void actionPerformed(ActionEvent e) {
-	    			logger.info("back");
-	    			GraphicsController.processPage(PageCreator.HOME_PAGE,backPage);
-	    	}
-	    });
+			this.model = new SwipePageModel(mainFrame, InformationExpert.getOtherProfile(), this);
+			model.backButton.addActionListener(new ActionListener() {
+		    	@Override
+		    	public void actionPerformed(ActionEvent e) {
+		    			logger.info("back");
+		    			GraphicsController.processPage(PageCreator.HOME_PAGE,backPage);
+		    	}
+		    });
 		}
 	}
 
