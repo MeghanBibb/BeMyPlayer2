@@ -2,16 +2,19 @@ package graphics;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SwipeButton.
  */
 public class SwipeButton extends JButton{
 	
+	/**
+	 * Default serial ID
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/** The controller. */
 	SwipeButtonController controller;
 	
@@ -32,7 +35,6 @@ public class SwipeButton extends JButton{
 		this.setForeground(Colors.Red);
 		this.controller = controller;
 		this.setText(controller.text);
-		//this.setMinimumSize(size);
 		this.setBackground(Colors.Yellow);
 		this.addActionListener(controller);
 	}

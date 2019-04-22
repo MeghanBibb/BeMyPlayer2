@@ -1,29 +1,19 @@
 package graphics;
 
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Image;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.util.ArrayList;
 
-import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ForgotPassPageView.
  */
@@ -62,7 +52,7 @@ public class ForgotPassPageView {
 		
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.setBounds(340,265,90,40);
-		btnSubmit.setActionCommand(forgotPasswordController.SUBMIT);
+		btnSubmit.setActionCommand(ForgotPassPageController.SUBMIT);
 		btnSubmit.setBackground(Colors.Yellow);
 		btnSubmit.setForeground(Colors.Red);
 		btnSubmit.setFont(Fonts.getFont((float) 12));
@@ -137,7 +127,7 @@ public class ForgotPassPageView {
 		secLabel.setFont(Fonts.getFont((float) 12));
 		
 
-		JComboBox securityQuestions = new JComboBox();
+		JComboBox<String> securityQuestions = new JComboBox<String>();
 		securityQuestions.addItemListener(new ItemListener() {
         	public void itemStateChanged(ItemEvent e) {
         		forgotPasswordController.getForgotPasswordPageModel().setSecurityQuestions(e.getItem().toString());
@@ -145,7 +135,7 @@ public class ForgotPassPageView {
         });
 		
 		securityQuestions.setToolTipText("Security Question");
-		securityQuestions.setModel(new DefaultComboBoxModel(new String[] {"Favorite Game?", "First Console Owned?", "Favorite Character?"}));
+		securityQuestions.setModel(new DefaultComboBoxModel<String>(new String[] {"Favorite Game?", "First Console Owned?", "Favorite Character?"}));
 		securityQuestions.setBounds(50, 200, 380, 22);
 		securityQuestions.setVisible(true);
 		forgotPasswordController.getForgotPasswordPageModel().setSecurityQ(securityQuestions);

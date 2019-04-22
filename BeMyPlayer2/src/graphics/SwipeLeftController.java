@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 import firebase.DBFailureException;
 import model.*;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SwipeLeftController.
  */
@@ -48,7 +47,6 @@ public class SwipeLeftController extends SwipeButtonController{
 				
 				thisMatch.setClientMatchStatus(MatchStatus.SWIPE_LEFT);	
 				
-				    
 				//update match
 				InformationExpert.updateMatch(thisMatch);
 				
@@ -57,17 +55,16 @@ public class SwipeLeftController extends SwipeButtonController{
 				thisMatch = new Match(InformationExpert.getActiveAccount().getAccountProfile(), InformationExpert.getOtherProfile());
 				thisMatch.setClientMatchStatus(MatchStatus.SWIPE_LEFT);
 				thisMatch.setOtherMatchStatus(MatchStatus.SWIPE_LEFT);
-				if(InformationExpert.getCurrentSwipePage().equals(MatchType.FRIEND_MATCH)) {
+				if(InformationExpert.getCurrentSwipePage().equals(MatchType._TYPE_FRIEND_MATCH)) {
 					thisMatch.setType(MatchType.FRIEND_MATCH);
 				}
-				else if(InformationExpert.getCurrentSwipePage().equals(MatchType.LOVE_MATCH)) {
+				else if(InformationExpert.getCurrentSwipePage().equals(MatchType._TYPE_LOVE_MATCH)) {
 					thisMatch.setType(MatchType.LOVE_MATCH);
 				}
 				//add match
 				InformationExpert.addMatch(thisMatch);
 			}
 		} catch (DBFailureException e1) {
-			// TODO Auto-generated catch block
 			logger.severe("Failed to load matches");
 			InvalidPopup p = new InvalidPopup(new JPanel(), "Database error, please try again later");
 		} finally {
@@ -84,7 +81,6 @@ public class SwipeLeftController extends SwipeButtonController{
 						throw new DBFailureException();
 					}
 					InformationExpert.setOtherProfile(InformationExpert.getClientModel().getFriendProfileFront().getUserId());
-					//InformationExpert.getClientModel().dequeueFriendProfile();
 				}
 				else if (InformationExpert.getCurrentSwipePage().equals(MatchType.LOVE_MATCH.getStatusString())) {
 					InformationExpert.getClientModel().dequeLoveProfile();
@@ -100,7 +96,6 @@ public class SwipeLeftController extends SwipeButtonController{
 				
 				controller.setProfile(InformationExpert.getOtherProfile());
 			} catch (DBFailureException e1) {
-				// TODO Auto-generated catch block
 				logger.severe("Ran out of matches");
 				InvalidPopup p = new InvalidPopup(new JPanel(),"Ran out of matches for today. Please come back tomorrow");
 				GraphicsController.processPage(PageCreator.HOME_PAGE, PageController.backPage);

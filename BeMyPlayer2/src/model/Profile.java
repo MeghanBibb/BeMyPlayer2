@@ -1,6 +1,5 @@
 package model;
 
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -9,7 +8,6 @@ import java.util.List;
 
 import firebase.FireBaseSchema;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Profile.
  */
@@ -60,7 +58,7 @@ public class Profile implements DBSerializable{
 	 * Instantiates a new profile.
 	 */
 	public Profile() {
-		// Initialize to default values
+		//create dummy profile
 	}
 	
 	/**

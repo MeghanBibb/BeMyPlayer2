@@ -15,7 +15,6 @@ import javax.swing.border.EmptyBorder;
 
 import model.ResourceManager;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class LoginPageView.
  */
@@ -38,7 +37,6 @@ public class LoginPageView {
 		loginController.getLoginPanel().setPreferredSize(new Dimension(500,400));
 		loginController.getLoginPanel().setMaximumSize(new Dimension(500,400));
 		mainFrame.setContentPane(loginController.getLoginPanel());
-		//mainFrame.getContentPane().setBackground(Colors.Red);
 		
 		//	init buttons
 		loginController.getLoginPageModel().setBtnLogin(new JButton("Begin My Quest")); 

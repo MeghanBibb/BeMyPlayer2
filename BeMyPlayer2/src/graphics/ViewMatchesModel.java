@@ -8,20 +8,12 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ViewMatchesModel.
  */
 public class ViewMatchesModel {
-	private JPanel emptyPanel;
 	/** The matchtype. */
-	private JComboBox matchtype;
-	
-	/** The love list. */
-	private List<JButton> loveList;
-	
-	/** The friend list. */
-	private List<JButton> friendList;
+	private JComboBox<String> matchtype;
 	
 	/** The emptylist line 1. */
 	private JLabel emptylistLine1;
@@ -36,7 +28,7 @@ public class ViewMatchesModel {
 	 *
 	 * @return the matchtype
 	 */
-	public JComboBox getMatchtype() {
+	public JComboBox<String> getMatchtype() {
 		return matchtype;
 	}
 
@@ -45,7 +37,7 @@ public class ViewMatchesModel {
 	 *
 	 * @param matchtype the new matchtype
 	 */
-	public void setMatchtype(JComboBox matchtype) {
+	public void setMatchtype(JComboBox<String> matchtype) {
 		this.matchtype = matchtype;
 	}
 
@@ -106,6 +98,7 @@ public class ViewMatchesModel {
 		
 		return profilePicPanel;
 	}
+<<<<<<< HEAD
 
 	public void setEmptyPanel(JPanel emptyPanel) {
 		this.emptyPanel = emptyPanel;
@@ -127,4 +120,6 @@ public class ViewMatchesModel {
 	
 	
 	
+=======
+>>>>>>> 08a722f0c9e79277039d7d64d1d5e74ab42636c6
 }

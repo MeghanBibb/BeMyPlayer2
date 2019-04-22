@@ -1,17 +1,10 @@
 package model;
 
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
-import java.util.concurrent.PriorityBlockingQueue;
 
-import firebase.FireBaseAdapter;
-
-// TODO: Auto-generated Javadoc
 /**
  * The Class ClientModel.
  */
@@ -34,9 +27,6 @@ public class ClientModel {
 	
 	/** The friend matches. */
 	private List<Profile> friendMatches = new ArrayList<Profile>();
-	
-	/** The profile image cache. */
-	private Map<String,BufferedImage> profileImageCache = new HashMap<String, BufferedImage>();
 	
 	/**
 	 * Instantiates a new client model.

@@ -1,7 +1,5 @@
 package model;
 
-import firebase.FireBaseSchema;
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class Issue.

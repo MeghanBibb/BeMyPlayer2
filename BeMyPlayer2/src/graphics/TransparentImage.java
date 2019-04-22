@@ -3,18 +3,20 @@ package graphics;
 import java.awt.AlphaComposite;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.geom.Ellipse2D;
-import java.awt.image.BufferedImage;
 
 import javax.swing.Icon;
 import javax.swing.JLabel;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class TransparentImage.
  */
 public class TransparentImage extends JLabel{
 	
+	/**
+	 * Default Serial ID
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * Instantiates a new transparent image.
 	 *

@@ -2,7 +2,6 @@ package model;
 
 import java.awt.Font;
 import java.awt.FontFormatException;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -10,7 +9,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -18,9 +16,7 @@ import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 
-import firebase.FireBaseAdapter;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ResourceManager.
  */

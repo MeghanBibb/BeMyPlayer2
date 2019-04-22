@@ -6,7 +6,6 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ForgotPassPageModel.
  */
@@ -32,7 +31,7 @@ public class ForgotPassPageModel {
 	private JFormattedTextField secQA;
 	
 	/** The security Q. */
-	private JComboBox securityQ;
+	private JComboBox<String> securityQ;
 	
 	/** The frmtdtextfld enter username. */
 	//	init fields and listeners 
@@ -299,7 +298,7 @@ public class ForgotPassPageModel {
 	 *
 	 * @return the security Q
 	 */
-	public JComboBox getSecurityQ() {
+	public JComboBox<String> getSecurityQ() {
 		return securityQ;
 	}
 
@@ -308,7 +307,7 @@ public class ForgotPassPageModel {
 	 *
 	 * @param securityQ the new security Q
 	 */
-	public void setSecurityQ(JComboBox securityQ) {
+	public void setSecurityQ(JComboBox<String> securityQ) {
 		this.securityQ = securityQ;
 	}
 

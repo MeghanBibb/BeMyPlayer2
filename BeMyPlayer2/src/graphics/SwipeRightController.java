@@ -12,7 +12,6 @@ import model.Match;
 import model.MatchStatus;
 import model.MatchType;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SwipeRightController.
  */
@@ -81,7 +80,6 @@ public class SwipeRightController extends SwipeButtonController{
 				}
 			}
 		} catch (DBFailureException e1) {
-			// TODO Auto-generated catch block
 			logger.severe("Database error occured");
 			InvalidPopup p = new InvalidPopup(new JPanel(),"Database error, please try again later");
 		} finally {
@@ -98,7 +96,6 @@ public class SwipeRightController extends SwipeButtonController{
 						throw new DBFailureException();
 					}
 					InformationExpert.setOtherProfile(InformationExpert.getClientModel().getFriendProfileFront().getUserId());
-					//InformationExpert.getClientModel().dequeueFriendProfile();
 				}
 				else if (InformationExpert.getCurrentSwipePage().equals(MatchType.LOVE_MATCH.getStatusString())) {
 					InformationExpert.getClientModel().dequeLoveProfile();
@@ -112,9 +109,7 @@ public class SwipeRightController extends SwipeButtonController{
 				}
 				
 				controller.setProfile(InformationExpert.getOtherProfile());
-				//controller.setProfile(InformationExpert.getUserAccountWithProfile("LfiDeQ0WNQEnNyZ1c94J").getAccountProfile());
 			} catch (DBFailureException e1) {
-				// TODO Auto-generated catch block
 				logger.severe("Ran out of matches");
 				InvalidPopup p = new InvalidPopup(new JPanel(),"Ran out of matches for today. Please come back tomorrow");
 				GraphicsController.processPage(PageCreator.HOME_PAGE, PageController.backPage);

@@ -4,7 +4,6 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class PaymentPageModel.
  */

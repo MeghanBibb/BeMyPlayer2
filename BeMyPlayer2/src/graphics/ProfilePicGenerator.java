@@ -2,27 +2,17 @@ package graphics;
 import model.Profile;
 import model.ResourceManager;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import firebase.DBFailureException;
-import model.Account;
 import model.InformationExpert;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ProfilePicGenerator.
  */
@@ -71,7 +61,6 @@ public class ProfilePicGenerator {
 			try {
 				threads.get(i).join();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				logger.severe("Join failure");
 				InvalidPopup p = new InvalidPopup(b.getViewMatchesPanel(),"Synchronization issue with threads");
 				
@@ -125,8 +114,6 @@ public class ProfilePicGenerator {
 			try {
 				threads.get(i).join();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-
 				logger.severe("Join failure");
 				InvalidPopup p = new InvalidPopup(b.getViewMatchesPanel(),"Synchronization issue with threads");
 				
@@ -165,7 +152,6 @@ public class ProfilePicGenerator {
 			try {
 				nameLabel1.setText(InformationExpert.getUserAccountWithProfile(name).getAccountProfile().getUsername());
 			} catch (DBFailureException e) {
-				// TODO Auto-generated catch block
 				logger.warning("User does not exist");
 				
 			}
@@ -186,7 +172,6 @@ public class ProfilePicGenerator {
 			try {
 				threads.get(i).join();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				logger.severe("Join failure");
 			}
 		}

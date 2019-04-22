@@ -1,8 +1,10 @@
 package graphics;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class MessageModel.
  */
