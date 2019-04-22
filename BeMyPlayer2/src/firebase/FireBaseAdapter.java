@@ -510,7 +510,7 @@ public class FireBaseAdapter {
 				.document(account.getUserId());
 		Profile userProf = null;
 		
-		if(account == null || account.getUserId() == null) {
+		if(account.getUserId() == null) {
 			LOGGER.log(Level.WARNING,"Account has no initialized userId; cannot update");
 			throw new DBFailureException();
 		}
@@ -570,7 +570,7 @@ public class FireBaseAdapter {
 		DocumentReference profRef = db.collection(FireBaseSchema.PROFILES_TABLE)
 				.document(profile.getUserId());
 		
-		if(profile == null || profile.getUserId() == null) {
+		if(profile.getUserId() == null) {
 			LOGGER.log(Level.WARNING,"Profile has no initialized userId; cannot update");
 			throw new DBFailureException();
 		}
@@ -649,7 +649,7 @@ public class FireBaseAdapter {
 		}
 		
 		String mStringType = MatchType._TYPE_LOVE_MATCH;
-		if(matchType != LOVE_MATCHES && matchType != FRIEND_MATCHES) {
+		if(!matchType.equals(LOVE_MATCHES) && !matchType.equals(FRIEND_MATCHES)) {
 			LOGGER.log(Level.WARNING, "Error- Invalid call argument: " + matchType);
 			return null;
 		}else if(matchType == FRIEND_MATCHES) {
@@ -758,7 +758,7 @@ public class FireBaseAdapter {
 						return null;
 					} 
 				})
-				.filter(p -> p != null && p.getUserId() != userProfile.getUserId())
+				.filter(p -> p != null && !p.getUserId().equals(userProfile.getUserId()))
 				.collect(Collectors.toList());
 			
 		}

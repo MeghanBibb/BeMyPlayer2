@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.RepaintManager;
 
 import firebase.DBFailureException;
 import model.InformationExpert;
@@ -65,7 +66,10 @@ public class PicThread extends Thread{
 		if(temp != null) {
 		JButton setIcon = new JButton();
 		setIcon.setLayout(new FlowLayout());
-		setIcon.add(new CircularImage((new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH)))));
+		CircularImage ci = new CircularImage((new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH))));
+		//RepaintManager.currentManager(ci).markCompletelyClean(ci);
+		//ci.setIgnoreRepaint(true);
+		setIcon.add(ci);
 		
 		setIcon.setFont(Fonts.getFont(12f));
 		setIcon.setForeground(Colors.Yellow);
