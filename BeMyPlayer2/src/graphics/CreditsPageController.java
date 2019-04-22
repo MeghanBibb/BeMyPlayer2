@@ -74,6 +74,8 @@ public class CreditsPageController extends PageController{
 			}
 			this.copyFrame.add(brief);
 			this.copyFrame.repaint();
+			this.copyFrame.revalidate();
+			this.creditsPanel.revalidate();
 		}
 	}
 	
