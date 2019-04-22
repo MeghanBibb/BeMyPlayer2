@@ -29,6 +29,8 @@ public class ViewMatchesModel {
 	/** The emptylist line 2. */
 	private JLabel emptylistLine2;
 	
+	private JLabel noMatchMessage;
+	
 	/**
 	 * Gets the matchtype.
 	 *
@@ -97,8 +99,7 @@ public class ViewMatchesModel {
 
 	public JPanel getEmptyPanel() {
 		JPanel profilePicPanel = new JPanel();
-		profilePicPanel.setBackground(Colors.Yellow);
-		
+		profilePicPanel.setBackground(Colors.Yellow);	
 		profilePicPanel.setPreferredSize(new Dimension(100,250));
 		profilePicPanel.add(getEmptylistLine1());
 		profilePicPanel.add(getEmptylistLine2());
@@ -109,4 +110,21 @@ public class ViewMatchesModel {
 	public void setEmptyPanel(JPanel emptyPanel) {
 		this.emptyPanel = emptyPanel;
 	}
+
+	public JLabel getNoMatchMessage() {
+		if(noMatchMessage == null) {
+			noMatchMessage = new JLabel("Your princess is in another castle, Get back out there and find a match!");
+			noMatchMessage.setFont(Fonts.getFont(12f));
+			noMatchMessage.setForeground(Colors.White);
+			noMatchMessage.setBounds(30,350,400,69);
+		}
+		return noMatchMessage;
+	}
+
+	public void setNoMatchMessage(JLabel noMatchMessage) {
+		this.noMatchMessage = noMatchMessage;
+	}
+	
+	
+	
 }
