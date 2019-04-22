@@ -762,12 +762,12 @@ public class FireBaseAdapter {
 				.collect(Collectors.toList());
 			
 		}
-		/*
+		
 		System.out.println("PARTIAL PROFILES:");
 		for(Profile p : profList) {
 			System.out.println(p.getUsername());
 		}
-		*/
+		
 		return profList;
 	}
 	
@@ -840,12 +840,12 @@ public class FireBaseAdapter {
 				return new ArrayList<Profile>();
 			}else {
 				
-				/*
+				
 				System.out.println("FILTERED IDS:");
 				for(String id : filteredIds) {
 					System.out.println(id);
 				}
-				*/
+				
 				
 				//parallelize package conversion to list of profiles:
 				batch = profileBatch.getDocuments().parallelStream()
@@ -865,12 +865,12 @@ public class FireBaseAdapter {
 			LOGGER.log(Level.SEVERE,"Error- Profile batch retrieval query failed.");
 			throw new DBFailureException();
 		}
-		/*
+		
 		System.out.println("UNMATCHED PROFILES:");
 		for(Profile p : batch) {
 			System.out.println(p.getUsername());
 		}
-		*/
+		
 		return batch;
 	}
 	
@@ -1180,6 +1180,7 @@ public class FireBaseAdapter {
 
 		return msgThread;
 	}
+	
 	
 	public boolean addMessage(String userId, String otherUserId, Message message) throws DBFailureException {
 		
