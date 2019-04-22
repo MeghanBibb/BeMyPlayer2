@@ -29,7 +29,7 @@ public class SwipePageModel {
 	JFrame frame = null;
 	
 	/** The back button. */
-	JButton backButton = new JButton("Back");
+	ImgButton backButton = new ImgButton("Back");
 	
 	/** The current profile. */
 	Profile currentProfile;
@@ -69,7 +69,7 @@ public class SwipePageModel {
 		frame.getContentPane().revalidate();
 		frame.getContentPane().repaint();
 		frame.getContentPane().setLayout(layout);
-		backButton.setBackground(Colors.Yellow);
+		backButton.setPreferredSize(new Dimension(300, 30));
 		backButton.setFont(Fonts.getFont((float) 12));
 		backButton.setForeground(Colors.Red);
 		
@@ -77,7 +77,11 @@ public class SwipePageModel {
 		heartImage.setBounds(350, 1, 50, 50);
 		
 		this.left = new SwipeButton(new SwipeLeftController(this.controller));
+		
+		this.left.setPreferredSize(new Dimension(65, 250));
+		
 		this.right = new SwipeButton(new SwipeRightController(this.controller));
+		this.right.setPreferredSize(new Dimension(65, 250));
 		
 		layout.setHgap(70);
 		layout.setVgap(40);

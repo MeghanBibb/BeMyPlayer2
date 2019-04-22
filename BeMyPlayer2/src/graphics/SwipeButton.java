@@ -8,7 +8,7 @@ import javax.swing.JButton;
 /**
  * The Class SwipeButton.
  */
-public class SwipeButton extends JButton{
+public class SwipeButton extends ImgButton{
 	
 	/**
 	 * Default serial ID
@@ -35,7 +35,6 @@ public class SwipeButton extends JButton{
 		this.setForeground(Colors.Red);
 		this.controller = controller;
 		this.setText(controller.text);
-		this.setBackground(Colors.Yellow);
 		this.addActionListener(controller);
 	}
 	
