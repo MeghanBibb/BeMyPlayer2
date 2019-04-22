@@ -3,7 +3,7 @@ package graphics;
 /**
  * The Class PageCreator.
  */
-public class PageCreator {
+public class PageCreator{
 	
 	/** The Constant CREATE_ACCOUNT_PAGE. */
 	public static final String CREATE_ACCOUNT_PAGE = "create account";
