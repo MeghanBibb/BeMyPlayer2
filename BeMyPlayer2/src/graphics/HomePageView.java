@@ -40,19 +40,17 @@ public class HomePageView {
 		mainFrame.setContentPane(homeController.getHomePanel());
 
 		//init buttons
-		JButton btnLogout = new JButton("Logout");
+		ImgButton btnLogout = new ImgButton("Logout");
 		btnLogout.setBounds(10, 10, 90, 40);
 		btnLogout.setActionCommand(HomePageController.LOGOUT);
-		btnLogout.setBackground(yellow);
 		btnLogout.setFont(Fonts.getFont((float) 12));
 		btnLogout.setForeground(Colors.Red);
 		btnLogout.addActionListener(homeController);
 		homeController.getHomePageModel().setBtnLogout(btnLogout);
 		
-		JButton btnAccount = new JButton("My Profile");
+		ImgButton btnAccount = new ImgButton("My Profile");
 		btnAccount.setBounds(390,10,100,40);
 		btnAccount.setActionCommand(HomePageController.ACCOUNT);
-		btnAccount.setBackground(yellow);
 		btnAccount.setFont(Fonts.getFont((float) 12));
 		btnAccount.setForeground(Colors.Red);
 		btnAccount.addActionListener(homeController);
@@ -106,10 +104,9 @@ public class HomePageView {
 		btnSupport.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		homeController.getHomePageModel().setBtnSupport(btnSupport);
 		
-		JButton btnMatches = new JButton("View Matches");
+		ImgButton btnMatches = new ImgButton("View Matches");
 		btnMatches.setBounds(60,270,360,90);
 		btnMatches.setActionCommand(HomePageController.VIEW_MATCHES);
-		btnMatches.setBackground(yellow);
 		btnMatches.setFont(Fonts.getFont((float) 12));
 		btnMatches.setForeground(Colors.Red);
 		btnMatches.addActionListener(homeController);

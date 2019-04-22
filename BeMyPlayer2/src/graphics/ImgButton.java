@@ -1,8 +1,12 @@
 package graphics;
 
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
+import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
@@ -11,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 import model.ResourceManager;
@@ -18,7 +23,7 @@ import model.ResourceManager;
 public class ImgButton extends JButton{
 
 	static BufferedImage image = null;
-	
+	static Border b2 = null;
 
 
 	static {
@@ -30,6 +35,7 @@ public class ImgButton extends JButton{
 		this.setOpaque(false);
 		this.setBackground((new java.awt.Color(255, 255, 255, 0)));
 		this.setBorder(new EmptyBorder(0, 0, 0, 0));
+		this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}
 	
 	public ImgButton(){
@@ -37,12 +43,17 @@ public class ImgButton extends JButton{
 		this.setOpaque(false);
 		this.setBackground((new java.awt.Color(255, 255, 255, 0)));
 		this.setBorder(new EmptyBorder(0, 0, 0, 0));
+		this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}
 	
     protected void paintComponent(Graphics g) {  
         
         this.setMinimumSize(new Dimension((this.getWidth()), this.getHeight()));
-        g.drawImage(image.getScaledInstance((int) (this.getMinimumSize().getWidth()), this.getHeight(), Image.SCALE_SMOOTH), 0, 0, null);  
+        RoundRectangle2D rect = new RoundRectangle2D.Float();
+        rect.setRoundRect(0, 0, this.getWidth(), this.getHeight(), 10, 10);
+        g.setClip(rect);
+        g.drawImage(image.getScaledInstance((int) ((this.getMinimumSize().getWidth())*3)/2, (this.getHeight()*3)/2, Image.SCALE_SMOOTH), -10, -5, null);
+ 
         super.paintComponent(g);
     }  
 

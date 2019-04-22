@@ -21,6 +21,7 @@ public class WebHandler {
 	 * @param url the url
 	 * @param temp the temp
 	 */
+	@SuppressWarnings("unused")
 	public static void openWebPage(String url,JPanel temp) {
 		try {
 			java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
