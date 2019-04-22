@@ -453,6 +453,12 @@ public class InformationExpert {
 		return databaseAdapter.getMessageThread(userId, otherUserId);
 	}
 	
+	public static MessageThread getNewMessageThread(String userId, String otherId) {
+		MessageThread mt = new MessageThread();
+		databaseAdapter.resetMessageThreadListener(userId, otherId, mt);
+		return mt;
+	}
+	
 	/**
 	 * Gets the match.
 	 *

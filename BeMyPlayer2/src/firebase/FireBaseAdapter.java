@@ -1104,6 +1104,16 @@ public class FireBaseAdapter {
 			throw new DBFailureException();
 		}
 	}
+	
+	public void resetMessageThreadListener(String userId, String otherUserId, MessageThread mt) {
+		String msgId = FireBaseSchema.toMessageThreadIndex(userId, otherUserId);
+		java.util.Date timeNow = new java.util.Date();
+		Query latestMessages = db.collection(FireBaseSchema.MESSAGE_THREADS_TABLE)
+								.document(msgId)
+								.collection(FireBaseSchema.MESSAGE_THREADS_TABLE_COLLECTION)
+								.whereGreaterThan(Message._TIMESTAMP, timeNow);
+		mt.registerEventListener(latestMessages);
+	}
 
 	/**
 	 * Gets the message thread.
@@ -1124,12 +1134,6 @@ public class FireBaseAdapter {
 		MessageThread msgThread = new MessageThread();
 		
 		String msgId = FireBaseSchema.toMessageThreadIndex(userId, otherUserId);
-		
-		java.util.Date timeNow = new java.util.Date();
-		Query latestMessages = db.collection(FireBaseSchema.MESSAGE_THREADS_TABLE)
-								.document(msgId)
-								.collection(FireBaseSchema.MESSAGE_THREADS_TABLE_COLLECTION)
-								.whereGreaterThan(Message._TIMESTAMP, timeNow);
 		
 		ApiFuture<QuerySnapshot> fetchThread =
 				db.collection(FireBaseSchema.MESSAGE_THREADS_TABLE)
@@ -1166,7 +1170,7 @@ public class FireBaseAdapter {
 				msgThread.setMessages(messageList);
 				
 				//set event listener for thread:
-				msgThread.registerEventListener(latestMessages);
+				resetMessageThreadListener(userId, otherUserId, msgThread);
 				
 			}
 
@@ -1181,6 +1185,7 @@ public class FireBaseAdapter {
 		return msgThread;
 	}
 	
+	
 	public boolean addMessage(String userId, String otherUserId, Message message) throws DBFailureException {
 		
 		if(this.db == null) {
@@ -1191,7 +1196,7 @@ public class FireBaseAdapter {
 		String msgId = FireBaseSchema.toMessageThreadIndex(userId, otherUserId);
 		
 		DBDocumentPackage pck = message.toDBPackage();
-
+		
 		try {
 			DocumentReference dbRef = db.collection(FireBaseSchema.MESSAGE_THREADS_TABLE)
 			.document(msgId)
