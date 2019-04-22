@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.JFrame;
@@ -16,7 +17,6 @@ import model.InformationExpert;
 import model.PaymentInfo;
 import model.ResourceManager;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class EditAccountPageController.
  */
@@ -115,14 +115,12 @@ public class EditAccountPageController extends PageController{
 					try {
 						InformationExpert.getActiveAccount().getAccountProfile().setDateOB(this.getEditAccountModel().getDob());
 					} catch (ParseException e1) {
-						// TODO Auto-generated catch block
 						logger.warning("invalid date");
 					}
 					try {
 						InformationExpert.updateAccount(InformationExpert.getActiveAccount());
 						InformationExpert.updateProfile(InformationExpert.getActiveAccount().getAccountProfile());
 					} catch (DBFailureException e1) {
-						// TODO Auto-generated catch block
 						logger.warning("failed to save");
 					}
 					if(!this.getEditAccountModel().getSecQA().getText().isEmpty()) {
@@ -141,7 +139,6 @@ public class EditAccountPageController extends PageController{
 						InformationExpert.updateAccount(InformationExpert.getActiveAccount());
 						InformationExpert.updateProfile(InformationExpert.getActiveAccount().getAccountProfile());
 					} catch (DBFailureException e1) {
-						// TODO Auto-generated catch block
 						logger.warning("Database failed to update questionaire for " + InformationExpert.getActiveUserID());
 					}
 									
@@ -197,7 +194,6 @@ public class EditAccountPageController extends PageController{
 					logger.info("GOT PAYMENT INFO FROM DB\n");
 				}
 			} catch (DBFailureException e1) {
-				//database failure
 				logger.severe("Database failed to pull payment info for " + InformationExpert.getActiveUserID());
 				InvalidPopup p = new InvalidPopup(this.getEditAccountPanel(),"Error loading payment info from database");
 			}
@@ -214,10 +210,10 @@ public class EditAccountPageController extends PageController{
 					  try {
 							InformationExpert.deletePaymentInfo(InformationExpert.getActiveUserID());
 						} catch (DBFailureException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
+							logger.log(Level.SEVERE, "Databse Failure on end_payment: ", e1);
 						}
-						GraphicsController.processPage(PageCreator.PROFILE_PAGE, backPage);
+					  this.getEditAccountModel().getBtnUpgrade().setText("Upgrade Account!");
+					  this.getEditAccountModel().getBtnUpgrade().setActionCommand(UPGRADE);
 				} else {
 				  logger.info("Not removing payment info for " + InformationExpert.getActiveAccount().getEmail());
 				}
@@ -225,22 +221,31 @@ public class EditAccountPageController extends PageController{
 			case MUTE:
 				//	remove from match queues
 				int dialogButton = JOptionPane.YES_NO_OPTION;
-				int dialogResult = JOptionPane.showConfirmDialog(this.editAccountPanel, "Want your account muted?","Mute account?", dialogButton);
+				boolean muteStatus = InformationExpert.getActiveAccount().getAccountProfile().isMute();
+				String msg = muteStatus? "Want your account unmuted?" : "Want your account muted?";
+				int dialogResult = JOptionPane.showConfirmDialog(this.editAccountPanel, msg,"Account Muting", dialogButton);
+				
 				if(dialogResult == 0) {
-					logger.info("muting account "  + InformationExpert.getActiveAccount().getAccountProfile().getUsername());
-					//	DATA BASE LOGIC FOR MUTING ACCOUNT FROM Db
-
-					  InformationExpert.getActiveAccount().getAccountProfile().setMute(true);
-					  try {
-						InformationExpert.updateProfile(InformationExpert.getActiveAccount().getAccountProfile());
-					} catch (DBFailureException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+					
+					if(muteStatus) {
+						try {
+							InformationExpert.getActiveAccount().getAccountProfile().setMute(false);
+							InformationExpert.updateProfile(InformationExpert.getActiveAccount().getAccountProfile());
+							logger.info("Un-muted account " + InformationExpert.getActiveAccount().getAccountProfile().getUsername());
+							editAccountModel.getBtnMute().setText("Mute Account");
+						} catch (DBFailureException e1) {
+							logger.warning("Failed to update unmuted profile");
+						}
+					}else {
+						try {
+							InformationExpert.getActiveAccount().getAccountProfile().setMute(true);
+							InformationExpert.updateProfile(InformationExpert.getActiveAccount().getAccountProfile());
+							logger.info("Muted account " + InformationExpert.getActiveAccount().getAccountProfile().getUsername());
+							editAccountModel.getBtnMute().setText("Unmute Account");
+						} catch (DBFailureException e1) {
+							logger.warning("Failed to update muted profile");
+						}
 					}
-					  //	if yes set bool, if no unset bool
-				} else {
-					logger.info("Not muting account " + InformationExpert.getActiveAccount().getAccountProfile().getUsername());
-					InformationExpert.getActiveAccount().getAccountProfile().setMute(false);
 				}
 				
 				break;
@@ -293,9 +298,9 @@ public class EditAccountPageController extends PageController{
 			valid = false;
 			warnings.add("Please enter a username\n");
 		}
-		if(this.editAccountModel.getFrmtdtxtfldEnterUsername().getText().length() > 12) {
+		if(this.editAccountModel.getFrmtdtxtfldEnterUsername().getText().length() > 8) {
 			valid = false;
-			warnings.add("Character limit 12 exceeded\n");
+			warnings.add("Character limit 8 exceeded\n");
 		}
 		if(this.editAccountModel.getPwdEnterPass().getText().equalsIgnoreCase("")) {
 			if(!this.editAccountModel.getPwdValidatePass().getText().equalsIgnoreCase("")) {
@@ -319,7 +324,6 @@ public class EditAccountPageController extends PageController{
 		try {
 			this.editAccountModel.getDob();
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			valid = false;
 			warnings.add("invalid date: please enter dd/mm/yyyy\n");
 		}

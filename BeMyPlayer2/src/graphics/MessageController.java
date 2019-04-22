@@ -9,9 +9,7 @@ import model.Profile;
 import model.InformationExpert;
 import model.Message;
 
-import java.awt.KeyEventDispatcher;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
@@ -19,7 +17,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class MessageController.
  */
@@ -63,7 +60,9 @@ public class MessageController extends PageController implements ExternalListene
     	account = InformationExpert.getActiveAccount();
         try {
             currentThread = InformationExpert.getMessageThread(InformationExpert.getActiveUserID(), InformationExpert.getOtherProfile().getUserId());
-            currentThread.setUpdateListener(this);
+            if(currentThread == null) {
+                currentThread.setUpdateListener(this);
+            }
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Error- could not find message thread");
         }
@@ -86,6 +85,7 @@ public class MessageController extends PageController implements ExternalListene
     public void actionPerformed(ActionEvent e) {
         switch(e.getActionCommand()) {
             case SEND:
+            	
                 if (validateMsg()){
                     Message newMessage = new Message();
                     newMessage.setMessage(this.getMessageModel().getSendBox().getText());
@@ -95,24 +95,19 @@ public class MessageController extends PageController implements ExternalListene
                     try {
 						if(InformationExpert.addMessage(InformationExpert.getActiveUserID(), InformationExpert.getOtherProfile().getUserId(), newMessage)) {
 							//message upload successful
-							//TODO: Add message to thread, repaint pane
 							
 							if(this.getCurrentThread() == null) {
 								MessageThread t = new MessageThread();
 								t.addMessage(newMessage);
 								this.setCurrentThread(t);
+								this.updateMessageArea();
 							}
-							
-							// After sending to database, messages are added through the callback
-							// in the MessageThread Class
 						}
 						
-						this.updateMessageArea();
-						this.getMessageModel().getSendBox().setText("");
 					} catch (DBFailureException e1) {
-						// TODO print warning
-						e1.printStackTrace();
+						logger.log(Level.SEVERE, "Databse Failure during message sending: ", e1);
 					}
+            		this.getMessageModel().getSendBox().setText("");
                 }
                 break;
             case BACK:
@@ -121,11 +116,6 @@ public class MessageController extends PageController implements ExternalListene
                 break;
             case REFRESH:
                 logger.info("Refreshed");
-                /*try {
-                    currentThread = InformationExpert.getMessageThread(InformationExpert.getActiveUserID(), InformationExpert.getOtherProfile().getUserId());
-                } catch (DBFailureException e1) {
-                    logger.log(Level.SEVERE, "Could not find Thread");
-                }*/
         }
     }
     
@@ -134,6 +124,7 @@ public class MessageController extends PageController implements ExternalListene
     	//better method would be to dynamically determine what needs to be added
     	
     	this.getMessageModel().getThread().setText("");
+
     	
     	for (int i = 0; i < getCurrentThread().getMessages().size(); i++){
             if (getCurrentThread().getMessages().get(i).getSenderId().equals(InformationExpert.getActiveUserID())){
@@ -147,7 +138,8 @@ public class MessageController extends PageController implements ExternalListene
             	this.getMessageModel().getThread().append("\n");
             }
         }
-    }
+	}
+    
 
     /**
      * Validate msg.
@@ -164,12 +156,6 @@ public class MessageController extends PageController implements ExternalListene
             valid = false;
             warnings.add("Don't be shy! Enter a message.\n");
         }
-/*
-        if (this.messageModel.getThread().getText().contains(";")){
-            valid = false;
-            warnings.add("Please be nice to me :(\n");
-        }
-*/
         if(valid == false) {
             InvalidPopup p = new InvalidPopup(this.messagePanel, warnings);
         }
@@ -252,11 +238,12 @@ public class MessageController extends PageController implements ExternalListene
 	@Override
 	public void externalUpdate() {
 		this.updateMessageArea();
+		
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		if(e.getKeyChar() == e.VK_ENTER) {
+		if(e.getKeyChar() == KeyEvent.VK_ENTER) {
 			this.getMessageModel().getBtnSend().doClick();
 		}
 	}

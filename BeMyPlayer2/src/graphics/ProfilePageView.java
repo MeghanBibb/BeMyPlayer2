@@ -2,36 +2,27 @@ package graphics;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import firebase.DBFailureException;
-import model.Account;
 import model.InformationExpert;
-import model.MatchType;
 import model.ResourceManager;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ProfilePageView.
  */
@@ -61,22 +52,12 @@ public class ProfilePageView {
 		//init buttons
 		JButton btnBack = new JButton("Back");
 		btnBack.setBounds(10,10,110,40);
-		btnBack.setActionCommand(profileController.BACK);
+		btnBack.setActionCommand(ProfilePageController.BACK);
 		btnBack.setBackground(Colors.Yellow);
 		btnBack.setFont(Fonts.getFont((float)12));
 		btnBack.setForeground(Colors.Red);
 		btnBack.addActionListener(profileController);
 		profileController.getProfileModel().setBtnBack(btnBack);
-		
-		//	verify a == Information Expert's active account
-		/*
-		 * if(a.equals(InformationExpert.account)){
-		 * 		//	add edit profile options
-		 * }
-		 * else{
-		 * 		//	add message and block buttons 
-		 * }
-		 */
 		
 		//	pull information for fields from account passed 
 		if(profileController.isActiveAccount()) {
@@ -100,7 +81,7 @@ public class ProfilePageView {
 			profileController.getProfileModel().setProfileImage(imgLabel);
 			JButton btnEdit = new JButton("Edit Profile");
 			btnEdit.setBounds(370,10,120,40);
-			btnEdit.setActionCommand(profileController.EDIT_ACCOUNT);
+			btnEdit.setActionCommand(ProfilePageController.EDIT_ACCOUNT);
 			btnEdit.setBackground(Colors.Yellow);
 			btnEdit.setFont(Fonts.getFont((float)12));
 			btnEdit.setForeground(Colors.Red);
@@ -126,7 +107,7 @@ public class ProfilePageView {
 			profileController.getProfileModel().setProfileImage(imgLabel);
 			JButton btnBlock = new JButton("Block");
 			btnBlock.setBounds(300, 350, 90, 40);
-			btnBlock.setActionCommand(profileController.BLOCK);
+			btnBlock.setActionCommand(ProfilePageController.BLOCK);
 			btnBlock.setBackground(Colors.Yellow);
 			btnBlock.addActionListener(profileController);
 			btnBlock.setFont(Fonts.getFont((float)12));
@@ -142,7 +123,7 @@ public class ProfilePageView {
 					
 					JButton btnMessage = new JButton("Message");
 					btnMessage.setBounds(100,350,90,40);
-					btnMessage.setActionCommand(profileController.MESSAGE);
+					btnMessage.setActionCommand(ProfilePageController.MESSAGE);
 					btnMessage.setBackground(Colors.Yellow);
 					btnMessage.setFont(Fonts.getFont((float)12));
 					btnMessage.setForeground(Colors.Red);
@@ -162,10 +143,8 @@ public class ProfilePageView {
 		lblBeMyPlayer.setForeground(Colors.Yellow);
 		lblBeMyPlayer.setBounds(145,0,204,69);
 		profileController.getProfileModel().setLblBeMyPlayer(lblBeMyPlayer);
-		//mainFrame.setIconImage(Toolkit.getDefaultToolkit().getImage("filepath"));
 		
 		BufferedImage img1 = ResourceManager.loadImage("splash_heart.png");
-		//img1 = new ImageIcon("C:\\Backup of student files\\Spring 2019\\BeMyPlayer2\\BeMyPlayer2\\BeMyPlayer2\\img\\hearts.png").getImage();
 		heartImage .setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH)));
 		heartImage.setBounds(315, 22, 30, 30);
 		

@@ -1,7 +1,6 @@
 package graphics;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -12,11 +11,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import firebase.DBFailureException;
-import model.Account;
 import model.InformationExpert;
 import model.PaymentInfo;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class PaymentPageController.
  */
@@ -99,7 +96,6 @@ public class PaymentPageController extends PageController{
 		int month;
 		int year;
 		int cvc;
-		BigInteger num;
 		boolean isValid = true;
 		List<String> warnings = new ArrayList<>();
 		try {
@@ -136,7 +132,8 @@ public class PaymentPageController extends PageController{
 		}
 		
 		try {
-			num = new BigInteger(paymentModel.getCardNumber().getText());
+			@SuppressWarnings("unused")
+			BigInteger num = new BigInteger(paymentModel.getCardNumber().getText());
 			if(paymentModel.getCardNumber().getText().length() != 16) {
 				isValid = false;
 				warnings.add("Invalid card number length\n");
@@ -174,7 +171,7 @@ public class PaymentPageController extends PageController{
 					} catch (DBFailureException e1) {
 						logger.warning("Database Failure: Could not upload new Payment Info");
 					}
-					GraphicsController.processPage(PageCreator.EDIT_ACCOUNT_PAGE,backPage);
+					GraphicsController.processPage(PageCreator.PROFILE_PAGE,backPage);
 				}
 				break;
 		}

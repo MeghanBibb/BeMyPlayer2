@@ -1,6 +1,5 @@
 package model;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Enum MatchStatus.
  */

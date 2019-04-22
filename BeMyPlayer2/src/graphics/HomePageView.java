@@ -3,19 +3,14 @@ package graphics;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 
 import model.ResourceManager;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class HomePageView.
  */
@@ -34,7 +29,6 @@ public class HomePageView {
 		homeController.setHomePageModel(new HomePageModel());
 		
 		//init colors
-		Color red = new Color(134,48,111);
 		Color yellow = Colors.Yellow;
 		JLabel heartImage = new JLabel();
 		
@@ -48,7 +42,7 @@ public class HomePageView {
 		//init buttons
 		JButton btnLogout = new JButton("Logout");
 		btnLogout.setBounds(10, 10, 90, 40);
-		btnLogout.setActionCommand(homeController.LOGOUT);
+		btnLogout.setActionCommand(HomePageController.LOGOUT);
 		btnLogout.setBackground(yellow);
 		btnLogout.setFont(Fonts.getFont((float) 12));
 		btnLogout.setForeground(Colors.Red);
@@ -57,7 +51,7 @@ public class HomePageView {
 		
 		JButton btnAccount = new JButton("My Profile");
 		btnAccount.setBounds(390,10,100,40);
-		btnAccount.setActionCommand(homeController.ACCOUNT);
+		btnAccount.setActionCommand(HomePageController.ACCOUNT);
 		btnAccount.setBackground(yellow);
 		btnAccount.setFont(Fonts.getFont((float) 12));
 		btnAccount.setForeground(Colors.Red);
@@ -72,16 +66,14 @@ public class HomePageView {
 		
 		JButton btnLove = new JButton("Find Love");
 		btnLove.setBounds(30,100,200,140);
-		btnLove.setActionCommand(homeController.FIND_LOVE);
+		btnLove.setActionCommand(HomePageController.FIND_LOVE);
 		btnLove.setFont(Fonts.getFont((float) 12));
 		btnLove.setBackground(Colors.Red);
 		btnLove.setContentAreaFilled(false);
 		btnLove.addActionListener(homeController);
-		Border thickBorder = new LineBorder(Colors.Yellow, 1);
 	    btnLove.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		homeController.getHomePageModel().setBtnFindLove(btnLove);
 		BufferedImage findLovepic = ResourceManager.loadImage("findlove.png");
-		//btnLove.setIcon(new ImageIcon(new ImageIcon(findLovepic).getImage().getScaledInstance(200, 140, Image.SCALE_SMOOTH)));
 		btnLove.setIcon(new ImageIcon(new ImageIcon(findLovepic).getImage().getScaledInstance(200, 140, Image.SCALE_SMOOTH)));
 		
 		JLabel lblFriend = new JLabel("Find Friends");
@@ -92,10 +84,9 @@ public class HomePageView {
 		
 		JButton btnFriends = new JButton("Find Friends");
 		btnFriends.setBounds(270,100,200,140);
-		btnFriends.setActionCommand(homeController.FIND_FRIENDS);
+		btnFriends.setActionCommand(HomePageController.FIND_FRIENDS);
 		btnFriends.setFont(Fonts.getFont((float) 12));
 		btnFriends.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		//btnFriends.setForeground(Colors.Red);
 		btnFriends.setContentAreaFilled(false);
 		btnFriends.addActionListener(homeController);
 		homeController.getHomePageModel().setBtnFindFriends(btnFriends);
@@ -104,7 +95,7 @@ public class HomePageView {
 		
 		JButton btnSupport = new JButton("<HTML><U>Support</U></HTML>");
 		btnSupport.setBounds(0,360,90,40);
-		btnSupport.setActionCommand(homeController.SUPPORT);
+		btnSupport.setActionCommand(HomePageController.SUPPORT);
 		btnSupport.setOpaque(true);
 		btnSupport.setContentAreaFilled(false);
 		btnSupport.setBorderPainted(false);
@@ -117,7 +108,7 @@ public class HomePageView {
 		
 		JButton btnMatches = new JButton("View Matches");
 		btnMatches.setBounds(60,270,360,90);
-		btnMatches.setActionCommand(homeController.VIEW_MATCHES);
+		btnMatches.setActionCommand(HomePageController.VIEW_MATCHES);
 		btnMatches.setBackground(yellow);
 		btnMatches.setFont(Fonts.getFont((float) 12));
 		btnMatches.setForeground(Colors.Red);
@@ -130,10 +121,8 @@ public class HomePageView {
 		lblBeMyPlayer.setForeground(Colors.Yellow);
 		lblBeMyPlayer.setBounds(145,0,204,69);
 		homeController.getHomePageModel().setLblBeMyPlayer(lblBeMyPlayer);
-		//mainFrame.setIconImage(Toolkit.getDefaultToolkit().getImage("filepath"));
 		
 		BufferedImage img1 = ResourceManager.loadImage("splash_heart.png");
-		//img1 = new ImageIcon("C:\\Backup of student files\\Spring 2019\\BeMyPlayer2\\BeMyPlayer2\\BeMyPlayer2\\img\\hearts.png").getImage();
 		heartImage.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH)));
 		heartImage.setBounds(315, 22, 30, 30);
 		
@@ -151,7 +140,7 @@ public class HomePageView {
 		
 		JButton credits = new JButton("<HTML><U>Credits</U></HTML>");
 		credits.setBounds(60,360,90,40);
-		credits.setActionCommand(homeController.CREDITS);
+		credits.setActionCommand(HomePageController.CREDITS);
 		credits.setOpaque(true);
 		credits.setContentAreaFilled(false);
 		credits.setBorderPainted(false);
@@ -163,7 +152,7 @@ public class HomePageView {
 		
 		JButton btnMute = new JButton("<HTML><U>Turn Music Off</U></HTML>");
 		btnMute.setBounds(115,360,120,40);
-		btnMute.setActionCommand(homeController.SOUND);
+		btnMute.setActionCommand(HomePageController.SOUND);
 		btnMute.setBackground(yellow);
 		btnMute.setFont(Fonts.getFont((float) 12));
 		btnMute.setOpaque(true);

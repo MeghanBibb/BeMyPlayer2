@@ -1,8 +1,9 @@
 package graphics;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JTextArea;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SupportModel.
  */

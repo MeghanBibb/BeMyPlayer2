@@ -2,11 +2,6 @@ package graphics;
 
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.FileAlreadyExistsException;
-import java.nio.file.Files;
 import java.util.logging.Logger;
 
 import javax.swing.JButton;
@@ -17,7 +12,6 @@ import firebase.DBFailureException;
 import model.Account;
 import model.InformationExpert;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ViewMatchesController.
  */
@@ -41,9 +35,6 @@ public class ViewMatchesController extends PageController{
 	
 	/** The view matches panel. */
 	private JPanel viewMatchesPanel;
-	
-	/** The page num. */
-	private int pageNum;
 	
 	/** The a. */
 	private Account a;
@@ -74,7 +65,6 @@ public class ViewMatchesController extends PageController{
 	 */
 	//	check command 
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		if(e.getActionCommand() == BACK) {
 			logger.info("back");
 			GraphicsController.processPage(PageCreator.HOME_PAGE, backPage);
@@ -85,7 +75,6 @@ public class ViewMatchesController extends PageController{
 			try {
 				InformationExpert.setOtherProfile(text);
 			} catch (DBFailureException e1) {
-				// TODO Auto-generated catch block
 				logger.warning("database failed to load profile");
 			}
 			if(brief == null) {

@@ -13,7 +13,6 @@ import javax.swing.JPanel;
 import firebase.DBFailureException;
 import model.InformationExpert;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class CreditsPageController.
  */
@@ -53,7 +52,6 @@ public class CreditsPageController extends PageController{
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		if(e.getActionCommand() == BACK) {
 			logger.info("Returning to home page");
 			GraphicsController.processPage(PageCreator.HOME_PAGE,backPage);
@@ -64,7 +62,6 @@ public class CreditsPageController extends PageController{
 			try {
 				InformationExpert.setOtherProfile(text);
 			} catch (DBFailureException e1) {
-				// TODO Auto-generated catch block
 				logger.severe("database failed to load profile");
 				InvalidPopup p = new InvalidPopup(this.getCreditsPanel(),"Database failed to load profiles");
 			}

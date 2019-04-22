@@ -29,7 +29,6 @@ import model.InformationExpert;
 import model.PaymentInfo;
 import model.ResourceManager;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class EditAccountPageView.
  */
@@ -127,7 +126,9 @@ public class EditAccountPageView {
 		}
 		
 		
-		JButton btnMute = new JButton ("Mute Account");
+		String muteButtonText = InformationExpert.getActiveAccount().getAccountProfile().isMute()?
+				"Unmute Account" : "Mute Account";
+		JButton btnMute = new JButton (muteButtonText);
 		btnMute.setBounds(115,270,250,40);
 		btnMute.setBackground(Colors.Yellow);
 		btnMute.setFont(Fonts.getFont((float) 12));
@@ -675,7 +676,6 @@ public class EditAccountPageView {
 					try {
 						img1 = ImageConverter.convertToJPG(ImageIO.read(new File(f.getAbsolutePath())));
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
 						logger.warning("Failed to load image");
 						img1 = CreateAccountPageModel.DEFAULT_PROFILE_IMAGE;
 						editController.getEditAccountModel().setImagePath(img1.toString());
@@ -730,19 +730,16 @@ public class EditAccountPageView {
 				}
 				@Override
 				public void insertUpdate(DocumentEvent e) {
-					// TODO Auto-generated method stub
 					update();
 				}
 
 				@Override
 				public void removeUpdate(DocumentEvent e) {
-					// TODO Auto-generated method stub
 					update();
 				}
 
 				@Override
 				public void changedUpdate(DocumentEvent e) {
-					// TODO Auto-generated method stub
 					update();
 				}
 

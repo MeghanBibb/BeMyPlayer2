@@ -3,7 +3,6 @@ package graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SwipeButtonController.
  */

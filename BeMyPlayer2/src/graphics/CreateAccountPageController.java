@@ -166,7 +166,6 @@ public class CreateAccountPageController extends PageController{
 					
 						InformationExpert.resetClientModel();
 					}else {
-						//TODO: Handle account exists already:
 						throw new RuntimeException();
 					}
 				} catch (Exception e1) {
@@ -196,23 +195,12 @@ public class CreateAccountPageController extends PageController{
 	 */
 	public boolean validateCreatePage1() {
 		boolean valid = true;
-		
-		//	gamer tag, password, revalidate password, validate security question, validate answer, validate gender and dob
-		//	validation needed
-		/*
-		 * no sql commands
-		 * no empty 
-		 * limit size
-		 * 
-		 * age > 0  && less than 100
-		 * 
-		 *//*
-		 */
+
 		//	VALIDATIONS
 		List<String> warnings = new ArrayList<>();
-		if(this.createAccountPageModel.getFrmtdtxtfldEnterUsername().getText().length() > 12) {
+		if(this.createAccountPageModel.getFrmtdtxtfldEnterUsername().getText().length() > 8) {
 			valid = false;
-			warnings.add("Character limit 12 exceeded for username\n");
+			warnings.add("Character limit 8 exceeded for username\n");
 		}
 		if(this.createAccountPageModel.getFrmtdtxtfldEnterUsername().getText().equalsIgnoreCase("")) {
 			valid = false;
@@ -246,7 +234,6 @@ public class CreateAccountPageController extends PageController{
 		try {
 			this.createAccountPageModel.getDob();
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			valid = false;
 			warnings.add("invalid date: please enter dd/mm/yyyy\n");
 		}

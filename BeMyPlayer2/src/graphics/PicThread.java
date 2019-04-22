@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.io.InputStream;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -53,7 +52,6 @@ public class PicThread extends Thread{
 		try {
 			img1 = InformationExpert.getProfileImage(this.uid);
 		} catch (DBFailureException e) {
-			// TODO Auto-generated catch block
 			img1 = DEFAULT_PIC;
 			logger.warning("database failed to load pic for " + this.uid);
 		}
@@ -65,7 +63,6 @@ public class PicThread extends Thread{
 			temp  = null;
 		}
 		if(temp != null) {
-		//Image img1 = new ImageIcon("filepathfromDB").getImage();//	add try catch and dont add if invalid file path
 		JButton setIcon = new JButton();
 		setIcon.setLayout(new FlowLayout());
 		setIcon.add(new CircularImage((new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH)))));

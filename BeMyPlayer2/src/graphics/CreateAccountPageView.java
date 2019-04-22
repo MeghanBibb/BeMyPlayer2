@@ -6,8 +6,6 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -24,7 +22,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import firebase.ImageConverter;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class CreateAccountPageView.
  */
@@ -293,7 +290,6 @@ public class CreateAccountPageView {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				capController.getCreateAccountPageModel().getCheckList().get(0).setSelected(xboxBtn.isSelected());
 			}
 			
@@ -316,7 +312,6 @@ public class CreateAccountPageView {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				capController.getCreateAccountPageModel().getCheckList().get(1).setSelected(psBtn.isSelected());
 			}
 			
@@ -339,7 +334,6 @@ public class CreateAccountPageView {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				capController.getCreateAccountPageModel().getCheckList().get(2).setSelected(nintendoBtn.isSelected());
 			}
 			
@@ -363,7 +357,6 @@ public class CreateAccountPageView {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				capController.getCreateAccountPageModel().getCheckList().get(3).setSelected(pcBtn.isSelected());
 			}
 			
@@ -386,7 +379,6 @@ public class CreateAccountPageView {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				capController.getCreateAccountPageModel().getCheckList().get(4).setSelected(vrBtn.isSelected());
 			}
 			
@@ -409,7 +401,6 @@ public class CreateAccountPageView {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				capController.getCreateAccountPageModel().getCheckList().get(5).setSelected(RetroBtn.isSelected());
 			}
 			
@@ -434,7 +425,6 @@ public class CreateAccountPageView {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				capController.getCreateAccountPageModel().getCheckList().get(6).setSelected(actionBtn.isSelected());
 			}
 			
@@ -457,7 +447,6 @@ public class CreateAccountPageView {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				capController.getCreateAccountPageModel().getCheckList().get(7).setSelected(advBtn.isSelected());
 			}
 			
@@ -480,7 +469,6 @@ public class CreateAccountPageView {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				capController.getCreateAccountPageModel().getCheckList().get(8).setSelected(FPSBtn.isSelected());
 			}
 			
@@ -503,7 +491,6 @@ public class CreateAccountPageView {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				capController.getCreateAccountPageModel().getCheckList().get(9).setSelected(MMOBtn.isSelected());
 			}
 			
@@ -526,7 +513,6 @@ public class CreateAccountPageView {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				capController.getCreateAccountPageModel().getCheckList().get(10).setSelected(MOBABtn.isSelected());
 			}
 			
@@ -549,7 +535,6 @@ public class CreateAccountPageView {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				capController.getCreateAccountPageModel().getCheckList().get(11).setSelected(pzlBtn.isSelected());
 			}
 			
@@ -572,7 +557,6 @@ public class CreateAccountPageView {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				capController.getCreateAccountPageModel().getCheckList().get(12).setSelected(rythBtn.isSelected());
 			}
 			
@@ -595,7 +579,6 @@ public class CreateAccountPageView {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				capController.getCreateAccountPageModel().getCheckList().get(13).setSelected(platBtn.isSelected());
 			}
 			
@@ -618,7 +601,6 @@ public class CreateAccountPageView {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				capController.getCreateAccountPageModel().getCheckList().get(14).setSelected(RTSBtn.isSelected());
 			}
 			
@@ -641,7 +623,6 @@ public class CreateAccountPageView {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				capController.getCreateAccountPageModel().getCheckList().get(15).setSelected(RPGBtn.isSelected());
 			}
 			
@@ -664,7 +645,6 @@ public class CreateAccountPageView {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				capController.getCreateAccountPageModel().getCheckList().get(16).setSelected(stratBtn.isSelected());
 			}
 			
@@ -687,7 +667,6 @@ public class CreateAccountPageView {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				capController.getCreateAccountPageModel().getCheckList().get(17).setSelected(sandBtn.isSelected());
 			}
 			
@@ -765,8 +744,6 @@ public class CreateAccountPageView {
 			img1 = CreateAccountPageModel.DEFAULT_PROFILE_IMAGE;
 		}
 		
-		//lblNewLabel.setIcon(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
-		//lblNewLabel.setBounds(75, 25, 150, 150);
 		capController.getCreateAccountPageModel().setImagePath(img1.toString());
 		final JButton setIcon = new JButton();
 		setIcon.setMargin(new Insets(0,0,0,0));
@@ -803,7 +780,6 @@ public class CreateAccountPageView {
 					try {
 						img1 = ImageConverter.convertToJPG(ImageIO.read(new File(f.getAbsolutePath())));
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
 						img1 = CreateAccountPageModel.DEFAULT_PROFILE_IMAGE;
 						logger.warning("Image not found exception. Default image selected");
 					}
@@ -852,19 +828,16 @@ public class CreateAccountPageView {
 			}
 			@Override
 			public void insertUpdate(DocumentEvent e) {
-				// TODO Auto-generated method stub
 				update();
 			}
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
-				// TODO Auto-generated method stub
 				update();
 			}
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
-				// TODO Auto-generated method stub
 				update();
 			}
 

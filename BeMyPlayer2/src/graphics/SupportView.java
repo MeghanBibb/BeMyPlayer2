@@ -1,12 +1,16 @@
 package graphics;
 
-import javax.swing.*;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
-import java.awt.*;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
-// TODO: Auto-generated Javadoc
+import java.awt.Dimension;
+import java.awt.Font;
+
 /**
  * The Class SupportView.
  */
@@ -21,8 +25,6 @@ public class SupportView {
     public static void startSupportPage(SupportController supportController, JFrame mainFrame){
         //init Model
         supportController.setSupportModel(new SupportModel());
-        Color red = Colors.Red;
-        Color yellow = Colors.Yellow;
 
 
         //init panel
@@ -46,7 +48,7 @@ public class SupportView {
 
         JButton btnSubmit = new JButton("Submit");
         btnSubmit.setBounds(338,325,90,40);
-        btnSubmit.setActionCommand(supportController.SUBMIT);
+        btnSubmit.setActionCommand(SupportController.SUBMIT);
         btnSubmit.setFont(Fonts.getFont((float) 12));
         btnSubmit.setBackground(Colors.Yellow);
         btnSubmit.setForeground(Colors.Red);
@@ -55,35 +57,27 @@ public class SupportView {
    
         //	probably replaced with header in iteration 3
         JLabel lblBeMyPlayer = new JLabel("Be My Player 2");
-		lblBeMyPlayer.setFont(new Font("Monospaced", Font.BOLD, 20));
 		lblBeMyPlayer.setForeground(Colors.Yellow);
-		//lblBeMyPlayer.setForeground(Colors.Red);
 		lblBeMyPlayer.setBounds(160,0,204,69);
 		lblBeMyPlayer.setFont(Fonts.getFont((float) 12));
 		supportController.getSupportPanel().add(lblBeMyPlayer);
         //	init fields and listeners
 
 
-        JComboBox issueSelection = new JComboBox<String>();
-        issueSelection.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent e) {
-                //supportController.getSupportModel().setissueSelection(e.getItem().toString());
-            }
-        });
+        JComboBox<String> issueSelection = new JComboBox<String>();
         issueSelection.setToolTipText("What kind of issue are you having?");
-        issueSelection.setModel(new DefaultComboBoxModel(new String[] {"Select closest issue type",
+        issueSelection.setModel(new DefaultComboBoxModel<String>(new String[] {"Select closest issue type",
                 "Other Users", "Messaging", "Payment", "My Profile"}));
         issueSelection.setBounds(35, 70, 400, 22);
         issueSelection.setFont(Fonts.getFont((float) 12));
         issueSelection.setForeground(Colors.Red);
-        issueSelection.setBackground(yellow);
+        issueSelection.setBackground(Colors.Yellow);
         issueSelection.setVisible(true);
         supportController.getSupportModel().setProbArea(issueSelection);
 		
         JLabel descript = new JLabel("Enter description:");
         descript.setForeground(Colors.Yellow);
         descript.setFont(Fonts.getFont((float) 12));
-        //descript.setForeground(Colors.Red);
         descript.setFont(new Font("Monospaced", Font.BOLD, 16));
         descript.setBounds(35,100,204,50);
 		supportController.getSupportPanel().add(descript);
