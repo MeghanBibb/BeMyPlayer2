@@ -250,9 +250,11 @@ public class EditAccountPageController extends PageController{
 				
 				break;
 			case DELETE:
-				int dialogButton2 = JOptionPane.YES_NO_OPTION;
-				int dialogResult2= JOptionPane.showConfirmDialog(this.editAccountPanel, "Are you sure you want to delete your account?","Delete account?", dialogButton2);
-				if(dialogResult2 == 0) {
+				
+				String m = JOptionPane.showInputDialog("Type your password to delete account");
+				//dialogButton.int dialogResult2= JOptionPane.showConfirmDialog(this.editAccountPanel, "Are you sure you want to delete your account?","Delete account?", dialogButton2);
+				m = Hasher.hashString(m);
+				if(m.equals(InformationExpert.getActiveAccount().getPasswordHash())) {
 					  logger.info("attempting to delete account "  + InformationExpert.getActiveUserID());
 					  
 					  //attempt to delete account:
@@ -266,6 +268,7 @@ public class EditAccountPageController extends PageController{
 					  
 					  GraphicsController.processPage(PageCreator.LOGIN_PAGE,backPage);
 				} else {
+					 InvalidPopup p = new InvalidPopup(this.editAccountPanel, "Invalid Password");
 				  logger.info("Not deleting account " + InformationExpert.getActiveUserID());
 				} 
 				break;

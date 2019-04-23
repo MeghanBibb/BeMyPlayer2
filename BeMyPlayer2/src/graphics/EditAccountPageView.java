@@ -714,6 +714,7 @@ public class EditAccountPageView {
 			editController.getEditAccountPanel().add(charCount);
 			//	description box
 			JTextArea description = new JTextArea();
+			description.setLineWrap(true);
 			String desc;
 			desc = InformationExpert.getActiveAccount().getAccountProfile().getDescription();
 			desc = desc.replace("<HTML>","");

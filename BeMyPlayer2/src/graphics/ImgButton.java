@@ -5,17 +5,10 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
@@ -23,6 +16,10 @@ import model.ResourceManager;
 
 public class ImgButton extends JButton{
 
+	/**
+	 * default serial ID
+	 */
+	private static final long serialVersionUID = 1L;
 	static BufferedImage image = null;
 	static Border b2 = null;
 
