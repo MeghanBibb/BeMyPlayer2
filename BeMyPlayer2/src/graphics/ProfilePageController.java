@@ -95,7 +95,7 @@ public class ProfilePageController extends PageController {
 				GraphicsController.processPage(PageCreator.EDIT_ACCOUNT_PAGE,backPage);
 				break;
 			case BLOCK:
-				logger.info("User " + InformationExpert.getActiveUserID() + " has blocked user" + InformationExpert.getOtherProfile().getUserId());
+				logger.info("User " + InformationExpert.getActiveUserID() + " has blocked user" + InformationExpert.getOtherProfile().getUsername());
 				
 				try {
 					Match thisMatch;

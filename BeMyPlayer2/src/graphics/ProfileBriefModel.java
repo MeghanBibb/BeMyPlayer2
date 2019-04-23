@@ -91,7 +91,7 @@ public class ProfileBriefModel extends JPanel{
 					try {
 						InformationExpert.setOtherProfile(profile.getUserId());
 					} catch (DBFailureException e1) {
-						logger.severe("Failed to load user profile for " + profile.getUserId());
+						logger.severe("Failed to load user profile for " + profile.getUsername());
 					}
 					 
 					GraphicsController.processPage(PageCreator.PROFILE_PAGE, backPage);

@@ -40,9 +40,7 @@ public class CreditsPageController extends PageController{
 	 * @see graphics.PageController#launchPage(javax.swing.JFrame, java.lang.String)
 	 */
 	public void launchPage(JFrame mainFrame, String back) {
-		if(back != null) {
-			backPage = back;
-		}
+		backPage = PageCreator.CREDITS_PAGE;
 		this.copyFrame = mainFrame;
 		CreditsPageView.launchPage(this,mainFrame);
 	}
@@ -66,11 +64,11 @@ public class CreditsPageController extends PageController{
 				InvalidPopup p = new InvalidPopup(this.getCreditsPanel(),"Database failed to load profiles");
 			}
 			if(brief == null) {
-				brief = new ProfileBriefModel(InformationExpert.getOtherProfile(),new Rectangle(250,120,215,245),PageCreator.MATCHES_PAGE);
+				brief = new ProfileBriefModel(InformationExpert.getOtherProfile(),new Rectangle(250,120,215,245),backPage);
 			}
 			else {
 				this.copyFrame.remove(brief);
-				brief = new ProfileBriefModel(InformationExpert.getOtherProfile(),new Rectangle(250,120,215,245),PageCreator.MATCHES_PAGE);
+				brief = new ProfileBriefModel(InformationExpert.getOtherProfile(),new Rectangle(250,120,215,245),backPage);
 			}
 			this.copyFrame.add(brief);
 			this.copyFrame.revalidate();
