@@ -102,6 +102,7 @@ public class CreditsPageController extends PageController{
 	 */
 	protected List<String> getCreators(){
 		List<String> creators = new ArrayList<>();
+		/*hardcoded accounts of creators*/
 		creators.add("sBMUWYKVuwXMHUhURkgZ");
 		creators.add("ye3oAXBbQIGaCkG3XNIW");
 		creators.add("xIjqV0bMIM6hGW3TAsvr");
