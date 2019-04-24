@@ -127,7 +127,7 @@ public class HomePageView {
 		JButton site = new JButton("<HTML><U>BeMyPlayer2 Webpage</U></HTML>");
 		site.setActionCommand("launchsite");
 		site.addActionListener(homeController);
-		site.setBounds(300,360,200,30);
+		site.setBounds(300,360,200,40);
 		site.setOpaque(true);
 		site.setContentAreaFilled(false);
 		site.setBorderPainted(false);
