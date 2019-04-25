@@ -204,7 +204,7 @@ public class EditAccountPageController extends PageController{
 				
 				/* make popup warning*/
 				int dialogButtonP = JOptionPane.YES_NO_OPTION;
-				int dialogResultP= JOptionPane.showConfirmDialog(this.editAccountPanel, "Are you sure you want to cancel your payment plan? You will no longer benefit from being a pro account.","Unsubscribe from pro features?", dialogButtonP);
+				int dialogResultP= JOptionPane.showConfirmDialog(this.editAccountPanel, "Are you sure you want to cancel your payment plan?\n You will no longer benefit from being a pro account.","Unsubscribe from pro features?", dialogButtonP);
 				if(dialogResultP == 0) {
 					  logger.info("removing payment info for "  + InformationExpert.getActiveAccount().getEmail());
 					  try {

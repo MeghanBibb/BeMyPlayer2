@@ -383,8 +383,11 @@ public class InformationExpert {
 				List<Profile> importedProfs = 
 				databaseAdapter.getUnmatchedProfiles(uid, FireBaseAdapter.FRIEND_MATCHES, clientModel.getFriendMatchBatch());
 				
-				if(importedProfs.isEmpty())
+				if(importedProfs.isEmpty()) {
+					System.out.print("EMPTYYYYYYYYYYYYY");
 					return false;
+					
+				}
 
 				//add match batch from database:
 
