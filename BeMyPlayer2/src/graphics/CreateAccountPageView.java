@@ -809,6 +809,7 @@ public class CreateAccountPageView {
 		//	description box
 		JTextArea description = new JTextArea();
 		description.setLineWrap(true);
+		description.setWrapStyleWord(true);
 		if(visited == true) {
 			description.setText(capController.getCreateAccountPageModel().getCharDescription().getText());
 			capController.getCreateAccountPageModel().getCharcount().setText(
