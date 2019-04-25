@@ -78,7 +78,6 @@ public class SupportView {
         JLabel descript = new JLabel("Enter description:");
         descript.setForeground(Colors.Yellow);
         descript.setFont(Fonts.getFont((float) 12));
-        descript.setFont(new Font("Monospaced", Font.BOLD, 16));
         descript.setBounds(35,100,204,50);
 		supportController.getSupportPanel().add(descript);
 		

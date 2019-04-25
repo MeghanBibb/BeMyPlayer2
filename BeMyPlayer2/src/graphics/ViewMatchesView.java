@@ -57,7 +57,7 @@ public class ViewMatchesView {
 		
 		
 		//	init buttons and add to panel
-		JButton backbtn = new JButton("Back");
+		ImgButton backbtn = new ImgButton("Back");
 		backbtn.setBounds(25, 25, 90, 40);
 		backbtn.setBackground(Colors.Yellow);
 		backbtn.setForeground(Colors.Red);

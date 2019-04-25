@@ -51,13 +51,25 @@ public class ImgButton extends JButton{
     	Graphics2D g2 = (Graphics2D)g;
     	
         this.setMinimumSize(new Dimension((this.getWidth()), this.getHeight()));
-        RoundRectangle2D rect = new RoundRectangle2D.Float();
-        rect.setRoundRect(0, 0, this.getWidth(), this.getHeight(), 10, 10);
+        RoundRectangle2D rect = new RoundRectangle2D.Float(0, 0, this.getWidth(), this.getHeight(), 10, 10);
+        //rect.setRoundRect(0, 0, this.getWidth(), this.getHeight(), 10, 10);
+    
+        /*
+         * RoundRectangle2D r = new RoundRectangle2D.Float(this.getAlignmentX(), this.getAlignmentY(), this.getWidth(), this.getHeight(), 7, 7);
+		g.setClip(r);
+	    super.paintComponent(g);
+	    
+		Image backgroundImage;
+		backgroundImage = ResourceManager.loadImage("profile_brief_background.png");
+		g.drawImage(backgroundImage.getScaledInstance(this.getWidth()+20, this.getHeight(), Image.SCALE_SMOOTH), 0, 0, null);	
+         */
         
         g2.setClip(rect);
         g2.clip(rect);
         
         g2.drawImage(image.getScaledInstance((int) ((this.getMinimumSize().getWidth())*3)/2, (this.getHeight()*3)/2, Image.SCALE_SMOOTH), -10, -5, null);
+        
+ 
         
         super.paintComponent(g2);
     }  
