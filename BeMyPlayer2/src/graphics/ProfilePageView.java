@@ -191,7 +191,7 @@ public class ProfilePageView {
 		profileController.getProfileModel().setLblConsoles(lblConsoles);
 		
 		//init description
-		JLabel description = new JLabel();
+		ProfileBioBox description = new ProfileBioBox();
 		if(profileController.isActiveAccount()) {
 			description.setText(InformationExpert.getActiveAccount().getAccountProfile().getDescription());
 		}
@@ -200,12 +200,11 @@ public class ProfilePageView {
 		}
 		
 		
-		description.setBounds(10, 170, 250, 140);
+		description.setBounds(20, 170, 300, 200);
 		description.setOpaque(false);
 		description.setForeground(Colors.Yellow);
 		description.setHorizontalAlignment(JTextField.LEFT);
 		description.setVerticalAlignment(JTextField.NORTH);
-		description.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		profileController.getProfileModel().setTxtField(description);
 		
 		//checkbox
