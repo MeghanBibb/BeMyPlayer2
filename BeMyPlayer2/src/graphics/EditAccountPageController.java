@@ -1,5 +1,6 @@
 package graphics;
 
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JTextArea;
 
 import firebase.DBFailureException;
 import firebase.Hasher;
@@ -150,7 +152,8 @@ public class EditAccountPageController extends PageController{
 			case SUBMITEDITPROFILE:
 				if(validateCreatePage3() == true) {
 					String desc = "<HTML>";
-					desc += this.editAccountModel.getCharDescription().getText();
+					String area = this.formatText(this.editAccountModel.getCharDescription());
+					desc += area;
 					desc = desc.replace("\n","<br>");
 					desc += "<HTML>";
 					InformationExpert.getActiveAccount().getAccountProfile().setProfilePicture(this.editAccountModel.getProfileImg());
@@ -441,6 +444,32 @@ public class EditAccountPageController extends PageController{
 	 */
 	public void setEditAccountPanel(JPanel editAccountPanel) {
 		this.editAccountPanel = editAccountPanel;
+	}
+	
+	public String formatText(JTextArea textArea)
+	{
+	    StringBuilder text = new StringBuilder( textArea.getText() );
+	    int lineHeight = textArea.getFontMetrics( textArea.getFont() ).getHeight();
+	    Point view = new Point(textArea.getWidth(), textArea.getInsets().top);
+	    int length = textArea.getDocument().getLength();
+	    int endOfLine = textArea.viewToModel(view);
+	    int lines = 0;
+
+	    while (endOfLine < length)
+	    {
+	        int adjustedEndOfLine = endOfLine + lines;
+
+	        if (text.charAt(adjustedEndOfLine) == ' ')
+	        {
+	            text.insert(adjustedEndOfLine + 1, '\n');
+	            lines++;
+	        }
+
+	        view.y += lineHeight;
+	        endOfLine = textArea.viewToModel(view);
+	    }
+
+	    return text.toString();
 	}
 	
 	

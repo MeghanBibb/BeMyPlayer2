@@ -715,6 +715,7 @@ public class EditAccountPageView {
 			//	description box
 			JTextArea description = new JTextArea();
 			description.setLineWrap(true);
+			description.setWrapStyleWord(true);
 			String desc;
 			desc = InformationExpert.getActiveAccount().getAccountProfile().getDescription();
 			desc = desc.replace("<HTML>","");
