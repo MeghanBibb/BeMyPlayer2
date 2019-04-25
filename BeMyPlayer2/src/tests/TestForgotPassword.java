@@ -1,6 +1,8 @@
-package tests;
 /*
-import model.Profile; 
+package tests;
+import model.Profile;
+
+import static org.junit.Assert.assertFalse;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,6 +11,8 @@ import java.util.regex.Pattern;
 
 import javax.swing.JFormattedTextField;
 import javax.swing.JPasswordField;
+
+import org.junit.Test;
 
 import graphics.InvalidPopup;
 import graphics.ForgotPassPageModel;
@@ -67,13 +71,13 @@ public class TestForgotPassword {
 	}
 	
 	//test with valid data
-	//@Test
+	@Test
 	public void testPasswordVerification() {
 		model = new ForgotPassPageModel();
 		assert(controller.validateInfo());
 	}
 	
-	//@Test
+	@Test
 	public void testBadAnswer() {
 		JFormattedTextField answer = new JFormattedTextField("BAD ANSWER");
 		model.setSecQA(answer);
@@ -82,7 +86,7 @@ public class TestForgotPassword {
 		assertFalse(controller.validateInfo());
 	}
 	
-	//@Test
+	@Test
 	public void testEmptyAnswer() {
 		JFormattedTextField answer = new JFormattedTextField();
 		model.setSecQA(answer);
@@ -91,7 +95,7 @@ public class TestForgotPassword {
 		assertFalse(controller.validateInfo());
 	}
 	
-	//@Test
+	@Test
 	public void testBadEmail() {
 		JFormattedTextField tempEmail = new JFormattedTextField("badEmail@gmail.com");
 		model.setFrmtdtextfldEnterEmail(tempEmail);
@@ -100,7 +104,7 @@ public class TestForgotPassword {
 		assertFalse(controller.validateInfo());
 	}
 	
-	//@Test
+	@Test
 	public void testBadEmail2() {
 		JFormattedTextField tempEmail = new JFormattedTextField("mpbibb");
 		model.setFrmtdtextfldEnterEmail(tempEmail);
@@ -109,7 +113,7 @@ public class TestForgotPassword {
 		assertFalse(controller.validateInfo());
 	}
 	
-	//@Test
+	@Test
 	public void testEmptyEmail() {
 		JFormattedTextField tempEmail = new JFormattedTextField();
 		model.setFrmtdtextfldEnterEmail(tempEmail);
@@ -118,7 +122,7 @@ public class TestForgotPassword {
 		assertFalse(controller.validateInfo());
 	}
 	
-	//@Test
+	@Test
 	public void testBadPassword() {
 		JPasswordField tempPassword1 = new JPasswordField("myBadPassword");
 		model.setFrmtdtextfldEnterNewPassword(tempPassword1);
@@ -127,7 +131,7 @@ public class TestForgotPassword {
 		assertFalse(controller.validateInfo());
 	}
 	
-	//@Test
+	@Test
 	public void testEmptyPassword() {
 		JPasswordField tempPassword1 = new JPasswordField();
 		model.setFrmtdtextfldEnterNewPassword(tempPassword1);
@@ -136,7 +140,7 @@ public class TestForgotPassword {
 		assertFalse(controller.validateInfo());
 	}
 	
-	//@Test
+	@Test
 	public void testEmptyPasswordMatch() {
 		JPasswordField tempPassword2 = new JPasswordField();
 		model.setPwdEnterPass(tempPassword2);
@@ -145,7 +149,7 @@ public class TestForgotPassword {
 		assertFalse(controller.validateInfo());
 	}
 	
-	//@Test
+	@Test
 	public void testBadPasswordMatch() {
 		JPasswordField tempPassword2 = new JPasswordField("myBADPassword1BAD");
 		model.setPwdEnterPass(tempPassword2);

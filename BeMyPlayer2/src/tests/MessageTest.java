@@ -1,9 +1,15 @@
 package tests;
 /*
+import static org.junit.Assert.assertFalse;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
 
 import graphics.InvalidPopup;
 import graphics.MessageController;
@@ -15,37 +21,36 @@ public class MessageTest {
 	
 	//this initializes the controller/model with valid, correct data
 	@BeforeEach
-	@DisplayName("Create Model")
 	public void initModel() {
 		model = new MessageModel();
 		controller = new MessageController();
 		
 		JTextArea messageThread = new JTextArea("hello there hot stuff");
 		model.setThread(messageThread);
-			
+		model.setSendBox(new JTextField());
 		controller.setMessageModel(model);
 	}
-}
-
-public void invalidMessage() {
-	JTextArea messageThread = new JTextArea("");
-	model.setThread(messageThread);
+	@Test
+	public void invalidMessage() {
+		model = new MessageModel();
+		controller = new MessageController();
+		JTextArea messageThread = new JTextArea("");
+		model.setThread(messageThread);
+		model.setSendBox(new JTextField());
+		controller.setMessageModel(model);
+		assertFalse(controller.validateMsg());
+	}
+	@Test
+	public void nullMessage() {
+		model = new MessageModel();
+		controller = new MessageController();
 		
-	controller.setMessageModel(model);
-	assertFalse(controller.validateMsg());
+		JTextArea messageThread = new JTextArea();
+		model.setSendBox(new JTextField());
+		model.setThread(messageThread);
+			
+		controller.setMessageModel(model);
+		assertFalse(controller.validateMsg());
+	}
 }
-
-public void nullMessage() {
-	JTextArea messageThread = new JTextArea();
-	model.setThread(messageThread);
-		
-	controller.setMessageModel(model);
-	assertFalse(controller.validateMsg());
-}
-
-public void validMessage() {
-	assert(controller.validateMsg());
-}
-
-
 */
