@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 
 import firebase.DBFailureException;
 import firebase.Hasher;
@@ -251,10 +252,13 @@ public class EditAccountPageController extends PageController{
 				break;
 			case DELETE:
 				
-				String m = JOptionPane.showInputDialog("Type your password to delete account");
+				JPasswordField pf = new JPasswordField();
+				int opt = JOptionPane.showConfirmDialog(null, pf, "Type your password to delete account", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+				//String m = JOptionPane.showInputDialog("Type your password to delete account");
 				//dialogButton.int dialogResult2= JOptionPane.showConfirmDialog(this.editAccountPanel, "Are you sure you want to delete your account?","Delete account?", dialogButton2);
+				String m = pf.getText();
 				m = Hasher.hashString(m);
-				if(m.equals(InformationExpert.getActiveAccount().getPasswordHash())) {
+				if(m.equals(InformationExpert.getActiveAccount().getPasswordHash()) && opt == JOptionPane.OK_OPTION) {
 					  logger.info("attempting to delete account "  + InformationExpert.getActiveUserID());
 					  
 					  //attempt to delete account:
@@ -267,7 +271,7 @@ public class EditAccountPageController extends PageController{
 					  
 					  
 					  GraphicsController.processPage(PageCreator.LOGIN_PAGE,backPage);
-				} else {
+				} else if(opt == JOptionPane.OK_OPTION){
 					 InvalidPopup p = new InvalidPopup(this.editAccountPanel, "Invalid Password");
 				  logger.info("Not deleting account " + InformationExpert.getActiveUserID());
 				} 
