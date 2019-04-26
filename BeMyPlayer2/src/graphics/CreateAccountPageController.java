@@ -1,5 +1,6 @@
 package graphics;
 
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.regex.Pattern;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 import firebase.Hasher;
 import model.Account;
@@ -138,13 +140,13 @@ public class CreateAccountPageController extends PageController{
 				//	set profile fields
 				Profile p = new Profile();
 				p.setUsername(this.getCreateAccountPageModel().getFrmtdtxtfldEnterUsername().getText());
-				String htmlDescription = "<HTML>";
-				htmlDescription += this.getCreateAccountPageModel().getCharDescription().getText();
+				String desc = "<HTML>";
+				String area = this.formatText(this.createAccountPageModel.getCharDescription());
+				desc += area;
+				desc = desc.replace("\n","<br>");
+				desc += "<HTML>";
 				
-				htmlDescription = htmlDescription.replace("\n", "<br>");
-				htmlDescription += "</HTML>";
-				
-				p.setDescription(htmlDescription);
+				p.setDescription(desc);
 				p.setGender(this.getCreateAccountPageModel().getGender());
 				try {
 					p.setDateOB(this.getCreateAccountPageModel().getDob());
@@ -350,5 +352,32 @@ public class CreateAccountPageController extends PageController{
 	public void setCreateAccountPanel(JPanel createAccountPanel) {
 		this.createAccountPanel = createAccountPanel;
 	}
+	
+	public String formatText(JTextArea textArea)
+	{
+	    StringBuilder text = new StringBuilder( textArea.getText() );
+	    int lineHeight = textArea.getFontMetrics( textArea.getFont() ).getHeight();
+	    Point view = new Point(textArea.getWidth(), textArea.getInsets().top);
+	    int length = textArea.getDocument().getLength();
+	    int endOfLine = textArea.viewToModel(view);
+	    int lines = 0;
+
+	    while (endOfLine < length)
+	    {
+	        int adjustedEndOfLine = endOfLine + lines;
+
+	        if (text.charAt(adjustedEndOfLine) == ' ')
+	        {
+	            text.insert(adjustedEndOfLine + 1, '\n');
+	            lines++;
+	        }
+
+	        view.y += lineHeight;
+	        endOfLine = textArea.viewToModel(view);
+	    }
+
+	    return text.toString();
+	}
+	
 
 }
