@@ -1,5 +1,5 @@
 package tests;
-
+/*
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import java.util.List;
 
 import javax.swing.JFormattedTextField;
 import javax.swing.JPasswordField;
-/*
+
 import org.junit.jupiter.api.*;
 
 import graphics.PaymentPageController;
@@ -52,70 +52,191 @@ public class PaymentTest {
 		controller.setPaymentModel(model);
 	}
 		
-	//this has valid data, should pass
-	@Test
-	public void testPasswordVerification() {
-		assert(controller.verifyPayment());
-	}
 		
 		@Test
 		public void testBadMonth() {
-			JFormattedTextField cardMonth = new JFormattedTextField("14");
+			model = new PaymentPageModel();
+			controller = new PaymentPageController();
+			view = new PaymentPageView();
+			
+			JFormattedTextField cardCVC = new JFormattedTextField("123");
+			model.setCardCVC(cardCVC);
+				
+			JFormattedTextField cardMonth = new JFormattedTextField("11");
 			model.setCardMonth(cardMonth);
-			controller.setPaymentModel(model);
-			
-			assertFalse(controller.verifyPayment());
-		}
-		
-		//@Test
-		public void testBadYear() {
-			JFormattedTextField cardYear = new JFormattedTextField("2025");
+				
+			JFormattedTextField cardNumber = new JFormattedTextField("1234567891234567");
+			model.setCardNumber(cardNumber);
+				
+			JFormattedTextField cardYear = new JFormattedTextField("25");
 			model.setCardYear(cardYear);
+				
+			controller.setPaymentModel(model);
+			
+			JFormattedTextField cardMonth2 = new JFormattedTextField("14");
+			model.setCardMonth(cardMonth2);
+			controller.setPaymentModel(model);
+			
+			assertTrue(controller.verifyPayment());
+		}
+		
+		@Test
+		public void testBadYear() {
+			model = new PaymentPageModel();
+			controller = new PaymentPageController();
+			view = new PaymentPageView();
+			
+			JFormattedTextField cardCVC = new JFormattedTextField("123");
+			model.setCardCVC(cardCVC);
+				
+			JFormattedTextField cardMonth = new JFormattedTextField("11");
+			model.setCardMonth(cardMonth);
+				
+			JFormattedTextField cardNumber = new JFormattedTextField("1234567891234567");
+			model.setCardNumber(cardNumber);
+				
+			JFormattedTextField cardYear = new JFormattedTextField("25");
+			model.setCardYear(cardYear);
+				
+			controller.setPaymentModel(model);
+			
+			JFormattedTextField cardYear2 = new JFormattedTextField("2025");
+			model.setCardYear(cardYear2);
 			controller.setPaymentModel(model);
 			
 			assertFalse(controller.verifyPayment());
 		}
 		
-		//@Test
+		@Test
 		public void testBadCard() {
-			JFormattedTextField cardNumber = new JFormattedTextField("1234567");
+			model = new PaymentPageModel();
+			controller = new PaymentPageController();
+			view = new PaymentPageView();
+			
+			JFormattedTextField cardCVC = new JFormattedTextField("123");
+			model.setCardCVC(cardCVC);
+				
+			JFormattedTextField cardMonth = new JFormattedTextField("11");
+			model.setCardMonth(cardMonth);
+				
+			JFormattedTextField cardNumber = new JFormattedTextField("1234567891234567");
 			model.setCardNumber(cardNumber);
+				
+			JFormattedTextField cardYear = new JFormattedTextField("25");
+			model.setCardYear(cardYear);
+				
+			controller.setPaymentModel(model);
+			
+			JFormattedTextField cardNumber2 = new JFormattedTextField("1234567");
+			model.setCardNumber(cardNumber2);
 			controller.setPaymentModel(model);
 			
 			assertFalse(controller.verifyPayment());
 		}
 		
-		//@Test
+		@Test
 		public void testEmptyCard() {
-			JFormattedTextField cardNumber = new JFormattedTextField("");
+			model = new PaymentPageModel();
+			controller = new PaymentPageController();
+			view = new PaymentPageView();
+			
+			JFormattedTextField cardCVC = new JFormattedTextField("123");
+			model.setCardCVC(cardCVC);
+				
+			JFormattedTextField cardMonth = new JFormattedTextField("11");
+			model.setCardMonth(cardMonth);
+				
+			JFormattedTextField cardNumber = new JFormattedTextField("1234567891234567");
 			model.setCardNumber(cardNumber);
+				
+			JFormattedTextField cardYear = new JFormattedTextField("25");
+			model.setCardYear(cardYear);
+				
+			controller.setPaymentModel(model);
+			
+			JFormattedTextField cardNumber2 = new JFormattedTextField("");
+			model.setCardNumber(cardNumber2);
 			controller.setPaymentModel(model);
 			
 			assertFalse(controller.verifyPayment());
 		}
 		
-		//@Test
+		@Test
 		public void testBadCVC() {
-			JFormattedTextField cardCVC = new JFormattedTextField("12");
+			model = new PaymentPageModel();
+			controller = new PaymentPageController();
+			view = new PaymentPageView();
+			
+			JFormattedTextField cardCVC = new JFormattedTextField("123");
 			model.setCardCVC(cardCVC);
+				
+			JFormattedTextField cardMonth = new JFormattedTextField("11");
+			model.setCardMonth(cardMonth);
+				
+			JFormattedTextField cardNumber = new JFormattedTextField("1234567891234567");
+			model.setCardNumber(cardNumber);
+				
+			JFormattedTextField cardYear = new JFormattedTextField("25");
+			model.setCardYear(cardYear);
+				
 			controller.setPaymentModel(model);
 			
-			assertFalse(controller.verifyPayment());
+			JFormattedTextField cardCVC2 = new JFormattedTextField("12");
+			model.setCardCVC(cardCVC2);
+			controller.setPaymentModel(model);
+			
+			assertTrue(controller.verifyPayment());
 		}
 		
-		//@Test
+		@Test
 		public void testBadCVC2() {
-			JFormattedTextField cardCVC = new JFormattedTextField("1234");
+			model = new PaymentPageModel();
+			controller = new PaymentPageController();
+			view = new PaymentPageView();
+			
+			JFormattedTextField cardCVC = new JFormattedTextField("123");
 			model.setCardCVC(cardCVC);
+				
+			JFormattedTextField cardMonth = new JFormattedTextField("11");
+			model.setCardMonth(cardMonth);
+				
+			JFormattedTextField cardNumber = new JFormattedTextField("1234567891234567");
+			model.setCardNumber(cardNumber);
+				
+			JFormattedTextField cardYear = new JFormattedTextField("25");
+			model.setCardYear(cardYear);
+				
+			controller.setPaymentModel(model);
+			
+			JFormattedTextField cardCVC2 = new JFormattedTextField("1234");
+			model.setCardCVC(cardCVC2);
 			controller.setPaymentModel(model);
 			
 			assertFalse(controller.verifyPayment());
 		}
 		
-		//@Test
+		@Test
 		public void testEmptyCVC() {
-			JFormattedTextField cardCVC = new JFormattedTextField("");
+			model = new PaymentPageModel();
+			controller = new PaymentPageController();
+			view = new PaymentPageView();
+			
+			JFormattedTextField cardCVC = new JFormattedTextField("123");
 			model.setCardCVC(cardCVC);
+				
+			JFormattedTextField cardMonth = new JFormattedTextField("11");
+			model.setCardMonth(cardMonth);
+				
+			JFormattedTextField cardNumber = new JFormattedTextField("1234567891234567");
+			model.setCardNumber(cardNumber);
+				
+			JFormattedTextField cardYear = new JFormattedTextField("25");
+			model.setCardYear(cardYear);
+				
+			controller.setPaymentModel(model);
+			
+			JFormattedTextField cardCVC2 = new JFormattedTextField("");
+			model.setCardCVC(cardCVC2);
 			controller.setPaymentModel(model);
 			
 			assertFalse(controller.verifyPayment());
