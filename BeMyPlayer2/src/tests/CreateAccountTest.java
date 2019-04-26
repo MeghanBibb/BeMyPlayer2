@@ -1,5 +1,5 @@
 package tests;
-/*
+
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
@@ -16,9 +16,6 @@ import javax.swing.JTextArea;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 
 import graphics.Colors;
 import graphics.CreateAccountPageController;
@@ -33,41 +30,7 @@ public class CreateAccountTest {
 	public CreateAccountPageController controller;
 	
 	//this initializes the controller/model with valid, correct data
-	@DisplayName("Create Model")
-	@BeforeEach
-	public void init() {
-		model = new CreateAccountPageModel();
-		controller = new CreateAccountPageController();
-		view = new CreateAccountPageView();
-		
-		JFormattedTextField age = new JFormattedTextField("20");
-		model.setAge(age);
-			
-		//JFormattedTextField dob = new JFormattedTextField("11/19/1998");
-		model.setDob(new Date(1998,11,19));
-			
-		JFormattedTextField email = new JFormattedTextField("mpbibb@gmail.com");
-		model.setEnterEmail(email);
-		
-		JFormattedTextField frmtdtxtfldEnterUsername = new JFormattedTextField("SICEM");
-		model.setFrmtdtxtfldEnterUsername(frmtdtxtfldEnterUsername);
-		
-		JComboBox<String> gender = new JComboBox<String>();
-		gender.setModel(new DefaultComboBoxModel<String>(new String[] {"Male", "Female"}));
-		model.setGenderBox(gender);
-		
-		//helpppp
-		//model.setProfileImg(new BufferedImage(new File("BeMyPlayer2\\img\\heards.png")));
-		//model.setProfileImg(profileImg);
-		
-		JFormattedTextField secQA = new JFormattedTextField("answer");
-		model.setSecQA(secQA);
-		
-		JTextArea area = new JTextArea("hello my name is Meghan");
-		model.setCharDescription(area);
-			
-		controller.setCreateAccountPageModel(model);
-	}
+	
 	
 	@Test
 	public void testBadUsername() {
@@ -550,4 +513,3 @@ public class CreateAccountTest {
 	
 	
 }
-*/

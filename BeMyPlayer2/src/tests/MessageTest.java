@@ -1,5 +1,5 @@
 package tests;
-/*
+
 import static org.junit.Assert.assertFalse;
 
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
+//import org.junit.jupiter.api.BeforeEach;
 
 import graphics.InvalidPopup;
 import graphics.MessageController;
@@ -20,7 +20,7 @@ public class MessageTest {
 	MessageController controller;
 	
 	//this initializes the controller/model with valid, correct data
-	@BeforeEach
+	//@BeforeEach
 	public void initModel() {
 		model = new MessageModel();
 		controller = new MessageController();
@@ -53,4 +53,3 @@ public class MessageTest {
 		assertFalse(controller.validateMsg());
 	}
 }
-*/

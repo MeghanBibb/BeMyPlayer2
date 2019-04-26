@@ -1,5 +1,5 @@
 package tests;
-/*
+
 import graphics.SupportController;
 import graphics.SupportModel;
 import graphics.SupportView;
@@ -216,7 +216,5 @@ public class SupportTest {
 		assertFalse(controller.validateSupInfo());
 	}
 	
-	
 
 }
-*/

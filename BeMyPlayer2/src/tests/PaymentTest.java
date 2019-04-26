@@ -1,5 +1,5 @@
 package tests;
-/*
+
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -9,7 +9,9 @@ import java.util.List;
 import javax.swing.JFormattedTextField;
 import javax.swing.JPasswordField;
 
-import org.junit.jupiter.api.*;
+import org.junit.Test;
+
+//import org.junit.jupiter.api.*;
 
 import graphics.PaymentPageController;
 import graphics.PaymentPageModel;
@@ -30,8 +32,8 @@ public class PaymentTest {
 	PaymentPageController controller;
 	
 	//this initializes the controller/model with valid, correct data
-	@BeforeEach
-	@DisplayName("Create Model")
+	//@BeforeEach
+	//@DisplayName("Create Model")
 	public void initModel() {
 		model = new PaymentPageModel();
 		controller = new PaymentPageController();
@@ -242,4 +244,3 @@ public class PaymentTest {
 			assertFalse(controller.verifyPayment());
 		}
 }
-*/

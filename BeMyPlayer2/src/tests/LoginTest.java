@@ -1,12 +1,11 @@
 package tests;
-/*
+
 import graphics.LoginPageModel;
 
 import javax.swing.JFormattedTextField;
 import javax.swing.JPasswordField;
 
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 
 import graphics.LoginPageController;
 
@@ -45,4 +44,3 @@ public class LoginTest {
 		assert(!controller.validateLogin("", "b"));	
 	}
 }
-*/

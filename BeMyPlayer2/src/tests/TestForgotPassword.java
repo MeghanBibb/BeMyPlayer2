@@ -1,4 +1,4 @@
-/*
+
 package tests;
 import model.Profile;
 
@@ -159,4 +159,3 @@ public class TestForgotPassword {
 	}
 	
 }
-*/
