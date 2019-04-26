@@ -106,7 +106,7 @@ public class ProfilePageView {
 			imgLabel.setBounds(10, 60, 100, 100);
 			profileController.getProfileModel().setProfileImage(imgLabel);
 			ImgButton btnBlock = new ImgButton("Block");
-			btnBlock.setBounds(300, 350, 90, 40);
+			btnBlock.setBounds(370, 330, 90, 40);
 			btnBlock.setActionCommand(ProfilePageController.BLOCK);
 			btnBlock.setBackground(Colors.Yellow);
 			btnBlock.addActionListener(profileController);
@@ -122,7 +122,7 @@ public class ProfilePageView {
 								,InformationExpert.getOtherProfile()).getOtherMatchStatus())) {
 					
 					ImgButton btnMessage = new ImgButton("Message");
-					btnMessage.setBounds(100,350,90,40);
+					btnMessage.setBounds(370,270,90,40);
 					btnMessage.setActionCommand(ProfilePageController.MESSAGE);
 					btnMessage.setBackground(Colors.Yellow);
 					btnMessage.setFont(Fonts.getFont((float)12));
