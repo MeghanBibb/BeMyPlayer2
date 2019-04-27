@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 
 import firebase.DBFailureException;
 import model.Account;
-import model.InformationExpert;
+import model.ClientManager;
 
 /**
  * The Class ViewMatchesController.
@@ -74,16 +74,16 @@ public class ViewMatchesController extends PageController{
 			String text = ((JButton) e.getSource()).getName();
 			logger.info("launch profile brief for: " + text);
 			try {
-				InformationExpert.setOtherProfile(text);
+				ClientManager.setOtherProfile(text);
 			} catch (DBFailureException e1) {
 				logger.warning("database failed to load profile");
 			}
 			if(brief == null) {
-				brief = new ProfileBriefModel(InformationExpert.getOtherProfile(),new Rectangle(250,120,215,245),PageCreator.MATCHES_PAGE);
+				brief = new ProfileBriefModel(ClientManager.getOtherProfile(),new Rectangle(250,120,215,245),PageCreator.MATCHES_PAGE);
 			}
 			else {
 				this.copyFrame.remove(brief);
-				brief = new ProfileBriefModel(InformationExpert.getOtherProfile(),new Rectangle(250,120,215,245),PageCreator.MATCHES_PAGE);
+				brief = new ProfileBriefModel(ClientManager.getOtherProfile(),new Rectangle(250,120,215,245),PageCreator.MATCHES_PAGE);
 			}
 			this.copyFrame.add(brief);
 			this.copyFrame.repaint();

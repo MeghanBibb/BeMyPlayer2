@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import firebase.DBFailureException;
-import model.InformationExpert;
+import model.ClientManager;
 import model.MatchType;
 import model.Profile;
 
@@ -40,18 +40,18 @@ public class SwipePageController extends PageController {
 		boolean invalid = false;
 		//	load first matches
 		
-		if(InformationExpert.getCurrentSwipePage().equals(MatchType.FRIEND_MATCH.getStatusString())) {
+		if(ClientManager.getCurrentSwipePage().equals(MatchType.FRIEND_MATCH.getStatusString())) {
 			try {
-			if(InformationExpert.getClientModel().getFriendProfileFront() == null || InformationExpert.getClientModel().getFriendMatches().isEmpty()) {
+			if(ClientManager.getClientModel().getFriendProfileFront() == null || ClientManager.getClientModel().getFriendMatches().isEmpty()) {
 				//	1 iteration of import, next import grows size
-				InformationExpert.importFriendMatchBatch();
+				ClientManager.importFriendMatchBatch();
 			}
 			
-			if(InformationExpert.getClientModel().getFriendProfileFront() == null) {
+			if(ClientManager.getClientModel().getFriendProfileFront() == null) {
 				throw new DBFailureException();
 			}
 			
-				InformationExpert.setOtherProfile(InformationExpert.getClientModel().getFriendProfileFront().getUserId());
+				ClientManager.setOtherProfile(ClientManager.getClientModel().getFriendProfileFront().getUserId());
 			} catch (DBFailureException e1) {
 				invalid = true;
 				logger.severe("Ran out of matches");
@@ -59,17 +59,17 @@ public class SwipePageController extends PageController {
 				GraphicsController.processPage(PageCreator.HOME_PAGE, PageController.backPage);
 			}
 		}
-		else if(InformationExpert.getCurrentSwipePage().equals(MatchType.LOVE_MATCH.getStatusString())){
+		else if(ClientManager.getCurrentSwipePage().equals(MatchType.LOVE_MATCH.getStatusString())){
 			try {
-				if(InformationExpert.getClientModel().getLoveProfileFront() == null || InformationExpert.getClientModel().getLoveMatches().isEmpty()) {
+				if(ClientManager.getClientModel().getLoveProfileFront() == null || ClientManager.getClientModel().getLoveMatches().isEmpty()) {
 					//	1 iteration of import, next import grows size
-					InformationExpert.importLoveMatchBatch();
+					ClientManager.importLoveMatchBatch();
 				}
-				if(InformationExpert.getClientModel().getLoveProfileFront() == null) {
+				if(ClientManager.getClientModel().getLoveProfileFront() == null) {
 					throw new DBFailureException();
 				}
 				
-					InformationExpert.setOtherProfile(InformationExpert.getClientModel().getLoveProfileFront().getUserId());
+					ClientManager.setOtherProfile(ClientManager.getClientModel().getLoveProfileFront().getUserId());
 				} catch (DBFailureException e1) {
 					invalid = true;
 					logger.severe("Ran out of matches");
@@ -77,12 +77,12 @@ public class SwipePageController extends PageController {
 					GraphicsController.processPage(PageCreator.HOME_PAGE, PageController.backPage);
 				}
 		}
-		if(InformationExpert.getActiveAccount().getAccountProfile().isMute()) {
+		if(ClientManager.getActiveAccount().getAccountProfile().isMute()) {
 			AccountIsMuted.Warning(mainFrame);
 			invalid = true;
 		}
 		if(!invalid) {
-			this.model = new SwipePageModel(mainFrame, InformationExpert.getOtherProfile(), this);
+			this.model = new SwipePageModel(mainFrame, ClientManager.getOtherProfile(), this);
 			model.backButton.addActionListener(new ActionListener() {
 		    	@Override
 		    	public void actionPerformed(ActionEvent e) {

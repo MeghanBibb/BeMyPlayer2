@@ -1,6 +1,7 @@
 package graphics;
 
 import java.io.File;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.sound.sampled.AudioInputStream;
@@ -52,7 +53,7 @@ public class BackgroundMusic {
 			stopSong();
 			status = "stop";
 		} else {
-			logger.info("Background Music started to play");
+			logger.log(Level.FINE, "Background Music started to play");
 			playSong();
 			status = "play";
 		}

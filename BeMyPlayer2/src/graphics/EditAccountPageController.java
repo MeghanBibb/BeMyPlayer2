@@ -16,7 +16,7 @@ import javax.swing.JTextArea;
 
 import firebase.DBFailureException;
 import firebase.Hasher;
-import model.InformationExpert;
+import model.ClientManager;
 import model.PaymentInfo;
 import model.ResourceManager;
 
@@ -109,25 +109,25 @@ public class EditAccountPageController extends PageController{
 				break;
 			case SUBMITEDITACCOUNT:
 				if(validateCreatePage1() == true) {
-					InformationExpert.getActiveAccount().getAccountProfile().setUsername(this.getEditAccountModel().getFrmtdtxtfldEnterUsername().getText());
-					InformationExpert.getActiveAccount().setSecurityQ1(this.getEditAccountModel().getSecurityQ().getSelectedItem().toString());
-					InformationExpert.getActiveAccount().getAccountProfile().setGender(this.getEditAccountModel().getGenderBox().getSelectedItem().toString());
+					ClientManager.getActiveAccount().getAccountProfile().setUsername(this.getEditAccountModel().getFrmtdtxtfldEnterUsername().getText());
+					ClientManager.getActiveAccount().setSecurityQ1(this.getEditAccountModel().getSecurityQ().getSelectedItem().toString());
+					ClientManager.getActiveAccount().getAccountProfile().setGender(this.getEditAccountModel().getGenderBox().getSelectedItem().toString());
 					if(!this.getEditAccountModel().getPwdEnterPass().getText().isEmpty()) {
-						InformationExpert.getActiveAccount().setPasswordHash(Hasher.hashString(this.getEditAccountModel().getPwdEnterPass().getText()));
+						ClientManager.getActiveAccount().setPasswordHash(Hasher.hashString(this.getEditAccountModel().getPwdEnterPass().getText()));
 					}
 					try {
-						InformationExpert.getActiveAccount().getAccountProfile().setDateOB(this.getEditAccountModel().getDob());
+						ClientManager.getActiveAccount().getAccountProfile().setDateOB(this.getEditAccountModel().getDob());
 					} catch (ParseException e1) {
 						logger.warning("invalid date");
 					}
 					try {
-						InformationExpert.updateAccount(InformationExpert.getActiveAccount());
-						InformationExpert.updateProfile(InformationExpert.getActiveAccount().getAccountProfile());
+						ClientManager.updateAccount(ClientManager.getActiveAccount());
+						ClientManager.updateProfile(ClientManager.getActiveAccount().getAccountProfile());
 					} catch (DBFailureException e1) {
 						logger.warning("failed to save");
 					}
 					if(!this.getEditAccountModel().getSecQA().getText().isEmpty()) {
-						InformationExpert.getActiveAccount().setSecurityQ1AnsHash(Hasher.hashString(this.getEditAccountModel().getSecQA().getText()));
+						ClientManager.getActiveAccount().setSecurityQ1AnsHash(Hasher.hashString(this.getEditAccountModel().getSecQA().getText()));
 					}
 					
 					logger.info("Submit");
@@ -136,13 +136,13 @@ public class EditAccountPageController extends PageController{
 				break;
 			case SUBMITEDITQUESTIONAIRE:
 				if(validateCreatePage2() == true) {
-					InformationExpert.getActiveAccount().getAccountProfile().setPlatforms(this.getEditAccountModel().getPlatforms());
-					InformationExpert.getActiveAccount().getAccountProfile().setGenres(this.getEditAccountModel().getGenres());
+					ClientManager.getActiveAccount().getAccountProfile().setPlatforms(this.getEditAccountModel().getPlatforms());
+					ClientManager.getActiveAccount().getAccountProfile().setGenres(this.getEditAccountModel().getGenres());
 					try {
-						InformationExpert.updateAccount(InformationExpert.getActiveAccount());
-						InformationExpert.updateProfile(InformationExpert.getActiveAccount().getAccountProfile());
+						ClientManager.updateAccount(ClientManager.getActiveAccount());
+						ClientManager.updateProfile(ClientManager.getActiveAccount().getAccountProfile());
 					} catch (DBFailureException e1) {
-						logger.warning("Database failed to update questionaire for " + InformationExpert.getActiveUserID());
+						logger.warning("Database failed to update questionaire for " + ClientManager.getActiveUserID());
 					}
 									
 					logger.info("Submit");
@@ -156,19 +156,19 @@ public class EditAccountPageController extends PageController{
 					desc += area;
 					desc = desc.replace("\n","<br>");
 					desc += "<HTML>";
-					InformationExpert.getActiveAccount().getAccountProfile().setProfilePicture(this.editAccountModel.getProfileImg());
-					InformationExpert.getActiveAccount().getAccountProfile().setDescription(desc);
+					ClientManager.getActiveAccount().getAccountProfile().setProfilePicture(this.editAccountModel.getProfileImg());
+					ClientManager.getActiveAccount().getAccountProfile().setDescription(desc);
 					
 					try {
-						InformationExpert.updateAccount(InformationExpert.getActiveAccount());
-						InformationExpert.updateProfile(InformationExpert.getActiveAccount().getAccountProfile());
-						if(InformationExpert.getActiveAccount().getAccountProfile().getProfilePicture() == null) {
-							InformationExpert.updateProfileImage(ResourceManager.loadImage("defaultIcon.png"), InformationExpert.getActiveUserID());
+						ClientManager.updateAccount(ClientManager.getActiveAccount());
+						ClientManager.updateProfile(ClientManager.getActiveAccount().getAccountProfile());
+						if(ClientManager.getActiveAccount().getAccountProfile().getProfilePicture() == null) {
+							ClientManager.updateProfileImage(ResourceManager.loadImage("defaultIcon.png"), ClientManager.getActiveUserID());
 						} else {
-							InformationExpert.updateProfileImage(InformationExpert.getActiveAccount().getAccountProfile().getProfilePicture(), InformationExpert.getActiveUserID());
+							ClientManager.updateProfileImage(ClientManager.getActiveAccount().getAccountProfile().getProfilePicture(), ClientManager.getActiveUserID());
 						}
 					} catch (Exception e1) {
-						logger.warning("Failed to update profile for " + InformationExpert.getActiveUserID());
+						logger.warning("Failed to update profile for " + ClientManager.getActiveUserID());
 						InvalidPopup p =  new InvalidPopup(this.getEditAccountPanel(),"Failed to update profile");
 					}
 					logger.info("Submit");
@@ -193,12 +193,12 @@ public class EditAccountPageController extends PageController{
 				break;
 			case UPGRADE:		//go to upgrade account page
 			try {
-				PaymentInfo p = InformationExpert.getPaymentInfo(InformationExpert.getActiveUserID());
+				PaymentInfo p = ClientManager.getPaymentInfo(ClientManager.getActiveUserID());
 				if(p != null) {
 					logger.info("GOT PAYMENT INFO FROM DB\n");
 				}
 			} catch (DBFailureException e1) {
-				logger.severe("Database failed to pull payment info for " + InformationExpert.getActiveUserID());
+				logger.severe("Database failed to pull payment info for " + ClientManager.getActiveUserID());
 				InvalidPopup p = new InvalidPopup(this.getEditAccountPanel(),"Error loading payment info from database");
 			}
 				
@@ -210,22 +210,22 @@ public class EditAccountPageController extends PageController{
 				int dialogButtonP = JOptionPane.YES_NO_OPTION;
 				int dialogResultP= JOptionPane.showConfirmDialog(this.editAccountPanel, "Are you sure you want to cancel your payment plan?\n You will no longer benefit from being a pro account.","Unsubscribe from pro features?", dialogButtonP);
 				if(dialogResultP == 0) {
-					  logger.info("removing payment info for "  + InformationExpert.getActiveAccount().getEmail());
+					  logger.info("removing payment info for "  + ClientManager.getActiveAccount().getEmail());
 					  try {
-							InformationExpert.deletePaymentInfo(InformationExpert.getActiveUserID());
+							ClientManager.deletePaymentInfo(ClientManager.getActiveUserID());
 						} catch (DBFailureException e1) {
 							logger.log(Level.SEVERE, "Databse Failure on end_payment: ", e1);
 						}
 					  this.getEditAccountModel().getBtnUpgrade().setText("Upgrade Account!");
 					  this.getEditAccountModel().getBtnUpgrade().setActionCommand(UPGRADE);
 				} else {
-				  logger.info("Not removing payment info for " + InformationExpert.getActiveAccount().getEmail());
+				  logger.info("Not removing payment info for " + ClientManager.getActiveAccount().getEmail());
 				}
 				break;
 			case MUTE:
 				//	remove from match queues
 				int dialogButton = JOptionPane.YES_NO_OPTION;
-				boolean muteStatus = InformationExpert.getActiveAccount().getAccountProfile().isMute();
+				boolean muteStatus = ClientManager.getActiveAccount().getAccountProfile().isMute();
 				String msg = muteStatus? "Want your account unmuted?" : "Want your account muted?";
 				int dialogResult = JOptionPane.showConfirmDialog(this.editAccountPanel, msg,"Account Muting", dialogButton);
 				
@@ -233,18 +233,18 @@ public class EditAccountPageController extends PageController{
 					
 					if(muteStatus) {
 						try {
-							InformationExpert.getActiveAccount().getAccountProfile().setMute(false);
-							InformationExpert.updateProfile(InformationExpert.getActiveAccount().getAccountProfile());
-							logger.info("Un-muted account " + InformationExpert.getActiveAccount().getAccountProfile().getUsername());
+							ClientManager.getActiveAccount().getAccountProfile().setMute(false);
+							ClientManager.updateProfile(ClientManager.getActiveAccount().getAccountProfile());
+							logger.info("Un-muted account " + ClientManager.getActiveAccount().getAccountProfile().getUsername());
 							editAccountModel.getBtnMute().setText("Mute Account");
 						} catch (DBFailureException e1) {
 							logger.warning("Failed to update unmuted profile");
 						}
 					}else {
 						try {
-							InformationExpert.getActiveAccount().getAccountProfile().setMute(true);
-							InformationExpert.updateProfile(InformationExpert.getActiveAccount().getAccountProfile());
-							logger.info("Muted account " + InformationExpert.getActiveAccount().getAccountProfile().getUsername());
+							ClientManager.getActiveAccount().getAccountProfile().setMute(true);
+							ClientManager.updateProfile(ClientManager.getActiveAccount().getAccountProfile());
+							logger.info("Muted account " + ClientManager.getActiveAccount().getAccountProfile().getUsername());
 							editAccountModel.getBtnMute().setText("Unmute Account");
 						} catch (DBFailureException e1) {
 							logger.warning("Failed to update muted profile");
@@ -261,22 +261,22 @@ public class EditAccountPageController extends PageController{
 				//dialogButton.int dialogResult2= JOptionPane.showConfirmDialog(this.editAccountPanel, "Are you sure you want to delete your account?","Delete account?", dialogButton2);
 				String m = pf.getText();
 				m = Hasher.hashString(m);
-				if(m.equals(InformationExpert.getActiveAccount().getPasswordHash()) && opt == JOptionPane.OK_OPTION) {
-					  logger.info("attempting to delete account "  + InformationExpert.getActiveUserID());
+				if(m.equals(ClientManager.getActiveAccount().getPasswordHash()) && opt == JOptionPane.OK_OPTION) {
+					  logger.info("attempting to delete account "  + ClientManager.getActiveUserID());
 					  
 					  //attempt to delete account:
 					  try {
-						  InformationExpert.deleteUserAccount();
+						  ClientManager.deleteUserAccount();
 						  GraphicsController.processPage(PageCreator.LOGIN_PAGE,backPage);
 					  }catch(DBFailureException dbexc){
-						  logger.warning("Failed to delete account: " + InformationExpert.getActiveUserID());
+						  logger.warning("Failed to delete account: " + ClientManager.getActiveUserID());
 					  }
 					  
 					  
 					  GraphicsController.processPage(PageCreator.LOGIN_PAGE,backPage);
 				} else if(opt == JOptionPane.OK_OPTION){
 					 InvalidPopup p = new InvalidPopup(this.editAccountPanel, "Invalid Password");
-				  logger.info("Not deleting account " + InformationExpert.getActiveUserID());
+				  logger.info("Not deleting account " + ClientManager.getActiveUserID());
 				} 
 				break;
 		}
@@ -326,7 +326,7 @@ public class EditAccountPageController extends PageController{
 				warnings.add("Passwords do not match\n");
 			}
 		}
-		if(this.editAccountModel.getSecQA().getText().equalsIgnoreCase("") && !this.editAccountModel.getSecurityQ().getSelectedItem().equals(InformationExpert.getActiveAccount().getSecurityQ1())) {
+		if(this.editAccountModel.getSecQA().getText().equalsIgnoreCase("") && !this.editAccountModel.getSecurityQ().getSelectedItem().equals(ClientManager.getActiveAccount().getSecurityQ1())) {
 			valid = false;
 			warnings.add("Please provide answer to a security question\n");
 		}

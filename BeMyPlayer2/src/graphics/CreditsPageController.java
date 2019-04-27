@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import firebase.DBFailureException;
-import model.InformationExpert;
+import model.ClientManager;
 
 /**
  * The Class CreditsPageController.
@@ -58,17 +58,17 @@ public class CreditsPageController extends PageController{
 			String text = ((JButton) e.getSource()).getName();
 			logger.info("launch profile brief for: " + text);
 			try {
-				InformationExpert.setOtherProfile(text);
+				ClientManager.setOtherProfile(text);
 			} catch (DBFailureException e1) {
 				logger.severe("database failed to load profile");
 				InvalidPopup p = new InvalidPopup(this.getCreditsPanel(),"Database failed to load profiles");
 			}
 			if(brief == null) {
-				brief = new ProfileBriefModel(InformationExpert.getOtherProfile(),new Rectangle(250,120,215,245),backPage);
+				brief = new ProfileBriefModel(ClientManager.getOtherProfile(),new Rectangle(250,120,215,245),backPage);
 			}
 			else {
 				this.copyFrame.remove(brief);
-				brief = new ProfileBriefModel(InformationExpert.getOtherProfile(),new Rectangle(250,120,215,245),backPage);
+				brief = new ProfileBriefModel(ClientManager.getOtherProfile(),new Rectangle(250,120,215,245),backPage);
 			}
 			this.copyFrame.add(brief);
 			this.copyFrame.revalidate();

@@ -3,7 +3,7 @@ package graphics;
 import javax.swing.*;
 
 import firebase.DBFailureException;
-import model.InformationExpert;
+import model.ClientManager;
 import model.Issue;
 
 import java.awt.event.ActionEvent;
@@ -63,11 +63,11 @@ public class SupportController extends PageController{
                 			System.out.println("WARNING: Could not open configuration file");
                 		    System.out.println("WARNING: Logging not configured (console output only)");
                 		}
-                		supportLogger.info("User: " + InformationExpert.getActiveAccount().getEmail() + " noted issue " + this.getSupportModel().getProbArea().getSelectedItem().toString()+ " with description " + this.getSupportModel().getDescription().getText());
+                		supportLogger.info("User: " + ClientManager.getActiveAccount().getEmail() + " noted issue " + this.getSupportModel().getProbArea().getSelectedItem().toString()+ " with description " + this.getSupportModel().getDescription().getText());
                 	
-                		Issue iss = new Issue(this.getSupportModel().getDescription().getText(), (String) this.getSupportModel().getProbArea().getSelectedItem(), InformationExpert.getActiveUserID());
+                		Issue iss = new Issue(this.getSupportModel().getDescription().getText(), (String) this.getSupportModel().getProbArea().getSelectedItem(), ClientManager.getActiveUserID());
                 	try {
-                		InformationExpert.addIssue(iss);
+                		ClientManager.addIssue(iss);
                 	} catch (DBFailureException exc1) {
                 		exc1.printStackTrace();
                 		supportLogger.fine("could not load database");

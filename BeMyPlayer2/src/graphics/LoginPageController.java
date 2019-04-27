@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 
 import firebase.DBFailureException;
 import firebase.Hasher;
-import model.InformationExpert;
+import model.ClientManager;
 
 /**
  * The Class LoginPageController.
@@ -70,14 +70,14 @@ public class LoginPageController extends PageController implements KeyListener{
 			valid = false;
 		}else {
 			try {
-				String userHash = InformationExpert.authenticateUserAccount(user, Hasher.hashString(pass));
+				String userHash = ClientManager.authenticateUserAccount(user, Hasher.hashString(pass));
 
 				if(userHash == null) {
 					valid = false;
 					warnings.add("invalid username or password\n");
 				}
 				else {
-					InformationExpert.setActiveAccount(InformationExpert.getUserAccountWithProfile(userHash));
+					ClientManager.setActiveAccount(ClientManager.getUserAccountWithProfile(userHash));
 				}
 				
 			} catch (DBFailureException e) {
@@ -102,8 +102,8 @@ public class LoginPageController extends PageController implements KeyListener{
 		else if(e.getActionCommand() == LOGIN) {
 			if(validateLogin(this.getLoginPageModel().getFrmtdtxtfldEnterUsername().getText(),
 					this.getLoginPageModel().getPwdEnterPass().getText()) == true){
-				logger.info("Logging in user " + InformationExpert.getActiveAccount().getEmail());
-				InformationExpert.resetClientModel();
+				logger.info("Logging in user " + ClientManager.getActiveAccount().getEmail());
+				ClientManager.resetClientModel();
 				GraphicsController.processPage(PageCreator.HOME_PAGE, backPage);
 				
 			}
