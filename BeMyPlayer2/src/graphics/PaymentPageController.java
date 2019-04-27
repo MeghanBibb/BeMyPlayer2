@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import firebase.DBFailureException;
-import model.InformationExpert;
+import model.ClientManager;
 import model.PaymentInfo;
 
 /**
@@ -162,12 +162,12 @@ public class PaymentPageController extends PageController{
 				break;
 			case SUBMIT:
 				if(verifyPayment()) {
-					logger.info("attempting to submit payment info for " + InformationExpert.getActiveAccount().getEmail());
-					PaymentInfo p = new PaymentInfo(this.getPaymentModel().getCardNumber().getText(), InformationExpert.getActiveUserID(),
+					logger.info("attempting to submit payment info for " + ClientManager.getActiveAccount().getEmail());
+					PaymentInfo p = new PaymentInfo(this.getPaymentModel().getCardNumber().getText(), ClientManager.getActiveUserID(),
 							        Integer.parseInt(this.getPaymentModel().getCardMonth().getText()), Integer.parseInt(this.getPaymentModel().getCardYear().getText()),
 							        Integer.parseInt(this.getPaymentModel().getCardCVC().getText()));
 					try {
-						InformationExpert.addPaymentInfo(p);
+						ClientManager.addPaymentInfo(p);
 					} catch (DBFailureException e1) {
 						logger.warning("Database Failure: Could not upload new Payment Info");
 					}

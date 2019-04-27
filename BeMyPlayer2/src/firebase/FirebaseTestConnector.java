@@ -9,7 +9,6 @@ import model.Account;
 import model.Profile;
 import model.ResourceManager;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class FirebaseTestConnector.
  */
@@ -42,7 +41,6 @@ public class FirebaseTestConnector {
 										"male",
 										"This is a profile description");
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			LOGGER.log(Level.WARNING, "ParseExceptio: ", e);
 		}
 		acc.setAccountProfile(prof);

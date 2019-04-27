@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import firebase.DBFailureException;
-import model.InformationExpert;
+import model.ClientManager;
 import model.Match;
 import model.MatchStatus;
 import model.MatchType;
@@ -39,13 +39,13 @@ public class SwipeRightController extends SwipeButtonController{
 	public void actionPerformed(ActionEvent e) {
 		try {
 			Match thisMatch;
-			if((thisMatch = InformationExpert.getMatch(InformationExpert.getActiveAccount().getAccountProfile(), InformationExpert.getOtherProfile())) != null) {
+			if((thisMatch = ClientManager.getMatch(ClientManager.getActiveAccount().getAccountProfile(), ClientManager.getOtherProfile())) != null) {
 			
 				
-				if(InformationExpert.getCurrentSwipePage().equals(MatchType.FRIEND_MATCH.getStatusString())) {
+				if(ClientManager.getCurrentSwipePage().equals(MatchType.FRIEND_MATCH.getStatusString())) {
 					thisMatch.setType(MatchType.FRIEND_MATCH);
 				}
-				else if(InformationExpert.getCurrentSwipePage().equals(MatchType.LOVE_MATCH.getStatusString())) {
+				else if(ClientManager.getCurrentSwipePage().equals(MatchType.LOVE_MATCH.getStatusString())) {
 					thisMatch.setType(MatchType.LOVE_MATCH);
 				}
 				
@@ -53,30 +53,30 @@ public class SwipeRightController extends SwipeButtonController{
 				thisMatch.setClientMatchStatus(MatchStatus.SWIPE_RIGHT);	
 				    
 				//update match
-				InformationExpert.updateMatch(thisMatch);
+				ClientManager.updateMatch(thisMatch);
 				
 			} else {
 				//create new match
-				thisMatch = new Match(InformationExpert.getActiveAccount().getAccountProfile(), InformationExpert.getOtherProfile());
+				thisMatch = new Match(ClientManager.getActiveAccount().getAccountProfile(), ClientManager.getOtherProfile());
 				thisMatch.setClientMatchStatus(MatchStatus.SWIPE_RIGHT);
 				thisMatch.setOtherMatchStatus(MatchStatus.NO_MATCH);
-				if(InformationExpert.getCurrentSwipePage().equals(MatchType.FRIEND_MATCH.getStatusString())) {
+				if(ClientManager.getCurrentSwipePage().equals(MatchType.FRIEND_MATCH.getStatusString())) {
 					thisMatch.setType(MatchType.FRIEND_MATCH);
 				}
-				else if(InformationExpert.getCurrentSwipePage().equals(MatchType.LOVE_MATCH.getStatusString())) {
+				else if(ClientManager.getCurrentSwipePage().equals(MatchType.LOVE_MATCH.getStatusString())) {
 					thisMatch.setType(MatchType.LOVE_MATCH);
 				}
 				//add match
-				InformationExpert.addMatch(thisMatch);
+				ClientManager.addMatch(thisMatch);
 			}
 			
 			if(thisMatch.getClientMatchStatus().equals(thisMatch.getOtherMatchStatus()) && thisMatch.getClientMatchStatus().equals(MatchStatus.SWIPE_RIGHT)) {
-				JOptionPane.showConfirmDialog(new JPanel(), "You have a succesful match with " + InformationExpert.getOtherProfile().getUsername(), "Match", JOptionPane.DEFAULT_OPTION);
-				if(InformationExpert.getCurrentSwipePage().equals(MatchType.FRIEND_MATCH.getStatusString())) {
-					InformationExpert.getClientModel().addFriendMatch(InformationExpert.getOtherProfile());
+				JOptionPane.showConfirmDialog(new JPanel(), "You have a succesful match with " + ClientManager.getOtherProfile().getUsername(), "Match", JOptionPane.DEFAULT_OPTION);
+				if(ClientManager.getCurrentSwipePage().equals(MatchType.FRIEND_MATCH.getStatusString())) {
+					ClientManager.getClientModel().addFriendMatch(ClientManager.getOtherProfile());
 				}
-				else if(InformationExpert.getCurrentSwipePage().equals(MatchType.LOVE_MATCH.getStatusString())) {
-					InformationExpert.getClientModel().addLoveMatch(InformationExpert.getOtherProfile());
+				else if(ClientManager.getCurrentSwipePage().equals(MatchType.LOVE_MATCH.getStatusString())) {
+					ClientManager.getClientModel().addLoveMatch(ClientManager.getOtherProfile());
 				}
 			}
 		} catch (DBFailureException e1) {
@@ -87,28 +87,28 @@ public class SwipeRightController extends SwipeButtonController{
 			try {
 				//	get next profile
 				
-				if(InformationExpert.getCurrentSwipePage().equals(MatchType.FRIEND_MATCH.getStatusString())) {
-					InformationExpert.getClientModel().dequeueFriendProfile();
-					if(InformationExpert.getClientModel().getFriendProfileFront() == null) {
-						InformationExpert.importFriendMatchBatch();
+				if(ClientManager.getCurrentSwipePage().equals(MatchType.FRIEND_MATCH.getStatusString())) {
+					ClientManager.getClientModel().dequeueFriendProfile();
+					if(ClientManager.getClientModel().getFriendProfileFront() == null) {
+						ClientManager.importFriendMatchBatch();
 					}	
-					if(InformationExpert.getClientModel().getFriendProfileFront() == null) {
+					if(ClientManager.getClientModel().getFriendProfileFront() == null) {
 						throw new DBFailureException();
 					}
-					InformationExpert.setOtherProfile(InformationExpert.getClientModel().getFriendProfileFront().getUserId());
+					ClientManager.setOtherProfile(ClientManager.getClientModel().getFriendProfileFront().getUserId());
 				}
-				else if (InformationExpert.getCurrentSwipePage().equals(MatchType.LOVE_MATCH.getStatusString())) {
-					InformationExpert.getClientModel().dequeLoveProfile();
-					if(InformationExpert.getClientModel().getLoveProfileFront() == null) {
-						InformationExpert.importLoveMatchBatch();
+				else if (ClientManager.getCurrentSwipePage().equals(MatchType.LOVE_MATCH.getStatusString())) {
+					ClientManager.getClientModel().dequeLoveProfile();
+					if(ClientManager.getClientModel().getLoveProfileFront() == null) {
+						ClientManager.importLoveMatchBatch();
 					}	
-					if(InformationExpert.getClientModel().getLoveProfileFront() == null) {
+					if(ClientManager.getClientModel().getLoveProfileFront() == null) {
 						throw new DBFailureException();
 					}
-					InformationExpert.setOtherProfile(InformationExpert.getClientModel().getLoveProfileFront().getUserId());
+					ClientManager.setOtherProfile(ClientManager.getClientModel().getLoveProfileFront().getUserId());
 				}
 				
-				controller.setProfile(InformationExpert.getOtherProfile());
+				controller.setProfile(ClientManager.getOtherProfile());
 			} catch (DBFailureException e1) {
 				logger.severe("Ran out of matches");
 				InvalidPopup p = new InvalidPopup(new JPanel(),"Ran out of matches for today. Please come back tomorrow");

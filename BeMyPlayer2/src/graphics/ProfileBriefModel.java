@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 import firebase.DBFailureException;
 
 import model.Profile;
-import model.InformationExpert;
+import model.ClientManager;
 import model.ResourceManager;
 
 /**
@@ -52,7 +52,7 @@ public class ProfileBriefModel extends JPanel{
 	public ProfileBriefModel(Profile profile, Rectangle rect, String backPage){
 
 		try {
-			InformationExpert.setOtherProfile(profile.getUserId());
+			ClientManager.setOtherProfile(profile.getUserId());
 		} catch (DBFailureException e2) {
 			logger.severe("Database failed to load other profile" + profile.getUserId());
 		}
@@ -60,7 +60,7 @@ public class ProfileBriefModel extends JPanel{
 		CircularImage setIcon = null;
 		Image img1;
 		try {
-			img1 = InformationExpert.getProfileImage(profile.getUserId());
+			img1 = ClientManager.getProfileImage(profile.getUserId());
 			setIcon = new CircularImage(new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT)));
 		} catch (Exception e1) {
 			logger.warning("Failed to load profile picture for " + profile.getUserId()) ;
@@ -89,7 +89,7 @@ public class ProfileBriefModel extends JPanel{
 					GraphicsController.setProfileAccountOther();
 					 
 					try {
-						InformationExpert.setOtherProfile(profile.getUserId());
+						ClientManager.setOtherProfile(profile.getUserId());
 					} catch (DBFailureException e1) {
 						logger.severe("Failed to load user profile for " + profile.getUsername());
 					}

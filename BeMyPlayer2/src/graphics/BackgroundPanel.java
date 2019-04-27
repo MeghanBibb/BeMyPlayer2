@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 
 import model.ResourceManager;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class BackgroundPanel.
  */

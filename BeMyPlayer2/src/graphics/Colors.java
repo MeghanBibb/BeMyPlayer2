@@ -2,7 +2,6 @@ package graphics;
 
 import java.awt.Color;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Colors.
  */

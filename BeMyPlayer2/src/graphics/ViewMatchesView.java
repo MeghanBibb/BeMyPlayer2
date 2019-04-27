@@ -21,7 +21,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import model.Account;
-import model.InformationExpert;
+import model.ClientManager;
 import model.ResourceManager;
 
 /**
@@ -99,7 +99,7 @@ public class ViewMatchesView {
         			profilePicPanel.removeAll();
         			///	ACTUAL SOLUTION
         			
-        			if(InformationExpert.getClientModel().getLoveMatches() == null || InformationExpert.getClientModel().getLoveMatches().size() == 0) {
+        			if(ClientManager.getClientModel().getLoveMatches() == null || ClientManager.getClientModel().getLoveMatches().size() == 0) {
         				//profilePicPanel.add(viewMatchController.getViewMatchesModel().getEmptyPanel());
         				JLabel temp1 = viewMatchController.getViewMatchesModel().getNoMatchMessage();
         				temp1.setVisible(true);
@@ -114,7 +114,7 @@ public class ViewMatchesView {
         				List<JButton> pics = ProfilePicGenerator.getLoveList(viewMatchController);
         		    	double temp = pics.size();
         		    	boolean addTrash = false;
-        		    	if(InformationExpert.getClientModel().getLoveMatches().size()  > 4) {
+        		    	if(ClientManager.getClientModel().getLoveMatches().size()  > 4) {
         		    		addTrash = true;
         		    		temp = (Math.ceil(Math.abs(temp/4)));
         		    		profilePicPanel.setPreferredSize(new Dimension(100,(int)(250*temp)));
@@ -143,7 +143,7 @@ public class ViewMatchesView {
         			profilePicPanel.removeAll();
         			///	ACTUAL SOLUTION
         			
-        			if(InformationExpert.getClientModel().getFriendMatches() == null ||InformationExpert.getClientModel().getFriendMatches().size() == 0) {
+        			if(ClientManager.getClientModel().getFriendMatches() == null ||ClientManager.getClientModel().getFriendMatches().size() == 0) {
         			//	profilePicPanel.add(viewMatchController.getViewMatchesModel().getEmptyPanel());
         				JLabel temp1 = viewMatchController.getViewMatchesModel().getNoMatchMessage();
         				temp1.setVisible(true);
@@ -159,7 +159,7 @@ public class ViewMatchesView {
         				List<JButton> pics = ProfilePicGenerator.getFriendList(viewMatchController);
         		    	double temp = pics.size();
         		    	boolean addTrash = false;
-        		    	if(InformationExpert.getClientModel().getFriendMatches().size() > 4) {
+        		    	if(ClientManager.getClientModel().getFriendMatches().size() > 4) {
         		    		addTrash = true;
         		    		temp = (Math.ceil(Math.abs(temp/4)));
         		    		profilePicPanel.setPreferredSize(new Dimension(100,(int)(250*temp)));
@@ -198,7 +198,7 @@ public class ViewMatchesView {
 		viewMatchController.getViewMatchesModel().setMatchtype(matchtype);
 		viewMatchController.getViewMatchesPanel().add(matchtype);
 		
-		if(InformationExpert.getClientModel().getLoveMatches() == null || InformationExpert.getClientModel().getLoveMatches().size() == 0) {
+		if(ClientManager.getClientModel().getLoveMatches() == null || ClientManager.getClientModel().getLoveMatches().size() == 0) {
 			//profilePicPanel.add(viewMatchController.getViewMatchesModel().getEmptyPanel());
 			JLabel temp1 = viewMatchController.getViewMatchesModel().getNoMatchMessage();
 			temp1.setVisible(true);
@@ -209,7 +209,7 @@ public class ViewMatchesView {
 	    	List<JButton> pics = ProfilePicGenerator.getLoveList(viewMatchController);
 	    	double temp = pics.size();
 	    	
-	    	if(InformationExpert.getClientModel().getLoveMatches().size() > 4) {
+	    	if(ClientManager.getClientModel().getLoveMatches().size() > 4) {
 	    		temp = (Math.ceil(Math.abs(temp/4)));
 	    		profilePicPanel.setPreferredSize(new Dimension(100,(int) (250*temp)));
 	    	}

@@ -20,7 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import firebase.DBFailureException;
-import model.InformationExpert;
+import model.ClientManager;
 import model.ResourceManager;
 
 /**
@@ -65,10 +65,10 @@ public class ProfilePageView {
 			BufferedImage img = null;
 			
 			try {
-				img = InformationExpert.getProfileImage(InformationExpert.getActiveUserID());
+				img = ClientManager.getProfileImage(ClientManager.getActiveUserID());
 				
 			} catch (DBFailureException e) {
-				logger.warning("failed to load profile picture for " + InformationExpert.getActiveUserID());
+				logger.warning("failed to load profile picture for " + ClientManager.getActiveUserID());
 				img = ResourceManager.loadImage("defaultIcon.png");
 			}
 			
@@ -93,9 +93,9 @@ public class ProfilePageView {
 			CircularImage imgLabel = new CircularImage();
 			BufferedImage img = null;
 			try {
-				img = InformationExpert.getProfileImage(profileController.getProfile().getUserId());
+				img = ClientManager.getProfileImage(profileController.getProfile().getUserId());
 			} catch (DBFailureException e) {
-				logger.warning("failed to load profile picture for " + InformationExpert.getOtherProfile().getUserId());
+				logger.warning("failed to load profile picture for " + ClientManager.getOtherProfile().getUserId());
 			}
 			
 			if(img == null) {
@@ -116,10 +116,10 @@ public class ProfilePageView {
 			profileController.getProfilePanel().add(profileController.getProfileModel().getBtnBlock());
 			
 			try {
-				if (InformationExpert.getMatch(InformationExpert.getActiveAccount().getAccountProfile(),
-						InformationExpert.getOtherProfile()).getClientMatchStatus()
-						.equals(InformationExpert.getMatch(InformationExpert.getActiveAccount().getAccountProfile()
-								,InformationExpert.getOtherProfile()).getOtherMatchStatus())) {
+				if (ClientManager.getMatch(ClientManager.getActiveAccount().getAccountProfile(),
+						ClientManager.getOtherProfile()).getClientMatchStatus()
+						.equals(ClientManager.getMatch(ClientManager.getActiveAccount().getAccountProfile()
+								,ClientManager.getOtherProfile()).getOtherMatchStatus())) {
 					
 					ImgButton btnMessage = new ImgButton("Message");
 					btnMessage.setBounds(370,270,90,40);
@@ -168,8 +168,10 @@ public class ProfilePageView {
 		Calendar cbday = Calendar.getInstance();
 		cbday.setTime(bday);
 		int diff = cnow.get(Calendar.YEAR) - cbday.get(Calendar.YEAR);
-		if(cnow.get(Calendar.MONTH) == cbday.get(Calendar.MONTH) && cnow.get(Calendar.DATE) > cbday.get(Calendar.DATE) ) {
+		if(cnow.get(Calendar.MONTH) == cbday.get(Calendar.MONTH) && cnow.get(Calendar.DATE) < cbday.get(Calendar.DATE) ) {
 			diff--;
+		} else if(cnow.get(Calendar.MONTH) < cbday.get(Calendar.MONTH)) {
+			diff --;
 		}
 		lblAge.setFont(Fonts.getFont(12f));
 		lblAge.setText(Integer.toString(diff) + " years old");
@@ -193,7 +195,7 @@ public class ProfilePageView {
 		//init description
 		ProfileBioBox description = new ProfileBioBox();
 		if(profileController.isActiveAccount()) {
-			description.setText(InformationExpert.getActiveAccount().getAccountProfile().getDescription());
+			description.setText(ClientManager.getActiveAccount().getAccountProfile().getDescription());
 		}
 		else {
 			description.setText(profileController.getProfile().getDescription());

@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.RepaintManager;
 
 import firebase.DBFailureException;
-import model.InformationExpert;
+import model.ClientManager;
 import model.Profile;
 import model.ResourceManager;
 
@@ -51,13 +51,13 @@ public class PicThread extends Thread{
 		Image img1;
 		Profile temp =  null;
 		try {
-			img1 = InformationExpert.getProfileImage(this.uid);
+			img1 = ClientManager.getProfileImage(this.uid);
 		} catch (DBFailureException e) {
 			img1 = DEFAULT_PIC;
 			logger.warning("database failed to load pic for " + this.uid);
 		}
 		try {
-			temp = InformationExpert.getUserAccountWithProfile(this.uid).getAccountProfile();
+			temp = ClientManager.getUserAccountWithProfile(this.uid).getAccountProfile();
 		}
 		catch(Exception b) {
 			logger.warning("Failed to load profile");
