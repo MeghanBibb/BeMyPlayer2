@@ -3,6 +3,7 @@ package graphics;
 import java.awt.Dimension;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
@@ -36,6 +37,7 @@ public class GraphicsController {
 	
 	static {
 		try {
+			
 			InputStream configFile = GraphicsController.class.getClassLoader().getResourceAsStream("logger.properties");
 			LogManager.getLogManager().readConfiguration(configFile);
 			configFile.close();
@@ -43,7 +45,7 @@ public class GraphicsController {
 			System.out.println("WARNING: Could not open configuration file");
 		    System.out.println("WARNING: Logging not configured (console output only)");
 		}
-		logger.info("running graphic controller");
+		logger.log(Level.FINE,"running graphic controller");
 	}
 	
 	/**
