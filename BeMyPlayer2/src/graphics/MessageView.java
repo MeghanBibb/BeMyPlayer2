@@ -4,7 +4,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import firebase.DBFailureException;
-import model.InformationExpert;
+import model.ClientManager;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -41,9 +41,9 @@ public class MessageView {
         JLabel imgLabel = new JLabel("");
 		BufferedImage img = null;
 		try {
-			img = InformationExpert.getProfileImage(InformationExpert.getOtherProfile().getUserId());
+			img = ClientManager.getProfileImage(ClientManager.getOtherProfile().getUserId());
 		} catch (DBFailureException e) {
-			logger.warning("failed to load profile picture for " + InformationExpert.getOtherProfile().getUserId());
+			logger.warning("failed to load profile picture for " + ClientManager.getOtherProfile().getUserId());
 		}
 		
 		if(img == null) {
@@ -54,7 +54,7 @@ public class MessageView {
         messageController.getMessageModel().setProfileImage(imgLabel);
 
         JLabel lblUsername = new JLabel();
-        lblUsername.setText(InformationExpert.getOtherProfile().getUsername());
+        lblUsername.setText(ClientManager.getOtherProfile().getUsername());
         lblUsername.setFont(Fonts.getFont((float)15));
         lblUsername.setForeground(Colors.Yellow);
         lblUsername.setBounds(150,35,160,90);
@@ -67,7 +67,7 @@ public class MessageView {
 		Date nowDate = java.sql.Date.valueOf(now);
 		Calendar cnow = Calendar.getInstance();
 		cnow.setTime(nowDate);
-		Date bday = InformationExpert.getOtherProfile().getDateOB();
+		Date bday = ClientManager.getOtherProfile().getDateOB();
 		Calendar cbday = Calendar.getInstance();
 		cbday.setTime(bday);
 		int diff = cnow.get(Calendar.YEAR) - cbday.get(Calendar.YEAR);
@@ -119,12 +119,12 @@ public class MessageView {
         
         if(messageController.getCurrentThread() != null) {
         	 for (int i = 0; i < messageController.getCurrentThread().getMessages().size(); i++){
-                 if (messageController.getCurrentThread().getMessages().get(i).getSenderId().equals(InformationExpert.getActiveUserID())){
+                 if (messageController.getCurrentThread().getMessages().get(i).getSenderId().equals(ClientManager.getActiveUserID())){
                      thread.append("Me: ");
                      thread.append(messageController.getCurrentThread().getMessages().get(i).getMessage());
                      thread.append("\n");
                  } else {
-                     thread.append(InformationExpert.getOtherProfile().getUsername() + ": ");
+                     thread.append(ClientManager.getOtherProfile().getUsername() + ": ");
                      thread.append(messageController.getCurrentThread().getMessages().get(i).getMessage());
                      thread.append("\n");
                  }

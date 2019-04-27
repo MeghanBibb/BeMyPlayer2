@@ -7,7 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import model.InformationExpert;
+import model.ClientManager;
 
 /**
  * The Class HomePageController.
@@ -81,12 +81,12 @@ public class HomePageController extends PageController{
 				break;
 			case FIND_FRIENDS: 
 				logger.info("Find Friends");
-				InformationExpert.setCurretnSwipePage("friend");
+				ClientManager.setCurretnSwipePage("friend");
 				GraphicsController.processPage(PageCreator.SWIPE_PAGE,backPage);
 				break;
 			case FIND_LOVE: 
 				logger.info("Find Love");
-				InformationExpert.setCurretnSwipePage("love");
+				ClientManager.setCurretnSwipePage("love");
 				GraphicsController.processPage(PageCreator.SWIPE_PAGE,backPage);
 				break;
 			case VIEW_MATCHES: 
@@ -94,7 +94,7 @@ public class HomePageController extends PageController{
 				GraphicsController.processPage(PageCreator.MATCHES_PAGE,backPage);
 				break;
 			case LOGOUT: 
-				logger.info("Logout of user " + InformationExpert.getActiveUserID());
+				logger.info("Logout of user " + ClientManager.getActiveUserID());
 				GraphicsController.processPage(PageCreator.LOGIN_PAGE,backPage);
 				break;
 			case LAUNCH_WEB_PAGE:

@@ -11,7 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import firebase.DBFailureException;
-import model.InformationExpert;
+import model.ClientManager;
 
 /**
  * The Class ProfilePicGenerator.
@@ -32,7 +32,7 @@ public class ProfilePicGenerator {
 	 */
 	public static List<JButton> getLoveList(ViewMatchesController b){
 		List<JButton> loveList = new ArrayList<>();
-		List<Profile> profiles= InformationExpert.getClientModel().getLoveMatches();
+		List<Profile> profiles= ClientManager.getClientModel().getLoveMatches();
 		List<String> userIds = new ArrayList<>();
 		List<JLabel> nameLabel = new ArrayList<>();
 		for(int i = 0; i < profiles.size();i++) {
@@ -87,7 +87,7 @@ public class ProfilePicGenerator {
 	 */
 	public static List<JButton> getFriendList(ViewMatchesController b){
 		List<JButton> friendList = new ArrayList<JButton>();
-		List<Profile> profiles= InformationExpert.getClientModel().getFriendMatches();
+		List<Profile> profiles= ClientManager.getClientModel().getFriendMatches();
 		List<String> userIds = new ArrayList<>();
 		List<JLabel> nameLabel = new ArrayList<>();
 		for(int i = 0; i < profiles.size();i++) {
@@ -150,7 +150,7 @@ public class ProfilePicGenerator {
 			nameLabel1.setFont(Fonts.getFont(12f));
 			nameLabel1.setForeground(Colors.Yellow);
 			try {
-				nameLabel1.setText(InformationExpert.getUserAccountWithProfile(name).getAccountProfile().getUsername());
+				nameLabel1.setText(ClientManager.getUserAccountWithProfile(name).getAccountProfile().getUsername());
 			} catch (DBFailureException e) {
 				logger.warning("User does not exist");
 				

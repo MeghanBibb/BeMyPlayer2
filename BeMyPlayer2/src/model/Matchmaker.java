@@ -48,7 +48,7 @@ public class Matchmaker{
 					return 1000;
 				}
 				try {
-					if(InformationExpert.getPaymentInfo(o.getUserId()) != null) {
+					if(ClientManager.getPaymentInfo(o.getUserId()) != null) {
 						return -5000;
 					}
 				} catch (DBFailureException e) {
@@ -106,7 +106,7 @@ public class Matchmaker{
 					return 1000;
 				}
 				try {
-					if(InformationExpert.getPaymentInfo(o.getUserId()) != null) {
+					if(ClientManager.getPaymentInfo(o.getUserId()) != null) {
 						return -5000;
 					}
 				} catch (DBFailureException e) {

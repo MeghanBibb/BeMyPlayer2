@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 
 import firebase.DBFailureException;
 import firebase.Hasher;
-import model.InformationExpert;
+import model.ClientManager;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -124,7 +124,7 @@ public class ForgotPassPageController extends PageController {
 	 */
 	public boolean resetPassword() {
 		try {
-			return InformationExpert.resetUserAccountPassword(this.getForgotPasswordPageModel().getFrmtdtextfldEnterEmail().getText(), 1,
+			return ClientManager.resetUserAccountPassword(this.getForgotPasswordPageModel().getFrmtdtextfldEnterEmail().getText(), 1,
 					Hasher.hashString(this.getForgotPasswordPageModel().getSecQA().getText()), 
 					Hasher.hashString(this.getForgotPasswordPageModel().getFrmtdtextfldEnterNewPassword().getText()),
 					this.getForgotPasswordPageModel().getFrmtdtextfldEnterUsername().getText());

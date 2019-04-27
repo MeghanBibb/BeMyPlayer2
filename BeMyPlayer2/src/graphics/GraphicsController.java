@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
-import model.InformationExpert;
+import model.ClientManager;
 import model.ResourceManager;
 
 
@@ -145,7 +145,7 @@ public class GraphicsController {
 		
 		// See the updated Account object in the model package...
 		BackgroundMusic.getInstance().music();
-		InformationExpert.initialize();
+		ClientManager.initialize();
 		GraphicsController g = new GraphicsController();
 		
 	}

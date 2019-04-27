@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
@@ -14,7 +15,7 @@ import javax.swing.JTextArea;
 
 import firebase.Hasher;
 import model.Account;
-import model.InformationExpert;
+import model.ClientManager;
 import model.Profile;
 
 /**
@@ -82,7 +83,6 @@ public class CreateAccountPageController extends PageController{
 	 */
 	//	check command 
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		if(e.getActionCommand() == NEXT) {
 			pageNum++;
 			logger.info("page number " + pageNum);
@@ -160,16 +160,15 @@ public class CreateAccountPageController extends PageController{
 				a.setAccountProfile(p);
 				boolean valid = true;
 				try {
-					if(InformationExpert.attemptAddNewAccount(a)) {
-						InformationExpert.setActiveAccount(a);
-						InformationExpert.addProfileImage(p.getProfilePicture(), a.getUserId());
+					if(ClientManager.attemptAddNewAccount(a)) {
+						ClientManager.setActiveAccount(a);
+						ClientManager.addProfileImage(p.getProfilePicture(), a.getUserId());
 					
-						InformationExpert.resetClientModel();
+						ClientManager.resetClientModel();
 					}else {
 						throw new RuntimeException();
 					}
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
 					valid = false;
 					logger.warning("failed to add new account");
 					List<String> warnings = new ArrayList<>();
@@ -232,7 +231,8 @@ public class CreateAccountPageController extends PageController{
 			warnings.add("Please provide answer to a security question\n");
 		}
 		try {
-			this.createAccountPageModel.getDob();
+			Date bday = this.createAccountPageModel.getDob();
+			
 		} catch (ParseException e) {
 			valid = false;
 			warnings.add("invalid date: please enter dd/mm/yyyy\n");

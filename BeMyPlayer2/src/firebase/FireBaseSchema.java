@@ -4,7 +4,6 @@ import java.util.Date;
 
 import com.google.cloud.Timestamp;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class FireBaseSchema.
  */
