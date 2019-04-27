@@ -1,15 +1,13 @@
 package tests;
 
-import static org.junit.Assert.assertFalse;
-
-import java.util.ArrayList;
-import java.util.List;
+import static org.junit.jupiter.api.Assertions.*;
 
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import org.junit.Test;
-//import org.junit.jupiter.api.BeforeEach;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 
 import graphics.InvalidPopup;
 import messaging.MessageController;
@@ -20,7 +18,7 @@ public class MessageTest {
 	MessageController controller;
 	
 	//this initializes the controller/model with valid, correct data
-	//@BeforeEach
+	@BeforeEach
 	public void initModel() {
 		model = new MessageModel();
 		controller = new MessageController();
@@ -30,26 +28,14 @@ public class MessageTest {
 		model.setSendBox(new JTextField());
 		controller.setMessageModel(model);
 	}
+	
 	@Test
 	public void invalidMessage() {
-		model = new MessageModel();
-		controller = new MessageController();
-		JTextArea messageThread = new JTextArea("");
-		model.setThread(messageThread);
-		model.setSendBox(new JTextField());
-		controller.setMessageModel(model);
 		assertFalse(controller.validateMsg());
 	}
+	
 	@Test
 	public void nullMessage() {
-		model = new MessageModel();
-		controller = new MessageController();
-		
-		JTextArea messageThread = new JTextArea();
-		model.setSendBox(new JTextField());
-		model.setThread(messageThread);
-			
-		controller.setMessageModel(model);
 		assertFalse(controller.validateMsg());
 	}
 }

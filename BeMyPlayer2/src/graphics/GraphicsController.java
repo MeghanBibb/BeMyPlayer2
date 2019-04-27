@@ -3,6 +3,7 @@ package graphics;
 import java.awt.Dimension;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
@@ -33,8 +34,6 @@ public class GraphicsController {
 	
 	/** The logger. */
 	private static Logger logger = Logger.getLogger(GraphicsController.class.getName());
-	
-
 	
 	/**
 	 * Instantiates a new graphics controller.
