@@ -57,7 +57,7 @@ public class ViewMatchesController extends PageController{
 		}
 		this.a = new Account();
 		this.copyFrame = mainFrame;
-		InformationExpert.loadAccountMatches();
+		ClientManager.loadAccountMatches();
 		ViewMatchesView.startViewMatches(this,mainFrame,a);
 	}
 	
