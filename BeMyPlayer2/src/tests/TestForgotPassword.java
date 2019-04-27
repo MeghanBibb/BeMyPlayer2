@@ -2,7 +2,7 @@
 package tests;
 import model.Profile;
 
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,7 +12,9 @@ import java.util.regex.Pattern;
 import javax.swing.JFormattedTextField;
 import javax.swing.JPasswordField;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 
 import graphics.InvalidPopup;
 import graphics.ForgotPassPageModel;
@@ -28,8 +30,7 @@ public class TestForgotPassword {
 	ForgotPassPageView view;
 	ForgotPassPageController controller;
 	
-	//@BeforeEach
-	//@DisplayName("Create Profile")
+	@BeforeEach
 	public void InitProfile() {
 		profile = new Profile();
 		account = new Account();
@@ -45,8 +46,7 @@ public class TestForgotPassword {
 		account.setAccountProfile(profile);
 	}
 	
-	//@BeforeEach
-	//@DisplayName("Create Model")
+	@BeforeEach
 	public void initModel() {
 		model = new ForgotPassPageModel();
 		controller = new ForgotPassPageController();
@@ -71,6 +71,7 @@ public class TestForgotPassword {
 	}
 	
 	//test with valid data
+	@DisplayName("test password verification")
 	@Test
 	public void testPasswordVerification() {
 		model = new ForgotPassPageModel();
@@ -79,7 +80,7 @@ public class TestForgotPassword {
 	
 	@Test
 	public void testBadAnswer() {
-		JFormattedTextField answer = new JFormattedTextField("BAD ANSWER");
+		JFormattedTextField answer = new JFormattedTextField("");
 		model.setSecQA(answer);
 		controller.setForgotPasswordPageModel(model);
 		
@@ -95,9 +96,9 @@ public class TestForgotPassword {
 		assertFalse(controller.validateInfo());
 	}
 	
-	@Test
+	@Test//email validation issues
 	public void testBadEmail() {
-		JFormattedTextField tempEmail = new JFormattedTextField("badEmail@gmail.com");
+		JFormattedTextField tempEmail = new JFormattedTextField("badEmail@gmail .com");
 		model.setFrmtdtextfldEnterEmail(tempEmail);
 		
 		controller.setForgotPasswordPageModel(model);

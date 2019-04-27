@@ -1,27 +1,30 @@
 package tests;
 
-import static org.junit.Assert.*;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.JUnitCore;
 
-import graphics.Colors;
 import graphics.CreateAccountPageController;
 import graphics.CreateAccountPageModel;
 import graphics.CreateAccountPageView;
-import graphics.Fonts;
+
 
 public class CreateAccountTest {
 
@@ -30,44 +33,42 @@ public class CreateAccountTest {
 	public CreateAccountPageController controller;
 	
 	//this initializes the controller/model with valid, correct data
-	
-	
-	@Test
-	public void testBadUsername() {
+	@BeforeEach
+	public void init(){
 		model = new CreateAccountPageModel();
 		controller = new CreateAccountPageController();
 		view = new CreateAccountPageView();
-		
+
 		JFormattedTextField age = new JFormattedTextField("20");
 		model.setAge(age);
-			
+
 		//JFormattedTextField dob = new JFormattedTextField("11/19/1998");
 		model.setDob(new Date(1998,11,19));
-			
+
 		JFormattedTextField email = new JFormattedTextField("mpbibb@gmail.com");
 		model.setEnterEmail(email);
-		
+
 		JFormattedTextField frmtdtxtfldEnterUsername = new JFormattedTextField("SICEM");
 		model.setFrmtdtxtfldEnterUsername(frmtdtxtfldEnterUsername);
 		JPasswordField pass = new JPasswordField("pass");
-		
+
 		model.setPwdEnterPass(pass);
 		model.setPwdValidatePass(pass);
 		JComboBox<String> gender = new JComboBox<String>();
 		gender.setModel(new DefaultComboBoxModel<String>(new String[] {"Male", "Female"}));
 		model.setGenderBox(gender);
-		
-		//helpppp
-		//model.setProfileImg(new BufferedImage(new File("BeMyPlayer2\\img\\heards.png")));
-		//model.setProfileImg(profileImg);
-		
+
 		JFormattedTextField secQA = new JFormattedTextField("answer");
 		model.setSecQA(secQA);
-		
+
 		JTextArea area = new JTextArea("hello my name is Meghan");
 		model.setCharDescription(area);
-			
+
 		controller.setCreateAccountPageModel(model);
+	}
+	
+	@Test
+	public void testBadUsername() {
 		
 		JFormattedTextField frmtdtxtfldEnterUsername2 = new JFormattedTextField("B AD,zxjhsdi B @@@@@@@@@@@@!!!!!!!!!!!!!!!!!!!@@@@@@@@@@AD S ICE M");
 		model.setFrmtdtxtfldEnterUsername(frmtdtxtfldEnterUsername2);
@@ -78,40 +79,6 @@ public class CreateAccountTest {
 	
 	@Test
 	public void testEmptyUsername() {
-		model = new CreateAccountPageModel();
-		controller = new CreateAccountPageController();
-		view = new CreateAccountPageView();
-		
-		JFormattedTextField age = new JFormattedTextField("20");
-		model.setAge(age);
-			
-		//JFormattedTextField dob = new JFormattedTextField("11/19/1998");
-		model.setDob(new Date(1998,11,19));
-			
-		JFormattedTextField email = new JFormattedTextField("mpbibb@gmail.com");
-		model.setEnterEmail(email);
-		
-		JFormattedTextField frmtdtxtfldEnterUsername = new JFormattedTextField("SICEM");
-		model.setFrmtdtxtfldEnterUsername(frmtdtxtfldEnterUsername);
-		JPasswordField pass = new JPasswordField("pass");
-		
-		model.setPwdEnterPass(pass);
-		model.setPwdValidatePass(pass);
-		JComboBox<String> gender = new JComboBox<String>();
-		gender.setModel(new DefaultComboBoxModel<String>(new String[] {"Male", "Female"}));
-		model.setGenderBox(gender);
-		
-		//helpppp
-		//model.setProfileImg(new BufferedImage(new File("BeMyPlayer2\\img\\heards.png")));
-		//model.setProfileImg(profileImg);
-		
-		JFormattedTextField secQA = new JFormattedTextField("answer");
-		model.setSecQA(secQA);
-		
-		JTextArea area = new JTextArea("hello my name is Meghan");
-		model.setCharDescription(area);
-			
-		controller.setCreateAccountPageModel(model);
 		
 		JFormattedTextField frmtdtxtfldEnterUsername2 = new JFormattedTextField();
 		model.setFrmtdtxtfldEnterUsername(frmtdtxtfldEnterUsername2);
@@ -122,40 +89,6 @@ public class CreateAccountTest {
 	
 	@Test
 	public void testBadAge() {
-		model = new CreateAccountPageModel();
-		controller = new CreateAccountPageController();
-		view = new CreateAccountPageView();
-		
-		JFormattedTextField age = new JFormattedTextField("20");
-		model.setAge(age);
-			
-		//JFormattedTextField dob = new JFormattedTextField("11/19/1998");
-		model.setDob(new Date(1998,11,19));
-			
-		JFormattedTextField email = new JFormattedTextField("mpbibb@gmail.com");
-		model.setEnterEmail(email);
-		
-		JFormattedTextField frmtdtxtfldEnterUsername = new JFormattedTextField("SICEM");
-		model.setFrmtdtxtfldEnterUsername(frmtdtxtfldEnterUsername);
-		JPasswordField pass = new JPasswordField("pass");
-		
-		model.setPwdEnterPass(pass);
-		model.setPwdValidatePass(pass);
-		JComboBox<String> gender = new JComboBox<String>();
-		gender.setModel(new DefaultComboBoxModel<String>(new String[] {"Male", "Female"}));
-		model.setGenderBox(gender);
-		
-		//helpppp
-		//model.setProfileImg(new BufferedImage(new File("BeMyPlayer2\\img\\heards.png")));
-		//model.setProfileImg(profileImg);
-		
-		JFormattedTextField secQA = new JFormattedTextField("answer");
-		model.setSecQA(secQA);
-		
-		JTextArea area = new JTextArea("hello my name is Meghan");
-		model.setCharDescription(area);
-			
-		controller.setCreateAccountPageModel(model);
 		
 		JFormattedTextField age2 = new JFormattedTextField("-15");
 		model.setAge(age2);
@@ -166,40 +99,6 @@ public class CreateAccountTest {
 	
 	@Test
 	public void testBadAge2() {
-		model = new CreateAccountPageModel();
-		controller = new CreateAccountPageController();
-		view = new CreateAccountPageView();
-		
-		JFormattedTextField age = new JFormattedTextField("20");
-		model.setAge(age);
-			
-		//JFormattedTextField dob = new JFormattedTextField("11/19/1998");
-		model.setDob(new Date(1998,11,19));
-			
-		JFormattedTextField email = new JFormattedTextField("mpbibb@gmail.com");
-		model.setEnterEmail(email);
-		
-		JFormattedTextField frmtdtxtfldEnterUsername = new JFormattedTextField("SICEM");
-		model.setFrmtdtxtfldEnterUsername(frmtdtxtfldEnterUsername);
-		JPasswordField pass = new JPasswordField("pass");
-		
-		model.setPwdEnterPass(pass);
-		model.setPwdValidatePass(pass);
-		JComboBox<String> gender = new JComboBox<String>();
-		gender.setModel(new DefaultComboBoxModel<String>(new String[] {"Male", "Female"}));
-		model.setGenderBox(gender);
-		
-		//helpppp
-		//model.setProfileImg(new BufferedImage(new File("BeMyPlayer2\\img\\heards.png")));
-		//model.setProfileImg(profileImg);
-		
-		JFormattedTextField secQA = new JFormattedTextField("answer");
-		model.setSecQA(secQA);
-		
-		JTextArea area = new JTextArea("hello my name is Meghan");
-		model.setCharDescription(area);
-			
-		controller.setCreateAccountPageModel(model);
 		
 		JFormattedTextField age2 = new JFormattedTextField("10215");
 		model.setAge(age2);
@@ -210,40 +109,6 @@ public class CreateAccountTest {
 	
 	@Test
 	public void testEmptyAge() {
-		model = new CreateAccountPageModel();
-		controller = new CreateAccountPageController();
-		view = new CreateAccountPageView();
-		
-		JFormattedTextField age = new JFormattedTextField("20");
-		model.setAge(age);
-			
-		//JFormattedTextField dob = new JFormattedTextField("11/19/1998");
-		model.setDob(new Date(1998,11,19));
-			
-		JFormattedTextField email = new JFormattedTextField("mpbibb@gmail.com");
-		model.setEnterEmail(email);
-		
-		JFormattedTextField frmtdtxtfldEnterUsername = new JFormattedTextField("SICEM");
-		model.setFrmtdtxtfldEnterUsername(frmtdtxtfldEnterUsername);
-		JPasswordField pass = new JPasswordField("pass");
-		
-		model.setPwdEnterPass(pass);
-		model.setPwdValidatePass(pass);
-		JComboBox<String> gender = new JComboBox<String>();
-		gender.setModel(new DefaultComboBoxModel<String>(new String[] {"Male", "Female"}));
-		model.setGenderBox(gender);
-		
-		//helpppp
-		//model.setProfileImg(new BufferedImage(new File("BeMyPlayer2\\img\\heards.png")));
-		//model.setProfileImg(profileImg);
-		
-		JFormattedTextField secQA = new JFormattedTextField("answer");
-		model.setSecQA(secQA);
-		
-		JTextArea area = new JTextArea("hello my name is Meghan");
-		model.setCharDescription(area);
-			
-		controller.setCreateAccountPageModel(model);
 		
 		JFormattedTextField age2 = new JFormattedTextField();
 		model.setAge(age2);
@@ -256,40 +121,6 @@ public class CreateAccountTest {
 	
 	@Test
 	public void testBadDOB() {
-		model = new CreateAccountPageModel();
-		controller = new CreateAccountPageController();
-		view = new CreateAccountPageView();
-		
-		JFormattedTextField age = new JFormattedTextField("20");
-		model.setAge(age);
-			
-		//JFormattedTextField dob = new JFormattedTextField("11/19/1998");
-		model.setDob(new Date(1998,11,19));
-			
-		JFormattedTextField email = new JFormattedTextField("mpbibb@gmail.com");
-		model.setEnterEmail(email);
-		
-		JFormattedTextField frmtdtxtfldEnterUsername = new JFormattedTextField("SICEM");
-		model.setFrmtdtxtfldEnterUsername(frmtdtxtfldEnterUsername);
-		JPasswordField pass = new JPasswordField("pass");
-		
-		model.setPwdEnterPass(pass);
-		model.setPwdValidatePass(pass);
-		JComboBox<String> gender = new JComboBox<String>();
-		gender.setModel(new DefaultComboBoxModel<String>(new String[] {"Male", "Female"}));
-		model.setGenderBox(gender);
-		
-		//helpppp
-		//model.setProfileImg(new BufferedImage(new File("BeMyPlayer2\\img\\heards.png")));
-		//model.setProfileImg(profileImg);
-		
-		JFormattedTextField secQA = new JFormattedTextField("answer");
-		model.setSecQA(secQA);
-		
-		JTextArea area = new JTextArea("hello my name is Meghan");
-		model.setCharDescription(area);
-			
-		controller.setCreateAccountPageModel(model);
 		
 		model.setDob(new Date(1000,11,19));
 		controller.setCreateAccountPageModel(model);
@@ -299,40 +130,6 @@ public class CreateAccountTest {
 	
 	@Test
 	public void testBadDOB2() {
-		model = new CreateAccountPageModel();
-		controller = new CreateAccountPageController();
-		view = new CreateAccountPageView();
-		
-		JFormattedTextField age = new JFormattedTextField("20");
-		model.setAge(age);
-			
-		//JFormattedTextField dob = new JFormattedTextField("11/19/1998");
-		model.setDob(new Date(1998,11,19));
-			
-		JFormattedTextField email = new JFormattedTextField("mpbibb@gmail.com");
-		model.setEnterEmail(email);
-		
-		JFormattedTextField frmtdtxtfldEnterUsername = new JFormattedTextField("SICEM");
-		model.setFrmtdtxtfldEnterUsername(frmtdtxtfldEnterUsername);
-		JPasswordField pass = new JPasswordField("pass");
-		
-		model.setPwdEnterPass(pass);
-		model.setPwdValidatePass(pass);
-		JComboBox<String> gender = new JComboBox<String>();
-		gender.setModel(new DefaultComboBoxModel<String>(new String[] {"Male", "Female"}));
-		model.setGenderBox(gender);
-		
-		//helpppp
-		//model.setProfileImg(new BufferedImage(new File("BeMyPlayer2\\img\\heards.png")));
-		//model.setProfileImg(profileImg);
-		
-		JFormattedTextField secQA = new JFormattedTextField("answer");
-		model.setSecQA(secQA);
-		
-		JTextArea area = new JTextArea("hello my name is Meghan");
-		model.setCharDescription(area);
-			
-		controller.setCreateAccountPageModel(model);
 		
 		model.setDob(new Date(1998,11,1922));
 		controller.setCreateAccountPageModel(model);
@@ -342,40 +139,6 @@ public class CreateAccountTest {
 	
 	@Test
 	public void testBadDOB3() {
-		model = new CreateAccountPageModel();
-		controller = new CreateAccountPageController();
-		view = new CreateAccountPageView();
-		
-		JFormattedTextField age = new JFormattedTextField("20");
-		model.setAge(age);
-			
-		//JFormattedTextField dob = new JFormattedTextField("11/19/1998");
-		model.setDob(new Date(1998,11,19));
-			
-		JFormattedTextField email = new JFormattedTextField("mpbibb@gmail.com");
-		model.setEnterEmail(email);
-		
-		JFormattedTextField frmtdtxtfldEnterUsername = new JFormattedTextField("SICEM");
-		model.setFrmtdtxtfldEnterUsername(frmtdtxtfldEnterUsername);
-		JPasswordField pass = new JPasswordField("pass");
-		
-		model.setPwdEnterPass(pass);
-		model.setPwdValidatePass(pass);
-		JComboBox<String> gender = new JComboBox<String>();
-		gender.setModel(new DefaultComboBoxModel<String>(new String[] {"Male", "Female"}));
-		model.setGenderBox(gender);
-		
-		//helpppp
-		//model.setProfileImg(new BufferedImage(new File("BeMyPlayer2\\img\\heards.png")));
-		//model.setProfileImg(profileImg);
-		
-		JFormattedTextField secQA = new JFormattedTextField("answer");
-		model.setSecQA(secQA);
-		
-		JTextArea area = new JTextArea("hello my name is Meghan");
-		model.setCharDescription(area);
-			
-		controller.setCreateAccountPageModel(model);
 		
 		model.setDob(new Date(1998,13,22));
 		controller.setCreateAccountPageModel(model);
@@ -385,40 +148,6 @@ public class CreateAccountTest {
 	
 	@Test
 	public void testBadEmail() {
-		model = new CreateAccountPageModel();
-		controller = new CreateAccountPageController();
-		view = new CreateAccountPageView();
-		
-		JFormattedTextField age = new JFormattedTextField("20");
-		model.setAge(age);
-			
-		//JFormattedTextField dob = new JFormattedTextField("11/19/1998");
-		model.setDob(new Date(1998,11,19));
-			
-		JFormattedTextField email = new JFormattedTextField("mpbibb@gmail.com");
-		model.setEnterEmail(email);
-		
-		JFormattedTextField frmtdtxtfldEnterUsername = new JFormattedTextField("SICEM");
-		model.setFrmtdtxtfldEnterUsername(frmtdtxtfldEnterUsername);
-		JPasswordField pass = new JPasswordField("pass");
-		
-		model.setPwdEnterPass(pass);
-		model.setPwdValidatePass(pass);
-		JComboBox<String> gender = new JComboBox<String>();
-		gender.setModel(new DefaultComboBoxModel<String>(new String[] {"Male", "Female"}));
-		model.setGenderBox(gender);
-		
-		//helpppp
-		//model.setProfileImg(new BufferedImage(new File("BeMyPlayer2\\img\\heards.png")));
-		//model.setProfileImg(profileImg);
-		
-		JFormattedTextField secQA = new JFormattedTextField("answer");
-		model.setSecQA(secQA);
-		
-		JTextArea area = new JTextArea("hello my name is Meghan");
-		model.setCharDescription(area);
-			
-		controller.setCreateAccountPageModel(model);
 		
 		JFormattedTextField email2 = new JFormattedTextField("BADBAD");
 		model.setEnterEmail(email2);
@@ -429,42 +158,7 @@ public class CreateAccountTest {
 	
 	@Test
 	public void testEmptyEmail() {
-		
-		model = new CreateAccountPageModel();
-		controller = new CreateAccountPageController();
-		view = new CreateAccountPageView();
-		
-		JFormattedTextField age = new JFormattedTextField("20");
-		model.setAge(age);
-			
-		//JFormattedTextField dob = new JFormattedTextField("11/19/1998");
-		model.setDob(new Date(1998,11,19));
-			
-		JFormattedTextField email = new JFormattedTextField("mpbibb@gmail.com");
-		model.setEnterEmail(email);
-		
-		JFormattedTextField frmtdtxtfldEnterUsername = new JFormattedTextField("SICEM");
-		model.setFrmtdtxtfldEnterUsername(frmtdtxtfldEnterUsername);
-		JPasswordField pass = new JPasswordField("pass");
-		
-		model.setPwdEnterPass(pass);
-		model.setPwdValidatePass(pass);
-		JComboBox<String> gender = new JComboBox<String>();
-		gender.setModel(new DefaultComboBoxModel<String>(new String[] {"Male", "Female"}));
-		model.setGenderBox(gender);
-		
-		//helpppp
-		//model.setProfileImg(new BufferedImage(new File("BeMyPlayer2\\img\\heards.png")));
-		//model.setProfileImg(profileImg);
-		
-		JFormattedTextField secQA = new JFormattedTextField("answer");
-		model.setSecQA(secQA);
-		
-		JTextArea area = new JTextArea("hello my name is Meghan");
-		model.setCharDescription(area);
-			
-		controller.setCreateAccountPageModel(model);
-		
+
 		JFormattedTextField email2 = new JFormattedTextField();
 		email2.setText("");
 		model.setEnterEmail(email2);
