@@ -1,10 +1,10 @@
 package tests;
 
-import graphics.SupportController;
-import graphics.SupportModel;
-import graphics.SupportView;
 import model.Account;
 import model.Profile;
+import support.SupportController;
+import support.SupportModel;
+import support.SupportView;
 
 import static org.junit.Assert.assertFalse;
 

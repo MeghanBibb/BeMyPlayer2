@@ -1,5 +1,8 @@
 package model;
 
+import firebase.DBDocumentPackage;
+import firebase.DBSerializable;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class Account.

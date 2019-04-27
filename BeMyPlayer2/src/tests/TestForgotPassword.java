@@ -14,11 +14,10 @@ import javax.swing.JPasswordField;
 
 import org.junit.Test;
 
+import forgotPassword.ForgotPassPageController;
+import forgotPassword.ForgotPassPageModel;
+import forgotPassword.ForgotPassPageView;
 import graphics.InvalidPopup;
-import graphics.ForgotPassPageModel;
-import graphics.ForgotPassPageController;
-import graphics.ForgotPassPageView;
-
 import model.Account;
 
 public class TestForgotPassword {

@@ -28,7 +28,7 @@ public class Fonts {
 	 *
 	 * @return the font
 	 */
-	static Font getFont() {
+	public static Font getFont() {
 		return FONT_CLASS_DEFAULT_FONT;
 	}
 	
@@ -38,7 +38,7 @@ public class Fonts {
 	 * @param size the size
 	 * @return the font
 	 */
-	static Font getFont(float size) {
+	public static Font getFont(float size) {
         return FONT_CLASS_DEFAULT_FONT.deriveFont(Font.PLAIN, size);
 	}
 	

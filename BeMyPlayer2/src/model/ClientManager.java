@@ -5,6 +5,12 @@ import java.util.List;
 
 import firebase.DBFailureException;
 import firebase.FireBaseAdapter;
+import match.Match;
+import match.MatchType;
+import messaging.Message;
+import messaging.MessageThread;
+import payment.PaymentInfo;
+import support.Issue;
 
 /**
  * The Class InformationExpert.

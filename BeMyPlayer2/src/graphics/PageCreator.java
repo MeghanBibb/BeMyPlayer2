@@ -1,5 +1,18 @@
 package graphics;
 
+import createAccount.CreateAccountPageController;
+import credits.CreditsPageController;
+import editAccount.EditAccountPageController;
+import forgotPassword.ForgotPassPageController;
+import home.HomePageController;
+import login.LoginPageController;
+import messaging.MessageController;
+import payment.PaymentPageController;
+import profilePage.ProfilePageController;
+import support.SupportController;
+import swiping.SwipePageController;
+import viewMatches.ViewMatchesController;
+
 /**
  * The Class PageCreator.
  */

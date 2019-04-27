@@ -15,12 +15,12 @@ import javax.swing.JTextArea;
 
 import org.junit.Test;
 
-import graphics.CreateAccountPageController;
-import graphics.CreateAccountPageModel;
-import graphics.CreateAccountPageView;
-import graphics.EditAccountPageController;
-import graphics.EditAccountPageModel;
-import graphics.EditAccountPageView;
+import createAccount.CreateAccountPageController;
+import createAccount.CreateAccountPageModel;
+import createAccount.CreateAccountPageView;
+import editAccount.EditAccountPageController;
+import editAccount.EditAccountPageModel;
+import editAccount.EditAccountPageView;
 
 
 public class EditAccountTest {

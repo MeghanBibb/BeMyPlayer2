@@ -17,10 +17,10 @@ import javax.swing.JTextArea;
 import org.junit.Before;
 import org.junit.Test;
 
+import createAccount.CreateAccountPageController;
+import createAccount.CreateAccountPageModel;
+import createAccount.CreateAccountPageView;
 import graphics.Colors;
-import graphics.CreateAccountPageController;
-import graphics.CreateAccountPageModel;
-import graphics.CreateAccountPageView;
 import graphics.Fonts;
 
 public class CreateAccountTest {

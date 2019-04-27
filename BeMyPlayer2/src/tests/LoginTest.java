@@ -1,13 +1,12 @@
 package tests;
 
-import graphics.LoginPageModel;
+import login.LoginPageController;
+import login.LoginPageModel;
 
 import javax.swing.JFormattedTextField;
 import javax.swing.JPasswordField;
 
 import org.junit.Test;
-
-import graphics.LoginPageController;
 
 public class LoginTest {
 

@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import firebase.DBDocumentPackage;
+import firebase.DBSerializable;
 import firebase.FireBaseSchema;
 
 /**

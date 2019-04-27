@@ -34,7 +34,15 @@ import com.google.firebase.FirebaseOptions;
 import com.google.firebase.cloud.FirestoreClient;
 import com.google.firebase.cloud.StorageClient;
 
+import images.ImageConverter;
+import match.Match;
+import match.MatchStatus;
+import match.MatchType;
+import messaging.Message;
+import messaging.MessageThread;
 import model.*;
+import payment.PaymentInfo;
+import support.Issue;
 
 /**
  * The Class FireBaseAdapter.

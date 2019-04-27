@@ -11,17 +11,15 @@ import javax.swing.JPasswordField;
 
 import org.junit.Test;
 
-//import org.junit.jupiter.api.*;
-
-import graphics.PaymentPageController;
-import graphics.PaymentPageModel;
-import graphics.PaymentPageView;
-import graphics.ForgotPassPageController;
-import graphics.ForgotPassPageModel;
-import graphics.ForgotPassPageView;
+import forgotPassword.ForgotPassPageController;
+import forgotPassword.ForgotPassPageModel;
+import forgotPassword.ForgotPassPageView;
 import graphics.InvalidPopup;
 import model.Account;
 import model.Profile;
+import payment.PaymentPageController;
+import payment.PaymentPageModel;
+import payment.PaymentPageView;
 
 import static org.junit.Assert.*;
 

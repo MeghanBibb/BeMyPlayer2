@@ -34,22 +34,12 @@ public class GraphicsController {
 	/** The logger. */
 	private static Logger logger = Logger.getLogger(GraphicsController.class.getName());
 	
-	static {
-		try {
-			InputStream configFile = GraphicsController.class.getClassLoader().getResourceAsStream("logger.properties");
-			LogManager.getLogManager().readConfiguration(configFile);
-			configFile.close();
-		} catch (IOException ex) {
-			System.out.println("WARNING: Could not open configuration file");
-		    System.out.println("WARNING: Logging not configured (console output only)");
-		}
-		logger.info("running graphic controller");
-	}
+
 	
 	/**
 	 * Instantiates a new graphics controller.
 	 */
-	GraphicsController() {
+	public GraphicsController() {
 		
 			//init default jframe as base frame
 			mainFrame = (new JFrame("BeMyPlayer2"));
@@ -121,31 +111,6 @@ public class GraphicsController {
 	 */
 	public void setMainFrame(JFrame frame) {
 		mainFrame = frame;
-	}
-	
-	/*    MAIN METHOD   */
-	
-	/**
-	 * The main method.
-	 *
-	 * @param args the arguments
-	 */
-	public static void main(String[] args) {
-		try {
-			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-		        if ("Nimbus".equals(info.getName())) {
-		            UIManager.setLookAndFeel(info.getClassName());
-		            break;
-		        }
-		    }
-		}
-		catch (Exception ex) {logger.warning("Failed to load look and feel for main");}
-		
-		// See the updated Account object in the model package...
-		BackgroundMusic.getInstance().music();
-		ClientManager.initialize();
-		GraphicsController g = new GraphicsController();
-		
 	}
 	
 }

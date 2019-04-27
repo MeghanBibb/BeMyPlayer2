@@ -12,8 +12,8 @@ import org.junit.Test;
 //import org.junit.jupiter.api.BeforeEach;
 
 import graphics.InvalidPopup;
-import graphics.MessageController;
-import graphics.MessageModel;
+import messaging.MessageController;
+import messaging.MessageModel;
 
 public class MessageTest {
 	MessageModel model;
