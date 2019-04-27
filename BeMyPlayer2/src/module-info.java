@@ -8,4 +8,6 @@ module bemyplayer2 {
 	requires google.cloud.firestore;
 	requires google.cloud.core;
 	requires google.cloud.storage;
+	requires org.junit.jupiter.api;
+	requires org.junit.platform.commons;
 }
