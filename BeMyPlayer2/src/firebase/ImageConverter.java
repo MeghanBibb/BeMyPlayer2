@@ -3,7 +3,6 @@ package firebase;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ImageConverter.
  */

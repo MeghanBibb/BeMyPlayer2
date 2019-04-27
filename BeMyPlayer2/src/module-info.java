@@ -1,5 +1,5 @@
 	
-module bemyplayer2 {
+module BeMyPlayer2 {
 	requires java.desktop;
 	requires google.auth.library.oauth2.http;
 	requires firebase.admin;

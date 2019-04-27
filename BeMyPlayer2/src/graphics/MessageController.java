@@ -6,7 +6,7 @@ import firebase.DBFailureException;
 import model.Account;
 import model.MessageThread;
 import model.Profile;
-import model.InformationExpert;
+import model.ClientManager;
 import model.Message;
 
 import java.awt.event.ActionEvent;
@@ -56,14 +56,14 @@ public class MessageController extends PageController implements ExternalListene
     	if(back != null) {
     		backPage = back;
     	}
-    	setOtherProf(InformationExpert.getOtherProfile());
-    	account = InformationExpert.getActiveAccount();
+    	setOtherProf(ClientManager.getOtherProfile());
+    	account = ClientManager.getActiveAccount();
         try {
-            currentThread = InformationExpert.getMessageThread(InformationExpert.getActiveUserID(), InformationExpert.getOtherProfile().getUserId());
+            currentThread = ClientManager.getMessageThread(ClientManager.getActiveUserID(), ClientManager.getOtherProfile().getUserId());
             if(currentThread != null) {
                 currentThread.setUpdateListener(this);
             }else {
-            	currentThread = InformationExpert.getNewMessageThread(InformationExpert.getActiveUserID(), InformationExpert.getOtherProfile().getUserId());
+            	currentThread = ClientManager.getNewMessageThread(ClientManager.getActiveUserID(), ClientManager.getOtherProfile().getUserId());
             	currentThread.setUpdateListener(this);
             }
         } catch (Exception e) {
@@ -93,11 +93,11 @@ public class MessageController extends PageController implements ExternalListene
                 	
                     Message newMessage = new Message();
                     newMessage.setMessage(this.getMessageModel().getSendBox().getText());
-                    newMessage.setSenderId(InformationExpert.getActiveUserID());
+                    newMessage.setSenderId(ClientManager.getActiveUserID());
                     newMessage.setTimestampNow();
                     
                     try {
-						if(!InformationExpert.addMessage(InformationExpert.getActiveUserID(), InformationExpert.getOtherProfile().getUserId(), newMessage)) {
+						if(!ClientManager.addMessage(ClientManager.getActiveUserID(), ClientManager.getOtherProfile().getUserId(), newMessage)) {
 							List<String> warnings = new ArrayList<String>();
 							warnings.add("Message could not be sent.");
 							InvalidPopup p = new InvalidPopup(this.messagePanel, warnings);
@@ -128,13 +128,13 @@ public class MessageController extends PageController implements ExternalListene
 
     	
     	for (int i = 0; i < getCurrentThread().getMessages().size(); i++){
-            if (getCurrentThread().getMessages().get(i).getSenderId().equals(InformationExpert.getActiveUserID())){
+            if (getCurrentThread().getMessages().get(i).getSenderId().equals(ClientManager.getActiveUserID())){
                 this.getMessageModel().getThread().append("Me: ");
                 this.getMessageModel().getThread().append(getCurrentThread().getMessages().get(i).getMessage());
                 this.getMessageModel().getThread().append("\n");
             }
             else {
-            	this.getMessageModel().getThread().append(InformationExpert.getOtherProfile().getUsername() + ": ");
+            	this.getMessageModel().getThread().append(ClientManager.getOtherProfile().getUsername() + ": ");
             	this.getMessageModel().getThread().append(getCurrentThread().getMessages().get(i).getMessage());
             	this.getMessageModel().getThread().append("\n");
             }

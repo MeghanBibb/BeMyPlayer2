@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import firebase.DBFailureException;
-import model.InformationExpert;
+import model.ClientManager;
 import model.Match;
 import model.MatchStatus;
 import model.MatchType;
@@ -54,10 +54,10 @@ public class ProfilePageController extends PageController {
 			backPage = back;
 		}
 		if(GraphicsController.getProfileString().equalsIgnoreCase("active account")){
-			a = InformationExpert.getActiveAccount().getAccountProfile();
+			a = ClientManager.getActiveAccount().getAccountProfile();
 		}
 		else if(GraphicsController.getProfileString().equalsIgnoreCase("other account")){
-			a = InformationExpert.getOtherProfile();
+			a = ClientManager.getOtherProfile();
 		}
 		ProfilePageView.startProfilePage(this,mainFrame);
 	}
@@ -68,7 +68,7 @@ public class ProfilePageController extends PageController {
 	 * @return true, if is active account
 	 */
 	public boolean isActiveAccount() {
-		return InformationExpert.isActiveUser(a);
+		return ClientManager.isActiveUser(a);
 	}
 	
 	/**
@@ -95,43 +95,43 @@ public class ProfilePageController extends PageController {
 				GraphicsController.processPage(PageCreator.EDIT_ACCOUNT_PAGE,backPage);
 				break;
 			case BLOCK:
-				logger.info("User " + InformationExpert.getActiveUserID() + " has blocked user" + InformationExpert.getOtherProfile().getUsername());
+				logger.info("User " + ClientManager.getActiveUserID() + " has blocked user" + ClientManager.getOtherProfile().getUsername());
 				
 				try {
 					Match thisMatch;
 					
-					if((thisMatch = InformationExpert.getMatch(InformationExpert.getActiveAccount().getAccountProfile(), InformationExpert.getOtherProfile())) != null) {
+					if((thisMatch = ClientManager.getMatch(ClientManager.getActiveAccount().getAccountProfile(), ClientManager.getOtherProfile())) != null) {
 						thisMatch.setClientMatchStatus(MatchStatus.NO_MATCH);
 						thisMatch.setOtherMatchStatus(MatchStatus.NO_MATCH);
 						thisMatch.setType(MatchType.BLOCKED);
 						    
 						//update match
-						InformationExpert.updateMatch(thisMatch);
+						ClientManager.updateMatch(thisMatch);
 						
 					} else {
 						//create new match
-						thisMatch = new Match(InformationExpert.getActiveAccount().getAccountProfile(), InformationExpert.getOtherProfile());
+						thisMatch = new Match(ClientManager.getActiveAccount().getAccountProfile(), ClientManager.getOtherProfile());
 						thisMatch.setClientMatchStatus(MatchStatus.NO_MATCH);
 						thisMatch.setOtherMatchStatus(MatchStatus.NO_MATCH);
 						thisMatch.setType(MatchType.FRIEND_MATCH);
 						
 						//add match
-						InformationExpert.addMatch(thisMatch);
+						ClientManager.addMatch(thisMatch);
 					}
 					
 					/*REMOVE FROM MATCH LISTS*/
-					if(InformationExpert.getClientModel().getFriendMatches().contains(InformationExpert.getOtherProfile())) {
-						InformationExpert.getClientModel().getFriendMatches().remove(InformationExpert.getOtherProfile());
+					if(ClientManager.getClientModel().getFriendMatches().contains(ClientManager.getOtherProfile())) {
+						ClientManager.getClientModel().getFriendMatches().remove(ClientManager.getOtherProfile());
 					}
-					if(InformationExpert.getClientModel().getLoveMatches().contains(InformationExpert.getOtherProfile())) {
-						InformationExpert.getClientModel().getLoveMatches().remove(InformationExpert.getOtherProfile());
+					if(ClientManager.getClientModel().getLoveMatches().contains(ClientManager.getOtherProfile())) {
+						ClientManager.getClientModel().getLoveMatches().remove(ClientManager.getOtherProfile());
 					}
 					
-					if(backPage.equalsIgnoreCase("swipe page") && InformationExpert.getCurrentSwipePage().equals(MatchType.FRIEND_MATCH.getStatusString())) {
-						InformationExpert.getClientModel().dequeueFriendProfile();
+					if(backPage.equalsIgnoreCase("swipe page") && ClientManager.getCurrentSwipePage().equals(MatchType.FRIEND_MATCH.getStatusString())) {
+						ClientManager.getClientModel().dequeueFriendProfile();
 					}
-					else if(backPage.equalsIgnoreCase("swipe page") && InformationExpert.getCurrentSwipePage().equals(MatchType.LOVE_MATCH.getStatusString())){
-						InformationExpert.getClientModel().dequeLoveProfile();
+					else if(backPage.equalsIgnoreCase("swipe page") && ClientManager.getCurrentSwipePage().equals(MatchType.LOVE_MATCH.getStatusString())){
+						ClientManager.getClientModel().dequeLoveProfile();
 					}
 				} catch (DBFailureException e1) {
 					logger.log(Level.SEVERE,"Database failure for blocking user: ", e1);

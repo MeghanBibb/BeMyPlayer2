@@ -6,7 +6,6 @@ import java.awt.geom.Ellipse2D;
 import javax.swing.Icon;
 import javax.swing.JLabel;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class CircularImage.
  */

@@ -9,7 +9,7 @@ import firebase.FireBaseAdapter;
 /**
  * The Class InformationExpert.
  */
-public class InformationExpert {
+public class ClientManager {
 	
 	/** The active user account. */
 	private static Account activeUserAccount = null;
@@ -349,7 +349,7 @@ public class InformationExpert {
 	 * @param clientModel the new client model
 	 */
 	public static void setClientModel(ClientModel clientModel) {
-		InformationExpert.clientModel = clientModel;
+		ClientManager.clientModel = clientModel;
 	}
 	
 	/**

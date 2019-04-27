@@ -11,7 +11,6 @@ import javax.swing.*;
 import firebase.ImageConverter;
 import model.ResourceManager;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class CreateAccountPageModel.
  */
@@ -410,6 +409,22 @@ public class CreateAccountPageModel {
 	 * @throws ParseException the parse exception
 	 */
 	public Date getDob() throws ParseException {
+		String date = this.age.getText();
+		String numbs[] = date.split("/");
+		int day = Integer.parseInt(numbs[0]);
+		int month = Integer.parseInt(numbs[1]);
+		int year = Integer.parseInt(numbs[2]);
+		if(month <= 0 || month >= 13) {
+			throw new ParseException(date, month);
+		} else if(day <= 0 || day >= 32) {
+			throw new ParseException(date, month);
+		} else if(day >=31 && (month == 4 || month == 6 || month == 9 || month == 11)) {
+			throw new ParseException(date, month);
+		} else if(day >=30 && month == 2) {
+			throw new ParseException(date, month);
+		} else if(day >= 29 && month == 2 && year%4 != 0) {
+			throw new ParseException(date, month);
+		}
 		SimpleDateFormat tf = new SimpleDateFormat("dd/MM/yyyy");
 		this.dob = (Date)tf.parse(this.age.getText());
 		return dob;

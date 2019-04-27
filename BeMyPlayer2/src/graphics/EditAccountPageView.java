@@ -25,7 +25,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import firebase.DBFailureException;
 import firebase.ImageConverter;
-import model.InformationExpert;
+import model.ClientManager;
 import model.PaymentInfo;
 import model.ResourceManager;
 
@@ -115,7 +115,7 @@ public class EditAccountPageView {
 		
 		PaymentInfo p;
 		try {
-			p = InformationExpert.getPaymentInfo(InformationExpert.getActiveUserID());
+			p = ClientManager.getPaymentInfo(ClientManager.getActiveUserID());
 
 			if(p != null) {	
 				btnUpgrade.setText("Cancel Payment Plan");
@@ -126,7 +126,7 @@ public class EditAccountPageView {
 		}
 		
 		
-		String muteButtonText = InformationExpert.getActiveAccount().getAccountProfile().isMute()?
+		String muteButtonText = ClientManager.getActiveAccount().getAccountProfile().isMute()?
 				"Unmute Account" : "Mute Account";
 		ImgButton btnMute = new ImgButton (muteButtonText);
 		btnMute.setBounds(115,270,250,40);
@@ -228,7 +228,7 @@ public class EditAccountPageView {
 		
 		JFormattedTextField frmtdtxtfldEnterUsername = new JFormattedTextField();
 		frmtdtxtfldEnterUsername.setHorizontalAlignment(SwingConstants.CENTER);
-		frmtdtxtfldEnterUsername.setText(InformationExpert.getActiveAccount().getAccountProfile().getUsername());
+		frmtdtxtfldEnterUsername.setText(ClientManager.getActiveAccount().getAccountProfile().getUsername());
 		frmtdtxtfldEnterUsername.setBounds(45, 95, 128, 32);
 		frmtdtxtfldEnterUsername.setFont(Fonts.getFont((float)12));
 		frmtdtxtfldEnterUsername.setForeground(Colors.Red);
@@ -250,7 +250,7 @@ public class EditAccountPageView {
 		age.setFont(Fonts.getFont((float)12));
 		age.setForeground(Colors.Red);
 		age.setBackground(Colors.Yellow);
-		Date date = InformationExpert.getActiveAccount().getAccountProfile().getDateOB();
+		Date date = ClientManager.getActiveAccount().getAccountProfile().getDateOB();
 		SimpleDateFormat tf = new SimpleDateFormat("dd/MM/yyyy");
 		
 		age.setText(tf.format(date));
@@ -271,7 +271,7 @@ public class EditAccountPageView {
 		gender.setForeground(Colors.Red);
 		gender.setBackground(Colors.Yellow);
 		gender.setModel(new DefaultComboBoxModel<String>(new String[] {"Male", "Female"}));
-		if(InformationExpert.getActiveAccount().getAccountProfile().getGender().equals("Male")) {
+		if(ClientManager.getActiveAccount().getAccountProfile().getGender().equals("Male")) {
 			gender.setSelectedIndex(0);
 		} else {
 			gender.setSelectedIndex(1);
@@ -297,7 +297,7 @@ public class EditAccountPageView {
 		securityQuestions.setBackground(Colors.Yellow);
 		securityQuestions.setVisible(true);
 		
-		String defaultQuestion = InformationExpert.getActiveAccount().getSecurityQ1();
+		String defaultQuestion = ClientManager.getActiveAccount().getSecurityQ1();
 		if(defaultQuestion.equals("Favorite Character?")) {
 			securityQuestions.setSelectedIndex(2);
 		} else if(defaultQuestion.equals("First Console Owned?")) {
@@ -388,7 +388,7 @@ public class EditAccountPageView {
 		
 		JCheckBox xboxBtn = new JCheckBox("Xbox");
 		
-		xboxBtn.setSelected(InformationExpert.getActiveAccount().getAccountProfile().getPlatforms().get(0));
+		xboxBtn.setSelected(ClientManager.getActiveAccount().getAccountProfile().getPlatforms().get(0));
 		xboxBtn.setFont(Fonts.getFont((float)14));
 		xboxBtn.setForeground(Colors.Yellow);
 		xboxBtn.setBackground(Colors.Red);
@@ -400,7 +400,7 @@ public class EditAccountPageView {
 		JCheckBox psBtn = new JCheckBox("Playstation");
 		psBtn.setBackground(Colors.Red);
 		psBtn.setForeground(Colors.Yellow);
-		psBtn.setSelected(InformationExpert.getActiveAccount().getAccountProfile().getPlatforms().get(1));
+		psBtn.setSelected(ClientManager.getActiveAccount().getAccountProfile().getPlatforms().get(1));
 		psBtn.setFont(Fonts.getFont((float)12));
 		psBtn.setBounds(45, 105, 120, 25);
 		editController.getEditAccountModel().getCheckList().add(psBtn);
@@ -410,7 +410,7 @@ public class EditAccountPageView {
 		JCheckBox nintendoBtn = new JCheckBox("Nintendo");
 		nintendoBtn.setBackground(Colors.Red);
 		nintendoBtn.setForeground(Colors.Yellow);
-		nintendoBtn.setSelected(InformationExpert.getActiveAccount().getAccountProfile().getPlatforms().get(2));
+		nintendoBtn.setSelected(ClientManager.getActiveAccount().getAccountProfile().getPlatforms().get(2));
 		nintendoBtn.setFont(Fonts.getFont((float)12));
 		nintendoBtn.setBounds(45, 130, 120, 25);
 		editController.getEditAccountModel().getCheckList().add(nintendoBtn);
@@ -420,7 +420,7 @@ public class EditAccountPageView {
 		JCheckBox pcBtn = new JCheckBox("PC");
 		pcBtn.setBackground(Colors.Red);
 		pcBtn.setForeground(Colors.Yellow);
-		pcBtn.setSelected(InformationExpert.getActiveAccount().getAccountProfile().getPlatforms().get(3));
+		pcBtn.setSelected(ClientManager.getActiveAccount().getAccountProfile().getPlatforms().get(3));
 		pcBtn.setFont(Fonts.getFont((float)12));
 		pcBtn.setBounds(45, 155, 75, 25);
 		editController.getEditAccountModel().getCheckList().add(pcBtn);
@@ -430,7 +430,7 @@ public class EditAccountPageView {
 		JCheckBox vrBtn = new JCheckBox("VR");
 		vrBtn.setBackground(Colors.Red);
 		vrBtn.setForeground(Colors.Yellow);
-		vrBtn.setSelected(InformationExpert.getActiveAccount().getAccountProfile().getPlatforms().get(4));
+		vrBtn.setSelected(ClientManager.getActiveAccount().getAccountProfile().getPlatforms().get(4));
 		vrBtn.setFont(Fonts.getFont((float)12));
 		vrBtn.setBounds(45, 180, 75, 25);
 		editController.getEditAccountModel().getCheckList().add(vrBtn);
@@ -440,7 +440,7 @@ public class EditAccountPageView {
 		JCheckBox RetroBtn = new JCheckBox("Retro");
 		RetroBtn.setBackground(Colors.Red);
 		RetroBtn.setForeground(Colors.Yellow);
-		RetroBtn.setSelected(InformationExpert.getActiveAccount().getAccountProfile().getPlatforms().get(5));
+		RetroBtn.setSelected(ClientManager.getActiveAccount().getAccountProfile().getPlatforms().get(5));
 		RetroBtn.setFont(Fonts.getFont((float)12));
 		RetroBtn.setBounds(45, 205, 75, 25);
 		editController.getEditAccountModel().getCheckList().add(RetroBtn);
@@ -452,7 +452,7 @@ public class EditAccountPageView {
 		JCheckBox actionBtn = new JCheckBox("Action");
 		actionBtn.setBackground(Colors.Red);
 		actionBtn.setForeground(Colors.Yellow);
-		actionBtn.setSelected(InformationExpert.getActiveAccount().getAccountProfile().getGenres().get(0));
+		actionBtn.setSelected(ClientManager.getActiveAccount().getAccountProfile().getGenres().get(0));
 		actionBtn.setFont(Fonts.getFont((float)12));
 		actionBtn.setBounds(245, 80, 75, 25);
 		editController.getEditAccountModel().getCheckList().add(actionBtn);
@@ -462,7 +462,7 @@ public class EditAccountPageView {
 		JCheckBox advBtn = new JCheckBox("Adventure");
 		advBtn.setBackground(Colors.Red);
 		advBtn.setForeground(Colors.Yellow);
-		advBtn.setSelected(InformationExpert.getActiveAccount().getAccountProfile().getGenres().get(1));
+		advBtn.setSelected(ClientManager.getActiveAccount().getAccountProfile().getGenres().get(1));
 		advBtn.setFont(Fonts.getFont((float)12));
 		advBtn.setBounds(245, 105, 120, 25);
 		editController.getEditAccountModel().getCheckList().add(advBtn);
@@ -472,7 +472,7 @@ public class EditAccountPageView {
 		JCheckBox FPSBtn = new JCheckBox("FPS");
 		FPSBtn.setBackground(Colors.Red);
 		FPSBtn.setForeground(Colors.Yellow);
-		FPSBtn.setSelected(InformationExpert.getActiveAccount().getAccountProfile().getGenres().get(2));
+		FPSBtn.setSelected(ClientManager.getActiveAccount().getAccountProfile().getGenres().get(2));
 		FPSBtn.setFont(Fonts.getFont((float)12));
 		FPSBtn.setBounds(245, 130, 120, 25);
 		editController.getEditAccountModel().getCheckList().add(FPSBtn);
@@ -482,7 +482,7 @@ public class EditAccountPageView {
 		JCheckBox MMOBtn = new JCheckBox("MMO");
 		MMOBtn.setBackground(Colors.Red);
 		MMOBtn.setForeground(Colors.Yellow);
-		MMOBtn.setSelected(InformationExpert.getActiveAccount().getAccountProfile().getGenres().get(3));
+		MMOBtn.setSelected(ClientManager.getActiveAccount().getAccountProfile().getGenres().get(3));
 		MMOBtn.setFont(Fonts.getFont((float)12));
 		MMOBtn.setBounds(245, 155, 75, 25);
 		editController.getEditAccountModel().getCheckList().add(MMOBtn);
@@ -492,7 +492,7 @@ public class EditAccountPageView {
 		JCheckBox MOBABtn = new JCheckBox("MOBA");
 		MOBABtn.setBackground(Colors.Red);
 		MOBABtn.setForeground(Colors.Yellow);
-		MOBABtn.setSelected(InformationExpert.getActiveAccount().getAccountProfile().getGenres().get(4));
+		MOBABtn.setSelected(ClientManager.getActiveAccount().getAccountProfile().getGenres().get(4));
 		MOBABtn.setFont(Fonts.getFont((float)12));
 		MOBABtn.setBounds(245, 180, 75, 25);
 		editController.getEditAccountModel().getCheckList().add(MOBABtn);
@@ -502,7 +502,7 @@ public class EditAccountPageView {
 		JCheckBox pzlBtn = new JCheckBox("Puzzle");
 		pzlBtn.setBackground(Colors.Red);
 		pzlBtn.setForeground(Colors.Yellow);
-		pzlBtn.setSelected(InformationExpert.getActiveAccount().getAccountProfile().getGenres().get(5));
+		pzlBtn.setSelected(ClientManager.getActiveAccount().getAccountProfile().getGenres().get(5));
 		pzlBtn.setFont(Fonts.getFont((float)12));
 		pzlBtn.setBounds(245, 205, 125, 25);
 		editController.getEditAccountModel().getCheckList().add(pzlBtn);
@@ -512,7 +512,7 @@ public class EditAccountPageView {
 		JCheckBox rythBtn = new JCheckBox("Rythm");
 		rythBtn.setBackground(Colors.Red);
 		rythBtn.setForeground(Colors.Yellow);
-		rythBtn.setSelected(InformationExpert.getActiveAccount().getAccountProfile().getGenres().get(6));
+		rythBtn.setSelected(ClientManager.getActiveAccount().getAccountProfile().getGenres().get(6));
 		rythBtn.setFont(Fonts.getFont((float)12));
 		rythBtn.setBounds(365, 80, 75, 25);
 		editController.getEditAccountModel().getCheckList().add(RetroBtn);
@@ -522,7 +522,7 @@ public class EditAccountPageView {
 		JCheckBox platBtn = new JCheckBox("Platformer");
 		platBtn.setBackground(Colors.Red);
 		platBtn.setForeground(Colors.Yellow);
-		platBtn.setSelected(InformationExpert.getActiveAccount().getAccountProfile().getGenres().get(7));
+		platBtn.setSelected(ClientManager.getActiveAccount().getAccountProfile().getGenres().get(7));
 		platBtn.setFont(Fonts.getFont((float)12));
 		platBtn.setBounds(365, 105, 125, 25);
 		editController.getEditAccountModel().getCheckList().add(platBtn);
@@ -532,7 +532,7 @@ public class EditAccountPageView {
 		JCheckBox RTSBtn = new JCheckBox("RTS");
 		RTSBtn.setBackground(Colors.Red);
 		RTSBtn.setForeground(Colors.Yellow);
-		RTSBtn.setSelected(InformationExpert.getActiveAccount().getAccountProfile().getGenres().get(8));
+		RTSBtn.setSelected(ClientManager.getActiveAccount().getAccountProfile().getGenres().get(8));
 		RTSBtn.setFont(Fonts.getFont((float)12));
 		RTSBtn.setBounds(365, 130, 75, 25);
 		editController.getEditAccountModel().getCheckList().add(RTSBtn);
@@ -542,7 +542,7 @@ public class EditAccountPageView {
 		JCheckBox RPGBtn = new JCheckBox("RPG");
 		RPGBtn.setBackground(Colors.Red);
 		RPGBtn.setForeground(Colors.Yellow);
-		RPGBtn.setSelected(InformationExpert.getActiveAccount().getAccountProfile().getGenres().get(9));
+		RPGBtn.setSelected(ClientManager.getActiveAccount().getAccountProfile().getGenres().get(9));
 		RPGBtn.setFont(Fonts.getFont((float)12));
 		RPGBtn.setBounds(365, 155, 75, 25);
 		editController.getEditAccountModel().getCheckList().add(RPGBtn);
@@ -552,7 +552,7 @@ public class EditAccountPageView {
 		JCheckBox stratBtn = new JCheckBox("Strategy");
 		stratBtn.setBackground(Colors.Red);
 		stratBtn.setForeground(Colors.Yellow);
-		stratBtn.setSelected(InformationExpert.getActiveAccount().getAccountProfile().getGenres().get(10));
+		stratBtn.setSelected(ClientManager.getActiveAccount().getAccountProfile().getGenres().get(10));
 		stratBtn.setFont(new Font("Monospace",Font.BOLD,14));
 		stratBtn.setBounds(365, 180, 125, 25);
 		editController.getEditAccountModel().getCheckList().add(stratBtn);
@@ -561,7 +561,7 @@ public class EditAccountPageView {
 		JCheckBox sandBtn = new JCheckBox("Sandbox");
 		sandBtn.setBackground(Colors.Red);
 		sandBtn.setForeground(Colors.Yellow);
-		sandBtn.setSelected(InformationExpert.getActiveAccount().getAccountProfile().getGenres().get(11));
+		sandBtn.setSelected(ClientManager.getActiveAccount().getAccountProfile().getGenres().get(11));
 		sandBtn.setFont(Fonts.getFont((float)12));
 		sandBtn.setBounds(365, 205, 125, 25);
 		editController.getEditAccountModel().getCheckList().add(sandBtn);
@@ -630,7 +630,7 @@ public class EditAccountPageView {
 		BufferedImage img1 = null;
 		BufferedImage prev;
 		try {
-			img1 = InformationExpert.getProfileImage(InformationExpert.getActiveUserID());
+			img1 = ClientManager.getProfileImage(ClientManager.getActiveUserID());
 		} catch (DBFailureException e1) {
 			e1.printStackTrace();
 		}
@@ -717,7 +717,7 @@ public class EditAccountPageView {
 			description.setLineWrap(true);
 			description.setWrapStyleWord(true);
 			String desc;
-			desc = InformationExpert.getActiveAccount().getAccountProfile().getDescription();
+			desc = ClientManager.getActiveAccount().getAccountProfile().getDescription();
 			desc = desc.replace("<HTML>","");
 			desc = desc.replace("</HTML>", "");
 			desc = desc.replace("<br>", "\n");
