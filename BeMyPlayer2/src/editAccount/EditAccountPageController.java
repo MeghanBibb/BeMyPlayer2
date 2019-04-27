@@ -307,39 +307,45 @@ public class EditAccountPageController extends PageController{
 		 */
 		//	VALIDATIONS
 		List<String> warnings = new ArrayList<>();
-		if(this.editAccountModel.getFrmtdtxtfldEnterUsername().getText().equals("")) {
-			valid = false;
-			warnings.add("Please enter a username\n");
-		}
-		if(this.editAccountModel.getFrmtdtxtfldEnterUsername().getText().length() > 8) {
-			valid = false;
-			warnings.add("Character limit 8 exceeded\n");
-		}
-		if(this.editAccountModel.getPwdEnterPass().getText().equalsIgnoreCase("")) {
-			if(!this.editAccountModel.getPwdValidatePass().getText().equalsIgnoreCase("")) {
-				valid = false;
-				warnings.add("Empty password field but non-empty validation field\n");
-			}
-		} else {
-			if(this.editAccountModel.getPwdValidatePass().getText().equals("")) {
-				valid = false;
-				warnings.add("Need to validate password\n");
-			} else if(!this.editAccountModel.getPwdValidatePass().getText().equals(this.editAccountModel.getPwdEnterPass().getText())) {
-				valid = false;
-				warnings.add("Passwords do not match\n");
-			}
-		}
-		if(this.editAccountModel.getSecQA().getText().equalsIgnoreCase("") && !this.editAccountModel.getSecurityQ().getSelectedItem().equals(ClientManager.getActiveAccount().getSecurityQ1())) {
-			valid = false;
-			warnings.add("Please provide answer to a security question\n");
-		}
-		
 		try {
-			this.editAccountModel.getDob();
-		} catch (ParseException e) {
+			if(this.editAccountModel.getFrmtdtxtfldEnterUsername().getText().equals("")) {
+				valid = false;
+				warnings.add("Please enter a username\n");
+			}
+			if(this.editAccountModel.getFrmtdtxtfldEnterUsername().getText().length() > 8) {
+				valid = false;
+				warnings.add("Character limit 8 exceeded\n");
+			}
+			if(this.editAccountModel.getPwdEnterPass().getText().equalsIgnoreCase("")) {
+				if(!this.editAccountModel.getPwdValidatePass().getText().equalsIgnoreCase("")) {
+					valid = false;
+					warnings.add("Empty password field but non-empty validation field\n");
+				}
+			} else {
+				if(this.editAccountModel.getPwdValidatePass().getText().equals("")) {
+					valid = false;
+					warnings.add("Need to validate password\n");
+				} else if(!this.editAccountModel.getPwdValidatePass().getText().equals(this.editAccountModel.getPwdEnterPass().getText())) {
+					valid = false;
+					warnings.add("Passwords do not match\n");
+				}
+			}
+			if(this.editAccountModel.getSecQA().getText().equalsIgnoreCase("") && !this.editAccountModel.getSecurityQ().getSelectedItem().equals(ClientManager.getActiveAccount().getSecurityQ1())) {
+				valid = false;
+				warnings.add("Please provide answer to a security question\n");
+			}
+			try {
+				this.editAccountModel.getDob();
+			} catch (ParseException e) {
+				valid = false;
+				warnings.add("invalid date: please enter dd/mm/yyyy\n");
+			}
+		}catch(NullPointerException ex) {
 			valid = false;
-			warnings.add("invalid date: please enter dd/mm/yyyy\n");
-		}
+		}catch(NumberFormatException ex) {
+			valid = false;
+		}	
+		
 		if(valid == false) {
 			InvalidPopup p  = new InvalidPopup(this.getEditAccountPanel(),warnings);
 		}
