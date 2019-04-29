@@ -9,6 +9,8 @@ import graphics.Colors;
 import graphics.Fonts;
 import graphics.SmartScroller;
 import images.BackgroundPanel;
+import images.CircularImage;
+import images.ImgButton;
 import model.ClientManager;
 
 import java.awt.*;
@@ -43,7 +45,7 @@ public class MessageView {
         messageController.getMessagePanel().setMaximumSize(new Dimension(500,400));
         mainFrame.setContentPane(messageController.getMessagePanel());
 
-        JLabel imgLabel = new JLabel("");
+        CircularImage imgLabel = new CircularImage();
 		BufferedImage img = null;
 		try {
 			img = ClientManager.getProfileImage(ClientManager.getOtherProfile().getUserId());
@@ -55,14 +57,14 @@ public class MessageView {
 			img = CreateAccountPageModel.DEFAULT_PROFILE_IMAGE;
 		}
 		imgLabel.setIcon(new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
-        imgLabel.setBounds(35, 60, 100, 100);
+        imgLabel.setBounds(40, 35, 100, 100);
         messageController.getMessageModel().setProfileImage(imgLabel);
 
         JLabel lblUsername = new JLabel();
         lblUsername.setText(ClientManager.getOtherProfile().getUsername());
         lblUsername.setFont(Fonts.getFont((float)15));
         lblUsername.setForeground(Colors.Yellow);
-        lblUsername.setBounds(150,35,160,90);
+        lblUsername.setBounds(150,10,160,90);
         messageController.getMessageModel().setLblUsername(lblUsername);
 
         
@@ -83,19 +85,19 @@ public class MessageView {
         lblAge.setForeground(Colors.Yellow);
         lblAge.setFont(Fonts.getFont((float) 15));
         //lblAge.setForeground(Colors.Red);
-        lblAge.setBounds(150,60,200,90);
+        lblAge.setBounds(150,35,200,90);
         messageController.getMessageModel().setLblAge(lblAge);
 
         JLabel lblGender = new JLabel();
         lblGender.setText(messageController.getOtherProf().getGender());
         lblGender.setForeground(Colors.Yellow);
         lblGender.setFont(Fonts.getFont((float) 15));
-        lblGender.setBounds(150,85,90,90);
+        lblGender.setBounds(150,60,90,90);
         messageController.getMessageModel().setLblGender(lblGender);
 
         //init buttons
-        JButton backbtn = new JButton("Back");
-        backbtn.setBounds(10,10,90,40);
+        ImgButton backbtn = new ImgButton("Back");
+        backbtn.setBounds(335,60,90,40);
         backbtn.setBackground(Colors.Yellow);
         backbtn.setFont(Fonts.getFont((float) 12));
         backbtn.setForeground(Colors.Red);
@@ -105,8 +107,8 @@ public class MessageView {
 
         messageController.getMessagePanel().add(messageController.getMessageModel().getBack());
 
-        JButton btnSend = new JButton("Send");
-        btnSend.setBounds(345,365,90,30);
+        ImgButton btnSend = new ImgButton("Send");
+        btnSend.setBounds(348,360,87,30);
         btnSend.setActionCommand(MessageController.SEND);
         btnSend.setBackground(Colors.White);
         btnSend.setFont(Fonts.getFont((float) 12));
@@ -138,16 +140,20 @@ public class MessageView {
        
         JScrollPane tPane = new JScrollPane(thread,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         tPane.setVisible(true);
-        tPane.setBounds(35, 165, 400, 200);
+        tPane.setBounds(35, 150, 400, 200);
         tPane.getVerticalScrollBar().setValue(tPane.getVerticalScrollBar().getMaximum());
+        tPane.setFont(Fonts.getFont(12f));
+        tPane.setForeground(Colors.Red);
         SmartScroller s = new SmartScroller(tPane);
 
         messageController.getMessageModel().setPanel(tPane);
         
         JTextField sendBox = new JTextField();
-        sendBox.setBounds(35, 365, 310, 30);
+        sendBox.setBounds(35, 358, 310, 34);
         sendBox.setVisible(true);
         sendBox.addKeyListener(messageController);
+        sendBox.setFont(Fonts.getFont(12f));
+        sendBox.setForeground(Colors.Red);
         messageController.getMessageModel().setSendBox(sendBox);
 
         //add to panel

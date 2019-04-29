@@ -110,7 +110,7 @@ public class CreditsPageController extends PageController{
 		/*hardcoded accounts of creators*/
 		creators.add("sBMUWYKVuwXMHUhURkgZ");
 		creators.add("ye3oAXBbQIGaCkG3XNIW");
-		creators.add("xIjqV0bMIM6hGW3TAsvr");
+		creators.add("FMEibdFtISwYS2KHuvZ0");
 		creators.add("SaZIwE9M21H5eAc4L4qz");
 		creators.add("M2npjd5rVBlQaWRd8sBs");
 		creators.add("PBvdWFjjvC1FhFEmjovx");
