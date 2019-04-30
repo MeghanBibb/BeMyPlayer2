@@ -18,6 +18,7 @@ import javax.swing.border.EmptyBorder;
 import graphics.Colors;
 import graphics.Fonts;
 import images.BackgroundPanel;
+import images.ImgButton;
 import images.ProfilePicGenerator;
 import model.ResourceManager;
 
@@ -65,7 +66,7 @@ public class CreditsPageView {
 		
 		
 		//init buttons
-		JButton btnBack = new JButton("Back");
+		ImgButton btnBack = new ImgButton("Back");
 		btnBack.setBounds(10, 10, 90, 40);
 		btnBack.setActionCommand(CreditsPageController.BACK);
 		btnBack.setBackground(Colors.Yellow);
