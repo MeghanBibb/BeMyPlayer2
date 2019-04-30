@@ -31,7 +31,7 @@ public class SwipeLeftController extends SwipeButtonController{
 	 * @param controller the controller
 	 */
 	public SwipeLeftController(SwipePageController controller) {
-		super("Left");
+		super("Noob");
 		this.controller = controller;
 		
 	}

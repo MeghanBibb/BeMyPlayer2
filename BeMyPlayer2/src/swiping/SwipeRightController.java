@@ -30,7 +30,7 @@ public class SwipeRightController extends SwipeButtonController{
 	 * @param controller the controller
 	 */
 	public SwipeRightController(SwipePageController controller) {
-		super("Right");
+		super("Like");
 		this.controller = controller;
 	}
 	
