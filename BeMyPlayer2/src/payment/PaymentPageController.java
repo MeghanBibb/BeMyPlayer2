@@ -96,6 +96,7 @@ public class PaymentPageController extends PageController{
 	 * @return true, if successful
 	 */
 	public boolean verifyPayment() {
+		logger.info("Verifying Payment");
 		int month;
 		int year;
 		int cvc;
@@ -146,6 +147,7 @@ public class PaymentPageController extends PageController{
 			warnings.add("Invalid card number digits\n");
 		}
 		if(isValid == false) {
+			logger.info("Information was not valid");
 			pop = new InvalidPopup(this.getPaymentPanel(),warnings);
 		}
 		return isValid;
