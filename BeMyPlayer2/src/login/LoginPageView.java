@@ -99,7 +99,7 @@ public class LoginPageView {
 		loginController.getLoginPageModel().setFrmtdtxtfldEnterUsername(frmtdtxtfldEnterUsername);
 		loginController.getLoginPageModel().getFrmtdtxtfldEnterUsername().setBackground(Colors.Yellow);
 		loginController.getLoginPageModel().getFrmtdtxtfldEnterUsername().setForeground(Colors.Red);
-		loginController.getLoginPageModel().getFrmtdtxtfldEnterUsername().setFont(Fonts.getFont((float) 12));
+		loginController.getLoginPageModel().getFrmtdtxtfldEnterUsername().setFont(Fonts.getFont((float) 11));
 		loginController.getLoginPanel().add(loginController.getLoginPageModel().getFrmtdtxtfldEnterUsername());
 		
 		//	set images
