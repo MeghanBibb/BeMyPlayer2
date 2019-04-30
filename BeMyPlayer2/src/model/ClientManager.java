@@ -2,6 +2,7 @@ package model;
 
 import java.awt.image.BufferedImage;
 import java.util.List;
+import java.util.logging.Logger;
 
 import firebase.DBFailureException;
 import firebase.FireBaseAdapter;
@@ -390,7 +391,7 @@ public class ClientManager {
 				databaseAdapter.getUnmatchedProfiles(uid, FireBaseAdapter.FRIEND_MATCHES, clientModel.getFriendMatchBatch());
 				
 				if(importedProfs.isEmpty()) {
-					System.out.print("EMPTYYYYYYYYYYYYY");
+					Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).info("Match queue is empty");
 					return false;
 					
 				}
