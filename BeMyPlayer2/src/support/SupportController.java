@@ -54,6 +54,7 @@ public class SupportController extends PageController{
     public void actionPerformed(ActionEvent e) {
         switch(e.getActionCommand()) {
             case SUBMIT:
+        		logger.info("Submit was performed");
                 if(validateSupInfo() == true) {
                     logger.info("Submit");
                     //	logic for updating information here
@@ -90,6 +91,7 @@ public class SupportController extends PageController{
      * @return true, if successful
      */
     public boolean validateSupInfo() {
+    	logger.info("validated sup info");
         boolean valid = true;
 
         //	CHECK FIELDS ARE NOT EMPTY OR SQL COMMANDS TO DELETE OUR TABLES

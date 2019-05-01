@@ -41,6 +41,7 @@ public class SwipeLeftController extends SwipeButtonController{
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		logger.info("Swipe Left was performed");
 		try {
 			Match thisMatch;
 			if((thisMatch = ClientManager.getMatch(ClientManager.getActiveAccount().getAccountProfile(), ClientManager.getOtherProfile())) != null) {
