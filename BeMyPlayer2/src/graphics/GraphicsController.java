@@ -37,7 +37,6 @@ public class GraphicsController {
 	
 	static {
 		try {
-			
 			InputStream configFile = GraphicsController.class.getClassLoader().getResourceAsStream("logger.properties");
 			LogManager.getLogManager().readConfiguration(configFile);
 			configFile.close();
