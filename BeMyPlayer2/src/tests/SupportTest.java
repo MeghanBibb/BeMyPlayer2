@@ -1,28 +1,23 @@
 package tests;
 
-import graphics.SupportController;
-import graphics.SupportModel;
-import graphics.SupportView;
 import model.Account;
 import model.Profile;
+import support.SupportController;
+import support.SupportModel;
+import support.SupportView;
 
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 
-import org.junit.Test;
-
-import graphics.Colors;
-import graphics.Fonts;
-import graphics.InvalidPopup;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 
 public class SupportTest {
 	
@@ -32,8 +27,7 @@ public class SupportTest {
 	SupportView view;
 	SupportController controller;
 	
-	//@BeforeEach
-	//@DisplayName("Create Profile")
+	@BeforeEach
 	public void InitProfile() {
 		profile = new Profile();
 		account = new Account();
@@ -48,9 +42,8 @@ public class SupportTest {
 		account.setUserId("myUsername!");
 		account.setAccountProfile(profile);
 	}
-	
-	//@BeforeEach
-	//@DisplayName("Create Model")
+
+	@BeforeEach
 	public void initModel() {
 		model = new SupportModel();
 		controller = new SupportController();
@@ -76,26 +69,6 @@ public class SupportTest {
 	
 	@Test
 	public void badMessageSemiColon() {
-		model = new SupportModel();
-		controller = new SupportController();
-		view = new SupportView();
-		
-		JTextArea text = new JTextArea("hello there this is my issue");
-		model.setDescription(text);
-		
-        JComboBox issueSelection = new JComboBox<String>();
-        issueSelection.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent e) {
-                //supportController.getSupportModel().setissueSelection(e.getItem().toString());
-            }
-        });
-        issueSelection.setToolTipText("What kind of issue are you having?");
-        issueSelection.setModel(new DefaultComboBoxModel(new String[] {"Select closest issue type",
-                "Other Users", "Messaging", "Payment", "My Profile"}));
-        issueSelection.setSelectedIndex(1);
-        model.setProbArea(issueSelection);
-		
-		controller.setSupportModel(model);
 		
 		JTextArea text2 = new JTextArea("hello there this is; my issue");
 		model.setDescription(text2);
@@ -104,26 +77,6 @@ public class SupportTest {
 	}
 	@Test
 	public void nullMessage() {
-		model = new SupportModel();
-		controller = new SupportController();
-		view = new SupportView();
-		
-		JTextArea text = new JTextArea("hello there this is my issue");
-		model.setDescription(text);
-		
-        JComboBox issueSelection = new JComboBox<String>();
-        issueSelection.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent e) {
-                //supportController.getSupportModel().setissueSelection(e.getItem().toString());
-            }
-        });
-        issueSelection.setToolTipText("What kind of issue are you having?");
-        issueSelection.setModel(new DefaultComboBoxModel(new String[] {"Select closest issue type",
-                "Other Users", "Messaging", "Payment", "My Profile"}));
-        issueSelection.setSelectedIndex(1);
-        model.setProbArea(issueSelection);
-		
-		controller.setSupportModel(model);
 		
 		JTextArea text2 = new JTextArea();
 		model.setDescription(text2);
@@ -132,26 +85,6 @@ public class SupportTest {
 	}
 	@Test
 	public void emptyMessage() {
-		model = new SupportModel();
-		controller = new SupportController();
-		view = new SupportView();
-		
-		JTextArea text = new JTextArea("hello there this is my issue");
-		model.setDescription(text);
-		
-        JComboBox issueSelection = new JComboBox<String>();
-        issueSelection.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent e) {
-                //supportController.getSupportModel().setissueSelection(e.getItem().toString());
-            }
-        });
-        issueSelection.setToolTipText("What kind of issue are you having?");
-        issueSelection.setModel(new DefaultComboBoxModel(new String[] {"Select closest issue type",
-                "Other Users", "Messaging", "Payment", "My Profile"}));
-        issueSelection.setSelectedIndex(1);
-        model.setProbArea(issueSelection);
-		
-		controller.setSupportModel(model);
 		
 		JTextArea text2 = new JTextArea();
 		model.setDescription(text2);
@@ -160,26 +93,6 @@ public class SupportTest {
 	}
 	@Test
 	public void emptyMessage2() {
-		model = new SupportModel();
-		controller = new SupportController();
-		view = new SupportView();
-		
-		JTextArea text = new JTextArea("hello there this is my issue");
-		model.setDescription(text);
-		
-        JComboBox issueSelection = new JComboBox<String>();
-        issueSelection.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent e) {
-                //supportController.getSupportModel().setissueSelection(e.getItem().toString());
-            }
-        });
-        issueSelection.setToolTipText("What kind of issue are you having?");
-        issueSelection.setModel(new DefaultComboBoxModel(new String[] {"Select closest issue type",
-                "Other Users", "Messaging", "Payment", "My Profile"}));
-        issueSelection.setSelectedIndex(1);
-        model.setProbArea(issueSelection);
-		
-		controller.setSupportModel(model);
 		
 		JTextArea text2 = new JTextArea("");
 		model.setDescription(text2);
@@ -188,30 +101,9 @@ public class SupportTest {
 	}
 	@Test
 	public void badIndexSelection() {
-		model = new SupportModel();
-		controller = new SupportController();
-		view = new SupportView();
-		
-		JTextArea text = new JTextArea("hello there this is my issue");
-		model.setDescription(text);
-		
-        JComboBox issueSelection = new JComboBox<String>();
-        issueSelection.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent e) {
-                //supportController.getSupportModel().setissueSelection(e.getItem().toString());
-            }
-        });
-        issueSelection.setToolTipText("What kind of issue are you having?");
-        issueSelection.setModel(new DefaultComboBoxModel(new String[] {"Select closest issue type",
-                "Other Users", "Messaging", "Payment", "My Profile"}));
-        issueSelection.setSelectedIndex(1);
-        model.setProbArea(issueSelection);
-		
-		controller.setSupportModel(model);
-		
 		JComboBox issueSelection2 = model.getProbArea();
-		issueSelection.setSelectedIndex(0);
-		model.setProbArea(issueSelection);
+		issueSelection2.setSelectedIndex(0);
+		model.setProbArea(issueSelection2);
 		controller.setSupportModel(model);
 		assertFalse(controller.validateSupInfo());
 	}
