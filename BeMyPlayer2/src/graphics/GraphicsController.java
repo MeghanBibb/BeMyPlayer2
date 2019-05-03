@@ -34,22 +34,7 @@ public class GraphicsController {
 	
 	/** The logger. */
 	private static Logger logger = Logger.getLogger(GraphicsController.class.getName());
-	
-<<<<<<< HEAD
-	static {
-		try {
-			InputStream configFile = GraphicsController.class.getClassLoader().getResourceAsStream("logger.properties");
-			LogManager.getLogManager().readConfiguration(configFile);
-			configFile.close();
-		} catch (IOException ex) {
-			System.out.println("WARNING: Could not open configuration file");
-		    System.out.println("WARNING: Logging not configured (console output only)");
-		}
-		logger.log(Level.FINE,"running graphic controller");
-	}
-	
-=======
->>>>>>> 2d3a6816598f35e1d5c82d1f0612f6c64b3f311a
+
 	/**
 	 * Instantiates a new graphics controller.
 	 */
